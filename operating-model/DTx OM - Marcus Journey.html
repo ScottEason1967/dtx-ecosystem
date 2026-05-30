@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Marcus's story: Digital Therapeutics Operating Model</title>
+<style>
+ /* Canonical topnav */
+ .topnav{background:#fff;border-bottom:1px solid #ebeef1;padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:nowrap;min-height:54px;box-sizing:border-box;width:100%;max-width:100%;margin:0;position:sticky;top:0;z-index:200;}
+ .topnav .nav-back{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-back:hover{color:#005EB8;}
+ .topnav .nav-siblings{display:flex;gap:4px;flex-wrap:nowrap;overflow-x:auto;align-items:center;}
+ .topnav .nav-siblings a{font-size:12px;font-weight:600;color:#4C6272;text-decoration:none;padding:6px 12px;border-radius:6px;letter-spacing:0.2px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-siblings a:hover{background:#f0f4f8;color:#212B32;}
+ .topnav .nav-siblings a.active{background:#003087;color:#fff;}
+
+:root {
+  --nhs-dark:#003087;
+  --nhs-blue:#005EB8;
+  --nhs-cyan:#00A9CE;
+  --nhs-cyan-deep:#00819B;
+  --nhs-grey:#7E8B97;
+  --hometest:#003087;
+  --healthstore:#00A9CE;
+  --healthsync:#00A499;
+  --amber:#FFB91D;
+  --amber-deep:#C9A227;
+  --gold:#FFD66B;
+  --warm-cream:#FFF9EC;
+  --text:#212B32;
+  --text-sec:#4C6272;
+  --text-muted:#7E8B97;
+  --border-lt:#ebeef1;
+  --card:#ffffff;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,var(--nhs-cyan) 0%, var(--nhs-cyan-deep) 100%);background-attachment:fixed;color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;margin:0;padding:0;width:100%;}
+
+/* Page container */
+.page{max-width:1180px;margin:30px auto 50px;background:#ffffff;border-radius:18px;box-shadow:0 14px 40px rgba(0,129,155,0.20);overflow:hidden;}
+
+/* ============================================================ */
+/* HERO                                                          */
+/* ============================================================ */
+.hero{position:relative;padding:70px 60px 60px;background:linear-gradient(135deg,#003a47 0%,#00819B 50%,#00A9CE 100%);color:#fff;overflow:hidden;}
+.hero::after{content:'';position:absolute;right:-80px;bottom:-120px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(255,214,107,0.18),transparent 65%);pointer-events:none;}
+.hero-inner{position:relative;display:grid;grid-template-columns:1.5fr 1fr;gap:50px;align-items:center;z-index:1;}
+.hero-rule{width:60px;height:4px;background:var(--gold);border-radius:2px;margin-bottom:22px;}
+.hero-eyebrow{font-size:11px;font-weight:800;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:24px;}
+.hero-title{font-size:72px;font-weight:900;color:#fff;letter-spacing:-2.4px;line-height:0.95;margin-bottom:28px;}
+.hero-title em{font-style:normal;color:var(--gold);}
+.hero-strap{font-size:18px;color:rgba(255,255,255,0.94);line-height:1.65;max-width:560px;}
+.hero-strap strong{color:var(--gold);font-weight:700;}
+.hero-image-box{display:flex;flex-direction:column;align-items:center;gap:12px;}
+.image-slot{position:relative;background:linear-gradient(135deg,rgba(255,255,255,0.18),rgba(255,255,255,0.06));border-radius:16px;border:2px dashed rgba(255,255,255,0.30);display:flex;flex-direction:column;align-items:center;justify-content:center;color:rgba(255,255,255,0.78);text-align:center;padding:24px;font-size:11.5px;font-weight:700;letter-spacing:0.4px;overflow:hidden;}
+.image-slot img{display:block;width:100%;height:100%;object-fit:cover;}
+.image-slot-icon{font-size:48px;opacity:0.45;margin-bottom:8px;}
+.image-slot.hero-image{width:340px;height:340px;}
+.image-slot-caption{font-size:10.5px;font-weight:600;opacity:0.78;letter-spacing:0.4px;}
+
+.hero-portrait-strip{display:flex;flex-direction:column;gap:6px;text-align:center;color:#fff;}
+.hero-portrait-name{font-size:16px;font-weight:800;letter-spacing:0.4px;}
+.hero-portrait-role{font-size:11px;color:var(--gold);letter-spacing:1.4px;text-transform:uppercase;font-weight:700;}
+
+/* ============================================================ */
+/* JOURNEY RIBBON                                                */
+/* ============================================================ */
+.ribbon-wrap{background:#fafbfd;border-bottom:1px solid var(--border-lt);padding:32px 60px 28px;}
+.ribbon-eyebrow{font-size:10.5px;font-weight:800;letter-spacing:2px;color:var(--text-muted);text-transform:uppercase;margin-bottom:14px;text-align:center;}
+.ribbon{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;position:relative;align-items:start;}
+.ribbon-stage{display:flex;flex-direction:column;align-items:center;gap:8px;position:relative;cursor:pointer;text-decoration:none;color:inherit;padding:8px 4px;border-radius:8px;transition:background 0.15s;}
+.ribbon-stage:hover{background:rgba(0,129,155,0.04);}
+.ribbon-num{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--nhs-cyan-deep),var(--nhs-cyan));color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;letter-spacing:-0.5px;box-shadow:0 4px 10px rgba(0,129,155,0.18);}
+.ribbon-label{font-size:11px;font-weight:800;color:var(--nhs-cyan-deep);text-align:center;line-height:1.3;letter-spacing:0.2px;}
+.ribbon-streams{display:flex;gap:3px;margin-top:4px;}
+.ribbon-stream{width:18px;height:5px;border-radius:2px;background:#dde3eb;}
+.ribbon-stream.hometest.on{background:var(--hometest);}
+.ribbon-stream.healthstore.on{background:var(--healthstore);}
+.ribbon-stream.healthsync.on{background:var(--healthsync);}
+.ribbon-legend{display:flex;justify-content:center;gap:24px;margin-top:18px;flex-wrap:wrap;}
+.ribbon-legend-item{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--text-sec);letter-spacing:0.3px;}
+.ribbon-legend-dot{width:14px;height:5px;border-radius:2px;}
+.ribbon-legend-dot.hometest{background:var(--hometest);}
+.ribbon-legend-dot.healthstore{background:var(--healthstore);}
+.ribbon-legend-dot.healthsync{background:var(--healthsync);}
+.ribbon-legend-dot.dormant{background:#dde3eb;}
+
+/* ============================================================ */
+/* FRAMING                                                       */
+/* ============================================================ */
+.framing{padding:50px 60px 36px;background:#fff;}
+.framing-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;}
+.framing-tile{background:linear-gradient(135deg,#EFFAFD,#FFFFFF);border:1px solid #BFE6F0;border-radius:14px;padding:22px 24px;}
+.framing-tile-eyebrow{font-size:10px;font-weight:800;letter-spacing:1.8px;color:var(--nhs-cyan-deep);text-transform:uppercase;margin-bottom:8px;}
+.framing-tile-h{font-size:15px;font-weight:800;color:var(--nhs-cyan-deep);letter-spacing:-0.2px;margin-bottom:8px;line-height:1.3;}
+.framing-tile-body{font-size:12.5px;color:var(--text-sec);line-height:1.65;}
+.framing-tile-body strong{color:var(--text);font-weight:700;}
+
+/* ============================================================ */
+/* STAGE                                                         */
+/* ============================================================ */
+.stages{padding:24px 60px 50px;background:#fff;}
+.stage{display:grid;grid-template-columns:140px 1fr;gap:36px;margin-bottom:14px;position:relative;}
+.stage-side{display:flex;flex-direction:column;align-items:flex-end;padding-top:14px;position:sticky;top:0;}
+.stage-number{font-size:110px;font-weight:900;color:var(--nhs-cyan-deep);letter-spacing:-6px;line-height:0.85;opacity:0.10;}
+.stage-side-streams{display:flex;flex-direction:column;gap:6px;margin-top:14px;align-items:flex-end;}
+.stage-side-stream{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:800;letter-spacing:0.6px;color:var(--text-muted);text-transform:uppercase;}
+.stage-side-stream-bar{width:30px;height:4px;border-radius:2px;background:#e0e6ed;}
+.stage-side-stream.on.hometest .stage-side-stream-bar{background:var(--hometest);}
+.stage-side-stream.on.healthstore .stage-side-stream-bar{background:var(--healthstore);}
+.stage-side-stream.on.healthsync .stage-side-stream-bar{background:var(--healthsync);}
+.stage-side-stream.on{color:var(--nhs-cyan-deep);}
+
+.stage-main{padding:24px 0 36px;border-bottom:1px solid var(--border-lt);}
+.stage-eyebrow{font-size:10.5px;font-weight:800;letter-spacing:2.4px;color:var(--text-muted);text-transform:uppercase;margin-bottom:8px;}
+.stage-title{font-size:32px;font-weight:800;color:var(--nhs-cyan-deep);letter-spacing:-0.7px;line-height:1.18;margin-bottom:26px;max-width:760px;}
+
+/* Stage image */
+.stage-image{width:100%;max-width:560px;aspect-ratio:1/1;background:linear-gradient(135deg,#EFFAFD,#D7EAF0);border-radius:14px;border:2px dashed #BFE6F0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--text-muted);text-align:center;padding:20px;font-size:12.5px;font-weight:700;letter-spacing:0.3px;margin:0 auto 24px;overflow:hidden;position:relative;}
+.stage-image img{display:block;width:100%;height:100%;object-fit:cover;border-radius:12px;}
+.stage-image-icon{font-size:54px;opacity:0.40;margin-bottom:10px;}
+.stage-image-caption{font-size:11.5px;font-weight:600;opacity:0.85;letter-spacing:0.3px;max-width:480px;line-height:1.5;}
+
+/* Pull-quote */
+.pull-quote{margin:20px 0 24px;padding:32px 20px 28px;text-align:center;position:relative;}
+.pull-quote::before{content:'\201C';position:absolute;left:8px;top:-12px;font-size:110px;color:var(--gold);font-family:Georgia,serif;line-height:1;opacity:0.65;}
+.pull-quote-text{font-size:24px;font-weight:600;color:var(--text);line-height:1.45;letter-spacing:-0.3px;max-width:780px;margin:0 auto;font-style:italic;}
+.pull-quote-attribution{font-size:11.5px;font-weight:800;letter-spacing:2px;color:var(--amber-deep);text-transform:uppercase;margin-top:18px;}
+
+/* What's happening */
+.whats-happening{background:#EFFAFD;border-left:5px solid var(--nhs-cyan);border-radius:0 12px 12px 0;padding:20px 24px;margin-bottom:18px;}
+.whats-happening-label{font-size:10.5px;font-weight:800;letter-spacing:1.8px;color:var(--nhs-cyan-deep);text-transform:uppercase;margin-bottom:8px;}
+.whats-happening-body{font-size:14px;color:var(--text);line-height:1.7;}
+.whats-happening-body strong{color:var(--nhs-cyan-deep);font-weight:700;}
+
+/* The old way callout */
+.old-way{background:#FFF6E8;border:1px solid #F0DCA0;border-left:5px solid var(--amber-deep);border-radius:0 12px 12px 0;padding:16px 22px;margin-bottom:18px;}
+.old-way-label{font-size:10px;font-weight:800;letter-spacing:1.6px;color:var(--amber-deep);text-transform:uppercase;margin-bottom:6px;}
+.old-way-body{font-size:13px;color:var(--text-sec);line-height:1.65;font-style:italic;}
+.old-way-body strong{color:var(--text);font-weight:700;font-style:normal;}
+
+/* Careteam */
+.careteam{background:#fff;border:1px solid var(--border-lt);border-radius:10px;padding:14px 18px;margin-bottom:18px;display:flex;gap:14px;align-items:flex-start;}
+.careteam-icon{font-size:18px;color:var(--nhs-cyan);flex-shrink:0;margin-top:1px;}
+.careteam-body{flex:1;}
+.careteam-label{font-size:10px;font-weight:800;letter-spacing:1.4px;color:var(--text-muted);text-transform:uppercase;margin-bottom:4px;}
+.careteam-text{font-size:13px;color:var(--text-sec);line-height:1.65;}
+
+/* Cross-links */
+.crosslinks{margin-top:20px;}
+.crosslinks-label{font-size:10px;font-weight:800;letter-spacing:1.6px;color:var(--text-muted);text-transform:uppercase;margin-bottom:10px;}
+.crosslinks-row{display:flex;flex-wrap:wrap;gap:6px;}
+.crosslinks-row a{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;color:var(--nhs-cyan-deep);text-decoration:none;padding:7px 12px;border-radius:6px;border:1px solid #BFE6F0;background:#fff;transition:background 0.15s,transform 0.12s;}
+.crosslinks-row a:hover{background:#EFFAFD;transform:translateY(-1px);}
+.crosslinks-row a::after{content:' \2197';font-size:10px;color:var(--text-muted);margin-left:2px;}
+.crosslinks-row .crosslinks-tag{font-size:9.5px;font-weight:800;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;background:#f0f4f8;padding:3px 8px;border-radius:4px;margin-right:4px;align-self:center;}
+
+/* ============================================================ */
+/* SUPPLIER ECONOMICS PANEL (Stage 6 mockup, equivalent of dashboard) */
+/* ============================================================ */
+.dashboard{background:linear-gradient(135deg,#003a47,#00819B);border-radius:18px;padding:30px 32px 28px;color:#fff;margin:24px 0 18px;box-shadow:0 10px 30px rgba(0,58,71,0.4);}
+.dashboard-eyebrow{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:8px;}
+.dashboard-title{font-size:18px;font-weight:800;color:#fff;margin-bottom:18px;letter-spacing:-0.3px;}
+.dashboard-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:14px;}
+.dashboard-card{background:rgba(255,255,255,0.10);border:1px solid rgba(255,255,255,0.18);border-radius:10px;padding:14px 16px;}
+.dashboard-card-head{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+.dashboard-card-dot{width:8px;height:8px;border-radius:50%;background:#5EBCDB;}
+.dashboard-card-label{font-size:10px;font-weight:800;letter-spacing:1.4px;color:rgba(255,255,255,0.78);text-transform:uppercase;}
+.dashboard-metric{font-size:24px;font-weight:900;color:#fff;letter-spacing:-0.5px;line-height:1;margin-bottom:6px;}
+.dashboard-metric-sub{font-size:11px;color:rgba(255,255,255,0.65);line-height:1.4;}
+.dashboard-footer{font-size:11.5px;color:rgba(255,255,255,0.78);line-height:1.55;padding-top:14px;border-top:1px solid rgba(255,255,255,0.15);}
+.dashboard-footer strong{color:var(--gold);}
+
+/* ============================================================ */
+/* CONCLUSION                                                    */
+/* ============================================================ */
+.conclusion{padding:60px 60px 70px;background:linear-gradient(180deg,#FFF9EC,#FFFFFF);}
+.conclusion-eyebrow{font-size:11px;font-weight:800;letter-spacing:2.8px;color:var(--amber-deep);text-transform:uppercase;margin-bottom:14px;text-align:center;}
+.conclusion-title{font-size:40px;font-weight:900;color:var(--nhs-cyan-deep);letter-spacing:-1px;line-height:1.1;text-align:center;margin-bottom:14px;max-width:880px;margin-left:auto;margin-right:auto;}
+.conclusion-strap{font-size:15.5px;color:var(--text-sec);line-height:1.7;text-align:center;max-width:760px;margin:0 auto 36px;}
+
+.outcomes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:32px;}
+.outcome{background:#fff;border:1px solid var(--border-lt);border-radius:14px;padding:24px 26px;}
+.outcome-h{font-size:11px;font-weight:800;letter-spacing:1.6px;color:var(--text-muted);text-transform:uppercase;margin-bottom:6px;}
+.outcome-title{font-size:18px;font-weight:800;color:var(--nhs-cyan-deep);letter-spacing:-0.3px;line-height:1.3;margin-bottom:10px;}
+.outcome-body{font-size:13px;color:var(--text-sec);line-height:1.65;}
+
+.conclusion-line{font-size:22px;font-weight:800;color:var(--nhs-cyan-deep);text-align:center;letter-spacing:-0.4px;line-height:1.4;padding:24px;border-top:1px solid #F0DCA0;}
+
+/* RESPONSIVE */
+@media(max-width:1000px){
+  .hero{padding:50px 36px 44px;}
+  .hero-inner{grid-template-columns:1fr;gap:36px;}
+  .hero-title{font-size:48px;}
+  .image-slot.hero-image{width:100%;max-width:340px;height:320px;}
+  .ribbon-wrap,.framing,.stages,.conclusion{padding-left:30px;padding-right:30px;}
+  .ribbon{grid-template-columns:repeat(3,1fr);gap:14px;}
+  .framing-grid,.outcomes-grid,.dashboard-row{grid-template-columns:1fr;}
+  .stage{grid-template-columns:80px 1fr;gap:18px;}
+  .stage-number{font-size:64px;letter-spacing:-3px;}
+  .stage-title{font-size:24px;}
+  .stage-image{height:240px;}
+  .pull-quote-text{font-size:20px;}
+  .conclusion-title{font-size:28px;}
+}
+</style>
+<style>
+  .ecosystem-nav {
+    background: #fff;
+    border-bottom: 1px solid #ebeef1;
+    padding: 12px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 48px;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  }
+  .ecosystem-nav a {
+    font-size: 13px; font-weight: 700; color: #003087;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .ecosystem-nav a:hover { color: #005EB8; }
+  .ecosystem-nav .nav-context {
+    font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
+    color: #7E8B97; text-transform: uppercase;
+  }
+  .ecosystem-nav .nav-product {
+    font-size: 10.5px; font-weight: 800; letter-spacing: 0.8px;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 4px; color: #fff;
+  }
+  .ecosystem-nav .nav-product.dtx { background: #003087; }
+  .ecosystem-nav .nav-product.hometest { background: #003087; }
+  .ecosystem-nav .nav-product.healthstore { background: #00A9CE; }
+  .ecosystem-nav .nav-product.healthsync { background: #00A499; }
+</style>
+</head>
+<body>
+<div class="ecosystem-nav">
+  <a href="../index.html">← DTx Ecosystem</a>
+  <span class="nav-context">Marcus Journey</span>
+  <span class="nav-product dtx">DTx</span>
+</div>
+
+<nav class="topnav">
+<a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+<div class="nav-siblings">
+ <a href="DTx OM - Why.html">Why</a>
+ <a href="DTx OM - What.html">What</a>
+ <a href="DTx OM - Lifecycle.html">When</a>
+ <a href="DTx OM - HomeTest Operational.html">How</a>
+ <a href="DTx OM - Governance.html">Who</a>
+ <a href="DTx OM - Hearts and Minds.html" class="active">Hearts and Minds</a>
+ <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>
+ <a href="DTx OM - Status.html">Status</a>
+</div>
+</nav>
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-rule"></div>
+        <div class="hero-eyebrow">A supplier&apos;s story through the operating model</div>
+        <h1 class="hero-title">Four years<br>looking for a <em>door</em>.</h1>
+        <p class="hero-strap">Marcus built a clinical-grade digital therapeutic for COPD. NICE-relevant evidence base, regulatory clean, real-world data on adherence and exacerbation reduction. What he didn&apos;t have was a way into the NHS that wasn&apos;t a one-trust pilot in front of a procurement officer who had never bought software like this before. <strong>This is the story of a supplier who watched a framework appear, walked through it, and ended up with the market he was supposed to have had from the start.</strong></p>
+      </div>
+      <div class="hero-image-box">
+        <div class="image-slot hero-image">
+          <img src="img/Final%20images/Marcus%207.png" alt="Marcus at his desk reviewing the framework launch" style="border-radius:14px;" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;image-slot-icon&quot;>&#x1F464;</div><div>Marcus hero illustration</div><div class=&quot;image-slot-caption&quot;>DTx founder &middot; product roadmap &middot; clinical evidence files &middot; four years of patient work behind him&apos;';">
+        </div>
+        <div class="hero-portrait-strip">
+          <div class="hero-portrait-name">Marcus</div>
+          <div class="hero-portrait-role">DTx founder &middot; HealthStore</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JOURNEY RIBBON -->
+  <div class="ribbon-wrap">
+    <div class="ribbon-eyebrow">Marcus&apos;s journey at a glance &middot; six stages, one workstream, three years</div>
+    <div class="ribbon">
+      <a class="ribbon-stage" href="#stage-1">
+        <div class="ribbon-num">1</div>
+        <div class="ribbon-label">Four years in</div>
+        <div class="ribbon-streams">
+          <div class="ribbon-stream hometest"></div>
+          <div class="ribbon-stream healthstore"></div>
+          <div class="ribbon-stream healthsync"></div>
+        </div>
+      </a>
+      <a class="ribbon-stage" href="#stage-2">
+        <div class="ribbon-num">2</div>
+        <div class="ribbon-label">The framework appears</div>
+        <div class="ribbon-streams">
+          <div class="ribbon-stream hometest on"></div>
+          <div class="ribbon-stream healthstore on"></div>
+          <div class="ribbon-stream healthsync on"></div>
+        </div>
+      </a>
+      <a class="ribbon-stage" href="#stage-3">
+        <div class="ribbon-num">3</div>
+        <div class="ribbon-label">Self-assessment</div>
+        <div class="ribbon-streams">
+          <div class="ribbon-stream hometest"></div>
+          <div class="ribbon-stream healthstore on"></div>
+          <div class="ribbon-stream healthsync"></div>
+        </div>
+      </a>
+      <a class="ribbon-stage" href="#stage-4">
+        <div class="ribbon-num">4</div>
+        <div class="ribbon-label">NICE EVA admission</div>
+        <div class="ribbon-streams">
+          <div class="ribbon-stream hometest"></div>
+          <div class="ribbon-stream healthstore on"></div>
+          <div class="ribbon-stream healthsync"></div>
+        </div>
+      </a>
+      <a class="ribbon-stage" href="#stage-5">
+        <div class="ribbon-num">5</div>
+        <div class="ribbon-label">First live patient</div>
+        <div class="ribbon-streams">
+          <div class="ribbon-stream hometest"></div>
+          <div class="ribbon-stream healthstore on"></div>
+          <div class="ribbon-stream healthsync"></div>
+        </div>
+      </a>
+      <a class="ribbon-stage" href="#stage-6">
+        <div class="ribbon-num">6</div>
+        <div class="ribbon-label">The market that scaled</div>
+        <div class="ribbon-streams">
+          <div class="ribbon-stream hometest"></div>
+          <div class="ribbon-stream healthstore on"></div>
+          <div class="ribbon-stream healthsync"></div>
+        </div>
+      </a>
+    </div>
+    <div class="ribbon-legend">
+      <div class="ribbon-legend-item"><div class="ribbon-legend-dot hometest"></div>HomeTest active</div>
+      <div class="ribbon-legend-item"><div class="ribbon-legend-dot healthstore"></div>HealthStore active</div>
+      <div class="ribbon-legend-item"><div class="ribbon-legend-dot healthsync"></div>HealthSync active</div>
+      <div class="ribbon-legend-item"><div class="ribbon-legend-dot dormant"></div>not active</div>
+    </div>
+  </div>
+
+  <!-- FRAMING -->
+  <div class="framing">
+    <div class="framing-grid" style="grid-template-columns:1fr 1fr;">
+      <div class="framing-tile">
+        <div class="framing-tile-eyebrow">The supplier&apos;s real problem</div>
+        <div class="framing-tile-h">Building a clinical-grade product is the easy bit. The market is the bit that&apos;s broken.</div>
+        <div class="framing-tile-body">Marcus didn&apos;t lack regulatory clearance, evidence or a roadmap. He lacked a route in that wasn&apos;t bespoke per trust, per ICB, per procurement officer. <strong>Every NHS conversation started from zero.</strong> The framework is the bit that makes those conversations start from somewhere, with the work already done at the centre.</div>
+      </div>
+      <div class="framing-tile">
+        <div class="framing-tile-eyebrow">Why one operating model matters to him</div>
+        <div class="framing-tile-h">One admission route. One contract architecture. One MI feed. National scale, finally addressable.</div>
+        <div class="framing-tile-body">Three separate operating models would mean three admission routes, three contract instruments, three evidence regimes. The DTx operating model means Marcus goes through assurance once, sits on a national catalogue once, and gets called off many times. <strong>The market becomes a market</strong>, not a series of deals.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAGES -->
+  <div class="stages">
+
+    <!-- STAGE 1 -->
+    <div class="stage" id="stage-1">
+      <div class="stage-side">
+        <div class="stage-number">01</div>
+        <div class="stage-side-streams">
+          <div class="stage-side-stream"><span>HomeTest</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream"><span>HealthStore</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream"><span>HealthSync</span><div class="stage-side-stream-bar"></div></div>
+        </div>
+      </div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">Four years in &middot; the product is ready, the market isn&apos;t</div>
+        <h2 class="stage-title">Marcus has a clinical-grade digital therapeutic for COPD. Regulatory clean. Real-world evidence on adherence and admission reduction. What he doesn&apos;t have is a way in that scales.</h2>
+
+        <div class="stage-image">
+          <img src="img/Final%20images/Marcus%201.png" alt="Marcus reviewing four years of clinical evidence" style="border-radius:12px;" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;stage-image-icon&quot;>&#x1F4DA;</div><div>Stage 1 illustration</div><div class=&quot;stage-image-caption&quot;>Marcus at his desk &middot; published evidence pinned to the wall &middot; pilot site map with too many flags and not enough scale &middot; quiet frustration';">
+        </div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">I&apos;ve got the evidence. I&apos;ve got the clearance. I&apos;ve got patients who&apos;ve benefited from this product for years. What I haven&apos;t got is a way to put it in front of the NHS that doesn&apos;t start with a six-month conversation in a single trust.</p>
+          <div class="pull-quote-attribution">Marcus</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">Where the product sits</div>
+          <div class="whats-happening-body">CE-marked. MHRA-aligned. Two published RCTs and a real-world evidence base across six pilot sites. NICE relevance established. <strong>What he doesn&apos;t have</strong>: a national route in. Each new ICB conversation starts from zero, runs against a procurement template that wasn&apos;t designed for software, and ends in pilot purgatory: a small site, no follow-on, no clinical adoption signal, no commercial trajectory. <strong>The product is operating in a market that doesn&apos;t exist yet.</strong></div>
+        </div>
+
+        <div class="old-way">
+          <div class="old-way-label">The pattern Marcus and every other DTx founder knows by heart</div>
+          <div class="old-way-body">Pilot, evidence, pilot, evidence, pilot. Each new conversation re-relitigates clinical safety, IG, integration, contracting and reimbursement from scratch. Even when a trust says yes, it&apos;s a one-trust deal. Even when the evidence converts a clinician, it doesn&apos;t convert a system. The companies that survive aren&apos;t the ones with the best products; they&apos;re the ones with the most capital to wait out the procurement attrition.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What his team is doing</div>
+            <div class="careteam-text">Customer success across six pilot sites, each running on different commercial terms. A regulatory function maintaining MHRA and clinical safety case. A commercial team writing the same supplier due-diligence response template for the seventh, eighth and ninth ICB. <strong>None of this is scaling.</strong></div>
+          </div>
+        </div>
+
+        <div class="crosslinks">
+          <div class="crosslinks-label">Where this lives in the model</div>
+          <div class="crosslinks-row">
+            <span class="crosslinks-tag">Why</span>
+            <a href="DTx OM - Why.html" target="_blank">Why orchestrate the market</a>
+            <span class="crosslinks-tag">Who</span>
+            <a href="DTx OM - Persona HealthStore supplier.html" target="_blank">Marcus persona</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 2 -->
+    <div class="stage" id="stage-2">
+      <div class="stage-side">
+        <div class="stage-number">02</div>
+        <div class="stage-side-streams">
+          <div class="stage-side-stream on hometest"><span>HomeTest</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream on healthstore"><span>HealthStore</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream on healthsync"><span>HealthSync</span><div class="stage-side-stream-bar"></div></div>
+        </div>
+      </div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">The framework appears &middot; the door he didn&apos;t know was coming</div>
+        <h2 class="stage-title">A national framework for digital therapeutics. Three product overlays. One assurance bar. One contract architecture. One MI feed. Marcus reads the spec twice to make sure he&apos;s reading it right.</h2>
+
+        <div class="stage-image">
+          <img src="img/Final%20images/Marcus%202.png" alt="Marcus reading the framework specification" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;stage-image-icon&quot;>&#x1F4D6;</div><div>Stage 2 illustration</div><div class=&quot;stage-image-caption&quot;>Marcus reading the framework specification on screen &middot; the three product overlays visible &middot; pen marking the HealthStore admission route &middot; cautious optimism';">
+        </div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">I&apos;ve seen frameworks before. This one is different. Same admission bar, same contract, same MI feed across the whole estate. If it lands the way it&apos;s written, it&apos;s the route in we&apos;ve been waiting for.</p>
+          <div class="pull-quote-attribution">Marcus</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">A single national framework instrument carries three product overlays: <strong>HomeTest</strong>, <strong>HealthStore</strong>, <strong>HealthSync</strong>. For HealthStore suppliers, admission runs through the <strong>NICE EVA conditionally-recommended</strong> route into the <strong>National App Formulary</strong>, with DTAC, DCB0129 (manufacturer-side clinical safety) and the supplier admission gate sitting at Foundation level. Once admitted, Marcus is on a national catalogue available to every ICB on the framework. <strong>The work that used to happen per-trust happens once at the centre.</strong></div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What he&apos;s looking at on screen</div>
+            <div class="careteam-text">Framework spec, admission requirements per overlay, contract architecture, MI requirements. Maximum pricing visible. Eligibility filters explained. The Pattern catalogue and Configuration layer that tell him which deployment shapes are admitted and which sit outside.</div>
+          </div>
+        </div>
+
+        <div class="crosslinks">
+          <div class="crosslinks-label">Where this lives in the model</div>
+          <div class="crosslinks-row">
+            <span class="crosslinks-tag">How</span>
+            <a href="DTx OM - HealthStore Operational.html" target="_blank">HealthStore Operational</a>
+            
+            <span class="crosslinks-tag">What</span>
+            <a href="DTx OM - Anatomical.html" target="_blank">Foundation &middot; Framework instrument, Assurance Model, National App Formulary</a>
+            <span class="crosslinks-tag">When</span>
+            <a href="DTx OM - HealthStore SHAPE.html" target="_blank">HealthStore SHAPE</a>
+            <span class="crosslinks-tag">When</span>
+            <a href="DTx OM - Lifecycle.html" target="_blank">Lifecycle &middot; SHAPE stage</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 3 -->
+    <div class="stage" id="stage-3">
+      <div class="stage-side">
+        <div class="stage-number">03</div>
+        <div class="stage-side-streams">
+          <div class="stage-side-stream"><span>HomeTest</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream on healthstore"><span>HealthStore</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream"><span>HealthSync</span><div class="stage-side-stream-bar"></div></div>
+        </div>
+      </div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">Self-assessment &middot; whether the product actually fits the admission bar</div>
+        <h2 class="stage-title">The Self-Assessment Toolkit asks the four questions Marcus needs answered honestly before he commits a senior team to the admission process. Pathway fit. Clinical-safety case. IG profile. Evidence completeness.</h2>
+
+        <div class="stage-image">
+          <img src="img/Final%20images/Marcus%203.png" alt="Marcus working through the supplier self-assessment" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;stage-image-icon&quot;>&#x1F50D;</div><div>Stage 3 illustration</div><div class=&quot;stage-image-caption&quot;>Marcus with his head of clinical and head of regulatory &middot; whiteboard with the four-question filter &middot; tick / partial / open against each &middot; an honest conversation about gaps';">
+        </div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">It told me where the gaps were before I&apos;d spent six months and four hundred grand finding out the hard way. Three of the four came back clean. The fourth was a known piece of work, costed and timetabled.</p>
+          <div class="pull-quote-attribution">Marcus</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">The <strong>Supplier Self-Assessment Toolkit</strong> sits supplier-facing: the mirror image of the commissioner toolkit. Behind it is the <strong>Assurance Model</strong> coordinating NICE EVA, DTAC, DCB0129 and the supplier admission gate. The toolkit lets Marcus pre-qualify himself, see the evidence pack shape that admission will need, and decide whether to enter the formal admission process now, fix the one open gap first, or stand down. <strong>Assurance portability</strong> means the work he does is reusable across every ICB the framework reaches. Done once, consumed many times.</div>
+        </div>
+
+        <div class="old-way">
+          <div class="old-way-label">What admission used to look like</div>
+          <div class="old-way-body">A 60-page DTAC response, a clinical-safety case rewritten from scratch every time, an IG questionnaire designed for a hospital IT system, and a procurement template that asked about uptime in seconds without ever asking about clinical outcomes. Today: a self-assessment that tells him whether to bother, a structured evidence pack, and a national admission process designed for software.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">Who&apos;s in the room with him</div>
+            <div class="careteam-text">His head of clinical, his head of regulatory, his head of commercial. Plus the framework&apos;s supplier-engagement contact for the open question. Four people for an afternoon, not four months of consultant time.</div>
+          </div>
+        </div>
+
+        <div class="crosslinks">
+          <div class="crosslinks-label">Where this lives in the model</div>
+          <div class="crosslinks-row">
+            <span class="crosslinks-tag">How</span>
+            <a href="DTx OM - HealthStore Operational.html" target="_blank">HealthStore Operational</a>
+            
+            <span class="crosslinks-tag">What</span>
+            <a href="DTx OM - Anatomical.html" target="_blank">Foundation &middot; Self-Assessment Toolkit, Assurance Model</a>
+            <span class="crosslinks-tag">When</span>
+            <a href="DTx OM - HealthStore ASSURE.html" target="_blank">HealthStore ASSURE</a>
+            <span class="crosslinks-tag">Who</span>
+            <a href="DTx OM - Persona Aisha.html" target="_blank">Aisha &middot; clinical framework</a>
+            <a href="DTx OM - Persona Ngozi.html" target="_blank">Ngozi &middot; IG framework</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 4 -->
+    <div class="stage" id="stage-4">
+      <div class="stage-side">
+        <div class="stage-number">04</div>
+        <div class="stage-side-streams">
+          <div class="stage-side-stream"><span>HomeTest</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream on healthstore"><span>HealthStore</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream"><span>HealthSync</span><div class="stage-side-stream-bar"></div></div>
+        </div>
+      </div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">NICE EVA admission &middot; the conditional-recommendation route that changes the maths</div>
+        <h2 class="stage-title">Conditional recommendation under NICE EVA. Admission to the National App Formulary with the real-world evidence generation commitment baked in. Marcus is on the catalogue.</h2>
+
+        <div class="stage-image">
+          <img src="img/Final%20images/Marcus%204.png" alt="Marcus receiving the NICE EVA admission" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;stage-image-icon&quot;>&#x1F4DC;</div><div>Stage 4 illustration</div><div class=&quot;stage-image-caption&quot;>Marcus reading the conditional-recommendation notification on screen &middot; team in the background quietly absorbing what just happened &middot; the seriousness of the moment';">
+        </div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">Conditional admission is the unlock. We don&apos;t have to wait for a randomised trial we&apos;d never have funded. We have to keep generating real-world evidence, which is exactly what the product was always meant to do.</p>
+          <div class="pull-quote-attribution">Marcus</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">The <strong>NICE EVA conditionally-recommended</strong> route is the admission mechanism that lets a clinical-grade DTx onto the National App Formulary on the basis of credible evidence plus a real-world evidence generation commitment, rather than waiting for the full RCT-grade economic case the traditional NICE route requires. For Marcus that turns a market that was previously closed for years into a market open now, with the explicit obligation that his product keeps generating the evidence that supports re-evaluation. <strong>The conditional admission is a contract</strong>: a route in, paired with a duty to keep proving the product is doing what it said it would do.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What changes the day admission lands</div>
+            <div class="careteam-text">The product is listed in the National App Formulary, visible to every ICB on the framework. Maximum pricing locked in. National terms applied. ICBs can call off without rebuilding the procurement. The MI obligations are explicit and the evidence-generation programme is the price of admission.</div>
+          </div>
+        </div>
+
+        <div class="crosslinks">
+          <div class="crosslinks-label">Where this lives in the model</div>
+          <div class="crosslinks-row">
+            <span class="crosslinks-tag">How</span>
+            <a href="DTx OM - HealthStore Operational.html" target="_blank">HealthStore Operational</a>
+            
+            <span class="crosslinks-tag">What</span>
+            <a href="DTx OM - Anatomical.html" target="_blank">Foundation &middot; NICE EVA route, National App Formulary, Ongoing Evidence Generation</a>
+            <span class="crosslinks-tag">When</span>
+            <a href="DTx OM - HealthStore ASSURE.html" target="_blank">HealthStore ASSURE</a>
+            <span class="crosslinks-tag">When</span>
+            <a href="DTx OM - Lifecycle.html" target="_blank">Lifecycle &middot; ASSURE stage</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 5 -->
+    <div class="stage" id="stage-5">
+      <div class="stage-side">
+        <div class="stage-number">05</div>
+        <div class="stage-side-streams">
+          <div class="stage-side-stream"><span>HomeTest</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream on healthstore"><span>HealthStore</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream"><span>HealthSync</span><div class="stage-side-stream-bar"></div></div>
+        </div>
+      </div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">First live patient &middot; the call-off, the prescription, the day it gets real</div>
+        <h2 class="stage-title">An ICB calls off against the framework. The first prescription lands. A patient downloads the app, logs in with NHS Login, completes the onboarding flow. The integration was done before Marcus got here.</h2>
+
+        <div class="stage-image">
+          <img src="img/Final%20images/Marcus%205.png" alt="Marcus watching the first live patient activate" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;stage-image-icon&quot;>&#x1F4F1;</div><div>Stage 5 illustration</div><div class=&quot;stage-image-caption&quot;>Marcus watching the operations dashboard &middot; first patient activation event landing live &middot; quiet team moment &middot; the abstract finally becoming a real person on the other end&apos;';">
+        </div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">First live patient. NHS Login carried the identity. The integration was done before we got there. We didn&apos;t build a thing for that ICB. We showed up on a catalogue and it worked.</p>
+          <div class="pull-quote-attribution">Marcus</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">Call-off agreement under the <strong>NHS Standard Contract</strong> with SaaS and data schedules. The same legal instrument every ICB on the framework uses. NHS Login carries the patient&apos;s identity. The DTx is reached through the NHS App as the front door, with deep-link handover into the supplier app. The MI feed runs into the framework&apos;s data layer, populating supplier-performance and outcome measures at the same time. Marcus didn&apos;t build the integration; the <strong>Foundation layer</strong> did, and his product consumes it. <strong>Once integrated, infinitely re-callable.</strong></div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What his team is doing on day one</div>
+            <div class="careteam-text">Customer success on the prescribing clinicians, not on the procurement officer. Clinical support pathway in place. MI dashboard live. Outcome metrics being collected through the framework&apos;s data spine, not bolted on after the fact. The conversation is about <strong>how the product is helping patients</strong>, not <strong>how the product got into the trust</strong>.</div>
+          </div>
+        </div>
+
+        <div class="crosslinks">
+          <div class="crosslinks-label">Where this lives in the model</div>
+          <div class="crosslinks-row">
+            <span class="crosslinks-tag">How</span>
+            <a href="DTx OM - HealthStore Operational.html" target="_blank">HealthStore Operational</a>
+            
+            <span class="crosslinks-tag">When</span>
+            <a href="DTx OM - HealthStore CONTRACT.html" target="_blank">HealthStore CONTRACT</a>
+            <a href="DTx OM - HealthStore FULFIL.html" target="_blank">HealthStore FULFIL</a>
+            <span class="crosslinks-tag">What</span>
+            <a href="DTx OM - Anatomical.html" target="_blank">Foundation &middot; NHS App, NHS Login, integration spine</a>
+            <span class="crosslinks-tag">Who</span>
+            <a href="DTx OM - Persona HealthStore COPD patient.html" target="_blank">Pauline &middot; patient</a>
+            <a href="DTx OM - Persona HealthStore prescribing clinician.html" target="_blank">Ravi &middot; prescriber</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 6 -->
+    <div class="stage" id="stage-6">
+      <div class="stage-side">
+        <div class="stage-number">06</div>
+        <div class="stage-side-streams">
+          <div class="stage-side-stream"><span>HomeTest</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream on healthstore"><span>HealthStore</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream"><span>HealthSync</span><div class="stage-side-stream-bar"></div></div>
+        </div>
+      </div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">The market that scaled &middot; out of pilot purgatory and into a national catalogue</div>
+        <h2 class="stage-title">Eighteen months on. Multiple ICBs called off. National adoption curve replacing the per-trust pilot map. Evidence generation continuing as part of the admission contract. The market that wasn&apos;t deal-by-deal.</h2>
+
+        <div class="stage-image">
+          <img src="img/Final%20images/Marcus%206.png" alt="Marcus reviewing the national adoption map" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;stage-image-icon&quot;>&#x1F5FA;&#xFE0F;</div><div>Stage 6 illustration</div><div class=&quot;stage-image-caption&quot;>Marcus and his team at a board review &middot; national adoption map on screen &middot; multiple ICBs lit up &middot; the quiet confidence of a company that has crossed from pilot to scale';">
+        </div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">We&apos;re not in pilot anymore. We&apos;re in service. That sentence took four years to earn and ten months to deliver once the framework existed.</p>
+          <div class="pull-quote-attribution">Marcus</div>
+        </div>
+
+        <!-- Supplier economics panel -->
+        <div class="dashboard">
+          <div class="dashboard-eyebrow">The supplier view &middot; out of pilot purgatory</div>
+          <div class="dashboard-title">Marcus&apos;s eighteen-month checkpoint</div>
+          <div class="dashboard-row">
+            <div class="dashboard-card">
+              <div class="dashboard-card-head">
+                <div class="dashboard-card-dot"></div>
+                <div class="dashboard-card-label">ICBs live</div>
+              </div>
+              <div class="dashboard-metric">14</div>
+              <div class="dashboard-metric-sub">on the catalogue &middot; from a starting position of one funded pilot site</div>
+            </div>
+            <div class="dashboard-card">
+              <div class="dashboard-card-head">
+                <div class="dashboard-card-dot"></div>
+                <div class="dashboard-card-label">Time to onboard a new ICB</div>
+              </div>
+              <div class="dashboard-metric">~6 wks</div>
+              <div class="dashboard-metric-sub">call-off to live &middot; against a previous 9-month average per trust</div>
+            </div>
+            <div class="dashboard-card">
+              <div class="dashboard-card-head">
+                <div class="dashboard-card-dot"></div>
+                <div class="dashboard-card-label">Commercial team focus</div>
+              </div>
+              <div class="dashboard-metric">Service</div>
+              <div class="dashboard-metric-sub">not procurement &middot; the conversation has moved from how to buy to how to use</div>
+            </div>
+          </div>
+          <div class="dashboard-row">
+            <div class="dashboard-card">
+              <div class="dashboard-card-head">
+                <div class="dashboard-card-dot"></div>
+                <div class="dashboard-card-label">Evidence-generation cohort</div>
+              </div>
+              <div class="dashboard-metric">11,400</div>
+              <div class="dashboard-metric-sub">patients in the active RWE programme &middot; feeding NICE re-evaluation</div>
+            </div>
+            <div class="dashboard-card">
+              <div class="dashboard-card-head">
+                <div class="dashboard-card-dot"></div>
+                <div class="dashboard-card-label">Cost of NHS sales motion</div>
+              </div>
+              <div class="dashboard-metric">&minus;72%</div>
+              <div class="dashboard-metric-sub">per-ICB cost vs the pre-framework era &middot; one framework, many call-offs</div>
+            </div>
+            <div class="dashboard-card">
+              <div class="dashboard-card-head">
+                <div class="dashboard-card-dot"></div>
+                <div class="dashboard-card-label">Investor narrative</div>
+              </div>
+              <div class="dashboard-metric">Track</div>
+              <div class="dashboard-metric-sub">UK no longer the pre-revenue market we used to apologise for</div>
+            </div>
+          </div>
+          <div class="dashboard-footer">One product. Many call-offs. Evidence-generation flywheel running. <strong>This is what a market for digital therapeutics looks like when the operating model does its job.</strong></div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">The framework instrument and the National App Formulary are doing for digital therapeutics what national tariff did for acute activity: turning bespoke negotiation into structured call-off. <strong>Ongoing Evidence Generation</strong> at Foundation level threads real-world outcomes back into the Assurance Model, supporting Marcus&apos;s NICE re-evaluation and the framework&apos;s renewal at the same time. The evidence Marcus generates locally serves the next commissioner&apos;s confidence in his product, the next NICE review, and the next supplier&apos;s admission case. <strong>One flywheel, three audiences.</strong></div>
+        </div>
+
+        <div class="crosslinks">
+          <div class="crosslinks-label">Where this lives in the model</div>
+          <div class="crosslinks-row">
+            <span class="crosslinks-tag">How</span>
+            <a href="DTx OM - HealthStore Operational.html" target="_blank">HealthStore Operational</a>
+            
+            <span class="crosslinks-tag">When</span>
+            <a href="DTx OM - HealthStore MEASURE.html" target="_blank">HealthStore MEASURE</a>
+            <span class="crosslinks-tag">What</span>
+            <a href="DTx OM - Anatomical.html" target="_blank">Foundation &middot; Ongoing Evidence Generation, MI / data flow integrity</a>
+            <span class="crosslinks-tag">Who</span>
+            <a href="DTx OM - HealthStore Teamwork.html" target="_blank">HealthStore Teamwork &middot; capability map</a>
+            <span class="crosslinks-tag">Status</span>
+            <a href="DTx OM - Status.html" target="_blank">What we still need to land</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CONCLUSION -->
+  <div class="conclusion">
+    <div class="conclusion-eyebrow">What Marcus&apos;s story shows</div>
+    <h2 class="conclusion-title">One operating model. One admission route.<br>A market that finally exists for the products it was always meant to serve.</h2>
+    <p class="conclusion-strap">For four years Marcus operated in a market that didn&apos;t exist yet, a UK NHS that wanted clinical-grade digital therapeutics and had no national mechanism for buying them. The operating model is the mechanism. NICE EVA conditional admission opens the door. The framework instrument carries the contract architecture. The Foundation layer carries the integration and the data spine. Suppliers like Marcus stop being capital-constrained pilot survivors and start being normal vendors with a normal route to scale. <strong>The market becomes a market.</strong></p>
+
+    <div class="outcomes-grid">
+      <div class="outcome">
+        <div style="width:96px;height:96px;border-radius:50%;overflow:hidden;margin-bottom:14px;background:#E0E5EB;box-shadow:0 4px 14px rgba(0,129,155,0.15);"><a href="DTx OM - Persona HealthStore supplier.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="img/marcus-final.png" alt="Marcus" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block;"></a></div>
+        <div class="outcome-h">For Marcus</div>
+        <div class="outcome-title">A national market, not a series of deals.</div>
+        <div class="outcome-body">One assurance pass. One contract instrument. One MI feed. Fourteen ICBs live in the time it used to take to negotiate one. The commercial team is doing service, not sales. The cost-of-NHS-sales line has fallen by nearly three quarters per ICB. The product is doing what it was always meant to do.</div>
+      </div>
+      <div class="outcome">
+        <div style="width:96px;height:96px;border-radius:50%;overflow:hidden;margin-bottom:14px;background:#00819B;box-shadow:0 4px 14px rgba(0,129,155,0.15);"><img src="img/icon-care.png" alt="Patient icon" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        <div class="outcome-h">For the patients his product reaches</div>
+        <div class="outcome-title">A clinical-grade DTx, prescribed normally.</div>
+        <div class="outcome-body">Eleven thousand patients in the active cohort. NHS Login carries the identity. The NHS App is the front door. The DTx is just a prescription, like any other clinical option. The years Marcus didn&apos;t spend on per-trust procurement is years of patients who got the product faster.</div>
+      </div>
+      <div class="outcome">
+        <div style="width:96px;height:96px;border-radius:50%;overflow:hidden;margin-bottom:14px;background:#00819B;box-shadow:0 4px 14px rgba(0,129,155,0.15);"><img src="img/icon-system.png" alt="System icon" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        <div class="outcome-h">For the system</div>
+        <div class="outcome-title">A supplier base that can actually exist.</div>
+        <div class="outcome-body">A market with a real admission route is a market that attracts companies. A supplier base with a real route to scale is a supplier base that survives long enough to keep improving the product. The evidence Marcus generates feeds the next NICE review, the next supplier&apos;s admission case and the next commissioner&apos;s confidence. <strong>The flywheel runs once.</strong></div>
+      </div>
+    </div>
+
+    <div class="conclusion-line">One product. One admission. Many call-offs. <span style="color:var(--amber-deep);">The market that the operating model built.</span></div>
+  </div>
+
+</div>
+
+</body>
+</html>
+   

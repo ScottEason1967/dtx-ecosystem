@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pauline: Digital Therapeutics Operating Model</title>
+<style>
+ /* Canonical topnav */
+ .topnav{background:#fff;border-bottom:1px solid #ebeef1;padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:nowrap;min-height:54px;box-sizing:border-box;width:100%;max-width:100%;margin:0;position:sticky;top:0;z-index:200;}
+ .topnav.topnav-secondary{background:#F4F8FC;border-bottom:1px solid #d6e2ef;padding:9px 36px;min-height:42px;}
+ .topnav .nav-back{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-back:hover{color:#005EB8;}
+ .topnav .nav-siblings{display:flex;gap:4px;flex-wrap:nowrap;overflow-x:auto;align-items:center;}
+ .topnav .nav-siblings a{font-size:12px;font-weight:600;color:#4C6272;text-decoration:none;padding:6px 12px;border-radius:6px;letter-spacing:0.2px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-siblings a:hover{background:#f0f4f8;color:#212B32;}
+ .topnav .nav-siblings a.active{background:#003087;color:#fff;}
+ .topnav.topnav-secondary .nav-siblings a{font-size:11.5px;padding:5px 10px;}
+ .topnav.topnav-secondary .nav-siblings a.active{background:#005EB8;color:#fff;}
+ .topnav .nav-secondary-label{font-size:10px;font-weight:800;letter-spacing:1.5px;color:#7E8B97;text-transform:uppercase;flex-shrink:0;}
+
+ :root {
+ --nhs-dark:#003087; --nhs-blue:#005EB8; --nhs-green:#006747; --nhs-pink:#AE2573;
+ --amber:#FFB91D; --amber-deep:#C9A227; --warm-cream:#FFF9EC;
+ --accent:#C9A227;
+ --text:#212B32; --text-sec:#4C6272; --text-muted:#7E8B97;
+ --border-lt:#ebeef1; --card:#ffffff; --bg:#f8fafc;
+ }
+ *{box-sizing:border-box;margin:0;padding:0;}
+ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ .page{max-width:1100px;margin:0 auto;padding:50px 40px 80px;}
+ .amber-rule{width:72px;height:4px;background:var(--amber);border-radius:2px;margin-bottom:18px;}
+ .h-eyebrow{font-size:11px;font-weight:700;letter-spacing:2.2px;color:var(--text-sec);text-transform:uppercase;margin-bottom:18px;}
+ .h-flex{display:grid;grid-template-columns:1.6fr 1fr;gap:48px;align-items:center;margin-bottom:48px;}
+ .h-title{font-size:54px;font-weight:800;color:var(--nhs-dark);letter-spacing:-1.4px;line-height:1.05;margin-bottom:14px;}
+ .h-role{font-size:13px;font-weight:800;letter-spacing:1.6px;color:var(--accent);text-transform:uppercase;margin-bottom:20px;}
+ .h-quote{font-size:18px;color:var(--text);line-height:1.5;font-weight:500;font-style:italic;border-left:4px solid var(--amber);padding-left:16px;margin-bottom:18px;}
+ .h-bio{font-size:15px;color:var(--text-sec);line-height:1.7;}
+ .h-portrait{display:flex;justify-content:center;align-items:center;}
+ .h-portrait img{max-width:260px;width:100%;height:auto;border-radius:14px;}
+ .section-h{font-size:24px;font-weight:800;color:var(--nhs-dark);margin:42px 0 14px;letter-spacing:-0.4px;}
+ .section-body{font-size:15px;color:var(--text-sec);line-height:1.75;max-width:760px;}
+ .section-body strong{color:var(--text);font-weight:700;}
+ .where-list{display:flex;flex-direction:column;gap:8px;margin-top:14px;}
+ .where-list li{font-size:14px;color:var(--text-sec);line-height:1.6;padding-left:16px;position:relative;list-style:none;}
+ .where-list li::before{content:'';position:absolute;left:0;top:9px;width:8px;height:8px;background:var(--amber);border-radius:50%;}
+ .pair-callout{background:var(--warm-cream);border:1px solid #F0DCA0;border-radius:12px;padding:18px 22px;margin-top:18px;font-size:13.5px;color:var(--text-sec);line-height:1.65;}
+ .pair-callout strong{color:var(--text);font-weight:700;}
+ .placeholder-note{background:#E0E5EB;border-left:4px solid var(--text-muted);border-radius:0 8px 8px 0;padding:14px 18px;margin:18px 0;font-size:12.5px;color:var(--text-sec);line-height:1.6;}
+ .placeholder-note strong{color:var(--text);font-weight:700;}
+ @media(max-width:820px){.h-flex{grid-template-columns:1fr;}.h-title{font-size:36px;}.page{padding:40px 22px 60px;}}
+ :root { --nhs-blue-deep:#003087; }
+ body { background: linear-gradient(180deg, var(--nhs-blue) 0%, var(--nhs-blue-deep) 100%) !important; background-attachment: fixed !important; }
+ 
+ .page { background:#ffffff; border-radius:18px; box-shadow:0 14px 40px rgba(0,48,135,0.20); margin-top:30px !important; margin-bottom:50px !important; }
+</style>
+<style>
+  .ecosystem-nav {
+    background: #fff;
+    border-bottom: 1px solid #ebeef1;
+    padding: 12px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 48px;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  }
+  .ecosystem-nav a {
+    font-size: 13px; font-weight: 700; color: #003087;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .ecosystem-nav a:hover { color: #005EB8; }
+  .ecosystem-nav .nav-context {
+    font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
+    color: #7E8B97; text-transform: uppercase;
+  }
+  .ecosystem-nav .nav-product {
+    font-size: 10.5px; font-weight: 800; letter-spacing: 0.8px;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 4px; color: #fff;
+  }
+  .ecosystem-nav .nav-product.dtx { background: #003087; }
+  .ecosystem-nav .nav-product.hometest { background: #003087; }
+  .ecosystem-nav .nav-product.healthstore { background: #00A9CE; }
+  .ecosystem-nav .nav-product.healthsync { background: #00A499; }
+</style>
+</head>
+<body>
+<div class="ecosystem-nav">
+  <a href="../index.html">← DTx Ecosystem</a>
+  <span class="nav-context">Persona HealthStore COPD patient</span>
+  <span class="nav-product healthstore">HealthStore</span>
+</div>
+<nav class="topnav">
+<a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+<div class="nav-siblings">
+ <a href="DTx OM - Why.html">Why</a>
+ <a href="DTx OM - What.html">What</a>
+ <a href="DTx OM - Lifecycle.html">When</a>
+ <a href="DTx OM - HomeTest Operational.html">How</a>
+ <a href="DTx OM - Governance.html" class="active">Who</a>
+ <a href="DTx OM - Hearts and Minds.html">Hearts and Minds</a>
+ <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>
+ <a href="DTx OM - Status.html">Status</a>
+</div>
+</nav>
+
+<nav class="topnav topnav-secondary">
+<div class="nav-secondary-label">Cast</div>
+<div class="nav-siblings">
+ <a href="DTx OM - Persona Sarah.html">Sarah</a>
+ <a href="DTx OM - Persona Aisha.html">Aisha</a>
+ <a href="DTx OM - Persona Priya.html">Priya</a>
+ <a href="DTx OM - Persona David.html">David</a>
+ <a href="DTx OM - Persona Ngozi.html">Ngozi</a>
+ <a href="DTx OM - Persona Abdul.html">Abdul</a>
+ <a href="DTx OM - Persona Mark.html">Mark</a>
+ <a href="DTx OM - Persona Layla.html">Layla</a>
+ <a href="DTx OM - Persona Joe.html">Joe</a>
+ <a href="DTx OM - Persona HealthStore COPD patient.html" class="active">Pauline</a>
+ <a href="DTx OM - Persona HealthStore prescribing clinician.html">Ravi</a>
+ <a href="DTx OM - Persona HealthStore supplier.html">Marcus</a>
+ <a href="DTx OM - Persona HealthSync diabetes patient.html">Mei</a>
+ <a href="DTx OM - Persona HealthSync patient.html">Errol</a>
+</div>
+</nav>
+
+<div class="page">
+
+ <div class="amber-rule"></div>
+ <div class="h-eyebrow">The cast &middot; meet Pauline &middot; HealthStore patient archetype</div>
+
+ <div class="h-flex">
+ <div>
+ <h1 class="h-title">Pauline.</h1>
+ <div class="h-role">Patient &middot; Prescribed digital therapeutic</div>
+ <div class="h-quote">&ldquo;My consultant put me on the app last winter. I do the breathing exercises in the morning, then I take the dog out.&rdquo;</div>
+ <div class="h-bio">64, widowed, retired care worker, lives alone in her own terraced house. Moderate COPD diagnosed eight years ago; quit smoking the same week. Two adult kids, three grandchildren she has most Sundays. Wary of phones generally but uses the NHS App because her daughter set it up and it actually helps. Her respiratory consultant prescribed a digital therapeutic that runs guided pulmonary rehab, breathing tracking, symptom logging and an escalation route &mdash; the lead HealthStore configuration. Pauline sits in the supported self-management tier of the COPD population &mdash; roughly the 80% the model expects to manage their condition with digital-therapeutic-led care wrapped in a service layer, with escalation to clinical input where the therapeutic surfaces a concern.</div>
+ </div>
+ <div class="h-portrait">
+ <img src="img/pauline-final.png" alt="Pauline">
+ </div>
+ </div>
+
+ <h2 class="section-h">Why Pauline matters in the model</h2>
+ <p class="section-body">Pauline is the engaged-with-a-prescription archetype for HealthStore. She is already in a care relationship: her consultant prescribed the digital therapeutic, she is the one who has to use it. The model only works if engagement is real, meaningful and measured. The four commercial principles mean she is the patient experiencing a third-party digital therapeutic surfaced inside the NHS App, with the NHS as custodian of her record. The marketplace payments mechanism being designed in Alpha rests on that engagement being genuine; the pathway-level value case the commissioner needs rests on her outcome.</p>
+
+ <div class="pair-callout">
+ <strong>What Pauline tells the model.</strong> The architecture has to make engagement easy enough &mdash; one app, NHS Login, a clear prescribing journey &mdash; that meaningful use is the default rather than the exception. The service wrapper that sits around the digital therapeutic (self-management education, motivational support, signposting, escalation) does the work of keeping her engaged across the episode. Engagement measurement has to be clinically meaningful and not gameable. Outcome capture has to be honest. Pauline is the load-bearing actor in the pathway-level value case; the model has to serve her or the case collapses.
+ </div>
+
+ <h2 class="section-h">What is distinctive about Pauline&rsquo;s journey</h2>
+ <p class="section-body">The journey starts with a clinical conversation rather than a self-initiated test. The consultant carries the prescription decision; Pauline receives it as part of her care plan. From there she owns the engagement: opening the app, following the programme, reporting symptoms, completing the digital intervention. The service wrapper holds her between clinical touchpoints &mdash; nudges, milestone check-ins, signposting back to the clinical team where the therapeutic flags concern. The COPD pathway she sits inside has its own care framework (the OPTIMISE processes of care: optimised treatment, pulmonary rehabilitation, smoking dependence support, inhaler technique, vaccination, physical activity, psychosocial support, education and self-management); her digital therapeutic operates inside several of those processes. Outcome capture sits with the clinical team but draws on her engagement and self-reported measures. The marketplace payments mechanism resolves at the right altitude in Alpha; what matters at Pauline&rsquo;s level is that the engagement and the outcomes are real.</p>
+
+ <h2 class="section-h">Where Pauline appears in the model</h2>
+ <ul class="where-list">
+ <li>The HealthStore patient slot in the home page cast (hub-and-spoke actor visualisation, HealthStore product group)</li>
+ <li>The HealthStore overlay row in the <a href="DTx OM - Anatomical.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">Anatomy</a> catalogue (initiation pattern, supply chain, commercial, tariff)</li>
+ <li>The patient lane in the HealthStore <a href="DTx OM - HealthStore Operational.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">Operational</a> overlay (engagement, completion, outcome capture columns)</li>
+ <li>The <a href="DTx OM - Product HealthStore.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">HealthStore product page</a> hero context</li>
+ <li>The HealthStore section in <a href="DTx OM - Status.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">Status</a></li>
+ </ul>
+
+  <h2 class="section-h" style="margin-top:48px;">TOM components &mdash; what this persona owns or participates in</h2>
+  <ul class="where-list">
+    <li><a href="DTx OM - Anatomical.html" style="color:#5E35B2;font-weight:600;text-decoration:none;"><strong>Service Wrapper</strong> six-touchpoint chain (her journey through the COPD digital therapeutic)</a></li>
+    <li><a href="DTx OM - Anatomical.html" style="color:#5E35B2;font-weight:600;text-decoration:none;"><strong>PI / CI escalation</strong> as Patient-Initiated Escalation participant</a></li>
+    <li><a href="DTx OM - Anatomical.html" style="color:#5E35B2;font-weight:600;text-decoration:none;"><strong>Data return</strong> through outcome capture and adherence metrics</a></li>
+  </ul>
+</div>
+</body>
+</html>

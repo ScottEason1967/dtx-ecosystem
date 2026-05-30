@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Digital Therapeutics Operating Model: What</title>
+<style>
+ /* Canonical topnav */
+ .topnav{background:#fff;border-bottom:1px solid #ebeef1;padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:nowrap;min-height:54px;box-sizing:border-box;width:100%;max-width:100%;margin:0;position:sticky;top:0;z-index:200;}
+ .topnav.topnav-secondary{background:#F4F8FC;border-bottom:1px solid #d6e2ef;padding:9px 36px;min-height:42px;}
+ .topnav .nav-back{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-back:hover{color:#005EB8;}
+ .topnav .nav-siblings{display:flex;gap:4px;flex-wrap:nowrap;overflow-x:auto;align-items:center;}
+ .topnav .nav-siblings a{font-size:12px;font-weight:600;color:#4C6272;text-decoration:none;padding:6px 12px;border-radius:6px;letter-spacing:0.2px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-siblings a:hover{background:#f0f4f8;color:#212B32;}
+ .topnav .nav-siblings a.active{background:#003087;color:#fff;}
+ .topnav.topnav-secondary .nav-siblings a{font-size:11.5px;padding:5px 10px;}
+ .topnav.topnav-secondary .nav-siblings a.active{background:#005EB8;color:#fff;}
+ .topnav .nav-secondary-label{font-size:10px;font-weight:800;letter-spacing:1.5px;color:#7E8B97;text-transform:uppercase;flex-shrink:0;}
+
+  :root {
+    --nhs-dark:#003087; --nhs-blue:#005EB8; --nhs-green:#006747; --nhs-pink:#AE2573;
+    --nhs-cyan:#00A9CE;
+    --amber:#FFB91D; --amber-deep:#C9A227; --warm-cream:#FFF9EC;
+    --accent:var(--nhs-dark);
+    --text:#212B32; --text-sec:#4C6272; --text-muted:#7E8B97;
+    --border:#d9dee3; --border-lt:#ebeef1;
+    --card:#ffffff; --bg:#f8fafc;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;}
+  
+  
+  
+  
+  
+  
+  
+  .page{max-width:1100px;margin:0 auto;padding:50px 40px 80px;}
+  .header{margin-bottom:42px;}
+  .amber-rule{width:72px;height:4px;background:var(--amber);border-radius:2px;margin-bottom:18px;}
+  .h-eyebrow{display:inline-block;background:var(--accent);color:#fff;font-size:10.5px;font-weight:800;letter-spacing:1.8px;padding:7px 16px;border-radius:4px;text-transform:uppercase;margin-bottom:18px;}
+  .h-mega{font-size:96px;font-weight:900;color:var(--accent);letter-spacing:-2.5px;line-height:0.95;margin:6px 0 6px;}
+  .h-title{font-size:36px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.5px;line-height:1.15;margin-bottom:12px;}
+  .h-subtitle{font-size:17px;color:var(--text-sec);font-weight:500;margin-bottom:16px;}
+  .h-intro{max-width:820px;font-size:14.5px;color:var(--text-sec);line-height:1.7;}
+  .h-intro strong{color:var(--text);font-weight:700;}
+
+  .lens-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:18px;}
+  @media(max-width:760px){ .lens-grid{grid-template-columns:1fr;} }
+  .lens{background:#fff;border:1px solid var(--border-lt);border-radius:14px;padding:32px 32px 30px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:14px;transition:transform 0.18s ease, box-shadow 0.22s ease, border-color 0.18s ease;position:relative;overflow:hidden;}
+  .lens:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(0,32,64,0.12);border-color:#c4d3e6;}
+  .lens-anatomy{border-top:6px solid var(--nhs-dark);}
+  .lens-ecosystem{border-top:6px solid var(--nhs-cyan);}
+  .lens-eyebrow{font-size:11px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:var(--text-muted);}
+  .lens-anatomy .lens-eyebrow{color:var(--nhs-dark);}
+  .lens-ecosystem .lens-eyebrow{color:var(--nhs-cyan);}
+  .lens-title{font-size:28px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.5px;line-height:1.1;}
+  .lens-strap{font-size:14px;color:var(--text-sec);line-height:1.6;}
+  .lens-strap strong{color:var(--text);font-weight:700;}
+  .lens-points{display:flex;flex-direction:column;gap:6px;margin-top:4px;}
+  .lens-point{font-size:12.5px;color:var(--text-sec);padding-left:14px;position:relative;line-height:1.5;}
+  .lens-point::before{content:'';position:absolute;left:0;top:7px;width:6px;height:6px;border-radius:50%;background:var(--text-muted);}
+  .lens-anatomy .lens-point::before{background:var(--nhs-dark);}
+  .lens-ecosystem .lens-point::before{background:var(--nhs-cyan);}
+  .lens-cta{margin-top:8px;font-size:12px;font-weight:800;color:var(--nhs-blue);letter-spacing:0.4px;text-transform:uppercase;}
+  .lens-cta-arrow{transition:transform 0.18s;display:inline-block;margin-left:4px;}
+  .lens:hover .lens-cta-arrow{transform:translateX(4px);}
+
+  /* NHS-blue rebrand override (matches the rest of the site) */
+  body { background: linear-gradient(180deg, var(--nhs-blue) 0%, var(--nhs-dark) 100%) !important; background-attachment: fixed !important; }
+  
+  .page { background:#ffffff; border-radius:18px; box-shadow:0 14px 40px rgba(0,48,135,0.20); margin-top:30px !important; margin-bottom:50px !important; }
+</style>
+<style>
+  .ecosystem-nav {
+    background: #fff;
+    border-bottom: 1px solid #ebeef1;
+    padding: 12px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 48px;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  }
+  .ecosystem-nav a {
+    font-size: 13px; font-weight: 700; color: #003087;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .ecosystem-nav a:hover { color: #005EB8; }
+  .ecosystem-nav .nav-context {
+    font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
+    color: #7E8B97; text-transform: uppercase;
+  }
+  .ecosystem-nav .nav-product {
+    font-size: 10.5px; font-weight: 800; letter-spacing: 0.8px;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 4px; color: #fff;
+  }
+  .ecosystem-nav .nav-product.dtx { background: #003087; }
+  .ecosystem-nav .nav-product.hometest { background: #003087; }
+  .ecosystem-nav .nav-product.healthstore { background: #00A9CE; }
+  .ecosystem-nav .nav-product.healthsync { background: #00A499; }
+</style>
+</head>
+<body>
+<div class="ecosystem-nav">
+  <a href="../index.html">← DTx Ecosystem</a>
+  <span class="nav-context">What</span>
+  <span class="nav-product dtx">DTx</span>
+</div><nav class="topnav">
+<a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+<div class="nav-siblings">
+ <a href="DTx OM - Why.html">Why</a>
+ <a href="DTx OM - What.html" class="active">What</a>
+ <a href="DTx OM - Lifecycle.html">When</a>
+ <a href="DTx OM - HomeTest Operational.html">How</a>
+ <a href="DTx OM - Governance.html">Who</a>
+ <a href="DTx OM - Hearts and Minds.html">Hearts and Minds</a>
+ <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>
+ <a href="DTx OM - Status.html">Status</a>
+</div>
+</nav>
+
+<div class="page">
+
+  <div class="header">
+    <div class="amber-rule"></div>
+    <div class="h-eyebrow">What frame</div>
+    <div class="h-mega">WHAT</div>
+    <h1 class="h-title">What it is composed of, and the world it sits in.</h1>
+    <div class="h-subtitle">Two lenses on the model. Pick one.</div>
+    <p class="h-intro">Most operating models try to describe what they are by listing their internal parts. That is true but partial. The model is also defined by what surrounds it: the services it consumes, the bodies that regulate it, the suppliers it contracts, the audiences it serves. <strong>Anatomy</strong> tells you the inside. <strong>Ecosystem</strong> tells you the outside. Both matter.</p>
+  </div>
+
+  <div class="lens-grid">
+    <a class="lens lens-anatomy" href="DTx OM - Anatomical.html">
+      <div class="lens-eyebrow">Lens one &middot; inside</div>
+      <div class="lens-title">Anatomy</div>
+      <div class="lens-strap"><strong>What it is composed of.</strong> Foundation, overlays, patterns, configurations. The four-level architecture that lets one platform support multiple products (HomeTest, HealthStore, HealthSync) with many configurations inside each, without rebuilding the foundation.</div>
+      <div class="lens-points">
+        <div class="lens-point"><strong>Foundation.</strong> The universal layer, split between what the platform builds and what it consumes from shared NHS infrastructure.</div>
+        <div class="lens-point"><strong>Overlays.</strong> The eight dimensions where products and configurations diverge.</div>
+        <div class="lens-point"><strong>Patterns.</strong> The reusable picks inside each overlay.</div>
+        <div class="lens-point"><strong>Configurations.</strong> The live deployments (HIV, PSA, HbA1c).</div>
+      </div>
+      <div class="lens-cta">Open Anatomy <span class="lens-cta-arrow">&rarr;</span></div>
+    </a>
+    <a class="lens lens-ecosystem" href="DTx OM - Ecosystem.html">
+      <div class="lens-eyebrow">Lens two &middot; outside</div>
+      <div class="lens-title">Ecosystem</div>
+      <div class="lens-strap"><strong>The world it sits in.</strong> The BAU team is small because most operating mass sits outside it. Five categories of relationship describe what the platform builds, consumes, is regulated by, contracts and serves. Holds across all Digital Therapeutics products; entities inside each category vary per product.</div>
+      <div class="lens-points">
+        <div class="lens-point"><strong>Built and run.</strong> What the platform builds and staffs directly.</div>
+        <div class="lens-point"><strong>Consumed.</strong> Shared NHS services the platform plugs into.</div>
+        <div class="lens-point"><strong>Regulated by.</strong> Bodies whose approval shapes the model.</div>
+        <div class="lens-point"><strong>Contracted, Served.</strong> The commercial counterparts and the customers.</div>
+      </div>
+      <div class="lens-cta">Open Ecosystem <span class="lens-cta-arrow">&rarr;</span></div>
+    </a>
+  </div>
+
+</div>
+</body>
+</html>

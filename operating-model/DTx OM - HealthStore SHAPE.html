@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HealthStore SHAPE: Digital Therapeutics Operating Model</title>
+<style>
+ /* Canonical topnav */
+ .topnav{background:#fff;border-bottom:1px solid #ebeef1;padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:nowrap;min-height:54px;box-sizing:border-box;width:100%;max-width:100%;margin:0;position:sticky;top:0;z-index:200;}
+ .topnav.topnav-secondary{background:#F4F8FC;border-bottom:1px solid #d6e2ef;padding:9px 36px;min-height:42px;}
+ .topnav .nav-back{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-back:hover{color:#005EB8;}
+ .topnav .nav-siblings{display:flex;gap:4px;flex-wrap:nowrap;overflow-x:auto;align-items:center;}
+ .topnav .nav-siblings a{font-size:12px;font-weight:600;color:#4C6272;text-decoration:none;padding:6px 12px;border-radius:6px;letter-spacing:0.2px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-siblings a:hover{background:#f0f4f8;color:#212B32;}
+ .topnav .nav-siblings a.active{background:#003087;color:#fff;}
+ .topnav.topnav-secondary .nav-siblings a{font-size:11.5px;padding:5px 10px;}
+ .topnav.topnav-secondary .nav-siblings a.active{background:#005EB8;color:#fff;}
+ .topnav .nav-secondary-label{font-size:10px;font-weight:800;letter-spacing:1.5px;color:#7E8B97;text-transform:uppercase;flex-shrink:0;}
+
+ :root {
+ --nhs-dark:#003087; --nhs-blue:#005EB8; --nhs-cyan:#00A9CE;
+ --stage:#005EB8;
+ --accent:var(--stage);
+ --amber:#FFB91D; --amber-deep:#C9A227;
+ --text:#212B32; --text-sec:#4C6272; --text-muted:#7E8B97;
+ --border:#d9dee3; --border-lt:#ebeef1;
+ --card:#ffffff; --bg:#f8fafc;
+ }
+ *{box-sizing:border-box;margin:0;padding:0;}
+ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;}.product-selector{background:#f0f3f6;padding:10px 36px;display:flex;gap:8px;align-items:center;border-bottom:1px solid var(--border-lt);}.product-selector-label{font-size:10px;font-weight:800;letter-spacing:1.4px;color:var(--text-muted);text-transform:uppercase;margin-right:4px;}.product-selector a{font-size:12px;font-weight:700;color:var(--text-sec);text-decoration:none;padding:6px 14px;border-radius:6px;}.product-selector a.active{background:#005EB8;color:#fff;}.product-selector a.healthsync{opacity:0.6;}.page{max-width:1100px;margin:0 auto;padding:40px 40px 80px;}.amber-rule{width:72px;height:4px;background:var(--amber);border-radius:2px;margin-bottom:14px;}.h-eyebrow{display:inline-block;background:var(--accent);color:#fff;font-size:10px;font-weight:800;letter-spacing:1.6px;padding:6px 14px;border-radius:4px;text-transform:uppercase;margin-bottom:14px;}.h-mega{font-size:88px;font-weight:900;color:var(--accent);letter-spacing:-2.5px;line-height:0.95;margin:6px 0 6px;}.h-title{font-size:36px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.5px;line-height:1.15;margin-bottom:14px;}.h-sub{font-size:16px;color:var(--text-sec);margin-bottom:16px;font-weight:500;}.h-intro{max-width:820px;font-size:14px;color:var(--text-sec);line-height:1.75;}.h-intro strong{color:var(--text);font-weight:700;}.section-h{font-size:11.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--text-muted);margin:40px 0 14px;}.detail-block{background:#fff;border:1px solid var(--border-lt);border-radius:10px;padding:18px 22px;margin-bottom:10px;border-left:4px solid var(--accent);}.detail-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:8px;}.detail-block h3{font-size:15px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.2px;}.detail-block p{font-size:13px;color:var(--text-sec);line-height:1.7;}.detail-block strong{color:var(--text);font-weight:700;}.pill{display:inline-block;font-size:9.5px;font-weight:800;padding:3px 8px;border-radius:10px;letter-spacing:0.6px;text-transform:uppercase;flex-shrink:0;}.pill-live{background:#e6f4ed;color:#007F3B;}.pill-flight{background:#fef6e6;color:#9A6700;}.pill-open{background:#fce8e9;color:#B5121B;}.pill-blocked{background:#f0e8ed;color:#7C2855;}.pill-pending{background:#E0E5EB;color:#4C6272;}.open-decision{background:#FFF8E1;border:1px solid #F0DCA0;border-left:4px solid #F9A825;border-radius:0 10px 10px 0;padding:14px 18px;margin-bottom:8px;}.open-decision-title{font-size:12px;font-weight:800;color:#8D6E1A;margin-bottom:4px;letter-spacing:0.2px;}.open-decision-body{font-size:12px;color:var(--text-sec);line-height:1.65;}.ref-box{background:#f4f8fc;border:1px solid #D5E8F0;border-radius:10px;padding:14px 18px;margin-top:20px;font-size:12.5px;color:var(--text-sec);line-height:1.6;}.ref-box strong{color:var(--text);font-weight:700;}
+ body{background:linear-gradient(180deg,var(--stage) 0%,var(--nhs-dark) 100%)!important;background-attachment:fixed!important;}.page{background:#ffffff;border-radius:18px;box-shadow:0 14px 40px rgba(0,48,135,0.20);margin-top:30px!important;margin-bottom:50px!important;}
+</style>
+<style>
+  .ecosystem-nav {
+    background: #fff;
+    border-bottom: 1px solid #ebeef1;
+    padding: 12px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 48px;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  }
+  .ecosystem-nav a {
+    font-size: 13px; font-weight: 700; color: #003087;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .ecosystem-nav a:hover { color: #005EB8; }
+  .ecosystem-nav .nav-context {
+    font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
+    color: #7E8B97; text-transform: uppercase;
+  }
+  .ecosystem-nav .nav-product {
+    font-size: 10.5px; font-weight: 800; letter-spacing: 0.8px;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 4px; color: #fff;
+  }
+  .ecosystem-nav .nav-product.dtx { background: #003087; }
+  .ecosystem-nav .nav-product.hometest { background: #003087; }
+  .ecosystem-nav .nav-product.healthstore { background: #00A9CE; }
+  .ecosystem-nav .nav-product.healthsync { background: #00A499; }
+</style>
+</head>
+<body>
+<div class="ecosystem-nav">
+  <a href="../index.html">← DTx Ecosystem</a>
+  <span class="nav-context">HealthStore SHAPE</span>
+  <span class="nav-product healthstore">HealthStore</span>
+</div>
+<nav class="topnav">
+<a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+<div class="nav-siblings">
+ <a href="DTx OM - Why.html">Why</a>
+ <a href="DTx OM - What.html">What</a>
+ <a href="DTx OM - Lifecycle.html" class="active">When</a>
+ <a href="DTx OM - HomeTest Operational.html">How</a>
+ <a href="DTx OM - Governance.html">Who</a>
+ <a href="DTx OM - Hearts and Minds.html">Hearts and Minds</a>
+ <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>
+ <a href="DTx OM - Status.html">Status</a>
+</div>
+</nav>
+
+<nav class="topnav topnav-secondary">
+<div class="nav-secondary-label">HealthStore stage</div>
+<div class="nav-siblings">
+ <a href="DTx OM - HealthStore SHAPE.html" class="active">SHAPE</a>
+ <a href="DTx OM - HealthStore ASSURE.html">ASSURE</a>
+ <a href="DTx OM - HealthStore CONTRACT.html">CONTRACT</a>
+ <a href="DTx OM - HealthStore FULFIL.html">FULFIL</a>
+ <a href="DTx OM - HealthStore MEASURE.html">MEASURE</a>
+</div>
+</nav>
+
+<div class="product-selector">
+ <span class="product-selector-label">Product overlay:</span>
+ <a href="DTx OM - HomeTest SHAPE v4.html">HomeTest</a>
+ <a href="DTx OM - HealthStore SHAPE.html" class="active">HealthStore</a>
+ <a href="DTx OM - HealthSync SHAPE.html" class="healthsync">HealthSync</a>
+</div>
+
+<div class="page">
+ <div class="amber-rule"></div>
+ <div class="h-eyebrow">HealthStore &middot; SHAPE</div>
+ <div class="h-mega">SHAPE</div>
+ <h1 class="h-title"><span style="display:inline-block;background:#00A9CE;color:#fff;padding:4px 14px 6px;border-radius:10px;line-height:1;letter-spacing:-0.3px;">HealthStore</span> at SHAPE.</h1>
+ <p class="h-sub">Market development and demand generation for digital therapeutics admitted to the national store</p>
+ <p class="h-intro">SHAPE for HealthStore is where therapeutic-area selection happens, where the supplier pipeline is brought through NICE EVA, where commissioner-facing demand is built, and where the four commercial principles get translated into a coherent admission pipeline. The model is B2B2C: commercial relationships are B2B between HealthStore and digital therapeutic suppliers, and patient access runs through the NHS App as the front door.</p>
+
+ <div class="section-h">The four commercial principles that constrain what HealthStore can hold</div>
+ <p class="h-intro" style="margin-bottom:18px;">SHAPE activity is governed by four principles agreed at programme level. They are not framing; they are the operating constraint that determines what gets shaped and what does not.</p>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>1. Third-party only</h3><span class="pill pill-live">Locked</span></div>
+  <p>The HealthStore only contains third-party digital therapeutic apps. The NHS does not develop NHS-branded digital therapeutic apps for the store; that would remove the incentive for third-party investment. Where the NHS embeds clinical-pathway software directly (first-party or second-party), it does so outside the HealthStore.</p>
+ </div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>2. Nationally approved</h3><span class="pill pill-live">Locked</span></div>
+  <p>Every digital therapeutic in the store carries national approval against the four bars: clinical safety, technical quality, economic value, and information governance. National approval drives the price-and-procurement model that ICBs and other commissioners then operate against locally.</p>
+ </div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>3. NHS App integrated</h3><span class="pill pill-live">Locked</span></div>
+  <p>Every digital therapeutic must integrate and share information with the national NHS App / digital hub. This is what enables follow-up support, targeted communication, effectiveness measurement and PROMs capture. It also draws a clear separation between the NHS digital hub and the digital therapeutic itself.</p>
+ </div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>4. NHS as patient-data custodian</h3><span class="pill pill-live">Locked</span></div>
+  <p>The NHS is the custodian for patient information. Digital therapeutics digitise standard NHS treatment pathways; they create or use temporary copies of patient information for the duration of the therapeutic episode but the NHS digital hub remains the system of record. Data standards and a code of connection govern what flows between the two.</p>
+ </div>
+
+ <div class="section-h">What HealthStore is shaping</div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>Therapeutic-area pipeline</h3><span class="pill pill-flight">In flight</span></div>
+  <p>COPD is the lead therapeutic area for the Alpha. Cardiac rehabilitation is fast-follow. MSK and lower-back pain is the third named pipeline condition. Digital CBT for insomnia (dCBTi) is a further candidate, with NICE multi-technology guidance expected in early 2027 and an internal ambition to include dCBTi in HealthStore by April 2027. Mental health is a future candidate area beyond that.</p>
+ </div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>NICE EVA conditionally-recommended pipeline engagement</h3><span class="pill pill-flight">In flight</span></div>
+  <p>NICE EVA is the route that brings digital therapeutic suppliers to the bar HealthStore admits against. EVA recommendations are <strong>conditional</strong>: technologies may be considered plausibly clinically and cost effective but further evidence is required. The model and any commissioner-facing material must not imply &ldquo;NICE approved&rdquo;; the framing is &ldquo;NICE EVA conditionally recommended&rdquo;. HealthStore engagement with NICE shapes which conditions enter the EVA pipeline in priority order.</p>
+ </div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>Commissioner-facing demand generation</h3><span class="pill pill-flight">In flight</span></div>
+  <p>ICBs are the primary commissioner archetype. Demand generation work in design: the commissioner-facing pitch artefact (what the proposition is, how it&apos;s priced, why the economics work for the ICB), early-adopter engagement, the linkage between the digital therapeutic and the wider pathway. Charitable sector and Royal-College engagement runs alongside so the right clinical voices carry the proposition into the system.</p>
+ </div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>Evidence-generation positioning</h3><span class="pill pill-flight">In flight</span></div>
+  <p>HealthStore is positioned as an enabler for ongoing evidence generation, not just a marketplace. Strong interest in making admission contingent on suppliers supporting their NICE evidence-generation plans. This mitigates the risk of suppliers benefiting from conditional recommendation status without continuing to generate evidence after admission.</p>
+ </div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>Funding-route alignment</h3><span class="pill pill-flight">In flight</span></div>
+  <p>The Frontline Productivity Programme explicitly includes digital therapeutics as a valid investment option at regional level. Regions hold the prioritisation responsibility for that funding. SHAPE work includes signalling into the funding routes so digital therapeutics surface as an investable option in the right places at the right time.</p>
+ </div>
+
+ <div class="section-h">Mobilisation status &mdash; COPD Alpha</div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>ICB Alpha sites engaged</h3><span class="pill pill-flight">In flight</span></div>
+  <p>Three ICB systems are engaged as Alpha sites for COPD. Welcome decks tailored to each ICB cover the proposition, the pricing and admission process, the local pathway integration approach, and the operational mobilisation steps. The three-site Alpha is structured to surface variation in commissioner readiness across different ICB shapes so the framework lands robustly.</p>
+ </div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>Commissioner discovery in flight</h3><span class="pill pill-flight">In flight</span></div>
+  <p>Round-one commissioner discovery is in progress. Three commissioner archetypes are emerging: paying customers (ICBs ready to commission directly), pathway transformers (regional programmes with transformation budget), remote managers (commissioners delegating operational management to partners). The pitch artefact and onboarding pack are being shaped against the three.</p>
+ </div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>Supplier engagement framework drafted</h3><span class="pill pill-flight">In flight</span></div>
+  <p>Supplier engagement framework drafted for COPD Alpha. Establishes how admitted suppliers engage with the platform during Alpha (commercial terms, evidence commitments, data flows, milestone reporting). Designed to be reusable for subsequent therapeutic areas as the pipeline matures.</p>
+ </div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>Respiratory Transformation Programme partnership</h3><span class="pill pill-flight">In flight</span></div>
+  <p>Pathway integration for COPD Alpha runs in partnership with the national Respiratory Transformation Programme. The OPTIMISE pathway is the reference shape against which digital therapeutic admission is configured. Cardiac rehab fast-follow will run with the equivalent national programme; MSK with its transformation programme; dCBTi with the mental health route.</p>
+ </div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>Clinical engagement round one underway</h3><span class="pill pill-flight">In flight</span></div>
+  <p>First-round clinician interviews progressing. Coverage includes specialist healthcare professionals with digital-therapeutic-centred roles and clinicians in the lead therapeutic area pathways. Discovery learnings from NHS Scotland's national scaling of digital therapies captured and informing the Alpha design.</p>
+ </div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>GATS early discovery signal</h3><span class="pill pill-flight">In flight</span></div>
+  <p>Early discovery report issued to GATS to establish the relationship and de-risk progression to the next assessment gate. Programme-board discovery report cadence aligning with the GATS review window so that progression decisions are made against a coherent evidence base.</p>
+ </div>
+
+ <div class="section-h">Open decisions and dependencies</div>
+
+ <div class="open-decision">
+  <div class="open-decision-title">Pathway-level economic case (cross-stage dependency)</div>
+  <div class="open-decision-body">The commissioner case for a digital therapeutic lands at pathway level, not at app level. An ICB cannot fund an app out of app economics alone because the saving (avoided escalation, freed clinician time, pathway-step removal) sits across different budget lines from the new app cost. Best-practice tariffs at the pathway level are the unlock. Tariff design itself sits outside this operating model as a separate workstream; the dependency does not. SHAPE work is most exposed to this dependency because it sets the conditions for downstream adoption.</div>
+ </div>
+
+ <div class="open-decision">
+  <div class="open-decision-title">SaMD pipeline depth</div>
+  <div class="open-decision-body">The number of SaMD-regulated digital therapeutic apps in the market may be smaller than the model assumes. Strategic risk for HealthStore scaling: the pipeline of admissable products needs to be deep enough to sustain a national store across multiple therapeutic areas. Currently surfaced as an open risk.</div>
+ </div>
+
+ <div class="open-decision">
+  <div class="open-decision-title">Second therapeutic area selection criteria</div>
+  <div class="open-decision-body">Cardiac rehabilitation is fast-follow but selection criteria for the second therapeutic area beyond COPD are not formally locked. NICE EVA pipeline maturity, ICB commissioning appetite and equity profile will all be inputs.</div>
+ </div>
+
+ <div class="open-decision">
+  <div class="open-decision-title">Demand-generation model with suppliers</div>
+  <div class="open-decision-body">Whether commissioner engagement is joint (platform + supplier together) or platform-led with supplier-wrap underneath. Affects the commissioner pitch artefact, the early-adopter programme and the way the four commercial principles get explained at the point of sale.</div>
+ </div>
+
+</div>
+
+</body>
+</html>

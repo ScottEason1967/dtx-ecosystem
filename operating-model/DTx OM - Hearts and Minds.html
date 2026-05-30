@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hearts and Minds: Digital Therapeutics Operating Model</title>
+<style>
+ /* Canonical topnav */
+ .topnav{background:#fff;border-bottom:1px solid #ebeef1;padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:nowrap;min-height:54px;box-sizing:border-box;width:100%;max-width:100%;margin:0;position:sticky;top:0;z-index:200;}
+ .topnav .nav-back{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-back:hover{color:#005EB8;}
+ .topnav .nav-siblings{display:flex;gap:4px;flex-wrap:nowrap;overflow-x:auto;align-items:center;}
+ .topnav .nav-siblings a{font-size:12px;font-weight:600;color:#4C6272;text-decoration:none;padding:6px 12px;border-radius:6px;letter-spacing:0.2px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-siblings a:hover{background:#f0f4f8;color:#212B32;}
+ .topnav .nav-siblings a.active{background:#003087;color:#fff;}
+
+ :root{
+  --nhs-dark:#003087; --nhs-blue:#005EB8;
+  --hometest:#003087; --healthstore:#00A9CE; --healthsync:#00A499;
+  --amber:#FFB91D; --amber-deep:#C9A227; --gold:#FFD66B; --warm-cream:#FFF9EC;
+  --text:#212B32; --text-sec:#4C6272; --text-muted:#7E8B97; --border-lt:#ebeef1; --card:#fff;
+  --nhs-blue-deep:#003087;
+ }
+ *{box-sizing:border-box;margin:0;padding:0;}
+ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,var(--nhs-blue) 0%,var(--nhs-blue-deep) 100%);background-attachment:fixed;color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;width:100%;}
+ .page{max-width:1180px;margin:30px auto 50px;background:#fff;border-radius:18px;box-shadow:0 14px 40px rgba(0,48,135,0.20);overflow:hidden;}
+ .hero{position:relative;padding:64px 60px 50px;background:linear-gradient(135deg,#001a4d,#003087 50%,#005EB8);color:#fff;overflow:hidden;}
+ .hero::after{content:'';position:absolute;right:-80px;bottom:-120px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(255,214,107,0.18),transparent 65%);pointer-events:none;}
+ .hero-rule{width:60px;height:4px;background:var(--gold);border-radius:2px;margin-bottom:20px;}
+ .hero-eyebrow{font-size:11px;font-weight:800;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:18px;position:relative;z-index:1;}
+ .hero-title{font-size:64px;font-weight:900;color:#fff;letter-spacing:-2px;line-height:1;margin-bottom:22px;max-width:840px;position:relative;z-index:1;}
+ .hero-title em{font-style:normal;color:var(--gold);}
+ .hero-strap{font-size:17px;color:rgba(255,255,255,0.94);line-height:1.65;max-width:720px;position:relative;z-index:1;}
+ .hero-strap strong{color:var(--gold);font-weight:700;}
+ .body{padding:48px 60px 64px;background:#fff;}
+ .framing{background:linear-gradient(135deg,#F4F8FC,#FFFFFF);border:1px solid #D5E8F0;border-radius:14px;padding:26px 30px;margin-bottom:36px;}
+ .framing-eyebrow{font-size:10.5px;font-weight:800;letter-spacing:1.8px;color:var(--nhs-blue);text-transform:uppercase;margin-bottom:10px;}
+ .framing-h{font-size:22px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.4px;margin-bottom:10px;line-height:1.2;}
+ .framing-body{font-size:14px;color:var(--text-sec);line-height:1.7;}
+ .framing-body strong{color:var(--text);font-weight:700;}
+ .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+ .card{background:#fff;border:1px solid var(--border-lt);border-radius:14px;overflow:hidden;text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:transform 0.18s,box-shadow 0.22s;position:relative;}
+ .card:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(0,32,64,0.12);}
+ .card.live{cursor:pointer;}
+ .card.next{cursor:default;opacity:0.78;}
+ .card-banner{padding:22px 24px 18px;color:#fff;display:flex;align-items:center;gap:16px;}
+ .card.errol .card-banner{background:linear-gradient(135deg,#003087,#005EB8);}
+ .card.sarah .card-banner{background:linear-gradient(135deg,#001a4d,#003087 60%,#005EB8);}
+ .card.marcus .card-banner{background:linear-gradient(135deg,#00819B,#00A9CE);}
+ .card.ravi .card-banner{background:linear-gradient(135deg,#5A1D3E,#AE2573);}
+ .card-portrait{flex-shrink:0;width:60px;height:60px;border-radius:50%;overflow:hidden;border:2px solid rgba(255,255,255,0.5);}
+ .card-portrait img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;}
+ .card-portrait .ph{width:100%;height:100%;background:rgba(255,255,255,0.18);display:flex;align-items:center;justify-content:center;font-size:24px;color:rgba(255,255,255,0.6);}
+ .card-banner-text{flex:1;min-width:0;}
+ .card-eyebrow{font-size:10px;font-weight:800;letter-spacing:1.6px;color:rgba(255,255,255,0.85);text-transform:uppercase;margin-bottom:4px;}
+ .card-name{font-size:22px;font-weight:900;color:#fff;letter-spacing:-0.5px;line-height:1.1;}
+ .card-role{font-size:11px;font-weight:700;color:rgba(255,255,255,0.88);letter-spacing:0.6px;margin-top:3px;}
+ .card-body{padding:18px 24px 18px;flex:1;display:flex;flex-direction:column;}
+ .card-claim{font-size:13.5px;color:var(--text-sec);line-height:1.6;margin-bottom:12px;flex:1;}
+ .card-claim strong{color:var(--text);font-weight:700;}
+ .card-footer{display:flex;align-items:center;justify-content:space-between;padding-top:12px;border-top:1px solid var(--border-lt);font-size:11px;font-weight:700;letter-spacing:0.5px;color:var(--nhs-blue);text-transform:uppercase;}
+ .card-footer .next-tag{color:var(--amber-deep);background:var(--warm-cream);padding:4px 10px;border-radius:4px;letter-spacing:1px;font-size:10px;}
+ .card-footer .live-arrow{transition:transform 0.18s;}
+ .card.live:hover .card-footer .live-arrow{transform:translateX(4px);}
+ .audiences{margin-top:36px;background:#fafbfd;border:1px solid var(--border-lt);border-radius:14px;padding:26px 30px;}
+ .audiences-h{font-size:11px;font-weight:800;letter-spacing:1.8px;color:var(--nhs-blue);text-transform:uppercase;margin-bottom:14px;}
+ .audiences-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+ .audience{background:#fff;border:1px solid var(--border-lt);border-radius:10px;padding:14px 16px;}
+ .audience-h{font-size:11.5px;font-weight:800;color:var(--nhs-dark);margin-bottom:6px;letter-spacing:-0.1px;}
+ .audience-body{font-size:11.5px;color:var(--text-sec);line-height:1.55;}
+ @media(max-width:900px){
+  .hero{padding:44px 28px 38px;} .body{padding:34px 28px;} .hero-title{font-size:42px;}
+  .cards{grid-template-columns:1fr;} .audiences-grid{grid-template-columns:repeat(2,1fr);}
+ }
+</style>
+<style>
+  .ecosystem-nav {
+    background: #fff;
+    border-bottom: 1px solid #ebeef1;
+    padding: 12px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 48px;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  }
+  .ecosystem-nav a {
+    font-size: 13px; font-weight: 700; color: #003087;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .ecosystem-nav a:hover { color: #005EB8; }
+  .ecosystem-nav .nav-context {
+    font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
+    color: #7E8B97; text-transform: uppercase;
+  }
+  .ecosystem-nav .nav-product {
+    font-size: 10.5px; font-weight: 800; letter-spacing: 0.8px;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 4px; color: #fff;
+  }
+  .ecosystem-nav .nav-product.dtx { background: #003087; }
+  .ecosystem-nav .nav-product.hometest { background: #003087; }
+  .ecosystem-nav .nav-product.healthstore { background: #00A9CE; }
+  .ecosystem-nav .nav-product.healthsync { background: #00A499; }
+</style>
+</head>
+<body>
+<div class="ecosystem-nav">
+  <a href="../index.html">← DTx Ecosystem</a>
+  <span class="nav-context">Hearts and Minds</span>
+  <span class="nav-product dtx">DTx</span>
+</div>
+
+<nav class="topnav">
+<a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+<div class="nav-siblings">
+ <a href="DTx OM - Why.html">Why</a>
+ <a href="DTx OM - What.html">What</a>
+ <a href="DTx OM - Lifecycle.html">When</a>
+ <a href="DTx OM - HomeTest Operational.html">How</a>
+ <a href="DTx OM - Governance.html">Who</a>
+ <a href="DTx OM - Hearts and Minds.html" class="active">Hearts and Minds</a>
+ <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>
+ <a href="DTx OM - Status.html">Status</a>
+</div>
+</nav>
+
+<div class="page">
+
+ <div class="hero">
+  <div class="hero-rule"></div>
+  <div class="hero-eyebrow">The operating model in human voice</div>
+  <h1 class="hero-title">Four stories.<br>Four <em>audiences</em>.</h1>
+  <p class="hero-strap">Operating models live or die on whether four audiences want them to work: the <strong>patients</strong> who use the service, the <strong>commissioners</strong> who buy it, the <strong>suppliers</strong> who build it, and the <strong>clinicians</strong> who prescribe it. The architecture pages on this site describe what the model is. These four stories describe why it matters, one for each audience, each told through one person you can hold in your head.</p>
+ </div>
+
+ <div class="body">
+
+  <div class="framing">
+   <div class="framing-eyebrow">Why hearts and minds</div>
+   <div class="framing-h">Architecture wins arguments. Stories win adoption.</div>
+   <div class="framing-body">An operating model lives or dies on whether the people inside it want it to work. The architecture pages on this site explain how the model is meant to operate. These four stories explain why it matters to the four audiences whose buy-in it needs: the patient, the commissioner, the supplier, the clinician. Each follows one named person through the operating model in their own voice, with their stakes, and with the failure modes the model is designed to prevent.</div>
+  </div>
+
+  <div class="cards">
+
+   <a href="DTx OM - Errol Journey.html" class="card live errol">
+    <div class="card-banner">
+     <div class="card-portrait"><img src="img/errol-portrait.png" alt="Errol" onerror="this.parentElement.innerHTML='<div class=&quot;ph&quot;>&#x1F464;</div>';"></div>
+     <div class="card-banner-text">
+      <div class="card-eyebrow">For the patient</div>
+      <div class="card-name">Errol</div>
+      <div class="card-role">Hypertension &middot; managed at home</div>
+     </div>
+    </div>
+    <div class="card-body">
+     <div class="card-claim"><strong>One patient. Three workstreams. One operating model.</strong> Errol's morning, and what the NHS didn&apos;t miss. The story of a smartwatch catching what he couldn&apos;t, a blood test confirming what the data suggested, a digital therapeutic supporting the response, and a crisis that never happened. Across HomeTest, HealthStore and HealthSync without ever onboarding twice.</div>
+     <div class="card-footer">
+      <span>Live</span>
+      <span class="live-arrow">Open Errol&apos;s story &rarr;</span>
+     </div>
+    </div>
+   </a>
+
+   <a href="DTx OM - Sarah Journey.html" class="card live sarah">
+    <div class="card-banner">
+     <div class="card-portrait"><img src="../../Assets/Personas/sarah.png" alt="Sarah" onerror="this.parentElement.innerHTML='<div class=&quot;ph&quot;>&#x1F464;</div>';"></div>
+     <div class="card-banner-text">
+      <div class="card-eyebrow">For the commissioner</div>
+      <div class="card-name">Sarah</div>
+      <div class="card-role">ICB commissioner &middot; population health</div>
+     </div>
+    </div>
+    <div class="card-body">
+     <div class="card-claim"><strong>One commissioner. One signature. One year, not three.</strong> Sarah&apos;s six weeks, not eighteen months. Cardiovascular detection gap, COPD admissions rising, high-risk cohort needing closer monitoring. The story of a commissioner running three workstreams on one framework and getting back the year she would have lost to procurement attrition.</div>
+     <div class="card-footer">
+      <span>Live</span>
+      <span class="live-arrow">Open Sarah&apos;s story &rarr;</span>
+     </div>
+    </div>
+   </a>
+
+   <a href="DTx OM - Marcus Journey.html" class="card live marcus">
+    <div class="card-banner">
+     <div class="card-portrait"><img src="img/marcus-final.png" alt="Marcus" onerror="this.parentElement.innerHTML='<div class=&quot;ph&quot;>&#x1F464;</div>';"></div>
+     <div class="card-banner-text">
+      <div class="card-eyebrow">For the supplier</div>
+      <div class="card-name">Marcus</div>
+      <div class="card-role">DTx founder &middot; HealthStore</div>
+     </div>
+    </div>
+    <div class="card-body">
+     <div class="card-claim"><strong>Four years of evidence. One framework that finally fits.</strong> Marcus&apos;s story of a clinical-grade digital therapeutic looking for the route into NHS scale. The failure modes he&apos;s seen before (pilot purgatory, bespoke procurement, fragmented adoption) and the framework setup that might break the pattern.</div>
+     <div class="card-footer">
+      <span>Live</span>
+      <span class="live-arrow">Open Marcus&apos;s story &rarr;</span>
+     </div>
+    </div>
+   </a>
+
+   <a href="DTx OM - Ravi Journey.html" class="card live ravi">
+    <div class="card-banner">
+     <div class="card-portrait"><img src="img/ravi.png" alt="Ravi" onerror="this.parentElement.innerHTML='<div class=&quot;ph&quot;>&#x1F464;</div>';"></div>
+     <div class="card-banner-text">
+      <div class="card-eyebrow">For the clinician</div>
+      <div class="card-name">Ravi</div>
+      <div class="card-role">Consultant respiratory physician</div>
+     </div>
+    </div>
+    <div class="card-body">
+     <div class="card-claim"><strong>From sceptic to advocate, one prescription at a time.</strong> Ravi&apos;s story of a consultant who didn&apos;t believe in digital therapeutics until the conditional-admission route gave him enough cover to try one. The first prescription. The first follow-up. The first peer he told. The regional steering group seat he didn&apos;t expect to take.</div>
+     <div class="card-footer">
+      <span>Live</span>
+      <span class="live-arrow">Open Ravi&apos;s story &rarr;</span>
+     </div>
+    </div>
+   </a>
+
+  </div>
+
+  <div class="audiences">
+   <div class="audiences-h">How to use these stories</div>
+   <div class="audiences-grid">
+    <div class="audience">
+     <div class="audience-h">Talking to a patient group</div>
+     <div class="audience-body">Lead with Errol. The crisis that never happened. Three workstreams, one patient experience.</div>
+    </div>
+    <div class="audience">
+     <div class="audience-h">Talking to an ICB</div>
+     <div class="audience-body">Lead with Sarah. Easy buying as a real, named experience. Six weeks not eighteen months.</div>
+    </div>
+    <div class="audience">
+     <div class="audience-h">Talking to a supplier</div>
+     <div class="audience-body">Lead with Marcus. The framework as the antidote to pilot purgatory. NICE EVA conditional admission as a real route in.</div>
+    </div>
+    <div class="audience">
+     <div class="audience-h">Talking to a clinician</div>
+     <div class="audience-body">Lead with Ravi. Sceptic to advocate. The clinical evidence the conditional admission lets you trust enough to prescribe.</div>
+    </div>
+   </div>
+  </div>
+
+ </div>
+</div>
+
+</body>
+</html>
+                                                                                                                

@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Digital Therapeutics Operating Model: Anatomical</title>
+<style>
+ /* Canonical topnav */
+ .topnav{background:#fff;border-bottom:1px solid #ebeef1;padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:nowrap;min-height:54px;box-sizing:border-box;width:100%;max-width:100%;margin:0;position:sticky;top:0;z-index:200;}
+ .topnav.topnav-secondary{background:#F4F8FC;border-bottom:1px solid #d6e2ef;padding:9px 36px;min-height:42px;}
+ .topnav .nav-back{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-back:hover{color:#005EB8;}
+ .topnav .nav-siblings{display:flex;gap:4px;flex-wrap:nowrap;overflow-x:auto;align-items:center;}
+ .topnav .nav-siblings a{font-size:12px;font-weight:600;color:#4C6272;text-decoration:none;padding:6px 12px;border-radius:6px;letter-spacing:0.2px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-siblings a:hover{background:#f0f4f8;color:#212B32;}
+ .topnav .nav-siblings a.active{background:#003087;color:#fff;}
+ .topnav.topnav-secondary .nav-siblings a{font-size:11.5px;padding:5px 10px;}
+ .topnav.topnav-secondary .nav-siblings a.active{background:#005EB8;color:#fff;}
+ .topnav .nav-secondary-label{font-size:10px;font-weight:800;letter-spacing:1.5px;color:#7E8B97;text-transform:uppercase;flex-shrink:0;}
+
+ :root {
+ --nhs-dark:#003087; --nhs-blue:#005EB8; --nhs-green:#006747; --nhs-pink:#AE2573;
+ --amber:#FFB91D; --amber-deep:#C9A227; --warm-cream:#FFF9EC;
+ --accent:var(--nhs-dark);
+ --text:#212B32; --text-sec:#4C6272; --text-muted:#7E8B97;
+ --border:#d9dee3; --border-lt:#ebeef1;
+ --card:#ffffff; --bg:#f8fafc;
+ }
+ .amber-rule { width: 72px; height: 4px; background: var(--amber); border-radius: 2px; margin-bottom: 18px; }
+ .persona-strip { display: flex; gap: 14px; align-items: center; padding: 18px 22px; background: var(--warm-cream); border: 1px solid #F0DCA0; border-radius: 12px; margin: 24px 0; }
+ .persona-strip img { width: 64px; height: auto; flex-shrink: 0; }
+ .persona-strip-text { flex: 1; }
+ .persona-strip-name { font-size: 11px; font-weight: 800; letter-spacing: 1.4px; color: var(--amber-deep); text-transform: uppercase; margin-bottom: 4px; }
+ .persona-strip-body { font-size: 13px; color: var(--text-sec); line-height: 1.6; }
+ .persona-strip-body strong { color: var(--text); font-weight: 700; }
+ *{box-sizing:border-box;margin:0;padding:0;}
+ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ .page{max-width:1280px;margin:0 auto;padding:50px 40px 80px;}
+ .header{margin-bottom:42px;}
+ .h-eyebrow{display:inline-block;background:var(--accent);color:#fff;font-size:10.5px;font-weight:800;letter-spacing:1.8px;padding:7px 16px;border-radius:4px;text-transform:uppercase;margin-bottom:18px;}
+ .h-title{font-size:42px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.5px;line-height:1.1;margin-bottom:12px;}
+ .h-subtitle{font-size:18px;color:var(--text-sec);font-weight:500;margin-bottom:18px;}
+ .h-intro{max-width:820px;font-size:14.5px;color:var(--text-sec);line-height:1.7;}
+ .h-intro strong{color:var(--text);font-weight:700;}
+ /* Vocabulary cards */
+ .vocab{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:30px;margin-bottom:30px;}
+ .vc{background:#fff;border:1px solid var(--border-lt);border-radius:10px;padding:18px;box-shadow:0 1px 3px rgba(0,32,64,0.04);}
+ .vc-badge{display:inline-block;background:#f0f4f8;color:var(--text-sec);font-size:9.5px;font-weight:800;letter-spacing:0.8px;padding:3px 9px;border-radius:4px;text-transform:uppercase;margin-bottom:8px;}
+ .vc.l1 .vc-badge{background:var(--nhs-dark);color:#fff;}
+ .vc.l2 .vc-badge{background:var(--nhs-blue);color:#fff;}
+ .vc.l3 .vc-badge{background:#78909C;color:#fff;}
+ .vc.l4 .vc-badge{background:var(--nhs-pink);color:#fff;}
+ .vc-name{font-size:18px;font-weight:800;color:var(--text);margin-bottom:8px;letter-spacing:-0.2px;}
+ .vc-body{font-size:12.5px;color:var(--text-sec);line-height:1.6;}
+ .vc-body strong{color:var(--text);font-weight:700;}
+ /* Four-level stack visual */
+ .fls{display:flex;flex-direction:column;gap:8px;margin:30px 0;}
+ .fls-band{border-radius:12px;padding:18px 22px;}
+ .fls-band-l1{background:linear-gradient(135deg,#001F5C,#003087);color:#fff;}
+ .fls-band-l2{background:linear-gradient(135deg,#003F8B,#005EB8);color:#fff;}
+ .fls-band-l3{background:linear-gradient(135deg,#D5E8F0,#E8F1F6);color:var(--text);border:1px solid rgba(0,94,184,0.20);}
+ .fls-band-l4{background:linear-gradient(135deg,#F5F8FC,#FAFBFD);color:var(--text);border:1px solid rgba(0,94,184,0.16);}
+ .fls-head{display:flex;align-items:baseline;gap:14px;margin-bottom:6px;}
+ .fls-num{font-size:10.5px;font-weight:800;letter-spacing:1.6px;opacity:0.78;}
+ .fls-name{font-size:18px;font-weight:800;}
+ .fls-tag{font-size:11.5px;font-weight:500;opacity:0.85;}
+ .fls-l1 .fls-tag,.fls-l2 .fls-tag{color:rgba(255,255,255,0.85);}
+ .fls-body{font-size:12.5px;line-height:1.65;opacity:0.92;max-width:820px;}
+ /* Note */
+ .note{display:flex;gap:14px;margin-top:20px;padding:14px 18px;background:#FFF8E1;border-left:4px solid #F9A825;border-radius:0 8px 8px 0;}
+ .note-tag{flex-shrink:0;font-size:10px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:#8D6E1A;min-width:120px;padding-top:2px;}
+ .note-body{font-size:12px;color:var(--text-sec);line-height:1.6;}
+ .note-body strong{color:var(--text);font-weight:700;}
+ /* Deep-dive link */
+ .deepdive{margin-top:40px;background:#fff;border:1px solid var(--border-lt);border-radius:12px;padding:22px 26px;display:flex;align-items:center;gap:24px;justify-content:space-between;flex-wrap:wrap;}
+ .deepdive-text h3{font-size:15px;font-weight:800;color:var(--text);margin-bottom:6px;}
+ .deepdive-text p{font-size:12.5px;color:var(--text-sec);line-height:1.6;max-width:700px;}
+ .deepdive-cta{flex-shrink:0;background:var(--accent);color:#fff;text-decoration:none;font-size:13px;font-weight:700;padding:11px 22px;border-radius:6px;}
+ .deepdive-cta:hover{background:var(--nhs-blue);}
+ .foot{margin-top:48px;text-align:center;font-size:11.5px;color:var(--text-muted);line-height:1.6;}
+ .foot strong{color:var(--text-sec);font-weight:700;}
+ @media(max-width:820px){
+ .vocab{grid-template-columns:1fr 1fr;}
+ .h-title{font-size:30px;}
+ .page{padding:30px 22px 60px;}
+ 
+ }
+
+ /* Catalogue + swimlanes variables */
+ :root {
+ --green: #007F3B;
+ --amber: #9A6700;
+ --amber-bg: #fef6e6;
+ --amber-lt: #fffbf2;
+ --red: #B5121B;
+ --red-bg: #fce8e9;
+ --platform: #D0E4F8;
+ --platform-dark: #005EB8;
+ --framework: #E0D4F0;
+ --framework-dark: #5B3A8C;
+ --supplier: #F0E8D8;
+ --supplier-dark: #7A5A20;
+ --commissioner: #D8F0D8;
+ --commissioner-dark: #2A6A2A;
+ --clinical: #F8E0E0;
+ --clinical-dark: #8A2020;
+ --patient: #E8E8E8;
+ --patient-dark: #444444;
+ --foundation-bg: #e8f1fb;
+ --foundation-border: #005EB8;
+ --foundation-dark: #003087;
+ --overlay-bg: #fff8e8;
+ --overlay-border: #B5651D;
+ --overlay-dark: #B5651D;
+ }
+ /* Section heading */
+ .section-h { display:flex; align-items:center; gap:14px; font-size:22px; font-weight:800; color:var(--nhs-dark); margin:48px 0 18px; letter-spacing:-0.2px; }
+ .section-h .num { display:inline-flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:50%; background:var(--accent); color:#fff; font-size:13px; font-weight:800; }
+ /* Catalogue */
+ .catalogue-card { background:#fff; border:1px solid var(--border-lt); border-radius:12px; overflow:hidden; margin-bottom:18px; box-shadow:0 1px 3px rgba(0,32,64,0.04); }
+ .catalogue-head { padding:18px 24px; border-bottom:1px solid var(--border-lt); background:linear-gradient(90deg,#f5f8fc,#fafbfd); display:flex; justify-content:space-between; align-items:flex-start; gap:20px; flex-wrap:wrap; }
+ .catalogue-head .ch-text h3 { font-size:17px; font-weight:800; color:var(--nhs-dark); margin-bottom:4px; }
+ .catalogue-head .ch-text p { font-size:12px; color:var(--text-sec); line-height:1.55; max-width:760px; }
+ .catalogue-head .ratio { background:linear-gradient(135deg,var(--nhs-dark),var(--nhs-blue)); color:#fff; border-radius:10px; padding:14px 22px; min-width:240px; }
+ .catalogue-head .ratio .rlabel { font-size:9.5px; font-weight:800; letter-spacing:1px; text-transform:uppercase; opacity:0.8; }
+ .catalogue-head .ratio .rstat { font-size:30px; font-weight:900; line-height:1.1; margin:4px 0; letter-spacing:-1px; }
+ .catalogue-head .ratio .rdesc { font-size:11px; line-height:1.45; opacity:0.92; }
+ .cat-table { width:100%; border-collapse:collapse; }
+ .cat-table thead th { background:#f0f3f6; font-size:11px; font-weight:800; color:var(--text); padding:11px 14px; text-align:left; border-bottom:2px solid var(--border-lt); letter-spacing:0.3px; }
+ .cat-table thead th.col-overlay { width:200px; }
+ .cat-table thead th.col-hiv { background:#006747; color:#fff; }
+ .cat-table thead th.col-psa { background:#AE2573; color:#fff; }
+ .cat-table tbody td.cell-hiv { border-left:3px solid #006747; }
+ .cat-table tbody td.cell-psa { border-left:3px solid #AE2573; }
+ .cat-table tbody td { font-size:11.5px; color:var(--text-sec); padding:11px 14px; border-bottom:1px solid var(--border-lt); line-height:1.55; vertical-align:top; }
+ .cat-table tbody tr.foundation td { background:var(--foundation-bg); }
+ .cat-table tbody tr.foundation td:first-child { font-weight:700; color:var(--foundation-dark); border-left:4px solid var(--foundation-border); }
+ .cat-table tbody tr.overlay td { background:var(--overlay-bg); }
+ .cat-table tbody tr.overlay td:first-child { font-weight:700; color:var(--overlay-dark); border-left:4px solid var(--overlay-border); }
+ .cat-table tbody td .badge { display:inline-block; padding:2px 8px; border-radius:10px; font-size:9px; font-weight:800; letter-spacing:0.5px; text-transform:uppercase; margin-right:6px; vertical-align:1px; }
+ .cat-table tbody tr.foundation td .badge { background:var(--foundation-dark); color:#fff; }
+ .cat-table tbody tr.overlay td .badge { background:var(--overlay-dark); color:#fff; }
+ .cat-table tbody td.same { font-style:italic; color:var(--foundation-dark); }
+ .cat-table tbody td.same::before { content:"\2192 "; font-weight:800; font-style:normal; }
+ .cat-section-row td { background:#e0e6ec !important; font-weight:800; color:var(--text-muted); letter-spacing:1px; text-transform:uppercase; font-size:10px; padding:8px 14px !important; border-left:none !important; border-bottom:1px solid var(--border-lt) !important; }
+ .cat-foot { padding:14px 22px; font-size:11px; color:var(--text-sec); line-height:1.6; background:#fafbfc; border-top:1px solid var(--border-lt); }
+ .cat-foot strong { color:var(--text); }
+ .gap-flag { background:var(--red-bg); border:1px solid #f0b3b5; border-radius:6px; padding:3px 8px; font-size:9px; font-weight:700; color:var(--red); display:inline-block; margin-top:4px; }
+ .new-flag { background:#fef3c7; border:1px solid #f5d787; border-radius:6px; padding:3px 8px; font-size:9px; font-weight:700; color:#92580a; display:inline-block; margin-top:4px; }
+
+ /* North stars */
+ .section-h { font-size:11.5px; font-weight:800; letter-spacing:1.2px; text-transform:uppercase; color:var(--text-muted); margin:30px 0 14px 4px; display:flex; align-items:center; gap:10px; }
+ .section-h .num { background:var(--nhs-blue); color:#fff; padding:3px 10px; border-radius:14px; font-size:10px; font-weight:800; letter-spacing:0.5px; }
+ .intent { background:linear-gradient(135deg,#fafbfc,#fff); border:1px solid var(--border); border-radius:10px; padding:20px 24px; margin-bottom:14px; }
+ .intent h2 { font-size:15px; font-weight:800; color:var(--nhs-dark); margin-bottom:6px; letter-spacing:-0.2px; }
+ .intent p { font-size:12.5px; color:var(--text-sec); line-height:1.65; margin-bottom:8px; }
+ .intent p:last-child { margin-bottom:0; }
+ .intent strong { color:var(--text); font-weight:700; }
+ .patient-mission { background:linear-gradient(135deg,#003087,#005EB8); color:#fff; border-radius:12px; padding:18px 24px; margin:14px 0 18px; display:flex; gap:18px; align-items:flex-start; box-shadow:0 4px 14px rgba(0,48,135,0.10); }
+ .patient-mission .pm-tag { flex-shrink:0; font-size:10px; font-weight:800; letter-spacing:1.4px; text-transform:uppercase; padding:5px 12px; background:rgba(255,255,255,0.18); border-radius:4px; min-width:78px; text-align:center; }
+ .patient-mission .pm-body { font-size:13px; line-height:1.6; font-weight:500; }
+ .nstars { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin:14px 0 18px; }
+ .nstar { background:#fff; border:1px solid var(--border); border-radius:12px; padding:18px 20px 18px 22px; position:relative; overflow:hidden; box-shadow:0 4px 14px rgba(0,48,135,0.06); transition:transform 0.15s, box-shadow 0.15s; }
+ .nstar:hover { transform:translateY(-2px); box-shadow:0 8px 22px rgba(0,48,135,0.12); }
+ .nstar::before { content:""; position:absolute; left:0; top:0; bottom:0; width:6px; }
+ .nstar.commissioner::before { background:linear-gradient(180deg,#003087,#1976D2); }
+ .nstar.supplier::before { background:linear-gradient(180deg,#006747,#00A86B); }
+ .nstar.hometest::before { background:linear-gradient(180deg,#AE2573,#D946A8); }
+ .nstar .nstar-icon { position:absolute; top:14px; right:16px; width:42px; height:42px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:22px; color:#fff; box-shadow:0 2px 8px rgba(0,0,0,0.12); }
+ .nstar .nstar-portrait { position:absolute; top:14px; right:14px; width:46px; height:46px; }
+ .nstar .nstar-portrait img { width:100%; height:100%; display:block; border-radius:50%; border:2px solid var(--amber); background:var(--warm-cream); object-fit:cover; object-position:top center; }
+ .nstar .nlabel { padding-right:60px; }
+ .nstar.commissioner .nstar-icon { background:linear-gradient(135deg,#003087,#1976D2); }
+ .nstar.supplier .nstar-icon { background:linear-gradient(135deg,#006747,#00A86B); }
+ .nstar.hometest .nstar-icon { background:linear-gradient(135deg,#AE2573,#D946A8); }
+ .nstar .nlabel { font-size:9.5px; font-weight:800; letter-spacing:1.2px; text-transform:uppercase; margin-bottom:4px; padding-right:60px; }
+ .nstar.commissioner .nlabel { color:#003087; }
+ .nstar.supplier .nlabel { color:#006747; }
+ .nstar.hometest .nlabel { color:#AE2573; }
+ .nstar .nheadline { font-size:15px; font-weight:800; color:var(--text); margin-bottom:6px; padding-right:60px; letter-spacing:-0.2px; }
+ .nstar .nbody { font-size:11.5px; color:var(--text-sec); line-height:1.55; }
+ @media(max-width:900px) { .nstars { grid-template-columns:1fr; } }
+ @media(max-width:900px) { .hdr-in{flex-direction:column;} .vocab{grid-template-columns:1fr 1fr;} .nstars{flex-direction:column;} .catalogue-head{flex-direction:column;} .fls-split{grid-template-columns:1fr;} .fls-pill-overlay{min-width:100px;} }
+
+ /* Four-level stack */
+ .fls { margin:18px 0 8px 0; display:flex; flex-direction:column; gap:10px; }
+ .fls-level { border-radius:14px; padding:18px 22px 20px 22px; position:relative; box-shadow:0 2px 6px rgba(0,32,64,0.06); }
+ .fls-l1 { background:linear-gradient(135deg, rgba(0,48,135,0.96), rgba(0,48,135,0.84)); color:#fff; }
+ .fls-l2 { background:linear-gradient(135deg, rgba(0,94,184,0.92), rgba(0,94,184,0.78)); color:#fff; }
+ .fls-l3 { background:linear-gradient(135deg, rgba(213,232,240,0.92), rgba(213,232,240,0.55)); color:var(--text); border:1px solid rgba(0,94,184,0.20); }
+ .fls-l4 { background:linear-gradient(135deg, rgba(245,248,252,0.95), rgba(248,251,254,0.92)); color:var(--text); border:1px solid rgba(0,94,184,0.16); }
+ .fls-head { display:flex; align-items:baseline; gap:14px; margin-bottom:12px; flex-wrap:wrap; }
+ .fls-num { font-size:11px; font-weight:800; letter-spacing:1.8px; opacity:0.78; }
+ .fls-name { font-size:18px; font-weight:800; letter-spacing:0.3px; }
+ .fls-tag { font-size:12.5px; font-weight:500; opacity:0.82; }
+ .fls-l1 .fls-tag, .fls-l2 .fls-tag { color:rgba(255,255,255,0.88); }
+ .fls-shared { display:flex; flex-wrap:wrap; gap:8px; }
+ .fls-chip { display:inline-block; padding:6px 12px; border-radius:7px; background:rgba(255,255,255,0.18); color:#fff; font-size:12px; font-weight:600; border:1px solid rgba(255,255,255,0.24); }
+ .fls-l2 .fls-chip { background:#003087; color:#ffffff; border:1px solid rgba(255,255,255,0.35); font-weight:700; letter-spacing:0.2px; font-size:12px; padding:8px 14px; box-shadow:0 2px 6px rgba(0,0,0,0.18); }
+ .fls-l3 .fls-chip, .fls-l4 .fls-chip { background:rgba(0,94,184,0.10); color:var(--nhs-dark); border-color:rgba(0,94,184,0.22); }
+ .fls-split { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+ .fls-split-4 { display:grid; grid-template-columns:repeat(4, 1fr); gap:12px; }
+ .fls-split-4 .fls-col { padding:14px 12px; }
+ .fls-split-4 .fls-pill-overlay { min-width:0; font-size:10.5px; }
+ .fls-split-4 .fls-pill { font-size:10.5px; padding:3px 9px; }
+ .fls-split-4 .fls-pill-row { font-size:10.5px; gap:6px; flex-wrap:wrap; }
+ @media (max-width:1100px) { .fls-split-4 { grid-template-columns:1fr 1fr; } }
+ @media (max-width:700px) { .fls-split-4 { grid-template-columns:1fr; } }
+ .fls-col { background:#fff; border-radius:10px; padding:14px 18px; box-shadow:0 1px 3px rgba(0,32,64,0.06); }
+ .fls-col-hiv { border-top:4px solid #009688; }
+ .fls-col-psa { border-top:4px solid #E91E63; }
+ .fls-col-hometest { border-top:4px solid #003087; }
+ .fls-col-healthstore { border-top:4px solid #00A9CE; }
+ .fls-col-healthsync { border-top:4px solid #00A499; }
+ .fls-pill-hometest { background:#003087; }
+ .fls-pill-healthstore { background:#00A9CE; }
+ .fls-pill-healthsync { background:#00A499; }
+ .fls-col-name-hometest { color:#003087; }
+ .fls-col-name-healthstore { color:#00A9CE; }
+ .fls-col-name-healthsync { color:#00A499; }
+ .fls-product-label{font-size:11px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:#fff;padding:4px 10px;border-radius:4px;display:inline-block;margin-bottom:4px;}
+ .fls-product-label-hometest{background:#003087;}
+ .fls-product-label-healthstore{background:#00A9CE;}
+ .fls-product-label-healthsync{background:#00A499;}
+ .fls-config-list{display:flex;flex-direction:column;gap:8px;}
+ .fls-config-row{padding:8px 10px;background:#f4f8fc;border-left:3px solid #003087;border-radius:5px;font-size:11.5px;line-height:1.5;color:#4C6272;}
+ .fls-config-row strong{color:#212B32;font-weight:800;}
+ .fls-config-row-hs{border-left-color:#005EB8;}
+ .fls-config-row-sync{border-left-color:#7E8B97;}
+ .fls-config-status{font-size:9.5px;font-weight:800;letter-spacing:0.7px;text-transform:uppercase;padding:2px 7px;border-radius:3px;display:inline-block;margin-left:6px;vertical-align:middle;}
+ .fls-config-status-live{background:#E2F1E8;color:#006747;}
+ .fls-config-status-design{background:#E1ECF7;color:#005EB8;}
+ .fls-config-status-flight{background:#FFF8E6;color:#9A6700;}
+ /* L1-L3 symmetry */
+ .fls-bc-chips.chip-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin:8px 0 0;}
+ .fls-bc-chips.chip-grid .fls-chip{margin:0;text-align:center;justify-content:center;display:flex;align-items:center;font-size:11.5px;padding:8px 12px;min-height:34px;line-height:1.3;white-space:normal;word-break:keep-all;}
+ .fls-shared.chip-strip{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;}
+ .fls-shared.chip-strip .fls-chip{margin:0;display:inline-flex;align-items:center;padding:8px 14px;line-height:1.2;white-space:nowrap;flex:0 0 auto;}
+ .l3-grid{display:grid;grid-template-columns:130px repeat(3,1fr);gap:5px;align-items:stretch;}
+ .l3-grid .l4-cell-label{display:flex;align-items:center;justify-content:flex-end;padding:0 10px 0 0;font-size:10.5px;font-weight:700;color:#4C6272;text-transform:uppercase;letter-spacing:0.8px;min-height:38px;text-align:right;line-height:1.2;}
+ .l3-grid .l4-cell-empty{min-height:60px;}
+ .l3-grid .l4-cell-pill{display:flex;align-items:center;justify-content:center;min-height:38px;padding:4px 6px;}
+ .l3-grid .l4-cell-pill .fls-pill{font-size:11px;padding:6px 10px;line-height:1.25;text-align:center;width:100%;max-width:190px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;border-radius:14px;color:#fff;font-weight:700;}
+ .l3-grid .l4-col-head{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:8px 6px;min-height:60px;border-top:4px solid transparent;border-radius:6px 6px 0 0;}
+ .l3-grid .l4-col-head .l4-col-head-name{font-size:13px;font-weight:800;letter-spacing:-0.2px;line-height:1.15;text-align:center;}
+ .l3-grid .l4-col-head .l4-col-head-status{margin-top:5px;}
+
+ /* L4 unified grid */
+ .l4-grid{display:grid;grid-template-columns:130px repeat(4,1fr);gap:5px;align-items:stretch;}
+ .l4-cell-label{display:flex;align-items:center;justify-content:flex-end;padding:0 10px 0 0;font-size:10.5px;font-weight:700;color:#4C6272;text-transform:uppercase;letter-spacing:0.8px;min-height:38px;text-align:right;line-height:1.2;}
+ .l4-cell-empty{min-height:38px;}
+ .l4-cell-pill{display:flex;align-items:center;justify-content:center;min-height:38px;padding:4px 6px;}
+ .l4-cell-pill .fls-pill{font-size:10.5px;padding:5px 8px;line-height:1.25;text-align:center;width:100%;max-width:170px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;border-radius:14px;color:#fff;font-weight:700;}
+ .l4-col-head{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:6px 4px 8px;min-height:60px;border-top:4px solid transparent;border-radius:6px 6px 0 0;}
+ .l4-col-head .l4-col-head-name{font-size:12px;font-weight:800;letter-spacing:-0.2px;line-height:1.15;text-align:center;}
+ .l4-col-head .l4-col-head-status{margin-top:5px;}
+ .l4-col-head-hiv{border-top-color:#009688;color:#009688;}
+ .l4-col-head-psa{border-top-color:#E91E63;color:#E91E63;}
+ .l4-col-head-hba1c{border-top:4px dashed #FB8C00;color:#E65100;}
+ .l4-col-head-pharmacy{border-top:4px dotted #7E57C2;color:#5E35B2;opacity:0.92;}
+ .l4-col-head-healthstore{border-top-color:#00A9CE;color:#00A9CE;}
+ .l4-col-head-healthsync{border-top-color:#00A499;color:#00A499;}
+
+ .fls-config-status-sketch{background:#EEE5F5;color:#5E35B2;}
+ .fls-config-status-reserved{background:#F0F2F4;color:#4C6272;}
+ .fls-col-head { display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:10px; padding-bottom:8px; border-bottom:1px solid var(--border-lt); }
+ .fls-col-name { font-weight:800; font-size:14px; letter-spacing:0.5px; }
+ .fls-col-name-hiv { color:#009688; }
+ .fls-col-name-psa { color:#E91E63; }
+ .fls-badge { display:inline-block; font-size:9.5px; padding:3px 9px; border-radius:999px; font-weight:700; letter-spacing:0.6px; text-transform:uppercase; }
+ .fls-badge-live { background:#009688; color:#fff; }
+ .fls-badge-prospective { background:#FFE082; color:#5D4037; }
+ .fls-pill-list { display:flex; flex-direction:column; gap:7px; }
+ .fls-pill-row { display:flex; align-items:center; gap:10px; font-size:12px; }
+ .fls-pill-overlay { font-weight:600; color:#455A64; min-width:120px; flex-shrink:0; font-size:11.5px; }
+ .fls-pill { display:inline-block; padding:4px 12px; border-radius:999px; font-size:11.5px; font-weight:700; color:#fff; }
+ .fls-pill-hiv { background:#009688; }
+ .fls-pill-psa { background:#E91E63; }
+ .fls-col-hba1c { border-top:4px dashed #FB8C00; }
+ .fls-col-pharmacy { border-top:4px dotted #7E57C2; opacity:0.82; }
+ .fls-col-name-hba1c { color:#E65100; }
+ .fls-col-name-pharmacy { color:#5E35B2; }
+ .fls-pill-hba1c { background:#FB8C00; }
+ .fls-pill-pharmacy { background:#9575CD; }
+ .fls-badge-design { background:#FFE0B2; color:#E65100; }
+ .fls-badge-assumption { background:#EDE7F6; color:#5E35B2; border:1px dashed #B39DDB; }
+ .fls-config-text { font-size:12.5px; line-height:1.6; color:var(--text-sec); }
+ .fls-config-text strong { color:var(--text); font-weight:700; }
+ .fls-foot { font-size:11.5px; color:var(--text-muted); line-height:1.55; margin-top:14px; padding:12px 16px; background:#f8f9fb; border-radius:8px; }
+ .fls-foot strong { color:var(--text-sec); }
+ .fls-note { display:flex; gap:14px; margin-top:10px; padding:14px 18px; background:#FFF8E1; border-left:4px solid #F9A825; border-radius:0 8px 8px 0; }
+ .fls-note-tag { flex-shrink:0; font-size:10px; font-weight:800; letter-spacing:1.2px; text-transform:uppercase; color:#8D6E1A; min-width:130px; padding-top:2px; }
+ .fls-note-body { font-size:12px; color:var(--text-sec); line-height:1.6; }
+ .fls-note-body strong { color:var(--text); font-weight:700; }
+
+ /* NHS-blue rebrand override */
+ :root { --nhs-blue-deep:#003087; }
+ body { background: linear-gradient(180deg, var(--nhs-blue) 0%, var(--nhs-blue-deep) 100%) !important; background-attachment: fixed !important; }
+ 
+ .page { background:#ffffff; border-radius:18px; box-shadow:0 14px 40px rgba(0,48,135,0.20); margin-top:30px !important; margin-bottom:50px !important; }
+ @media (max-width:720px){ .page { border-radius:12px; margin-top:18px !important; } }
+
+
+ /* === D1: Foundation Built/Consumed split === */
+ .fls-l1 .fls-shared { display:none; } /* hide original flat chip list, we replace with split */
+ .fls-l1 .fls-split-bc { display:flex; flex-direction:column; gap:14px; margin-top:14px; }
+ .fls-bc { border-radius:10px; padding:14px 16px 16px; position:relative; }
+ .fls-bc-built { background:rgba(255,255,255,0.10); border:1px solid rgba(255,255,255,0.20); }
+ .fls-bc-consumed { background:rgba(0,169,206,0.16); border:1px solid rgba(0,169,206,0.45); }
+ .fls-bc-label { display:flex; align-items:center; gap:8px; font-size:11px; font-weight:800; letter-spacing:1.6px; text-transform:uppercase; color:#fff; margin-bottom:6px; }
+ .fls-bc-consumed .fls-bc-label { color:#bce7f0; }
+ .fls-bc-line { font-size:12px; font-weight:500; color:rgba(255,255,255,0.85); margin-bottom:12px; line-height:1.5; }
+ .fls-bc-consumed .fls-bc-line { color:#dbf2f7; }
+ .fls-bc-chips { display:flex; flex-wrap:wrap; gap:6px; }
+ .fls-bc-chips .fls-chip { background:rgba(255,255,255,0.18); border-color:rgba(255,255,255,0.28); color:#fff; }
+ .fls-bc-consumed .fls-bc-chips .fls-chip { background:#003087; color:#ffffff; border:1px solid rgba(255,255,255,0.35); font-weight:700; letter-spacing:0.2px; font-size:12px; padding:8px 14px; box-shadow:0 2px 6px rgba(0,0,0,0.18); }
+ .fls-bc-consumed .fls-bc-chips.chip-grid { grid-template-columns:repeat(6,1fr); }
+ .fls-bc-consumed .fls-bc-chips.chip-grid .fls-chip { min-height:auto; padding:8px 14px; }
+ @media (max-width:900px){ .fls-bc-consumed .fls-bc-chips.chip-grid { grid-template-columns:repeat(3,1fr); } }
+ @media (max-width:520px){ .fls-bc-consumed .fls-bc-chips.chip-grid { grid-template-columns:repeat(2,1fr); } }
+ .fls-bc-nhs-logo { position:absolute; top:10px; right:12px; height:22px; width:auto; opacity:0.95; background:#fff; padding:3px 7px; border-radius:5px; }
+ .fls-bc-ht-logo { position:absolute; top:12px; right:14px; height:18px; width:auto; opacity:0.98; background:#fff; padding:3px 6px; border-radius:4px; }
+ .fls-bc-link { display:inline-block; margin-top:12px; font-size:11px; font-weight:700; letter-spacing:0.4px; text-transform:uppercase; color:#fff; text-decoration:none; border-bottom:1px solid rgba(255,255,255,0.6); padding-bottom:1px; }
+ .fls-bc-link:hover { border-bottom-color:#fff; }
+ .fls-bc-consumed .fls-bc-link { color:#bce7f0; border-bottom-color:rgba(188,231,240,0.5); }
+ .fls-bc-consumed .fls-bc-link:hover { color:#fff; border-bottom-color:#fff; }
+
+ /* === D3: framing paragraph above the level visualisation === */
+ .anat-framing { background:#F4F8FC; border-left:4px solid var(--nhs-blue); padding:16px 22px 18px; border-radius:0 10px 10px 0; margin:24px 0 26px; }
+ .anat-framing-h { font-size:13px; font-weight:800; color:var(--nhs-dark); letter-spacing:0.4px; margin-bottom:8px; text-transform:uppercase; }
+ .anat-framing-body { font-size:14px; color:var(--text-sec); line-height:1.7; }
+ .anat-framing-body strong { color:var(--text); font-weight:700; }
+ .anat-framing-body a { color:var(--nhs-blue); font-weight:700; text-decoration:none; border-bottom:1px solid rgba(0,94,184,0.35); }
+ .anat-framing-body a:hover { border-bottom-color:var(--nhs-blue); }
+
+</style>
+<style>
+  .ecosystem-nav {
+    background: #fff;
+    border-bottom: 1px solid #ebeef1;
+    padding: 12px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 48px;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  }
+  .ecosystem-nav a {
+    font-size: 13px; font-weight: 700; color: #003087;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .ecosystem-nav a:hover { color: #005EB8; }
+  .ecosystem-nav .nav-context {
+    font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
+    color: #7E8B97; text-transform: uppercase;
+  }
+  .ecosystem-nav .nav-product {
+    font-size: 10.5px; font-weight: 800; letter-spacing: 0.8px;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 4px; color: #fff;
+  }
+  .ecosystem-nav .nav-product.dtx { background: #003087; }
+  .ecosystem-nav .nav-product.hometest { background: #003087; }
+  .ecosystem-nav .nav-product.healthstore { background: #00A9CE; }
+  .ecosystem-nav .nav-product.healthsync { background: #00A499; }
+</style>
+</head>
+<body>
+<div class="ecosystem-nav">
+  <a href="../index.html">← DTx Ecosystem</a>
+  <span class="nav-context">Anatomical</span>
+  <span class="nav-product dtx">DTx</span>
+</div>
+
+<nav class="topnav">
+<a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+<div class="nav-siblings">
+ <a href="DTx OM - Why.html">Why</a>
+ <a href="DTx OM - What.html" class="active">What</a>
+ <a href="DTx OM - Lifecycle.html">When</a>
+ <a href="DTx OM - HomeTest Operational.html">How</a>
+ <a href="DTx OM - Governance.html">Who</a>
+ <a href="DTx OM - Hearts and Minds.html">Hearts and Minds</a>
+ <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>
+ <a href="DTx OM - Status.html">Status</a>
+</div>
+</nav>
+
+<div class="page">
+
+ <div class="what-sub" style="display:flex;gap:8px;margin:0 0 22px;padding:8px;background:#f4f8fc;border-radius:10px;border:1px solid var(--border-lt);width:fit-content;">
+ <a href="DTx OM - What.html" style="font-size:12px;font-weight:700;color:var(--text-sec);text-decoration:none;padding:8px 14px;border-radius:6px;letter-spacing:0.3px;">WHAT hub</a>
+ <a class="active" href="DTx OM - Anatomical.html" style="font-size:12px;font-weight:700;color:#fff;text-decoration:none;padding:8px 14px;border-radius:6px;letter-spacing:0.3px;background:var(--nhs-dark);">Anatomy</a>
+ <a href="DTx OM - Ecosystem.html" style="font-size:12px;font-weight:700;color:var(--text-sec);text-decoration:none;padding:8px 14px;border-radius:6px;letter-spacing:0.3px;">Ecosystem</a>
+ </div>
+
+
+ <div class="header">
+ <div class="amber-rule"></div>
+ <div class="h-eyebrow">Anatomical frame</div>
+ <div style="font-size:96px;font-weight:900;color:var(--accent);letter-spacing:-2.5px;line-height:0.95;margin:6px 0 6px;">WHAT</div>
+ <h1 class="h-title">Anatomical &middot; what it is composed of</h1>
+ <div class="h-subtitle">Foundation, overlays, patterns, configurations</div>
+ <p class="h-intro">The Digital Therapeutics operating model is built once at the bottom and varied at the top. The <strong>foundation</strong> is universal across every product. The <strong>overlays</strong> are the eight dimensions where products and configurations diverge. The <strong>patterns</strong> are the options inside each overlay. The <strong>configurations</strong> are the real-world deployments. This is the architecture that lets one platform support HomeTest, HealthStore and HealthSync today, with multiple configurations inside each, without rebuilding the foundation. The catalogue further down shows the picks per product across all three columns.</p>
+ </div>
+
+ 
+ <!-- North stars (anatomical context, three principles design is checked against) -->
+ <!-- NORTH STARS (top of page, agreed principles) -->
+ <div class="section-h"><span class="num">01</span>North stars: the three principles every design choice is checked against</div>
+ <div class="persona-strip">
+ <div class="persona-strip-text">
+ <div class="persona-strip-name">Mission &middot; for the patients of every Digital Therapeutics product</div>
+ <div class="persona-strip-body"><strong>The operating model exists so any Digital Therapeutics service can reach patients safely, work at scale, and deliver outcomes people can act on.</strong> The three north stars below are the operational consequences of that: what has to be true of the people running, buying and selling the service, so that mission can be met for the patient. Each product carries its own patient archetypes (HomeTest: Abdul, Mark, Layla. HealthStore: COPD patient archetype. HealthSync: in design) inside the same architecture.</div>
+ </div>
+ </div>
+ <div class="nstars">
+ <a class="nstar commissioner" href="DTx OM - Persona Sarah.html" style="text-decoration:none;color:inherit;display:block;">
+ <div class="nstar-portrait"><img src="../../Assets/Personas/sarah.png" alt="Sarah"></div>
+ <div class="nlabel">North star for commissioners &middot; Sarah</div>
+ <div class="nheadline">Easy buying</div>
+ <div class="nbody">Find. Decide. Onboard. Go live. Operate. Ready-made templates and route-to-buy. No bespoke setup per commissioner.</div>
+ </a>
+ <a class="nstar supplier" href="DTx OM - Persona Joe.html" style="text-decoration:none;color:inherit;display:block;">
+ <div class="nstar-portrait"><img src="../../Assets/Personas/joe.png" alt="Joe"></div>
+ <div class="nlabel">North star for suppliers &middot; Joe</div>
+ <div class="nheadline">Easy onboarding</div>
+ <div class="nbody">Self-service first. Onboard once per API. Lighter per test. Published criteria. Tiered routes so smaller suppliers stay in scope.</div>
+ </a>
+ <a class="nstar hometest" href="DTx OM - Persona Priya.html" style="text-decoration:none;color:inherit;display:block;">
+ <div class="nstar-portrait"><img src="../../Assets/Personas/priya.png" alt="Priya"></div>
+ <div class="nlabel">North star for the platform &middot; Priya</div>
+ <div class="nheadline">Matchmaker, not counterparty</div>
+ <div class="nbody">Sets standards, runs onboarding, manages the framework, builds integration, monitors market health. Does not sign local contracts, own billing, deliver care, or operate logistics.</div>
+ </a>
+ </div>
+
+ 
+
+ <div class="vocab">
+ <div class="vc l1">
+ <div class="vc-badge">Level 1</div>
+ <div class="vc-name">Foundation</div>
+ <div class="vc-body"><strong>Built once. Universal across every dimension.</strong> Works for any condition, any commissioner, any supplier, any initiation pattern, any pathway.</div>
+ </div>
+ <div class="vc l2">
+ <div class="vc-badge">Level 2</div>
+ <div class="vc-name">Overlay</div>
+ <div class="vc-body"><strong>A dimension of variation.</strong> Eight dimensions where deployments diverge: initiation, commissioning, supply chain, commercial, tariff, accreditation, sign-off, result handling.</div>
+ </div>
+ <div class="vc l3">
+ <div class="vc-badge">Level 3</div>
+ <div class="vc-name">Pattern</div>
+ <div class="vc-body"><strong>One option inside an overlay.</strong> Patient-init is a pattern in Initiation. All-inclusive supplier is a pattern in Supply chain.</div>
+ </div>
+ <div class="vc l4">
+ <div class="vc-badge">Level 4</div>
+ <div class="vc-name">Configuration</div>
+ <div class="vc-body"><strong>What the service looks like running somewhere.</strong> HIV via LA commissioning, patient-init, all-inclusive supplier is one configuration (inside the HomeTest overlay). A different configuration means different pattern picks. Configurations nest inside their parent product overlay.</div>
+ </div>
+ </div>
+
+ <div class="anat-framing">
+ <div class="anat-framing-h">Read the Foundation carefully</div>
+ <div class="anat-framing-body">The Foundation level has two halves that are easy to conflate. <strong>Some foundation elements the platform builds, runs and staffs</strong> (integration spine, contracting instrument, IG framework structure, hazard log structure). The contracting instrument is currently the interim shape (PSR plus standard NHS call-off plus approved supplier list); PA23 dynamic market is the leading candidate vehicle if the framework conversation reopens. <strong>Others are shared NHS services the platform plugs into rather than runs</strong> (NHS Login, NHS Notify, NHS App, FHIR routing). The first half is the BAU team&apos;s job to operate. The second half is the BAU team&apos;s job to interface with, govern and configure. The full ecosystem of consumed, regulated, contracted and served entities sits on the <a href="DTx OM - Ecosystem.html">Ecosystem page</a>.</div>
+ </div>
+
+ <div class="fls">
+ <!-- Level 1 (top) - Foundation - shared, full width, foundation -->
+ <div class="fls-level fls-l1">
+ <div class="fls-head">
+ <div class="fls-num">LEVEL 1</div>
+ <div class="fls-name">Foundation</div>
+ <div class="fls-tag">Universal capabilities. Two parts: what the platform builds and runs, and what the platform consumes from shared NHS infrastructure. The BAU team sizes around the first. The second is interfaced with, governed and configured, not staffed. The <strong>Service Wrapper</strong> is the NHS-controlled service layer that surrounds every product, providing referral, onboarding, in-life help, use and motivation, signposting, offboarding and data return. Holds across all Digital Therapeutics products.</div>
+ </div>
+ <div class="fls-split-bc">
+ <div class="fls-bc fls-bc-built">
+ <div class="fls-bc-logos" style="position:absolute;top:10px;right:12px;display:flex;flex-direction:row;gap:5px;background:#fff;padding:4px 7px;border-radius:5px;align-items:center;">
+ <img src="../../Assets/nhs-hometest.svg" alt="NHS HomeTest" title="HomeTest" style="height:14px;width:auto;">
+ <span style="width:1px;height:12px;background:#d6e2ef;"></span>
+ <img src="../../Assets/nhs-healthstore.svg" alt="NHS HealthStore" title="HealthStore" style="height:14px;width:auto;">
+ <span style="width:1px;height:12px;background:#d6e2ef;"></span>
+ <img src="../../Assets/nhs-healthsync.svg" alt="NHS HealthSync" title="HealthSync" style="height:14px;width:auto;">
+ </div>
+ <div class="fls-bc-label">Built foundation</div>
+ <div class="fls-bc-line">What the Digital Therapeutics platform builds, runs and staffs directly.</div>
+ <div class="bc-partitioned" style="margin-top:8px;">
+
+  <!-- Universal section: 22 chips grouped into 7 functional clusters -->
+  <div style="display:flex;align-items:center;gap:10px;margin:14px 0 10px;">
+   <span style="font-size:9.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:#fff;background:#7E8B97;padding:4px 10px;border-radius:4px;">Universal &middot; all three products</span>
+   <span style="font-size:10.5px;color:rgba(255,255,255,0.75);">22 items across 7 functional clusters</span>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;">
+   <div style="background:rgba(255,255,255,0.10);border:1px solid rgba(255,255,255,0.20);border-left:4px solid #41B6E6;border-radius:6px;padding:10px 12px;">
+    <div style="font-size:10px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:#41B6E6;margin-bottom:8px;filter:brightness(1.5);">Platform &amp; integration</div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;">
+     <span style="display:inline-block;font-size:11.5px;font-weight:700;color:#003087;background:#ffffff;border:1px solid rgba(255,255,255,0.85);padding:6px 11px;border-radius:6px;line-height:1.3;letter-spacing:0.1px;box-shadow:0 1px 2px rgba(0,0,0,0.06);">Integration spine</span>
+     <span style="display:inline-block;font-size:11.5px;font-weight:700;color:#003087;background:#ffffff;border:1px solid rgba(255,255,255,0.85);padding:6px 11px;border-radius:6px;line-height:1.3;letter-spacing:0.1px;box-shadow:0 1px 2px rgba(0,0,0,0.06);">MI / data flow integrity</span>
+     <span style="display:inline-block;font-size:11.5px;font-weight:700;color:#003087;background:#ffffff;border:1px solid rgba(255,255,255,0.85);padding:6px 11px;border-radius:6px;line-height:1.3;letter-spacing:0.1px;box-shadow:0 1px 2px rgba(0,0,0,0.06);">Pattern catalogue</span>
+    </div>
+   </div>
+   <div style="background:rgba(255,255,255,0.10);border:1px solid rgba(255,255,255,0.20);border-left:4px solid #FFB91D;border-radius:6px;padding:10px 12px;">
+    <div style="font-size:10px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:#FFB91D;margin-bottom:8px;filter:brightness(1.5);">Service &amp; patient layer</div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;">
+     <span style="display:inline-block;font-size:11.5px;font-weight:700;color:#003087;background:#ffffff;border:1px solid rgba(255,255,255,0.85);padding:6px 11px;border-radius:6px;line-height:1.3;letter-spacing:0.1px;box-shadow:0 1px 2px rgba(0,0,0,0.06);">Service Wrapper</span>
+     <span style="display:inline-block;font-size:11.5px;font-weight:700;color:#003087;background:#ffffff;border:1px solid rgba(255,255,255,0.85);padding:6px 11px;border-radius:6px;line-height:1.3;letter-spacing:0.1px;box-shadow:0 1px 2px rgba(0,0,0,0.06);">Onboarding gateway</span>
+    </div>
+   </div>
+   <div style="background:rgba(255,255,255,0.10);border:1px solid rgba(255,255,255,0.20);border-left:4px solid #7C2855;border-radius:6px;padding:10px 12px;">
+    <div style="font-size:10px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:#7C2855;margin-bottom:8px;filter:brightness(1.5);">Information governance</div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;">
+     <span style="display:inline-block;font-size:11.5px;font-weight:700;color:#003087;background:#ffffff;border:1px solid rgba(255,255,255,0.85);padding:6px 11px;border-radius:6px;line-height:1.3;letter-spacing:0.1px;box-shadow:0 1px 2px rgba(0,0,0,0.06);">IG framework structure</span>
+     <span style="display:inline-block;font-size:11.5px;font-weight:700;color:#003087;background:#ffffff;border:1px solid rgba(255,255,255,0.85);padding:6px 11px;border-radius:6px;line-height:1.3;letter-spacing:0.1px;box-shadow:0 1px 2px rgba(0,0,0,0.06);">DSPT alignment</span>
+    </div>
+   </div>
+   <div style="background:rgba(255,255,255,0.10);border:1px solid rgba(255,255,255,0.20);border-left:4px solid #AE2573;border-radius:6px;padding:10px 12px;">
+    <div style="font-size:10px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:#AE2573;margin-bottom:8px;filter:brightness(1.5);">Clinical safety &amp; equity</div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;">
+     <span style="display:inline-block;font-size:11.5px;font-weight:700;color:#003087;background:#ffffff;border:1px solid rgba(255,255,255,0.85);padding:6px 11px;border-radius:6px;line-height:1.3;letter-spacing:0.1px;box-shadow:0 1px 2px rgba(0,0,0,0.06);">Clinical safety case structure</span>
+     <span style="display:inline-block;font-size:11.5px;font-weight:700;color:#003087;background:#ffffff;border:1px solid rgba(255,255,255,0.85);padding:6px 11px;border-radius:6px;line-height:1.3;letter-spacing:0.1px;box-shadow:0 1px 2px rgba(0,0,0,0.06);">Hazard log structure</span>
+     <span style="display:inline-block;font-size:11.5px;font-weight:700;color:#003087;background:#ffffff;border:1px solid rgba(255,255,255,0.85);padding:6px 11px;border-radius:6px;line-height:1.3;letter-spacing:0.1px;box-shadow:0 1px 2px rgba(0,0,0,0.06);">EHIA discipline</span>
+    </div>
+   </div>
+   <div style="background:rgba(255,255,255,0.10);border:1px solid rgba(255,255,255,0.20);border-left:4px solid #9A6700;border-radius:6px;padding:10px 12px;">
+    <div style="font-size:10px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:#9A6700;margin-bottom:8px;filter:brightness(1.5);">Assurance &amp; regulation</div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;">
+     <span style="display:inline-block;font-size:11.5px;font-weight:700;color:#003087;background:#ffffff;border:1px solid rgba(255,255,255,0.85);padding:6px 11px;border-radius:6px;line-height:1.3;letter-spacing:0.1px;box-shadow:0 1px 2px rgba(0,0,0,0.06);">Assurance Model</span>
+     <span style="display:inline-block;font-size:11.5px;font-weight:700;color:#003087;background:#ffffff;border:1px solid rgba(255,255,255,0.85);padding:6px 11px;border-radius:6px;line-height:1.3;letter-spacing:0.1px;box-shadow:0 1px 2px rgba(0,0,0,0.06);">Assurance portability</span>
+     <span style="display:inline-block;font-size:11.5px;font-weight:700;color:#003087;background:#ffffff;border:1px solid rgba(255,255,255,0.85);padding:6px 11px;border-radius:6px;line-height:1.3;letter-spacing:0.1px;box-shadow:0 1px 2px rgba(0,0,0,0.06);">Independent assurance framework</span>
+     <span style="display:inline-block;font-size:11.5px;font-weight:700;color:#003087;background:#ffffff;border:1px solid rgba(255,255,255,0.85);padding:6px 11px;border-radius:6px;line-height:1.3;letter-spacing:0.1px;box-shadow:0 1px 2px rgba(0,0,0,0.06);">Regulatory standards mapping</span>
+     <span style="display:inline-block;font-size:11.5px;font-weight:700;color:#003087;background:#ffffff;border:1px solid rgba(255,255,255,0.85);padding:6px 11px;border-radius:6px;line-height:1.3;letter-spacing:0.1px;box-shadow:0 1px 2px rgba(0,0,0,0.06);">Post-market surveillance framework</span>
+    </div>
+   </div>
+   <div style="background:rgba(255,255,255,0.10);border:1px solid rgba(255,255,255,0.20);border-left:4px solid #006747;border-radius:6px;padding:10px 12px;">
+    <div style="font-size:10px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:#006747;margin-bottom:8px;filter:brightness(1.5);">Evidence &amp; efficacy</div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;">
+     <span style="display:inline-block;font-size:11.5px;font-weight:700;color:#003087;background:#ffffff;border:1px solid rgba(255,255,255,0.85);padding:6px 11px;border-radius:6px;line-height:1.3;letter-spacing:0.1px;box-shadow:0 1px 2px rgba(0,0,0,0.06);">Product definition criteria</span>
+     <span style="display:inline-block;font-size:11.5px;font-weight:700;color:#003087;background:#ffffff;border:1px solid rgba(255,255,255,0.85);padding:6px 11px;border-radius:6px;line-height:1.3;letter-spacing:0.1px;box-shadow:0 1px 2px rgba(0,0,0,0.06);">Clinical &amp; financial efficacy assessment</span>
+     <span style="display:inline-block;font-size:11.5px;font-weight:700;color:#003087;background:#ffffff;border:1px solid rgba(255,255,255,0.85);padding:6px 11px;border-radius:6px;line-height:1.3;letter-spacing:0.1px;box-shadow:0 1px 2px rgba(0,0,0,0.06);">Ongoing evidence generation</span>
+     <span style="display:inline-block;font-size:11.5px;font-weight:700;color:#003087;background:#ffffff;border:1px solid rgba(255,255,255,0.85);padding:6px 11px;border-radius:6px;line-height:1.3;letter-spacing:0.1px;box-shadow:0 1px 2px rgba(0,0,0,0.06);">Pathway integration discipline</span>
+    </div>
+   </div>
+   <div style="background:rgba(255,255,255,0.10);border:1px solid rgba(255,255,255,0.20);border-left:4px solid #003087;border-radius:6px;padding:10px 12px;">
+    <div style="font-size:10px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:#003087;margin-bottom:8px;filter:brightness(1.5);">Commercial</div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;">
+     <span style="display:inline-block;font-size:11.5px;font-weight:700;color:#003087;background:#ffffff;border:1px solid rgba(255,255,255,0.85);padding:6px 11px;border-radius:6px;line-height:1.3;letter-spacing:0.1px;box-shadow:0 1px 2px rgba(0,0,0,0.06);">Framework instrument</span>
+     <span style="display:inline-block;font-size:11.5px;font-weight:700;color:#003087;background:#ffffff;border:1px solid rgba(255,255,255,0.85);padding:6px 11px;border-radius:6px;line-height:1.3;letter-spacing:0.1px;box-shadow:0 1px 2px rgba(0,0,0,0.06);">Contract Management framework</span>
+     <span style="display:inline-block;font-size:11.5px;font-weight:700;color:#003087;background:#ffffff;border:1px solid rgba(255,255,255,0.85);padding:6px 11px;border-radius:6px;line-height:1.3;letter-spacing:0.1px;box-shadow:0 1px 2px rgba(0,0,0,0.06);">Eligibility Filters</span>
+    </div>
+   </div>
+  </div>
+
+  <!-- Product-specific extensions: three side-by-side cards -->
+  <div style="display:flex;align-items:center;gap:10px;margin:18px 0 10px;">
+   <span style="font-size:9.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:#fff;background:#7E8B97;padding:4px 10px;border-radius:4px;">Product-specific Foundation extensions</span>
+   <span style="font-size:10.5px;color:rgba(255,255,255,0.75);">what each product adds on top of the Universal layer</span>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+
+   <!-- HomeTest card -->
+   <div style="background:linear-gradient(135deg,rgba(0,48,135,0.85),rgba(0,94,184,0.72));border:1px solid rgba(120,170,230,0.5);border-radius:8px;padding:12px 14px;display:flex;flex-direction:column;gap:10px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+     <span style="font-size:11px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:#fff;">HomeTest-specific</span>
+     <img src="../../Assets/nhs-hometest.svg" alt="NHS HomeTest" style="height:14px;width:auto;background:#fff;padding:3px 6px;border-radius:4px;">
+    </div>
+    <div style="font-size:11.5px;color:rgba(255,255,255,0.88);line-height:1.55;">Catalogue of admitted tests, the rules per test, and the per-test screen sets the dynamic app surfaces. Plus the PIDS framing inside which patient-initiated diagnostic configurations sit.</div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;">
+     <span style="display:inline-block;font-size:11.5px;font-weight:700;color:#003087;background:rgba(255,255,255,0.95);border:1px solid rgba(255,255,255,0.95);padding:6px 11px;border-radius:6px;line-height:1.3;letter-spacing:0.1px;">Test catalogue</span>
+     <span style="display:inline-block;font-size:11.5px;font-weight:700;color:#003087;background:rgba(255,255,255,0.95);border:1px solid rgba(255,255,255,0.95);padding:6px 11px;border-radius:6px;line-height:1.3;letter-spacing:0.1px;">Rules engine</span>
+     <span style="display:inline-block;font-size:11.5px;font-weight:700;color:#003087;background:rgba(255,255,255,0.95);border:1px solid rgba(255,255,255,0.95);padding:6px 11px;border-radius:6px;line-height:1.3;letter-spacing:0.1px;">Dynamic-app screen sets</span>
+     <span style="display:inline-block;font-size:11.5px;font-weight:700;color:#003087;background:rgba(255,255,255,0.95);border:1px solid rgba(255,255,255,0.95);padding:6px 11px;border-radius:6px;line-height:1.3;letter-spacing:0.1px;">PIDS framing</span>
+    </div>
+   </div>
+
+   <!-- HealthStore card -->
+   <div style="background:linear-gradient(135deg,rgba(0,169,206,0.85),rgba(94,188,219,0.72));border:1px solid rgba(150,220,235,0.55);border-radius:8px;padding:12px 14px;display:flex;flex-direction:column;gap:10px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+     <span style="font-size:11px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:#fff;">HealthStore-specific</span>
+     <img src="../../Assets/nhs-healthstore.svg" alt="NHS HealthStore" style="height:14px;width:auto;background:#fff;padding:3px 6px;border-radius:4px;">
+    </div>
+    <div style="font-size:11.5px;color:rgba(255,255,255,0.92);line-height:1.55;">The marketplace constructs that make a catalogue of admitted digital therapeutics work as a buying surface: the formulary, the Store mechanic, and the nationally-funded app framework that sits behind it.</div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;">
+     <span style="display:inline-block;font-size:11.5px;font-weight:700;color:#0a3850;background:rgba(255,255,255,0.95);border:1px solid rgba(255,255,255,0.95);padding:6px 11px;border-radius:6px;line-height:1.3;letter-spacing:0.1px;">National App Formulary</span>
+     <span style="display:inline-block;font-size:11.5px;font-weight:700;color:#0a3850;background:rgba(255,255,255,0.95);border:1px solid rgba(255,255,255,0.95);padding:6px 11px;border-radius:6px;line-height:1.3;letter-spacing:0.1px;">Store Model</span>
+     <span style="display:inline-block;font-size:11.5px;font-weight:700;color:#0a3850;background:rgba(255,255,255,0.95);border:1px solid rgba(255,255,255,0.95);padding:6px 11px;border-radius:6px;line-height:1.3;letter-spacing:0.1px;">Nationally funded app framework</span>
+    </div>
+   </div>
+
+   <!-- HealthSync card -->
+   <div style="background:linear-gradient(135deg,rgba(0,164,153,0.85),rgba(91,201,184,0.72));border:1px solid rgba(150,225,210,0.55);border-radius:8px;padding:12px 14px;display:flex;flex-direction:column;gap:10px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+     <span style="font-size:11px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:#fff;">HealthSync-specific</span>
+     <img src="../../Assets/nhs-healthsync.svg" alt="NHS HealthSync" style="height:14px;width:auto;background:#fff;padding:3px 6px;border-radius:4px;">
+    </div>
+    <div style="font-size:11.5px;color:rgba(255,255,255,0.92);line-height:1.55;">The consumer-platform interfaces and PHR aggregation layer that let smartwatch and consumer-device data flow into the NHS App as a clinical signal &mdash; the architecture-side counterpart to Errol&apos;s watch.</div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;">
+     <span style="display:inline-block;font-size:11.5px;font-weight:700;color:#0a3850;background:rgba(255,255,255,0.95);border:1px solid rgba(255,255,255,0.95);padding:6px 11px;border-radius:6px;line-height:1.3;letter-spacing:0.1px;">PHR aggregation layer</span>
+     <span style="display:inline-block;font-size:11.5px;font-weight:700;color:#0a3850;background:rgba(255,255,255,0.95);border:1px solid rgba(255,255,255,0.95);padding:6px 11px;border-radius:6px;line-height:1.3;letter-spacing:0.1px;">Apple HealthKit interface</span>
+     <span style="display:inline-block;font-size:11.5px;font-weight:700;color:#0a3850;background:rgba(255,255,255,0.95);border:1px solid rgba(255,255,255,0.95);padding:6px 11px;border-radius:6px;line-height:1.3;letter-spacing:0.1px;">Google Health Connect interface</span>
+     <span style="display:inline-block;font-size:11.5px;font-weight:700;color:#0a3850;background:rgba(255,255,255,0.95);border:1px solid rgba(255,255,255,0.95);padding:6px 11px;border-radius:6px;line-height:1.3;letter-spacing:0.1px;">Consumer-platform interoperability</span>
+    </div>
+   </div>
+
+  </div>
+
+ </div>
+ <a class="fls-bc-link" href="DTx OM - Ecosystem.html#panel-built">See in ecosystem map &rarr;</a>
+ </div>
+ <div class="fls-bc fls-bc-consumed">
+ <img class="fls-bc-nhs-logo" src="../../Assets/NHS-England-Logo-High-Res.jpg" alt="NHS England" title="Consumed from NHS England infrastructure">
+ <div class="fls-bc-label">Consumed foundation</div>
+ <div class="fls-bc-line">Shared NHS services the platform plugs into. Configured and paid for per use, not built or run.</div>
+ <div class="fls-bc-chips chip-grid">
+ <span class="fls-chip">NHS Login (identity)</span>
+ <span class="fls-chip">NHS Notify (comms)</span>
+ <span class="fls-chip">NHS App (patient surface)</span>
+ <span class="fls-chip">FHIR routing</span>
+ <span class="fls-chip">Federated Data Platform</span>
+ <span class="fls-chip">Single Patient Record</span>
+ </div>
+ <a class="fls-bc-link" href="DTx OM - Ecosystem.html#panel-consumed">See in ecosystem map &rarr;</a>
+ </div>
+ </div>
+ </div>
+
+<style>
+ .sw-anatomy { margin:18px 0 20px; padding:20px 24px 22px; background:#FFF9EC; border:1px solid #F0DCA0; border-radius:12px; }
+ .sw-header { display:flex; align-items:center; gap:14px; margin-bottom:14px; flex-wrap:wrap; }
+ .sw-eyebrow { font-size:11px; font-weight:800; letter-spacing:2.2px; color:#9A6700; text-transform:uppercase; }
+ .sw-intro { font-size:12.5px; color:#4C6272; line-height:1.55; flex:1; min-width:240px; }
+ .sw-intro strong { color:#212B32; font-weight:700; }
+ .sw-hint { font-size:10.5px; font-weight:700; letter-spacing:0.6px; color:#9A6700; background:rgba(201,162,39,0.12); border:1px solid #F0DCA0; padding:5px 10px; border-radius:14px; white-space:nowrap; }
+ .sw-section { margin-top:14px; }
+ .sw-section-head { display:flex; align-items:center; gap:10px; margin-bottom:10px; }
+ .sw-section-h { font-size:10.5px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; }
+ .sw-section-tp .sw-section-h { color:#5E35B2; }
+ .sw-section-lp .sw-section-h { color:#005EB8; }
+ .sw-section-count { font-size:10.5px; color:#7E8B97; }
+ .sw-chain { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; }
+ @media (min-width:1100px){ .sw-chain.sw-six { grid-template-columns:repeat(3,1fr); } }
+ details.sw-card { background:#fff; border:1px solid #F0DCA0; border-radius:8px; overflow:hidden; transition:box-shadow 0.18s; }
+ details.sw-card[open] { box-shadow:0 4px 14px rgba(0,48,135,0.08); border-color:#E5C78A; }
+ .sw-section-lp details.sw-card { border-color:#d6e2ef; }
+ .sw-section-lp details.sw-card[open] { border-color:#a8c2dd; }
+ details.sw-card summary { cursor:pointer; padding:10px 14px; display:flex; align-items:center; gap:12px; list-style:none; user-select:none; }
+ details.sw-card summary::-webkit-details-marker { display:none; }
+ .sw-num { flex-shrink:0; width:26px; height:26px; border-radius:50%; background:#5E35B2; color:#fff; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:800; }
+ .sw-dot { flex-shrink:0; width:10px; height:10px; border-radius:50%; background:#005EB8; }
+ .sw-card-text { flex:1; min-width:0; }
+ .sw-card-title { display:block; font-size:13px; font-weight:800; color:#212B32; letter-spacing:-0.2px; line-height:1.3; margin-bottom:3px; }
+ .sw-card-strap { display:block; font-size:11.5px; color:#4C6272; line-height:1.4; }
+ details.sw-card .sw-card-toggle { flex-shrink:0; font-size:10px; color:#9A6700; font-weight:800; letter-spacing:0.8px; }
+ details.sw-card[open] .sw-card-toggle::before { content:"\2212"; }
+ details.sw-card:not([open]) .sw-card-toggle::before { content:"+"; }
+ details.sw-card[open] summary { border-bottom:1px solid #F0DCA0; }
+ .sw-section-lp details.sw-card[open] summary { border-bottom-color:#d6e2ef; }
+ .sw-card-body { padding:12px 14px 14px 52px; font-size:12px; color:#4C6272; line-height:1.6; background:#FBF6E8; }
+ .sw-section-lp .sw-card-body { background:#F4F8FC; padding-left:36px; }
+ .sw-foot { margin-top:14px; padding-top:12px; border-top:1px solid #F0DCA0; font-size:10.5px; color:#7E8B97; line-height:1.5; }
+ .sw-foot strong { color:#5E35B2; }
+ @media (max-width:640px){ .sw-chain { grid-template-columns:1fr; } }
+</style>
+
+<!-- Service Wrapper anatomy panel — decomposition of the Foundation Service Wrapper item -->
+<div class="sw-anatomy">
+  <div class="sw-header">
+    <span class="sw-eyebrow">Service Wrapper anatomy</span>
+    <span class="sw-intro">The Service Wrapper Foundation item decomposes into a <strong>six-touchpoint patient chain</strong> the patient experiences, plus <strong>four local-pathway integration items</strong> where the wrapper meets local clinical operating reality. Holds across all Digital Therapeutics products with product-specific adaptation per touchpoint.</span>
+    <span class="sw-hint">Click any item to expand</span>
+  </div>
+
+  <div class="sw-section sw-section-tp">
+    <div class="sw-section-head">
+      <span class="sw-section-h">The six-touchpoint patient chain</span>
+      <span class="sw-section-count">in sequence &middot; the patient experiences each in order</span>
+    </div>
+    <div class="sw-chain sw-six">
+      <details class="sw-card">
+        <summary>
+          <span class="sw-num">1</span>
+          <span class="sw-card-text"><span class="sw-card-title">Referral / Invite</span><span class="sw-card-strap">How a patient enters a Digital Therapeutics service.</span></span>
+          <span class="sw-card-toggle"></span>
+        </summary>
+        <div class="sw-card-body">Could be a GP referral (Layla&apos;s HbA1c), a clinician-initiated order (Mark&apos;s PSA-AS), a patient-initiated self-presentation via the NHS App (Abdul&apos;s CVKM screening), or a system-prompted invite based on PHR data (Errol&apos;s BP threshold). The wrapper holds the route-in across all of these so the patient enters one front door regardless of trigger.</div>
+      </details>
+      <details class="sw-card">
+        <summary>
+          <span class="sw-num">2</span>
+          <span class="sw-card-text"><span class="sw-card-title">Login &amp; onboard</span><span class="sw-card-strap">Identity verification, consent, eligibility check.</span></span>
+          <span class="sw-card-toggle"></span>
+        </summary>
+        <div class="sw-card-body">NHS Login carries identity. Consent is captured once per patient per product. Eligibility check against the configuration&apos;s clinical criteria. A patient who has logged in once for HomeTest doesn&apos;t re-onboard for HealthStore or HealthSync &mdash; the &ldquo;onboard once&rdquo; claim of the operating model depends on this layer holding.</div>
+      </details>
+      <details class="sw-card">
+        <summary>
+          <span class="sw-num">3</span>
+          <span class="sw-card-text"><span class="sw-card-title">In-life Help &amp; Support</span><span class="sw-card-strap">What happens when the patient needs help mid-journey.</span></span>
+          <span class="sw-card-toggle"></span>
+        </summary>
+        <div class="sw-card-body">Kit not arrived. Result confusing. App not working. Prescription unclear. Multi-modal &mdash; phone, NHS App chat, signposting to local pathway, escalation routes. The wrapper carries this so the patient doesn&apos;t bounce between supplier helplines and NHS routes depending on which product they&apos;re using. Critical equity-of-access function.</div>
+      </details>
+      <details class="sw-card">
+        <summary>
+          <span class="sw-num">4</span>
+          <span class="sw-card-text"><span class="sw-card-title">Use &amp; Motivation</span><span class="sw-card-strap">The engagement layer between clinical touchpoints.</span></span>
+          <span class="sw-card-toggle"></span>
+        </summary>
+        <div class="sw-card-body">Reminders, nudges, behaviour-change support, progress signals. The mechanism varies per product (kit-return reminders for HomeTest, adherence prompts for HealthStore, sustained-use nudges for HealthSync) but the principle is constant: the wrapper holds the patient between clinical touchpoints so the service keeps delivering when the clinician isn&apos;t in the room.</div>
+      </details>
+      <details class="sw-card">
+        <summary>
+          <span class="sw-num">5</span>
+          <span class="sw-card-text"><span class="sw-card-title">Signposting / Offboarding</span><span class="sw-card-strap">Onward routing and clean exit.</span></span>
+          <span class="sw-card-toggle"></span>
+        </summary>
+        <div class="sw-card-body">When the journey reaches a natural end (test complete, course finished, condition resolved) or when the patient needs to be pointed elsewhere (onward referral, return to GP, escalation to urgent care). Defined exit pathways and onward routing into the rest of the NHS &mdash; not a dead end at the edge of the digital service.</div>
+      </details>
+      <details class="sw-card">
+        <summary>
+          <span class="sw-num">6</span>
+          <span class="sw-card-text"><span class="sw-card-title">Data return</span><span class="sw-card-strap">Closing the loop into the patient record and the evidence pipeline.</span></span>
+          <span class="sw-card-toggle"></span>
+        </summary>
+        <div class="sw-card-body">Data flows back into the patient record, to the referring clinician, to MI / population dashboards and to the evidence pipeline that feeds the Assurance Model and Ongoing Evidence Generation. The wrapper ensures data closes the loop, not just collects it. Without this layer the model produces activity, not value.</div>
+      </details>
+    </div>
+  </div>
+
+  <div class="sw-section sw-section-lp">
+    <div class="sw-section-head">
+      <span class="sw-section-h">Local-pathway integration items</span>
+      <span class="sw-section-count">where the wrapper meets local clinical operating reality</span>
+    </div>
+    <div class="sw-chain">
+      <details class="sw-card">
+        <summary>
+          <span class="sw-dot"></span>
+          <span class="sw-card-text"><span class="sw-card-title">Local use support</span><span class="sw-card-strap">Face-to-face support for patients who can&apos;t or won&apos;t self-serve digitally.</span></span>
+          <span class="sw-card-toggle"></span>
+        </summary>
+        <div class="sw-card-body">Community health workers, pharmacy support, NHS Online phone help. Critical for equity-of-access &mdash; the wrapper assumes not every patient is digital-first. Particularly load-bearing for HomeTest where unsafe-address, digital-exclusion and motivation patterns are explicit operating constraints.</div>
+      </details>
+      <details class="sw-card">
+        <summary>
+          <span class="sw-dot"></span>
+          <span class="sw-card-text"><span class="sw-card-title">Remote / Passive monitoring</span><span class="sw-card-strap">The clinician-side view of patient journeys without active intervention.</span></span>
+          <span class="sw-card-toggle"></span>
+        </summary>
+        <div class="sw-card-body">Cohort-level dashboards, threshold-based alerting, anomaly detection. Particularly load-bearing for HealthSync where the passive data flow is the point of the product. Less prominent for HomeTest but still present at the population-MI layer.</div>
+      </details>
+      <details class="sw-card">
+        <summary>
+          <span class="sw-dot"></span>
+          <span class="sw-card-text"><span class="sw-card-title">PI / CI escalation model</span><span class="sw-card-strap">Patient-initiated and clinician-initiated escalation paths.</span></span>
+          <span class="sw-card-toggle"></span>
+        </summary>
+        <div class="sw-card-body">The patient says &ldquo;something&apos;s wrong&rdquo; (PI) or the clinician says &ldquo;this needs attention now&rdquo; (CI). Defined routing from either side into the clinical pathway, with clear handover protocols. A safety-critical construct &mdash; without it, signals get lost between the digital service and the clinical responders.</div>
+      </details>
+      <details class="sw-card">
+        <summary>
+          <span class="sw-dot"></span>
+          <span class="sw-card-text"><span class="sw-card-title">Neighbourhood Health team integration</span><span class="sw-card-strap">Hand-off between the wrapper and local Neighbourhood Health teams.</span></span>
+          <span class="sw-card-toggle"></span>
+        </summary>
+        <div class="sw-card-body">Care coordinators, neighbourhood clinicians, place-based teams. The handover from digital to in-person, and the inverse. Becoming load-bearing as Neighbourhood Health teams roll out from late 2026. The wrapper is the interface; the NH team is the operating partner.</div>
+      </details>
+    </div>
+  </div>
+
+  <div class="sw-foot"><strong>Note on terminology.</strong> A reframing from &ldquo;Service Wrapper&rdquo; to &ldquo;Human Wrapper&rdquo; is in flight. The model carries Service Wrapper today; vocabulary alignment to follow when the reframing lands authoritatively.</div>
+</div>
+
+
+
+<!-- Level 2 - Overlay - shared, full width -->
+ <div class="fls-level fls-l2">
+ <div class="fls-head">
+ <div class="fls-num">LEVEL 2</div>
+ <div class="fls-name">Overlay</div>
+ <div class="fls-tag">Eight dimensions of variation. The same eight for every condition. This is where conditions diverge.</div>
+ </div>
+ <div class="fls-shared chip-strip">
+ <span class="fls-chip">Initiation</span>
+ <span class="fls-chip">Commissioning</span>
+ <span class="fls-chip">Supply chain</span>
+ <span class="fls-chip">Commercial</span>
+ <span class="fls-chip">Tariff treatment</span>
+ <span class="fls-chip">Accreditation bar</span>
+ <span class="fls-chip">Sign-off route</span>
+ <span class="fls-chip">Result handling</span>
+ <span class="fls-chip">Information governance</span>
+ </div>
+ </div>
+
+<!-- Portfolio scope note for L3 -->
+<div style="background:#F4F8FC;border:1px solid #d6e2ef;border-radius:10px;padding:14px 20px;margin:12px 0;font-size:12.5px;color:#4C6272;line-height:1.6;">
+ <strong style="color:#003087;">How to read this level.</strong> Each product picks one pattern per overlay. Three product columns sit alongside the nine overlay rows so equivalent picks can be read straight across. HomeTest shows its live configuration; HealthStore shows the lead configuration in design; HealthSync columns are reserved until programme picks land. Per-configuration breakdowns sit at Level 4 below.
+</div>
+<!-- Level 3 - Pattern - unified grid -->
+ <div class="fls-level fls-l3">
+ <div class="fls-head">
+ <div class="fls-num">LEVEL 3</div>
+ <div class="fls-name">Pattern</div>
+ <div class="fls-tag">One pattern picked from each overlay. Nine picks per product. Picks vary per product.</div>
+ </div>
+ <div class="l3-grid">
+  <div class="l4-cell-empty"></div>
+  <div class="l4-col-head l4-col-head-hometest">
+  <div class="l4-col-head-name">HomeTest</div>
+  <div class="l4-col-head-status"><span class="fls-config-status fls-config-status-live">Live picks</span></div>
+ </div>
+  <div class="l4-col-head l4-col-head-healthstore">
+  <div class="l4-col-head-name">HealthStore</div>
+  <div class="l4-col-head-status"><span class="fls-config-status fls-config-status-design">Lead picks</span></div>
+ </div>
+  <div class="l4-col-head l4-col-head-healthsync">
+  <div class="l4-col-head-name">HealthSync</div>
+  <div class="l4-col-head-status"><span class="fls-config-status fls-config-status-reserved">Reserved</span></div>
+ </div>
+  <div class="l4-cell-label">Initiation</div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-hometest">Patient-init</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">Clinician-presc</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">In design</span></div>
+  <div class="l4-cell-label">Commissioning</div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-hometest">LA framework</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">ICB</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">In design</span></div>
+  <div class="l4-cell-label">Supply chain</div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-hometest">All-inclusive</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">SaaS supplier</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">In design</span></div>
+  <div class="l4-cell-label">Commercial</div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-hometest">Per-completed</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">Episode payment</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">In design</span></div>
+  <div class="l4-cell-label">Tariff</div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-hometest">Comm-paid</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">Tier C cond.</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">In design</span></div>
+  <div class="l4-cell-label">Accreditation</div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-hometest">UKAS / ISO</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">NICE EVA cond.</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">In design</span></div>
+  <div class="l4-cell-label">Sign-off</div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-hometest">Sex-health svc</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">DCB0160 deployer</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">In design</span></div>
+  <div class="l4-cell-label">Result handling</div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-hometest">Patient-direct</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">Milestone</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">In design</span></div>
+  <div class="l4-cell-label">IG</div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-hometest">Federated</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">Federated</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">In design</span></div>
+ </div>
+ </div>
+
+ <div style="margin:14px 14px 0;padding:12px 16px;background:#FFF9EC;border:1px solid #F0DCA0;border-left:4px solid #C9A227;border-radius:0 6px 6px 0;font-size:11.5px;color:#4C6272;line-height:1.6;">
+  <strong style="color:#9A6700;text-transform:uppercase;letter-spacing:1.2px;font-size:10.5px;">Emerging pattern at L3 &middot; Supply chain</strong>
+  <span style="display:inline-block;margin-left:10px;"><strong>Collection-first as alternative to delivery-first.</strong> Today HomeTest assumes delivery-first (kit posted to patient, patient returns by post). A collection-first pattern (pharmacy or community-hub pickup) removes the 5-7 day delivery wait, addresses unsafe-address barriers and reduces motivation decay between order and action. Signal that this pattern is arriving from outside the framework: another NHS programme has independently inserted &ldquo;collect from pharmacy&rdquo; into journeys lifted from HomeTest screens. Open question is whether to formalise collection-first as a named Supply chain pattern alongside All-inclusive at L3, selectable per configuration.</span>
+ </div>
+
+ <div style="margin:14px 14px 0;padding:12px 16px;background:#FBEAF2;border:1px solid #E8D2DC;border-radius:8px;font-size:11.5px;color:#4C6272;line-height:1.55;">
+ <strong id="not-positioned" style="color:#212B32;display:block;margin-bottom:4px;font-size:11px;letter-spacing:0.5px;text-transform:uppercase;">What&apos;s not yet positioned</strong>
+ Scope items that have surfaced through review but haven&apos;t been placed in the model yet. Each needs an SLT or sponsor decision before it gets a home in the foundation, overlays, or patterns.
+ <ul style="margin:8px 0 0 18px; padding:0; line-height:1.55;">
+ <li><strong>Neighbourhood Health Centres.</strong> Could be a delivery channel (kit distribution / sample collection), a referral source (clinicians there initiate testing), or both. <em>SLT to confirm.</em></li>
+ <li><strong>Adoption: where does it sit structurally?</strong> Adoption activity is being done through the Partnerships workstream, and is two-sided: customer-side partnerships (GIRFT, NHS Online, national programmes that drive demand) and supply-side partnerships (assuring labs, supporting capillary centres, bringing the right supplier mix to market). Customer success is a third dimension: making demand and supply work together once both are in the room. Adoption itself runs through early-adopter trusts that benefit commercially from being first movers: they build the capability, consult into other trusts, and become peer advocates. Peer-to-peer credibility carries further than central messaging. What hasn&apos;t been resolved is whether adoption appears as a named function in the operating model itself (an overlay, a foundation capability, a row in the RACI), or stays implicit inside Partnerships. <em>Decision: SLT to confirm whether to surface adoption structurally.</em></li>
+ <li><strong>Mobilisation and &ldquo;hearts and minds&rdquo;.</strong> Transformation requires people to change all of these: workflows, clinical assumptions, operating patterns, commissioning behaviours, patient interaction models, risk tolerance, even professional identity. Not soft work; core strategic infrastructure. The platform succeeds only if clinicians trust it, pathology networks back it, commissioners see value, suppliers believe the market is viable, patients feel safe, national programmes advocate for it, and Trusts see measurable operational benefit. <em>Currently flagged but not owned in the model.</em></li>
+ <li><strong>Clinician workflow integration.</strong> Acute-initiated and GP-initiated patterns require ordering and result handling inside the clinician&apos;s existing EPR or clinical system, not a second screen. The genomics service learned this the hard way: a separate ordering UI added integration complexity and was unpopular with clinicians. Single integration into the clinical workflow is a hard design constraint for acute-init (Mark&apos;s PSA-AS journey) and GP-init (Layla&apos;s HbA1c journey). The model accommodates it through the result-handling overlay, but the integration burden on the supplier and the platform is real and not yet sized.</li>
+ <li><strong>Segmented strategic messaging.</strong> Different value proposition per audience (clinicians, commissioners, suppliers, patients, national programmes), not a single narrative for all. The model has not yet developed audience-specific articulation. <em>Owner: TBC.</em></li>
+ </ul>
+ <div style="margin-top:14px;padding-top:12px;border-top:1px solid rgba(0,0,0,0.08);font-size:12px;"><a href="DTx OM - Status.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;letter-spacing:0.3px;">See all open items across the model &rarr;</a></div>
+ </div>
+
+<!-- Portfolio scope note for L4 -->
+<div style="background:#F4F8FC;border:1px solid #d6e2ef;border-radius:10px;padding:14px 20px;margin:12px 0;font-size:12.5px;color:#4C6272;line-height:1.6;">
+ <strong style="color:#003087;">How to read this level.</strong> Configurations are real-world deployments. Each one picks its own value across the nine overlays. Four configuration slots are shown per product so the structural shape is the same across the portfolio. Where a slot is reserved, the slot exists but the picks have not yet been made. Colour at this level identifies the configuration; each one sits inside its parent product&apos;s band. Rows and columns line up across all three bands so equivalent overlay picks can be read across the portfolio.
+</div>
+<!-- Level 4 - Configuration - unified grid -->
+ <div class="fls-level fls-l4">
+ <div class="fls-head">
+ <div class="fls-num">LEVEL 4</div>
+ <div class="fls-name">Configuration</div>
+ <div class="fls-tag">Real-world deployments. Each configuration picks its own values across the nine overlays.</div>
+ </div>
+
+ <div style="margin-top:18px;padding:14px 12px 14px;border-top:3px solid #003087;background:#fbfdff;border-radius:0 0 8px 8px;">
+ <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;flex-wrap:wrap;">
+  <span class="fls-product-label fls-product-label-hometest" style="font-size:12px;">HomeTest</span>
+  <span style="font-size:11px;font-weight:700;color:#003087;text-transform:uppercase;letter-spacing:1.4px;">Four configurations &middot; three in design or live &middot; one working sketch</span>
+ </div>
+ <div class="l4-grid">
+  <div class="l4-cell-empty"></div>
+  <div class="l4-col-head l4-col-head-hiv">
+  <div class="l4-col-head-name">HIV</div>
+  <div class="l4-col-head-status"><span class="fls-config-status fls-config-status-live">Live</span></div>
+ </div>
+  <div class="l4-col-head l4-col-head-psa">
+  <div class="l4-col-head-name">PSA</div>
+  <div class="l4-col-head-status"><span class="fls-config-status fls-config-status-design">In design</span></div>
+ </div>
+  <div class="l4-col-head l4-col-head-hba1c">
+  <div class="l4-col-head-name">HbA1c</div>
+  <div class="l4-col-head-status"><span class="fls-config-status fls-config-status-design">In design</span></div>
+ </div>
+  <div class="l4-col-head l4-col-head-pharmacy">
+  <div class="l4-col-head-name">Pharmacy-init</div>
+  <div class="l4-col-head-status"><span class="fls-config-status fls-config-status-sketch">Working sketch</span></div>
+ </div>
+  <div class="l4-cell-label">Initiation</div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-hiv">Patient-init</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-psa">Clinician-init</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-hba1c">GP-init</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-pharmacy">Pharmacy-init</span></div>
+  <div class="l4-cell-label">Commissioning</div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-hiv">LA framework</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-psa">Acute trust</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-hba1c">ICB / GP</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-pharmacy">Pharm net / ICB</span></div>
+  <div class="l4-cell-label">Supply chain</div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-hiv">All-inclusive</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-psa">Specialist+log</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-hba1c">Lab-led</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-pharmacy">Local lab</span></div>
+  <div class="l4-cell-label">Commercial</div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-hiv">Per-completed</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-psa">Activity-based</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-hba1c">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-pharmacy">Per-review</span></div>
+  <div class="l4-cell-label">Tariff</div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-hiv">Comm-paid</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-psa">Acute envelope</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-hba1c">QOF / outpt</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-pharmacy">New code TBC</span></div>
+  <div class="l4-cell-label">Accreditation</div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-hiv">UKAS / ISO</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-psa">Capillary draw</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-hba1c">UKAS / ISO</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-pharmacy">GPhC + UKAS</span></div>
+  <div class="l4-cell-label">Sign-off</div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-hiv">Sex-health svc</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-psa">Trust gov</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-hba1c">GP / diabetes</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-pharmacy">Pharm + GP</span></div>
+  <div class="l4-cell-label">Result handling</div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-hiv">Patient-direct</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-psa">Clinician-first</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-hba1c">GP record</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-pharmacy">Mixed</span></div>
+  <div class="l4-cell-label">IG</div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-hiv">Federated</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-psa">Trust controller</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-hba1c">GP controller</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-pharmacy">Pharmacy DSA</span></div>
+ </div>
+ <div style="margin-top:14px;padding:12px 14px;background:#FFF9EC;border:1px solid #F0DCA0;border-left:4px solid #C9A227;border-radius:0 6px 6px 0;font-size:11.5px;color:#4C6272;line-height:1.6;">
+  <strong style="color:#9A6700;text-transform:uppercase;letter-spacing:1.2px;font-size:10.5px;">PSA cohort refinement</strong>
+  <span style="display:inline-block;margin-left:10px;">The PSA Active Surveillance configuration is refining under clinical input. <strong>Radiotherapy cohort</strong> is the primary fit &mdash; PSA increments post-radiotherapy carry the diagnostic resolution needed for surveillance. <strong>Post-surgical cohort de-prioritised</strong> &mdash; increments too small to be diagnostically useful. <strong>Third cohort identified</strong>: men referred to urology with elevated PSA but no cancer diagnosis, currently returning to primary care without a structured monitoring obligation. This third cohort is a pathway-gap question and may warrant a separate configuration column when scoped.</span>
+ </div>
+</div>
+
+ <div style="margin-top:18px;padding:14px 12px 14px;border-top:3px solid #00A9CE;background:#fbfdff;border-radius:0 0 8px 8px;">
+ <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;flex-wrap:wrap;">
+  <span class="fls-product-label fls-product-label-healthstore" style="font-size:12px;">HealthStore</span>
+  <span style="font-size:11px;font-weight:700;color:#00A9CE;text-transform:uppercase;letter-spacing:1.4px;">Lead configuration in design &middot; three further slots reserved</span>
+ </div>
+ <div class="l4-grid">
+  <div class="l4-cell-empty"></div>
+  <div class="l4-col-head l4-col-head-healthstore">
+  <div class="l4-col-head-name">COPD Alpha</div>
+  <div class="l4-col-head-status"><span class="fls-config-status fls-config-status-design">In design</span></div>
+ </div>
+  <div class="l4-col-head l4-col-head-healthstore">
+  <div class="l4-col-head-name">Config &middot; reserved</div>
+  <div class="l4-col-head-status"><span class="fls-config-status fls-config-status-reserved">Reserved</span></div>
+ </div>
+  <div class="l4-col-head l4-col-head-healthstore">
+  <div class="l4-col-head-name">Config &middot; reserved</div>
+  <div class="l4-col-head-status"><span class="fls-config-status fls-config-status-reserved">Reserved</span></div>
+ </div>
+  <div class="l4-col-head l4-col-head-healthstore">
+  <div class="l4-col-head-name">Config &middot; reserved</div>
+  <div class="l4-col-head-status"><span class="fls-config-status fls-config-status-reserved">Reserved</span></div>
+ </div>
+  <div class="l4-cell-label">Initiation</div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">Clinician-presc</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">TBC</span></div>
+  <div class="l4-cell-label">Commissioning</div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">ICB</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">TBC</span></div>
+  <div class="l4-cell-label">Supply chain</div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">SaaS supplier</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">TBC</span></div>
+  <div class="l4-cell-label">Commercial</div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">Episode payment</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">TBC</span></div>
+  <div class="l4-cell-label">Tariff</div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">Tier C cond.</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">TBC</span></div>
+  <div class="l4-cell-label">Accreditation</div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">NICE EVA cond.</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">TBC</span></div>
+  <div class="l4-cell-label">Sign-off</div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">DCB0160 deployer</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">TBC</span></div>
+  <div class="l4-cell-label">Result handling</div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">Milestone</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">TBC</span></div>
+  <div class="l4-cell-label">IG</div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">Federated</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthstore">TBC</span></div>
+ </div>
+</div>
+
+ <div style="margin-top:18px;padding:14px 12px 14px;border-top:3px solid #00A499;background:#fbfdff;border-radius:0 0 8px 8px;">
+ <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;flex-wrap:wrap;">
+  <span class="fls-product-label fls-product-label-healthsync" style="font-size:12px;">HealthSync</span>
+  <span style="font-size:11px;font-weight:700;color:#00A499;text-transform:uppercase;letter-spacing:1.4px;">First configuration in design &middot; three further slots reserved</span>
+ </div>
+ <div class="l4-grid">
+  <div class="l4-cell-empty"></div>
+  <div class="l4-col-head l4-col-head-healthsync">
+  <div class="l4-col-head-name">First config</div>
+  <div class="l4-col-head-status"><span class="fls-config-status fls-config-status-design">In design</span></div>
+ </div>
+  <div class="l4-col-head l4-col-head-healthsync">
+  <div class="l4-col-head-name">Config &middot; reserved</div>
+  <div class="l4-col-head-status"><span class="fls-config-status fls-config-status-reserved">Reserved</span></div>
+ </div>
+  <div class="l4-col-head l4-col-head-healthsync">
+  <div class="l4-col-head-name">Config &middot; reserved</div>
+  <div class="l4-col-head-status"><span class="fls-config-status fls-config-status-reserved">Reserved</span></div>
+ </div>
+  <div class="l4-col-head l4-col-head-healthsync">
+  <div class="l4-col-head-name">Config &middot; reserved</div>
+  <div class="l4-col-head-status"><span class="fls-config-status fls-config-status-reserved">Reserved</span></div>
+ </div>
+  <div class="l4-cell-label">Initiation</div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">TBC</span></div>
+  <div class="l4-cell-label">Commissioning</div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">TBC</span></div>
+  <div class="l4-cell-label">Supply chain</div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">TBC</span></div>
+  <div class="l4-cell-label">Commercial</div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">TBC</span></div>
+  <div class="l4-cell-label">Tariff</div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">TBC</span></div>
+  <div class="l4-cell-label">Accreditation</div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">TBC</span></div>
+  <div class="l4-cell-label">Sign-off</div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">TBC</span></div>
+  <div class="l4-cell-label">Result handling</div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">TBC</span></div>
+  <div class="l4-cell-label">IG</div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">TBC</span></div>
+  <div class="l4-cell-pill"><span class="fls-pill fls-pill-healthsync">TBC</span></div>
+ </div>
+</div>
+
+ <div style="margin-top:14px;padding:10px 14px;background:#F4F8FC;border-radius:5px;font-size:11px;color:#4C6272;line-height:1.5;"><strong style="color:#5E35B2;">Pharmacy-init</strong> sits in the HomeTest band as a working sketch from the discovery taxonomy (medication-management tests, RA on DMARDs and steroids, HRT, GLP-1 monitoring). Not on the Year 1 OBO list. Carried at the structural level so the architecture has a slot if SLT decides to scope it in.</div>
+
+ </div>
+
+</div>
+
+<div class="fls-foot">
+ <strong>What the stack shows.</strong> Top down: Foundation (Level 1) and Overlays (Level 2) are shared across every Digital Therapeutics product. That is why those bands run full width. Pattern picks (Level 3) split into three product columns: HomeTest, HealthStore, HealthSync &mdash; each showing its lead configuration&apos;s picks. Configurations (Level 4) sit under each product as colour-coded columns, one column per real-world deployment. HomeTest carries four (HIV live, PSA and HbA1c in design, Pharmacy-init as a working sketch). HealthStore carries COPD Alpha in design with further slots reserved. HealthSync configurations land as the programme progresses. Adding a new configuration adds a column under its parent product at L4; adding a new product adds a column at L3 and a new section at L4. Levels 1 and 2 do not change.
+ </div>
+
+ <div class="fls-note" style="background:#F4F8FC;border-left:4px solid var(--nhs-blue);">
+ <div class="fls-note-tag" style="color:var(--nhs-blue);">Build vs buy</div>
+ <div class="fls-note-body">
+ <strong>The overlays are also where build vs buy gets decided.</strong> Each of the eight dimensions resolves into either a platform-build capability (the centre builds it once and every commissioner inherits it), a buy-from-market capability (suppliers compete to deliver it within the framework), or a local-system responsibility (the commissioner or Trust owns it). Initiation pattern, result handling and information governance lean toward platform-build (universal mechanics). Supply chain, commercial structure and tariff treatment lean toward buy-from-market. Sign-off route and accreditation bar sit with local systems or accrediting bodies. This is the level at which the BA + product owner work plays out: each overlay needs a build-buy-borrow decision before the platform requirements are stable. <em>That decision has not yet been made for every overlay.</em>
+ </div>
+ </div>
+
+ <div class="fls-note" style="background:#FFF8E6;border-left:4px solid var(--amber-deep);">
+ <div class="fls-note-tag" style="color:var(--amber-deep);">Sample-collection device constraint</div>
+ <div class="fls-note-body">
+ <strong>Postal-return viability depends on the device.</strong> Transdermal sample-collection devices (Tasso+, Tap, Impress) do not fit Royal Mail Large Letter internal depth dimensions. Any configuration that selects a transdermal device cannot use Large Letter for return, which constrains the supply-chain pattern choice and pushes return logistics into a different size class or carrier route. Conventional capillary-draw and finger-prick kits fit Large Letter. The constraint is physical and lives at the overlay level, not at the configuration level: it pre-empts pattern selection wherever a transdermal device is the right clinical fit.
+ </div>
+ </div>
+
+ <div class="fls-note">
+ <div class="fls-note-tag">Note on initiation channel terminology</div>
+ <div class="fls-note-body">
+ <strong>Patient-activated handed-out kits are a digital pathway variant, not the non-digital channel.</strong> Kits that are handed out in person (at a pharmacy, an outreach event, a community setting) and then activated by the patient online still run on the digital infrastructure. They sit inside the digital channel as a variant of patient-init. The true non-digital channel is telephony: a patient who phones in, never touches the digital surface, and has the test arranged on their behalf. That channel remains a separate gap to be designed for equity and for GDS inclusion, and should not be confused with handed-out kit variants.
+ </div>
+ </div>
+
+ <div class="fls-note">
+ <div class="fls-note-tag">Note on trend analysis</div>
+ <div class="fls-note-body">
+ <strong>Longitudinal trend analysis is deprioritised for now.</strong> PSA values from capillary samples and from venous samples are not directly comparable, so presenting them on a single trend line carries a clinical safety risk: a patient could be reassured or alarmed by an apparent rise or fall that is actually a modality effect. The position is to research the comparability question rather than build trend rendering into the platform at this phase. Result handling continues to expose individual results clearly; longitudinal interpretation stays with the treating clinician until the research lands.
+ </div>
+ </div>
+
+ <div class="fls-note">
+ <div class="fls-note-tag">Note on result shape</div>
+ <div class="fls-note-body">
+ <strong>Result shape is a condition characteristic, not a pattern.</strong> HIV gives a binary outcome (reactive / non-reactive). PSA gives a continuous numerical value, often interpreted in trend during active surveillance. Nobody picks a result shape; it's intrinsic to the condition. It does, however, influence which Result handling pattern is sensible (binary leans Patient-direct, continuous leans Clinician-first) and shapes the hazards loaded into the clinical safety case (missed positive vs range misinterpretation are different failure modes). The platform carries both shapes via FHIR Observation without modification; the variation lives in the patient-facing rendering and the hazard log content.
+ </div>
+ </div>
+ 
+
+ <!-- PATTERN CATALOGUE -->
+ 
+
+
+ <div class="section-h"><span class="num">03</span>The pattern catalogue: per-product picks side by side</div>
+ <div class="catalogue-card">
+ <style>
+ .col-hometest{background:#003087!important;color:#fff!important;}
+ .col-healthstore{background:#005EB8!important;color:#fff!important;}
+ .col-healthsync{background:#7E8B97!important;color:#fff!important;}
+ .cell-hometest{border-left:3px solid #003087!important;}
+ .cell-healthstore{border-left:3px solid #00A9CE!important;}
+ .cell-healthsync{border-left:3px solid #00A499!important;}
+ </style>
+ <div class="catalogue-head">
+ <div class="ch-text">
+ <h3>What the platform reuses across products, and where each product picks its own pattern</h3>
+ <p>Foundation rows are <strong>built once and reused</strong> across every Digital Therapeutics product. Overlay rows are where products and configurations diverge. The columns below show <strong>HomeTest</strong> (live or in design across HIV, PSA, HbA1c), <strong>HealthStore</strong> (lead configuration in design) and <strong>HealthSync</strong> (structural placeholder, content lands as the programme progresses).</p>
+ </div>
+ <div class="ratio">
+ <div class="rlabel">Reusability ratio</div>
+ <div class="rstat">9 of 17</div>
+ <div class="rdesc">rows are foundation. Roughly half the operating model is built once and reused. The remaining 50% is overlay variation per product.</div>
+ </div>
+ </div>
+
+ <table class="cat-table">
+ <thead>
+ <tr>
+ <th class="col-overlay">Overlay / foundation item</th>
+ <th class="col-config col-hometest">HomeTest</th>
+ <th class="col-config col-healthstore">HealthStore</th>
+ <th class="col-config col-healthsync">HealthSync</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr class="cat-section-row"><td colspan="4">Foundation: built once, reused across all products</td></tr>
+
+ <tr class="foundation"><td><span class="badge">Foundation</span>Integration model</td><td class="cell-hometest">FHIR APIs, NHS Login, NHS Notify, single-endpoint fa&ccedil;ade via APIM.</td><td class="cell-healthstore">FHIR APIs, NHS Login, NHS Notify, NHS App provisioning via APIM.</td><td class="cell-healthsync">Platform integration anticipated through the same instruments. <span class="gap-flag">In design.</span></td></tr>
+ <tr class="foundation"><td><span class="badge">Foundation</span>Service Wrapper</td><td class="cell-hometest">NHS-controlled service layer around the kit-and-result pipeline: invite, identity, support, signposting, result return, offboarding, data return.</td><td class="cell-healthstore">NHS-controlled service layer around the prescribed digital therapeutic: referral, onboarding, in-life help, use and motivation, signposting, offboarding, data return. The wrapper is the difference between sending a patient to a third-party app and embedding it in clinical care.</td><td class="cell-healthsync">Service layer around consumer health data integration: identity, consent, data flows, support and offboarding. <span class="gap-flag">In design.</span></td></tr>
+ <tr class="foundation"><td><span class="badge">Foundation</span>Identity &amp; authentication</td><td class="cell-hometest">NHS Login. Patient-facing identity verification.</td><td class="cell-healthstore">NHS Login. Patient-facing identity verification.</td><td class="cell-healthsync">NHS Login anticipated. <span class="gap-flag">In design.</span></td></tr>
+ <tr class="foundation"><td><span class="badge">Foundation</span>Supplier onboarding gateway</td><td class="cell-hometest">Seven-stage journey: Find &rarr; Self-assessment &rarr; Join &rarr; Auto-triage &rarr; Human review &rarr; Onboarding proper &rarr; Per-test additions. Onboard once per API.</td><td class="cell-healthstore">Seven-stage gateway journey with stage gates configured for NICE EVA conditional admission. Onboard once per software product.</td><td class="cell-healthsync">Gateway journey anticipated through the same instrument. <span class="gap-flag">In design.</span></td></tr>
+ <tr class="foundation"><td><span class="badge">Foundation</span>Commissioner buying journey</td><td class="cell-hometest">Find &rarr; Decide &rarr; Onboard &rarr; Go live &rarr; Operate. Ready-made contract templates and route-to-buy.</td><td class="cell-healthstore">Find &rarr; Decide &rarr; Onboard &rarr; Go live &rarr; Operate. Contract instrument is NHS Standard Contract with SaaS and data schedules.</td><td class="cell-healthsync">Five-stage commissioner buying journey anticipated. <span class="gap-flag">In design.</span></td></tr>
+ <tr class="foundation"><td><span class="badge">Foundation</span>Capability loop</td><td class="cell-hometest">SHAPE &rarr; ASSURE &rarr; CONTRACT &rarr; FULFIL &rarr; MEASURE with feedback.</td><td class="cell-healthstore">SHAPE &rarr; ASSURE &rarr; CONTRACT &rarr; FULFIL &rarr; MEASURE with feedback.</td><td class="cell-healthsync">SHAPE &rarr; ASSURE &rarr; CONTRACT &rarr; FULFIL &rarr; MEASURE with feedback anticipated.</td></tr>
+ <tr class="foundation"><td><span class="badge">Foundation</span>IG framework</td><td class="cell-hometest">Federated multi-controller. NHSE controller for App / Notify foundation. Commissioner controller for testing purpose. Suppliers as processors. Joint controller off the table.</td><td class="cell-healthstore">Federated multi-controller. NHSE controller for the platform layer. Commissioner controller for the prescribing population. Supplier controller positions configured per admitted digital therapeutic.</td><td class="cell-healthsync">Federated multi-controller framework anticipated. <span class="gap-flag">Controller positions In design.</span></td></tr>
+ <tr class="foundation"><td><span class="badge">Foundation</span>Clinical safety framework</td><td class="cell-hometest">DCB0129 (manufacturer) + DCB0160 (deployer) + CATR (CSG) + Hazard Log structure. Vendor-supporting-statement convention.</td><td class="cell-healthstore">DCB0129 (manufacturer, sits with the admitted supplier) + DCB0160 (deployer, sits with the deploying organisation) + CATR (CSG). Hazard log and clinical safety case scope to be progressed in Alpha alongside named clinical safety leadership.</td><td class="cell-healthsync">DCB framework anticipated. <span class="gap-flag">In design.</span></td></tr>
+ <tr class="foundation"><td><span class="badge">Foundation</span>Assurance gateway</td><td class="cell-hometest">Assure once, reuse nationally. Single combined submission for EScAL, DTAC, DCB0129, DCB0160, SLSP, ROPA, DPIA, cyber. Conformance certificate valid across conditions.</td><td class="cell-healthstore">Assure once, reuse nationally. Combined submission inclusive of NICE EVA conditional accreditation for software-as-a-medical-device. Conformance certificate valid across configurations.</td><td class="cell-healthsync">Once-and-reuse assurance gateway anticipated. <span class="gap-flag">In design.</span></td></tr>
+ <tr class="foundation"><td><span class="badge">Foundation</span>Centre&apos;s role &amp; funding model</td><td class="cell-hometest">Matchmaker, not contract counterparty. Long-term funding via percent fee per transaction. No permanent central subsidy.</td><td class="cell-healthstore">Matchmaker role. Funding envelope in place to support build through to first commissioner-facing release. Steady-state model in design.</td><td class="cell-healthsync">Matchmaker role anticipated. Funding model <span class="gap-flag">TBC</span>.</td></tr>
+
+ <tr class="cat-section-row"><td colspan="4">Overlays: each product picks its own pattern</td></tr>
+
+ <tr class="overlay"><td><span class="badge">Overlay</span>Initiation pattern</td><td class="cell-hometest"><strong>Patient-, clinician- or GP-initiated.</strong> Three configurations cover the spread: Abdul (patient-init, CVKM screening), Mark (clinician-init, PSA-AS), Layla (GP-init, HbA1c).</td><td class="cell-healthstore"><strong>Clinician-prescribed.</strong> The clinician identifies a patient who fits the pathway and prescribes the digital therapeutic. Patient activates the app.</td><td class="cell-healthsync"><span class="gap-flag">In design.</span></td></tr>
+
+ <tr class="overlay"><td><span class="badge">Overlay</span>Commissioning pattern</td><td class="cell-hometest"><strong>LA / Acute / GP commissioner.</strong> Local-authority commissioning under interim arrangements for HIV. Acute trust commissioning planned for PSA-AS. GP commissioning for HbA1c.</td><td class="cell-healthstore"><strong>ICB commissioner</strong> (primary expectation under NICE EVA conditional). Commissioner buys for their population under NHS Standard Contract with SaaS / data schedules.</td><td class="cell-healthsync"><span class="gap-flag">TBC</span>.</td></tr>
+
+ <tr class="overlay"><td><span class="badge">Overlay</span>Supply chain pattern</td><td class="cell-hometest"><strong>Kit supplier + lab.</strong> UKAS-accredited labs. All-inclusive supplier model for HIV. Specialist lab plus logistics split anticipated for PSA.</td><td class="cell-healthstore"><strong>Conditionally-recommended software suppliers via NICE EVA.</strong> Three suppliers progressed through the lead Alpha procurement under an existing innovation procurement framework. Two NHS clinical safety standards apply (DCB0129 manufacturer, DCB0160 deployer). No physical logistics chain.</td><td class="cell-healthsync"><span class="gap-flag">TBC</span>.</td></tr>
+
+ <tr class="overlay"><td><span class="badge">Overlay</span>Commercial pattern</td><td class="cell-hometest"><strong>Per-completed-test.</strong> LA budget for HIV via ACE call-off. Activity-based against acute tariff envelope for PSA-AS. Volume-tiered max pricing.</td><td class="cell-healthstore"><strong>Marketplace with payments mechanism.</strong> The HealthStore contains third-party DTx apps; payment mechanism design progressed in Alpha. Three-to-five credible delivery archetypes targeted by end of Alpha. Cost neutral or cost-saving at pathway level.</td><td class="cell-healthsync"><span class="gap-flag">TBC</span>.</td></tr>
+
+ <tr class="overlay"><td><span class="badge">Overlay</span>Tariff treatment</td><td class="cell-hometest"><strong>Free at point of care.</strong> LA test-and-treat budget (HIV). Acute provider tariff envelope (PSA-AS). No separate patient charge.</td><td class="cell-healthstore"><strong>NICE Tier C medical apps.</strong> Tariff and funding routes in design alongside tariff reform and Frontline Productivity Programme. Pump-priming acknowledged. No separate patient charge.</td><td class="cell-healthsync"><span class="gap-flag">TBC</span>.</td></tr>
+
+ <tr class="overlay"><td><span class="badge">Overlay</span>Accreditation route</td><td class="cell-hometest"><strong>UKAS-accredited labs + CQC for provider quality.</strong> CSG hazard log, EScAL, DTAC, DCB0129/0160 via the assurance gateway.</td><td class="cell-healthstore"><strong>NICE EVA conditionally-recommended</strong> for the software-as-medical-device (suppliers cannot imply &lsquo;NICE approved&rsquo;). HealthStore does not duplicate assurance; coordinates with Innovator Passport, NICE EVA, DCB0129/0160 and DTAC.</td><td class="cell-healthsync"><span class="gap-flag">TBC</span>.</td></tr>
+
+ <tr class="overlay"><td><span class="badge">Overlay</span>Hazard register content</td><td class="cell-hometest">HIV-specific hazards under PO001 (inappropriate care), PO002 (delay), PO003 (no care). 25 initial risks. PSA-specific hazards being scoped.</td><td class="cell-healthstore">Hazard log and clinical safety case content scoped at Alpha alongside named clinical safety leadership. Pathway-level hazards identified across service design rather than the regulated DTx products themselves.</td><td class="cell-healthsync"><span class="gap-fl

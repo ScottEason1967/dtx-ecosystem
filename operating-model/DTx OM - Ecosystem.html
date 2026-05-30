@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Digital Therapeutics Operating Model: Ecosystem</title>
+<style>
+ /* Canonical topnav */
+ .topnav{background:#fff;border-bottom:1px solid #ebeef1;padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:nowrap;min-height:54px;box-sizing:border-box;width:100%;max-width:100%;margin:0;position:sticky;top:0;z-index:200;}
+ .topnav.topnav-secondary{background:#F4F8FC;border-bottom:1px solid #d6e2ef;padding:9px 36px;min-height:42px;}
+ .topnav .nav-back{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-back:hover{color:#005EB8;}
+ .topnav .nav-siblings{display:flex;gap:4px;flex-wrap:nowrap;overflow-x:auto;align-items:center;}
+ .topnav .nav-siblings a{font-size:12px;font-weight:600;color:#4C6272;text-decoration:none;padding:6px 12px;border-radius:6px;letter-spacing:0.2px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-siblings a:hover{background:#f0f4f8;color:#212B32;}
+ .topnav .nav-siblings a.active{background:#003087;color:#fff;}
+ .topnav.topnav-secondary .nav-siblings a{font-size:11.5px;padding:5px 10px;}
+ .topnav.topnav-secondary .nav-siblings a.active{background:#005EB8;color:#fff;}
+ .topnav .nav-secondary-label{font-size:10px;font-weight:800;letter-spacing:1.5px;color:#7E8B97;text-transform:uppercase;flex-shrink:0;}
+
+  :root {
+    --nhs-dark:#003087; --nhs-blue:#005EB8; --nhs-green:#006747; --nhs-pink:#AE2573;
+    --nhs-cyan:#00A9CE;
+    --amber:#FFB91D; --amber-deep:#C9A227;
+    --text:#212B32; --text-sec:#4C6272; --text-muted:#7E8B97;
+    --border:#d9dee3; --border-lt:#ebeef1;
+    --card:#ffffff; --bg:#f8fafc;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;}
+
+  
+  
+  
+  
+  
+  
+  
+
+  .page{max-width:1280px;margin:0 auto;padding:50px 40px 80px;}
+
+  .what-sub{display:flex;gap:8px;margin:0 0 22px;padding:8px;background:#f4f8fc;border-radius:10px;border:1px solid var(--border-lt);width:fit-content;}
+  .what-sub a{font-size:12px;font-weight:700;color:var(--text-sec);text-decoration:none;padding:8px 14px;border-radius:6px;letter-spacing:0.3px;}
+  .what-sub a.active{background:var(--nhs-cyan);color:#fff;}
+  .what-sub a:hover:not(.active){background:#e3edf8;color:var(--text);}
+
+  .header{margin-bottom:24px;}
+  .amber-rule{width:72px;height:4px;background:var(--amber);border-radius:2px;margin-bottom:18px;}
+  .h-eyebrow{display:inline-block;background:var(--nhs-cyan);color:#fff;font-size:10.5px;font-weight:800;letter-spacing:1.8px;padding:7px 16px;border-radius:4px;text-transform:uppercase;margin-bottom:18px;}
+  .h-mega{font-size:72px;font-weight:900;color:var(--nhs-cyan);letter-spacing:-2px;line-height:0.95;margin:6px 0 6px;}
+  .h-title{font-size:28px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.5px;line-height:1.15;margin-bottom:10px;}
+  .h-intro{max-width:880px;font-size:14px;color:var(--text-sec);line-height:1.7;}
+  .h-intro strong{color:var(--text);font-weight:700;}
+
+  .reading{background:#f4f8fc;border:1px solid #d6e2ef;border-radius:10px;padding:14px 18px;margin:14px 0 26px;font-size:12.5px;color:var(--text-sec);line-height:1.65;max-width:880px;}
+  .reading strong{color:var(--nhs-dark);font-weight:800;}
+
+  /* === Tabs === */
+  .tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:18px;background:#fff;border:1px solid var(--border-lt);border-radius:14px;padding:8px;box-shadow:0 4px 14px rgba(0,32,64,0.04);}
+  .tab{display:flex;flex-direction:column;align-items:center;gap:4px;padding:14px 8px 12px;border:none;background:#f4f8fc;border-radius:9px;cursor:pointer;color:var(--text-sec);transition:transform 0.12s ease, background 0.18s, color 0.18s;font-family:inherit;}
+  .tab:hover{transform:translateY(-1px);background:#e3edf8;color:var(--text);}
+  .tab-num{width:24px;height:24px;border-radius:50%;background:rgba(0,48,135,0.12);color:var(--nhs-dark);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;}
+  .tab-name{font-size:13.5px;font-weight:800;letter-spacing:0.2px;}
+  .tab-count{font-size:10.5px;font-weight:700;opacity:0.7;letter-spacing:0.4px;text-transform:uppercase;}
+  .tab.active .tab-count{opacity:0.9;}
+  .panel-head-built{border-left-color:#005EB8;} .panel-head-built .panel-num{background:#005EB8;} .tab-built.active{background:#005EB8;color:#fff;} .tab-built.active .tab-num{background:rgba(255,255,255,0.25);color:#fff;}
+  .panel-head-consumed{border-left-color:#00A9CE;} .panel-head-consumed .panel-num{background:#00A9CE;} .tab-consumed.active{background:#00A9CE;color:#fff;} .tab-consumed.active .tab-num{background:rgba(255,255,255,0.25);color:#fff;}
+  .panel-head-regulated{border-left-color:#7C2855;} .panel-head-regulated .panel-num{background:#7C2855;} .tab-regulated.active{background:#7C2855;color:#fff;} .tab-regulated.active .tab-num{background:rgba(255,255,255,0.25);color:#fff;}
+  .panel-head-contracted{border-left-color:#C9A227;} .panel-head-contracted .panel-num{background:#C9A227;} .tab-contracted.active{background:#C9A227;color:#fff;} .tab-contracted.active .tab-num{background:rgba(255,255,255,0.25);color:#fff;}
+  .panel-head-served{border-left-color:#006747;} .panel-head-served .panel-num{background:#006747;} .tab-served.active{background:#006747;color:#fff;} .tab-served.active .tab-num{background:rgba(255,255,255,0.25);color:#fff;}
+
+  /* === Panels === */
+  .panel{display:none;}
+  .panel.active{display:block;animation:fadeIn 0.18s ease;}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+
+  .panel-head{display:grid;grid-template-columns:64px 1fr;gap:18px;align-items:center;background:#fff;border:1px solid var(--border-lt);border-left:6px solid #005EB8;border-radius:12px;padding:20px 22px;margin-bottom:14px;}
+  .panel-num{width:54px;height:54px;border-radius:50%;background:#005EB8;color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;}
+  .panel-title{font-size:20px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.3px;margin-bottom:6px;}
+  .panel-intro{font-size:13px;color:var(--text-sec);line-height:1.65;}
+
+  /* === Three product columns === */
+  .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .col{background:#fff;border:1px solid var(--border-lt);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;}
+  .col-h{padding:14px 16px;border-bottom:1px solid var(--border-lt);display:flex;justify-content:space-between;align-items:center;gap:8px;}
+  .col-product{font-size:14px;font-weight:800;letter-spacing:-0.2px;color:#fff;padding:5px 11px;border-radius:5px;display:inline-block;}
+  .col-hometest .col-product{background:var(--nhs-dark);}
+  .col-healthstore .col-product{background:var(--nhs-blue);}
+  .col-healthsync .col-product{background:var(--text-muted);}
+  .col-count{font-size:10.5px;font-weight:700;color:var(--text-muted);background:#f4f6f8;padding:4px 9px;border-radius:999px;letter-spacing:0.3px;}
+  .col-body{padding:10px 16px 14px;display:flex;flex-direction:column;gap:8px;}
+
+  .ent{padding:9px 0 10px;border-bottom:1px solid #f1f4f7;}
+  .ent:last-child{border-bottom:none;}
+  .ent-name{font-size:12.5px;font-weight:800;color:var(--text);margin-bottom:4px;display:flex;flex-wrap:wrap;align-items:center;gap:6px;letter-spacing:-0.1px;}
+  .ent-line{font-size:12px;color:var(--text-sec);line-height:1.55;}
+  .ent-pill{font-size:9.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;padding:2px 7px;border-radius:3px;display:inline-block;}
+
+  /* === BAU note === */
+  .eco-bau-note{background:#FFF8E6;border-left:4px solid var(--amber-deep);padding:14px 20px;border-radius:0 8px 8px 0;margin-top:30px;}
+  .eco-bau-h{font-size:11px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--amber-deep);margin-bottom:5px;}
+  .eco-bau-body{font-size:13px;color:var(--text-sec);line-height:1.65;}
+  .eco-bau-body strong{color:var(--text);font-weight:700;}
+
+  /* NHS rebrand */
+  body { background: linear-gradient(180deg, var(--nhs-blue) 0%, var(--nhs-dark) 100%) !important; background-attachment: fixed !important; }
+  
+  .page { background:#ffffff; border-radius:18px; box-shadow:0 14px 40px rgba(0,48,135,0.20); margin-top:30px !important; margin-bottom:50px !important; }
+
+  /* Responsive */
+  @media(max-width:1100px){
+    .cols{grid-template-columns:1fr;}
+  }
+  @media(max-width:760px){
+    .tabs{grid-template-columns:repeat(2,1fr);}
+    .h-mega{font-size:48px;}
+    .page{padding:30px 18px 60px;}
+  }
+</style>
+<style>
+  .ecosystem-nav {
+    background: #fff;
+    border-bottom: 1px solid #ebeef1;
+    padding: 12px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 48px;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  }
+  .ecosystem-nav a {
+    font-size: 13px; font-weight: 700; color: #003087;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .ecosystem-nav a:hover { color: #005EB8; }
+  .ecosystem-nav .nav-context {
+    font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
+    color: #7E8B97; text-transform: uppercase;
+  }
+  .ecosystem-nav .nav-product {
+    font-size: 10.5px; font-weight: 800; letter-spacing: 0.8px;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 4px; color: #fff;
+  }
+  .ecosystem-nav .nav-product.dtx { background: #003087; }
+  .ecosystem-nav .nav-product.hometest { background: #003087; }
+  .ecosystem-nav .nav-product.healthstore { background: #00A9CE; }
+  .ecosystem-nav .nav-product.healthsync { background: #00A499; }
+</style>
+</head>
+<body>
+<div class="ecosystem-nav">
+  <a href="../index.html">← DTx Ecosystem</a>
+  <span class="nav-context">Ecosystem</span>
+  <span class="nav-product dtx">DTx</span>
+</div>
+
+<nav class="topnav">
+<a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+<div class="nav-siblings">
+ <a href="DTx OM - Why.html">Why</a>
+ <a href="DTx OM - What.html" class="active">What</a>
+ <a href="DTx OM - Lifecycle.html">When</a>
+ <a href="DTx OM - HomeTest Operational.html">How</a>
+ <a href="DTx OM - Governance.html">Who</a>
+ <a href="DTx OM - Hearts and Minds.html">Hearts and Minds</a>
+ <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>
+ <a href="DTx OM - Status.html">Status</a>
+</div>
+</nav>
+
+<div class="page">
+
+  <div class="what-sub">
+    <a href="DTx OM - What.html">WHAT hub</a>
+    <a href="DTx OM - Anatomical.html">Anatomy</a>
+    <a class="active" href="DTx OM - Ecosystem.html">Ecosystem</a>
+  </div>
+
+  <div class="header">
+    <div class="amber-rule"></div>
+    <div class="h-eyebrow">What frame &middot; ecosystem</div>
+    <div class="h-mega">ECOSYSTEM</div>
+    <h1 class="h-title">Five relationships the platform holds with the world around it.</h1>
+    <p class="h-intro">The platform <strong>builds</strong> a specific core, <strong>consumes</strong> shared NHS infrastructure, is <strong>regulated</strong> by external bodies, holds <strong>contracts</strong> commercially, and <strong>serves</strong> commissioners, patients and clinicians. The same five cardinals hold across HomeTest, HealthStore and HealthSync. The entities inside each cardinal vary by product.</p>
+  </div>
+
+  <div class="reading"><strong>How to read this page.</strong> Click a cardinal across the top to open it. Each cardinal shows the three product columns side by side so you can compare what HomeTest, HealthStore and HealthSync each have in that cardinal. HealthStore and HealthSync entities marked <em>In design</em> are reserved at structural shape; content lands as configurations and primaries progress.</div>
+
+  <nav class="tabs" aria-label="Ecosystem cardinals">
+      <button class="tab tab-built active" data-cardinal="built" type="button">
+        <span class="tab-num">1</span>
+        <span class="tab-name">Built</span>
+        <span class="tab-count">30</span>
+      </button>
+      <button class="tab tab-consumed" data-cardinal="consumed" type="button">
+        <span class="tab-num">2</span>
+        <span class="tab-name">Consumed</span>
+        <span class="tab-count">18</span>
+      </button>
+      <button class="tab tab-regulated" data-cardinal="regulated" type="button">
+        <span class="tab-num">3</span>
+        <span class="tab-name">Regulated</span>
+        <span class="tab-count">24</span>
+      </button>
+      <button class="tab tab-contracted" data-cardinal="contracted" type="button">
+        <span class="tab-num">4</span>
+        <span class="tab-name">Contracted</span>
+        <span class="tab-count">15</span>
+      </button>
+      <button class="tab tab-served" data-cardinal="served" type="button">
+        <span class="tab-num">5</span>
+        <span class="tab-name">Served</span>
+        <span class="tab-count">9</span>
+      </button>
+  </nav>
+
+    <section id="panel-built" class="panel active" data-cardinal="built">
+      <div class="panel-head panel-head-built">
+        <div class="panel-num">1</div>
+        <div class="panel-h">
+          <div class="panel-title">Built and run by the platform</div>
+          <div class="panel-intro">What the platform builds, runs and staffs directly. The BAU team sizes around this layer. Foundation pieces are shared across the portfolio; per-product configurations sit on top.</div>
+        </div>
+      </div>
+      <div class="cols">
+
+      <div class="col col-hometest">
+        <div class="col-h">
+          <div class="col-product">HomeTest</div>
+          <div class="col-count">10 entities</div>
+        </div>
+        <div class="col-body">
+        <div class="ent">
+          <div class="ent-name">Integration spine<span class="ent-pill" style="color:#C9A227;background:#FFF8E6;">In flight</span></div>
+          <div class="ent-line">Orchestration layer that routes ordering, dispatch, results and status across the HomeTest ecosystem.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Framework instrument<span class="ent-pill" style="color:#C9A227;background:#FFF8E6;">In flight</span></div>
+          <div class="ent-line">Commercial vehicle and call-off architecture. In the interim shape, suppliers are admitted to the approved list under PSR-plus-standard-call-off (working hypothesis, pending NHSE Legal sign-off). PA23 dynamic market is the leading candidate vehicle if the framework conversation reopens at the named triggers in the Framework status position paper.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Pattern catalogue<span class="ent-pill" style="color:#C9A227;background:#FFF8E6;">In flight</span></div>
+          <div class="ent-line">Library of reusable overlay options across initiation, commissioning, supply chain and the rest.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Test catalog<span class="ent-pill" style="color:#C9A227;background:#FFF8E6;">In flight</span></div>
+          <div class="ent-line">Assurance and discoverability layer with SNOMED codes that make tests addressable across NHS systems.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Configurations<span class="ent-pill" style="color:#C9A227;background:#FFF8E6;">In flight</span></div>
+          <div class="ent-line">Live deployments of specific pattern combinations: HIV via LA, PSA via acute trust, HbA1c via GP.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">IG framework structure<span class="ent-pill" style="color:#C9A227;background:#FFF8E6;">In flight</span></div>
+          <div class="ent-line">Federated multi-controller model and the artefact stack every configuration inherits (DPIA, DSA, DPA, IAR).</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Clinical safety case structure</div>
+          <div class="ent-line">Hazard log structure, SLSP template, configuration sign-off route.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Hazard log structure</div>
+          <div class="ent-line">The structure into which configuration-specific hazards are logged and reviewed.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Onboarding gateway<span class="ent-pill" style="color:#C9A227;background:#FFF8E6;">In flight</span></div>
+          <div class="ent-line">The seven-stage supplier journey from EOI to admission. In operation for Alpha; Beta evolves it.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">MI and data flow integrity<span class="ent-pill" style="color:#C9A227;background:#FFF8E6;">In flight</span></div>
+          <div class="ent-line">Platform-level reporting, anomaly detection, access controls, audit logs.</div>
+        </div>
+        </div>
+      </div>
+
+      <div class="col col-healthstore">
+        <div class="col-h">
+          <div class="col-product">HealthStore</div>
+          <div class="col-count">18 entities</div>
+        </div>
+        <div class="col-body">
+        <div class="ent">
+          <div class="ent-name">Integration spine<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Shared platform spine extended for HealthStore: prescribe-and-fulfil routing, marketplace payment events, outcome capture.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Framework instrument<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">NHS Standard Contract with SaaS and data schedules. NICE EVA conditionally-recommended admission as the primary supplier route.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Pattern catalogue<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">HealthStore-specific patterns: marketplace payment, milestone evidence, supplier safety case, prescribe-and-engage.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Catalogue of admitted DTx<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">HealthStore equivalent of the test catalog. Discoverable index of conditionally-admitted digital therapeutics with addressing metadata.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Configurations<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">COPD Alpha as the founding configuration. Subsequent configurations follow the same admission and contracting shape.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">IG framework structure<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Federated controller model extended for HealthStore. SaaS-specific lawful basis positions and data-flow architecture.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Clinical safety case structure<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Supplier pattern: NHSE and supplier jointly carry DCB0129 evidence per configuration.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Hazard log structure<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Per-configuration hazard logs co-maintained between NHSE and the admitted supplier.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Supplier admission process<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">NICE EVA conditionally-recommended admission flow with EScAL and DSPT gates upstream of framework entry.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">MI and outcome attribution<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Episode-based outcome capture, milestone evidence requirements, attribution methodology per condition.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">National App Formulary<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">The HealthStore catalogue as a named TOM construct. Lists nationally-recommended digital therapeutics admitted via NICE EVA conditional route. Sits on the platform; configured per ICB.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Assurance Model<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">The overall HealthStore assurance discipline. Coordinates Independent Assurance, NICE EVA conditional admission, DTAC, DCB0129 (manufacturer) and DCB0160 (deployer) so each is consistently applied across configurations.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Assurance portability<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Cross-configuration reuse of NICE EVA assurance evidence so an admitted supplier doesn&apos;t reassure for each ICB. Coupled to the approved-list machinery and the Assurance Model.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Eligibility Filters<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Commissioner-side filters for which configurations apply to which ICBs. Self-assessment toolkit so ICBs can confirm pathway fit, IG fit, prescribing alignment and DCB0160 deployer readiness before engaging the framework.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Store Model<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">The marketplace mechanic itself. Defines how the catalogue, payments, milestone reporting and supplier admission interlock as one operational shape. Distinct from the contracting instrument (PSR plus standard call-off plus approved list in the interim; PA23 dynamic market the leading candidate if reopened).</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Contract Management framework<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Post-execution lifecycle for each call-off agreement. Variations, pricing reviews, term renewals, marketplace milestone evidence audit. Distinct from Framework administration which sets the contracting architecture.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Independent Assurance framework<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Third-party assurance discipline separate from internal Clinical Safety. Covers regulatory standards, clinical and financial efficacy, independent review of admitted products. Sits inside the Assurance Model.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Ongoing Evidence Generation<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Continuous evidence accrual across admitted products. Outcome data, real-world evidence, NICE re-evaluation inputs. Distinct from Post-market surveillance which is regulatory; this is value-evidence for the Assurance Model.</div>
+        </div>
+        </div>
+      </div>
+
+      <div class="col col-healthsync">
+        <div class="col-h">
+          <div class="col-product">HealthSync</div>
+          <div class="col-count">10 entities</div>
+        </div>
+        <div class="col-body">
+        <div class="ent">
+          <div class="ent-name">Integration spine<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Shape reserved. Detail confirmed once HealthSync programme design progresses.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Framework instrument<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Commercial vehicle reserved. Selection follows HealthSync supplier model definition.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Pattern catalogue<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Pattern library reserved at the same structural shape as HomeTest and HealthStore.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Catalogue<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Discoverability layer reserved. Content lands as HealthSync configurations are defined.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Configurations<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Configuration slots reserved. First HealthSync configuration pending programme detail.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">IG framework structure<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Federated controller model inheritable from the portfolio. HealthSync-specific positions to be worked through.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Clinical safety case structure<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Safety case structure inheritable from the portfolio. HealthSync-specific hazards to be identified.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Hazard log structure<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Hazard log structure inheritable from the portfolio.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Admission process<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Admission route to be defined alongside the interim-shape contracting instrument (PSR plus standard call-off plus approved list).</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">MI and data flow<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Reporting and data flow shape reserved at portfolio standard.</div>
+        </div>
+        </div>
+      </div>
+      </div>
+    </section>
+    <section id="panel-consumed" class="panel" data-cardinal="consumed">
+      <div class="panel-head panel-head-consumed">
+        <div class="panel-num">2</div>
+        <div class="panel-h">
+          <div class="panel-title">Consumed from NHS infrastructure</div>
+          <div class="panel-intro">Shared NHS services the platform plugs into. The platform consumes; the owning team runs the service. Same set of services appears across products, with per-product configuration of how each is used.</div>
+        </div>
+      </div>
+      <div class="cols">
+
+      <div class="col col-hometest">
+        <div class="col-h">
+          <div class="col-product">HomeTest</div>
+          <div class="col-count">6 entities</div>
+        </div>
+        <div class="col-body">
+        <div class="ent">
+          <div class="ent-name">NHS Login</div>
+          <div class="ent-line">Patient identity and authentication. HomeTest interfaces; the service is owned and run centrally.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">NHS Notify<span class="ent-pill" style="color:#C9A227;background:#FFF8E6;">In flight</span></div>
+          <div class="ent-line">Patient communications. HomeTest configures templates and channels; Notify operates the infrastructure.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">NHS App<span class="ent-pill" style="color:#C9A227;background:#FFF8E6;">In flight</span></div>
+          <div class="ent-line">The patient digital surface. HomeTest presents through it; the App team owns the surface.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">FHIR routing</div>
+          <div class="ent-line">Clinical data exchange across NHS systems. HomeTest interfaces; routing is owned centrally.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Federated Data Platform<span class="ent-pill" style="color:#C9A227;background:#FFF8E6;">In flight</span></div>
+          <div class="ent-line">Analytics backbone where in scope. HomeTest aligns to FDP governance; FDP is run separately.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Single Patient Record<span class="ent-pill" style="color:#C9A227;background:#FFF8E6;">In flight</span></div>
+          <div class="ent-line">Canonical result destination where configuration requires. HomeTest writes; SPR owns the record.</div>
+        </div>
+        </div>
+      </div>
+
+      <div class="col col-healthstore">
+        <div class="col-h">
+          <div class="col-product">HealthStore</div>
+          <div class="col-count">6 entities</div>
+        </div>
+        <div class="col-body">
+        <div class="ent">
+          <div class="ent-name">NHS Login</div>
+          <div class="ent-line">Patient identity and authentication. HealthStore inherits the same identity layer.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">NHS Notify<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">HealthStore-specific templates: prescription confirmation, engagement nudges, milestone reminders, outcome capture prompts.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">NHS App<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Prescription discovery, DTx linkage and supplier app handoff. App team owns the surface; HealthStore configures the presentation.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">FHIR routing</div>
+          <div class="ent-line">Clinical data exchange for prescription, milestone events and outcome data. Same routing layer as HomeTest.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Federated Data Platform<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Outcome data alignment to FDP governance where configuration requires. Architecture in design.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Single Patient Record<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Outcome write-back to the canonical patient record. Governance and lawful basis being worked through per configuration.</div>
+        </div>
+        </div>
+      </div>
+
+      <div class="col col-healthsync">
+        <div class="col-h">
+          <div class="col-product">HealthSync</div>
+          <div class="col-count">6 entities</div>
+        </div>
+        <div class="col-body">
+        <div class="ent">
+          <div class="ent-name">NHS Login<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Identity layer inheritable from the portfolio. HealthSync-specific authentication patterns to be defined.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">NHS Notify<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Patient comms templates reserved. Content lands once HealthSync configurations are defined.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">NHS App<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Patient surface integration reserved. Detail confirmed once HealthSync programme design progresses.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">FHIR routing<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Clinical data exchange reserved at portfolio standard.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Federated Data Platform<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Analytics alignment reserved. Governance follows portfolio standard.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Single Patient Record<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Result and outcome destination reserved at portfolio standard.        <div class="ent">
+          <div class="ent-name">Apple HealthKit<span class="ent-pill" style="color:#00A499;background:#E2F1ED;">In design</span></div>
+          <div class="ent-line">Consumer platform for iOS-side health data aggregation. NHS App reads HealthKit data on patient permission. Federated controller: Apple as platform operator, NHS as data controller for what flows into the NHS App.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Google Health Connect<span class="ent-pill" style="color:#00A499;background:#E2F1ED;">In design</span></div>
+          <div class="ent-line">Consumer platform for Android-side health data aggregation. NHS App reads Health Connect data on patient permission. Federated controller equivalent to the Apple arrangement.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">PHR aggregation layer<span class="ent-pill" style="color:#00A499;background:#E2F1ED;">In design</span></div>
+          <div class="ent-line">The Personal Health Record aggregation layer inside the NHS App that ingests consumer-platform data, routes to FHIR / SPR, and surfaces in the patient view. Reserved structurally; design underway.</div>
+        </div>
+</div>
+        </div>
+        </div>
+      </div>
+      </div>
+    </section>
+    <section id="panel-regulated" class="panel" data-cardinal="regulated">
+      <div class="panel-head panel-head-regulated">
+        <div class="panel-num">3</div>
+        <div class="panel-h">
+          <div class="panel-title">Regulated by external bodies</div>
+          <div class="panel-intro">External bodies whose approval shapes the model. Most bodies sit at portfolio level; how each one's requirements apply varies per product.</div>
+        </div>
+      </div>
+      <div class="cols">
+
+      <div class="col col-hometest">
+        <div class="col-h">
+          <div class="col-product">HomeTest</div>
+          <div class="col-count">12 entities</div>
+        </div>
+        <div class="col-body">
+        <div class="ent">
+          <div class="ent-name">PTT<span class="ent-pill" style="color:#C9A227;background:#FFF8E6;">In flight</span></div>
+          <div class="ent-line">Adjudicates IG positions, lawful basis, legal directions. Organised by clinical area; multiple teams engaged as HomeTest scales.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Clinical Safety Group</div>
+          <div class="ent-line">Signs off clinical safety cases per configuration. Holds the hazard log structure and sign-off route.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">EScAL<span class="ent-pill" style="color:#C9A227;background:#FFF8E6;">In flight</span></div>
+          <div class="ent-line">External supplier assurance gateway. Suppliers must pass EScAL before admission.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Caldicott Guardian</div>
+          <div class="ent-line">Escalation route for patient confidentiality decisions across configurations.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">NHS Legal</div>
+          <div class="ent-line">Advisory function for legal positions, contract architecture, regulatory questions.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">NHS Commercial</div>
+          <div class="ent-line">Parent commercial function. Holds the contracting-instrument architecture at NHSE level — currently the interim PSR-plus-standard-call-off shape, with PA23 dynamic market the leading candidate if the framework conversation reopens.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">ICO</div>
+          <div class="ent-line">Statutory data protection regulator. Breach notification, complaints, audit.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">CQC</div>
+          <div class="ent-line">Where the clinical pathway brings CQC-regulated providers into scope.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">MHRA<span class="ent-pill" style="color:#9A6700;background:#FFF8E6;">PMS</span></div>
+          <div class="ent-line">Medical device regulator. Post-market surveillance obligations for HomeTest kits, Yellow Card scheme for adverse events, regulatory reporting for kit faults and false-result incidents.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">UK NSC<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">UK National Screening Committee. Governs screening recommendation pathways relevant to HomeTest configurations. PSA active surveillance sits outside formal screening but UK NSC framing matters for the HIV testing-and-treat pathway and any future screening-adjacent uses.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">DSPT<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Data Security and Protection Toolkit. National IG compliance baseline that admitted suppliers and the platform must meet. Sits alongside DPIA and the federated controller arrangements.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Innovator Passport<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">NHS Innovation Service streamlined admission route. Suppliers with an Innovator Passport pass through a lighter assurance route into the framework. Reduces duplication across upstream assurance bodies (NICE, MHRA, DTAC).</div>
+        </div>
+        </div>
+      </div>
+
+      <div class="col col-healthstore">
+        <div class="col-h">
+          <div class="col-product">HealthStore</div>
+          <div class="col-count">9 entities</div>
+        </div>
+        <div class="col-body">
+        <div class="ent">
+          <div class="ent-name">PTT<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">HealthStore IG positions: SaaS data handling, supplier-as-co-controller scenarios, outcome data flows.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Clinical Safety Group<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Per-configuration safety case sign-off. Supplier pattern adds joint responsibility dimension.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">EScAL<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">All NICE EVA conditionally-recommended suppliers must pass EScAL upstream of framework admission.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Caldicott Guardian</div>
+          <div class="ent-line">Same escalation route as the wider portfolio. Configuration-specific confidentiality questions routed here.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">NHS Legal<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Contract architecture work for NHS Standard Contract with SaaS and data schedules, marketplace payments mechanism, supplier manufacturer responsibilities.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">NHS Commercial</div>
+          <div class="ent-line">Parent commercial function. NHS Standard Contract is the HealthStore contracting instrument under NHS Commercial.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">ICO</div>
+          <div class="ent-line">Same statutory regulator as the wider portfolio. HealthStore-specific notifications follow standard process.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">NICE<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">NICE EVA conditionally-recommended admission process is the HealthStore-specific evaluation interface. Multiple suppliers engaged.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">MHRA<span class="ent-pill" style="color:#9A6700;background:#FFF8E6;">PMS</span></div>
+          <div class="ent-line">Medical device regulator for SaMD. Post-market surveillance obligations for admitted DTx products. Yellow Card scheme integration for adverse event reporting and periodic safety updates.</div>
+        </div>
+        </div>
+      </div>
+
+      <div class="col col-healthsync">
+        <div class="col-h">
+          <div class="col-product">HealthSync</div>
+          <div class="col-count">8 entities</div>
+        </div>
+        <div class="col-body">
+        <div class="ent">
+          <div class="ent-name">PTT<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">IG positions reserved. Detail follows HealthSync configuration definition.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Clinical Safety Group<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Safety case sign-off route reserved at portfolio standard.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">EScAL<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Supplier assurance gateway reserved at portfolio standard.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Caldicott Guardian<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Confidentiality escalation route reserved at portfolio standard.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">NHS Legal<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Legal advisory engagement reserved at portfolio standard.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">NHS Commercial<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Parent commercial function. Framework instrument selection pending.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">ICO<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Statutory regulator engagement reserved at portfolio standard.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Additional regulator<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Additional regulatory body reserved at structural shape. Specific body to be confirmed alongside HealthSync programme design.</div>
+        </div>
+        </div>
+      </div>
+      </div>
+    </section>
+    <section id="panel-contracted" class="panel" data-cardinal="contracted">
+      <div class="panel-head panel-head-contracted">
+        <div class="panel-num">4</div>
+        <div class="panel-h">
+          <div class="panel-title">Contracted commercially</div>
+          <div class="panel-intro">Direct commercial relationships the platform or its commissioners hold. The most product-specific cardinal: contracted entities differ substantially across products because the supply shape and the unit being bought are different.</div>
+        </div>
+      </div>
+      <div class="cols">
+
+      <div class="col col-hometest">
+        <div class="col-h">
+          <div class="col-product">HomeTest</div>
+          <div class="col-count">5 entities</div>
+        </div>
+        <div class="col-body">
+        <div class="ent">
+          <div class="ent-name">Framework suppliers<span class="ent-pill" style="color:#C9A227;background:#FFF8E6;">In flight</span></div>
+          <div class="ent-line">Kits, labs, end-to-end providers admitted to the approved list under the interim PSR-plus-standard-call-off shape. Contracts run bilaterally between commissioner and supplier; NHSE convenes and assures, but is not a party to the call-off.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Royal Mail and carriers<span class="ent-pill" style="color:#C9A227;background:#FFF8E6;">In flight</span></div>
+          <div class="ent-line">Carrier leg for kits out and samples back. Volume discounts apply per shipper; engagement underway on a Health Samples package category.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Pathology labs<span class="ent-pill" style="color:#C9A227;background:#FFF8E6;">In flight</span></div>
+          <div class="ent-line">Where separately contracted (e.g. PSA specialist lab). Sample processing where the supplier model splits logistics from analysis.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Acute trust partnership<span class="ent-pill" style="color:#006747;background:#E2F1E8;">Selected</span></div>
+          <div class="ent-line">PSA active surveillance partner selected. Mobilisation underway against an established cohort.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Pathway transformation programmes<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">National pathway owners per configuration: sexual health programme for HIV, prostate clinical leads for PSA-AS, diabetes pathway team for HbA1c. Pathway integration discipline runs in partnership with the relevant programme.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Advisory and capacity<span class="ent-pill" style="color:#B5121B;background:#FCE3E5;">Blocked</span></div>
+          <div class="ent-line">Contracted advisory and Health Economics capacity. Currently blocked pending governance and prioritisation.</div>
+        </div>
+        </div>
+      </div>
+
+      <div class="col col-healthstore">
+        <div class="col-h">
+          <div class="col-product">HealthStore</div>
+          <div class="col-count">5 entities</div>
+        </div>
+        <div class="col-body">
+        <div class="ent">
+          <div class="ent-name">Conditional software suppliers<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Software-as-a-medical-device suppliers admitted via NICE EVA conditionally-recommended. Multiple suppliers engaged for the founding configuration.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">ICB commissioners<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Primary buyers for HealthStore configurations. ICBs sign the call-off under NHS Standard Contract, select supplier(s), agree milestone evidence.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Supplier arrangement<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Supplier as manufacturer pattern: NHSE and the admitted supplier jointly carry DCB0129 manufacturer evidence per configuration.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Respiratory Transformation Programme<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">National pathway partner for COPD Alpha. Pathway integration discipline aligns the DTx with the OPTIMISE pathway. As further therapeutic areas come on, equivalent transformation programmes (MSK, cardiac rehab, CBTi) become pathway partners.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Pharmacy and prescriber networks<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Where the prescribing flow runs through community pharmacy or prescriber networks, contractual arrangements with the channel.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Advisory and capacity<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Shared advisory contracts at portfolio level: health economics, ICB partnership, clinical engagement leads.</div>
+        </div>
+        </div>
+      </div>
+
+      <div class="col col-healthsync">
+        <div class="col-h">
+          <div class="col-product">HealthSync</div>
+          <div class="col-count">5 entities</div>
+        </div>
+        <div class="col-body">
+        <div class="ent">
+          <div class="ent-name">Primary supplier category<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Supplier shape reserved. Detail confirmed once HealthSync programme design progresses.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Primary buyer<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Buyer relationship reserved at the same structural shape as HomeTest and HealthStore.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Manufacturer arrangement<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Manufacturer responsibility model reserved. Supplier pattern from HealthStore available as a precedent.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Channel partners<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Channel and distribution partner relationships reserved. Specific channel pending programme detail.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Advisory and capacity<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Advisory and capacity arrangements inheritable from the portfolio.</div>
+        </div>
+        </div>
+      </div>
+      </div>
+    </section>
+    <section id="panel-served" class="panel" data-cardinal="served">
+      <div class="panel-head panel-head-served">
+        <div class="panel-num">5</div>
+        <div class="panel-h">
+          <div class="panel-title">Served as the output</div>
+          <div class="panel-intro">The output side. Each product serves the same three audience categories but the specific cohort, clinician archetype and commissioner relationship differs.</div>
+        </div>
+      </div>
+      <div class="cols">
+
+      <div class="col col-hometest">
+        <div class="col-h">
+          <div class="col-product">HomeTest</div>
+          <div class="col-count">3 entities</div>
+        </div>
+        <div class="col-body">
+        <div class="ent">
+          <div class="ent-name">Commissioners</div>
+          <div class="ent-line">LAs, ICBs, Acute Trusts, NHSE programmes. Buy via the framework, run live configurations locally. Sarah is the cast representation.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Patients</div>
+          <div class="ent-line">Abdul, Mark, Layla as the three patient archetypes. The end users; the reason the model exists.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Initiating clinicians<span class="ent-pill" style="color:#C9A227;background:#FFF8E6;">In flight</span></div>
+          <div class="ent-line">GPs, consultants and prospectively community pharmacists who initiate testing. GP-init and clinician-init are live patterns; pharmacy-init subject to an open scope decision.</div>
+        </div>
+        </div>
+      </div>
+
+      <div class="col col-healthstore">
+        <div class="col-h">
+          <div class="col-product">HealthStore</div>
+          <div class="col-count">3 entities</div>
+        </div>
+        <div class="col-body">
+        <div class="ent">
+          <div class="ent-name">Commissioners<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">ICBs as the primary commissioner. Call-off under NHS Standard Contract framework with SaaS and data schedules. Per-episode budgeting against milestone evidence.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Patients<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">COPD Alpha cohort as the founding patient group. Subsequent cohorts follow configuration-by-configuration. HealthStore patient archetype represented in the cast.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Prescribing clinicians<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Respiratory specialists, community pharmacists and GPs as the prescriber group for the founding configuration. Cast includes a HealthStore prescribing clinician archetype.</div>
+        </div>
+        </div>
+      </div>
+
+      <div class="col col-healthsync">
+        <div class="col-h">
+          <div class="col-product">HealthSync</div>
+          <div class="col-count">3 entities</div>
+        </div>
+        <div class="col-body">
+        <div class="ent">
+          <div class="ent-name">Commissioners<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Commissioner relationship reserved at the same structural shape as HomeTest and HealthStore.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Patients<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Patient cohort reserved. Detail confirmed once HealthSync configurations are defined.</div>
+        </div>
+        <div class="ent">
+          <div class="ent-name">Clinicians<span class="ent-pill" style="color:#005EB8;background:#E1ECF7;">In design</span></div>
+          <div class="ent-line">Clinician relationship reserved. Specific clinician archetype pending programme design.</div>
+        </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+  <div class="eco-bau-note">
+    <div class="eco-bau-h">Why this matters for BAU sizing</div>
+    <div class="eco-bau-body">The platform BAU team needs to staff Category 1, hold the interface to Categories 2 and 3, manage the contracts in Category 4, and serve Category 5. Being an intelligent client across the four outer categories is itself a substantial job: holding suppliers to SLA, holding consumed services to interfaces, holding regulators to timelines. The team is not <strong>everyone needed to run the portfolio</strong>; it is the orchestration core. The size question collapses around that.</div>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  var tabs = document.querySelectorAll('.tab');
+  var panels = document.querySelectorAll('.panel');
+  function activate(key){
+    tabs.forEach(function(t){ t.classList.toggle('active', t.getAttribute('data-cardinal') === key); });
+    panels.forEach(function(p){ p.classList.toggle('active', p.getAttribute('data-cardinal') === key); });
+  }
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){
+      var key = t.getAttribute('data-cardinal');
+      activate(key);
+      if(history.replaceState){ history.replaceState(null, '', '#' + key); }
+    });
+  });
+  // Open by hash on load
+  var validKeys = {'built':1,'consumed':1,'regulated':1,'contracted':1,'served':1};
+  var hash = window.location.hash.replace('#','');
+  if(hash && validKeys[hash]){ activate(hash); }
+  window.addEventListener('hashchange', function(){
+    var h = window.location.hash.replace('#','');
+    if(validKeys[h]){ activate(h); }
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Errol's story: Digital Therapeutics Operating Model</title>
+<style>
+ /* Canonical topnav */
+ .topnav{background:#fff;border-bottom:1px solid #ebeef1;padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:nowrap;min-height:54px;box-sizing:border-box;width:100%;max-width:100%;margin:0;position:sticky;top:0;z-index:200;}
+ .topnav.topnav-secondary{background:#F4F8FC;border-bottom:1px solid #d6e2ef;padding:9px 36px;min-height:42px;}
+ .topnav .nav-back{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-back:hover{color:#005EB8;}
+ .topnav .nav-siblings{display:flex;gap:4px;flex-wrap:nowrap;overflow-x:auto;align-items:center;}
+ .topnav .nav-siblings a{font-size:12px;font-weight:600;color:#4C6272;text-decoration:none;padding:6px 12px;border-radius:6px;letter-spacing:0.2px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-siblings a:hover{background:#f0f4f8;color:#212B32;}
+ .topnav .nav-siblings a.active{background:#003087;color:#fff;}
+ .topnav.topnav-secondary .nav-siblings a{font-size:11.5px;padding:5px 10px;}
+ .topnav.topnav-secondary .nav-siblings a.active{background:#005EB8;color:#fff;}
+ .topnav .nav-secondary-label{font-size:10px;font-weight:800;letter-spacing:1.5px;color:#7E8B97;text-transform:uppercase;flex-shrink:0;}
+
+:root {
+  --nhs-dark:#003087;
+  --nhs-blue:#005EB8;
+  --nhs-cyan:#00A9CE;
+  --nhs-grey:#7E8B97;
+  --hometest:#003087;
+  --healthstore:#00A9CE;
+  --healthsync:#00A499;
+  --amber:#FFB91D;
+  --amber-deep:#C9A227;
+  --gold:#FFD66B;
+  --warm-cream:#FFF9EC;
+  --text:#212B32;
+  --text-sec:#4C6272;
+  --text-muted:#7E8B97;
+  --border-lt:#ebeef1;
+  --card:#ffffff;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,var(--nhs-blue) 0%, var(--nhs-dark) 100%);background-attachment:fixed;color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;margin:0;padding:0;width:100%;}
+
+/* Top nav */
+
+
+
+
+
+
+
+
+
+/* Page container */
+.page{max-width:1180px;margin:30px auto 50px;background:#ffffff;border-radius:18px;box-shadow:0 14px 40px rgba(0,48,135,0.20);overflow:hidden;}
+
+/* ============================================================ */
+/* HERO                                                          */
+/* ============================================================ */
+.hero{position:relative;padding:70px 60px 60px;background:linear-gradient(135deg,#001a4d 0%,#003087 50%,#005EB8 100%);color:#fff;overflow:hidden;}
+.hero::after{content:'';position:absolute;right:-80px;bottom:-120px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(255,214,107,0.18),transparent 65%);pointer-events:none;}
+.hero-inner{position:relative;display:grid;grid-template-columns:1.5fr 1fr;gap:50px;align-items:center;z-index:1;}
+.hero-rule{width:60px;height:4px;background:var(--gold);border-radius:2px;margin-bottom:22px;}
+.hero-eyebrow{font-size:11px;font-weight:800;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:24px;}
+.hero-title{font-size:72px;font-weight:900;color:#fff;letter-spacing:-2.4px;line-height:0.95;margin-bottom:28px;}
+.hero-title em{font-style:normal;color:var(--gold);}
+.hero-strap{font-size:18px;color:rgba(255,255,255,0.94);line-height:1.65;max-width:560px;}
+.hero-strap strong{color:var(--gold);font-weight:700;}
+.hero-image-box{display:flex;flex-direction:column;align-items:center;gap:12px;}
+.image-slot{position:relative;background:linear-gradient(135deg,rgba(255,255,255,0.18),rgba(255,255,255,0.06));border-radius:16px;border:2px dashed rgba(255,255,255,0.30);display:flex;flex-direction:column;align-items:center;justify-content:center;color:rgba(255,255,255,0.78);text-align:center;padding:24px;font-size:11.5px;font-weight:700;letter-spacing:0.4px;overflow:hidden;}
+.image-slot img{display:block;width:100%;height:100%;object-fit:cover;}
+.image-slot-icon{font-size:48px;opacity:0.45;margin-bottom:8px;}
+.image-slot.hero-image{width:340px;height:340px;}
+.image-slot-caption{font-size:10.5px;font-weight:600;opacity:0.78;letter-spacing:0.4px;}
+
+.hero-portrait-strip{display:flex;flex-direction:column;gap:6px;text-align:center;color:#fff;}
+.hero-portrait-name{font-size:16px;font-weight:800;letter-spacing:0.4px;}
+.hero-portrait-role{font-size:11px;color:var(--gold);letter-spacing:1.4px;text-transform:uppercase;font-weight:700;}
+
+/* ============================================================ */
+/* JOURNEY RIBBON                                                */
+/* ============================================================ */
+.ribbon-wrap{background:#fafbfd;border-bottom:1px solid var(--border-lt);padding:32px 60px 28px;}
+.ribbon-eyebrow{font-size:10.5px;font-weight:800;letter-spacing:2px;color:var(--text-muted);text-transform:uppercase;margin-bottom:14px;text-align:center;}
+.ribbon{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;position:relative;align-items:start;}
+.ribbon-stage{display:flex;flex-direction:column;align-items:center;gap:8px;position:relative;cursor:pointer;text-decoration:none;color:inherit;padding:8px 4px;border-radius:8px;transition:background 0.15s;}
+.ribbon-stage:hover{background:rgba(0,48,135,0.04);}
+.ribbon-num{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--nhs-dark),var(--nhs-blue));color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;letter-spacing:-0.5px;box-shadow:0 4px 10px rgba(0,48,135,0.18);}
+.ribbon-label{font-size:11px;font-weight:800;color:var(--nhs-dark);text-align:center;line-height:1.3;letter-spacing:0.2px;}
+.ribbon-streams{display:flex;gap:3px;margin-top:4px;}
+.ribbon-stream{width:18px;height:5px;border-radius:2px;background:#dde3eb;}
+.ribbon-stream.hometest.on{background:var(--hometest);}
+.ribbon-stream.healthstore.on{background:var(--healthstore);}
+.ribbon-stream.healthsync.on{background:var(--healthsync);}
+.ribbon-legend{display:flex;justify-content:center;gap:24px;margin-top:18px;flex-wrap:wrap;}
+.ribbon-legend-item{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--text-sec);letter-spacing:0.3px;}
+.ribbon-legend-dot{width:14px;height:5px;border-radius:2px;}
+.ribbon-legend-dot.hometest{background:var(--hometest);}
+.ribbon-legend-dot.healthstore{background:var(--healthstore);}
+.ribbon-legend-dot.healthsync{background:var(--healthsync);}
+.ribbon-legend-dot.dormant{background:#dde3eb;}
+
+/* ============================================================ */
+/* FRAMING (less Foundation-heavy than before)                  */
+/* ============================================================ */
+.framing{padding:50px 60px 36px;background:#fff;}
+.framing-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;}
+.framing-tile{background:linear-gradient(135deg,#F4F8FC,#FFFFFF);border:1px solid #D5E8F0;border-radius:14px;padding:22px 24px;}
+.framing-tile-eyebrow{font-size:10px;font-weight:800;letter-spacing:1.8px;color:var(--nhs-blue);text-transform:uppercase;margin-bottom:8px;}
+.framing-tile-h{font-size:15px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.2px;margin-bottom:8px;line-height:1.3;}
+.framing-tile-body{font-size:12.5px;color:var(--text-sec);line-height:1.65;}
+.framing-tile-body strong{color:var(--text);font-weight:700;}
+
+/* ============================================================ */
+/* STAGE                                                         */
+/* ============================================================ */
+.stages{padding:24px 60px 50px;background:#fff;}
+.stage{display:grid;grid-template-columns:140px 1fr;gap:36px;margin-bottom:14px;position:relative;}
+.stage-side{display:flex;flex-direction:column;align-items:flex-end;padding-top:14px;position:sticky;top:0;}
+.stage-number{font-size:110px;font-weight:900;color:var(--nhs-dark);letter-spacing:-6px;line-height:0.85;opacity:0.10;}
+.stage-side-streams{display:flex;flex-direction:column;gap:6px;margin-top:14px;align-items:flex-end;}
+.stage-side-stream{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:800;letter-spacing:0.6px;color:var(--text-muted);text-transform:uppercase;}
+.stage-side-stream-bar{width:30px;height:4px;border-radius:2px;background:#e0e6ed;}
+.stage-side-stream.on.hometest .stage-side-stream-bar{background:var(--hometest);}
+.stage-side-stream.on.healthstore .stage-side-stream-bar{background:var(--healthstore);}
+.stage-side-stream.on.healthsync .stage-side-stream-bar{background:var(--healthsync);}
+.stage-side-stream.on{color:var(--nhs-dark);}
+
+.stage-main{padding:24px 0 36px;border-bottom:1px solid var(--border-lt);}
+.stage-eyebrow{font-size:10.5px;font-weight:800;letter-spacing:2.4px;color:var(--text-muted);text-transform:uppercase;margin-bottom:8px;}
+.stage-title{font-size:32px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.7px;line-height:1.18;margin-bottom:26px;max-width:760px;}
+
+/* Stage image */
+.stage-image{width:100%;max-width:560px;aspect-ratio:1/1;background:linear-gradient(135deg,#F4F8FC,#E0E5EB);border-radius:14px;border:2px dashed #c4d3e6;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--text-muted);text-align:center;padding:20px;font-size:12.5px;font-weight:700;letter-spacing:0.3px;margin:0 auto 24px;overflow:hidden;position:relative;}
+.stage-image img{display:block;width:100%;height:100%;object-fit:cover;border-radius:12px;}
+.stage-image-icon{font-size:54px;opacity:0.40;margin-bottom:10px;}
+.stage-image-caption{font-size:11.5px;font-weight:600;opacity:0.85;letter-spacing:0.3px;max-width:480px;line-height:1.5;}
+
+/* Pull-quote patient voice */
+.pull-quote{margin:20px 0 24px;padding:32px 20px 28px;text-align:center;position:relative;}
+.pull-quote::before{content:'\201C';position:absolute;left:8px;top:-12px;font-size:110px;color:var(--gold);font-family:Georgia,serif;line-height:1;opacity:0.65;}
+.pull-quote-text{font-size:24px;font-weight:600;color:var(--text);line-height:1.45;letter-spacing:-0.3px;max-width:780px;margin:0 auto;font-style:italic;}
+.pull-quote-attribution{font-size:11.5px;font-weight:800;letter-spacing:2px;color:var(--amber-deep);text-transform:uppercase;margin-top:18px;}
+
+/* What's happening (lighter than Foundation callout) */
+.whats-happening{background:#F4F8FC;border-left:5px solid var(--nhs-blue);border-radius:0 12px 12px 0;padding:20px 24px;margin-bottom:18px;}
+.whats-happening-label{font-size:10.5px;font-weight:800;letter-spacing:1.8px;color:var(--nhs-blue);text-transform:uppercase;margin-bottom:8px;}
+.whats-happening-body{font-size:14px;color:var(--text);line-height:1.7;}
+.whats-happening-body strong{color:var(--nhs-dark);font-weight:700;}
+
+/* Care team */
+.careteam{background:#fff;border:1px solid var(--border-lt);border-radius:10px;padding:14px 18px;margin-bottom:18px;display:flex;gap:14px;align-items:flex-start;}
+.careteam-icon{font-size:18px;color:var(--nhs-blue);flex-shrink:0;margin-top:1px;}
+.careteam-body{flex:1;}
+.careteam-label{font-size:10px;font-weight:800;letter-spacing:1.4px;color:var(--text-muted);text-transform:uppercase;margin-bottom:4px;}
+.careteam-text{font-size:13px;color:var(--text-sec);line-height:1.65;}
+
+/* Cross-links into the model */
+.crosslinks{margin-top:20px;}
+.crosslinks-label{font-size:10px;font-weight:800;letter-spacing:1.6px;color:var(--text-muted);text-transform:uppercase;margin-bottom:10px;}
+.crosslinks-row{display:flex;flex-wrap:wrap;gap:6px;}
+.crosslinks-row a{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;color:var(--nhs-blue);text-decoration:none;padding:7px 12px;border-radius:6px;border:1px solid #c4d3e6;background:#fff;transition:background 0.15s,transform 0.12s;}
+.crosslinks-row a:hover{background:#F4F8FC;transform:translateY(-1px);}
+.crosslinks-row a::after{content:' ↗';font-size:10px;color:var(--text-muted);margin-left:2px;}
+.crosslinks-row .crosslinks-tag{font-size:9.5px;font-weight:800;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;background:#f0f4f8;padding:3px 8px;border-radius:4px;margin-right:4px;align-self:center;}
+
+/* ============================================================ */
+/* DASHBOARD MOCKUP (the payoff)                                */
+/* ============================================================ */
+.dashboard{background:linear-gradient(135deg,#001a4d,#003087);border-radius:18px;padding:30px 32px 28px;color:#fff;margin:24px 0 18px;box-shadow:0 10px 30px rgba(0,26,77,0.4);}
+.dashboard-eyebrow{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:8px;}
+.dashboard-title{font-size:18px;font-weight:800;color:#fff;margin-bottom:18px;letter-spacing:-0.3px;}
+.dashboard-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:14px;}
+.dashboard-card{background:rgba(255,255,255,0.10);border:1px solid rgba(255,255,255,0.18);border-radius:10px;padding:14px 16px;}
+.dashboard-card-head{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+.dashboard-card-dot{width:8px;height:8px;border-radius:50%;}
+.dashboard-card-dot.hometest{background:#4F8AC0;}
+.dashboard-card-dot.healthstore{background:#5EBCDB;}
+.dashboard-card-dot.healthsync{background:#5BC9B8;}
+.dashboard-card-label{font-size:10px;font-weight:800;letter-spacing:1.4px;color:rgba(255,255,255,0.78);text-transform:uppercase;}
+.dashboard-metric{font-size:24px;font-weight:900;color:#fff;letter-spacing:-0.5px;line-height:1;margin-bottom:6px;}
+.dashboard-metric-sub{font-size:11px;color:rgba(255,255,255,0.65);line-height:1.4;}
+.dashboard-chart{height:36px;background:linear-gradient(180deg,transparent,rgba(255,255,255,0.05));border-radius:6px;margin-top:8px;position:relative;overflow:hidden;}
+.dashboard-chart svg{display:block;width:100%;height:100%;}
+.dashboard-footer{font-size:11.5px;color:rgba(255,255,255,0.78);line-height:1.55;padding-top:14px;border-top:1px solid rgba(255,255,255,0.15);}
+.dashboard-footer strong{color:var(--gold);}
+
+/* ============================================================ */
+/* CONCLUSION                                                    */
+/* ============================================================ */
+.conclusion{padding:60px 60px 70px;background:linear-gradient(180deg,#FFF9EC,#FFFFFF);}
+.conclusion-eyebrow{font-size:11px;font-weight:800;letter-spacing:2.8px;color:var(--amber-deep);text-transform:uppercase;margin-bottom:14px;text-align:center;}
+.conclusion-title{font-size:40px;font-weight:900;color:var(--nhs-dark);letter-spacing:-1px;line-height:1.1;text-align:center;margin-bottom:14px;max-width:880px;margin-left:auto;margin-right:auto;}
+.conclusion-strap{font-size:15.5px;color:var(--text-sec);line-height:1.7;text-align:center;max-width:760px;margin:0 auto 36px;}
+
+.outcomes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:32px;}
+.outcome{background:#fff;border:1px solid var(--border-lt);border-radius:14px;padding:24px 26px;}
+.outcome-icon-wrap{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,#003087,#005EB8);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:22px;font-weight:900;margin-bottom:14px;}
+.outcome-h{font-size:11px;font-weight:800;letter-spacing:1.6px;color:var(--text-muted);text-transform:uppercase;margin-bottom:6px;}
+.outcome-title{font-size:18px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.3px;line-height:1.3;margin-bottom:10px;}
+.outcome-body{font-size:13px;color:var(--text-sec);line-height:1.65;}
+
+.conclusion-line{font-size:22px;font-weight:800;color:var(--nhs-dark);text-align:center;letter-spacing:-0.4px;line-height:1.4;padding:24px;border-top:1px solid #F0DCA0;}
+
+/* ============================================================ */
+/* RESPONSIVE                                                    */
+/* ============================================================ */
+@media(max-width:1000px){
+  .hero{padding:50px 36px 44px;}
+  .hero-inner{grid-template-columns:1fr;gap:36px;}
+  .hero-title{font-size:48px;}
+  .image-slot.hero-image{width:100%;max-width:340px;height:320px;}
+  .ribbon-wrap,.framing,.stages,.conclusion{padding-left:30px;padding-right:30px;}
+  .ribbon{grid-template-columns:repeat(3,1fr);gap:14px;}
+  .framing-grid,.outcomes-grid,.dashboard-row{grid-template-columns:1fr;}
+  .stage{grid-template-columns:80px 1fr;gap:18px;}
+  .stage-number{font-size:64px;letter-spacing:-3px;}
+  .stage-title{font-size:24px;}
+  .stage-image{height:240px;}
+  .pull-quote-text{font-size:20px;}
+  .conclusion-title{font-size:28px;}
+}
+</style>
+<style>
+  .ecosystem-nav {
+    background: #fff;
+    border-bottom: 1px solid #ebeef1;
+    padding: 12px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 48px;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  }
+  .ecosystem-nav a {
+    font-size: 13px; font-weight: 700; color: #003087;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .ecosystem-nav a:hover { color: #005EB8; }
+  .ecosystem-nav .nav-context {
+    font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
+    color: #7E8B97; text-transform: uppercase;
+  }
+  .ecosystem-nav .nav-product {
+    font-size: 10.5px; font-weight: 800; letter-spacing: 0.8px;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 4px; color: #fff;
+  }
+  .ecosystem-nav .nav-product.dtx { background: #003087; }
+  .ecosystem-nav .nav-product.hometest { background: #003087; }
+  .ecosystem-nav .nav-product.healthstore { background: #00A9CE; }
+  .ecosystem-nav .nav-product.healthsync { background: #00A499; }
+</style>
+</head>
+<body>
+<div class="ecosystem-nav">
+  <a href="../index.html">← DTx Ecosystem</a>
+  <span class="nav-context">Errol Journey</span>
+  <span class="nav-product dtx">Cross-product</span>
+</div>
+
+<nav class="topnav">
+<a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+<div class="nav-siblings">
+ <a href="DTx OM - Why.html">Why</a>
+ <a href="DTx OM - What.html">What</a>
+ <a href="DTx OM - Lifecycle.html">When</a>
+ <a href="DTx OM - HomeTest Operational.html">How</a>
+ <a href="DTx OM - Governance.html">Who</a>
+ <a href="DTx OM - Hearts and Minds.html" class="active">Hearts and Minds</a>
+ <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>
+ <a href="DTx OM - Status.html">Status</a>
+</div>
+</nav>
+
+<div class="page">
+
+  <!-- ============================================================ -->
+  <!-- HERO                                                          -->
+  <!-- ============================================================ -->
+  <div class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-rule"></div>
+        <div class="hero-eyebrow">A patient's story through the operating model</div>
+        <h1 class="hero-title">Errol&apos;s morning,<br>and what the<br>NHS <em>didn&apos;t</em> miss.</h1>
+        <p class="hero-strap">Errol is fifty-six. He&apos;s lived with hypertension for three years. He puts on his smartwatch when he gets up. He runs through a BP check at his kitchen table once a week. He doesn&apos;t think about either. Until the morning his GP calls before he&apos;s noticed anything is wrong. <strong>This is the story of one patient, three workstreams, and one operating model doing the work underneath.</strong></p>
+      </div>
+      <div class="hero-image-box">
+        <div class="image-slot hero-image">
+          <img src="img/errol-hero.png" alt="Errol at his kitchen table" style="border-radius:14px;" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;image-slot-icon&quot;>&#x1F464;</div><div>Errol hero illustration</div><div class=&quot;image-slot-caption&quot;>kitchen table &middot; morning routine &middot; smartwatch &amp; cuff</div>';">
+        </div>
+        <div class="hero-portrait-strip">
+          <div class="hero-portrait-name">Errol, 56</div>
+          <div class="hero-portrait-role">Hypertension &middot; managed at home</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- JOURNEY RIBBON                                                -->
+  <!-- ============================================================ -->
+  <div class="ribbon-wrap">
+    <div class="ribbon-eyebrow">Errol&apos;s journey at a glance &middot; six stages, three workstreams</div>
+    <div class="ribbon">
+      <a class="ribbon-stage" href="#stage-1">
+        <div class="ribbon-num">1</div>
+        <div class="ribbon-label">Baseline</div>
+        <div class="ribbon-streams">
+          <div class="ribbon-stream hometest"></div>
+          <div class="ribbon-stream healthstore"></div>
+          <div class="ribbon-stream healthsync on"></div>
+        </div>
+      </a>
+      <a class="ribbon-stage" href="#stage-2">
+        <div class="ribbon-num">2</div>
+        <div class="ribbon-label">The catch</div>
+        <div class="ribbon-streams">
+          <div class="ribbon-stream hometest"></div>
+          <div class="ribbon-stream healthstore"></div>
+          <div class="ribbon-stream healthsync on"></div>
+        </div>
+      </a>
+      <a class="ribbon-stage" href="#stage-3">
+        <div class="ribbon-num">3</div>
+        <div class="ribbon-label">Diagnostic</div>
+        <div class="ribbon-streams">
+          <div class="ribbon-stream hometest on"></div>
+          <div class="ribbon-stream healthstore"></div>
+          <div class="ribbon-stream healthsync on"></div>
+        </div>
+      </a>
+      <a class="ribbon-stage" href="#stage-4">
+        <div class="ribbon-num">4</div>
+        <div class="ribbon-label">Prescription</div>
+        <div class="ribbon-streams">
+          <div class="ribbon-stream hometest"></div>
+          <div class="ribbon-stream healthstore on"></div>
+          <div class="ribbon-stream healthsync on"></div>
+        </div>
+      </a>
+      <a class="ribbon-stage" href="#stage-5">
+        <div class="ribbon-num">5</div>
+        <div class="ribbon-label">Concurrent care</div>
+        <div class="ribbon-streams">
+          <div class="ribbon-stream hometest on"></div>
+          <div class="ribbon-stream healthstore on"></div>
+          <div class="ribbon-stream healthsync on"></div>
+        </div>
+      </a>
+      <a class="ribbon-stage" href="#stage-6">
+        <div class="ribbon-num">6</div>
+        <div class="ribbon-label">Outcome</div>
+        <div class="ribbon-streams">
+          <div class="ribbon-stream hometest on"></div>
+          <div class="ribbon-stream healthstore on"></div>
+          <div class="ribbon-stream healthsync on"></div>
+        </div>
+      </a>
+    </div>
+    <div class="ribbon-legend">
+      <div class="ribbon-legend-item"><div class="ribbon-legend-dot hometest"></div>HomeTest active</div>
+      <div class="ribbon-legend-item"><div class="ribbon-legend-dot healthstore"></div>HealthStore active</div>
+      <div class="ribbon-legend-item"><div class="ribbon-legend-dot healthsync"></div>HealthSync active</div>
+      <div class="ribbon-legend-item"><div class="ribbon-legend-dot dormant"></div>not active</div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- FRAMING                                                       -->
+  <!-- ============================================================ -->
+  <div class="framing">
+    <div class="framing-grid" style="grid-template-columns:1fr 1fr;">
+      <div class="framing-tile">
+        <div class="framing-tile-eyebrow">The credibility unlock</div>
+        <div class="framing-tile-h">The smartwatch catches what Errol can&apos;t.</div>
+        <div class="framing-tile-body">Errol takes his BP readings deliberately and sees the numbers, but he&apos;s habituated to them. They don&apos;t tell him anything new. The smartwatch is the always-on sensor doing the things he&apos;s <strong>not</strong> looking at: resting heart rate over time, nocturnal patterns, rhythm anomalies. The system spots a signal he didn&apos;t even know to look for.</div>
+      </div>
+      <div class="framing-tile">
+        <div class="framing-tile-eyebrow">Why one operating model</div>
+        <div class="framing-tile-h">He onboards once. Consents once. One record. One care team view.</div>
+        <div class="framing-tile-body">Across the journey his identity, his consent, his clinical context, his data routing and his clinical safety governance carry across every workstream boundary. He doesn&apos;t re-onboard at any of them. That is what makes this <strong>one operating model</strong> rather than three products glued together.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- STAGES                                                        -->
+  <!-- ============================================================ -->
+  <div class="stages">
+
+    <!-- ========== STAGE 1 ========== -->
+    <div class="stage" id="stage-1">
+      <div class="stage-side">
+        <div class="stage-number">01</div>
+        <div class="stage-side-streams">
+          <div class="stage-side-stream"><span>HomeTest</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream"><span>HealthStore</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream on healthsync"><span>HealthSync</span><div class="stage-side-stream-bar"></div></div>
+        </div>
+      </div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">Baseline &middot; ordinary life</div>
+        <h2 class="stage-title">Errol takes his BP once a week. His smartwatch hums along in the background. Nothing is happening, and that is the point.</h2>
+
+        <div class="stage-image">
+          <img src="img/errol-stage1.png" alt="Errol teaching at the community college" style="border-radius:12px;" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;stage-image-icon&quot;>&#x1F3A8;</div><div>Stage 1 illustration</div><div class=&quot;stage-image-caption&quot;>Errol going about an ordinary day &middot; smartwatch incidental on his wrist &middot; competent man living his life</div>';">
+        </div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">After my scare three years ago I started taking my own BP. The numbers look about the same most weeks. I don&apos;t really think about it. The watch I just wear.</p>
+          <div class="pull-quote-attribution">Errol</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">A connected BP device and a consumer-platform smartwatch send Errol&apos;s data into the NHS App. <strong>NHS Login</strong> ties the device to him. <strong>The data schedule</strong> governs what flows where. The wearable layer at <strong>Foundation level</strong> means his GP can see the trend at her annual review, or whenever the system pings her between appointments. He never re-onboarded for any of this.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What the care team sees</div>
+            <div class="careteam-text">BP trend and smartwatch baseline in Errol&apos;s record. Quiet, mostly normal, nothing pressing.</div>
+          </div>
+        </div>
+
+        <div class="crosslinks">
+          <div class="crosslinks-label">Where this lives in the model</div>
+          <div class="crosslinks-row">
+            <span class="crosslinks-tag">What</span>
+            <a href="DTx OM - Anatomical.html" target="_blank">Foundation layer in Anatomy</a>
+            <a href="DTx OM - Product HealthSync.html" target="_blank">HealthSync product</a>
+            <span class="crosslinks-tag">Who</span>
+            <a href="DTx OM - Persona HealthSync patient.html" target="_blank">Errol persona</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== STAGE 2 ========== -->
+    <div class="stage" id="stage-2">
+      <div class="stage-side">
+        <div class="stage-number">02</div>
+        <div class="stage-side-streams">
+          <div class="stage-side-stream"><span>HomeTest</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream"><span>HealthStore</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream on healthsync"><span>HealthSync</span><div class="stage-side-stream-bar"></div></div>
+        </div>
+      </div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">The catch &middot; the watch sees what he can&apos;t</div>
+        <h2 class="stage-title">Errol feels fine. The smartwatch sees three weeks of climbing resting heart rate and a couple of unusual overnight rhythms. The system spots a pattern he didn&apos;t know to look for.</h2>
+
+        <div class="stage-image">
+          <img src="img/errol-stage2.png" alt="The catch: Errol unaware, system aware" style="border-radius:12px;" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;stage-image-icon&quot;>&#x1F3A8;</div><div>Stage 2 illustration &middot; two-pane composition</div><div class=&quot;stage-image-caption&quot;>LEFT: Errol completely unaware (mowing the lawn, walking the dog) &middot; smartwatch on his wrist &middot; RIGHT: clinician&apos;s screen showing his trend chart with anomaly highlighted &middot; alert without alarm</div>';">
+        </div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">I didn&apos;t feel a thing. The week before I&apos;d been a bit tired, but I&apos;m fifty-six, I&apos;m always a bit tired. She called me. Said she&apos;d been watching the watch data and wanted to take a closer look.</p>
+          <div class="pull-quote-attribution">Errol</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">Rising resting heart rate plus nocturnal rhythm anomalies are recognised early signs of cardiovascular strain in patients with hypertension: downstream effects that show up in passive wearable data before the patient feels them. The HealthSync configuration carries <strong>threshold and pattern rules</strong> per use case, not just &ldquo;BP over 160&rdquo; but &ldquo;resting heart rate baseline shift of more than X over Y weeks, combined with Z nocturnal rhythm events&rdquo;. Those rules sit in the operational layer. When triggered, the signal routes to the responsible clinical pathway, which is why Errol&apos;s GP responds by pulling up his BP cuff data and ordering bloods. The watch signal is the prompt, the BP and bloods are the confirmation. <strong>The catch isn&apos;t the BP. It&apos;s the secondary signal the patient isn&apos;t looking at.</strong> The wearable is doing the work Errol couldn&apos;t.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What the care team sees</div>
+            <div class="careteam-text">Alert in the dashboard with the pattern shown. Pulls up Errol&apos;s BP cuff data alongside and sees a quiet upward drift he&apos;d been habituated to. Decides to call him and investigate.</div>
+          </div>
+        </div>
+
+        <div class="crosslinks">
+          <div class="crosslinks-label">Where this lives in the model</div>
+          <div class="crosslinks-row">
+            <span class="crosslinks-tag">How</span>
+            <a href="DTx OM - HealthSync Operational.html" target="_blank">HealthSync Operational</a>
+            <span class="crosslinks-tag">Who</span>
+            <a href="DTx OM - Governance.html#raci-healthsync" target="_blank">HealthSync RACI (threshold alerting)</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== STAGE 3 ========== -->
+    <div class="stage" id="stage-3">
+      <div class="stage-side">
+        <div class="stage-number">03</div>
+        <div class="stage-side-streams">
+          <div class="stage-side-stream on hometest"><span>HomeTest</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream"><span>HealthStore</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream on healthsync"><span>HealthSync</span><div class="stage-side-stream-bar"></div></div>
+        </div>
+      </div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">Diagnostic &middot; the test that confirms what the data suggested</div>
+        <h2 class="stage-title">A blood test kit arrives on the doorstep two days later. Kidney function, lipids, HbA1c: the things you check when you&apos;re asking whether a hypertensive patient is heading somewhere worse.</h2>
+
+        <div class="stage-image">
+          <img src="img/errol-stage3.png" alt="The blood-test kit arrives" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;stage-image-icon&quot;>&#x1F3A8;</div><div>Stage 3 illustration</div><div class=&quot;stage-image-caption&quot;>Errol&apos;s kitchen counter &middot; at-home blood test kit opened &middot; lancet and return envelope &middot; same kitchen as the hero shot &middot; calm and ordinary</div>';">
+        </div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">It came in the post. Bit of a finger-prick, post it back, two days later the result was sitting in the NHS App right under my BP chart. Same app. Same record. I didn&apos;t set anything up.</p>
+          <div class="pull-quote-attribution">Errol</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">The HomeTest workstream activates without re-onboarding Errol. <strong>The same NHS App</strong> handles the kit dispatch, the instructions, the return tracking and the result, not a separate app. <strong>NHS Notify</strong> carries every comms touchpoint under the same identity. The result lands in the same patient record as his BP trend because the IG framework treats him as one patient across workstreams, not as a different patient per product.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What the care team sees</div>
+            <div class="careteam-text">Blood result and BP trend in one view. Picture is clearer. Time for the clinical conversation about what to do.</div>
+          </div>
+        </div>
+
+        <div class="crosslinks">
+          <div class="crosslinks-label">Where this lives in the model</div>
+          <div class="crosslinks-row">
+            <span class="crosslinks-tag">What</span>
+            <a href="DTx OM - Product HomeTest.html" target="_blank">HomeTest product</a>
+            <span class="crosslinks-tag">How</span>
+            <a href="DTx OM - HomeTest Operational.html" target="_blank">HomeTest Operational swimlanes</a>
+            <span class="crosslinks-tag">When</span>
+            <a href="DTx OM - HomeTest FULFIL v4.html" target="_blank">FULFIL stage detail</a>
+            <span class="crosslinks-tag">Who</span>
+            <a href="DTx OM - Persona Joe.html" target="_blank">Joe (kit supplier)</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== STAGE 4 ========== -->
+    <div class="stage" id="stage-4">
+      <div class="stage-side">
+        <div class="stage-number">04</div>
+        <div class="stage-side-streams">
+          <div class="stage-side-stream"><span>HomeTest</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream on healthstore"><span>HealthStore</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream on healthsync"><span>HealthSync</span><div class="stage-side-stream-bar"></div></div>
+        </div>
+      </div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">Prescription &middot; the medication, and the support to stick with it</div>
+        <h2 class="stage-title">The GP adjusts the medication and prescribes a digital therapeutic to help with adherence and lifestyle. By the time Errol is home it&apos;s sitting in his NHS App waiting to be activated.</h2>
+
+        <div class="stage-image">
+          <img src="img/errol-stage4.png" alt="The conversation and the prescription" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;stage-image-icon&quot;>&#x1F3A8;</div><div>Stage 4 illustration</div><div class=&quot;stage-image-caption&quot;>Errol on a video call with his GP &middot; mug of tea &middot; warm, collaborative tone &middot; OR Errol just after the call looking at the new app tile in his NHS App</div>';">
+        </div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">She said the medication would do the work but the app would help me stick to it: reminders, breathing exercises, that sort of thing. By the time I&apos;d made another cup of tea it was in the App. Same NHS Login. Tap, in.</p>
+          <div class="pull-quote-attribution">Errol</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">A third-party digital therapeutic from the HealthStore catalogue enters Errol&apos;s care. <strong>DCB0129</strong> sits with the admitted supplier; <strong>DCB0160</strong> sits with the deploying NHS organisation. A split, not a joint. The <strong>Service Wrapper</strong> at Foundation level holds Errol between clinical touchpoints with engagement nudges and signposting. The therapeutic was admitted nationally through the <strong>three-step selection</strong> (DTx approver, commissioner, clinician); his GP is the third step.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What the care team sees</div>
+            <div class="careteam-text">Prescription decision recorded against Errol&apos;s record. Three signal streams now in view for one patient: physiological data from the watch, the test result, and now engagement with the therapeutic.</div>
+          </div>
+        </div>
+
+        <div class="crosslinks">
+          <div class="crosslinks-label">Where this lives in the model</div>
+          <div class="crosslinks-row">
+            <span class="crosslinks-tag">How</span>
+            <a href="DTx OM - HealthStore Operational.html" target="_blank">HealthStore Operational</a>
+            
+            <span class="crosslinks-tag">Why</span>
+            <a href="DTx OM - Why.html" target="_blank">Three-actor architecture</a>
+            <span class="crosslinks-tag">What</span>
+            <a href="DTx OM - Product HealthStore.html" target="_blank">HealthStore product</a>
+            <a href="DTx OM - HealthStore FULFIL.html" target="_blank">HealthStore FULFIL</a>
+            <span class="crosslinks-tag">Who</span>
+            <a href="DTx OM - Persona HealthStore prescribing clinician.html" target="_blank">Ravi (prescriber)</a>
+            <a href="DTx OM - Persona HealthStore supplier.html" target="_blank">Marcus (DTx supplier)</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== STAGE 5 ========== -->
+    <div class="stage" id="stage-5">
+      <div class="stage-side">
+        <div class="stage-number">05</div>
+        <div class="stage-side-streams">
+          <div class="stage-side-stream on hometest"><span>HomeTest</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream on healthstore"><span>HealthStore</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream on healthsync"><span>HealthSync</span><div class="stage-side-stream-bar"></div></div>
+        </div>
+      </div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">Concurrent care &middot; all three workstreams, one patient, one view</div>
+        <h2 class="stage-title">Three months in. Three signals, one record, one care team holding it all together.</h2>
+
+        <div class="stage-image">
+          <img src="img/errol-stage5.png" alt="Concurrent care" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;stage-image-icon&quot;>&#x1F3A8;</div><div>Stage 5 illustration</div><div class=&quot;stage-image-caption&quot;>Errol settled at home &middot; smartwatch on wrist &middot; cuff visible but not centre-stage &middot; phone showing the DTx tile &middot; autumn light &middot; some time has passed</div>';">
+        </div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">It all just folded into normal life. Watch in the morning, cuff once a week, app reminds me about the medication. Numbers are coming back down. My GP doesn&apos;t need to see me until we both think she does.</p>
+          <div class="pull-quote-attribution">Errol</div>
+        </div>
+
+        <!-- Dashboard mockup: the visual payoff -->
+        <div class="dashboard">
+          <div class="dashboard-eyebrow">The care team view &middot; three signals, one patient</div>
+          <div class="dashboard-title">Errol &middot; hypertension &middot; under management</div>
+          <div class="dashboard-row">
+            <div class="dashboard-card">
+              <div class="dashboard-card-head">
+                <div class="dashboard-card-dot healthsync"></div>
+                <div class="dashboard-card-label">HealthSync &middot; wearable</div>
+              </div>
+              <div class="dashboard-metric">68 bpm</div>
+              <div class="dashboard-metric-sub">resting HR, 7-day &middot; trending down</div>
+              <div class="dashboard-chart">
+                <svg viewBox="0 0 100 30" preserveAspectRatio="none">
+                  <polyline fill="none" stroke="#5BC9B8" stroke-width="2" points="0,8 14,10 28,14 42,12 56,16 70,18 84,22 100,24"/>
+                </svg>
+              </div>
+            </div>
+            <div class="dashboard-card">
+              <div class="dashboard-card-head">
+                <div class="dashboard-card-dot hometest"></div>
+                <div class="dashboard-card-label">HomeTest &middot; bloods</div>
+              </div>
+              <div class="dashboard-metric">eGFR 84</div>
+              <div class="dashboard-metric-sub">kidney function &middot; stable since baseline</div>
+              <div class="dashboard-chart">
+                <svg viewBox="0 0 100 30" preserveAspectRatio="none">
+                  <polyline fill="none" stroke="#4F8AC0" stroke-width="2" points="0,14 25,14 50,15 75,14 100,14"/>
+                </svg>
+              </div>
+            </div>
+            <div class="dashboard-card">
+              <div class="dashboard-card-head">
+                <div class="dashboard-card-dot healthstore"></div>
+                <div class="dashboard-card-label">HealthStore &middot; DTx adherence</div>
+              </div>
+              <div class="dashboard-metric">92%</div>
+              <div class="dashboard-metric-sub">12-week adherence &middot; ahead of cohort</div>
+              <div class="dashboard-chart">
+                <svg viewBox="0 0 100 30" preserveAspectRatio="none">
+                  <polyline fill="none" stroke="#5EBCDB" stroke-width="2" points="0,20 14,18 28,16 42,14 56,12 70,10 84,8 100,8"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="dashboard-row">
+            <div class="dashboard-card">
+              <div class="dashboard-card-head">
+                <div class="dashboard-card-dot healthsync"></div>
+                <div class="dashboard-card-label">BP &middot; weekly cuff</div>
+              </div>
+              <div class="dashboard-metric">132/82</div>
+              <div class="dashboard-metric-sub">12-week average &middot; down from 148/92</div>
+              <div class="dashboard-chart">
+                <svg viewBox="0 0 100 30" preserveAspectRatio="none">
+                  <polyline fill="none" stroke="#5BC9B8" stroke-width="2" points="0,4 14,5 28,8 42,11 56,14 70,18 84,21 100,24"/>
+                </svg>
+              </div>
+            </div>
+            <div class="dashboard-card">
+              <div class="dashboard-card-head">
+                <div class="dashboard-card-dot healthsync"></div>
+                <div class="dashboard-card-label">Nocturnal rhythm</div>
+              </div>
+              <div class="dashboard-metric">Normal</div>
+              <div class="dashboard-metric-sub">no anomalies, 21 nights</div>
+              <div class="dashboard-chart">
+                <svg viewBox="0 0 100 30" preserveAspectRatio="none">
+                  <polyline fill="none" stroke="#5BC9B8" stroke-width="2" points="0,16 17,15 34,16 51,15 68,16 85,15 100,16"/>
+                </svg>
+              </div>
+            </div>
+            <div class="dashboard-card">
+              <div class="dashboard-card-head">
+                <div class="dashboard-card-dot healthstore"></div>
+                <div class="dashboard-card-label">PROMs &middot; quality of life</div>
+              </div>
+              <div class="dashboard-metric">+12</div>
+              <div class="dashboard-metric-sub">vs baseline &middot; self-reported</div>
+              <div class="dashboard-chart">
+                <svg viewBox="0 0 100 30" preserveAspectRatio="none">
+                  <polyline fill="none" stroke="#5EBCDB" stroke-width="2" points="0,22 14,20 28,18 42,15 56,12 70,10 84,8 100,6"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="dashboard-footer">Three workstreams. <strong>One view.</strong> The data flows are different. The patient record is the same. The care team doesn&apos;t reconcile three systems. The operating model already did.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What the care team sees</div>
+            <div class="careteam-text">Pathway-level picture. BP control trending, adherence high, kidney function stable, no rhythm events. Annual review can be virtual. Time freed for patients who genuinely need to be in clinic.</div>
+          </div>
+        </div>
+
+        <div class="crosslinks">
+          <div class="crosslinks-label">Where this lives in the model</div>
+          <div class="crosslinks-row">
+            <span class="crosslinks-tag">What</span>
+            <a href="DTx OM - Anatomical.html" target="_blank">Anatomy &middot; full architecture</a>
+            <span class="crosslinks-tag">How</span>
+            <a href="DTx OM - HealthSync Operational.html" target="_blank">HealthSync Operational</a>
+            <a href="DTx OM - HealthStore Operational.html" target="_blank">HealthStore Operational</a>
+            <a href="DTx OM - HomeTest Operational.html" target="_blank">HomeTest Operational</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== STAGE 6 ========== -->
+    <div class="stage" id="stage-6">
+      <div class="stage-side">
+        <div class="stage-number">06</div>
+        <div class="stage-side-streams">
+          <div class="stage-side-stream on hometest"><span>HomeTest</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream on healthstore"><span>HealthStore</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream on healthsync"><span>HealthSync</span><div class="stage-side-stream-bar"></div></div>
+        </div>
+      </div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">Outcome &middot; life, kept on track</div>
+        <h2 class="stage-title">Eighteen months on. No crisis. No admission. Errol&apos;s life back to what his life is.</h2>
+
+        <div class="stage-image">
+          <img src="img/errol-stage6.png" alt="Outcome" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;stage-image-icon&quot;>&#x1F3A8;</div><div>Stage 6 illustration</div><div class=&quot;stage-image-caption&quot;>Errol with his wife at the kitchen table, or out walking, or with his grandchildren &middot; smartwatch the only visible tech &middot; tech receded into the background of his life &middot; the life the model protected';">
+        </div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">The honest thing is I&apos;d forgotten about it. Cuff once a week, watch on, take the meds. My GP says my numbers are where they should be. We&apos;ve been to Eindhoven and back since the call. My wife&apos;s sister&apos;s. I&apos;m fine.</p>
+          <div class="pull-quote-attribution">Errol</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model produced</div>
+          <div class="whats-happening-body">Hypertensive crisis avoided. Hospital admission avoided. Clinical decision points happened at the right moments, in the right places, with the right evidence. Errol was the one taking the readings, but the model was the one making sure they meant something to someone who could act. <strong>This is the picture of the model working.</strong></div>
+        </div>
+
+        <div class="crosslinks">
+          <div class="crosslinks-label">Where this lives in the model</div>
+          <div class="crosslinks-row">
+            <span class="crosslinks-tag">Why</span>
+            <a href="DTx OM - Why.html" target="_blank">Why this exists at all</a>
+            <span class="crosslinks-tag">Status</span>
+            <a href="DTx OM - Status.html" target="_blank">What we still need to land for this to be real at scale</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- CONCLUSION                                                    -->
+  <!-- ============================================================ -->
+  <div class="conclusion">
+    <div class="conclusion-eyebrow">What Errol&apos;s story shows</div>
+    <h2 class="conclusion-title">Three workstreams, one operating model.<br>Three changes, for three audiences.</h2>
+    <p class="conclusion-strap">Three separate operating models would have forced Errol to onboard three times, sign three IG agreements, exist as three patients to the NHS. Three care teams would have to reconcile three views of him. The operating model exists so that none of that happens, and so that the things that <strong>do</strong> happen are the right things at the right time.</p>
+
+    <div class="outcomes-grid">
+      <div class="outcome">
+        <div style="width:96px;height:96px;border-radius:50%;overflow:hidden;margin-bottom:14px;background:#E0E5EB;box-shadow:0 4px 14px rgba(0,48,135,0.15);"><a href="DTx OM - Persona HealthSync patient.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="img/errol-portrait.png" alt="Errol" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block;"></a></div>
+        <div class="outcome-h">For Errol</div>
+        <div class="outcome-title">A crisis that never happened.</div>
+        <div class="outcome-body">BP under control. No A&amp;E visit. No admission. His annual review is mostly virtual. He onboarded once and consented once for a journey that crossed three workstreams. He doesn&apos;t experience three products. He experiences one NHS App that has things in it.</div>
+      </div>
+      <div class="outcome">
+        <div style="width:96px;height:96px;border-radius:50%;overflow:hidden;margin-bottom:14px;background:#003087;box-shadow:0 4px 14px rgba(0,48,135,0.15);"><img src="img/icon-care.png" alt="Care team icon" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        <div class="outcome-h">For the care team</div>
+        <div class="outcome-title">Intervention before crisis.</div>
+        <div class="outcome-body">The wearable signal arrived weeks before the clinical event would have. The diagnostic confirmed it. The therapeutic supported the response. Three signal streams in one record, not three systems to reconcile. Clinical time freed for the patients who genuinely need to be in clinic.</div>
+      </div>
+      <div class="outcome">
+        <div style="width:96px;height:96px;border-radius:50%;overflow:hidden;margin-bottom:14px;background:#003087;box-shadow:0 4px 14px rgba(0,48,135,0.15);"><img src="img/icon-system.png" alt="System icon" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        <div class="outcome-h">For the system</div>
+        <div class="outcome-title">Pathway value, demonstrated.</div>
+        <div class="outcome-body">Value released at the pathway level, not the test l

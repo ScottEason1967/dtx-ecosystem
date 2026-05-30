@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HealthStore Teamwork: Digital Therapeutics Operating Model</title>
+<style>
+ /* Canonical topnav */
+ .topnav{background:#fff;border-bottom:1px solid #ebeef1;padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:nowrap;min-height:54px;box-sizing:border-box;width:100%;max-width:100%;margin:0;position:sticky;top:0;z-index:200;}
+ .topnav.topnav-secondary{background:#F4F8FC;border-bottom:1px solid #d6e2ef;padding:9px 36px;min-height:42px;}
+ .topnav .nav-back{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-back:hover{color:#005EB8;}
+ .topnav .nav-siblings{display:flex;gap:4px;flex-wrap:nowrap;overflow-x:auto;align-items:center;}
+ .topnav .nav-siblings a{font-size:12px;font-weight:600;color:#4C6272;text-decoration:none;padding:6px 12px;border-radius:6px;letter-spacing:0.2px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-siblings a:hover{background:#f0f4f8;color:#212B32;}
+ .topnav .nav-siblings a.active{background:#003087;color:#fff;}
+ .topnav.topnav-secondary .nav-siblings a{font-size:11.5px;padding:5px 10px;}
+ .topnav.topnav-secondary .nav-siblings a.active{background:#005EB8;color:#fff;}
+ .topnav .nav-secondary-label{font-size:10px;font-weight:800;letter-spacing:1.5px;color:#7E8B97;text-transform:uppercase;flex-shrink:0;}
+
+  :root {
+    --nhs-dark:#003087; --nhs-blue:#005EB8; --nhs-green:#006747; --nhs-pink:#AE2573;
+    --amber:#FFB91D; --amber-deep:#C9A227; --warm-cream:#FFF9EC;
+    --text:#212B32; --text-sec:#4C6272; --text-muted:#7E8B97;
+    --border:#E5EBF0; --border-lt:#EFF2F5; --card:#ffffff;
+    --bg:#F4F7FA;
+    --stand-accent:#005EB8; --bau-accent:#006747; --ext-accent:#AE2573;
+    --status-live:#006747; --status-flight:#005EB8; --status-open:#B5121B; --status-blocked:#9A6700; --status-risk:#7C2855;
+    --status-live-bg:#E0F0E6; --status-flight-bg:#D9E8F4; --status-open-bg:#FCE3E5; --status-blocked-bg:#FDF3D8; --status-risk-bg:#F4E1EC;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.55;-webkit-font-smoothing:antialiased;}
+
+  .page{max-width:1180px;margin:0 auto;padding:48px 32px 80px;}
+
+  .hero{margin-bottom:36px;}
+  .amber-rule{width:56px;height:3px;background:var(--amber);border-radius:2px;margin-bottom:14px;}
+  .h-eyebrow{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--text-sec);text-transform:uppercase;margin-bottom:10px;}
+  .h-title{font-size:34px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.8px;line-height:1.1;margin-bottom:10px;}
+  .h-sub{font-size:15px;color:var(--text-sec);line-height:1.6;max-width:760px;}
+  .h-sub strong{color:var(--text);font-weight:700;}
+
+  .cap{background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:14px;overflow:hidden;transition:box-shadow 0.18s ease, border-color 0.18s ease;}
+  .cap:hover{border-color:#D5DEE7;box-shadow:0 4px 14px rgba(0,32,64,0.06);}
+  .cap[open]{border-color:var(--nhs-blue);box-shadow:0 8px 24px rgba(0,32,64,0.08);}
+
+  .cap > summary{cursor:pointer;padding:20px 24px 16px;list-style:none;display:block;}
+  .cap > summary::-webkit-details-marker{display:none;}
+
+  .cap-top{display:flex;align-items:flex-start;gap:16px;margin-bottom:14px;}
+  .cap-num{flex-shrink:0;font-size:10.5px;font-weight:800;letter-spacing:1.8px;color:var(--text-muted);text-transform:uppercase;padding-top:5px;min-width:60px;}
+  .cap-titleblock{flex:1;}
+  .cap-title{font-size:18px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.3px;margin-bottom:4px;line-height:1.25;}
+  .cap-strap{font-size:13px;color:var(--text-sec);line-height:1.55;}
+  .cap-strap strong{color:var(--text);font-weight:700;}
+  .cap-sizing{flex-shrink:0;text-align:center;background:#F4F8FC;border:1px solid #DCE6EE;border-radius:8px;padding:8px 12px;min-width:84px;}
+  .cap-sizing-label{font-size:9.5px;font-weight:800;letter-spacing:1px;color:var(--text-muted);text-transform:uppercase;margin-bottom:2px;}
+  .cap-sizing-fte{font-size:17px;font-weight:900;color:var(--nhs-dark);line-height:1;letter-spacing:-0.4px;}
+  .cap-sizing-unit{font-size:9.5px;font-weight:700;color:var(--text-muted);margin-top:3px;letter-spacing:0.5px;text-transform:uppercase;}
+
+  .cap-streams{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:12px;}
+  .stream-h{font-size:10.5px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;display:inline-flex;align-items:center;gap:6px;}
+  .stream-h-stand{color:var(--stand-accent);}
+  .stream-h-bau{color:var(--bau-accent);}
+  .stream-h::before{content:'';display:inline-block;width:8px;height:8px;border-radius:50%;}
+  .stream-h-stand::before{background:var(--stand-accent);}
+  .stream-h-bau::before{background:var(--bau-accent);}
+  .stream-list{list-style:none;padding:0;margin:0;font-size:12.5px;color:var(--text-sec);line-height:1.5;}
+  .stream-list li{padding:5px 0 5px 14px;position:relative;border-top:1px solid var(--border-lt);}
+  .stream-list li:first-child{border-top:none;}
+  .stream-list li::before{content:'';position:absolute;left:0;top:11px;width:4px;height:4px;border-radius:50%;background:var(--text-muted);}
+
+  .cap-talks{padding-top:10px;border-top:1px solid var(--border-lt);display:flex;gap:6px;flex-wrap:wrap;align-items:center;}
+  .talks-label{font-size:10px;font-weight:800;letter-spacing:1.2px;color:var(--text-muted);text-transform:uppercase;margin-right:4px;}
+  .talks-pill{font-size:11.5px;padding:3px 9px;background:#FBEDF3;color:#7C2855;border-radius:4px;border:1px solid #F0D9E4;}
+
+  .cap-expand-hint{margin-top:10px;font-size:11px;color:var(--text-muted);font-style:italic;display:flex;align-items:center;gap:5px;}
+  .cap-expand-hint::after{content:'\25BC';font-size:8px;}
+  .cap[open] .cap-expand-hint::after{content:'\25B2';}
+  .cap[open] .cap-expand-hint span.collapsed-text{display:none;}
+  .cap-expand-hint .expanded-text{display:none;}
+  .cap[open] .cap-expand-hint .expanded-text{display:inline;}
+
+  /* Expanded detail */
+  .cap-detail{padding:0 24px 24px;border-top:1px solid var(--border-lt);background:#FAFBFD;}
+  .detail-section{padding-top:20px;}
+  .detail-h{font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--nhs-dark);margin-bottom:10px;}
+  .detail-h-stand{color:var(--stand-accent);}
+  .detail-h-bau{color:var(--bau-accent);}
+
+  /* Stand-it-up detail rows */
+  .stand-detail{background:#fff;border:1px solid var(--border-lt);border-radius:8px;overflow:hidden;}
+  .stand-row{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:flex-start;padding:11px 14px;border-top:1px solid var(--border-lt);}
+  .stand-row:first-child{border-top:none;}
+  .stand-row-text{font-size:12.5px;color:var(--text-sec);line-height:1.5;}
+  .stand-row-text strong{color:var(--text);font-weight:700;display:block;margin-bottom:3px;font-size:12.5px;}
+  .pill{display:inline-block;font-size:9.5px;font-weight:800;letter-spacing:0.6px;padding:3px 8px;border-radius:10px;text-transform:uppercase;white-space:nowrap;}
+  .pill-live{background:var(--status-live-bg);color:var(--status-live);}
+  .pill-flight{background:var(--status-flight-bg);color:var(--status-flight);}
+  .pill-open{background:var(--status-open-bg);color:var(--status-open);}
+  .pill-blocked{background:var(--status-blocked-bg);color:var(--status-blocked);}
+  .pill-risk{background:var(--status-risk-bg);color:var(--status-risk);}
+  .size-pill{display:inline-block;font-size:9.5px;font-weight:800;letter-spacing:0.5px;padding:3px 8px;border-radius:10px;min-width:32px;text-align:center;}
+  .size-xs{background:#EDF5F9;color:#5C8FAB;}
+  .size-s{background:#D5E8F0;color:#005EB8;}
+  .size-m{background:#A8C8D8;color:#003087;}
+  .size-l{background:#5C8FAB;color:#fff;}
+  .size-xl{background:#003087;color:#fff;}
+
+  /* BAU detail */
+  .bau-detail{background:#fff;border:1px solid var(--border-lt);border-radius:8px;padding:14px;}
+  .bau-detail ul{list-style:none;padding:0;margin:0;font-size:12.5px;color:var(--text-sec);line-height:1.55;}
+  .bau-detail li{padding:4px 0 4px 14px;position:relative;border-top:1px solid var(--border-lt);}
+  .bau-detail li:first-child{border-top:none;}
+  .bau-detail li::before{content:'';position:absolute;left:0;top:10px;width:4px;height:4px;border-radius:50%;background:var(--bau-accent);}
+
+  /* Disciplines */
+  .disc-list{display:flex;gap:6px;flex-wrap:wrap;}
+  .disc-pill{font-size:11.5px;padding:4px 10px;background:#EFF3F7;color:var(--text-sec);border-radius:14px;border:1px solid #DCE3EA;}
+
+  /* Interfaces */
+  .intf-table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--border-lt);border-radius:8px;overflow:hidden;font-size:12px;}
+  .intf-table th{background:#F4F8FC;color:var(--text-sec);font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:8px 12px;text-align:left;border-bottom:1px solid var(--border);}
+  .intf-table td{padding:9px 12px;border-top:1px solid var(--border-lt);color:var(--text-sec);vertical-align:top;line-height:1.5;}
+  .intf-table tr:first-child td{border-top:none;}
+  .intf-ext{font-weight:700;color:#7C2855;background:#FBEDF3;width:22%;}
+  .intf-cadence{font-size:11px;color:var(--text-muted);width:24%;}
+
+  /* Sizing reasoning */
+  .why-box{background:#FFFCF1;border:1px solid #F5E5BC;border-radius:8px;padding:12px 14px;font-size:12.5px;color:var(--text-sec);line-height:1.6;}
+  .why-box strong{color:var(--text);font-weight:700;}
+
+  /* Governance touch */
+  .gov-box{font-size:12.5px;color:var(--text-sec);line-height:1.6;padding:10px 0;}
+  .gov-box strong{color:var(--text);font-weight:700;}
+
+  /* Interfaces reference panel */
+  .interfaces{margin-top:48px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;}
+  .ext-h{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--ext-accent);margin-bottom:8px;}
+  .ext-title{font-size:20px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.4px;margin-bottom:6px;}
+  .ext-strap{font-size:13px;color:var(--text-sec);line-height:1.55;margin-bottom:20px;max-width:820px;}
+  .ext-strap strong{color:var(--text);font-weight:700;}
+  .ext-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+  .ext-card{background:#FAFBFD;border:1px solid var(--border-lt);border-left:3px solid var(--ext-accent);border-radius:6px;padding:12px 14px;}
+  .ext-card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:4px;}
+  .ext-name{font-size:13px;font-weight:800;color:var(--nhs-dark);margin-bottom:0;flex:1;line-height:1.25;}
+  .ext-caps{display:flex;gap:3px;flex-wrap:wrap;justify-content:flex-end;align-items:center;flex-shrink:0;max-width:130px;}
+  .ext-cap-pill{font-size:10px;font-weight:800;background:#EFF4F9;color:var(--nhs-blue);border:1px solid #D5E0EB;border-radius:8px;padding:2px 7px;line-height:1.2;letter-spacing:0.3px;text-decoration:none;cursor:pointer;transition:background 0.15s ease,border-color 0.15s ease,color 0.15s ease;}
+  a.ext-cap-pill:hover{background:var(--nhs-blue);color:#fff;border-color:var(--nhs-blue);}
+  a.ext-cap-pill:focus{outline:2px solid var(--amber);outline-offset:1px;}
+  html{scroll-behavior:smooth;}
+  .cap:target{box-shadow:0 0 0 3px var(--amber),0 8px 24px rgba(0,32,64,0.08);border-color:var(--nhs-blue);}
+  .ext-tag{display:inline-block;font-size:9.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:2px 7px;border-radius:3px;background:#FBEDF3;color:#7C2855;margin-bottom:6px;}
+  .ext-desc{font-size:11.5px;color:var(--text-sec);line-height:1.5;}
+
+  .glossary{margin-top:18px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px 24px;}
+  .gloss-h{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--text-sec);margin-bottom:6px;}
+  .gloss-title{font-size:18px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.3px;margin-bottom:6px;}
+  .gloss-strap{font-size:12.5px;color:var(--text-sec);line-height:1.55;margin-bottom:14px;}
+  .gloss-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0 24px;}
+  .gloss-item{padding:7px 0;border-top:1px solid var(--border-lt);display:grid;grid-template-columns:90px 1fr;gap:10px;font-size:12.5px;line-height:1.5;align-items:baseline;}
+  .gloss-item:first-child, .gloss-item:nth-child(2){border-top:none;}
+  .gloss-term{font-weight:800;color:var(--nhs-dark);font-size:12px;letter-spacing:0.3px;}
+  .gloss-def{color:var(--text-sec);}
+  @media (max-width:760px){
+    .gloss-grid{grid-template-columns:1fr;}
+    .gloss-item:nth-child(2){border-top:1px solid var(--border-lt);}
+  }
+  .foot{margin-top:32px;padding-top:20px;font-size:11.5px;color:var(--text-muted);line-height:1.6;text-align:center;}
+
+  @media (max-width:760px){
+    .cap-streams{grid-template-columns:1fr;gap:14px;}
+    .cap-top{flex-direction:column;}
+    .ext-grid{grid-template-columns:1fr;}
+    .stand-row{grid-template-columns:1fr;}
+    .h-title{font-size:26px;}
+    .page{padding:30px 18px 60px;}
+  }
+  .cap-c1 { --accent-c: #003087; --accent-tint: #E6EBF5; }
+  .cap-c2 { --accent-c: #AE2573; --accent-tint: #F8E3EC; }
+  .cap-c3 { --accent-c: #7C2855; --accent-tint: #F4E1EC; }
+  .cap-c4 { --accent-c: #005EB8; --accent-tint: #D9E8F4; }
+  .cap-c5 { --accent-c: #9A6700; --accent-tint: #F5E5BC; }
+  .cap-c6 { --accent-c: #00819B; --accent-tint: #DEF1F5; }
+  .cap-c7 { --accent-c: #4C6272; --accent-tint: #E6EBEF; }
+  .cap-c8 { --accent-c: #006747; --accent-tint: #E0F0E6; }
+  .cap-c9 { --accent-c: #C9A227; --accent-tint: #FAF1D6; }
+  .cap-c10 { --accent-c: #DA291C; --accent-tint: #F8DDD9; }
+  .cap-c11 { --accent-c: #5A1D3E; --accent-tint: #ECDDE3; }
+
+  /* Apply accent to the capability card */
+  .cap[class*="cap-c"]{border-top:4px solid var(--accent-c);}
+  .cap[class*="cap-c"] .cap-head{background:linear-gradient(180deg, var(--accent-tint) 0%, #FAFBFC 100%);}
+  .cap[class*="cap-c"] .cap-num{background:var(--accent-c);color:#fff;border-radius:6px;padding:6px 8px;text-align:center;width:64px;display:flex;flex-direction:column;justify-content:center;align-items:center;height:48px;}
+  .cap-num-big{font-size:20px;font-weight:900;letter-spacing:-0.5px;line-height:1;}
+  .cap-num-of{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;opacity:0.85;margin-top:3px;}
+  .cap[class*="cap-c"] .cap-title{color:var(--accent-c);}
+  .cap[class*="cap-c"] .cap-sizing{background:#fff;border-color:var(--accent-c);border-width:1.5px;}
+  .cap[class*="cap-c"] .cap-sizing-fte{color:var(--accent-c);}
+  .cap[class*="cap-c"] .stream-h-stand{color:var(--accent-c);}
+  .cap[class*="cap-c"] .stream-h-stand::before{background:var(--accent-c);}
+  .cap[class*="cap-c"] .detail-h-stand{color:var(--accent-c);}
+
+  /* Sticky top nav */
+  .navbar{position:sticky;top:115px;z-index:198;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:10px 14px;margin-bottom:24px;display:flex;flex-direction:column;gap:8px;box-shadow:0 4px 12px rgba(0,32,64,0.04);}
+  .nav-row-caps{display:flex;flex-wrap:wrap;gap:5px;align-items:center;}
+  .nav-row-links{display:flex;justify-content:center;gap:10px;padding-top:8px;border-top:1px solid var(--border);}
+  .nav-label{font-size:9.5px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-right:6px;}
+  .nav-chip{font-size:11px;font-weight:700;padding:4px 9px;border-radius:14px;background:#FAFBFC;color:var(--text);border:1px solid var(--border);text-decoration:none;display:inline-flex;gap:5px;align-items:center;transition:transform 0.15s,box-shadow 0.15s,background 0.15s,color 0.15s,border-color 0.15s;line-height:1.3;}
+  .nav-chip:hover{transform:translateY(-1px);box-shadow:0 3px 8px rgba(0,32,64,0.08);}
+  .nav-chip-num{font-size:10px;font-weight:900;color:var(--chip-c);min-width:13px;text-align:right;}
+  .nav-chip:hover{background:var(--chip-c);color:#fff;border-color:var(--chip-c);}
+  .nav-chip:hover .nav-chip-num{color:#fff;}
+  
+  .nav-link{font-size:11px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:var(--text-sec);text-decoration:none;padding:5px 9px;border-radius:14px;border:1px solid var(--border);background:#FAFBFC;}
+  .nav-link:hover{background:var(--nhs-dark);color:#fff;border-color:var(--nhs-dark);}
+
+  /* Persona portrait corner */
+  .cap-personas{margin-left:auto;display:flex;gap:0;align-items:center;flex-shrink:0;padding-left:14px;}
+  .personas-label{font-size:9.5px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--text-muted);margin-right:8px;}
+  .persona-portrait{width:36px;height:36px;border-radius:50%;object-fit:cover;object-position:top center;border:2px solid #fff;box-shadow:0 0 0 1px var(--accent-c);background:#fff;margin-left:-6px;}
+  .persona-portrait:first-of-type{margin-left:0;}
+  @media (max-width:760px){
+    .cap-personas{margin-left:0;width:100%;margin-top:8px;}
+  }
+
+  
+  
+  
+  
+  
+  
+  
+  
+
+  /* === Legend strip (horizontal, full-width below title) === */
+  .legend{background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px 22px 18px;box-shadow:0 2px 8px rgba(0,32,64,0.04);margin:18px 0 28px;}
+  .legend-title{font-size:10.5px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:14px;}
+  .legend-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;}
+  @media (max-width:880px){.legend-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:520px){.legend-grid{grid-template-columns:1fr;}}
+  .legend-item{display:grid;grid-template-columns:70px 1fr;gap:12px;align-items:center;padding:8px 18px;border-left:1px solid var(--border-lt);}
+  .legend-item:first-of-type{border-left:none;padding-left:0;}
+  @media (max-width:880px){
+    .legend-item{border-left:none;border-top:1px solid var(--border-lt);padding:10px 0;}
+    .legend-item:nth-of-type(-n+2){border-top:none;}
+    .legend-item:nth-of-type(2){border-left:1px solid var(--border-lt);padding-left:18px;}
+  }
+  @media (max-width:520px){
+    .legend-item{border-left:none !important;padding-left:0 !important;border-top:1px solid var(--border-lt);}
+    .legend-item:first-of-type{border-top:none;}
+  }
+  .legend-icon{display:flex;align-items:center;justify-content:center;}
+  /* Demo "1 of 11" badge — mirrors .cap-num at scaled-down size */
+  .legend-num{background:#003087;color:#fff;border-radius:6px;padding:5px 7px;text-align:center;width:62px;display:flex;flex-direction:column;justify-content:center;align-items:center;height:44px;}
+  .legend-num .cap-num-big{font-size:18px;font-weight:900;letter-spacing:-0.5px;line-height:1;}
+  .legend-num .cap-num-of{font-size:8.5px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;opacity:0.85;margin-top:2px;}
+  /* Demo sizing box — mirrors .cap-sizing */
+  .legend-sizing{background:#F4F8FC;border:1px solid #DCE6EE;border-radius:8px;padding:6px 10px;min-width:62px;text-align:center;}
+  .legend-sizing-label{font-size:8.5px;font-weight:800;letter-spacing:0.9px;color:var(--text-muted);text-transform:uppercase;margin-bottom:1px;}
+  .legend-sizing-fte{font-size:15px;font-weight:900;color:var(--nhs-dark);line-height:1;letter-spacing:-0.4px;}
+  .legend-sizing-unit{font-size:8.5px;font-weight:700;color:var(--text-muted);margin-top:2px;letter-spacing:0.5px;text-transform:uppercase;}
+  /* Demo portraits — mirrors .persona-portrait sized smaller */
+  .legend-portraits{display:flex;gap:0;align-items:center;}
+  .legend-portraits img{width:28px;height:28px;border-radius:50%;object-fit:cover;object-position:top center;border:2px solid #fff;box-shadow:0 0 0 1px var(--border);background:#fff;margin-left:-6px;}
+  .legend-portraits img:first-child{margin-left:0;}
+  /* Demo size pills row */
+  .legend-pills{display:flex;gap:3px;flex-wrap:wrap;justify-content:center;}
+  .legend-pills .size-pill{font-size:8.5px;padding:2px 5px;min-width:24px;}
+  .legend-text strong{font-size:12px;font-weight:800;color:var(--text);display:block;margin-bottom:2px;letter-spacing:-0.1px;}
+  .legend-text span{font-size:11px;color:var(--text-sec);line-height:1.45;}
+
+
+ :root { --nhs-blue-deep:#003087; }
+ body { background: linear-gradient(180deg, var(--nhs-blue) 0%, var(--nhs-blue-deep) 100%) !important; background-attachment: fixed !important; }
+ .page { background:#ffffff; border-radius:18px; box-shadow:0 14px 40px rgba(0,48,135,0.20); margin-top:30px !important; margin-bottom:50px !important; }
+ @media (max-width:760px){ .page { border-radius:12px; margin-top:18px !important; } }
+</style>
+<style>
+  .ecosystem-nav {
+    background: #fff;
+    border-bottom: 1px solid #ebeef1;
+    padding: 12px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 48px;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  }
+  .ecosystem-nav a {
+    font-size: 13px; font-weight: 700; color: #003087;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .ecosystem-nav a:hover { color: #005EB8; }
+  .ecosystem-nav .nav-context {
+    font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
+    color: #7E8B97; text-transform: uppercase;
+  }
+  .ecosystem-nav .nav-product {
+    font-size: 10.5px; font-weight: 800; letter-spacing: 0.8px;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 4px; color: #fff;
+  }
+  .ecosystem-nav .nav-product.dtx { background: #003087; }
+  .ecosystem-nav .nav-product.hometest { background: #003087; }
+  .ecosystem-nav .nav-product.healthstore { background: #00A9CE; }
+  .ecosystem-nav .nav-product.healthsync { background: #00A499; }
+</style>
+</head>
+<body>
+<div class="ecosystem-nav">
+  <a href="../index.html">← DTx Ecosystem</a>
+  <span class="nav-context">HealthStore Teamwork</span>
+  <span class="nav-product healthstore">HealthStore</span>
+</div>
+
+<nav class="topnav">
+<a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+<div class="nav-siblings">
+ <a href="DTx OM - Why.html">Why</a>
+ <a href="DTx OM - What.html">What</a>
+ <a href="DTx OM - Lifecycle.html">When</a>
+ <a href="DTx OM - HomeTest Operational.html">How</a>
+ <a href="DTx OM - Governance.html">Who</a>
+ <a href="DTx OM - Hearts and Minds.html">Hearts and Minds</a>
+ <a href="DTx OM - HomeTest Teamwork.html" class="active">Teamwork</a>
+ <a href="DTx OM - Status.html">Status</a>
+</div>
+</nav>
+
+<div class="page">
+
+    <div style="background:#f4f8fc;border:1px solid #c4d3e6;border-radius:10px;padding:10px 16px;margin:0 0 20px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:center;position:sticky;top:55px;z-index:199;box-shadow:0 4px 10px rgba(0,48,135,0.06);" class="product-selector">
+    <span style="font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:#003087;text-transform:uppercase;margin-right:6px;">Product overlay:</span>
+    <a href="DTx OM - HomeTest Teamwork.html" style="font-size:12.5px;font-weight:700;color:#003087;text-decoration:none;padding:7px 16px;border-radius:6px;border:1px solid #c4d3e6;background:#fff;">HomeTest</a>
+    <a href="DTx OM - HealthStore Teamwork.html" style="font-size:12.5px;font-weight:700;color:#fff;background:#00A9CE;text-decoration:none;padding:7px 16px;border-radius:6px;">HealthStore</a>
+    <a href="DTx OM - HealthSync Teamwork.html" style="font-size:12.5px;font-weight:700;color:#00A499;text-decoration:none;padding:7px 16px;border-radius:6px;border:1px solid #b8e0d8;background:#fff;opacity:0.9;">HealthSync</a>
+  </div>
+
+  <nav class="navbar" aria-label="Capability quick-jump">
+    <div class="nav-row-caps">
+      <span class="nav-label">Capabilities</span>
+      <a href="#cap-1" class="nav-chip" style="--chip-c:#003087"><span class="nav-chip-num">1</span>Framework</a>
+      <a href="#cap-2" class="nav-chip" style="--chip-c:#AE2573"><span class="nav-chip-num">2</span>Suppliers</a>
+      <a href="#cap-3" class="nav-chip" style="--chip-c:#7C2855"><span class="nav-chip-num">3</span>Safety</a>
+      <a href="#cap-4" class="nav-chip" style="--chip-c:#005EB8"><span class="nav-chip-num">4</span>IG</a>
+      <a href="#cap-5" class="nav-chip" style="--chip-c:#9A6700"><span class="nav-chip-num">5</span>Platform</a>
+      <a href="#cap-6" class="nav-chip" style="--chip-c:#00819B"><span class="nav-chip-num">6</span>Commissioners</a>
+      <a href="#cap-7" class="nav-chip" style="--chip-c:#4C6272"><span class="nav-chip-num">7</span>Measure</a>
+      <a href="#cap-8" class="nav-chip" style="--chip-c:#006747"><span class="nav-chip-num">8</span>Engagement</a>
+      <a href="#cap-9" class="nav-chip" style="--chip-c:#C9A227"><span class="nav-chip-num">9</span>Payments</a>
+      <a href="#cap-10" class="nav-chip" style="--chip-c:#DA291C"><span class="nav-chip-num">10</span>Governance</a>
+      <a href="#cap-11" class="nav-chip" style="--chip-c:#5A1D3E"><span class="nav-chip-num">11</span>Stewardship</a>
+      <a href="#cap-12" class="nav-chip" style="--chip-c:#ED8B00"><span class="nav-chip-num">12</span>PMS</a>
+      <a href="#cap-13" class="nav-chip" style="--chip-c:#768692"><span class="nav-chip-num">13</span>Pathway</a>
+      <a href="#cap-14" class="nav-chip" style="--chip-c:#41B6E6"><span class="nav-chip-num">14</span>Independent assurance</a>
+      <a href="#cap-15" class="nav-chip" style="--chip-c:#8A1538"><span class="nav-chip-num">15</span>Contract mgmt</a>
+      <a href="#cap-16" class="nav-chip" style="--chip-c:#3D2C8D"><span class="nav-chip-num">16</span>Evidence</a>
+    </div>
+    <div class="nav-row-links">
+      <a href="#interfaces" class="nav-link">Interfaces</a>
+      <a href="#glossary" class="nav-link">Glossary</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="amber-rule"></div>
+    <div class="h-eyebrow">Teamwork &middot; HealthStore overlay &middot; Delivery accountabilities</div>
+    <h1 class="h-title"><span style="display:inline-block;background:#00A9CE;color:#fff;padding:4px 14px 6px;border-radius:10px;line-height:1;letter-spacing:-0.4px;">HealthStore</span> operating model in BAU. <span style="font-size:14px; font-weight:400; opacity:0.7; letter-spacing:0;">(HealthStore overlay within the Digital Therapeutics Operating Model)</span></h1>
+    <p class="h-sub">Sixteen capabilities. For each one, <strong>what has to land to stand it up</strong> and <strong>what it does once running.</strong> Click any capability to drill into the detail.</p>
+    <p class="h-sub" style="margin-top:10px;font-size:13.5px;border-left:3px solid var(--nhs-blue);padding-left:12px;background:#F4F8FC;padding-top:8px;padding-bottom:8px;border-radius:0 6px 6px 0;"><strong>Operating principle.</strong> NHSE acts as a coordinating function and collective bargaining entity, not a buyer. The BAU team orchestrates; suppliers, ICBs and clinical teams do the work. Sizing and shape follow from that.</p>
+    <p class="h-sub" style="margin-top:10px;font-size:13.5px;border-left:3px solid #C9A227;padding-left:12px;background:#FFF9EC;padding-top:8px;padding-bottom:8px;border-radius:0 6px 6px 0;"><strong>On FTE sizing.</strong> The lead HealthStore configuration is in design. There isn&apos;t yet enough operational shape to support defensible FTE bands per capability without inventing numbers. Sizing boxes are held at TBC and land once the lead configuration locks. The HomeTest Teamwork page carries FTE bands today because HomeTest is operationally mature; HealthStore inherits the same sizing pattern when ready.</p>
+  </div>
+
+  <aside class="legend" aria-label="How to read each capability card">
+    <div class="legend-title">How to read each card</div>
+    <div class="legend-grid">
+      <div class="legend-item">
+        <div class="legend-icon"><div class="legend-num"><span class="cap-num-big">1</span><span class="cap-num-of">of 16</span></div></div>
+        <div class="legend-text"><strong>Capability number</strong><span>One of sixteen distinct functions the HealthStore BAU team has to deliver.</span></div>
+      </div>
+      <div class="legend-item">
+        <div class="legend-icon"><div class="legend-sizing"><div class="legend-sizing-label">Sizing</div><div class="legend-sizing-fte">TBC</div><div class="legend-sizing-unit">FTE</div></div></div>
+        <div class="legend-text"><strong>Team size in BAU</strong><span>Order-of-magnitude estimate once steady state lands.</span></div>
+      </div>
+      <div class="legend-item">
+        <div class="legend-icon"><div class="legend-portraits"><a href="DTx OM - Persona Sarah.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/sarah.png" alt="Sarah"></a><a href="DTx OM - Persona Aisha.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/aisha.png" alt="Aisha"></a><a href="DTx OM - Persona David.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/david.png" alt="David"></a></div></div>
+        <div class="legend-text"><strong>Who it affects</strong><span>Cast members the capability touches. Click any portrait to open their page.</span></div>
+      </div>
+      <div class="legend-item">
+        <div class="legend-icon"><div class="legend-pills"><span class="size-pill size-xs">XS</span><span class="size-pill size-s">S</span><span class="size-pill size-m">M</span><span class="size-pill size-l">L</span><span class="size-pill size-xl">XL</span></div></div>
+        <div class="legend-text"><strong>Effort to stand up</strong><span>T-shirt sizing inside the expanded view for each item required to go live.</span></div>
+      </div>
+    </div>
+  </aside>
+
+  <details class="cap cap-c1" id="cap-1">
+    <summary>
+      <div class="cap-top">
+        <div class="cap-num"><span class="cap-num-big">1</span><span class="cap-num-of">of 16</span></div>
+        <div class="cap-titleblock">
+          <div class="cap-title">Framework administration</div>
+          <div class="cap-strap">Operating the NHS Standard Contract with SaaS and data schedules. Coordinates with NICE EVA for conditionally-recommended supplier admission. Provides ICB call-off route. HealthStore does not duplicate assurance. <strong>Holds the contracting instrument (ACE plus NHS Standard Contract) across HealthStore configurations.</strong> NHSE orchestrates the market; it does not act as a central assurance body.</div>
+        </div>
+        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">TBC</div><div class="cap-sizing-unit">FTE</div></div>
+      </div>
+      <div class="cap-streams">
+        <div>
+          <div class="stream-h stream-h-stand">Stand it up</div>
+          <ul class="stream-list">
+            <li>NHS Standard Contract templates with SaaS and data schedules</li>
+            <li>Payments mechanism design</li>
+            <li>NICE EVA conditionally-recommended admission process</li>
+            <li>Framework launch communications to ICBs</li>
+          </ul>
+        </div>
+        <div>
+          <div class="stream-h stream-h-bau">In BAU</div>
+          <ul class="stream-list">
+            <li>Variations, renewals, reviews</li>
+            <li>Steady-state supplier admission throughput</li>
+            <li>Framework usage MI</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cap-talks">
+        <span class="talks-label">Talks to</span>
+        <span class="talks-pill">NHS Commercial</span><span class="talks-pill">NICE EVA suppliers</span><span class="talks-pill">ICB commissioners</span>
+      </div>
+      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
+    </summary>
+    <div class="cap-detail">
+      <div class="detail-section">
+        <div class="detail-h detail-h-stand">Stand it up &mdash; detail</div>
+        <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>NHS Standard Contract templates with SaaS and data schedules</strong></div><span class="pill pill-flight">In flight</span><span class="size-pill size-l">L</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Payments mechanism design</strong></div><span class="pill pill-flight">In flight</span><span class="size-pill size-l">L</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>NICE EVA conditionally-recommended admission process</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Framework launch communications to ICBs</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-h detail-h-bau">In BAU &mdash; detail</div>
+        <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>Variations, renewals, reviews</strong></div><span class="pill pill-tbc">TBC</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Steady-state supplier admission throughput</strong></div><span class="pill pill-tbc">TBC</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Framework usage MI</strong></div><span class="pill pill-tbc">TBC</span></div>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="cap cap-c2" id="cap-2">
+    <summary>
+      <div class="cap-top">
+        <div class="cap-num"><span class="cap-num-big">2</span><span class="cap-num-of">of 16</span></div>
+        <div class="cap-titleblock">
+          <div class="cap-title">Supplier management</div>
+          <div class="cap-strap">Onboarding, performance, SLA holding, contract variations for NICE EVA conditionally-recommended suppliers. <strong>Multiple suppliers admitted today for COPD Alpha.</strong></div>
+        </div>
+        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">TBC</div><div class="cap-sizing-unit">FTE</div></div>
+      </div>
+      <div class="cap-streams">
+        <div>
+          <div class="stream-h stream-h-stand">Stand it up</div>
+          <ul class="stream-list">
+            <li>NICE EVA conditionally-recommended admission of five suppliers</li>
+            <li>Supplier agreements per supplier</li>
+            <li>Supplier-side data schedule onboarding</li>
+          </ul>
+        </div>
+        <div>
+          <div class="stream-h stream-h-bau">In BAU</div>
+          <ul class="stream-list">
+            <li>Supplier SLA monitoring (platform availability, API health, marketplace evidence)</li>
+            <li>Performance review cadence (milestone hit rates, outcome capture rates)</li>
+            <li>Supplier exit and migration</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cap-talks">
+        <span class="talks-label">Talks to</span>
+        <span class="talks-pill">DTx suppliers</span><span class="talks-pill">NHS Commercial</span><span class="talks-pill">Aisha</span>
+      </div>
+      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
+    </summary>
+    <div class="cap-detail">
+      <div class="detail-section">
+        <div class="detail-h detail-h-stand">Stand it up &mdash; detail</div>
+        <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>NICE EVA conditionally-recommended admission of five suppliers</strong></div><span class="pill pill-live">Live</span><span class="size-pill size-l">L</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Supplier agreements per supplier</strong></div><span class="pill pill-flight">In flight</span><span class="size-pill size-l">L</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Supplier-side data schedule onboarding</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-h detail-h-bau">In BAU &mdash; detail</div>
+        <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>Supplier SLA monitoring (platform availability, API health, marketplace evidence)</strong></div><span class="pill pill-tbc">TBC</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Performance review cadence (milestone hit rates, outcome capture rates)</strong></div><span class="pill pill-tbc">TBC</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Supplier exit and migration</strong></div><span class="pill pill-open">Open</span></div>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="cap cap-c3" id="cap-3">
+    <summary>
+      <div class="cap-top">
+        <div class="cap-num"><span class="cap-num-big">3</span><span class="cap-num-of">of 16</span></div>
+        <div class="cap-titleblock">
+          <div class="cap-title">Clinical safety stewardship</div>
+          <div class="cap-strap">DCB0129 / 0160 oversight, hazard log curation, Clinical Safety Case Report management, supplier interface. <strong>Carries HealthStore-specific safety content within the shared DCB framework.</strong></div>
+        </div>
+        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">TBC</div><div class="cap-sizing-unit">FTE</div></div>
+      </div>
+      <div class="cap-streams">
+        <div>
+          <div class="stream-h stream-h-stand">Stand it up</div>
+          <ul class="stream-list">
+            <li>hazard log maintained (deployer side under DCB0160)</li>
+            <li>clinical safety case maintained</li>
+            <li>CSO route established per ICB for DCB0160</li>
+            <li>CATR mechanics for digital therapeutics</li>
+          </ul>
+        </div>
+        <div>
+          <div class="stream-h stream-h-bau">In BAU</div>
+          <ul class="stream-list">
+            <li>Active hazard monitoring per cohort</li>
+            <li>Annual safety case refresh per DCB0129</li>
+            <li>Outcome distribution review against safety case</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cap-talks">
+        <span class="talks-label">Talks to</span>
+        <span class="talks-pill">Aisha</span><span class="talks-pill">CSG</span><span class="talks-pill">DTx suppliers (supplier)</span>
+      </div>
+      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
+    </summary>
+    <div class="cap-detail">
+      <div class="detail-section">
+        <div class="detail-h detail-h-stand">Stand it up &mdash; detail</div>
+        <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>hazard log maintained (deployer side under DCB0160)</strong></div><span class="pill pill-live">Live</span><span class="size-pill size-s">S</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>clinical safety case maintained</strong></div><span class="pill pill-live">Live</span><span class="size-pill size-s">S</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>CSO route established per ICB for DCB0160</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-l">L</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>CATR mechanics for digital therapeutics</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-h detail-h-bau">In BAU &mdash; detail</div>
+        <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>Active hazard monitoring per cohort</strong></div><span class="pill pill-tbc">TBC</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Annual safety case refresh per DCB0129</strong></div><span class="pill pill-tbc">TBC</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Outcome distribution review against safety case</strong></div><span class="pill pill-tbc">TBC</span></div>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="cap cap-c4" id="cap-4">
+    <summary>
+      <div class="cap-top">
+        <div class="cap-num"><span class="cap-num-big">4</span><span class="cap-num-of">of 16</span></div>
+        <div class="cap-titleblock">
+          <div class="cap-title">Information governance operations</div>
+          <div class="cap-strap">DPIA, DSA, controller designation, lawful basis. <strong>Per-product controllers vary inside the shared framework. HealthStore adds SaaS-side controller positions.</strong></div>
+        </div>
+        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">TBC</div><div class="cap-sizing-unit">FTE</div></div>
+      </div>
+      <div class="cap-streams">
+        <div>
+          <div class="stream-h stream-h-stand">Stand it up</div>
+          <ul class="stream-list">
+            <li>DPIA template adapted for HealthStore configurations</li>
+            <li>Data schedule executed with each NICE EVA supplier</li>
+            <li>Controller positions for SaaS data flows</li>
+            <li>Lawful basis position for prescribing flow</li>
+          </ul>
+        </div>
+        <div>
+          <div class="stream-h stream-h-bau">In BAU</div>
+          <ul class="stream-list">
+            <li>Subject access route</li>
+            <li>Supplier breach handling chain</li>
+            <li>Annual DPIA review</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cap-talks">
+        <span class="talks-label">Talks to</span>
+        <span class="talks-pill">Ngozi</span><span class="talks-pill">DTx suppliers</span><span class="talks-pill">ICB DPOs</span>
+      </div>
+      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
+    </summary>
+    <div class="cap-detail">
+      <div class="detail-section">
+        <div class="detail-h detail-h-stand">Stand it up &mdash; detail</div>
+        <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>DPIA template adapted for HealthStore configurations</strong></div><span class="pill pill-flight">In flight</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Data schedule executed with each NICE EVA supplier</strong></div><span class="pill pill-flight">In flight</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Controller positions for SaaS data flows</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Lawful basis position for prescribing flow</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-s">S</span></div>
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-h detail-h-bau">In BAU &mdash; detail</div>
+        <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>Subject access route</strong></div><span class="pill pill-tbc">TBC</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Supplier breach handling chain</strong></div><span class="pill pill-tbc">TBC</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Annual DPIA review</strong></div><span class="pill pill-tbc">TBC</span></div>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="cap cap-c5" id="cap-5">
+    <summary>
+      <div class="cap-top">
+        <div class="cap-num"><span class="cap-num-big">5</span><span class="cap-num-of">of 16</span></div>
+        <div class="cap-titleblock">
+          <div class="cap-title">Platform engineering and operations</div>
+          <div class="cap-strap">Integration spine, NHS App, NHS Login, NHS Notify, FHIR, FDP, SPR. <strong>Shared with HomeTest and HealthSync at platform level; HealthStore-specific integration layered on top.</strong></div>
+        </div>
+        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">Shared</div><div class="cap-sizing-unit">FTE</div></div>
+      </div>
+      <div class="cap-streams">
+        <div>
+          <div class="stream-h stream-h-stand">Stand it up</div>
+          <ul class="stream-list">
+            <li>Episode tracking endpoints</li>
+            <li>Prescribing event routing via FHIR</li>
+            <li>App provisioning flow</li>
+            <li>Episode MI dashboards</li>
+          </ul>
+        </div>
+        <div>
+          <div class="stream-h stream-h-bau">In BAU</div>
+          <ul class="stream-list">
+            <li>Platform SLA management</li>
+            <li>Episode event reliability</li>
+            <li>Integration support for new suppliers</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cap-talks">
+        <span class="talks-label">Talks to</span>
+        <span class="talks-pill">Priya</span><span class="talks-pill">DTx suppliers</span><span class="talks-pill">NHSE Platform</span>
+      </div>
+      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
+    </summary>
+    <div class="cap-detail">
+      <div class="detail-section">
+        <div class="detail-h detail-h-stand">Stand it up &mdash; detail</div>
+        <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>Episode tracking endpoints</strong></div><span class="pill pill-flight">In flight</span><span class="size-pill size-l">L</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Prescribing event routing via FHIR</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>App provisioning flow</strong></div><span class="pill pill-flight">In flight</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Episode MI dashboards</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-h detail-h-bau">In BAU &mdash; detail</div>
+        <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>Platform SLA management</strong></div><span class="pill pill-live">Live</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Episode event reliability</strong></div><span class="pill pill-tbc">TBC</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Integration support for new suppliers</strong></div><span class="pill pill-tbc">TBC</span></div>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="cap cap-c6" id="cap-6">
+    <summary>
+      <div class="cap-top">
+        <div class="cap-num"><span class="cap-num-big">6</span><span class="cap-num-of">of 16</span></div>
+        <div class="cap-titleblock">
+          <div class="cap-title">Commissioner partnerships</div>
+          <div class="cap-strap">Outbound to ICBs. <strong>ICB-primary commissioning for HealthStore.</strong></div>
+        </div>
+        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">TBC</div><div class="cap-sizing-unit">FTE</div></div>
+      </div>
+      <div class="cap-streams">
+        <div>
+          <div class="stream-h stream-h-stand">Stand it up</div>
+          <ul class="stream-list">
+            <li>ICB pitch / brochure for HealthStore</li>
+            <li>Early-adopter ICB programme</li>
+            <li>NICE EVA supplier joint-pitch model</li>
+          </ul>
+        </div>
+        <div>
+          <div class="stream-h stream-h-bau">In BAU</div>
+          <ul class="stream-list">
+            <li>ICB relationship management</li>
+            <li>Annual pricing review</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cap-talks">
+        <span class="talks-label">Talks to</span>
+        <span class="talks-pill">Sarah</span><span class="talks-pill">ICB leads</span><span class="talks-pill">DTx suppliers</span>
+      </div>
+      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
+    </summary>
+    <div class="cap-detail">
+      <div class="detail-section">
+        <div class="detail-h detail-h-stand">Stand it up &mdash; detail</div>
+        <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>ICB pitch / brochure for HealthStore</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Early-adopter ICB programme</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-l">L</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>NICE EVA supplier joint-pitch model</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-h detail-h-bau">In BAU &mdash; detail</div>
+        <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>ICB relationship management</strong></div><span class="pill pill-tbc">TBC</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Annual pricing review</strong></div><span class="pill pill-tbc">TBC</span></div>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="cap cap-c7" id="cap-7">
+    <summary>
+      <div class="cap-top">
+        <div class="cap-num"><span class="cap-num-big">7</span><span class="cap-num-of">of 16</span></div>
+        <div class="cap-titleblock">
+          <div class="cap-title">Outcomes and measurement</div>
+          <div class="cap-strap">Episode outcome evaluation. <strong>Episode-based outcomes are a different unit of measurement from test results.</strong></div>
+        </div>
+        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">TBC</div><div class="cap-sizing-unit">FTE</div></div>
+      </div>
+      <div class="cap-streams">
+        <div>
+          <div class="stream-h stream-h-stand">Stand it up</div>
+          <ul class="stream-list">
+            <li>Episode outcome measurement instruments (PROMs)</li>
+            <li>Meaningful engagement definition per service</li>
+            <li>Cost-per-episode baseline</li>
+            <li>Health economist input (shared dependency)</li>
+          </ul>
+        </div>
+        <div>
+          <div class="stream-h stream-h-bau">In BAU</div>
+          <ul class="stream-list">
+            <li>Episode-level outcome reporting</li>
+            <li>Equity analysis on engagement and outcome</li>
+            <li>Pathway-level economic evaluation</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cap-talks">
+        <span class="talks-label">Talks to</span>
+        <span class="talks-pill">Health Economist</span><span class="talks-pill">Clinical leads</span><span class="talks-pill">ICB analytics</span>
+      </div>
+      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
+    </summary>
+    <div class="cap-detail">
+      <div class="detail-section">
+        <div class="detail-h detail-h-stand">Stand it up &mdash; detail</div>
+        <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>Episode outcome measurement instruments (PROMs)</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-l">L</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Meaningful engagement definition per service</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Cost-per-episode baseline</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-l">L</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Health economist input (shared dependency)</strong></div><span class="pill pill-blocked">Blocked</span><span class="size-pill size-l">L</span></div>
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-h detail-h-bau">In BAU &mdash; detail</div>
+        <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>Episode-level outcome reporting</strong></div><span class="pill pill-tbc">TBC</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Equity analysis on engagement and outcome</strong></div><span class="pill pill-tbc">TBC</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Pathway-level economic evaluation</strong></div><span class="pill pill-tbc">TBC</span></div>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="cap cap-c8" id="cap-8">
+    <summary>
+      <div class="cap-top">
+        <div class="cap-num"><span class="cap-num-big">8</span><span class="cap-num-of">of 16</span></div>
+        <div class="cap-titleblock">
+          <div class="cap-title">In-app engagement oversight</div>
+          <div class="cap-strap"><strong>HealthStore-specific capability.</strong> Monitoring meaningful engagement and outcome capture across suppliers and configurations.</div>
+        </div>
+        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">TBC</div><div class="cap-sizing-unit">FTE</div></div>
+      </div>
+      <div class="cap-streams">
+        <div>
+          <div class="stream-h stream-h-stand">Stand it up</div>
+          <ul class="stream-list">
+            <li>Meaningful engagement criteria framework</li>
+            <li>Engagement signal-vs-safety dashboard</li>
+          </ul>
+        </div>
+        <div>
+          <div class="stream-h stream-h-bau">In BAU</div>
+          <ul class="stream-list">
+            <li>Engagement monitoring across cohorts</li>
+            <li>Outcome capture rate steering</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cap-talks">
+        <span class="talks-label">Talks to</span>
+        <span class="talks-pill">DTx suppliers</span><span class="talks-pill">Aisha</span><span class="talks-pill">Prescribing clinicians</span>
+      </div>
+      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
+    </summary>
+    <div class="cap-detail">
+      <div class="detail-section">
+        <div class="detail-h detail-h-stand">Stand it up &mdash; detail</div>
+        <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>Meaningful engagement criteria framework</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-l">L</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Engagement signal-vs-safety dashboard</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-h detail-h-bau">In BAU &mdash; detail</div>
+        <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>Engagement monitoring across cohorts</strong></div><span class="pill pill-tbc">TBC</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Outcome capture rate steering</strong></div><span class="pill pill-tbc">TBC</span></div>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="cap cap-c9" id="cap-9">
+    <summary>
+      <div class="cap-top">
+        <div class="cap-num"><span class="cap-num-big">9</span><span class="cap-num-of">of 16</span></div>
+        <div class="cap-titleblock">
+          <div class="cap-title">Marketplace payment operations</div>
+          <div class="cap-strap">Settlement against four milestones (start, meaningful engagement, completion, outcome capture). <strong>HealthStore-specific because the commercial model is.</strong></div>
+        </div>
+        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">TBC</div><div class="cap-sizing-unit">FTE</div></div>
+      </div>
+      <div class="cap-streams">
+        <div>
+          <div class="stream-h stream-h-stand">Stand it up</div>
+          <ul class="stream-list">
+            <li>Milestone evidence audit framework</li>
+            <li>Payment cycle setup</li>
+          </ul>
+        </div>
+        <div>
+          <div class="stream-h stream-h-bau">In BAU</div>
+          <ul class="stream-list">
+            <li>Monthly settlement runs</li>
+            <li>Periodic milestone evidence audit</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cap-talks">
+        <span class="talks-label">Talks to</span>
+        <span class="talks-pill">David</span><span class="talks-pill">NHS Commercial</span><span class="talks-pill">DTx suppliers</span><span class="talks-pill">ICB finance</span>
+      </div>
+      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
+    </summary>
+    <div class="cap-detail">
+      <div class="detail-section">
+        <div class="detail-h detail-h-stand">Stand it up &mdash; detail</div>
+        <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>Milestone evidence audit framework</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Payment cycle setup</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-h detail-h-bau">In BAU &mdash; detail</div>
+        <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>Monthly settlement runs</strong></div><span class="pill pill-tbc">TBC</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Periodic milestone evidence audit</strong></div><span class="pill pill-tbc">TBC</span></div>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="cap cap-c10" id="cap-10">
+    <summary>
+      <div class="cap-top">
+        <div class="cap-num"><span class="cap-num-big">10</span><span class="cap-num-of">of 16</span></div>
+        <div class="cap-titleblock">
+          <div class="cap-title">Governance and SRO accountability</div>
+          <div class="cap-strap">Programme-level governance. SRO accountability. Decision rights for changes to the HealthStore overlay.</div>
+        </div>
+        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">TBC</div><div class="cap-sizing-unit">FTE</div></div>
+      </div>
+      <div class="cap-streams">
+        <div>
+          <div class="stream-h stream-h-stand">Stand it up</div>
+          <ul class="stream-list">
+            <li>SRO accountability arrangements</li>
+            <li>Programme board cadence</li>
+            <li>Decision rights for overlay changes</li>
+          </ul>
+        </div>
+        <div>
+          <div class="stream-h stream-h-bau">In BAU</div>
+          <ul class="stream-list">
+            <li>Quarterly reporting to SLT</li>
+            <li>Risk register maintenance</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cap-talks">
+        <span class="talks-label">Talks to</span>
+        <span class="talks-pill">SRO</span><span class="talks-pill">SLT</span><span class="talks-pill">Programme governance</span>
+      </div>
+      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
+    </summary>
+    <div class="cap-detail">
+      <div class="detail-section">
+        <div class="detail-h detail-h-stand">Stand it up &mdash; detail</div>
+        <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>SRO accountability arrangements</strong></div><span class="pill pill-flight">In flight</span><span class="size-pill size-xs">XS</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Programme board cadence</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-s">S</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Decision rights for overlay changes</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-h detail-h-bau">In BAU &mdash; detail</div>
+        <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>Quarterly reporting to SLT</strong></div><span class="pill pill-tbc">TBC</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Risk register maintenance</strong></div><span class="pill pill-tbc">TBC</span></div>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="cap cap-c11" id="cap-11">
+    <summary>
+      <div class="cap-top">
+        <div class="cap-num"><span class="cap-num-big">11</span><span class="cap-num-of">of 16</span></div>
+        <div class="cap-titleblock">
+          <div class="cap-title">Operating model stewardship</div>
+          <div class="cap-strap">Stewardship of the HealthStore overlay inside the Digital Therapeutics Operating Model. Cross-capability ownership. Change management for overlay design.</div>
+        </div>
+        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">TBC</div><div class="cap-sizing-unit">FTE</div></div>
+      </div>
+      <div class="cap-streams">
+        <div>
+          <div class="stream-h stream-h-stand">Stand it up</div>
+          <ul class="stream-list">
+            <li>HealthStore overlay design ownership</li>
+            <li>RACI maintenance across the ten operational capabilities</li>
+            <li>Operating-model change control</li>
+            <li>Cross-product alignment with HomeTest and HealthSync</li>
+          </ul>
+        </div>
+        <div>
+          <div class="stream-h stream-h-bau">In BAU</div>
+          <ul class="stream-list">
+            <li>Quarterly overlay health check</li>
+            <li>Cross-capability dependency tracking</li>
+            <li>Continuous improvement against operating-model KPIs</li>
+            <li>Portfolio alignment forum participation</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cap-talks">
+        <span class="talks-label">Talks to</span>
+        <span class="talks-pill">All HealthStore capability leads</span><span class="talks-pill">HomeTest stewardship</span><span class="talks-pill">HealthSync stewardship</span><span class="talks-pill">Portfolio governance</span>
+      </div>
+      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
+    </summary>
+    <div class="cap-detail">
+      <div class="detail-section">
+        <div class="detail-h detail-h-stand">Stand it up &mdash; detail</div>
+        <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>HealthStore overlay design ownership</strong></div><span class="pill pill-flight">In flight</span><span class="size-pill size-s">S</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>RACI maintenance across the ten operational capabilities</strong></div><span class="pill pill-flight">In flight</span><span class="size-pill size-xs">XS</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Operating-model change control</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-s">S</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Cross-product alignment with HomeTest and HealthSync</strong></div><span class="pill pill-flight">In flight</span><span class="size-pill size-s">S</span></div>
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-h detail-h-bau">In BAU &mdash; detail</div>
+        <div class="bau-detail">
+          <p>The stewardship capability owns the integrity of the HealthStore overlay as a living artefact. It maintains the RACI across the other ten capabilities, runs the change-control process for overlay updates, and represents HealthStore at the portfolio level alongside the HomeTest and HealthSync stewardship leads. Quarterly it runs an overlay health check against operating-model KPIs and surfaces dependencies that span more than one capability.</p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="cap cap-c12" id="cap-12">
+    <summary>
+      <div class="cap-top">
+        <div class="cap-num"><span class="cap-num-big">12</span><span class="cap-num-of">of 16</span></div>
+        <div class="cap-titleblock">
+          <div class="cap-title">Post-market surveillance</div>
+          <div class="cap-strap">Ongoing safety and performance surveillance of admitted DTx products after they go live. Regulatory obligation under SaMD. Distinct from internal clinical safety oversight.</div>
+        </div>
+        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">TBC</div><div class="cap-sizing-unit">FTE</div></div>
+      </div>
+      <div class="cap-streams">
+        <div>
+          <div class="stream-h stream-h-stand">Stand it up</div>
+          <ul class="stream-list">
+            <li>PMS plan per admitted supplier</li>
+            <li>Adverse event reporting routes</li>
+            <li>Signal-detection thresholds and cadence</li>
+            <li>Periodic safety update schedule</li>
+            <li>MHRA reporting interface</li>
+          </ul>
+        </div>
+        <div>
+          <div class="stream-h stream-h-bau">In BAU</div>
+          <ul class="stream-list">
+            <li>Continuous signal monitoring across admitted products</li>
+            <li>Adverse event collection and classification</li>
+            <li>Periodic safety updates submitted on schedule</li>
+            <li>Regulatory reporting to MHRA</li>
+            <li>Post-market data review feeding NICE re-evaluation</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cap-talks">
+        <span class="talks-label">Talks to</span>
+        <span class="talks-pill">MHRA</span><span class="talks-pill">NICE</span><span class="talks-pill">Suppliers</span><span class="talks-pill">CSG</span><span class="talks-pill">Cap-3 Safety</span>
+      </div>
+      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
+    </summary>
+    <div class="cap-detail">
+      <div class="detail-section">
+        <div class="detail-h detail-h-stand">Stand it up &mdash; detail</div>
+        <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>PMS plan per admitted supplier</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-s">S</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Adverse event reporting routes</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-s">S</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Signal-detection thresholds and cadence</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Periodic safety update schedule</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-xs">XS</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>MHRA reporting interface</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-s">S</span></div>
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-h detail-h-bau">In BAU &mdash; detail</div>
+        <div class="bau-detail">
+          <p>Post-market surveillance is the regulatory obligation that runs for the life of every admitted DTx product. Distinct from the internal Clinical Safety capability (Cap-3) which manages the hazard log and CATR. PMS is outward-facing: signal detection against real-world use, adverse event collection, periodic safety updates to MHRA, and feedback into NICE re-evaluation. The function sits at the platform level so the burden is shared across suppliers rather than left on each one in isolation. Without it, the HealthStore catalogue cannot honestly claim compliance with SaMD obligations beyond go-live.</p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="cap cap-c13" id="cap-13">
+    <summary>
+      <div class="cap-top">
+        <div class="cap-num"><span class="cap-num-big">13</span><span class="cap-num-of">of 16</span></div>
+        <div class="cap-titleblock">
+          <div class="cap-title">Pathway integration</div>
+          <div class="cap-strap">Integration of admitted DTx products into local NHS clinical pathways. The work between national catalogue and local pathway team. Where the digital therapeutic earns its place in an existing care pathway.</div>
+        </div>
+        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">TBC</div><div class="cap-sizing-unit">FTE</div></div>
+      </div>
+      <div class="cap-streams">
+        <div>
+          <div class="stream-h stream-h-stand">Stand it up</div>
+          <ul class="stream-list">
+            <li>Pathway mapping per therapeutic area (COPD first)</li>
+            <li>Prescribing workflow design with national clinical leads</li>
+            <li>EPR / prescribing-system integration patterns</li>
+            <li>Pathway-fit assessment toolkit for ICBs</li>
+            <li>Reference pathways co-designed with transformation programmes</li>
+          </ul>
+        </div>
+        <div>
+          <div class="stream-h stream-h-bau">In BAU</div>
+          <ul class="stream-list">
+            <li>Pathway mapping for each newly admitted therapeutic area</li>
+            <li>Local ICB pathway team support during onboarding</li>
+            <li>Integration playbook maintenance and revision</li>
+            <li>Clinical workflow change-management support</li>
+            <li>Coordination with NHSE transformation programmes (RTP, MSK, etc.)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cap-talks">
+        <span class="talks-label">Talks to</span>
+        <span class="talks-pill">Respiratory Transformation Programme</span><span class="talks-pill">ICB pathway teams</span><span class="talks-pill">Suppliers</span><span class="talks-pill">National clinical leads</span><span class="talks-pill">Cap-5 Platform</span>
+      </div>
+      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
+    </summary>
+    <div class="cap-detail">
+      <div class="detail-section">
+        <div class="detail-h detail-h-stand">Stand it up &mdash; detail</div>
+        <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>Pathway mapping per therapeutic area (COPD first)</strong></div><span class="pill pill-flight">In flight</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Prescribing workflow design with national clinical leads</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>EPR / prescribing-system integration patterns</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-l">L</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Pathway-fit assessment toolkit for ICBs</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-s">S</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Reference pathways co-designed with transformation programmes</strong></div><span class="pill pill-flight">In flight</span><span class="size-pill size-m">M</span></div>
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-h detail-h-bau">In BAU &mdash; detail</div>
+        <div class="bau-detail">
+          <p>Pathway integration is where a HealthStore product earns its place in an actual care pathway. Without it, the catalogue could be technically present but clinically dormant. The function sits between national admission (catalogue, supplier onboarding) and local activation (commissioner buying, prescriber adoption). For COPD Alpha it works with the Respiratory Transformation Programme to align the DTx with the OPTIMISE pathway. As further therapeutic areas come on, the same work is repeated with their parent transformation programmes (MSK, cardiac rehab, CBTi etc). The capability also maintains the integration playbook so each new ICB doesn&apos;t reinvent the wheel.</p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="cap cap-c14" id="cap-14">
+    <summary>
+      <div class="cap-top">
+        <div class="cap-num"><span class="cap-num-big">14</span><span class="cap-num-of">of 16</span></div>
+        <div class="cap-titleblock">
+          <div class="cap-title">Independent assurance</div>
+          <div class="cap-strap">Third-party assurance discipline separate from internal Clinical Safety. Covers regulatory standards, clinical and financial efficacy, and independent review of admitted products. Sits inside the Assurance Model and is the assurance-portability backbone.</div>
+        </div>
+        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">TBC</div><div class="cap-sizing-unit">FTE</div></div>
+      </div>
+      <div class="cap-streams">
+        <div>
+          <div class="stream-h stream-h-stand">Stand it up</div>
+          <ul class="stream-list">
+            <li>Regulatory-standards mapping per admitted product class</li>
+            <li>Clinical and financial efficacy assessment criteria</li>
+            <li>Independent assurance review cadence</li>
+            <li>Assurance portability evidence package per supplier</li>
+            <li>Interface with NICE EVA conditional evaluation</li>
+          </ul>
+        </div>
+        <div>
+          <div class="stream-h stream-h-bau">In BAU</div>
+          <ul class="stream-list">
+            <li>Independent review cycle per admitted product</li>
+            <li>Regulatory-standards compliance monitoring</li>
+            <li>Cross-configuration evidence portability administration</li>
+            <li>Independent assurance reports into the Assurance Model</li>
+            <li>Coordination with NICE EVA re-evaluation</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cap-talks">
+        <span class="talks-label">Talks to</span>
+        <span class="talks-pill">NICE</span><span class="talks-pill">MHRA</span><span class="talks-pill">Suppliers</span><span class="talks-pill">CSG</span><span class="talks-pill">Cap-3 Safety</span><span class="talks-pill">Cap-12 PMS</span>
+      </div>
+      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
+    </summary>
+    <div class="cap-detail">
+      <div class="detail-section">
+        <div class="detail-h detail-h-stand">Stand it up &mdash; detail</div>
+        <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>Regulatory-standards mapping</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Clinical and financial efficacy assessment</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-l">L</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Independent assurance review cadence</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-s">S</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Assurance portability evidence package</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>NICE EVA conditional evaluation interface</strong></div><span class="pill pill-flight">In flight</span><span class="size-pill size-s">S</span></div>
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-h detail-h-bau">In BAU &mdash; detail</div>
+        <div class="bau-detail">
+          <p>Independent Assurance is the function that ensures HealthStore can stand behind every admitted product without conflating internal Clinical Safety oversight with third-party assurance. The function owns the evidence package that makes assurance portable across configurations — the &ldquo;assure once, deploy many&rdquo; discipline — and the interface into NICE EVA conditional re-evaluation as products mature.</p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="cap cap-c15" id="cap-15">
+    <summary>
+      <div class="cap-top">
+        <div class="cap-num"><span class="cap-num-big">15</span><span class="cap-num-of">of 16</span></div>
+        <div class="cap-titleblock">
+          <div class="cap-title">Contract Management</div>
+          <div class="cap-strap">Post-execution lifecycle for each call-off agreement. Distinct from Framework administration (Cap-1) which sets the contracting architecture; this function manages each agreement after signature: variations, pricing reviews, renewals, milestone audit.</div>
+        </div>
+        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">TBC</div><div class="cap-sizing-unit">FTE</div></div>
+      </div>
+      <div class="cap-streams">
+        <div>
+          <div class="stream-h stream-h-stand">Stand it up</div>
+          <ul class="stream-list">
+            <li>Contract management playbook per call-off pattern</li>
+            <li>Variation control process</li>
+            <li>Pricing review and renewal triggers</li>
+            <li>Marketplace milestone evidence audit routine</li>
+            <li>Supplier performance monitoring against contract</li>
+          </ul>
+        </div>
+        <div>
+          <div class="stream-h stream-h-bau">In BAU</div>
+          <ul class="stream-list">
+            <li>Active management of each ICB call-off across its lifecycle</li>
+            <li>Variation processing and approval</li>
+            <li>Pricing reviews on schedule</li>
+            <li>Milestone evidence audit per payment trigger</li>
+            <li>Supplier performance against contract metrics</li>
+            <li>Renewal and exit management</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cap-talks">
+        <span class="talks-label">Talks to</span>
+        <span class="talks-pill">ICB commissioners</span><span class="talks-pill">Suppliers</span><span class="talks-pill">NHS Commercial</span><span class="talks-pill">NHS Legal</span><span class="talks-pill">Cap-1 Framework</span>
+      </div>
+      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
+    </summary>
+    <div class="cap-detail">
+      <div class="detail-section">
+        <div class="detail-h detail-h-stand">Stand it up &mdash; detail</div>
+        <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>Contract management playbook</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Variation control process</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-s">S</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Pricing review and renewal triggers</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-s">S</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Marketplace milestone evidence audit</strong></div><span class="pill pill-flight">In flight</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Supplier performance monitoring</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-s">S</span></div>
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-h detail-h-bau">In BAU &mdash; detail</div>
+        <div class="bau-detail">
+          <p>Contract Management is the function that lives every call-off across its lifecycle. The current artefact had folded it into Framework administration (Cap-1) but the source separates contracting architecture from in-life contract management. Stand-it-up work focuses on the playbook and milestone audit routine; BAU work is each ICB call-off actively managed from go-live through renewal or exit.</p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="cap cap-c16" id="cap-16">
+    <summary>
+      <div class="cap-top">
+        <div class="cap-num"><span class="cap-num-big">16</span><span class="cap-num-of">of 16</span></div>
+        <div class="cap-titleblock">
+          <div class="cap-title">Ongoing Evidence Generation</div>
+          <div class="cap-strap">Continuous evidence accrual across admitted products. Outcome data, real-world evidence, NICE re-evaluation inputs. Distinct from Post-market surveillance (Cap-12) which is regulatory; this is value-evidence into the Assurance Model and Independent Assurance.</div>
+        </div>
+        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">TBC</div><div class="cap-sizing-unit">FTE</div></div>
+      </div>
+      <div class="cap-streams">
+        <div>
+          <div class="stream-h stream-h-stand">Stand it up</div>
+          <ul class="stream-list">
+            <li>Evidence generation framework per therapeutic area</li>
+            <li>Real-world data capture standards</li>
+            <li>Outcome attribution methodology</li>
+            <li>NICE re-evaluation evidence package design</li>
+            <li>Coordination with Outcomes and measurement (Cap-7)</li>
+          </ul>
+        </div>
+        <div>
+          <div class="stream-h stream-h-bau">In BAU</div>
+          <ul class="stream-list">
+            <li>Continuous real-world evidence collection</li>
+            <li>Outcome attribution analysis per configuration</li>
+            <li>NICE re-evaluation submission preparation</li>
+            <li>Evidence reporting into the Assurance Model</li>
+            <li>Real-world evidence feed into supplier admission decisions</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cap-talks">
+        <span class="talks-label">Talks to</span>
+        <span class="talks-pill">NICE</span><span class="talks-pill">Cap-7 Measure</span><span class="talks-pill">Cap-12 PMS</span><span class="talks-pill">Cap-14 Independent assurance</span><span class="talks-pill">Suppliers</span><span class="talks-pill">Academic partners</span>
+      </div>
+      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
+    </summary>
+    <div class="cap-detail">
+      <div class="detail-section">
+        <div class="detail-h detail-h-stand">Stand it up &mdash; detail</div>
+        <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>Evidence generation framework per TA</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-l">L</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Real-world data capture standards</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Outcome attribution methodology</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-l">L</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>NICE re-evaluation evidence package</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Coordination with Outcomes and measurement</strong></div><span class="pill pill-flight">In flight</span><span class="size-pill size-s">S</span></div>
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-h detail-h-bau">In BAU &mdash; detail</div>
+        <div class="bau-detail">
+          <p>Ongoing Evidence Generation is the discipline that keeps the value case for each admitted DTx product alive after go-live. This is different from internal Outcomes and measurement (Cap-7) which is operational MI; different from PMS (Cap-12) which is regulatory safety surveillance; different from Independent Assurance (Cap-14) which is the assurance review itself. This function is the upstream evidence pipeline that feeds all three.</p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+
+
+
+  <div class="interfaces" id="interfaces">
+    <div class="ext-h">Interfaces</div>
+    <div class="ext-title">Everything the HealthStore BAU team works with but doesn&rsquo;t run.</div>
+    <p class="ext-strap">The interfaces below are entities the BAU team works with but does not run. Each one already exists, has its own team and runs its own operation. <strong>The BAU team manages the interface and consumes the service; it does not replicate any of them.</strong> Numbered chips on each card show which of the ten capabilities touch each interface.</p>
+    <div class="ext-grid">
+
+      <div class="ext-card">
+        <div class="ext-card-head"><div class="ext-name">NICE EVA</div><div class="ext-caps"><a class="ext-cap-pill" href="#cap-1">1</a><a class="ext-cap-pill" href="#cap-2">2</a></div></div>
+        <div class="ext-tag">Assurance pathway</div>
+        <p class="ext-desc">Early Value Assessment. Conditional admission route into the HealthStore framework.</p>
+      </div>
+      <div class="ext-card">
+        <div class="ext-card-head"><div class="ext-name">NHS Standard Contract</div><div class="ext-caps"><a class="ext-cap-pill" href="#cap-1">1</a><a class="ext-cap-pill" href="#cap-3">3</a></div></div>
+        <div class="ext-tag">NHSE contracting instrument</div>
+        <p class="ext-desc">Contract framework with SaaS and data schedules. The instrument HealthStore uses.</p>
+      </div>
+      <div class="ext-card">
+        <div class="ext-card-head"><div class="ext-name">ICB commissioners</div><div class="ext-caps"><a class="ext-cap-pill" href="#cap-1">1</a><a class="ext-cap-pill" href="#cap-3">3</a><a class="ext-cap-pill" href="#cap-6">6</a></div></div>
+        <div class="ext-tag">Operational counterpart</div>
+        <p class="ext-desc">Integrated Care Board commissioning teams. Call off configurations under the framework.</p>
+      </div>
+      <div class="ext-card">
+        <div class="ext-card-head"><div class="ext-name">Conditional suppliers</div><div class="ext-caps"><a class="ext-cap-pill" href="#cap-2">2</a><a class="ext-cap-pill" href="#cap-4">4</a><a class="ext-cap-pill" href="#cap-8">8</a></div></div>
+        <div class="ext-tag">Operational counterpart</div>
+        <p class="ext-desc">Digital therapeutic suppliers admitted via NICE EVA. Independent entities under the framework.</p>
+      </div>
+      <div class="ext-card">
+        <div class="ext-card-head"><div class="ext-name">Prescribing clinicians</div><div class="ext-caps"><a class="ext-cap-pill" href="#cap-6">6</a><a class="ext-cap-pill" href="#cap-7">7</a></div></div>
+        <div class="ext-tag">Operational counterpart</div>
+        <p class="ext-desc">GPs, pharmacists and respiratory specialists who initiate the digital therapeutic.</p>
+      </div>
+      <div class="ext-card">
+        <div class="ext-card-head"><div class="ext-name">NHS App</div><div class="ext-caps"><a class="ext-cap-pill" href="#cap-6">6</a></div></div>
+        <div class="ext-tag">National service</div>
+        <p class="ext-desc">Patient-facing digital surface. Discovery and access route to the catalogue.</p>
+      </div>
+      <div class="ext-card">
+        <div class="ext-card-head"><div class="ext-name">NHS Notify</div><div class="ext-caps"><a class="ext-cap-pill" href="#cap-6">6</a></div></div>
+        <div class="ext-tag">National service</div>
+        <p class="ext-desc">All patient digital communications. Their team, their platform.</p>
+      </div>
+      <div class="ext-card">
+        <div class="ext-card-head"><div class="ext-name">NHS Login</div><div class="ext-caps"><a class="ext-cap-pill" href="#cap-6">6</a></div></div>
+        <div class="ext-tag">National service</div>
+        <p class="ext-desc">Patient authentication and identity. Their team runs identity.</p>
+      </div>
+      <div class="ext-card">
+        <div class="ext-card-head"><div class="ext-name">PTT teams</div><div class="ext-caps"><a class="ext-cap-pill" href="#cap-5">5</a></div></div>
+        <div class="ext-tag">NHSE function</div>
+        <p class="ext-desc">IG bodies that adjudicate lawful basis, controller designation, directions.</p>
+      </div>
+      <div class="ext-card">
+        <div class="ext-card-head"><div class="ext-name">Clinical Safety Group</div><div class="ext-caps"><a class="ext-cap-pill" href="#cap-4">4</a><a class="ext-cap-pill" href="#cap-8">8</a><a class="ext-cap-pill" href="#cap-10">10</a></div></div>
+        <div class="ext-tag">NHSE body</div>
+        <p class="ext-desc">NHSE clinical safety oversight. Holds the standard, signs off safety cases.</p>
+      </div>
+      <div class="ext-card">
+        <div class="ext-card-head"><div class="ext-name">NHS Commercial</div><div class="ext-caps"><a class="ext-cap-pill" href="#cap-1">1</a></div></div>
+        <div class="ext-tag">NHSE function</div>
+        <p class="ext-desc">Parent commercial function. Provides direction; sits above framework admin.</p>
+      </div>
+      <div class="ext-card">
+        <div class="ext-card-head"><div class="ext-name">NHS Legal</div><div class="ext-caps"><a class="ext-cap-pill" href="#cap-1">1</a><a class="ext-cap-pill" href="#cap-5">5</a></div></div>
+        <div class="ext-tag">NHSE function</div>
+        <p class="ext-desc">Legal advisory. Contractual positions, IG positions, framework legality.</p>
+      </div>
+      <div class="ext-card">
+        <div class="ext-card-head"><div class="ext-name">Caldicott Guardian</div><div class="ext-caps"><a class="ext-cap-pill" href="#cap-5">5</a></div></div>
+        <div class="ext-tag">NHSE advisory</div>
+        <p class="ext-desc">Escalation route for confidentiality and ethical use of patient data.</p>
+      </div>
+      <div class="ext-card">
+        <div class="ext-card-head"><div class="ext-name">EScAL</div><div class="ext-caps"><a class="ext-cap-pill" href="#cap-5">5</a></div></div>
+        <div class="ext-tag">NHSE assurance gate</div>
+        <p class="ext-desc">Supplier assurance process. Mandatory gate at admission.</p>
+      </div>
+      <div class="ext-card">
+        <div class="ext-card-head"><div class="ext-name">NHSE strategic finance</div><div class="ext-caps"><a class="ext-cap-pill" href="#cap-9">9</a></div></div>
+        <div class="ext-tag">NHSE function</div>
+        <p class="ext-desc">Pathway-level economic evaluation, tariff cycles, value-for-money cases.</p>
+      </div>
+      <div class="ext-card">
+        <div class="ext-card-head"><div class="ext-name">NHSE regional structures</div><div class="ext-caps"><a class="ext-cap-pill" href="#cap-6">6</a></div></div>
+        <div class="ext-tag">NHSE function</div>
+        <p class="ext-desc">Regional adoption coordination, alignment with regional priorities.</p>
+      </div>
+      <div class="ext-card">
+        <div class="ext-card-head"><div class="ext-name">Professional bodies</div><div class="ext-caps"><a class="ext-cap-pill" href="#cap-6">6</a></div></div>
+        <div class="ext-tag">External stakeholder</div>
+        <p class="ext-desc">Royal colleges and clinician membership bodies. Hold professional posture on digital therapeutics.</p>
+      </div>
+      <div class="ext-card">
+        <div class="ext-card-head"><div class="ext-name">Pharmacy networks</div><div class="ext-caps"><a class="ext-cap-pill" href="#cap-6">6</a><a class="ext-cap-pill" href="#cap-7">7</a></div></div>
+        <div class="ext-tag">Operational counterpart</div>
+        <p class="ext-desc">Community pharmacy chains and federations. Distribution and patient touchpoint.</p>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="glossary" id="glossary">
+    <div class="gloss-h">Reference</div>
+    <div class="gloss-title">Acronyms and terms used above.</div>
+    <p class="gloss-strap">Quick reference for readers who haven&rsquo;t worked through the operating model in full. Listed alphabetically.</p>
+    <div class="gloss-grid">
+      <div class="gloss-item"><div class="gloss-term">ALB</div><div class="gloss-def">Arm&rsquo;s Length Body. A semi-autonomous public body sponsored by a government department. One option for where the platform sits permanently.</div></div>
+      <div class="gloss-item"><div class="gloss-term">API</div><div class="gloss-def">Application Programming Interface. The technical way one system talks to another.</div></div>
+      <div class="gloss-item"><div class="gloss-term">BAU</div><div class="gloss-def">Business As Usual. The permanent operating state once discovery and Beta finish.</div></div>
+      <div class="gloss-item"><div class="gloss-term">Call-off</div><div class="gloss-def">The act of an ICB or other commissioner ordering a configuration under the framework. The contract instrument that turns a framework into a deal.</div></div>
+      <div class="gloss-item"><div class="gloss-term">CSG</div><div class="gloss-def">Clinical Safety Group. The NHSE body that signs off clinical safety cases and holds the safety standard.</div></div>
+      <div class="gloss-item"><div class="gloss-term">DCB0129</div><div class="gloss-def">Clinical safety case standard for digital health manufacturers.</div></div>
+      <div class="gloss-item"><div class="gloss-term">DCB0160</div><div class="gloss-def">Clinical safety standard for organisations deploying digital health.</div></div>
+      <div class="gloss-item"><div class="gloss-term">DPIA</div><div class="gloss-def">Data Protection Impact Assessment. Required for new processing of patient data.</div></div>
+      <div class="gloss-item"><div class="gloss-term">DSPT</div><div class="gloss-def">Data Security and Protection Toolkit. NHSE assurance instrument.</div></div>
+      <div class="gloss-item"><div class="gloss-term">DTx</div><div class="gloss-def">Digital Therapeutic. Software that delivers a clinical intervention or care pathway component.</div></div>
+      <div class="gloss-item"><div class="gloss-term">EScAL</div><div class="gloss-def">NHSE supplier assurance process. Mandatory gate at admission.</div></div>
+      <div class="gloss-item"><div class="gloss-term">EVA</div><div class="gloss-def">Early Value Assessment. NICE process for conditional admission of technologies showing promise but lacking full evidence.</div></div>
+      <div class="gloss-item"><div class="gloss-term">FTE</div><div class="gloss-def">Full Time Equivalent. Headcount expressed as full-time roles.</div></div>
+      <div class="gloss-item"><div class="gloss-term">ICB</div><div class="gloss-def">Integrated Care Board. Statutory body responsible for commissioning health services across a region.</div></div>
+      <div class="gloss-item"><div class="gloss-term">IG</div><div class="gloss-def">Information Governance. The set of standards, processes and decisions that govern how patient data is handled.</div></div>
+      <div class="gloss-item"><div class="gloss-term">MI</div><div class="gloss-def">Management Information. Operational reporting used to run and improve a service.</div></div>
+      <div class="gloss-item"><div class="gloss-term">NHSE</div><div class="gloss-def">NHS England. The platform owner.</div></div>
+      <div class="gloss-item"><div class="gloss-term">NICE</div><div class="gloss-def">National Institute for Health and Care Excellence. NHSE body responsible for guidance, evaluation and assurance.</div></div>
+      <div class="gloss-item"><div class="gloss-term">PTT</div><div class="gloss-def">Privacy and Transparency Team (NHSE). Adjudicates lawful basis and controller designation.</div></div>
+      <div class="gloss-item"><div class="gloss-term">SaaS</div><div class="gloss-def">Software as a Service. The commercial model under which most digital therapeutics are supplied.</div></div>
+      <div class="gloss-item"><div class="gloss-term">SLA</div><div class="gloss-def">Service Level Agreement. Performance commitment with a supplier.</div></div>
+      <div class="gloss-item"><div class="gloss-term">SLT</div><div class="gloss-def">Senior Leadership Team.</div></div>
+      <div class="gloss-item"><div class="gloss-term">SRO</div><div class="gloss-def">Senior Responsible Officer. The senior accountable owner for the programme.</div></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    Working strawman. Sizing bands are order-of-magnitude only, designed to be challenged.<br/>
+    Order-of-magnitude

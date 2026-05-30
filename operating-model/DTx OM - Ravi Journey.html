@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ravi's story: Digital Therapeutics Operating Model</title>
+<style>
+ /* Canonical topnav */
+ .topnav{background:#fff;border-bottom:1px solid #ebeef1;padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:nowrap;min-height:54px;box-sizing:border-box;width:100%;max-width:100%;margin:0;position:sticky;top:0;z-index:200;}
+ .topnav .nav-back{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-back:hover{color:#005EB8;}
+ .topnav .nav-siblings{display:flex;gap:4px;flex-wrap:nowrap;overflow-x:auto;align-items:center;}
+ .topnav .nav-siblings a{font-size:12px;font-weight:600;color:#4C6272;text-decoration:none;padding:6px 12px;border-radius:6px;letter-spacing:0.2px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-siblings a:hover{background:#f0f4f8;color:#212B32;}
+ .topnav .nav-siblings a.active{background:#003087;color:#fff;}
+
+:root {
+  --nhs-dark:#003087;
+  --nhs-blue:#005EB8;
+  --nhs-cyan:#00A9CE;
+  --nhs-magenta:#AE2573;
+  --nhs-magenta-deep:#5A1D3E;
+  --hometest:#003087;
+  --healthstore:#00A9CE;
+  --healthsync:#00A499;
+  --amber:#FFB91D;
+  --amber-deep:#C9A227;
+  --gold:#FFD66B;
+  --warm-cream:#FFF9EC;
+  --text:#212B32;
+  --text-sec:#4C6272;
+  --text-muted:#7E8B97;
+  --border-lt:#ebeef1;
+  --card:#ffffff;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,var(--nhs-magenta) 0%, var(--nhs-magenta-deep) 100%);background-attachment:fixed;color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;margin:0;padding:0;width:100%;}
+
+/* Page container */
+.page{max-width:1180px;margin:30px auto 50px;background:#ffffff;border-radius:18px;box-shadow:0 14px 40px rgba(90,29,62,0.20);overflow:hidden;}
+
+/* HERO */
+.hero{position:relative;padding:70px 60px 60px;background:linear-gradient(135deg,#3A0F2A 0%,#5A1D3E 50%,#AE2573 100%);color:#fff;overflow:hidden;}
+.hero::after{content:'';position:absolute;right:-80px;bottom:-120px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(255,214,107,0.18),transparent 65%);pointer-events:none;}
+.hero-inner{position:relative;display:grid;grid-template-columns:1.5fr 1fr;gap:50px;align-items:center;z-index:1;}
+.hero-rule{width:60px;height:4px;background:var(--gold);border-radius:2px;margin-bottom:22px;}
+.hero-eyebrow{font-size:11px;font-weight:800;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:24px;}
+.hero-title{font-size:72px;font-weight:900;color:#fff;letter-spacing:-2.4px;line-height:0.95;margin-bottom:28px;}
+.hero-title em{font-style:normal;color:var(--gold);}
+.hero-strap{font-size:18px;color:rgba(255,255,255,0.94);line-height:1.65;max-width:560px;}
+.hero-strap strong{color:var(--gold);font-weight:700;}
+.hero-image-box{display:flex;flex-direction:column;align-items:center;gap:12px;}
+.image-slot{position:relative;background:linear-gradient(135deg,rgba(255,255,255,0.18),rgba(255,255,255,0.06));border-radius:16px;border:2px dashed rgba(255,255,255,0.30);display:flex;flex-direction:column;align-items:center;justify-content:center;color:rgba(255,255,255,0.78);text-align:center;padding:24px;font-size:11.5px;font-weight:700;letter-spacing:0.4px;overflow:hidden;}
+.image-slot img{display:block;width:100%;height:100%;object-fit:cover;}
+.image-slot-icon{font-size:48px;opacity:0.45;margin-bottom:8px;}
+.image-slot.hero-image{width:340px;height:340px;}
+.image-slot-caption{font-size:10.5px;font-weight:600;opacity:0.78;letter-spacing:0.4px;}
+
+.hero-portrait-strip{display:flex;flex-direction:column;gap:6px;text-align:center;color:#fff;}
+.hero-portrait-name{font-size:16px;font-weight:800;letter-spacing:0.4px;}
+.hero-portrait-role{font-size:11px;color:var(--gold);letter-spacing:1.4px;text-transform:uppercase;font-weight:700;}
+
+/* JOURNEY RIBBON */
+.ribbon-wrap{background:#fafbfd;border-bottom:1px solid var(--border-lt);padding:32px 60px 28px;}
+.ribbon-eyebrow{font-size:10.5px;font-weight:800;letter-spacing:2px;color:var(--text-muted);text-transform:uppercase;margin-bottom:14px;text-align:center;}
+.ribbon{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;position:relative;align-items:start;}
+.ribbon-stage{display:flex;flex-direction:column;align-items:center;gap:8px;position:relative;cursor:pointer;text-decoration:none;color:inherit;padding:8px 4px;border-radius:8px;transition:background 0.15s;}
+.ribbon-stage:hover{background:rgba(174,37,115,0.04);}
+.ribbon-num{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--nhs-magenta-deep),var(--nhs-magenta));color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;letter-spacing:-0.5px;box-shadow:0 4px 10px rgba(90,29,62,0.18);}
+.ribbon-label{font-size:11px;font-weight:800;color:var(--nhs-magenta-deep);text-align:center;line-height:1.3;letter-spacing:0.2px;}
+.ribbon-streams{display:flex;gap:3px;margin-top:4px;}
+.ribbon-stream{width:18px;height:5px;border-radius:2px;background:#dde3eb;}
+.ribbon-stream.hometest.on{background:var(--hometest);}
+.ribbon-stream.healthstore.on{background:var(--healthstore);}
+.ribbon-stream.healthsync.on{background:var(--healthsync);}
+.ribbon-legend{display:flex;justify-content:center;gap:24px;margin-top:18px;flex-wrap:wrap;}
+.ribbon-legend-item{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--text-sec);letter-spacing:0.3px;}
+.ribbon-legend-dot{width:14px;height:5px;border-radius:2px;}
+.ribbon-legend-dot.hometest{background:var(--hometest);}
+.ribbon-legend-dot.healthstore{background:var(--healthstore);}
+.ribbon-legend-dot.healthsync{background:var(--healthsync);}
+.ribbon-legend-dot.dormant{background:#dde3eb;}
+
+/* FRAMING */
+.framing{padding:50px 60px 36px;background:#fff;}
+.framing-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;}
+.framing-tile{background:linear-gradient(135deg,#FAEEF4,#FFFFFF);border:1px solid #E8C9DA;border-radius:14px;padding:22px 24px;}
+.framing-tile-eyebrow{font-size:10px;font-weight:800;letter-spacing:1.8px;color:var(--nhs-magenta);text-transform:uppercase;margin-bottom:8px;}
+.framing-tile-h{font-size:15px;font-weight:800;color:var(--nhs-magenta-deep);letter-spacing:-0.2px;margin-bottom:8px;line-height:1.3;}
+.framing-tile-body{font-size:12.5px;color:var(--text-sec);line-height:1.65;}
+.framing-tile-body strong{color:var(--text);font-weight:700;}
+
+/* STAGE */
+.stages{padding:24px 60px 50px;background:#fff;}
+.stage{display:grid;grid-template-columns:140px 1fr;gap:36px;margin-bottom:14px;position:relative;}
+.stage-side{display:flex;flex-direction:column;align-items:flex-end;padding-top:14px;position:sticky;top:0;}
+.stage-number{font-size:110px;font-weight:900;color:var(--nhs-magenta-deep);letter-spacing:-6px;line-height:0.85;opacity:0.10;}
+.stage-side-streams{display:flex;flex-direction:column;gap:6px;margin-top:14px;align-items:flex-end;}
+.stage-side-stream{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:800;letter-spacing:0.6px;color:var(--text-muted);text-transform:uppercase;}
+.stage-side-stream-bar{width:30px;height:4px;border-radius:2px;background:#e0e6ed;}
+.stage-side-stream.on.hometest .stage-side-stream-bar{background:var(--hometest);}
+.stage-side-stream.on.healthstore .stage-side-stream-bar{background:var(--healthstore);}
+.stage-side-stream.on.healthsync .stage-side-stream-bar{background:var(--healthsync);}
+.stage-side-stream.on{color:var(--nhs-magenta-deep);}
+
+.stage-main{padding:24px 0 36px;border-bottom:1px solid var(--border-lt);}
+.stage-eyebrow{font-size:10.5px;font-weight:800;letter-spacing:2.4px;color:var(--text-muted);text-transform:uppercase;margin-bottom:8px;}
+.stage-title{font-size:32px;font-weight:800;color:var(--nhs-magenta-deep);letter-spacing:-0.7px;line-height:1.18;margin-bottom:26px;max-width:760px;}
+
+.stage-image{width:100%;max-width:560px;aspect-ratio:1/1;background:linear-gradient(135deg,#FAEEF4,#E8D2DD);border-radius:14px;border:2px dashed #E8C9DA;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--text-muted);text-align:center;padding:20px;font-size:12.5px;font-weight:700;letter-spacing:0.3px;margin:0 auto 24px;overflow:hidden;position:relative;}
+.stage-image img{display:block;width:100%;height:100%;object-fit:cover;border-radius:12px;}
+.stage-image-icon{font-size:54px;opacity:0.40;margin-bottom:10px;}
+.stage-image-caption{font-size:11.5px;font-weight:600;opacity:0.85;letter-spacing:0.3px;max-width:480px;line-height:1.5;}
+
+.pull-quote{margin:20px 0 24px;padding:32px 20px 28px;text-align:center;position:relative;}
+.pull-quote::before{content:'\201C';position:absolute;left:8px;top:-12px;font-size:110px;color:var(--gold);font-family:Georgia,serif;line-height:1;opacity:0.65;}
+.pull-quote-text{font-size:24px;font-weight:600;color:var(--text);line-height:1.45;letter-spacing:-0.3px;max-width:780px;margin:0 auto;font-style:italic;}
+.pull-quote-attribution{font-size:11.5px;font-weight:800;letter-spacing:2px;color:var(--amber-deep);text-transform:uppercase;margin-top:18px;}
+
+.whats-happening{background:#FAEEF4;border-left:5px solid var(--nhs-magenta);border-radius:0 12px 12px 0;padding:20px 24px;margin-bottom:18px;}
+.whats-happening-label{font-size:10.5px;font-weight:800;letter-spacing:1.8px;color:var(--nhs-magenta);text-transform:uppercase;margin-bottom:8px;}
+.whats-happening-body{font-size:14px;color:var(--text);line-height:1.7;}
+.whats-happening-body strong{color:var(--nhs-magenta-deep);font-weight:700;}
+
+.old-way{background:#FFF6E8;border:1px solid #F0DCA0;border-left:5px solid var(--amber-deep);border-radius:0 12px 12px 0;padding:16px 22px;margin-bottom:18px;}
+.old-way-label{font-size:10px;font-weight:800;letter-spacing:1.6px;color:var(--amber-deep);text-transform:uppercase;margin-bottom:6px;}
+.old-way-body{font-size:13px;color:var(--text-sec);line-height:1.65;font-style:italic;}
+.old-way-body strong{color:var(--text);font-weight:700;font-style:normal;}
+
+.careteam{background:#fff;border:1px solid var(--border-lt);border-radius:10px;padding:14px 18px;margin-bottom:18px;display:flex;gap:14px;align-items:flex-start;}
+.careteam-icon{font-size:18px;color:var(--nhs-magenta);flex-shrink:0;margin-top:1px;}
+.careteam-body{flex:1;}
+.careteam-label{font-size:10px;font-weight:800;letter-spacing:1.4px;color:var(--text-muted);text-transform:uppercase;margin-bottom:4px;}
+.careteam-text{font-size:13px;color:var(--text-sec);line-height:1.65;}
+
+.crosslinks{margin-top:20px;}
+.crosslinks-label{font-size:10px;font-weight:800;letter-spacing:1.6px;color:var(--text-muted);text-transform:uppercase;margin-bottom:10px;}
+.crosslinks-row{display:flex;flex-wrap:wrap;gap:6px;}
+.crosslinks-row a{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;color:var(--nhs-magenta-deep);text-decoration:none;padding:7px 12px;border-radius:6px;border:1px solid #E8C9DA;background:#fff;transition:background 0.15s,transform 0.12s;}
+.crosslinks-row a:hover{background:#FAEEF4;transform:translateY(-1px);}
+.crosslinks-row a::after{content:' \2197';font-size:10px;color:var(--text-muted);margin-left:2px;}
+.crosslinks-row .crosslinks-tag{font-size:9.5px;font-weight:800;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;background:#f0f4f8;padding:3px 8px;border-radius:4px;margin-right:4px;align-self:center;}
+
+/* CLINICAL CONFIDENCE PANEL (Stage 6 mockup) */
+.dashboard{background:linear-gradient(135deg,#3A0F2A,#5A1D3E);border-radius:18px;padding:30px 32px 28px;color:#fff;margin:24px 0 18px;box-shadow:0 10px 30px rgba(58,15,42,0.4);}
+.dashboard-eyebrow{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:8px;}
+.dashboard-title{font-size:18px;font-weight:800;color:#fff;margin-bottom:18px;letter-spacing:-0.3px;}
+.dashboard-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:14px;}
+.dashboard-card{background:rgba(255,255,255,0.10);border:1px solid rgba(255,255,255,0.18);border-radius:10px;padding:14px 16px;}
+.dashboard-card-head{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+.dashboard-card-dot{width:8px;height:8px;border-radius:50%;background:#D77AAE;}
+.dashboard-card-label{font-size:10px;font-weight:800;letter-spacing:1.4px;color:rgba(255,255,255,0.78);text-transform:uppercase;}
+.dashboard-metric{font-size:24px;font-weight:900;color:#fff;letter-spacing:-0.5px;line-height:1;margin-bottom:6px;}
+.dashboard-metric-sub{font-size:11px;color:rgba(255,255,255,0.65);line-height:1.4;}
+.dashboard-footer{font-size:11.5px;color:rgba(255,255,255,0.78);line-height:1.55;padding-top:14px;border-top:1px solid rgba(255,255,255,0.15);}
+.dashboard-footer strong{color:var(--gold);}
+
+/* CONCLUSION */
+.conclusion{padding:60px 60px 70px;background:linear-gradient(180deg,#FFF9EC,#FFFFFF);}
+.conclusion-eyebrow{font-size:11px;font-weight:800;letter-spacing:2.8px;color:var(--amber-deep);text-transform:uppercase;margin-bottom:14px;text-align:center;}
+.conclusion-title{font-size:40px;font-weight:900;color:var(--nhs-magenta-deep);letter-spacing:-1px;line-height:1.1;text-align:center;margin-bottom:14px;max-width:880px;margin-left:auto;margin-right:auto;}
+.conclusion-strap{font-size:15.5px;color:var(--text-sec);line-height:1.7;text-align:center;max-width:760px;margin:0 auto 36px;}
+
+.outcomes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:32px;}
+.outcome{background:#fff;border:1px solid var(--border-lt);border-radius:14px;padding:24px 26px;}
+.outcome-h{font-size:11px;font-weight:800;letter-spacing:1.6px;color:var(--text-muted);text-transform:uppercase;margin-bottom:6px;}
+.outcome-title{font-size:18px;font-weight:800;color:var(--nhs-magenta-deep);letter-spacing:-0.3px;line-height:1.3;margin-bottom:10px;}
+.outcome-body{font-size:13px;color:var(--text-sec);line-height:1.65;}
+
+.conclusion-line{font-size:22px;font-weight:800;color:var(--nhs-magenta-deep);text-align:center;letter-spacing:-0.4px;line-height:1.4;padding:24px;border-top:1px solid #F0DCA0;}
+
+@media(max-width:1000px){
+  .hero{padding:50px 36px 44px;}
+  .hero-inner{grid-template-columns:1fr;gap:36px;}
+  .hero-title{font-size:48px;}
+  .image-slot.hero-image{width:100%;max-width:340px;height:320px;}
+  .ribbon-wrap,.framing,.stages,.conclusion{padding-left:30px;padding-right:30px;}
+  .ribbon{grid-template-columns:repeat(3,1fr);gap:14px;}
+  .framing-grid,.outcomes-grid,.dashboard-row{grid-template-columns:1fr;}
+  .stage{grid-template-columns:80px 1fr;gap:18px;}
+  .stage-number{font-size:64px;letter-spacing:-3px;}
+  .stage-title{font-size:24px;}
+  .stage-image{height:240px;}
+  .pull-quote-text{font-size:20px;}
+  .conclusion-title{font-size:28px;}
+}
+</style>
+<style>
+  .ecosystem-nav {
+    background: #fff;
+    border-bottom: 1px solid #ebeef1;
+    padding: 12px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 48px;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  }
+  .ecosystem-nav a {
+    font-size: 13px; font-weight: 700; color: #003087;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .ecosystem-nav a:hover { color: #005EB8; }
+  .ecosystem-nav .nav-context {
+    font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
+    color: #7E8B97; text-transform: uppercase;
+  }
+  .ecosystem-nav .nav-product {
+    font-size: 10.5px; font-weight: 800; letter-spacing: 0.8px;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 4px; color: #fff;
+  }
+  .ecosystem-nav .nav-product.dtx { background: #003087; }
+  .ecosystem-nav .nav-product.hometest { background: #003087; }
+  .ecosystem-nav .nav-product.healthstore { background: #00A9CE; }
+  .ecosystem-nav .nav-product.healthsync { background: #00A499; }
+</style>
+</head>
+<body>
+<div class="ecosystem-nav">
+  <a href="../index.html">← DTx Ecosystem</a>
+  <span class="nav-context">Ravi Journey</span>
+  <span class="nav-product dtx">DTx</span>
+</div>
+
+<nav class="topnav">
+<a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+<div class="nav-siblings">
+ <a href="DTx OM - Why.html">Why</a>
+ <a href="DTx OM - What.html">What</a>
+ <a href="DTx OM - Lifecycle.html">When</a>
+ <a href="DTx OM - HomeTest Operational.html">How</a>
+ <a href="DTx OM - Governance.html">Who</a>
+ <a href="DTx OM - Hearts and Minds.html" class="active">Hearts and Minds</a>
+ <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>
+ <a href="DTx OM - Status.html">Status</a>
+</div>
+</nav>
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-rule"></div>
+        <div class="hero-eyebrow">A clinician&apos;s story through the operating model</div>
+        <h1 class="hero-title">Sceptic to <em>advocate</em>, one prescription at a time.</h1>
+        <p class="hero-strap">Ravi is a consultant respiratory physician. Twenty years in, busy COPD clinic, a list of patients longer than the time he has to see them. He&apos;s seen digital health products come and go, mostly underpowered, mostly evidence-light, mostly forgotten inside a year. Then a conditional admission lands in front of him with the kind of evidence he can defend in an MDT. <strong>This is the story of a clinician who didn&apos;t believe, prescribed anyway, and ended up in the chair where they decide what gets recommended next.</strong></p>
+      </div>
+      <div class="hero-image-box">
+        <div class="image-slot hero-image">
+          <img src="img/Final%20images/Ravi%206.png" alt="Ravi in clinic reviewing the DTx evidence pack" style="border-radius:14px;" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;image-slot-icon&quot;>&#x1F464;</div><div>Ravi hero illustration</div><div class=&quot;image-slot-caption&quot;>Consultant respiratory physician &middot; clinic letter &middot; spirometry report &middot; long day, real patients';">
+        </div>
+        <div class="hero-portrait-strip">
+          <div class="hero-portrait-name">Ravi</div>
+          <div class="hero-portrait-role">Consultant respiratory physician</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JOURNEY RIBBON -->
+  <div class="ribbon-wrap">
+    <div class="ribbon-eyebrow">Ravi&apos;s journey at a glance &middot; six stages, one clinician changing his mind</div>
+    <div class="ribbon">
+      <a class="ribbon-stage" href="#stage-1">
+        <div class="ribbon-num">1</div>
+        <div class="ribbon-label">The patient without an option</div>
+        <div class="ribbon-streams">
+          <div class="ribbon-stream hometest"></div>
+          <div class="ribbon-stream healthstore"></div>
+          <div class="ribbon-stream healthsync"></div>
+        </div>
+      </a>
+      <a class="ribbon-stage" href="#stage-2">
+        <div class="ribbon-num">2</div>
+        <div class="ribbon-label">The conditional admission letter</div>
+        <div class="ribbon-streams">
+          <div class="ribbon-stream hometest"></div>
+          <div class="ribbon-stream healthstore on"></div>
+          <div class="ribbon-stream healthsync"></div>
+        </div>
+      </a>
+      <a class="ribbon-stage" href="#stage-3">
+        <div class="ribbon-num">3</div>
+        <div class="ribbon-label">The first prescription</div>
+        <div class="ribbon-streams">
+          <div class="ribbon-stream hometest"></div>
+          <div class="ribbon-stream healthstore on"></div>
+          <div class="ribbon-stream healthsync"></div>
+        </div>
+      </a>
+      <a class="ribbon-stage" href="#stage-4">
+        <div class="ribbon-num">4</div>
+        <div class="ribbon-label">Watching engagement land</div>
+        <div class="ribbon-streams">
+          <div class="ribbon-stream hometest"></div>
+          <div class="ribbon-stream healthstore on"></div>
+          <div class="ribbon-stream healthsync"></div>
+        </div>
+      </a>
+      <a class="ribbon-stage" href="#stage-5">
+        <div class="ribbon-num">5</div>
+        <div class="ribbon-label">Recommending to peers</div>
+        <div class="ribbon-streams">
+          <div class="ribbon-stream hometest"></div>
+          <div class="ribbon-stream healthstore on"></div>
+          <div class="ribbon-stream healthsync"></div>
+        </div>
+      </a>
+      <a class="ribbon-stage" href="#stage-6">
+        <div class="ribbon-num">6</div>
+        <div class="ribbon-label">The regional steering group</div>
+        <div class="ribbon-streams">
+          <div class="ribbon-stream hometest"></div>
+          <div class="ribbon-stream healthstore on"></div>
+          <div class="ribbon-stream healthsync"></div>
+        </div>
+      </a>
+    </div>
+    <div class="ribbon-legend">
+      <div class="ribbon-legend-item"><div class="ribbon-legend-dot hometest"></div>HomeTest active</div>
+      <div class="ribbon-legend-item"><div class="ribbon-legend-dot healthstore"></div>HealthStore active</div>
+      <div class="ribbon-legend-item"><div class="ribbon-legend-dot healthsync"></div>HealthSync active</div>
+      <div class="ribbon-legend-item"><div class="ribbon-legend-dot dormant"></div>not active</div>
+    </div>
+  </div>
+
+  <!-- FRAMING -->
+  <div class="framing">
+    <div class="framing-grid" style="grid-template-columns:1fr 1fr;">
+      <div class="framing-tile">
+        <div class="framing-tile-eyebrow">The clinician&apos;s real problem</div>
+        <div class="framing-tile-h">A digital therapeutic is a clinical decision before it&apos;s anything else.</div>
+        <div class="framing-tile-body">Ravi can&apos;t prescribe what he can&apos;t defend in an MDT. He doesn&apos;t mind digital tools. He minds digital tools that arrive on his desk without evidence, without integration, and without anyone able to tell him who&apos;s clinically accountable when something goes wrong. <strong>What he needs is the assurance work done before the conversation starts.</strong></div>
+      </div>
+      <div class="framing-tile">
+        <div class="framing-tile-eyebrow">Why this operating model matters to him</div>
+        <div class="framing-tile-h">Clinical confidence built once, consumed everywhere a clinician picks the product up.</div>
+        <div class="framing-tile-body">The NICE EVA conditional admission, the DCB0129 manufacturer-side safety case, the DCB0160 deployer-side safety case, the IG framework and the MI feed are all done before Ravi sees the product. The bit he does is the clinical decision he was always meant to make. <strong>The operating model takes the assurance work off his desk so he can do medicine.</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAGES -->
+  <div class="stages">
+
+    <!-- STAGE 1 -->
+    <div class="stage" id="stage-1">
+      <div class="stage-side">
+        <div class="stage-number">01</div>
+        <div class="stage-side-streams">
+          <div class="stage-side-stream"><span>HomeTest</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream"><span>HealthStore</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream"><span>HealthSync</span><div class="stage-side-stream-bar"></div></div>
+        </div>
+      </div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">The patient without an option &middot; the gap that drives the rest</div>
+        <h2 class="stage-title">Ravi has a fifty-eight-year-old patient with moderate COPD, two exacerbations in twelve months and a job that won&apos;t accommodate a daytime pulmonary rehab programme. The options on his desk don&apos;t fit her life. The conversation in clinic is the one he&apos;s had a hundred times before.</h2>
+
+        <div class="stage-image">
+          <img src="img/Final%20images/Ravi%201.png" alt="Ravi reviewing his patient's case" style="border-radius:12px;" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;stage-image-icon&quot;>&#x1FAC1;</div><div>Stage 1 illustration</div><div class=&quot;stage-image-caption&quot;>Ravi in clinic &middot; patient notes open &middot; recent exacerbation history &middot; the quiet frustration of running out of options that fit a patient&apos;s actual life&apos;';">
+        </div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">She isn&apos;t a non-compliant patient. She&apos;s a patient whose life can&apos;t accommodate the only thing I can offer her. That&apos;s a service-design problem dressed up as a compliance problem.</p>
+          <div class="pull-quote-attribution">Ravi</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What sits in front of him in clinic</div>
+          <div class="whats-happening-body">Inhaler optimisation, smoking-cessation support, pulmonary rehab. <strong>Pulmonary rehab works.</strong> The evidence base is strong, the outcomes are real. But the offer is in-person, daytime, group-based and the next cohort has a six-month wait. For this patient the answer would be a structured, supported, digital self-management programme she can do around shifts. Ravi knows that programme exists in product form. He doesn&apos;t prescribe it. <strong>He doesn&apos;t have the assurance cover he&apos;d need to defend the decision if something went wrong.</strong></div>
+        </div>
+
+        <div class="old-way">
+          <div class="old-way-label">Why he&apos;s never prescribed a digital therapeutic before</div>
+          <div class="old-way-body">No clear admission route. No defensible evidence pack. No clinical-safety case he can name. No IG pathway. No-one accountable on the supplier side that he can call. Faced with that vacuum, the cautious clinical decision is to wait. So he waits, and the patient waits, and the exacerbations keep happening.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">Who&apos;s in the room with him</div>
+            <div class="careteam-text">His COPD clinical nurse specialist, his service manager, his patient. The conversation is happening at the limit of what the in-person service can offer. The next patient is waiting outside.</div>
+          </div>
+        </div>
+
+        <div class="crosslinks">
+          <div class="crosslinks-label">Where this lives in the model</div>
+          <div class="crosslinks-row">
+            <span class="crosslinks-tag">Why</span>
+            <a href="DTx OM - Why.html" target="_blank">Why orchestrate the market</a>
+            <span class="crosslinks-tag">Who</span>
+            <a href="DTx OM - Persona HealthStore prescribing clinician.html" target="_blank">Ravi persona</a>
+            <a href="DTx OM - Persona HealthStore COPD patient.html" target="_blank">Pauline &middot; patient archetype</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 2 -->
+    <div class="stage" id="stage-2">
+      <div class="stage-side">
+        <div class="stage-number">02</div>
+        <div class="stage-side-streams">
+          <div class="stage-side-stream"><span>HomeTest</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream on healthstore"><span>HealthStore</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream"><span>HealthSync</span><div class="stage-side-stream-bar"></div></div>
+        </div>
+      </div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">The conditional admission letter &middot; the assurance cover lands on his desk</div>
+        <h2 class="stage-title">A NICE EVA conditional recommendation lands. Real-world evidence commitments attached. Clinical-safety case complete. The DTx is on the National App Formulary. For the first time Ravi has the assurance cover he&apos;s been waiting for.</h2>
+
+        <div class="stage-image">
+          <img src="img/Final%20images/Ravi%202.png" alt="Ravi reading the NICE EVA conditional recommendation" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;stage-image-icon&quot;>&#x1F4DC;</div><div>Stage 2 illustration</div><div class=&quot;stage-image-caption&quot;>Ravi reading the NICE recommendation on screen &middot; clinical evidence pack open beside it &middot; the moment he stops being a sceptic';">
+        </div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">It&apos;s on the formulary. NICE have looked at it. The clinical-safety case is signed. If something goes wrong I can name who&apos;s accountable. That&apos;s the cover I never had before.</p>
+          <div class="pull-quote-attribution">Ravi</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">The <strong>NICE EVA conditionally-recommended</strong> route admits the DTx to the <strong>National App Formulary</strong> with explicit clinical evidence and a real-world evidence generation commitment attached. <strong>DCB0129</strong> sits on the manufacturer side; <strong>DCB0160</strong> sits on his trust&apos;s deployer side. The IG framework, supplier admission, contracting and MI are done at Foundation level. What Ravi sees in clinic is a product with a defensible evidence base, named accountability, structured outcomes capture and a clean integration into his patient&apos;s existing NHS App account. <strong>The assurance is portable</strong>: once done at the centre, consumed locally without re-litigation.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What changes for him on the day it lands</div>
+            <div class="careteam-text">The local clinical-safety officer signs the DCB0160 deployer-side case for the trust. The COPD MDT reviews the conditional admission and adds the DTx to the pathway-fit guidance. Prescribing becomes a clinical decision, not an unsupported personal risk.</div>
+          </div>
+        </div>
+
+        <div class="crosslinks">
+          <div class="crosslinks-label">Where this lives in the model</div>
+          <div class="crosslinks-row">
+            <span class="crosslinks-tag">How</span>
+            <a href="DTx OM - HealthStore Operational.html" target="_blank">HealthStore Operational</a>
+            
+            <span class="crosslinks-tag">What</span>
+            <a href="DTx OM - Anatomical.html" target="_blank">Foundation &middot; NICE EVA, National App Formulary, DCB0129/0160</a>
+            <span class="crosslinks-tag">When</span>
+            <a href="DTx OM - HealthStore ASSURE.html" target="_blank">HealthStore ASSURE</a>
+            <span class="crosslinks-tag">Who</span>
+            <a href="DTx OM - Persona Aisha.html" target="_blank">Aisha &middot; clinical framework</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 3 -->
+    <div class="stage" id="stage-3">
+      <div class="stage-side">
+        <div class="stage-number">03</div>
+        <div class="stage-side-streams">
+          <div class="stage-side-stream"><span>HomeTest</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream on healthstore"><span>HealthStore</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream"><span>HealthSync</span><div class="stage-side-stream-bar"></div></div>
+        </div>
+      </div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">The first prescription &middot; the patient he had in mind two months ago</div>
+        <h2 class="stage-title">Same patient. Same clinic room. Different ending. Ravi prescribes the DTx from the formulary, the prescription routes through the framework, the patient activates it on her phone before she gets to her car.</h2>
+
+        <div class="stage-image">
+          <img src="img/Final%20images/Ravi%203.png" alt="Ravi prescribing the DTx for the first time" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;stage-image-icon&quot;>&#x270D;&#xFE0F;</div><div>Stage 3 illustration</div><div class=&quot;stage-image-caption&quot;>Ravi at his clinic terminal &middot; selecting the DTx from the formulary &middot; the prescription routed through to the patient&apos;s NHS App &middot; quiet professional satisfaction&apos;';">
+        </div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">Two months ago this was the conversation I couldn&apos;t finish. Today it&apos;s the conversation I can. The product was the same. What changed was the cover I had to recommend it.</p>
+          <div class="pull-quote-attribution">Ravi</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">Prescribing happens through the clinical pathway with the formulary entry surfaced as a recommended option. The DTx is reached through the <strong>NHS App as the front door</strong> with NHS Login carrying the patient&apos;s identity. The patient consents to the data flow, the prescription event lands in the framework&apos;s MI feed and a clinical-pathway responsibility chain is in place from the moment she activates. <strong>No additional onboarding for the patient, no additional admin for Ravi, no additional risk for the trust.</strong></div>
+          </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What the patient sees at her end</div>
+            <div class="careteam-text">An NHS App notification. NHS Login already in place. A guided onboarding into the DTx product. The clinical pathway lead named, the support route obvious. <strong>The product feels like the NHS</strong>, not like a third-party app bolted on the side.</div>
+          </div>
+        </div>
+
+        <div class="crosslinks">
+          <div class="crosslinks-label">Where this lives in the model</div>
+          <div class="crosslinks-row">
+            <span class="crosslinks-tag">How</span>
+            <a href="DTx OM - HealthStore Operational.html" target="_blank">HealthStore Operational</a>
+            
+            <span class="crosslinks-tag">When</span>
+            <a href="DTx OM - HealthStore FULFIL.html" target="_blank">HealthStore FULFIL</a>
+            <span class="crosslinks-tag">What</span>
+            <a href="DTx OM - Anatomical.html" target="_blank">Foundation &middot; NHS App, NHS Login, integration spine</a>
+            <span class="crosslinks-tag">Who</span>
+            <a href="DTx OM - Persona HealthStore COPD patient.html" target="_blank">Pauline &middot; patient experience</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 4 -->
+    <div class="stage" id="stage-4">
+      <div class="stage-side">
+        <div class="stage-number">04</div>
+        <div class="stage-side-streams">
+          <div class="stage-side-stream"><span>HomeTest</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream on healthstore"><span>HealthStore</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream"><span>HealthSync</span><div class="stage-side-stream-bar"></div></div>
+        </div>
+      </div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">Watching engagement land &middot; the bit that turns a sceptic into a believer</div>
+        <h2 class="stage-title">Twelve weeks on. The patient is engaged. Spirometry is holding. Exacerbations have dropped. Ravi opens his cohort view and sees the same pattern repeating across the fifteen patients he&apos;s prescribed for since.</h2>
+
+        <div class="stage-image">
+          <img src="img/Final%20images/Ravi%204.png" alt="Ravi reviewing the cohort engagement view" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;stage-image-icon&quot;>&#x1F4C8;</div><div>Stage 4 illustration</div><div class=&quot;stage-image-caption&quot;>Ravi reviewing his prescribing cohort dashboard &middot; engagement up &middot; spirometry stable &middot; exacerbation rate falling &middot; the clinical evidence finally landing as a personal experience&apos;';">
+        </div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">It&apos;s not that the evidence changed my mind. The evidence got me to prescribe. Watching my own patients respond is what made me a believer.</p>
+          <div class="pull-quote-attribution">Ravi</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">The <strong>MI feed</strong> from the DTx supplier lands in the framework&apos;s data layer, feeding both supplier-performance review and a clinical-view dashboard Ravi can see. Outcomes are structured: engagement, spirometry trend, exacerbation frequency, escalation events. The <strong>Ongoing Evidence Generation</strong> commitment at Foundation level means this cohort isn&apos;t just for Ravi&apos;s reassurance. It feeds NICE re-evaluation, the framework&apos;s renewal case and the next clinician&apos;s confidence at the same time. <strong>One evidence stream, three audiences.</strong></div>
+        </div>
+
+        <div class="old-way">
+          <div class="old-way-label">What this didn&apos;t look like before</div>
+          <div class="old-way-body">In the pilot era, a clinician prescribing a DTx had to take the supplier&apos;s word on outcomes. Now the outcomes feed lands in the same data spine the framework uses for everything else, structured the same way, available to him without him having to build a dashboard. The visibility is normalised.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What the cohort is showing him</div>
+            <div class="careteam-text">High engagement across most of the cohort. Two patients who disengaged in week three. The escalation triggered automatically, the CNS reached out. One patient escalated for exacerbation review at week eight. The digital pathway flagged it before it became an admission. <strong>The model is doing the job it was built to do.</strong></div>
+          </div>
+        </div>
+
+        <div class="crosslinks">
+          <div class="crosslinks-label">Where this lives in the model</div>
+          <div class="crosslinks-row">
+            <span class="crosslinks-tag">How</span>
+            <a href="DTx OM - HealthStore Operational.html" target="_blank">HealthStore Operational</a>
+            
+            <span class="crosslinks-tag">When</span>
+            <a href="DTx OM - HealthStore FULFIL.html" target="_blank">HealthStore FULFIL</a>
+            <a href="DTx OM - HealthStore MEASURE.html" target="_blank">HealthStore MEASURE</a>
+            <span class="crosslinks-tag">What</span>
+            <a href="DTx OM - Anatomical.html" target="_blank">Foundation &middot; MI / data flow integrity, Ongoing Evidence Generation</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 5 -->
+    <div class="stage" id="stage-5">
+      <div class="stage-side">
+        <div class="stage-number">05</div>
+        <div class="stage-side-streams">
+          <div class="stage-side-stream"><span>HomeTest</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream on healthstore"><span>HealthStore</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream"><span>HealthSync</span><div class="stage-side-stream-bar"></div></div>
+        </div>
+      </div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">Recommending to peers &middot; the conversation that scales the adoption curve</div>
+        <h2 class="stage-title">Ravi takes the cohort to the regional respiratory MDT. Three consultants in the room who&apos;d ignored the conditional admission notification when it landed. Two of them are prescribing within a month.</h2>
+
+        <div class="stage-image">
+          <img src="img/Final%20images/Ravi%205.png" alt="Ravi presenting his cohort experience to the regional MDT" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;stage-image-icon&quot;>&#x1F465;</div><div>Stage 5 illustration</div><div class=&quot;stage-image-caption&quot;>Ravi presenting at the regional respiratory MDT &middot; cohort data on screen &middot; three consultant colleagues listening &middot; the conversation that converts the next prescribers';">
+        </div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">I&apos;m not making the supplier&apos;s argument for them. I&apos;m telling my colleagues what I&apos;ve seen in my own clinic. That&apos;s a different conversation, and it lands differently.</p>
+          <div class="pull-quote-attribution">Ravi</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">The structural choices that brought Ravi into prescribing (the NICE conditional admission, the named clinical-safety case, the assurance portability, the integrated MI) are doing the same work for every consultant in the room. None of them is being asked to recreate Ravi&apos;s decision. They&apos;re being asked to follow his trail through a structure that&apos;s already been built. <strong>Adoption scales because the bar to join doesn&apos;t move</strong>: the assurance work was done once at the centre, and Ravi&apos;s real-world experience is the social evidence that converts the next clinician.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">Who&apos;s in the room with him</div>
+            <div class="careteam-text">Three regional respiratory consultants. The COPD pathway lead from a neighbouring trust. The CNS lead. The data the cohort generated, structured the same way the next consultant&apos;s cohort will be structured. <strong>This is the moment the adoption curve stops being theoretical.</strong></div>
+          </div>
+        </div>
+
+        <div class="crosslinks">
+          <div class="crosslinks-label">Where this lives in the model</div>
+          <div class="crosslinks-row">
+            <span class="crosslinks-tag">How</span>
+            <a href="DTx OM - HealthStore Operational.html" target="_blank">HealthStore Operational &middot; clinical adoption lane</a>
+            <span class="crosslinks-tag">Who</span>
+            <a href="DTx OM - Persona Aisha.html" target="_blank">Aisha &middot; clinical framework</a>
+            <a href="DTx OM - HealthStore Teamwork.html" target="_blank">HealthStore Teamwork</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 6 -->
+    <div class="stage" id="stage-6">
+      <div class="stage-side">
+        <div class="stage-number">06</div>
+        <div class="stage-side-streams">
+          <div class="stage-side-stream"><span>HomeTest</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream on healthstore"><span>HealthStore</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream"><span>HealthSync</span><div class="stage-side-stream-bar"></div></div>
+        </div>
+      </div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">The regional steering group &middot; the seat at the table he didn&apos;t expect</div>
+        <h2 class="stage-title">Eighteen months on. Ravi is on the regional digital therapeutics clinical reference group. The clinician who didn&apos;t believe in DTx is now the one shaping which configurations get admitted for COPD next.</h2>
+
+        <div class="stage-image">
+          <img src="img/Final%20images/Ravi%20boardroom.png" alt="Ravi at the regional clinical reference group" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;stage-image-icon&quot;>&#x1F4CB;</div><div>Stage 6 illustration</div><div class=&quot;stage-image-caption&quot;>Ravi at the regional clinical reference group meeting &middot; chairing a session on next-wave DTx configurations &middot; the arc complete';">
+        </div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">Two years ago I&apos;d never prescribed one of these products. Today I&apos;m on the panel deciding which one we recommend next. That&apos;s not a clinician changing his mind. That&apos;s a system finally giving clinicians a way to be in the room.</p>
+          <div class="pull-quote-attribution">Ravi</div>
+        </div>
+
+        <!-- Clinical confidence panel -->
+        <div class="dashboard">
+          <div class="dashboard-eyebrow">The clinician view &middot; a year and a half from sceptic to chair</div>
+          <div class="dashboard-title">Ravi&apos;s eighteen-month checkpoint</div>
+          <div class="dashboard-row">
+            <div class="dashboard-card">
+              <div class="dashboard-card-head">
+                <div class="dashboard-card-dot"></div>
+                <div class="dashboard-card-label">Patients prescribed personally</div>
+              </div>
+              <div class="dashboard-metric">132</div>
+              <div class="dashboard-metric-sub">from a starting position of zero &middot; eighteen months</div>
+            </div>
+            <div class="dashboard-card">
+              <div class="dashboard-card-head">
+                <div class="dashboard-card-dot"></div>
+                <div class="dashboard-card-label">Cohort engagement</div>
+              </div>
+              <div class="dashboard-metric">81%</div>
+              <div class="dashboard-metric-sub">sustained at 12 weeks &middot; ahead of pulmonary rehab attendance baseline</div>
+            </div>
+            <div class="dashboard-card">
+              <div class="dashboard-card-head">
+                <div class="dashboard-card-dot"></div>
+                <div class="dashboard-card-label">Exacerbation rate</div>
+              </div>
+              <div class="dashboard-metric">&minus;22%</div>
+              <div class="dashboard-metric-sub">vs cohort-matched 12-month rolling baseline</div>
+            </div>
+          </div>
+          <div class="dashboard-row">
+            <div class="dashboard-card">
+              <div class="dashboard-card-head">
+                <div class="dashboard-card-dot"></div>
+                <div class="dashboard-card-label">Peer prescribers converted</div>
+              </div>
+              <div class="dashboard-metric">9</div>
+              <div class="dashboard-metric-sub">consultant colleagues across the region now prescribing</div>
+            </div>
+            <div class="dashboard-card">
+              <div class="dashboard-card-head">
+                <div class="dashboard-card-dot"></div>
+                <div class="dashboard-card-label">Local DCB0160 cases signed</div>
+              </div>
+              <div class="dashboard-metric">14</div>
+              <div class="dashboard-metric-sub">trust deployer-side safety cases live on his region&apos;s formulary</div>
+            </div>
+            <div class="dashboard-card">
+              <div class="dashboard-card-head">
+                <div class="dashboard-card-dot"></div>
+                <div class="dashboard-card-label">Role</div>
+              </div>
+              <div class="dashboard-metric">Chair</div>
+              <div class="dashboard-metric-sub">regional DTx clinical reference group &middot; respiratory configurations</div>
+            </div>
+          </div>
+          <div class="dashboard-footer">One sceptical consultant. One conditional admission. <strong>A clinical adoption curve that holds because the assurance does.</strong></div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">The regional clinical reference group is the structural feedback loop that closes the circle: clinician experience feeds back into <strong>Configuration</strong> decisions (which deployment shapes are admitted), into the <strong>Assurance Model</strong> (what evidence is required to renew or extend a conditional admission), and into the <strong>National App Formulary</strong> curation. <strong>Ongoing Evidence Generation</strong> threads Ravi&apos;s cohort outcomes into NICE re-evaluation. The clinician who would once have been a customer the supplier sold to is now a contributor to the framework the supplier is admitted under.</div>
+        </div>
+
+        <div class="crosslinks">
+          <div class="crosslinks-label">Where this lives in the model</div>
+          <div class="crosslinks-row">
+            <span class="crosslinks-tag">How</span>
+            <a href="DTx OM - HealthStore Operational.html" target="_blank">HealthStore Operational</a>
+            
+            <span class="crosslinks-tag">When</span>
+            <a href="DTx OM - HealthStore MEASURE.html" target="_blank">HealthStore MEASURE</a>
+            <span class="crosslinks-tag">Who</span>
+            <a href="DTx OM - Governance.html" target="_blank">Governance &middot; clinical reference group</a>
+            <span class="crosslinks-tag">What</span>
+            <a href="DTx OM - Anatomical.html" target="_blank">Foundation &middot; Ongoing Evidence Generation</a>
+            <span class="crosslinks-tag">Status</span>
+            <a href="DTx OM - Status.html" target="_blank">What we still need to land</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CONCLUSION -->
+  <div class="conclusion">
+    <div class="conclusion-eyebrow">What Ravi&apos;s story shows</div>
+    <h2 class="conclusion-title">Clinical adoption isn&apos;t a marketing problem.<br>It&apos;s an assurance problem solved at the centre.</h2>
+    <p class="conclusion-strap">The clinicians who don&apos;t prescribe digital therapeutics aren&apos;t Luddites. They&apos;re people doing a serious job who won&apos;t recommend a product they can&apos;t defend in an MDT. The operating model exists so the assurance work that makes a DTx defensible (NICE evaluation, clinical-safety cases, IG, integration, outcomes capture, named accountability) is done once at the centre and made portable. Once that&apos;s done, clinicians like Ravi prescribe, watch the outcomes land, tell their peers and end up in the chair where they shape the next admission. <strong>Adoption follows assurance.</strong></p>
+
+    <div class="outcomes-grid">
+      <div class="outcome">
+        <div style="width:96px;height:96px;border-radius:50%;overflow:hidden;margin-bottom:14px;background:#E0E5EB;box-shadow:0 4px 14px rgba(90,29,62,0.15);"><a href="DTx OM - Persona HealthStore prescribing clinician.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="img/ravi.png" alt="Ravi" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block;"></a></div>
+        <div class="outcome-h">For Ravi</div>
+        <div class="outcome-title">A defensible clinical decision, finally.</div>
+        <div class="outcome-body">A NICE-recommended product on the formulary. A signed safety case. A named accountability chain. Structured outcomes capture. The assurance work he could never have done alone is done once at the centre and consumed locally. The cautious clinical decision flips from <em>wait</em> to <em>prescribe</em>, and the patients he&apos;d been running out of options for get one.</div>
+      </div>
+      <div class="outcome">
+        <div style="width:96px;height:96px;border-radius:50%;overflow:hidden;margin-bottom:14px;background:#5A1D3E;box-shadow:0 4px 14px rgba(90,29,62,0.15);"><img src="img/icon-care.png" alt="Patient icon" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        <div class="outcome-h">For his patients</div>
+        <div class="outcome-title">An option that fits their life.</div>
+        <div class="outcome-body">A structured self-management programme they can do around shifts, caring responsibilities and the rest of an actual adult life. Engagement is high, exacerbation rates are down, and the in-person services that work for some patients aren&apos;t the only thing on offer for the patients they don&apos;t fit. <strong>The service started meeting the patient where the patient already was.</strong></div>
+      </div>
+      <div class="outcome">
+        <div style="width:96px;height:96px;border-radius:50%;overflow:hidden;margin-bottom:14px;background:#5A1D3E;box-shadow:0 4px 14px rgba(90,29,62,0.15);"><img src="img/icon-system.png" alt="System icon" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        <div class="outcome-h">For the system</div>
+        <div class="outcome-title">Clinicians in the room where next gets decided.</div>
+        <div class="outcome-body">The clinical reference group closes the loop: prescriber experience feeds back into which configurations are admitted, which evidence is required, which products get extended and which get withdrawn. Adoption isn&apos;t a marketing event; it&apos;s a structural one. The clinicians the model converts become the people deciding what the model admits next. <strong>The flywheel runs with clinical hands on it.</strong></div>
+      </div>
+    </div>
+
+    <div class="conclusion-line">One sceptical consultant. One conditional admission. One adoption curve. <span style="color:var(--amber-deep);">Adoption follows assurance.</span></div>
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+# Backup files taken during edits (one-off snapshots, not for publication)
+*.bak
+*.bak_*
+*.BROKEN-*
+*.truncated-bak
+*.BROKEN-edits-snapshot
+
+# Internal matter-skill working notes (not for publication)
+operating-model/dtx-om-matter-skill/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*~
+
+# Editor folders
+.vscode/
+.idea/
+
+# Local build artefacts
+node_modules/
+.cache/

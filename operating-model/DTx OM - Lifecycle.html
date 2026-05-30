@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Digital Therapeutics Operating Model: Lifecycle</title>
+<style>
+ /* Canonical topnav */
+ .topnav{background:#fff;border-bottom:1px solid #ebeef1;padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:nowrap;min-height:54px;box-sizing:border-box;width:100%;max-width:100%;margin:0;position:sticky;top:0;z-index:200;}
+ .topnav.topnav-secondary{background:#F4F8FC;border-bottom:1px solid #d6e2ef;padding:9px 36px;min-height:42px;}
+ .topnav .nav-back{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-back:hover{color:#005EB8;}
+ .topnav .nav-siblings{display:flex;gap:4px;flex-wrap:nowrap;overflow-x:auto;align-items:center;}
+ .topnav .nav-siblings a{font-size:12px;font-weight:600;color:#4C6272;text-decoration:none;padding:6px 12px;border-radius:6px;letter-spacing:0.2px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-siblings a:hover{background:#f0f4f8;color:#212B32;}
+ .topnav .nav-siblings a.active{background:#003087;color:#fff;}
+ .topnav.topnav-secondary .nav-siblings a{font-size:11.5px;padding:5px 10px;}
+ .topnav.topnav-secondary .nav-siblings a.active{background:#005EB8;color:#fff;}
+ .topnav .nav-secondary-label{font-size:10px;font-weight:800;letter-spacing:1.5px;color:#7E8B97;text-transform:uppercase;flex-shrink:0;}
+
+ /* ---- Site shell ---- */
+ :root {
+ --nhs-dark:#003087; --nhs-blue:#005EB8; --nhs-green:#006747; --nhs-pink:#AE2573;
+ --accent:var(--nhs-blue);
+ --text:#212B32; --text-sec:#4C6272; --text-muted:#7E8B97;
+ --border:#d9dee3; --border-lt:#ebeef1;
+ --card:#ffffff; --bg:#f8fafc;
+ --amber:#FFB91D; --amber-deep:#C9A227; --warm-cream:#FFF9EC;
+ /* Colour variables */
+ --shape-color: #005EB8;
+ --assure-color: #41B6E6;
+ --contract-color: #003087;
+ --fulfil-color: #006747;
+ --measure-color: #7C2855;
+ --feedback-color: #AE2573;
+ --status-decided: #00703C;
+ --status-progress: #ED8B00;
+ --status-open: #DA291C;
+ --near-black: #231F20;
+ }
+ * { box-sizing: border-box; margin: 0; padding: 0; }
+ body { font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; -webkit-font-smoothing: antialiased; }
+ /* Top nav */
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ /* Page header */
+ .page{max-width:1180px;margin:0 auto;padding:50px 40px 80px;}
+ .header-wrap{margin-bottom:42px;}
+ .h-eyebrow{display:inline-block;background:var(--accent);color:#fff;font-size:10.5px;font-weight:800;letter-spacing:1.8px;padding:7px 16px;border-radius:4px;text-transform:uppercase;margin-bottom:18px;}
+ .amber-rule { width: 72px; height: 4px; background: var(--amber); border-radius: 2px; margin-bottom: 18px; }
+ .h-title{font-size:42px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.5px;line-height:1.1;margin-bottom:12px;}
+ .h-subtitle{font-size:18px;color:var(--text-sec);font-weight:500;margin-bottom:18px;}
+ .h-intro{max-width:820px;font-size:14.5px;color:var(--text-sec);line-height:1.7;}
+ .h-intro strong{color:var(--text);font-weight:700;}
+ .foot{margin-top:48px;text-align:center;font-size:11.5px;color:var(--text-muted);line-height:1.6;}
+ .foot strong{color:var(--text-sec);font-weight:700;}
+ /* ---- v4 pentagon CSS (preserved) ---- */
+
+ :root {
+ --nhs-blue: #005EB8;
+ --nhs-dark: #003087;
+ --shape-color: #005EB8;
+ --assure-color: #41B6E6;
+ --contract-color: #003087;
+ --fulfil-color: #006747;
+ --measure-color: #7C2855;
+ --feedback-color: #AE2573;
+ --status-decided: #00703C;
+ --status-progress: #ED8B00;
+ --status-open: #DA291C;
+ --near-black: #231F20;
+ }
+ * { margin: 0; padding: 0; box-sizing: border-box; }
+ body {
+ font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;
+ color: var(--near-black);
+ line-height: 1.5;
+ }
+ .header {
+ background: linear-gradient(135deg, var(--nhs-dark), var(--nhs-blue));
+ color: white;
+ padding: 22px 40px;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ }
+ .header h1 { font-size: 24px; font-weight: 600; }
+ .header .subtitle { font-size: 13px; opacity: 0.85; margin-top: 2px; }
+ .header .meta { font-size: 12px; opacity: 0.7; text-align: right; }
+
+ .main { max-width: 1200px; margin: 0 auto; padding: 24px 32px; }
+
+ /* Status legend */
+ .status-legend {
+ display: flex; gap: 22px; margin-bottom: 24px;
+ align-items: center; font-size: 12px; color: #555;
+ padding: 11px 18px;
+ background: white;
+ border: 1px solid #e5e5e5;
+ border-radius: 6px;
+ flex-wrap: wrap;
+ }
+ .status-legend-title {
+ font-weight: 700; font-size: 11px; text-transform: uppercase;
+ letter-spacing: 0.5px; color: #888;
+ }
+ .status-legend-item { display: flex; align-items: center; gap: 6px; }
+ .status-dot-legend {
+ width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0;
+ display: inline-block;
+ }
+
+ /*
+ * LAYOUT: all coordinates use a single system.
+ * Container = 900 x 830. SVG viewBox = 0 0 900 830.
+ * Pentagon centre = (450, 415).
+ * Stage-box centres at radius 270 from centre.
+ * Flow arrows at radius 320. Governance arcs at radius 385.
+ */
+ .cycle-container {
+ position: relative;
+ width: 900px;
+ max-width: 100%;
+ height: 830px;
+ margin: 0 auto 32px;
+ }
+ .cycle-svg {
+ position: absolute;
+ top: 0; left: 0;
+ width: 900px; height: 830px;
+ pointer-events: none;
+ }
+
+ /* Stage boxes */
+ .stage-box {
+ position: absolute;
+ width: 220px;
+ height: 210px;
+ background: white;
+ border-radius: 12px;
+ box-shadow: 0 3px 14px rgba(0,0,0,0.1);
+ overflow: hidden;
+ text-decoration: none;
+ color: inherit;
+ transition: transform 0.18s, box-shadow 0.18s;
+ cursor: pointer;
+ display: block;
+ z-index: 2;
+ }
+ .stage-box:hover {
+ transform: translateY(-3px);
+ box-shadow: 0 10px 26px rgba(0,0,0,0.18);
+ }
+
+ /* Pentagon vertex positions: centre (450,415), radius 270, box = 220x210
+ Each box's top-left = vertex - (110, 105) so tile centres on its vertex */
+ .pos-shape { left: 340px; top: 51px; }
+ .pos-assure { left: 597px; top: 238px; }
+ .pos-contract { left: 499px; top: 539px; }
+ .pos-fulfil { left: 181px; top: 539px; }
+ .pos-measure { left: 83px; top: 238px; }
+
+ .stage-box .stage-header {
+ padding: 10px 14px;
+ color: white;
+ position: relative;
+ }
+ .stage-box .stage-header h3 {
+ font-size: 17px;
+ font-weight: 700;
+ letter-spacing: 0.5px;
+ }
+ .stage-box .stage-num {
+ position: absolute;
+ top: 9px; right: 11px;
+ width: 26px; height: 26px;
+ border-radius: 50%;
+ background: rgba(255,255,255,0.3);
+ display: flex; align-items: center; justify-content: center;
+ font-size: 13px; font-weight: 700;
+ }
+ .stage-box .stage-tagline {
+ font-size: 10.5px;
+ opacity: 0.9;
+ margin-top: 3px;
+ line-height: 1.3;
+ }
+ .stage-box .stage-status {
+ padding: 9px 14px 26px;
+ display: flex; flex-direction: column; gap: 4px;
+ font-size: 11.5px;
+ }
+ .stage-box .status-line {
+ display: flex; align-items: center; gap: 7px; color: #444;
+ }
+ .stage-box .status-line .ct {
+ font-weight: 700; color: #222; width: 14px; text-align: right;
+ }
+ .stage-box .view-detail {
+ position: absolute;
+ bottom: 7px; right: 12px;
+ font-size: 9.5px; color: #999;
+ text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700;
+ }
+
+ /* Persona row inside stage boxes */
+ .stage-personas {
+ position: absolute;
+ bottom: 24px;
+ left: 12px;
+ right: 12px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ gap: 4px;
+ pointer-events: none;
+ }
+ .stage-personas img {
+ border-radius: 50%;
+ background: #f6f8fa;
+ border: 1.5px solid #fff;
+ box-shadow: 0 1px 3px rgba(0,0,0,0.18);
+ object-fit: cover;
+ object-position: top center;
+ }
+ /* All-six rows on SHAPE & MEASURE: smaller avatars */
+ .stage-personas.all-six img { width: 26px; height: 26px; }
+ /* Three-persona rows on ASSURE / CONTRACT / FULFIL: larger, with lead emphasised */
+ .stage-personas.three img { width: 36px; height: 36px; }
+ .stage-personas.three img.lead {
+ width: 44px; height: 44px;
+ border: 2px solid var(--amber);
+ box-shadow: 0 2px 6px rgba(201,162,39,0.35);
+ }
+
+ /* Three patient portraits above Purpose label in centre hub */
+ .hub-patients {
+ display: flex;
+ gap: 4px;
+ justify-content: center;
+ align-items: center;
+ margin-bottom: 10px;
+ }
+ .hub-patients img {
+ width: 38px;
+ height: 38px;
+ border-radius: 50%;
+ object-fit: cover;
+ object-position: top center;
+ border: 2px solid var(--amber);
+ background: #fff;
+ box-shadow: 0 2px 6px rgba(201,162,39,0.28);
+ }
+
+ .stage-box.shape .stage-header { background: var(--shape-color); }
+ .stage-box.assure .stage-header { background: var(--assure-color); }
+ .stage-box.contract .stage-header { background: var(--contract-color); }
+ .stage-box.fulfil .stage-header { background: var(--fulfil-color); }
+ .stage-box.measure .stage-header { background: var(--measure-color); }
+
+ /* FULFIL tile: centre everything (patient-led, 5 personas, deserves visual attention) */
+ .stage-box.fulfil .stage-header { text-align: center; }
+ .stage-box.fulfil .stage-header h3 { display: block; }
+ .stage-box.fulfil .stage-header .stage-num { position: absolute; top: 9px; right: 11px; }
+ .stage-box.fulfil .stage-status { align-items: center; }
+ .stage-box.fulfil .status-line { width: auto; }
+ .stage-box.fulfil .view-detail { left: 0; right: 0; text-align: center; }
+
+ /* Status dots in stage boxes */
+ .status-dot {
+ width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+ display: inline-block;
+ }
+
+ /* Centre hub */
+ .centre-hub {
+ position: absolute;
+ left: 315px;
+ top: 280px;
+ width: 270px;
+ height: 270px;
+ border-radius: 50%;
+ background: white;
+ border: 3px solid var(--nhs-blue);
+ box-shadow: 0 4px 20px rgba(0,94,184,0.15);
+ display: flex; flex-direction: column;
+ justify-content: center; align-items: center;
+ text-align: center;
+ padding: 24px 22px;
+ z-index: 1;
+ }
+ .centre-hub .hub-label {
+ font-size: 9px; text-transform: uppercase; letter-spacing: 1.5px;
+ color: var(--nhs-blue); font-weight: 700; margin-bottom: 4px;
+ }
+ .centre-hub .hub-mission {
+ font-size: 11.5px; font-weight: 600; color: var(--nhs-dark);
+ line-height: 1.35; margin-bottom: 10px;
+ }
+ .centre-hub .hub-divider {
+ width: 40px; height: 1px; background: #ccc; margin-bottom: 10px;
+ }
+ .centre-hub .hub-products-label {
+ font-size: 8px; text-transform: uppercase; letter-spacing: 1.2px;
+ color: #999; font-weight: 700; margin-bottom: 6px;
+ }
+ .centre-hub .hub-products {
+ display: flex; flex-direction: column; gap: 4px;
+ align-items: center; width: 100%;
+ }
+ .centre-hub .hub-logo {
+ height: 18px; width: auto;
+ }
+ .centre-hub .hub-future {
+ font-size: 9px; color: #bbb; margin-top: 2px; font-style: italic;
+ }
+
+ /* Footer sections */
+ .feedback-banner {
+ background: linear-gradient(100deg, var(--measure-color), var(--shape-color));
+ color: white; padding: 14px 24px; border-radius: 8px;
+ display: flex; align-items: center; gap: 14px; font-size: 13px;
+ margin-bottom: 8px;
+ }
+ .feedback-banner .loop-icon { font-size: 30px; flex-shrink: 0; }
+
+ /* Strategic questions */
+
+ /* Responsive */
+ @media (max-width: 940px) {
+ .cycle-container { width: 100%; height: auto; padding: 0; }
+ .cycle-svg, .centre-hub { display: none; }
+ .stage-box {
+ position: relative;
+ left: auto !important; top: auto !important;
+ width: 100%; max-width: 360px;
+ height: auto; margin: 0 auto 14px;
+ }
+ .stage-box::after {
+ content: '↓'; display: block; text-align: center;
+ font-size: 22px; color: var(--nhs-blue); opacity: 0.4; margin-top: 14px;
+ }
+ .stage-box.measure::after {
+ content: '↻ Loop back to SHAPE';
+ font-size: 12px; color: var(--feedback-color);
+ font-weight: 700; letter-spacing: 0.5px;
+ }
+ }
+
+ /* ---- Stage cards (DDTx outcome mapping) ---- */
+ .stages-h{font-size:22px;font-weight:800;color:var(--nhs-dark);margin:48px 0 8px;letter-spacing:-0.2px;}
+ .stages-sub{font-size:13.5px;color:var(--text-sec);margin-bottom:24px;}
+ .stages{display:grid;grid-template-columns:1fr;gap:18px;}
+ .stage{background:#fff;border:1px solid var(--border-lt);border-radius:12px;padding:24px 28px;display:grid;grid-template-columns:200px 1fr;gap:32px;align-items:start;box-shadow:0 1px 3px rgba(0,32,64,0.04);}
+ .stage-num{font-size:11px;font-weight:800;letter-spacing:1.5px;color:var(--accent);text-transform:uppercase;margin-bottom:6px;}
+ .stage-name{font-size:24px;font-weight:800;color:var(--text);letter-spacing:-0.3px;margin-bottom:10px;}
+ .stage-essence{font-size:12.5px;color:var(--text-sec);line-height:1.55;font-style:italic;}
+ .stage-block{margin-bottom:14px;}
+ .stage-block:last-child{margin-bottom:0;}
+ .stage-block-h{font-size:10.5px;font-weight:800;color:var(--text);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:6px;}
+ .stage-block-body{font-size:13px;color:var(--text-sec);line-height:1.65;}
+ .stage-block-body strong{color:var(--text);font-weight:700;}
+ /* Outcome tags — coloured by workstream */
+ .outcome-tag{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:0.4px;padding:2px 8px;border-radius:4px;margin-right:5px;margin-bottom:3px;cursor:help;position:relative;}
+ .outcome-tag.ht{background:rgba(0,48,135,0.10);color:#003087;}
+ .outcome-tag.hs{background:rgba(0,129,155,0.12);color:#00697A;}
+ .outcome-tag.sy{background:rgba(0,164,153,0.14);color:#00735C;}
+ .outcome-tag:hover{filter:brightness(0.92);}
+ .outcome-tag .ot-tip{display:none;position:absolute;left:0;top:calc(100% + 6px);z-index:50;width:280px;background:#001A4D;color:#fff;font-weight:500;font-size:11.5px;letter-spacing:0.1px;line-height:1.5;padding:10px 12px;border-radius:6px;box-shadow:0 8px 22px rgba(0,32,64,0.25);text-transform:none;}
+ .outcome-tag .ot-tip-eyebrow{font-size:9.5px;font-weight:800;letter-spacing:1.4px;color:#FFD66B;text-transform:uppercase;margin-bottom:4px;}
+ .outcome-tag .ot-tip-id{font-size:10.5px;font-weight:800;color:#FFD66B;letter-spacing:0.6px;margin-bottom:6px;}
+ .outcome-tag:hover .ot-tip, .outcome-tag.ot-open .ot-tip{display:block;}
+ /* Outcome colour key */
+ .outcome-key{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:6px 0 18px;font-size:11.5px;color:var(--text-sec);}
+ .outcome-key-label{font-size:10.5px;font-weight:800;letter-spacing:1px;color:var(--text-muted);text-transform:uppercase;}
+ .outcome-key-chip{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;}
+ .outcome-key-chip .swatch{width:14px;height:14px;border-radius:3px;display:inline-block;}
+ .outcome-key-chip.ht .swatch{background:#003087;}
+ .outcome-key-chip.hs .swatch{background:#00819B;}
+ .outcome-key-chip.sy .swatch{background:#00A499;}
+ @media(max-width:820px){
+ .stage{grid-template-columns:1fr;gap:16px;}
+ .h-title{font-size:30px;}
+ .page{padding:30px 22px 60px;}
+ 
+ .header{display:none;}
+ }
+
+ /* NHS-blue rebrand override */
+ :root { --nhs-blue-deep:#003087; }
+ body { background: linear-gradient(180deg, var(--nhs-blue) 0%, var(--nhs-blue-deep) 100%) !important; background-attachment: fixed !important; }
+ 
+ .page { background:#ffffff; border-radius:18px; box-shadow:0 14px 40px rgba(0,48,135,0.20); margin-top:30px !important; margin-bottom:50px !important; }
+ @media (max-width:720px){ .page { border-radius:12px; margin-top:18px !important; } }
+
+</style>
+<style>
+  .ecosystem-nav {
+    background: #fff;
+    border-bottom: 1px solid #ebeef1;
+    padding: 12px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 48px;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  }
+  .ecosystem-nav a {
+    font-size: 13px; font-weight: 700; color: #003087;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .ecosystem-nav a:hover { color: #005EB8; }
+  .ecosystem-nav .nav-context {
+    font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
+    color: #7E8B97; text-transform: uppercase;
+  }
+  .ecosystem-nav .nav-product {
+    font-size: 10.5px; font-weight: 800; letter-spacing: 0.8px;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 4px; color: #fff;
+  }
+  .ecosystem-nav .nav-product.dtx { background: #003087; }
+  .ecosystem-nav .nav-product.hometest { background: #003087; }
+  .ecosystem-nav .nav-product.healthstore { background: #00A9CE; }
+  .ecosystem-nav .nav-product.healthsync { background: #00A499; }
+</style>
+</head>
+<body>
+<div class="ecosystem-nav">
+  <a href="../index.html">← DTx Ecosystem</a>
+  <span class="nav-context">Lifecycle</span>
+  <span class="nav-product dtx">DTx</span>
+</div>
+
+<nav class="topnav">
+<a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+<div class="nav-siblings">
+ <a href="DTx OM - Why.html">Why</a>
+ <a href="DTx OM - What.html">What</a>
+ <a href="DTx OM - Lifecycle.html" class="active">When</a>
+ <a href="DTx OM - HomeTest Operational.html">How</a>
+ <a href="DTx OM - Governance.html">Who</a>
+ <a href="DTx OM - Hearts and Minds.html">Hearts and Minds</a>
+ <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>
+ <a href="DTx OM - Status.html">Status</a>
+</div>
+</nav>
+
+<div class="page">
+
+ <div class="header-wrap">
+ <div class="amber-rule"></div>
+ <div class="h-eyebrow">Lifecycle frame</div>
+ <div style="font-size:96px;font-weight:900;color:var(--accent);letter-spacing:-2.5px;line-height:0.95;margin:6px 0 6px;">WHEN</div>
+ <h1 class="h-title">Lifecycle &middot; what happens over time</h1>
+ <div class="h-subtitle">Shape, Assure, Contract, Fulfil, Measure</div>
+ <p class="h-intro">The operating model is not a static thing. It runs continuously through five stages. <strong>Shape</strong> is where strategy and design happen. <strong>Assure</strong> is where clinical safety, IG and accreditation are confirmed. <strong>Contract</strong> is where procurement and supplier agreements are struck. <strong>Fulfil</strong> is where the service actually runs. <strong>Measure</strong> is where outcomes feed back into the next round of shaping. The pentagon below is the master view; click any stage to drill into its detail page. Below the pentagon, each stage is mapped to the DDTx 26/27 programme outcomes, with active programme work and open items called out.</p>
+ </div>
+
+<div class="main">
+
+ <div class="status-legend">
+ <span class="status-legend-title">Status Key:</span>
+ <div class="status-legend-item"><span class="status-dot-legend" style="background:var(--status-decided);"></span>Decided / Built</div>
+ <div class="status-legend-item"><span class="status-dot-legend" style="background:var(--status-progress);"></span>In Progress</div>
+ <div class="status-legend-item"><span class="status-dot-legend" style="background:var(--status-open);"></span>Open Decision</div>
+ <span style="margin-left:auto; font-size:11px; color:#888; font-style:italic;">Click any stage to view detail</span>
+ </div>
+
+ <div class="cycle-container">
+
+ <svg class="cycle-svg" viewBox="0 0 900 830" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+ <!-- Per-stage arrow markers -->
+ <marker id="arrow-shape" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="9" markerHeight="9" orient="auto">
+ <path d="M0,0 L10,5 L0,10 z" fill="#005EB8"/></marker>
+ <marker id="arrow-assure" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="9" markerHeight="9" orient="auto">
+ <path d="M0,0 L10,5 L0,10 z" fill="#41B6E6"/></marker>
+ <marker id="arrow-contract" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="9" markerHeight="9" orient="auto">
+ <path d="M0,0 L10,5 L0,10 z" fill="#003087"/></marker>
+ <marker id="arrow-fulfil" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="9" markerHeight="9" orient="auto">
+ <path d="M0,0 L10,5 L0,10 z" fill="#006747"/></marker>
+ <marker id="arrow-feedback" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="10" markerHeight="10" orient="auto">
+ <path d="M0,0 L10,5 L0,10 z" fill="#AE2573"/></marker>
+
+ <!-- Named arc paths for textPath labels -->
+ <!-- SLT arc (r=385, 250° to 290° from centre 450,415) -->
+ <path id="arc-slt"
+ d="M 318 53 A 385 385 0 0 1 582 53" fill="none"/>
+ <!-- GDS arc (r=385, 5° to 40°) -->
+ <path id="arc-gds"
+ d="M 834 449 A 385 385 0 0 1 745 662" fill="none"/>
+ <!-- Delivery Board arc (r=385, 110° to 215°) -->
+ <path id="arc-delivery"
+ d="M 318 777 A 385 385 0 0 1 135 194" fill="none"/>
+ <!-- Forward Flow arc (r=320, -79° to -29° i.e. SHAPE→ASSURE) -->
+ <path id="arc-forward"
+ d="M 511 101 A 320 320 0 0 1 730 260" fill="none"/>
+ <!-- Feedback Loop arc (r=320, 209° to 259° i.e. MEASURE→SHAPE) -->
+ <path id="arc-feedback"
+ d="M 170 260 A 320 320 0 0 1 389 101" fill="none"/>
+ </defs>
+
+ <!-- Faint outer track -->
+ <circle cx="450" cy="415" r="320"
+ fill="none" stroke="#cfcfcf" stroke-width="1"
+ stroke-dasharray="3,5" opacity="0.5"/>
+
+ <!-- ═══ FORWARD FLOW ARCS (r=320, with connectors to boxes) ═══ -->
+
+ <!-- 1. SHAPE → ASSURE (blue) -->
+ <path d="M 520 100 A 320 320 0 0 1 720 265"
+ fill="none" stroke="#005EB8" stroke-width="3.5" opacity="0.7"/>
+
+ <!-- 2. ASSURE → CONTRACT (light blue) -->
+ <path d="M 770 380 A 320 320 0 0 1 680 640"
+ fill="none" stroke="#41B6E6" stroke-width="3.5" opacity="0.7"/>
+
+ <!-- 3. CONTRACT → FULFIL (dark blue) -->
+ <path d="M 590 700 A 320 320 0 0 1 310 700"
+ fill="none" stroke="#003087" stroke-width="3.5" opacity="0.7"/>
+
+ <!-- 4. FULFIL → MEASURE (green) -->
+ <path d="M 230 640 A 320 320 0 0 1 140 370"
+ fill="none" stroke="#006747" stroke-width="3.5" opacity="0.7"/>
+
+ <!-- 5. MEASURE → SHAPE (feedback loop, pink dashed) -->
+ <path d="M 160 280 A 320 320 0 0 1 400 100"
+ fill="none" stroke="#AE2573" stroke-width="4"
+ stroke-dasharray="9,5"/>
+
+ <!-- ═══ FLOW LABELS (small pill labels on arc midpoints) ═══ -->
+
+ <!-- Forward Flow: midpoint of SHAPE→ASSURE arc, angle -54° on r=320 -->
+ <g transform="translate(638, 156) rotate(36)">
+ <rect x="-48" y="-12" width="96" height="24" rx="12" fill="#005EB8"/>
+ <text x="0" y="4" text-anchor="middle" fill="white"
+ font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="10" font-weight="700"
+ letter-spacing="0.5">Forward Flow</text>
+ </g>
+
+ <!-- Feedback Loop: midpoint of MEASURE→SHAPE arc, angle -126° on r=320 -->
+ <g transform="translate(262, 156) rotate(-36)">
+ <rect x="-56" y="-12" width="112" height="24" rx="12" fill="#AE2573"/>
+ <text x="0" y="4" text-anchor="middle" fill="white"
+ font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="10" font-weight="700"
+ letter-spacing="0.5">↻ Feedback Loop</text>
+ </g>
+
+ <!-- ═══ RESPONSIBILITY ARCS (v3) ═══ -->
+
+ <!-- DYNAMIC MARKET / FRAMEWORK arc: spans ASSURE → CONTRACT → FULFIL
+ These three stages are delivered through the procurement framework.
+ Arc from -30° to 150° at r=395 (ASSURE top-right through bottom to FULFIL top-left)
+ Start: (450+395*cos(-30°), 415+395*sin(-30°)) ≈ (792, 218)
+ End: (450+395*cos(150°), 415+395*sin(150°)) ≈ (108, 613) -->
+ <path d="M 792 218 A 395 395 0 1 1 108 613"
+ fill="none" stroke="#ED8B00" stroke-width="3.5" opacity="0.55"
+ stroke-dasharray="8,4"/>
+ <circle cx="792" cy="218" r="4" fill="#ED8B00" opacity="0.7"/>
+ <circle cx="108" cy="613" r="4" fill="#ED8B00" opacity="0.7"/>
+ <!-- Label at arc midpoint (bottom centre) -->
+ <g transform="translate(450, 812)">
+ <rect x="-100" y="-12" width="200" height="24" rx="12" fill="#ED8B00" opacity="0.85"/>
+ <text x="0" y="5" text-anchor="middle" fill="white"
+ font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="9" font-weight="700"
+ letter-spacing="0.5">DYNAMIC MARKET / FRAMEWORK</text>
+ </g>
+
+ <!-- NHSE arc: spans MEASURE → SHAPE
+ These two stages are ongoing NHSE capability (not outsourced to market).
+ Arc from 162° to 222° at r=395 (MEASURE left through top to SHAPE right)
+ Going the short way around the top.
+ Start: (450+395*cos(210°), 415+395*sin(210°)) ≈ (108, 613)
+ End: (450+395*cos(330°), 415+395*sin(330°)) ≈ (792, 218)
+ But we want the SHORT arc (top side), so use sweep-flag=0, large-arc=0 -->
+ <path d="M 108 218 A 395 395 0 0 1 792 218"
+ fill="none" stroke="#005EB8" stroke-width="3.5" opacity="0.55"
+ stroke-dasharray="8,4"/>
+ <circle cx="108" cy="218" r="4" fill="#005EB8" opacity="0.7"/>
+ <circle cx="792" cy="218" r="4" fill="#005EB8" opacity="0.7"/>
+ <!-- Label at arc midpoint (top centre) -->
+ <g transform="translate(450, 12)">
+ <rect x="-80" y="-12" width="160" height="24" rx="12" fill="#005EB8" opacity="0.85"/>
+ <text x="0" y="5" text-anchor="middle" fill="white"
+ font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700"
+ letter-spacing="0.5">NHSE CAPABILITY</text>
+ </g>
+
+ </svg>
+
+ <!-- Centre hub: three patient archetypes + mission + product stable -->
+ <div class="centre-hub">
+ <div class="hub-patients">
+ <img src="../../Assets/Personas/abdul.png" alt="Abdul" data-href="DTx OM - Persona Abdul.html" style="cursor:pointer;">
+ <img src="../../Assets/Personas/mark.png" alt="Mark" data-href="DTx OM - Persona Mark.html" style="cursor:pointer;">
+ <img src="../../Assets/Personas/layla.png" alt="Layla" data-href="DTx OM - Persona Layla.html" style="cursor:pointer;">
+ </div>
+ <div class="hub-label">Purpose</div>
+ <div class="hub-mission">Better access, earlier action, fairer outcomes: at scale</div>
+ <div class="hub-divider"></div>
+ <div class="hub-products-label">Product Stable</div>
+ <div class="hub-products">
+ <a href="DTx OM - Product HomeTest.html" style="display:inline-block;text-decoration:none;"><svg viewBox="0 0 380 80" class="hub-logo"><rect x="0" y="4" width="100" height="72" rx="4" fill="#005EB8"/><text x="50" y="56" text-anchor="middle" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="700" font-style="italic" letter-spacing="-1">NHS</text><text x="116" y="58" fill="#231F20" font-family="Arial, Helvetica, sans-serif" font-size="46" font-weight="700" letter-spacing="-0.5">HomeTest</text></svg></a>
+ <a href="DTx OM - Product HealthStore.html" style="display:inline-block;text-decoration:none;"><svg viewBox="0 0 420 80" class="hub-logo"><rect x="0" y="4" width="100" height="72" rx="4" fill="#005EB8"/><text x="50" y="56" text-anchor="middle" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="700" font-style="italic" letter-spacing="-1">NHS</text><text x="116" y="58" fill="#231F20" font-family="Arial, Helvetica, sans-serif" font-size="46" font-weight="700" letter-spacing="-0.5">HealthStore</text></svg></a>
+ <a href="DTx OM - Product HealthSync.html" style="display:inline-block;text-decoration:none;opacity:0.45;" title="HealthSync - in design"><svg viewBox="0 0 400 80" class="hub-logo"><rect x="0" y="4" width="100" height="72" rx="4" fill="#005EB8"/><text x="50" y="56" text-anchor="middle" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="700" font-style="italic" letter-spacing="-1">NHS</text><text x="116" y="58" fill="#231F20" font-family="Arial, Helvetica, sans-serif" font-size="46" font-weight="700" letter-spacing="-0.5">HealthSync</text></svg></a>
+ </div>
+ <div class="hub-future" style="font-size:8px; color:#999; margin-top:4px;">Model designed for reuse across products</div>
+ </div>
+
+ <!-- Stage boxes at pentagon vertices -->
+ <a href="DTx%20OM%20-%20SHAPE%20hub.html" class="stage-box shape pos-shape">
+ <div class="stage-header">
+ <h3>SHAPE</h3>
+ <span class="stage-num">1</span>
+ <div class="stage-tagline">Market development &amp; demand generation</div>
+ </div>
+ <div class="stage-status">
+ <div class="status-line"><span class="status-dot" style="background:var(--status-decided);"></span><span class="ct">0</span> Decided</div>
+ <div class="status-line"><span class="status-dot" style="background:var(--status-progress);"></span><span class="ct">8</span> In progress</div>
+ <div class="status-line"><span class="status-dot" style="background:var(--status-open);"></span><span class="ct">4</span> Open decisions</div>
+ </div>
+ <div class="stage-personas all-six">
+ <img src="../../Assets/Personas/sarah.png" alt="Sarah" data-href="DTx OM - Persona Sarah.html" style="cursor:pointer;">
+ <img src="../../Assets/Personas/joe.png" alt="Joe" data-href="DTx OM - Persona Joe.html" style="cursor:pointer;">
+ <img src="../../Assets/Personas/abdul.png" alt="Abdul" data-href="DTx OM - Persona Abdul.html" style="cursor:pointer;">
+ <img src="../../Assets/Personas/david.png" alt="David" data-href="DTx OM - Persona David.html" style="cursor:pointer;">
+ <img src="../../Assets/Personas/aisha.png" alt="Aisha" data-href="DTx OM - Persona Aisha.html" style="cursor:pointer;">
+ <img src="../../Assets/Personas/priya.png" alt="Priya" data-href="DTx OM - Persona Priya.html" style="cursor:pointer;">
+ <img src="../../Assets/Personas/ngozi.png" alt="Ngozi" data-href="DTx OM - Persona Ngozi.html" style="cursor:pointer;">
+ </div>
+ <span class="view-detail">View detail →</span>
+ </a>
+
+ <a href="DTx%20OM%20-%20ASSURE%20hub.html" class="stage-box assure pos-assure">
+ <div class="stage-header">
+ <h3>ASSURE</h3>
+ <span class="stage-num">2</span>
+ <div class="stage-tagline">Quality gateway &amp; enablement</div>
+ </div>
+ <div class="stage-status">
+ <div class="status-line"><span class="status-dot" style="background:var(--status-decided);"></span><span class="ct">0</span> Decided</div>
+ <div class="status-line"><span class="status-dot" style="background:var(--status-progress);"></span><span class="ct">5</span> In progress</div>
+ <div class="status-line"><span class="status-dot" style="background:var(--status-open);"></span><span class="ct">8</span> Open decisions</div>
+ </div>
+ <div class="stage-personas three">
+ <img src="../../Assets/Personas/aisha.png" alt="Aisha" class="lead" data-href="DTx OM - Persona Aisha.html" style="cursor:pointer;">
+ <img src="../../Assets/Personas/priya.png" alt="Priya" data-href="DTx OM - Persona Priya.html" style="cursor:pointer;">
+ <img src="../../Assets/Personas/joe.png" alt="Joe" data-href="DTx OM - Persona Joe.html" style="cursor:pointer;">
+ <img src="../../Assets/Personas/ngozi.png" alt="Ngozi" data-href="DTx OM - Persona Ngozi.html" style="cursor:pointer;">
+ </div>
+ <span class="view-detail">View detail →</span>
+ </a>
+
+ <a href="DTx%20OM%20-%20CONTRACT%20hub.html" class="stage-box contract pos-contract">
+ <div class="stage-header">
+ <h3>CONTRACT</h3>
+ <span class="stage-num">3</span>
+ <div class="stage-tagline">Commercial framework &amp; access</div>
+ </div>
+ <div class="stage-status">
+ <div class="status-line"><span class="status-dot" style="background:var(--status-decided);"></span><span class="ct">1</span> Decided</div>
+ <div class="status-line"><span class="status-dot" style="background:var(--status-progress);"></span><span class="ct">9</span> In progress</div>
+ <div class="status-line"><span class="status-dot" style="background:var(--status-open);"></span><span class="ct">9</span> Open decisions</div>
+ </div>
+ <div class="stage-personas three">
+ <img src="../../Assets/Personas/david.png" alt="David" class="lead" data-href="DTx OM - Persona David.html" style="cursor:pointer;">
+ <img src="../../Assets/Personas/sarah.png" alt="Sarah" data-href="DTx OM - Persona Sarah.html" style="cursor:pointer;">
+ <img src="../../Assets/Personas/joe.png" alt="Joe" data-href="DTx OM - Persona Joe.html" style="cursor:pointer;">
+ <img src="../../Assets/Personas/ngozi.png" alt="Ngozi" data-href="DTx OM - Persona Ngozi.html" style="cursor:pointer;">
+ </div>
+ <span class="view-detail">View detail →</span>
+ </a>
+
+ <a href="DTx%20OM%20-%20FULFIL%20hub.html" class="stage-box fulfil pos-fulfil">
+ <div class="stage-header">
+ <h3>FULFIL</h3>
+ <span class="stage-num">4</span>
+ <div class="stage-tagline">Where products live &amp; differ</div>
+ </div>
+ <div class="stage-status">
+ <div class="status-line"><span class="status-dot" style="background:var(--status-decided);"></span><span class="ct">0</span> Decided</div>
+ <div class="status-line"><span class="status-dot" style="background:var(--status-progress);"></span><span class="ct">7</span> In progress</div>
+ <div class="status-line"><span class="status-dot" style="background:var(--status-open);"></span><span class="ct">7</span> Open decisions</div>
+ </div>
+ <div class="stage-personas three">
+ <img src="../../Assets/Personas/abdul.png" alt="Abdul" class="lead" data-href="DTx OM - Persona Abdul.html" style="cursor:pointer;">
+ <img src="../../Assets/Personas/mark.png" alt="Mark" class="lead" data-href="DTx OM - Persona Mark.html" style="cursor:pointer;">
+ <img src="../../Assets/Personas/layla.png" alt="Layla" class="lead" data-href="DTx OM - Persona Layla.html" style="cursor:pointer;">
+ <img src="../../Assets/Personas/joe.png" alt="Joe" data-href="DTx OM - Persona Joe.html" style="cursor:pointer;">
+ <img src="../../Assets/Personas/aisha.png" alt="Aisha" data-href="DTx OM - Persona Aisha.html" style="cursor:pointer;">
+ </div>
+ <span class="view-detail">View detail →</span>
+ </a>
+
+ <a href="DTx%20OM%20-%20MEASURE%20hub.html" class="stage-box measure pos-measure">
+ <div class="stage-header">
+ <h3>MEASURE</h3>
+ <span class="stage-num">5</span>
+ <div class="stage-tagline">Performance, outcomes &amp; learning</div>
+ </div>
+ <div class="stage-status">
+ <div class="status-line"><span class="status-dot" style="background:var(--status-decided);"></span><span class="ct">0</span> Decided</div>
+ <div class="status-line"><span class="status-dot" style="background:var(--status-progress);"></span><span class="ct">0</span> In progress</div>
+ <div class="status-line"><span class="status-dot" style="background:var(--status-open);"></span><span class="ct">6</span> Open decisions</div>
+ </div>
+ <div class="stage-personas all-six">
+ <img src="../../Assets/Personas/sarah.png" alt="Sarah" data-href="DTx OM - Persona Sarah.html" style="cursor:pointer;">
+ <img src="../../Assets/Personas/joe.png" alt="Joe" data-href="DTx OM - Persona Joe.html" style="cursor:pointer;">
+ <img src="../../Assets/Personas/abdul.png" alt="Abdul" data-href="DTx OM - Persona Abdul.html" style="cursor:pointer;">
+ <img src="../../Assets/Personas/david.png" alt="David" data-href="DTx OM - Persona David.html" style="cursor:pointer;">
+ <img src="../../Assets/Personas/aisha.png" alt="Aisha" data-href="DTx OM - Persona Aisha.html" style="cursor:pointer;">
+ <img src="../../Assets/Personas/priya.png" alt="Priya" data-href="DTx OM - Persona Priya.html" style="cursor:pointer;">
+ <img src="../../Assets/Personas/ngozi.png" alt="Ngozi" data-href="DTx OM - Persona Ngozi.html" style="cursor:pointer;">
+ </div>
+ <span class="view-detail">View detail →</span>
+ </a>
+
+ </div>
+
+ <!-- Feedback banner -->
+ <div class="feedback-banner">
+ <div class="loop-icon">↻</div>
+ <div>MEASURE outputs inform SHAPE priorities through continuous feedback cycle: market evidence shapes market development strategy.</div>
+ </div>
+
+</div>
+
+
+
+<h2 class="stages-h">What lives in each stage</h2>
+ <div class="stages-sub">DDTx 26/27 outcomes mapped onto the five lifecycle stages, with current programme activity called out. Hover or tap any numbered tag for the full outcome description.</div>
+ <div class="outcome-key">
+  <span class="outcome-key-label">Outcome key</span>
+  <span class="outcome-key-chip ht"><span class="swatch"></span>HomeTest</span>
+  <span class="outcome-key-chip hs"><span class="swatch"></span>HealthStore</span>
+  <span class="outcome-key-chip sy"><span class="swatch"></span>HealthSync</span>
+ </div>
+
+ <div class="stages">
+
+ <!-- SHAPE -->
+ <div class="stage">
+ <div class="stage-left">
+ <div class="stage-num">Stage 1</div>
+ <div class="stage-name">Shape</div>
+ <div class="stage-essence">Strategy and design. Where the operating model itself gets defined and the architecture decisions are made.</div>
+ </div>
+ <div class="stage-content">
+ <div class="stage-block">
+ <div class="stage-block-h">What this stage does</div>
+ <div class="stage-block-body">Designs the operating model. Defines the foundation, the overlays, the patterns. Sets the strategic direction for which conditions are prioritised and how the platform scales beyond HIV.</div>
+ </div>
+ <div class="stage-block">
+ <div class="stage-block-h">Active programme work</div>
+ <div class="stage-block-body"><span class="outcome-tag ht" data-ws="HomeTest" data-id="010" title="DDTx 26/27 outcome · HomeTest · 010 · Design complete for Use Case 3 (focused on relieving GP pressures)">HT-010<span class="ot-tip"><span class="ot-tip-eyebrow">DDTx 26/27 outcome &middot; HomeTest</span><span class="ot-tip-id">010</span>Design complete for Use Case 3 (focused on relieving GP pressures)</span></span>Use Case 3 design (focused on relieving GP pressures). <span class="outcome-tag ht" data-ws="HomeTest" data-id="008" title="DDTx 26/27 outcome · HomeTest · 008 · Sexual Health Discovery complete">HT-008<span class="ot-tip"><span class="ot-tip-eyebrow">DDTx 26/27 outcome &middot; HomeTest</span><span class="ot-tip-id">008</span>Sexual Health Discovery complete</span></span>Sexual Health Discovery underway. <span class="outcome-tag hs" data-ws="HealthStore" data-id="003" title="DDTx 26/27 outcome · HealthStore · 003 · Test the Commissioner Store prototype">HS-003<span class="ot-tip"><span class="ot-tip-eyebrow">DDTx 26/27 outcome &middot; HealthStore</span><span class="ot-tip-id">003</span>Test the Commissioner Store prototype</span></span>Commissioner Store prototype scoped and tested. <span class="outcome-tag hs" data-ws="HealthStore" data-id="007" title="DDTx 26/27 outcome · HealthStore · 007 · Commercial and assurance model designed and developed for scaling access to suppliers and additional DTx">HS-007<span class="ot-tip"><span class="ot-tip-eyebrow">DDTx 26/27 outcome &middot; HealthStore</span><span class="ot-tip-id">007</span>Commercial and assurance model designed and developed for scaling access to suppliers and additional DTx</span></span>Commercial & assurance model design work in flight. <span class="outcome-tag sy" data-ws="HealthSync" data-id="TBC" title="DDTx 26/27 outcome · HealthSync · TBC · outcomes not yet defined for this workstream">SY-TBC<span class="ot-tip"><span class="ot-tip-eyebrow">DDTx 26/27 outcome &middot; HealthSync</span><span class="ot-tip-id">TBC</span>Outcomes for this workstream are still being defined. Placeholder shown so the lifecycle view stays complete.</span></span>HealthSync configuration shaping pending outcome definition. Future-state operating model definition (the four-level model), Pattern catalogue and Procurement Options Matrix design sit alongside as cross-cutting programme work that isn't pegged to a single numbered outcome.</div>
+ </div>
+ <div class="stage-block">
+ <div class="stage-block-h">In flight</div>
+ <div class="stage-block-body">Procurement Options Matrix now covers four options including Digital Primary Care Framework as the fourth option. Growth strategy deck under review for alignment.</div>
+ </div>
+ <div class="stage-block">
+ <div class="stage-block-h">Open</div>
+ <div class="stage-block-body">Position settled: HomeTest is operating in the interim commercial shape (PSR plus standard NHS call-off plus approved supplier list, pending NHSE Legal sign-off). No formal framework is being stood up in this window. April 2027 standup target retired as unachievable in the current planning horizon. The framework conversation reopens at named triggers (see Framework status position paper); PA23 dynamic market is the leading candidate vehicle if reopened.</div>
+ </div>
+ </div>
+ </div>
+
+ <!-- ASSURE -->
+ <div class="stage">
+ <div class="stage-left">
+ <div class="stage-num">Stage 2</div>
+ <div class="stage-name">Assure</div>
+ <div class="stage-essence">Clinical safety, IG, accreditation. The work that makes the service safe and lawful before it goes live.</div>
+ </div>
+ <div class="stage-content">
+ <div class="stage-block">
+ <div class="stage-block-h">What this stage does</div>
+ <div class="stage-block-body">Confirms that each pattern can be delivered safely and legally. Maintains the clinical safety case, the hazard log, the IG framework, the DPIA, the accreditation register. Assesses suppliers against published standards.</div>
+ </div>
+ <div class="stage-block">
+ <div class="stage-block-h">Active programme work</div>
+ <div class="stage-block-body"><span class="outcome-tag ht" data-ws="HomeTest" data-id="009" title="DDTx 26/27 outcome · HomeTest · 009 · Commercial & assurance model launched to support scaling access to suppliers & additional tests">HT-009<span class="ot-tip"><span class="ot-tip-eyebrow">DDTx 26/27 outcome &middot; HomeTest</span><span class="ot-tip-id">009</span>Commercial &amp; assurance model launched to support scaling access to suppliers &amp; additional tests</span></span>Commercial & assurance model build underpins this stage for HomeTest. <span class="outcome-tag hs" data-ws="HealthStore" data-id="007" title="DDTx 26/27 outcome · HealthStore · 007 · Commercial and assurance model designed and developed for scaling access to suppliers and additional DTx">HS-007<span class="ot-tip"><span class="ot-tip-eyebrow">DDTx 26/27 outcome &middot; HealthStore</span><span class="ot-tip-id">007</span>Commercial and assurance model designed and developed for scaling access to suppliers and additional DTx</span></span>HealthStore equivalent assurance model in design. <span class="outcome-tag sy" data-ws="HealthSync" data-id="TBC" title="DDTx 26/27 outcome · HealthSync · TBC · outcomes not yet defined for this workstream">SY-TBC<span class="ot-tip"><span class="ot-tip-eyebrow">DDTx 26/27 outcome &middot; HealthSync</span><span class="ot-tip-id">TBC</span>Outcomes for this workstream are still being defined. Placeholder shown so the lifecycle view stays complete.</span></span>HealthSync assurance pattern pending. Programme activity underway: DPIA in progress, CATR for HIV private beta in progress, Clinical safety case for UC1 (HIV) submitted to Clinical Safety Group (CSG), WCAG 2.2 AA accessibility plan, hazard log maintained.</div>
+ </div>
+ <div class="stage-block">
+ <div class="stage-block-h">In flight</div>
+ <div class="stage-block-body">Use Case 2 (PSA acute initiated) clinical safety artefacts being mapped (CRMP, draft HL, draft CSCR). Supplier assurance framework for HomeTest at-scale. MHRA / DTAC assessment for the HomeTest platform.</div>
+ </div>
+ <div class="stage-block">
+ <div class="stage-block-h">Open</div>
+ <div class="stage-block-body">Whether the Digital Primary Care Framework (if adopted) carries an assurance level appropriate for HomeTest, or whether HomeTest would inherit the Remote Monitoring service category's assurance bar, which is lower than HomeTest-grade.</div>
+ </div>
+ </div>
+ </div>
+
+ <!-- CONTRACT -->
+ <div class="stage">
+ <div class="stage-left">
+ <div class="stage-num">Stage 3</div>
+ <div class="stage-name">Contract</div>
+ <div class="stage-essence">Procurement and supplier agreements. The vehicle through which the centre and local systems engage suppliers.</div>
+ </div>
+ <div class="stage-content">
+ <div class="stage-block">
+ <div class="stage-block-h">What this stage does</div>
+ <div class="stage-block-body">Selects the procurement vehicle. Admits suppliers to the approved list. Executes call-offs. Operates call-off agreements bilaterally between commissioners and suppliers under the contracting instrument (interim: PSR plus standard NHS call-off plus approved list). Sets commercial terms, payment mechanisms and tariff treatment.</div>
+ </div>
+ <div class="stage-block">
+ <div class="stage-block-h">Active programme work</div>
+ <div class="stage-block-body"><span class="outcome-tag ht" data-ws="HomeTest" data-id="003" title="DDTx 26/27 outcome · HomeTest · 003 · Private Beta launched for Use Case 1 (HIV) across 2 LAs">HT-003<span class="ot-tip"><span class="ot-tip-eyebrow">DDTx 26/27 outcome &middot; HomeTest</span><span class="ot-tip-id">003</span>Private Beta launched for Use Case 1 (HIV) across 2 LAs</span></span>HIV Private Beta call-offs in two LAs are the live contract outputs for HomeTest UC1. <span class="outcome-tag ht" data-ws="HomeTest" data-id="005" title="DDTx 26/27 outcome · HomeTest · 005 · HomeTest HIV Scaled Beta live, with 4 additional LAs onboarded">HT-005<span class="ot-tip"><span class="ot-tip-eyebrow">DDTx 26/27 outcome &middot; HomeTest</span><span class="ot-tip-id">005</span>HomeTest HIV Scaled Beta live, with 4 additional LAs onboarded</span></span>Scaled Beta to 4 additional LAs sits in the same stage. <span class="outcome-tag ht" data-ws="HomeTest" data-id="007" title="DDTx 26/27 outcome · HomeTest · 007 · Use Case 2 (acute initiated) private beta launched in 2 trusts">HT-007<span class="ot-tip"><span class="ot-tip-eyebrow">DDTx 26/27 outcome &middot; HomeTest</span><span class="ot-tip-id">007</span>Use Case 2 (acute initiated) private beta launched in 2 trusts</span></span>UC2 (acute initiated) private beta launching in 2 trusts. <span class="outcome-tag hs" data-ws="HealthStore" data-id="001" title="DDTx 26/27 outcome · HealthStore · 001 · Private Beta launch for 3 use cases: UC1 COPD, UC2 Cardiac Rehab, UC3 MSK (TBC)">HS-001<span class="ot-tip"><span class="ot-tip-eyebrow">DDTx 26/27 outcome &middot; HealthStore</span><span class="ot-tip-id">001</span>Private Beta launch for 3 use cases: UC1 COPD, UC2 Cardiac Rehab, UC3 MSK (TBC)</span></span>HealthStore Private Beta launch for 3 use cases. <span class="outcome-tag hs" data-ws="HealthStore" data-id="004" title="DDTx 26/27 outcome · HealthStore · 004 · Partner and integrate with 2 ICBs who already commission COPD management apps">HS-004<span class="ot-tip"><span class="ot-tip-eyebrow">DDTx 26/27 outcome &middot; HealthStore</span><span class="ot-tip-id">004</span>Partner and integrate with 2 ICBs who already commission COPD management apps</span></span>Partnership and integration with 2 ICBs commissioning COPD apps. <span class="outcome-tag hs" data-ws="HealthStore" data-id="006" title="DDTx 26/27 outcome · HealthStore · 006 · Onboard at least 2 suppliers to the Health Store to prove the onboarding process">HS-006<span class="ot-tip"><span class="ot-tip-eyebrow">DDTx 26/27 outcome &middot; HealthStore</span><span class="ot-tip-id">006</span>Onboard at least 2 suppliers to the Health Store to prove the onboarding process</span></span>Onboarding 2 suppliers to the Health Store. <span class="outcome-tag sy" data-ws="HealthSync" data-id="TBC" title="DDTx 26/27 outcome · HealthSync · TBC · outcomes not yet defined for this workstream">SY-TBC<span class="ot-tip"><span class="ot-tip-eyebrow">DDTx 26/27 outcome &middot; HealthSync</span><span class="ot-tip-id">TBC</span>Outcomes for this workstream are still being defined. Placeholder shown so the lifecycle view stays complete.</span></span>HealthSync contracting outcomes pending. Alpha and Private Beta today run on interim arrangements that retire when the formal framework lands: NHSE&harr;LA MOUs with the initial commissioners and NHSE&harr;Supplier ACE Framework call-off via SBS Lot 1 SBS10255. Procurement Options Matrix covers four candidate future-state routes.</div>
+ </div>
+ <div class="stage-block">
+ <div class="stage-block-h">In flight</div>
+ <div class="stage-block-body">In the interim shape, no formal framework is being stood up. SBS Lot 1 is the live call-off vehicle for HomeTest HIV Alpha under ACE (per signed contracts). Whether SBS becomes a host if the framework conversation reopens is open. Interim legal vehicle (PSR plus standard call-off plus approved supplier list) pending NHSE Legal sign-off. Royal Mail Market Reach engagement on logistics tariff classification.</div>
+ </div>
+ <div class="stage-block">
+ <div class="stage-block-h">Open</div>
+ <div class="stage-block-body">Four-option matrix (O1 PSR or PA23 Framework, O2 PA23 Dynamic Market, O3 Notify-style central, O4 DPC Framework) is historical context; superseded by the interim-shape position. The current vehicle is the interim PSR plus standard call-off plus approved supplier list, with PA23 dynamic market the leading candidate if the framework conversation reopens at the named triggers. Notify-style central orchestration ruled out as a steady-state route.</div>
+ </div>
+ </div>
+ </div>
+
+ <!-- FULFIL -->
+ <div class="stage">
+ <div class="stage-left">
+ <div class="stage-num">Stage 4</div>
+ <div class="stage-name">Fulfil</div>
+ <div class="stage-essence">Day-to-day operations. The actual delivery of the service to patients.</div>
+ </div>
+ <div class="stage-content">
+ <div class="stage-block">
+ <div class="stage-block-h">What this stage does</div>
+ <div class="stage-block-body">Operates the live service. Patient orders kits via NHS App. Suppliers fulfil orders. Lab analyses samples. Results return through NHS App or via clinician depending on the configuration. Logistics and physical supply chain run continuously.</div>
+ </div>
+ <div class="stage-block">
+ <div class="stage-block-h">Active programme work</div>
+ <div class="stage-block-body"><span class="outcome-tag ht" data-ws="HomeTest" data-id="001" title="DDTx 26/27 outcome · HomeTest · 001 · 800,000 people able to order a free HIV test via the NHS App">HT-001<span class="ot-tip"><span class="ot-tip-eyebrow">DDTx 26/27 outcome &middot; HomeTest</span><span class="ot-tip-id">001</span>800,000 people able to order a free HIV test via the NHS App</span></span> <span class="outcome-tag ht" data-ws="HomeTest" data-id="002" title="DDTx 26/27 outcome · HomeTest · 002 · 10,000 HIV home test kits ordered via the NHS App">HT-002<span class="ot-tip"><span class="ot-tip-eyebrow">DDTx 26/27 outcome &middot; HomeTest</span><span class="ot-tip-id">002</span>10,000 HIV home test kits ordered via the NHS App</span></span> <span class="outcome-tag ht" data-ws="HomeTest" data-id="003" title="DDTx 26/27 outcome · HomeTest · 003 · Private Beta launched for Use Case 1 (HIV) across 2 LAs">HT-003<span class="ot-tip"><span class="ot-tip-eyebrow">DDTx 26/27 outcome &middot; HomeTest</span><span class="ot-tip-id">003</span>Private Beta launched for Use Case 1 (HIV) across 2 LAs</span></span>Private Beta running in 2 LAs (HIV under LA commissioning with two admitted supplier pairings). <span class="outcome-tag ht" data-ws="HomeTest" data-id="006" title="DDTx 26/27 outcome · HomeTest · 006 · 100 people participating in home test trial, as part of Use Case 2 capability">HT-006<span class="ot-tip"><span class="ot-tip-eyebrow">DDTx 26/27 outcome &middot; HomeTest</span><span class="ot-tip-id">006</span>100 people participating in home test trial, as part of Use Case 2 capability</span></span>UC2 home test trial cohort live. <span class="outcome-tag hs" data-ws="HealthStore" data-id="001" title="DDTx 26/27 outcome · HealthStore · 001 · Private Beta launch for 3 use cases: UC1 COPD, UC2 Cardiac Rehab, UC3 MSK (TBC)">HS-001<span class="ot-tip"><span class="ot-tip-eyebrow">DDTx 26/27 outcome &middot; HealthStore</span><span class="ot-tip-id">001</span>Private Beta launch for 3 use cases: UC1 COPD, UC2 Cardiac Rehab, UC3 MSK (TBC)</span></span>HealthStore Private Beta live for 3 use cases. <span class="outcome-tag hs" data-ws="HealthStore" data-id="002" title="DDTx 26/27 outcome · HealthStore · 002 · Support over 6,000 existing patients to utilise COPD Management Apps within the Health Store product model">HS-002<span class="ot-tip"><span class="ot-tip-eyebrow">DDTx 26/27 outcome &middot; HealthStore</span><span class="ot-tip-id">002</span>Support over 6,000 existing patients to utilise COPD Management Apps within the Health Store product model</span></span>Existing 6,000 COPD-app patients being supported through the Health Store product model. <span class="outcome-tag hs" data-ws="HealthStore" data-id="005" title="DDTx 26/27 outcome · HealthStore · 005 · Have more than 500 new patients start using COPD DTx via the NHS App route in Beta sites">HS-005<span class="ot-tip"><span class="ot-tip-eyebrow">DDTx 26/27 outcome &middot; HealthStore</span><span class="ot-tip-id">005</span>Have more than 500 new patients start using COPD DTx via the NHS App route in Beta sites</span></span>New patients starting COPD DTx via the NHS App route in beta sites. <span class="outcome-tag sy" data-ws="HealthSync" data-id="TBC" title="DDTx 26/27 outcome · HealthSync · TBC · outcomes not yet defined for this workstream">SY-TBC<span class="ot-tip"><span class="ot-tip-eyebrow">DDTx 26/27 outcome &middot; HealthSync</span><span class="ot-tip-id">TBC</span>Outcomes for this workstream are still being defined. Placeholder shown so the lifecycle view stays complete.</span></span>HealthSync live operations pending. NHS Login and NHS Notify integrations carry every fulfil-stage interaction. Kit logistics through the admitted suppliers (live for HIV).</div>
+ </div>
+ <div class="stage-block">
+ <div class="stage-block-h">In flight</div>
+ <div class="stage-block-body">Product app build for NHS App ordering surface (August timeline pressure flagged). Use Case 2 (PSA acute initiated) private beta in 2 trusts. Supplier onboarding model (self-service onboarding, a deliverable shared across Architecture, Supplier and Commercials workstreams). Royal Mail logistics engagement.</div>
+ </div>
+ <div class="stage-block">
+ <div class="stage-block-h">Open</div>
+ <div class="stage-block-body">Order of operations between the operating model definition and the product roadmap. Operating model first, product roadmap second so the foundation plus overlays drives what the app builds rather than the app build constraining the operating model.</div>
+ </div>
+ </div>
+ </div>
+
+ <!-- MEASURE -->
+ <div class="stage">
+ <div class="stage-left">
+ <div class="stage-num">Stage 5</div>
+ <div class="stage-name">Measure</div>
+ <div class="stage-essence">MI, outcomes, feedback. The data that tells us whether the operating model is working and what to change next.</div>
+ </div>
+ <div class="stage-content">
+ <div class="stage-block">
+ <div class="stage-block-h">What this stage does</div>
+ <div class="stage-block-body">Captures uptake, return rates, sample quality, turnaround, equity, clinical outcomes. Feeds the data into the next round of Shape. Closes the loop.</div>
+ </div>
+ <div class="stage-block">
+ <div class="stage-block-h">Active programme work</div>
+ <div class="stage-block-body"><span class="outcome-tag ht" data-ws="HomeTest" data-id="002" title="DDTx 26/27 outcome · HomeTest · 002 · 10,000 HIV home test kits ordered via the NHS App">HT-002<span class="ot-tip"><span class="ot-tip-eyebrow">DDTx 26/27 outcome &middot; HomeTest</span><span class="ot-tip-id">002</span>10,000 HIV home test kits ordered via the NHS App</span></span>Kit-volume metric is measured here. <span class="outcome-tag ht" data-ws="HomeTest" data-id="006" title="DDTx 26/27 outcome · HomeTest · 006 · 100 people participating in home test trial, as part of Use Case 2 capability">HT-006<span class="ot-tip"><span class="ot-tip-eyebrow">DDTx 26/27 outcome &middot; HomeTest</span><span class="ot-tip-id">006</span>100 people participating in home test trial, as part of Use Case 2 capability</span></span>UC2 trial cohort measurement runs through this stage. <span class="outcome-tag hs" data-ws="HealthStore" data-id="002" title="DDTx 26/27 outcome · HealthStore · 002 · Support over 6,000 existing patients to utilise COPD Management Apps within the Health Store product model">HS-002<span class="ot-tip"><span class="ot-tip-eyebrow">DDTx 26/27 outcome &middot; HealthStore</span><span class="ot-tip-id">002</span>Support over 6,000 existing patients to utilise COPD Management Apps within the Health Store product model</span></span>Patient-utilisation measurement. <span class="outcome-tag hs" data-ws="HealthStore" data-id="005" title="DDTx 26/27 outcome · HealthStore · 005 · Have more than 500 new patients start using COPD DTx via the NHS App route in Beta sites">HS-005<span class="ot-tip"><span class="ot-tip-eyebrow">DDTx 26/27 outcome &middot; HealthStore</span><span class="ot-tip-id">005</span>Have more than 500 new patients start using COPD DTx via the NHS App route in Beta sites</span></span>New-patient activation measurement. <span class="outcome-tag sy" data-ws="HealthSync" data-id="TBC" title="DDTx 26/27 outcome · HealthSync · TBC · outcomes not yet defined for this workstream">SY-TBC<span class="ot-tip"><span class="ot-tip-eyebrow">DDTx 26/27 outcome &middot; HealthSync</span><span class="ot-tip-id">TBC</span>Outcomes for this workstream are still being defined. Placeholder shown so the lifecycle view stays complete.</span></span>HealthSync measurement pending. Programme activity: KPI framework definition, Reporting Service Technical Spec, data flows from suppliers into the platform, PMO holds cross-cutting MI and benefits log.</div>
+ </div>
+ <div class="stage-block">
+ <div class="stage-block-h">In flight</div>
+ <div class="stage-block-body">Working measures of success: tests live with approved Blue Book entries; suppliers assured by test type; systems live and stably contracting locally; sample quality (rejection / repeat-kit rates); turnaround (order to actioned result); equity of uptake (deprivation, ethnicity, age, disability).</div>
+ </div>
+ <div class="stage-block">
+ <div class="stage-block-h">Open</div>
+ <div class="stage-block-body">Whether the Programme Outcomes (001 to 010) are the unit of measurement, or whether the operating model carries its own measurement frame separate from the outcomes. The two should be reconciled before public reporting.</div>
+ </div>
+ </div>
+ </div>
+
+ </div>
+
+ 
+
+
+</div>
+
+
+<script>
+// Outcome tag tap-to-show (touch devices). Hover handles desktop via CSS.
+(function(){
+  document.querySelectorAll('.outcome-tag').forEach(function(el){
+    el.addEventListener('click', function(e){
+      e.stopPropagation();
+      var wasOpen = el.classList.contains('ot-open');
+      document.querySelectorAll('.outcome-tag.ot-open').forEach(function(o){ o.classList.remove('ot-open'); });
+      if (!wasOpen) el.classList.add('ot-open');
+    });
+  });
+  document.body.addEventListener('click', function(){
+    document.querySelectorAll('.outcome-tag.ot-open').forEach(function(o){ o.classList.remove('ot-open'); });
+  });
+})();
+</script>
+
+<script>
+// Persona portrait click — navigate to persona page, bypass parent anchors.
+(function(){
+  document.querySelectorAll('img[data-href]').forEach(function(img){
+    img.addEventListener('click', function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      window.location.href = img.getAttribute('data-href');
+    });
+  });
+})();
+</script>
+</body>
+</html>

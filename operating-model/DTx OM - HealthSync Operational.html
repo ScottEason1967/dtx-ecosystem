@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HealthSync Operational: Digital Therapeutics Operating Model</title>
+<style>
+ /* Canonical topnav */
+ .topnav{background:#fff;border-bottom:1px solid #ebeef1;padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:nowrap;min-height:54px;box-sizing:border-box;width:100%;max-width:100%;margin:0;position:sticky;top:0;z-index:200;}
+ .topnav.topnav-secondary{background:#F4F8FC;border-bottom:1px solid #d6e2ef;padding:9px 36px;min-height:42px;}
+ .topnav .nav-back{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-back:hover{color:#005EB8;}
+ .topnav .nav-siblings{display:flex;gap:4px;flex-wrap:nowrap;overflow-x:auto;align-items:center;}
+ .topnav .nav-siblings a{font-size:12px;font-weight:600;color:#4C6272;text-decoration:none;padding:6px 12px;border-radius:6px;letter-spacing:0.2px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-siblings a:hover{background:#f0f4f8;color:#212B32;}
+ .topnav .nav-siblings a.active{background:#003087;color:#fff;}
+
+ :root {
+ --nhs-blue:#005EB8; --nhs-dark:#003087; --healthsync:#00A499;
+ --text:#212B32; --text-sec:#4c6272; --text-muted:#768692;
+ --border:#d8dde0; --border-lt:#e8edee;
+ --bg:#f4f5f7; --card:#ffffff;
+ --warm-amber:#FFB91D; --amber-deep:#C9A227; --warm-cream:#FFF9EC;
+ --nhs-blue-deep:#003087;
+ }
+ *{margin:0;padding:0;box-sizing:border-box;}
+ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,var(--nhs-blue) 0%,var(--nhs-blue-deep) 100%) !important;background-attachment:fixed !important;color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;}
+ .hdr{background:linear-gradient(135deg,var(--healthsync),var(--nhs-dark));color:#fff;padding:22px 32px;min-height:170px;}
+ .hdr-in{max-width:1260px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start;gap:20px;}
+ .hdr h1{font-size:22px;font-weight:800;letter-spacing:-0.3px;}
+ .hdr .sub{font-size:12.5px;opacity:0.92;margin-top:5px;max-width:680px;line-height:1.55;}
+ .main{max-width:1260px;margin:0 auto;padding:20px 24px;}
+ .intro{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px 22px;margin-bottom:18px;min-height:260px;}
+ .intro h2{font-size:14px;font-weight:700;color:var(--nhs-dark);margin-bottom:4px;}
+ .intro p{font-size:12px;color:var(--text-sec);line-height:1.65;margin-bottom:6px;}
+ .intro p:last-child{margin-bottom:0;}
+ .intro strong{color:var(--text);}
+ .actor-key{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:24px;padding:14px;background:#FFF9EC;border:1px solid #F0DCA0;border-radius:12px;}
+ .ak{display:flex;flex-direction:column;align-items:center;text-align:center;background:#fff;border:2px solid #ebeef1;border-radius:10px;padding:10px 6px 8px;font-family:inherit;color:#212B32;width:100%;}
+ .ak.tbc{border:2px dashed #c4d3e6;background:#fafbfd;opacity:0.85;}
+ .ak-portrait{height:60px;width:auto;display:flex;align-items:end;justify-content:center;margin-bottom:5px;}
+ .ak-portrait img{max-height:60px;max-width:100%;border-radius:8px;}
+ .ph-circle{width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,#E0E5EB,#cdd5dd);display:flex;align-items:center;justify-content:center;font-size:22px;color:#7E8B97;font-weight:700;}
+ .ak-name{font-size:12px;font-weight:800;color:#003087;}
+ .ak-name.tbc{color:#7E8B97;font-style:italic;}
+ .ak-role{font-size:9px;color:#7E8B97;text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-top:2px;}
+ .lane-placeholder{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px 22px;margin-bottom:14px;display:grid;grid-template-columns:80px 1fr;gap:18px;align-items:center;}
+ .lane-placeholder-num{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--healthsync),var(--nhs-dark));color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;}
+ .lane-placeholder-text h3{font-size:14px;font-weight:800;color:var(--nhs-dark);margin-bottom:4px;}
+ .lane-placeholder-text p{font-size:11.5px;color:var(--text-sec);line-height:1.55;}
+ .lane-actor{font-size:10px;font-weight:700;color:var(--healthsync);letter-spacing:0.5px;text-transform:uppercase;margin-top:4px;}
+ .lane-actor.tbc{color:#7E8B97;font-style:italic;}
+ .reserved-banner{background:#F4F8FC;border:1px solid #d6e2ef;border-radius:10px;padding:16px 20px;margin:18px 0;}
+ .reserved-banner h3{font-size:13px;font-weight:800;color:var(--healthsync);margin-bottom:6px;letter-spacing:0.4px;text-transform:uppercase;}
+ .reserved-banner p{font-size:12px;color:var(--text-sec);line-height:1.65;margin-bottom:6px;}
+ .reserved-banner p:last-child{margin-bottom:0;}
+ .reserved-banner strong{color:var(--text);}
+ .tom-list{background:#F4F8FC;border:1px solid #d6e2ef;border-radius:10px;padding:14px 18px;margin-bottom:18px;}
+ .tom-list-h{font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:var(--healthsync);text-transform:uppercase;margin-bottom:10px;}
+ .tom-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 16px;font-size:11px;color:var(--text-sec);line-height:1.55;}
+ .tom-grid strong{color:var(--healthsync);}
+ @media (max-width:900px){ .actor-key{grid-template-columns:repeat(4,1fr);} .tom-grid{grid-template-columns:1fr;} }
+ @media (max-width:600px){ .actor-key{grid-template-columns:repeat(2,1fr);} .lane-placeholder{grid-template-columns:1fr;} }
+</style>
+<style>
+  .ecosystem-nav {
+    background: #fff;
+    border-bottom: 1px solid #ebeef1;
+    padding: 12px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 48px;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  }
+  .ecosystem-nav a {
+    font-size: 13px; font-weight: 700; color: #003087;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .ecosystem-nav a:hover { color: #005EB8; }
+  .ecosystem-nav .nav-context {
+    font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
+    color: #7E8B97; text-transform: uppercase;
+  }
+  .ecosystem-nav .nav-product {
+    font-size: 10.5px; font-weight: 800; letter-spacing: 0.8px;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 4px; color: #fff;
+  }
+  .ecosystem-nav .nav-product.dtx { background: #003087; }
+  .ecosystem-nav .nav-product.hometest { background: #003087; }
+  .ecosystem-nav .nav-product.healthstore { background: #00A9CE; }
+  .ecosystem-nav .nav-product.healthsync { background: #00A499; }
+</style>
+</head>
+<body>
+<div class="ecosystem-nav">
+  <a href="../index.html">← DTx Ecosystem</a>
+  <span class="nav-context">HealthSync Operational</span>
+  <span class="nav-product healthsync">HealthSync</span>
+</div>
+
+<nav class="topnav">
+<a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+<div class="nav-siblings">
+ <a href="DTx OM - Why.html">Why</a>
+ <a href="DTx OM - What.html">What</a>
+ <a href="DTx OM - Lifecycle.html">When</a>
+ <a href="DTx OM - HomeTest Operational.html" class="active">How</a>
+ <a href="DTx OM - Governance.html">Who</a>
+ <a href="DTx OM - Hearts and Minds.html">Hearts and Minds</a>
+ <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>
+ <a href="DTx OM - Status.html">Status</a>
+</div>
+</nav>
+
+<div class="hdr">
+ <div class="hdr-in">
+ <div>
+ <div style="width:72px;height:4px;background:var(--warm-amber);border-radius:2px;margin-bottom:14px;"></div>
+ <h1><span style="display:inline-block;background:#00A499;color:#fff;padding:4px 14px 6px;border-radius:10px;line-height:1;letter-spacing:-0.4px;">HealthSync</span> Operational Swimlanes <span style="font-size:13px;font-weight:400;opacity:0.65;letter-spacing:0;text-transform:none;">(HealthSync overlay &middot; structural placeholder)</span></h1>
+ <div class="sub">How HealthSync runs at steady state. This page is the <strong>HealthSync operational overlay</strong> within the Digital Therapeutics Operating Model, sitting alongside HomeTest and HealthStore. Seven operational processes, seven actors. Mei is the lead patient archetype, Errol the cross-portfolio patient whose journey shows HealthSync threading into HomeTest and HealthStore. The other six actors run the service around the patient.</div>
+ </div>
+ </div>
+</div>
+
+<div class="main">
+
+ <div class="intro">
+ <h2>How to read this</h2>
+ <p>The same seven-lane operating shape as HomeTest and HealthStore is reserved structurally for HealthSync. <strong>Foundation</strong>-marked content carries across all Digital Therapeutics products; <strong>Overlay</strong>-marked content is HealthSync-specific. <strong>How to read each lane:</strong> columns flow left to right in time; cells stacked within a column are concurrent.</p>
+ <p>The actor cast below is what we know today &mdash; commissioner-side roles populated, Mei as lead patient archetype, Tariq as the consumer-platform integration partner on the supplier side.</p>
+ <p>Operational lane content lands once HealthSync programme detail matures and a validator review confirms the operating shape.</p>
+ <div style="margin-top:14px;padding-top:12px;border-top:1px solid rgba(0,0,0,0.08);font-size:12px;"><a href="DTx OM - Status.html" style="color:#005EB8;font-weight:700;text-decoration:none;letter-spacing:0.3px;">See all open items across the model &rarr;</a></div>
+ </div>
+
+ <div style="background:#f4f8fc;border:1px solid #c4d3e6;border-radius:10px;padding:10px 16px;margin-bottom:14px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:center;" class="product-selector">
+  <span style="font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:#003087;text-transform:uppercase;margin-right:6px;">Product overlay:</span>
+  <a href="DTx OM - HomeTest Operational.html" style="font-size:12.5px;font-weight:700;color:#003087;text-decoration:none;padding:7px 16px;border-radius:6px;border:1px solid #c4d3e6;background:#fff;">HomeTest</a>
+  <a href="DTx OM - HealthStore Operational.html" style="font-size:12.5px;font-weight:700;color:#00A9CE;text-decoration:none;padding:7px 16px;border-radius:6px;border:1px solid #b8e0ec;background:#fff;">HealthStore</a>
+  <a href="DTx OM - HealthSync Operational.html" style="font-size:12.5px;font-weight:700;color:#fff;background:#00A499;text-decoration:none;padding:7px 16px;border-radius:6px;">HealthSync</a>
+ </div>
+
+ <div style="background:#FFF8E6;border:1px solid #F0DCA0;border-radius:8px;padding:11px 16px;margin:0 0 18px;font-size:11.5px;color:#4C6272;line-height:1.55;">
+  <strong style="color:#9A6700;">Six foundation-level capabilities sit alongside these lanes:</strong> Post-market surveillance, Pathway integration, Independent assurance, Contract Management, Ongoing Evidence Generation, and the Service Wrapper anatomy. All cross-product capabilities, surfaced in the <a href="DTx OM - HealthSync Teamwork.html" style="color:#9A6700;font-weight:700;text-decoration:none;">Teamwork view</a>, the <a href="DTx OM - Anatomical.html" style="color:#9A6700;font-weight:700;text-decoration:none;">Anatomy Built foundation</a> and the <a href="DTx OM - Governance.html#raci-foundation" style="color:#9A6700;font-weight:700;text-decoration:none;">Foundation RACI</a>.
+ </div>
+
+ <div class="actor-key">
+  <div class="ak"><div class="ak-portrait"><a href="DTx OM - Persona Sarah.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/sarah.png" alt="Sarah"></a></div><div class="ak-name">Sarah</div><div class="ak-role">1. Commissioner buying</div></div>
+  <div class="ak"><div class="ak-portrait"><a href="DTx OM - Persona Tariq.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="img/tariq.png" alt="Tariq"></a></div><div class="ak-name">Tariq</div><div class="ak-role">2. Integration partner</div></div>
+  <div class="ak"><div class="ak-portrait"><a href="DTx OM - Persona HealthSync diabetes patient.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="img/mei.png" alt="Mei" style="background:#E0E5EB;"></a></div><div class="ak-name">Mei</div><div class="ak-role">3. Patient &middot; Service delivery</div></div>
+  <div class="ak"><div class="ak-portrait"><a href="DTx OM - Persona David.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/david.png" alt="David"></a></div><div class="ak-name">David</div><div class="ak-role">4. Financial settlement</div></div>
+  <div class="ak"><div class="ak-portrait"><a href="DTx OM - Persona Aisha.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/aisha.png" alt="Aisha"></a></div><div class="ak-name">Aisha</div><div class="ak-role">5. Performance &amp; assurance</div></div>
+  <div class="ak"><div class="ak-portrait"><a href="DTx OM - Persona Ngozi.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/ngozi.png" alt="Ngozi"></a></div><div class="ak-name">Ngozi</div><div class="ak-role">6. Information governance</div></div>
+  <div class="ak"><div class="ak-portrait"><a href="DTx OM - Persona Priya.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/priya.png" alt="Priya"></a></div><div class="ak-name">Priya</div><div class="ak-role">7. Market dynamics</div></div>
+ </div>
+
+ <div class="reserved-banner">
+  <h3>Operational lane content reserved at structural level</h3>
+  <p>The same seven swimlane structure used on HomeTest Operational and HealthStore Operational is reserved here for HealthSync. Each lane below describes the actor and the role at this stage. Lane-by-lane operational detail (Find / Decide / Onboard / Go live / Operate cells per actor) lands when HealthSync programme content matures and a validator review confirms the operating shape.</p>
+  <p>The TOM components below are structurally identified today &mdash; what's reserved is the operational decomposition of each one into the swimlane format.</p>
+ </div>
+
+ <div class="tom-list">
+  <div class="tom-list-h">HealthSync TOM components identified in primary source</div>
+  <div class="tom-grid">
+   <div><strong>PHR aggregation layer</strong> &middot; the NHS App PHR construct that ingests consumer-platform data.</div>
+   <div><strong>Apple HealthKit integration</strong> &middot; iOS-side consumer-platform interface.</div>
+   <div><strong>Google Health Connect integration</strong> &middot; Android-side consumer-platform interface.</div>
+   <div><strong>Consumer-platform interoperability discipline</strong> &middot; standards for what flows where, with what permissions, in what form.</div>
+   <div><strong>BP use case (lead configuration)</strong> &middot; blood pressure self-monitoring with consumer-device data flowing to NHS App and care team.</div>
+   <div><strong>Threshold-based alerting / PI-CI escalation</strong> &middot; data-driven escalation between appointments.</div>
+   <div><strong>Patient permission and revocation model</strong> &middot; granular controls at consumer-platform and NHS App layers.</div>
+   <div><strong>Federated controller for consumer-platform data</strong> &middot; Apple / Google as platform operator, NHS as controller for the NHS App view.</div>
+   <div><strong>Lawful basis per data type</strong> &middot; consent vs public task per use of the data downstream.</div>
+   <div><strong>Real-world proof-of-concept anchor</strong> &middot; empirical demonstration that consumer-device BP data flows into NHS systems and is operationally usable.</div>
+  </div>
+ </div>
+
+ <div class="lane-placeholder">
+  <div class="lane-placeholder-num">1</div>
+  <div class="lane-placeholder-text">
+   <h3>Commissioner buying</h3>
+   <p>How Sarah finds the HealthSync service, decides it fits her population, onboards her cohort, goes live and operates. Same Find / Decide / Onboard / Go live / Operate stages as HomeTest and HealthStore. Lane cells reserved pending HealthSync programme detail.</p>
+   <div class="lane-actor">Lead actor: Sarah &middot; commissioner</div>
+  </div>
+ </div>
+
+ <div class="lane-placeholder">
+  <div class="lane-placeholder-num">2</div>
+  <div class="lane-placeholder-text">
+   <h3>Integration-partner onboarding</h3>
+   <p>How <strong>Tariq (consumer-platform integration partner)</strong> comes onto the framework, evidences integration readiness, and goes live against the PHR aggregation layer. Standards-based interface (FHIR routing, Apple HealthKit / Google Health Connect), federated controller arrangement, predictable governance cadence.</p>
+   <div class="lane-actor">Lead actor: Tariq &middot; consumer-platform integration partner</div>
+  </div>
+ </div>
+
+ <div class="lane-placeholder">
+  <div class="lane-placeholder-num">3</div>
+  <div class="lane-placeholder-text">
+   <h3>Service delivery</h3>
+   <p>How the patient experiences HealthSync day-to-day &mdash; consumer device on the wrist, data flowing into the NHS App, threshold-based alerting where the configuration requires it. Mei is the lead T2D / CGM archetype; Errol carries the cross-portfolio hypertension story where HealthSync threads into HomeTest and HealthStore.</p>
+   <div class="lane-actor">Lead actor: Mei &middot; T2D / CGM. Cross-portfolio: Errol</div>
+  </div>
+ </div>
+
+ <div class="lane-placeholder">
+  <div class="lane-placeholder-num">4</div>
+  <div class="lane-placeholder-text">
+   <h3>Financial settlement</h3>
+   <p>How money moves through the HealthSync configuration. Commercial mechanic carried through David's framework. Settlement model reserved until commercial design for HealthSync configurations completes.</p>
+   <div class="lane-actor">Lead actor: David &middot; NHS Commercial</div>
+  </div>
+ </div>
+
+ <div class="lane-placeholder">
+  <div class="lane-placeholder-num">5</div>
+  <div class="lane-placeholder-text">
+   <h3>Performance &amp; assurance</h3>
+   <p>How clinical safety, performance and ongoing assurance run across HealthSync configurations. Aisha holds the clinical framework. Independent assurance, regulatory standards mapping and PMS apply as for HomeTest and HealthStore.</p>
+   <div class="lane-actor">Lead actor: Aisha &middot; Clinical / CSG</div>
+  </div>
+ </div>
+
+ <div class="lane-placeholder">
+  <div class="lane-placeholder-num">6</div>
+  <div class="lane-placeholder-text">
+   <h3>Information governance</h3>
+   <p>How IG operates across the consumer-platform-to-NHS data flow. Federated controller arrangement (Apple / Google as platform operator, NHS as controller for the NHS App view). Patient permission and revocation model. Lawful basis per data type.</p>
+   <div class="lane-actor">Lead actor: Ngozi &middot; IG / DPO</div>
+  </div>
+ </div>
+
+ <div class="lane-placeholder">
+  <div class="lane-placeholder-num">7</div>
+  <div class="lane-placeholder-text">
+   <h3>Market dynamics</h3>
+   <p>How NHSE shapes the consumer-platform interoperability market. Standards-setting role rather than buying role. Integration cadence, interoperability discipline, ecosystem coordination.</p>
+   <div class="lane-actor">Lead actor: Priya &middot; NHSE Platform</div>
+  </div>
+ </div>
+
+ <div class="reserved-banner" style="margin-top:24px;">
+  <h3>What lands here when the programme matures</h3>
+  <p>Once HealthSync programme detail is far enough along, each of the seven lanes above gets the same Find / Decide / Onboard / Go live / Operate decomposition that HomeTest and HealthStore carry today &mdash; per-actor cells, Foundation vs Overlay marking, decision and gap flags where things are still open. The structural shell is here so a reader can see the operating shape is the same across the three products; the content lands when it can be honestly populated.</p>
+ </div>
+
+</div>
+
+</body>
+</html>

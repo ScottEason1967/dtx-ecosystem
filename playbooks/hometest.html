@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HomeTest Playbooks · NHS DTx Ecosystem</title>
+<style>
+  :root {
+    --nhs-dark: #003087; --nhs-blue: #005EB8; --nhs-green: #006747; --nhs-pink: #AE2573;
+    --amber: #FFB91D; --amber-deep: #C9A227; --amber-warn: #9A6700;
+    --warm-cream: #FFF9EC;
+    --text: #212B32; --text-sec: #4C6272; --text-muted: #7E8B97;
+    --border: #d9dee3; --border-lt: #ebeef1; --bg: #f8fafc;
+    --green: #007F3B; --green-pale: #E2F1E8;
+    --hometest: #003087;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif; font-size: 14.5px; line-height: 1.6; color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; }
+  .topnav { background: #fff; border-bottom: 1px solid var(--border-lt); padding: 14px 36px; display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 54px; position: sticky; top: 0; z-index: 200; }
+  .topnav .nav-back { font-size: 13px; font-weight: 700; color: var(--nhs-dark); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+  .topnav .nav-back:hover { color: var(--nhs-blue); }
+  .topnav-context { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; color: var(--text-muted); text-transform: uppercase; }
+  .topnav-product-tag { font-size: 10.5px; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase; padding: 4px 10px; border-radius: 4px; color: #fff; background: var(--hometest); }
+  .pb-page { max-width: 1280px; margin: 0 auto; background: #fff; min-height: calc(100vh - 54px); box-shadow: 0 6px 28px rgba(0,32,64,0.06); }
+  .pb-banner { padding: 50px 48px 32px; background: #fff; border-bottom: 1px solid var(--border-lt); }
+  .pb-banner-eyebrow { display: inline-block; background: var(--hometest); color: #fff; font-size: 10.5px; font-weight: 800; letter-spacing: 1.8px; padding: 7px 16px; border-radius: 4px; text-transform: uppercase; margin-bottom: 20px; }
+  .pb-banner-title { font-size: 42px; font-weight: 800; color: var(--nhs-dark); letter-spacing: -0.5px; line-height: 1.1; margin-bottom: 14px; }
+  .pb-banner-sub { font-size: 17px; color: var(--text-sec); font-weight: 500; line-height: 1.55; max-width: 760px; }
+  .pb-banner::after { content: ''; display: block; width: 72px; height: 4px; background: var(--amber); border-radius: 2px; margin: 22px 0 0; }
+  .pb-body { padding: 32px 48px 20px; }
+  .pb-intro { margin: 0 0 32px; padding: 20px 26px; background: linear-gradient(135deg, var(--warm-cream), #FFFCF1); border: 1px solid #F0DCA0; border-left: 4px solid var(--amber); border-radius: 0 12px 12px 0; font-size: 14px; color: var(--text-sec); line-height: 1.7; }
+  .pb-intro strong { color: var(--nhs-dark); font-weight: 800; }
+  .pb-section-h { display: flex; align-items: center; gap: 12px; font-size: 11.5px; font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase; color: var(--text-muted); margin: 8px 0 18px; }
+  .pb-section-h::before { content: ''; display: inline-block; width: 28px; height: 4px; background: var(--amber); border-radius: 2px; }
+  .pb-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  @media (max-width: 720px) { .pb-grid { grid-template-columns: 1fr; } }
+  .pb-book { background: #fff; border: 1px solid var(--border-lt); border-radius: 14px; padding: 22px 24px 22px; text-decoration: none; color: inherit; transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease; display: flex; flex-direction: column; gap: 12px; position: relative; overflow: hidden; box-shadow: 0 2px 6px rgba(0,32,64,0.04); }
+  .pb-book::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: var(--nhs-blue); transition: width 0.18s ease; }
+  .pb-book:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,32,64,0.12); border-color: var(--nhs-blue); }
+  .pb-book:hover::before { width: 7px; }
+  .pb-book.planned { background: #fafbfc; border-style: dashed; box-shadow: none; }
+  .pb-book.planned::before { background: var(--text-muted); }
+  .pb-book.planned:hover { transform: none; box-shadow: none; cursor: not-allowed; }
+  .pb-book-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .pb-book-status { font-size: 10px; font-weight: 800; letter-spacing: 0.6px; padding: 4px 10px; border-radius: 4px; text-transform: uppercase; }
+  .pb-book-status.live { background: var(--green-pale); color: var(--green); }
+  .pb-book-status.planned { background: #EDEEF1; color: var(--text-muted); }
+  .pb-book-title { font-size: 18px; font-weight: 800; color: var(--nhs-dark); line-height: 1.25; margin: 2px 0 0; letter-spacing: -0.2px; }
+  .pb-book.planned .pb-book-title { color: var(--text-sec); }
+  .pb-book-desc { font-size: 13px; color: var(--text-sec); line-height: 1.6; flex: 1; }
+  .pb-book-meta { font-size: 11.5px; color: var(--text-muted); padding-top: 10px; border-top: 1px solid var(--border-lt); line-height: 1.55; }
+  .pb-book-meta strong { color: var(--nhs-dark); font-weight: 700; }
+  .pb-book.planned .pb-book-meta strong { color: var(--text-sec); }
+  .pb-book-cta { font-size: 11.5px; font-weight: 800; color: var(--nhs-blue); letter-spacing: 0.6px; text-transform: uppercase; }
+  .pb-book-cta::after { content: ' →'; }
+  .pb-book.planned .pb-book-cta { color: var(--text-muted); }
+  .pb-book.planned .pb-book-cta::after { content: ' · roadmap'; }
+  .pb-footer { margin: 48px 0 0; padding: 22px 48px 28px; border-top: 1px solid var(--border-lt); font-size: 11.5px; color: var(--text-muted); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+  .pb-footer a { color: var(--nhs-blue); text-decoration: none; font-weight: 700; }
+  .pb-footer a:hover { color: var(--nhs-dark); }
+  @media (max-width: 720px) { .topnav { padding: 12px 22px; } .pb-banner { padding: 36px 28px 24px; } .pb-banner-title { font-size: 30px; } .pb-body { padding: 24px 28px 12px; } .pb-footer { padding: 18px 28px 22px; } }
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <a class="nav-back" href="index.html">← Playbooks</a>
+  <span class="topnav-context">NHS DTx Ecosystem · HomeTest</span>
+  <span class="topnav-product-tag">HomeTest</span>
+</div>
+
+<div class="pb-page">
+
+  <div class="pb-banner">
+    <div class="pb-banner-eyebrow">HomeTest</div>
+    <h1 class="pb-banner-title">HomeTest playbooks</h1>
+    <p class="pb-banner-sub">Operating manuals for the teams running HomeTest day-to-day. Commercial is live. Clinical, IG, Platform, Engagement and Strategic Finance are on the roadmap.</p>
+  </div>
+
+  <div class="pb-body">
+
+    <p class="pb-intro">
+      <strong>What lives here.</strong> Each HomeTest playbook describes how a specific function runs day-to-day. The Commercial Playbook is the live operating manual following the interim shape. Other functions (Clinical, IG, Platform, Engagement, Strategic Finance) currently sit inside the Commercial Playbook's cross-cutting plays or the DTx Operating Model; standalone playbooks for each will be built as the operating model matures.
+    </p>
+
+    <div class="pb-section-h">HomeTest playbook set</div>
+
+    <div class="pb-grid">
+
+      <a class="pb-book" href="../hometest/commercial-playbook/index.html">
+        <div class="pb-book-head">
+          <span class="pb-book-status live">Live</span>
+        </div>
+        <h3 class="pb-book-title">HomeTest Commercial Playbook</h3>
+        <p class="pb-book-desc">Twenty plays across Set the direction, Matchmaker, Assurance wrapper and Orchestrator. Names how the commercial team runs each situation under the interim shape: supplier admission, commissioner engagement, framework reopen decision, removal protocol, external inquiry response, assurance envelope and apparatus.</p>
+        <div class="pb-book-meta"><strong>Reader:</strong> HomeTest Commercial team. NHSE colleagues working alongside.</div>
+        <div class="pb-book-cta">Open Commercial Playbook</div>
+      </a>
+
+      <a class="pb-book planned" href="#">
+        <div class="pb-book-head">
+          <span class="pb-book-status planned">Roadmap</span>
+        </div>
+        <h3 class="pb-book-title">Clinical Safety Playbook</h3>
+        <p class="pb-book-desc">Clinical safety case construction, pathway risk management, recall mechanics, CSG engagement, clinical sign-off gates. Currently lives inside the Commercial Playbook's clinical-led cells; will spin out when scale justifies.</p>
+        <div class="pb-book-meta"><strong>Reader:</strong> HomeTest clinical safety lead. CSG.</div>
+        <div class="pb-book-cta">Open Clinical Playbook</div>
+      </a>
+
+      <a class="pb-book planned" href="#">
+        <div class="pb-book-head">
+          <span class="pb-book-status planned">Roadmap</span>
+        </div>
+        <h3 class="pb-book-title">IG and DPO Playbook</h3>
+        <p class="pb-book-desc">DPIA review cadence, lawful-basis library, controllership rulings, breach handling. The full IG operating discipline beyond the commercial-side envelope captured in Play 21.</p>
+        <div class="pb-book-meta"><strong>Reader:</strong> NHSE IG/DPO function. Commercial liaison.</div>
+        <div class="pb-book-cta">Open IG/DPO Playbook</div>
+      </a>
+
+      <a class="pb-book planned" href="#">
+        <div class="pb-book-head">
+          <span class="pb-book-status planned">Roadmap</span>
+        </div>
+        <h3 class="pb-book-title">Platform and Integration Playbook</h3>
+        <p class="pb-book-desc">Integration decisions across Notify, NHS App, NHS Login, BSA, FDP. Versioning, deployment cadence, capacity allocation, sandbox-to-prod cutover.</p>
+        <div class="pb-book-meta"><strong>Reader:</strong> NHSE Platform team. Integration counterparties.</div>
+        <div class="pb-book-cta">Open Platform Playbook</div>
+      </a>
+
+      <a class="pb-book planned" href="#">
+        <div class="pb-book-head">
+          <span class="pb-book-status planned">Roadmap</span>
+        </div>
+        <h3 class="pb-book-title">Engagement Playbook</h3>
+        <p class="pb-book-desc">The pre-sales cell's operating manual. Road-show, partner qualification, hearts-and-minds materials, senior sponsor briefings. Lives behind the engagement-cell position paper.</p>
+        <div class="pb-book-meta"><strong>Reader:</strong> Pre-sales cell.</div>
+        <div class="pb-book-cta">Open Engagement Playbook</div>
+      </a>
+
+      <a class="pb-book planned" href="#">
+        <div class="pb-book-head">
+          <span class="pb-book-status planned">Roadmap</span>
+        </div>
+        <h3 class="pb-book-title">Strategic Finance and Tariff Playbook</h3>
+        <p class="pb-book-desc">Currency design, should-cost construction, NHSE Pricing engagement, tariff articulation upstream of commercial pricing decisions.</p>
+        <div class="pb-book-meta"><strong>Reader:</strong> Strategic Finance. Commercial liaison.</div>
+        <div class="pb-book-cta">Open Strategic Finance Playbook</div>
+      </a>
+
+    </div>
+
+  </div>
+
+  <div class="pb-footer">
+    <span>NHS DTx Ecosystem · HomeTest playbooks · 28 May 2026</span>
+    <span><a href="index.html">← All product playbooks</a> · <a href="../index.html">Front door</a></span>
+  </div>
+
+</div>
+</body>
+</html>

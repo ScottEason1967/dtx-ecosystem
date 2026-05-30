@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<title>DTx OM — The Map to 2030 (SKETCH)</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: #231F20;
+    background: #F8FAFC;
+    line-height: 1.5;
+  }
+
+  /* SKETCH BANNER */
+  .sketch-banner {
+    background: #FFF3CD;
+    border-bottom: 2px solid #E5C880;
+    padding: 14px 32px;
+    font-size: 13px;
+    color: #5C4A1A;
+  }
+  .sketch-banner strong { color: #231F20; font-size: 14px; }
+  .sketch-banner .nb { display: block; margin-top: 4px; font-style: italic; opacity: 0.85; }
+
+  /* PAGE HEADER */
+  .header {
+    background: #003087;
+    color: #fff;
+    padding: 36px 48px 30px;
+  }
+  .header .eyebrow {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #7EC8E3;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    margin: 0 0 10px;
+    font-size: 36px;
+    font-weight: 900;
+    letter-spacing: -0.7px;
+  }
+  .header .sub {
+    font-size: 16px;
+    color: rgba(255,255,255,0.92);
+    max-width: 880px;
+    line-height: 1.55;
+  }
+
+  /* MAP CONTAINER */
+  .map {
+    padding: 32px 32px 48px;
+    max-width: 1480px;
+    margin: 0 auto;
+  }
+
+  /* TIME HEADER */
+  .time-header {
+    display: grid;
+    grid-template-columns: 130px repeat(4, 1fr) 0.7fr;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+  .time-header .lane-label-h { /* empty corner */ }
+  .time-header .fy-cell {
+    background: #003087;
+    color: #fff;
+    text-align: center;
+    padding: 12px 8px;
+    border-radius: 6px;
+    font-weight: 700;
+  }
+  .time-header .fy-cell .fy {
+    font-size: 14px;
+    letter-spacing: 0.5px;
+  }
+  .time-header .fy-cell .when {
+    font-size: 11px;
+    color: #7EC8E3;
+    margin-top: 2px;
+    font-weight: 500;
+  }
+  .time-header .fy-cell.beyond {
+    background: #6B7C99;
+    opacity: 0.85;
+  }
+
+  /* LANE GRID */
+  .lane {
+    display: grid;
+    grid-template-columns: 130px repeat(4, 1fr) 0.7fr;
+    gap: 8px;
+    margin-bottom: 8px;
+    min-height: 72px;
+  }
+  .lane-label {
+    background: #003087;
+    color: #fff;
+    padding: 14px 12px;
+    border-radius: 6px;
+    font-weight: 800;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .lane-label .lane-sub {
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 400;
+    font-size: 10.5px;
+    color: rgba(255,255,255,0.78);
+    margin-top: 4px;
+  }
+  .lane-cell {
+    background: #fff;
+    border: 1px solid #E1E5EB;
+    border-radius: 6px;
+    padding: 10px 10px;
+    font-size: 11.5px;
+    line-height: 1.4;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .lane-cell.beyond {
+    background: #F2F4F8;
+    border-style: dashed;
+    color: #5C6B82;
+  }
+
+  /* LANE COLOUR TINTS (subtle background tones) */
+  .lane.decisions .lane-cell { background: #FAF5E6; border-color: #E5D9B0; }
+  .lane.decisions .lane-label { background: #8A7028; }
+  .lane.scale .lane-cell { background: #F0F6FB; border-color: #C9DBEA; }
+  .lane.scale .lane-label { background: #003087; }
+  .lane.vehicle .lane-cell { background: #FFFFFF; border-color: #D5E0EE; }
+  .lane.vehicle .lane-label { background: #1A4C9C; }
+  .lane.assurance .lane-cell { background: #F2F9F4; border-color: #C5DCC8; }
+  .lane.assurance .lane-label { background: #2D6B3F; }
+  .lane.hearts .lane-cell { background: #FBF2F6; border-color: #E5C8D6; }
+  .lane.hearts .lane-label { background: #7C2855; }
+
+  /* DECISION GATE STYLING */
+  .gate {
+    background: #fff;
+    border: 2px solid #B8941F;
+    border-radius: 4px;
+    padding: 8px 10px;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #5C4A1A;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .gate .gate-mark {
+    display: inline-block;
+    background: #B8941F;
+    color: #fff;
+    width: 18px; height: 18px;
+    border-radius: 3px;
+    font-size: 12px;
+    line-height: 18px;
+    margin: 0 auto 4px;
+    font-weight: 900;
+  }
+  .gate.major { border-color: #C0392B; }
+  .gate.major .gate-mark { background: #C0392B; }
+  .gate.major { color: #6B2018; }
+
+  /* TEST CHIPS */
+  .test-chip {
+    background: #fff;
+    border-left: 4px solid #003087; /* HomeTest navy */
+    border-radius: 4px;
+    padding: 6px 8px;
+    font-size: 11px;
+    line-height: 1.3;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  }
+  .test-chip .chip-id {
+    font-weight: 800;
+    color: #003087;
+    font-size: 10.5px;
+    letter-spacing: 0.3px;
+  }
+  .test-chip .chip-name {
+    font-weight: 600;
+    color: #231F20;
+  }
+  .test-chip .chip-vol {
+    color: #5C6B82;
+    font-size: 10px;
+  }
+
+  .wave-total {
+    margin-top: 4px;
+    padding: 6px 8px;
+    background: #003087;
+    color: #fff;
+    border-radius: 3px;
+    font-size: 10.5px;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  /* VEHICLE BLOCKS */
+  .vehicle-block {
+    background: #fff;
+    border-radius: 5px;
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    height: 100%;
+    justify-content: center;
+  }
+  .vehicle-block .v-title {
+    font-weight: 800;
+    font-size: 13px;
+    color: #003087;
+  }
+  .vehicle-block .v-body {
+    font-size: 11px;
+    line-height: 1.4;
+    color: #3A4456;
+  }
+  .vehicle-block.psr {
+    background: #E8F0FA;
+    border: 1px solid #B3CDE6;
+  }
+  .vehicle-block.psr .v-title { color: #1A4C9C; }
+  .vehicle-block.pa23 {
+    background: #003087;
+    color: #fff;
+  }
+  .vehicle-block.pa23 .v-title { color: #FFD66B; font-size: 13px; }
+  .vehicle-block.pa23 .v-body { color: rgba(255,255,255,0.9); }
+  .vehicle-block.beyond {
+    background: #4A5D78;
+    color: #fff;
+  }
+  .vehicle-block.beyond .v-title { color: #FFD66B; }
+  .vehicle-block.beyond .v-body { color: rgba(255,255,255,0.85); }
+
+  /* ASSURANCE MILESTONES */
+  .milestone {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .milestone .dot {
+    flex: 0 0 10px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: #2D6B3F;
+    margin-top: 3px;
+  }
+  .milestone .m-body {
+    flex: 1;
+    font-size: 11px;
+    line-height: 1.4;
+  }
+  .milestone .m-body .m-title {
+    font-weight: 700;
+    color: #1F4D2C;
+  }
+
+  /* HEARTS AND MINDS - audiences */
+  .audience {
+    display: flex;
+    gap: 6px;
+    align-items: flex-start;
+    padding: 4px 0;
+  }
+  .audience .a-marker {
+    flex: 0 0 22px;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: #7C2855;
+    color: #fff;
+    font-size: 11px;
+    line-height: 22px;
+    text-align: center;
+    font-weight: 800;
+  }
+  .audience .a-marker.character {
+    background: #fff;
+    border: 2px solid #7C2855;
+    color: #7C2855;
+  }
+  .audience .a-body {
+    flex: 1;
+    font-size: 11px;
+    line-height: 1.35;
+  }
+  .audience .a-body .a-name {
+    font-weight: 700;
+    color: #5A1A3D;
+  }
+
+  /* ANNOTATIONS BLOCK */
+  .annotations {
+    margin-top: 48px;
+    padding: 24px 28px;
+    background: #fff;
+    border: 1px solid #D5E8F0;
+    border-radius: 8px;
+  }
+  .annotations h2 {
+    margin: 0 0 16px;
+    font-size: 20px;
+    color: #003087;
+    font-weight: 800;
+  }
+  .annotations h3 {
+    margin: 18px 0 6px;
+    font-size: 14px;
+    color: #231F20;
+    font-weight: 800;
+  }
+  .annotations p {
+    margin: 0 0 10px;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: #3A4456;
+  }
+  .annotations .judgement-call {
+    background: #FFF8E1;
+    border-left: 3px solid #B8941F;
+    padding: 10px 14px;
+    margin: 8px 0;
+    border-radius: 4px;
+    font-size: 13px;
+  }
+  .annotations .judgement-call strong { color: #5C4A1A; }
+
+  /* LEGEND */
+  .legend {
+    margin-top: 18px;
+    padding: 14px 18px;
+    background: #fff;
+    border: 1px solid #D5E8F0;
+    border-radius: 6px;
+    font-size: 12px;
+    color: #5C6B82;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .legend-swatch { width: 14px; height: 14px; border-radius: 3px; }
+
+  /* RESPONSIVE: under 1200px stack lanes vertically (sketch only) */
+  @media (max-width: 1200px) {
+    .map { padding: 20px; }
+    .time-header, .lane { grid-template-columns: 100px repeat(4, 1fr) 0.6fr; }
+    .test-chip, .lane-cell { font-size: 10.5px; }
+  }
+</style>
+<style>
+  .ecosystem-nav {
+    background: #fff;
+    border-bottom: 1px solid #ebeef1;
+    padding: 12px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 48px;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  }
+  .ecosystem-nav a {
+    font-size: 13px; font-weight: 700; color: #003087;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .ecosystem-nav a:hover { color: #005EB8; }
+  .ecosystem-nav .nav-context {
+    font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
+    color: #7E8B97; text-transform: uppercase;
+  }
+  .ecosystem-nav .nav-product {
+    font-size: 10.5px; font-weight: 800; letter-spacing: 0.8px;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 4px; color: #fff;
+  }
+  .ecosystem-nav .nav-product.dtx { background: #003087; }
+  .ecosystem-nav .nav-product.hometest { background: #003087; }
+  .ecosystem-nav .nav-product.healthstore { background: #00A9CE; }
+  .ecosystem-nav .nav-product.healthsync { background: #00A499; }
+</style>
+</head>
+<body>
+<div class="ecosystem-nav">
+  <a href="../index.html">← DTx Ecosystem</a>
+  <span class="nav-context">Map to 2030 SKETCH</span>
+  <span class="nav-product dtx">DTx</span>
+</div>
+
+<div class="sketch-banner">
+  <strong>SKETCH — pencil layout for reaction, not the finished page.</strong>
+  <span class="nb">Built standalone. Not wired into the rest of the site yet. Will become the new front door (ahead of Why) once you've signed off the structure. Notes at the bottom flag the judgment calls I want you to react to.</span>
+</div>
+
+<div class="header">
+  <div class="eyebrow">The Map</div>
+  <h1>The Map to 2030</h1>
+  <div class="sub">How we get from where we are now to a digital therapeutics market that works. Read across: time. Read down: the four things that have to move together — the tests we are running, the vehicle we run them on, the assurance bar that makes them safe, and the audiences we have to bring with us.</div>
+</div>
+
+<div class="map">
+
+  <!-- TIME HEADER -->
+  <div class="time-header">
+    <div class="lane-label-h"></div>
+    <div class="fy-cell"><div class="fy">FY 27/28</div><div class="when">Apr 27 – Mar 28</div></div>
+    <div class="fy-cell"><div class="fy">FY 28/29</div><div class="when">Apr 28 – Mar 29</div></div>
+    <div class="fy-cell"><div class="fy">FY 29/30</div><div class="when">Apr 29 – Mar 30</div></div>
+    <div class="fy-cell"><div class="fy">FY 30/31</div><div class="when">Apr 30 – Mar 31</div></div>
+    <div class="fy-cell beyond"><div class="fy">Beyond</div><div class="when">2031+</div></div>
+  </div>
+
+  <!-- DECISIONS RAIL -->
+  <div class="lane decisions">
+    <div class="lane-label">Decisions<div class="lane-sub">SLT gates that have to land for the next stage to start</div></div>
+    <div class="lane-cell">
+      <div class="gate"><span class="gate-mark">1</span>Procurement vehicle confirmed (PSR matchmaker, no central levy)</div>
+    </div>
+    <div class="lane-cell">
+      <div class="gate"><span class="gate-mark">2</span>Best-practice tariff at pathway level agreed</div>
+    </div>
+    <div class="lane-cell">
+      <div class="gate major"><span class="gate-mark">3</span>Framework Decision Gate (PA23 or stay simpler?)</div>
+    </div>
+    <div class="lane-cell">
+      <div class="gate"><span class="gate-mark">4</span>Framework revenue model switches on</div>
+    </div>
+    <div class="lane-cell beyond">
+      <div class="gate"><span class="gate-mark">5</span>Full commercial model in steady state</div>
+    </div>
+  </div>
+
+  <!-- SCALE LANE -->
+  <div class="lane scale">
+    <div class="lane-label">Scale<div class="lane-sub">Tests landing, ramping to 20% utilisation. HIV running already. PSA UC2 mandate is now.</div></div>
+    <div class="lane-cell">
+      <div class="test-chip"><span class="chip-id">T01 · Wave 1</span><span class="chip-name">TPSA — Prostate Cancer Active Surveillance</span><span class="chip-vol">300k addressable · £30/test</span></div>
+      <div class="test-chip"><span class="chip-id">T04 · Wave 1</span><span class="chip-name">MRSA — Hip &amp; Knee surgery</span><span class="chip-vol">252k addressable · £20/test</span></div>
+      <div class="wave-total">Wave 1 · 552k addressable</div>
+    </div>
+    <div class="lane-cell">
+      <div class="test-chip"><span class="chip-id">T05 · Wave 2</span><span class="chip-name">TPSA — Raised PSA pathway</span><span class="chip-vol">208k · £30/test</span></div>
+      <div class="test-chip"><span class="chip-id">T06 · Wave 2</span><span class="chip-name">MRSA — ACL reconstruction</span><span class="chip-vol">30k · £20/test</span></div>
+      <div class="test-chip"><span class="chip-id">T07 · Wave 2</span><span class="chip-name">FCP — Inflammatory Bowel Disease</span><span class="chip-vol">500k · £35/test</span></div>
+      <div class="wave-total">Wave 2 · 738k addressable</div>
+    </div>
+    <div class="lane-cell">
+      <div class="test-chip"><span class="chip-id">T08 · Wave 3</span><span class="chip-name">Iron-deficiency anaemia panel</span><span class="chip-vol">720k · £45/test</span></div>
+      <div class="test-chip"><span class="chip-id">T09 · Wave 3</span><span class="chip-name">Male LUTS — urine ± PSA</span><span class="chip-vol">325k · £25/test</span></div>
+      <div class="test-chip"><span class="chip-id">T10 · Wave 3</span><span class="chip-name">Female LUTS — urine dip</span><span class="chip-vol">425k · £25/test</span></div>
+      <div class="test-chip"><span class="chip-id">T11 · Wave 3</span><span class="chip-name">MRSA — Shoulder arthroscopy</span><span class="chip-vol">30k · £20/test</span></div>
+      <div class="test-chip"><span class="chip-id">T12 · Wave 3</span><span class="chip-name">FSH — Early menopause / POI</span><span class="chip-vol">400k · £30/test</span></div>
+      <div class="wave-total">Wave 3 · 1.9m addressable</div>
+    </div>
+    <div class="lane-cell">
+      <div class="test-chip" style="border-left-color:#5C6B82;"><span class="chip-id">Consolidate</span><span class="chip-name">All 10 tests ramping toward 20% utilisation</span><span class="chip-vol">c.£20m steady-state gross cost</span></div>
+      <div class="wave-total" style="background:#5C6B82;">4-year ramp · c.£24m gross</div>
+    </div>
+    <div class="lane-cell beyond">
+      <div class="test-chip" style="background:#F2F4F8;border-left-color:#9CAAB8;color:#5C6B82;"><span class="chip-id" style="color:#5C6B82;">Wave 4+</span><span class="chip-name">Next 12+ tests, HealthStore &amp; HealthSync at portfolio scale</span></div>
+    </div>
+  </div>
+
+  <!-- VEHICLE LANE -->
+  <div class="lane vehicle">
+    <div class="lane-label">Vehicle<div class="lane-sub">Commercial mechanism. Light now, heavier later. Earn the framework.</div></div>
+    <div class="lane-cell" style="grid-column: span 2; padding: 0;">
+      <div class="vehicle-block psr">
+        <div class="v-title">PSR matchmaker</div>
+        <div class="v-body">Approved list. Standard contract online. Suppliers and commissioners transact directly. <strong>No central revenue cut.</strong> Minimum viable. Built to absorb PSA UC2 scaling pressure inside months, not years.</div>
+      </div>
+    </div>
+    <div class="lane-cell" style="grid-column: span 2; padding: 0;">
+      <div class="vehicle-block pa23">
+        <div class="v-title">PA23 framework</div>
+        <div class="v-body">Stood up only if PSR has proved the case. Assurance bar formalised. Commercial layer activates here. Levy or revenue model switches on at the back end, not the front. Decision gate at start of 29/30.</div>
+      </div>
+    </div>
+    <div class="lane-cell beyond" style="padding: 0;">
+      <div class="vehicle-block beyond">
+        <div class="v-title">Mature commercial</div>
+        <div class="v-body">Framework + levy in steady state. Scale revenue funding the platform.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ASSURANCE LANE -->
+  <div class="lane assurance">
+    <div class="lane-label">Assurance<div class="lane-sub">The work that earns NHSE its place. Always ahead of commercial.</div></div>
+    <div class="lane-cell">
+      <div class="milestone"><span class="dot"></span><span class="m-body"><span class="m-title">Independent Assurance stood up</span><br>Post created. EScAL integrated into onboarding. DTAC, DCB0129/0160 split clean.</span></div>
+    </div>
+    <div class="lane-cell">
+      <div class="milestone"><span class="dot"></span><span class="m-body"><span class="m-title">NICE EVA evidence accruing</span><br>Real-world data from Wave 1 feeding the evidence pipeline. Conditional admissions converting.</span></div>
+    </div>
+    <div class="lane-cell">
+      <div class="milestone"><span class="dot"></span><span class="m-body"><span class="m-title">Assurance portability formalised</span><br>One assurance package reused across ICBs. Suppliers stop reassuring per deployment. Innovator Passport route bedded in.</span></div>
+    </div>
+    <div class="lane-cell">
+      <div class="milestone"><span class="dot"></span><span class="m-body"><span class="m-title">Mature assurance machinery</span><br>Feeding into the framework. Best-practice tariff evidence pipeline live. Post-market surveillance routine.</span></div>
+    </div>
+    <div class="lane-cell beyond">
+      <div class="milestone"><span class="dot" style="background:#5C6B82;"></span><span class="m-body" style="color:#5C6B82;">Cross-portfolio assurance discipline carrying HealthStore and HealthSync at scale.</span></div>
+    </div>
+  </div>
+
+  <!-- HEARTS AND MINDS LANE -->
+  <div class="lane hearts">
+    <div class="lane-label">Hearts &amp; Minds<div class="lane-sub">Audiences earned, in order. 95% of the work. Characters appear where their conversion matters.</div></div>
+    <div class="lane-cell">
+      <div class="audience"><span class="a-marker">✓</span><span class="a-body"><span class="a-name">Salford</span> · HIV beta funded beyond expectations. First proof point.</span></div>
+      <div class="audience"><span class="a-marker">○</span><span class="a-body"><span class="a-name">Bradford / Cornwall / Hampshire</span> · MOUs in progress (value-less, to be issued).</span></div>
+      <div class="audience"><span class="a-marker character">M</span><span class="a-body"><span class="a-name">Marcus</span> · first HealthStore supplier confidence land.</span></div>
+    </div>
+    <div class="lane-cell">
+      <div class="audience"><span class="a-marker character">R</span><span class="a-body"><span class="a-name">Ravi</span> · clinician confidence on COPD scaling.</span></div>
+      <div class="audience"><span class="a-marker character">S</span><span class="a-body"><span class="a-name">Sarah</span> · commissioner conversion. Earns the next wave of MOUs.</span></div>
+      <div class="audience"><span class="a-marker character">E</span><span class="a-body"><span class="a-name">Errol</span> · cross-product journey lands. Visible patient story.</span></div>
+    </div>
+    <div class="lane-cell">
+      <div class="audience"><span class="a-marker">○</span><span class="a-body"><span class="a-name">Sceptical ICBs warming</span> · seeing the PSR matchmaker work without central interference.</span></div>
+      <div class="audience"><span class="a-marker">○</span><span class="a-body"><span class="a-name">Cookie-cutter Commercial counterparts</span> · evidence beats process.</span></div>
+    </div>
+    <div class="lane-cell">
+      <div class="audience"><span class="a-marker">○</span><span class="a-body"><span class="a-name">Mainstream NHSE adoption</span> · the framework decision feels obvious because the matchmaker proved the case.</span></div>
+    </div>
+    <div class="lane-cell beyond">
+      <div class="audience"><span class="a-marker" style="background:#5C6B82;">→</span><span class="a-body" style="color:#5C6B82;">Hearts and Minds becomes BAU. The model runs itself.</span></div>
+    </div>
+  </div>
+
+  <!-- LEGEND -->
+  <div class="legend">
+    <div class="legend-item"><span class="legend-swatch" style="background:#003087;"></span>HomeTest (today only HomeTest tests are scoped)</div>
+    <div class="legend-item"><span class="legend-swatch" style="background:#00A9CE;"></span>HealthStore (Wave 4+ scope, off-map for now)</div>
+    <div class="legend-item"><span class="legend-swatch" style="background:#00A499;"></span>HealthSync (Wave 4+ scope, off-map for now)</div>
+    <div class="legend-item"><span class="legend-swatch" style="background:#B8941F;"></span>SLT decision gate</div>
+    <div class="legend-item"><span class="legend-swatch" style="background:#C0392B;"></span>Major decision gate</div>
+    <div class="legend-item"><span class="legend-swatch" style="background:#7C2855;border-radius:50%;"></span>Hearts &amp; Minds character (links to journey)</div>
+  </div>
+
+  <!-- ANNOTATIONS -->
+  <div class="annotations">
+    <h2>Notes for your reaction</h2>
+
+    <p>This is the structure. The visual style will tighten in v1 (NHS spec, proper sticky topnav, character portraits as circle images not letters, hover-tooltips on tests). What I want you to react to first is whether the shape is right.</p>
+
+    <h3>The shape</h3>
+    <p>Time runs left to right. Four FYs plus a faded "beyond" rail. Five lanes stacked: Decisions / Scale / Vehicle / Assurance / Hearts &amp; Minds. The Scale lane is the spine because it forces everything else. The Decisions rail sits on top so the gates are the first thing read. Hearts &amp; Minds sits at the bottom because it threads through everything and your existing character work hangs off it.</p>
+
+    <h3>Judgment calls I'd like you to react to</h3>
+
+    <div class="judgement-call"><strong>Vehicle sequence.</strong> I've drawn PSR matchmaker as Years 1-2 and PA23 framework as Years 3-4 with a hard decision gate at the start of 29/30. If Matt's view is that PSR could run longer than two years, the gate moves right. If SLT pushes back and wants PA23 sooner, the gate moves left. The shape doesn't change; the gate position does.</div>
+
+    <div class="judgement-call"><strong>Character placement on Hearts &amp; Minds.</strong> Marcus in 27/28 (early supplier confidence), Ravi and Sarah in 28/29 (clinician and commissioner conversion when scaling demands it), Errol's cross-product journey lands in 28/29. This is my draft. If you want them earlier or later, say so and I'll move them.</div>
+
+    <div class="judgement-call"><strong>Wave 4+ for HealthStore and HealthSync.</strong> Right now the Scale lane is HomeTest tests only — that's what the spreadsheet covers. HealthStore (Pauline / COPD) and HealthSync (Errol / Mei) are sitting off-map because we don't have wave-level scale data for them. Do we add them in as later waves with TBC volumes, or do we keep the Map HomeTest-tests-focused and treat HealthStore/HealthSync as parallel maps (one per workstream)?</div>
+
+    <div class="judgement-call"><strong>Audience names in the open.</strong> I've named Salford, Bradford, Cornwall, Hampshire on the Hearts &amp; Minds lane. Per your spec we don't name individuals in external artefacts, but ICBs are organisations, not people. Confirm you're comfortable with the geography being on the page, or I generalise to "early adopter ICBs", "next-wave ICBs" etc.</div>
+
+    <div class="judgement-call"><strong>The decisions rail granularity.</strong> Five gates feels like the right tempo — one per year roughly. If SLT decisions are tracked at a different cadence on your side, we adjust.</div>
+
+    <div class="judgement-call"><strong>Map terminology.</strong> I've used "vehicle" rather than "procurement route" because vehicle is the language the OM uses elsewhere and it reads cleaner. "Assurance" is one word for the whole layer (Independent Assurance + NICE EVA + portability + DTAC). Hearts &amp; Minds keeps your existing brand.</div>
+
+    <h3>What this does to the rest of the model</h3>
+    <p>If The Map lands as the front door, the six content edits I proposed yesterday become the substrate. CONTRACT page reframes to make the PSR-now / PA23-later story consistent. Status carries the honest "what is actually committed today" line. Anatomy callout for the fiscal scale. Why keeps its philosophical role but moves to position two. Hearts &amp; Minds character pages stay where they are but each one gets cross-linked from the Map at the right point in time.</p>
+
+    <p>The architecture pages (Anatomy / Lifecycle / Operational / Teamwork / Governance) don't change. The Map is a different cut through the same material, organised around time and sequencing rather than structure and capability.</p>
+
+    <h3>What I'm not yet sure about</h3>
+    <p>Whether the volume column behind each FY should be drawn as a literal bar chart (visual weight), as currently sketched as a numeric total (clean but less impactful), or as both. I lean toward both — total numbers on top, a thin bar chart behind. Easy to add in v1.</p>
+
+    <p>Whether the Hearts &amp; Minds lane should carry the four existing character portraits as actual circular images at the right point, rather than the letter-in-a-circle placeholders here. Real portraits will land in v1. The question is whether they look right at this scale or whether they need a different treatment.</p>
+
+    <p>Whether the Vehicle lane needs a third row of micro-text under PSR and PA23 calling out the £-implication explicitly: "no central revenue" under PSR, "c.£250k/year notional levy at 1%" under PA23. Adds weight; possibly adds clutter.</p>
+
+    <h3>What this is not</h3>
+    <p>This is not a Gantt. It is not a delivery schedule. It is a map of how the commercial argument plays out over time. The dates are real to the spreadsheet; the audience milestones are deliberately fuzzy because earning trust is not a calendarable activity.</p>
+
+    <p>React, push back, redirect. Then I'll build v1.</p>
+  </div>
+
+</div>
+
+</body>
+</html>

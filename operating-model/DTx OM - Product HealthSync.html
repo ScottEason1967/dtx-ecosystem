@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HealthSync: Digital Therapeutics Operating Model</title>
+<style>
+ /* Canonical topnav */
+ .topnav{background:#fff;border-bottom:1px solid #ebeef1;padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:nowrap;min-height:54px;box-sizing:border-box;width:100%;max-width:100%;margin:0;position:sticky;top:0;z-index:200;}
+ .topnav.topnav-secondary{background:#F4F8FC;border-bottom:1px solid #d6e2ef;padding:9px 36px;min-height:42px;}
+ .topnav .nav-back{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-back:hover{color:#005EB8;}
+ .topnav .nav-siblings{display:flex;gap:4px;flex-wrap:nowrap;overflow-x:auto;align-items:center;}
+ .topnav .nav-siblings a{font-size:12px;font-weight:600;color:#4C6272;text-decoration:none;padding:6px 12px;border-radius:6px;letter-spacing:0.2px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-siblings a:hover{background:#f0f4f8;color:#212B32;}
+ .topnav .nav-siblings a.active{background:#003087;color:#fff;}
+ .topnav.topnav-secondary .nav-siblings a{font-size:11.5px;padding:5px 10px;}
+ .topnav.topnav-secondary .nav-siblings a.active{background:#005EB8;color:#fff;}
+ .topnav .nav-secondary-label{font-size:10px;font-weight:800;letter-spacing:1.5px;color:#7E8B97;text-transform:uppercase;flex-shrink:0;}
+
+ :root {
+ --nhs-dark:#003087; --nhs-blue:#005EB8; --nhs-green:#006747; --nhs-pink:#AE2573;
+ --amber:#FFB91D; --amber-deep:#C9A227; --warm-cream:#FFF9EC;
+ --accent:#7E8B97;
+ --text:#212B32; --text-sec:#4C6272; --text-muted:#7E8B97;
+ --border:#d9dee3; --border-lt:#ebeef1;
+ --card:#ffffff; --bg:#f8fafc;
+ }
+ *{box-sizing:border-box;margin:0;padding:0;}
+ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;}
+ 
+ 
+ 
+ 
+ 
+ 
+ .page{max-width:900px;margin:0 auto;padding:50px 40px 80px;}
+ .amber-rule{width:72px;height:4px;background:var(--amber);border-radius:2px;margin-bottom:18px;}
+ .h-eyebrow{display:inline-block;background:var(--accent);color:#fff;font-size:10.5px;font-weight:800;letter-spacing:1.8px;padding:7px 16px;border-radius:4px;text-transform:uppercase;margin-bottom:18px;}
+ .h-title{font-size:64px;font-weight:900;color:var(--nhs-dark);letter-spacing:-2px;line-height:0.95;margin-bottom:14px;}
+ .h-sub{font-size:18px;color:var(--text-sec);line-height:1.65;margin-bottom:32px;}
+ .h-sub strong{color:var(--text);font-weight:700;}
+ .pending-banner{background:#FFF8E1;border:1px solid #F0DCA0;border-radius:12px;padding:24px 28px;margin:24px 0;}
+ .pending-banner-eyebrow{font-size:11px;font-weight:800;letter-spacing:1.6px;color:#8D6E1A;text-transform:uppercase;margin-bottom:10px;}
+ .pending-banner-h{font-size:18px;font-weight:800;color:var(--nhs-dark);margin-bottom:10px;letter-spacing:-0.2px;}
+ .pending-banner-body{font-size:13px;color:var(--text-sec);line-height:1.7;}
+ .pending-banner-body strong{color:var(--text);font-weight:700;}
+ .section-h{font-size:11.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--text-muted);margin:36px 0 14px;}
+ .what-card{background:#fff;border:1px solid var(--border-lt);border-radius:12px;padding:20px 24px;margin-bottom:10px;}
+ .what-card-h{font-size:13px;font-weight:800;color:var(--nhs-dark);margin-bottom:6px;letter-spacing:-0.1px;}
+ .what-card-body{font-size:12.5px;color:var(--text-sec);line-height:1.65;}
+ body{background:linear-gradient(180deg,var(--nhs-blue) 0%,var(--nhs-dark) 100%)!important;background-attachment:fixed!important;}
+ 
+ .page{background:#ffffff;border-radius:18px;box-shadow:0 14px 40px rgba(0,48,135,0.20);margin-top:30px!important;margin-bottom:50px!important;}
+</style>
+<style>
+  .ecosystem-nav {
+    background: #fff;
+    border-bottom: 1px solid #ebeef1;
+    padding: 12px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 48px;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  }
+  .ecosystem-nav a {
+    font-size: 13px; font-weight: 700; color: #003087;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .ecosystem-nav a:hover { color: #005EB8; }
+  .ecosystem-nav .nav-context {
+    font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
+    color: #7E8B97; text-transform: uppercase;
+  }
+  .ecosystem-nav .nav-product {
+    font-size: 10.5px; font-weight: 800; letter-spacing: 0.8px;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 4px; color: #fff;
+  }
+  .ecosystem-nav .nav-product.dtx { background: #003087; }
+  .ecosystem-nav .nav-product.hometest { background: #003087; }
+  .ecosystem-nav .nav-product.healthstore { background: #00A9CE; }
+  .ecosystem-nav .nav-product.healthsync { background: #00A499; }
+</style>
+</head>
+<body>
+<div class="ecosystem-nav">
+  <a href="../index.html">← DTx Ecosystem</a>
+  <span class="nav-context">Product HealthSync</span>
+  <span class="nav-product healthsync">HealthSync</span>
+</div>
+<nav class="topnav">
+<a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+<div class="nav-siblings">
+ <a href="DTx OM - Why.html">Why</a>
+ <a href="DTx OM - What.html" class="active">What</a>
+ <a href="DTx OM - Lifecycle.html">When</a>
+ <a href="DTx OM - HomeTest Operational.html">How</a>
+ <a href="DTx OM - Governance.html">Who</a>
+ <a href="DTx OM - Hearts and Minds.html">Hearts and Minds</a>
+ <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>
+ <a href="DTx OM - Status.html">Status</a>
+</div>
+</nav>
+
+<div class="page">
+
+ <div class="amber-rule"></div>
+ <div class="h-eyebrow">Product overlay &middot; HealthSync</div>
+
+ <h1 class="h-title"><span style="display:inline-block;background:#00A499;color:#fff;padding:6px 22px 10px;border-radius:14px;line-height:1;letter-spacing:-1px;">HealthSync</span>.</h1>
+ <p class="h-sub">Structural placeholder within the Digital Therapeutics portfolio. Programme detail and operational shape are to be grounded from programme detail before content lands.</p>
+
+ <div class="pending-banner">
+ <div class="pending-banner-eyebrow">In design</div>
+ <div class="pending-banner-h">HealthSync content is not populated</div>
+ <div class="pending-banner-body">The Digital Therapeutics Operating Model is structured to accommodate HealthSync from day one. The lifecycle pentagon includes a HealthSync placeholder. The four-level anatomy reserves a HealthSync product column. The Ecosystem hub holds a HealthSync slot. The Status surface will tag HealthSync items as they land. <strong>None of that is filled with substantive HealthSync content yet</strong>, because the working position for HealthSync has not been pulled into a working set inside this project. Stubs and placeholders are honest about that state; inventing content to dress the structure would breach the source discipline that anchors the artefact.</div>
+ </div>
+
+ <div class="section-h">What needs to be in place before HealthSync content can be built</div>
+
+ <div class="what-card">
+ <div class="what-card-h">Primary source mapping</div>
+ <div class="what-card-body">A working set of HealthSync primaries pulled from the SharePoint archive, the NHS Overarching folder and any original HealthSync programme documentation. Briefings, decks, transcripts, or received documents authored by named individuals in their official HealthSync capacity. Knowledge Base references are not source truth; primaries are.</div>
+ </div>
+
+ <div class="what-card">
+ <div class="what-card-h">Named HealthSync-side validator</div>
+ <div class="what-card-body">Whoever in NHSE is closest to HealthSync today. Identified as part of the programme detail. Operational specifics, persona-level granularity and live commercial state need ground-truthing through a named individual rather than synthesis.</div>
+ </div>
+
+ <div class="what-card">
+ <div class="what-card-h">Programme-level facts that anchor the overlay</div>
+ <div class="what-card-body">What HealthSync is in its own words. Funding state. Lead therapeutic area or service. Supplier route. Commercial model. Clinical safety manufacturer or supplier-side arrangements. Lifecycle stage. None of these are known well enough to write into the model today.</div>
+ </div>
+
+ <div class="section-h">What is reserved structurally</div>
+
+ <div class="what-card">
+ <div class="what-card-h">Lifecycle centre &middot; product stable</div>
+ <div class="what-card-body">HealthSync sits in the centre of the pentagon alongside HomeTest and HealthStore. Currently shown at reduced opacity as a placeholder. Activates to full opacity once content lands.</div>
+ </div>
+
+ <div class="what-card">
+ <div class="what-card-h">Anatomy &middot; product column</div>
+ <div class="what-card-body">A HealthSync column slot exists in the catalogue restructure. L2 Overlay row carries a "in design" marker. L4 Configuration row reserved for live deployments when they exist.</div>
+ </div>
+
+ <div class="what-card">
+ <div class="what-card-h">Status &middot; product tag</div>
+ <div class="what-card-body">The Status page tagging is designed to accommodate Product=HealthSync from the day items start appearing. No items today.</div>
+ </div>
+
+ <div class="what-card">
+ <div class="what-card-h">Operational and Teamwork hubs</div>
+ <div class="what-card-body">Both hub pages reserve a HealthSync slot below the cross-product framing. Hooked up to this placeholder page until HealthSync content is built.</div>
+ </div>
+
+</div>
+
+
+<style>
+ .hs-content-section{max-width:1100px;margin:30px auto;padding:0 40px;}
+ .hs-anchor{background:linear-gradient(135deg,#7E8B97,#003087);color:#fff;border-radius:18px;padding:34px 38px;margin:36px 0 12px;box-shadow:0 14px 40px rgba(0,32,64,0.18);}
+ .hs-anchor-eyebrow{font-size:11px;font-weight:800;letter-spacing:2px;color:rgba(255,255,255,0.78);text-transform:uppercase;margin-bottom:10px;}
+ .hs-anchor-title{font-size:28px;font-weight:900;color:#fff;letter-spacing:-0.5px;line-height:1.15;margin-bottom:14px;}
+ .hs-anchor-body{font-size:14.5px;line-height:1.65;color:rgba(255,255,255,0.96);}
+ .hs-anchor-body strong{color:#fff;}
+ .hs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:24px 0;}
+ .hs-card{background:#fff;border:1px solid #ebeef1;border-radius:12px;padding:20px 22px;border-left:4px solid #7E8B97;}
+ .hs-card-eyebrow{font-size:10px;font-weight:800;letter-spacing:1.6px;color:#005EB8;text-transform:uppercase;margin-bottom:6px;}
+ .hs-card-h{font-size:15px;font-weight:800;color:#003087;margin-bottom:8px;letter-spacing:-0.2px;}
+ .hs-card-body{font-size:12.5px;line-height:1.6;color:#4C6272;}
+ .hs-card-body strong{color:#212B32;}
+ .hs-bullets{display:flex;flex-direction:column;gap:10px;margin:14px 0;}
+ .hs-bullet{padding:12px 16px;background:#f4f8fc;border-left:3px solid #003087;border-radius:6px;font-size:13px;line-height:1.6;color:#4C6272;}
+ .hs-bullet strong{color:#003087;font-weight:800;}
+ @media(max-width:820px){.hs-grid{grid-template-columns:1fr;}}
+</style>
+
+<div class="hs-content-section">
+
+ <div class="hs-anchor">
+  <div class="hs-anchor-eyebrow">The anchor for HealthSync</div>
+  <h2 class="hs-anchor-title">PHR-anchored integration of consumer health data into the NHS App.</h2>
+  <div class="hs-anchor-body">The third Digital Therapeutics workstream alongside HomeTest and HealthStore. <strong>HealthSync</strong> integrates data from consumer health platforms (Apple HealthKit on iOS, Google Health Connect on Android) into the NHS App, anchored on the Personal Health Record. The 10-Year Health Plan ambition is for wearables to be standard in preventative, chronic and post-acute NHS treatment by 2035. The exam question the workstream answers is <em>"what is the benefit for me if I share my wearable information with the NHS?"</em></div>
+ </div>
+
+ <h3 style="font-size:20px;font-weight:800;color:#003087;margin:32px 0 14px;letter-spacing:-0.3px;">Strategic position</h3>
+ <div class="hs-bullets">
+  <div class="hs-bullet"><strong>Consumer-platform reach.</strong> Apple HealthKit and Google Health Connect cover an estimated 99% of UK smartphones. Over a third of UK adults own a wearable device; over two-thirds have used a health app.</div>
+  <div class="hs-bullet"><strong>Patient-supplied data, not platform-pushed.</strong> The platform integrates data flowing from the consumer device to the NHS App; the patient controls what is shared and when. NHSE is the custodian, not the originator.</div>
+  <div class="hs-bullet"><strong>Free integration support.</strong> The consumer-platform partners offered dedicated engineering support at no cost to NHSE for integration work in 2025. The timing window is finite.</div>
+  <div class="hs-bullet"><strong>Cross-cutting with HomeTest and HealthStore.</strong> Biosensor and wearable data flows feed into HomeTest cardiovascular-kidney-metabolic (CVKM) pathways (blood pressure, smart ring, continuous glucose) and into HealthStore Year 4 vision (DTx data integrated to record, including wearables).</div>
+  <div class="hs-bullet"><strong>Same operating model, different overlay resolution.</strong> The four-level inheritance (Foundation / Overlay / Pattern / Configuration) holds for HealthSync, but several overlays resolve differently. There is no kit supplier; the supply chain is the consumer-device ecosystem. Initiation is patient-supplied data flow rather than clinical request.</div>
+ </div>
+
+ <h3 style="font-size:20px;font-weight:800;color:#003087;margin:32px 0 14px;letter-spacing:-0.3px;">Lead use cases</h3>
+ <div class="hs-grid">
+
+  <div class="hs-card">
+   <div class="hs-card-eyebrow">Lead use case</div>
+   <div class="hs-card-h">Blood pressure monitoring</div>
+   <div class="hs-card-body">Patient-controlled BP readings (from a Bluetooth BP monitor or the consumer device camera) flow into the NHS App, then into the patient record where care teams can see them between appointments. Lead concrete use case for the HealthSync build.</div>
+  </div>
+
+  <div class="hs-card">
+   <div class="hs-card-eyebrow">Use case</div>
+   <div class="hs-card-h">Remote monitoring</div>
+   <div class="hs-card-body">Patient-supplied data for chronic conditions, post-discharge follow-up, virtual ward extension. The clinician sees enough between appointments to act when needed and to avoid unnecessary visits.</div>
+  </div>
+
+  <div class="hs-card">
+   <div class="hs-card-eyebrow">Use case</div>
+   <div class="hs-card-h">Preventive health</div>
+   <div class="hs-card-body">Activity, sleep, lifestyle and wellness data shared into the NHS App to inform personalised prompts, signposting and AI Coach interactions over the 2030 horizon.</div>
+  </div>
+
+ </div>
+
+ <h3 style="font-size:20px;font-weight:800;color:#003087;margin:32px 0 14px;letter-spacing:-0.3px;">Proof points</h3>
+ <div class="hs-bullets">
+  <div class="hs-bullet"><strong>A real-world proof of concept</strong> demonstrated the data flow from a consumer-device BP cuff through the patient&apos;s phone into NHS systems, providing the empirical anchor for the BP use case design.</div>
+  <div class="hs-bullet"><strong>The strategic frame</strong> for the workstream is patient-led: "what is the benefit for me if I share my wearable information with the NHS?" The architecture decomposes from bio-measurement &rarr; biometric sensor &rarr; connected biometric sensor &rarr; wearable biometric sensor.</div>
+  <div class="hs-bullet"><strong>The case</strong> sets out the case for Apple HealthKit and Google Health Connect integration with the NHS App: longitudinal patient context, clinician visibility between appointments, patient agency in their own data.</div>
+ </div>
+
+ <h3 style="font-size:20px;font-weight:800;color:#003087;margin:32px 0 14px;letter-spacing:-0.3px;">How HealthSync fits in the operating model</h3>
+ <div class="hs-bullets">
+  <div class="hs-bullet"><strong>Foundation level.</strong> Inherits the integration spine, the service wrapper, the IG framework, the assurance gateway. The NHSE-as-custodian principle holds.</div>
+  <div class="hs-bullet"><strong>Overlay level.</strong> Initiation: patient-supplied data flow. Supply chain: consumer device ecosystem. Commercial: no per-transaction supplier fee (consumer device is patient-owned). IG: novel data-controller positions for consumer-platform data flowing into NHS records.</div>
+  <div class="hs-bullet"><strong>Pattern level.</strong> Picks per overlay resolve into the BP monitoring configuration as the lead. Subsequent configurations sit at the same structural shape as further sensor types and use cases come online.</div>
+  <div class="hs-bullet"><strong>Configuration level.</strong> Blood pressure monitoring is the lead configuration in design today. Further configurations (sleep, activity, glucose monitoring etc.) follow.</div>
+ </div>
+
+ <div style="background:#FFF8E6;border:1px solid #F0DCA0;border-left:4px solid #C9A227;border-radius:0 12px 12px 0;padding:18px 22px;margin:24px 0;">
+  <div style="font-size:11px;font-weight:800;letter-spacing:1.6px;color:#9A6700;text-transform:uppercase;margin-bottom:6px;">Open at HealthSync level</div>
+  <div style="font-size:13px;color:#4C6272;line-height:1.65;">The data controllership model for consumer-platform data flowing into NHS records. The boundary between patient-controlled and clinician-actionable data. The integration architecture for write-back from NHS systems to the consumer platform. The commercial position on long-term consumer-platform partnership. The relationship between HealthSync data and HomeTest CVKM / HealthStore care pathways at configuration level.</div>
+ </div>
+
+</div>
+
+</body>
+</html>

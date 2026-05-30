@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HomeTest: Digital Therapeutics Operating Model</title>
+<style>
+ /* Canonical topnav */
+ .topnav{background:#fff;border-bottom:1px solid #ebeef1;padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:nowrap;min-height:54px;box-sizing:border-box;width:100%;max-width:100%;margin:0;position:sticky;top:0;z-index:200;}
+ .topnav.topnav-secondary{background:#F4F8FC;border-bottom:1px solid #d6e2ef;padding:9px 36px;min-height:42px;}
+ .topnav .nav-back{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-back:hover{color:#005EB8;}
+ .topnav .nav-siblings{display:flex;gap:4px;flex-wrap:nowrap;overflow-x:auto;align-items:center;}
+ .topnav .nav-siblings a{font-size:12px;font-weight:600;color:#4C6272;text-decoration:none;padding:6px 12px;border-radius:6px;letter-spacing:0.2px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-siblings a:hover{background:#f0f4f8;color:#212B32;}
+ .topnav .nav-siblings a.active{background:#003087;color:#fff;}
+ .topnav.topnav-secondary .nav-siblings a{font-size:11.5px;padding:5px 10px;}
+ .topnav.topnav-secondary .nav-siblings a.active{background:#005EB8;color:#fff;}
+ .topnav .nav-secondary-label{font-size:10px;font-weight:800;letter-spacing:1.5px;color:#7E8B97;text-transform:uppercase;flex-shrink:0;}
+
+  :root {
+    --nhs-dark:#003087; --nhs-blue:#005EB8; --nhs-green:#006747; --nhs-pink:#AE2573;
+    --amber:#FFB91D; --amber-deep:#C9A227; --warm-cream:#FFF9EC;
+    --accent:var(--nhs-dark);
+    --text:#212B32; --text-sec:#4C6272; --text-muted:#7E8B97;
+    --border:#d9dee3; --border-lt:#ebeef1;
+    --card:#ffffff; --bg:#f8fafc;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;}
+  
+  
+  
+  
+  
+  
+  .page{max-width:1100px;margin:0 auto;padding:50px 40px 80px;}
+  .amber-rule{width:72px;height:4px;background:var(--amber);border-radius:2px;margin-bottom:18px;}
+  .h-eyebrow{display:inline-block;background:var(--accent);color:#fff;font-size:10.5px;font-weight:800;letter-spacing:1.8px;padding:7px 16px;border-radius:4px;text-transform:uppercase;margin-bottom:18px;}
+  .h-flex{display:grid;grid-template-columns:2fr 1fr;gap:48px;align-items:start;margin-bottom:40px;}
+  .h-title{font-size:64px;font-weight:900;color:var(--nhs-dark);letter-spacing:-2px;line-height:0.95;margin-bottom:14px;}
+  .h-sub{font-size:18px;color:var(--text-sec);line-height:1.65;}
+  .h-sub strong{color:var(--text);font-weight:700;}
+  .h-status-card{background:#fff;border:1px solid var(--border-lt);border-radius:12px;padding:22px 24px;box-shadow:0 2px 6px rgba(0,32,64,0.06);}
+  .h-status-card-eyebrow{font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:#006747;text-transform:uppercase;margin-bottom:8px;}
+  .h-status-card-title{font-size:18px;font-weight:800;color:var(--nhs-dark);margin-bottom:12px;letter-spacing:-0.3px;}
+  .h-status-card-row{font-size:12.5px;color:var(--text-sec);line-height:1.5;margin-bottom:8px;}
+  .h-status-card-row strong{color:var(--text);font-weight:700;}
+  .section-h{font-size:11.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--text-muted);margin:48px 0 14px;display:flex;align-items:center;gap:10px;}
+  .section-h .num{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;font-size:12px;font-weight:800;}
+  .what-card{background:linear-gradient(135deg,#fafbfc,#fff);border:1px solid var(--border);border-radius:12px;padding:24px 28px;margin-bottom:14px;}
+  .what-card h3{font-size:17px;font-weight:800;color:var(--nhs-dark);margin-bottom:8px;letter-spacing:-0.2px;}
+  .what-card p{font-size:13px;color:var(--text-sec);line-height:1.7;margin-bottom:10px;}
+  .what-card p:last-child{margin-bottom:0;}
+  .what-card strong{color:var(--text);font-weight:700;}
+  .anat-stack{display:flex;flex-direction:column;gap:8px;margin:14px 0;}
+  .anat-row{border-radius:10px;padding:16px 20px;}
+  .anat-row.l1{background:linear-gradient(135deg,#001F5C,#003087);color:#fff;}
+  .anat-row.l2{background:linear-gradient(135deg,#003F8B,#005EB8);color:#fff;}
+  .anat-row.l3{background:linear-gradient(135deg,#D5E8F0,#E8F1F6);color:var(--text);border:1px solid rgba(0,94,184,0.20);}
+  .anat-row.l4{background:linear-gradient(135deg,#F5F8FC,#FAFBFD);color:var(--text);border:1px solid rgba(0,94,184,0.16);}
+  .anat-label{font-size:10.5px;font-weight:800;letter-spacing:1.6px;opacity:0.78;margin-bottom:4px;}
+  .anat-name{font-size:16px;font-weight:800;margin-bottom:6px;letter-spacing:0.3px;}
+  .anat-body{font-size:12px;line-height:1.65;}
+  .lifecycle-stages{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:14px 0;}
+  .ls-stage{background:#fff;border:1px solid var(--border-lt);border-radius:10px;padding:14px 14px;border-top:4px solid var(--accent);}
+  .ls-stage-name{font-size:11px;font-weight:800;letter-spacing:1.2px;color:var(--nhs-dark);text-transform:uppercase;margin-bottom:6px;}
+  .ls-stage-body{font-size:11px;color:var(--text-sec);line-height:1.55;}
+  .configs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:14px 0;}
+  .config{background:#fff;border:1px solid var(--border-lt);border-radius:12px;padding:18px 20px;border-top:4px solid var(--accent);}
+  .config-name{font-size:14px;font-weight:800;color:var(--nhs-dark);margin-bottom:4px;letter-spacing:-0.2px;}
+  .config-meta{font-size:10.5px;font-weight:700;color:var(--amber-deep);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+  .config-body{font-size:12px;color:var(--text-sec);line-height:1.6;}
+  .quick-links{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0;}
+  .ql{display:block;background:#fff;border:1px solid var(--border-lt);border-radius:10px;padding:14px 16px;text-decoration:none;color:inherit;transition:transform 0.15s, box-shadow 0.18s;}
+  .ql:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,32,64,0.08);}
+  .ql-eyebrow{font-size:9.5px;font-weight:800;letter-spacing:1.2px;color:var(--text-muted);text-transform:uppercase;margin-bottom:6px;}
+  .ql-name{font-size:13px;font-weight:800;color:var(--nhs-dark);margin-bottom:4px;letter-spacing:-0.1px;}
+  .ql-line{font-size:11px;color:var(--text-sec);line-height:1.5;}
+  @media(max-width:820px){.h-flex{grid-template-columns:1fr;}.h-title{font-size:42px;}.quick-links,.configs,.lifecycle-stages{grid-template-columns:1fr 1fr;}}
+  body{background:linear-gradient(180deg,var(--nhs-blue) 0%,var(--nhs-dark) 100%)!important;background-attachment:fixed!important;}
+  
+  .page{background:#ffffff;border-radius:18px;box-shadow:0 14px 40px rgba(0,48,135,0.20);margin-top:30px!important;margin-bottom:50px!important;}
+</style>
+<style>
+  .ecosystem-nav {
+    background: #fff;
+    border-bottom: 1px solid #ebeef1;
+    padding: 12px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 48px;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  }
+  .ecosystem-nav a {
+    font-size: 13px; font-weight: 700; color: #003087;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .ecosystem-nav a:hover { color: #005EB8; }
+  .ecosystem-nav .nav-context {
+    font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
+    color: #7E8B97; text-transform: uppercase;
+  }
+  .ecosystem-nav .nav-product {
+    font-size: 10.5px; font-weight: 800; letter-spacing: 0.8px;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 4px; color: #fff;
+  }
+  .ecosystem-nav .nav-product.dtx { background: #003087; }
+  .ecosystem-nav .nav-product.hometest { background: #003087; }
+  .ecosystem-nav .nav-product.healthstore { background: #00A9CE; }
+  .ecosystem-nav .nav-product.healthsync { background: #00A499; }
+</style>
+</head>
+<body>
+<div class="ecosystem-nav">
+  <a href="../index.html">← DTx Ecosystem</a>
+  <span class="nav-context">Product HomeTest</span>
+  <span class="nav-product hometest">HomeTest</span>
+</div>
+<nav class="topnav">
+<a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+<div class="nav-siblings">
+ <a href="DTx OM - Why.html">Why</a>
+ <a href="DTx OM - What.html" class="active">What</a>
+ <a href="DTx OM - Lifecycle.html">When</a>
+ <a href="DTx OM - HomeTest Operational.html">How</a>
+ <a href="DTx OM - Governance.html">Who</a>
+ <a href="DTx OM - Hearts and Minds.html">Hearts and Minds</a>
+ <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>
+ <a href="DTx OM - Status.html">Status</a>
+</div>
+</nav>
+
+<div class="page">
+
+  <div class="amber-rule"></div>
+  <div class="h-eyebrow">Product &middot; HomeTest</div>
+
+  <div class="h-flex">
+    <div>
+      <h1 class="h-title"><span style="display:inline-block;background:#003087;color:#fff;padding:6px 22px 10px;border-radius:14px;line-height:1;letter-spacing:-1px;">HomeTest</span>.</h1>
+      <p class="h-sub">A home-based diagnostic testing service. A clinical-grade test kit is dispatched to the patient's door, the sample is returned to a lab, and the result lands back in the patient's NHS App and clinical record. Three patient initiation patterns serve different population groups today: <strong>patient-initiated</strong> (NHS App-driven self-screening, Abdul, CVKM), <strong>clinician-initiated</strong> (acute consultant request, Mark, PSA active surveillance) and <strong>GP-initiated</strong> (primary-care arranged monitoring, Layla, HbA1c).</p>
+    </div>
+    <div class="h-status-card">
+      <div class="h-status-card-eyebrow">HomeTest today</div>
+      <div class="h-status-card-title">Live Beta &middot; HIV configuration</div>
+      <div class="h-status-card-row"><strong>HIV:</strong> Live Beta under LA commissioning with two admitted supplier pairings</div>
+      <div class="h-status-card-row"><strong>PSA-AS:</strong> Design firm, deployment prospective</div>
+      <div class="h-status-card-row"><strong>HbA1c:</strong> Design phase, working assumptions for pattern picks</div>
+      <div class="h-status-card-row"><strong>Operational depth:</strong> Seven swimlanes, eleven BAU capabilities</div>
+      <div class="h-status-card-row"><strong>Cast:</strong> Three patient archetypes (Abdul, Mark, Layla), supplier (Joe), five operating roles</div>
+    </div>
+  </div>
+
+  <div class="section-h"><span class="num">1</span>HomeTest in the four-level anatomy</div>
+  <div class="anat-stack">
+    <div class="anat-row l1">
+      <div class="anat-label">Level 1 &middot; Foundation</div>
+      <div class="anat-name">Digital Therapeutics platform layer</div>
+      <div class="anat-body">HomeTest runs on the Digital Therapeutics platform layer: NHS Login for patient identity, NHS Notify for messaging, the NHS App for patient surface, FHIR routing for clinical data, the contracting instrument that admits suppliers to the approved list (interim shape: PSR plus standard NHS call-off plus approved list; PA23 dynamic market the leading candidate if the framework conversation reopens), the IG framework structure, the hazard log structure, the assurance gateway and the SHAPE / ASSURE / CONTRACT / FULFIL / MEASURE capability loop. The platform layer is the same across every Digital Therapeutics product; HomeTest consumes it without owning or building it.</div>
+    </div>
+    <div class="anat-row l2">
+      <div class="anat-label">Level 2 &middot; HomeTest overlay</div>
+      <div class="anat-name">Kit, lab, postal logistics, results back to the patient</div>
+      <div class="anat-body">The HomeTest overlay covers the eight dimensions where this product expresses itself distinctively: three initiation patterns (patient, clinician, GP), commissioning routes split by initiation (LA for HIV, acute trust for PSA-AS, GP for HbA1c), all-inclusive supplier or specialist lab + logistics depending on the configuration, per-completed-test commercial model, free-at-the-point-of-care tariff, UKAS-accredited lab pathway, condition-specific hazard register, NHS Standard Contract under existing framework instruments (SBS Sexual Health Lot 1 for HIV). This is the layer where HomeTest looks and behaves like HomeTest.</div>
+    </div>
+    <div class="anat-row l3">
+      <div class="anat-label">Level 3 &middot; Pattern picks</div>
+      <div class="anat-name">The reusable options HomeTest selects</div>
+      <div class="anat-body">Three initiation patterns from the catalogue (patient-init, clinician-init, GP-init). Two supply-chain patterns (all-inclusive supplier; specialist lab plus logistics). UKAS-accredited lab requirement. Per-completed-test commercial pattern. LA / Acute / GP commissioner patterns. Different patterns combine per configuration; each combination is one configuration.</div>
+    </div>
+    <div class="anat-row l4">
+      <div class="anat-label">Level 4 &middot; Configurations</div>
+      <div class="anat-name">Live and in-design deployments</div>
+      <div class="anat-body"><strong>HIV</strong> live Beta in two LA-supplier pairings under the framework. <strong>PSA-AS</strong> in design (acute trust consultant requesting capillary draw at home, specialist lab pathway, NHS pathology network alternatives being modelled). <strong>HbA1c</strong> in design (GP-arranged routine monitoring, result returns to the GP record). Each configuration sits inside the HomeTest overlay; further configurations come online as therapeutic areas come into scope.</div>
+    </div>
+  </div>
+
+  <div class="section-h"><span class="num">2</span>Live and in-design configurations</div>
+  <div class="configs">
+    <div class="config">
+      <div class="config-name">HIV</div>
+      <div class="config-meta">Live Beta &middot; patient-initiated</div>
+      <div class="config-body">LA-commissioned in two areas. Patient orders via the NHS App. Supplier fulfils end-to-end: kit dispatch, sample analysis, result return to the App. Per-completed-test commercial. NHS Standard Contract via a sexual-health framework call-off. Two live supplier pairings under the framework.</div>
+    </div>
+    <div class="config">
+      <div class="config-name">PSA-AS</div>
+      <div class="config-meta">In design &middot; clinician-initiated</div>
+      <div class="config-body">Consultant requests as part of the active surveillance pathway for low-grade prostate cancer. Capillary draw at home. Specialist lab analyses; logistics split between the kit supplier and the lab. Clinician sees the result first, mediates with the patient. Acute trust governance, activity-based commercial. Not yet deployed.</div>
+    </div>
+    <div class="config">
+      <div class="config-name">HbA1c</div>
+      <div class="config-meta">In design &middot; GP-initiated</div>
+      <div class="config-body">GP arranges the kit as part of diabetes monitoring (Pathway 3). Kit to home. Result lands in the GP record; only contacted if action needed. Focused on relieving GP pressure for routine review. Pattern picks are working assumptions; several entries TBC.</div>
+    </div>
+  </div>
+
+  <div class="section-h"><span class="num">3</span>HomeTest through the lifecycle</div>
+  <div class="lifecycle-stages">
+    <div class="ls-stage">
+      <div class="ls-stage-name">Shape</div>
+      <div class="ls-stage-body">Demand generation. Therapeutic area selection (HIV, PSA, HbA1c). Pathway and equity assessment.</div>
+    </div>
+    <div class="ls-stage">
+      <div class="ls-stage-name">Assure</div>
+      <div class="ls-stage-body">DCB0129 / 0160, UKAS lab accreditation, hazard log, Clinical Safety Case Report. EScAL, DTAC, SLSP, ROPA, DPIA.</div>
+    </div>
+    <div class="ls-stage">
+      <div class="ls-stage-name">Contract</div>
+      <div class="ls-stage-body">NHS Standard Contract through framework call-off (SBS Lot 1 for HIV). Acute trust contracting for PSA-AS. Primary-care commissioning for HbA1c.</div>
+    </div>
+    <div class="ls-stage">
+      <div class="ls-stage-name">Fulfil</div>
+      <div class="ls-stage-body">Patient or clinician orders. Kit dispatched. Sample returned. Lab analyses. Result returned to App or clinical record.</div>
+    </div>
+    <div class="ls-stage">
+      <div class="ls-stage-name">Measure</div>
+      <div class="ls-stage-body">Activity, equity, pathway-level outcome, value comparison against in-clinic testing. Feedback into the next round of shaping.</div>
+    </div>
+  </div>
+
+  <div class="section-h"><span class="num">4</span>The detailed HomeTest content</div>
+  <div class="quick-links">
+    <a class="ql" href="DTx OM - HomeTest Operational.html">
+      <div class="ql-eyebrow">How &middot; HomeTest overlay</div>
+      <div class="ql-name">Operational swimlanes</div>
+      <div class="ql-line">Seven lanes by actor, stage-keyed columns. Foundation vs Overlay colour coded inside each lane.</div>
+    </a>
+    <a class="ql" href="DTx OM - HomeTest Teamwork.html">
+      <div class="ql-eyebrow">Teamwork &middot; HomeTest overlay</div>
+      <div class="ql-name">Eleven HomeTest capabilities</div>
+      <div class="ql-line">BAU operating capabilities at HomeTest scale. Stand-up vs steady-state per capability. 40-90 FTE order of magnitude.</div>
+    </a>
+    <a class="ql" href="DTx OM - Governance.html">
+      <div class="ql-eyebrow">Who</div>
+      <div class="ql-name">Governance</div>
+      <div class="ql-line">Decision rights, RACI tables, escalation routes. Open governance questions tracked on the Status page.</div>
+    </a>
+    <a class="ql" href="DTx OM - Anatomical.html">
+      <div class="ql-eyebrow">What</div>
+      <div class="ql-name">Anatomy</div>
+      <div class="ql-line">Foundation, overlay, pattern, configuration. HomeTest as one product column.</div>
+    </a>
+    <a class="ql" href="DTx OM - Lifecycle.html">
+      <div class="ql-eyebrow">When</div>
+      <div class="ql-name">Lifecycle</div>
+      <div class="ql-line">SHAPE / ASSURE / CONTRACT / FULFIL / MEASURE. Stage hubs link to HomeTest-specific stage detail.</div>
+    </a>
+    <a class="ql" href="DTx OM - Ecosystem.html">
+      <div class="ql-eyebrow">What &middot; outside</div>
+      <div class="ql-name">Ecosystem</div>
+      <div class="ql-line">Built / Consumed / Regulated / Contracted / Served. HomeTest entities populated today across all five.</div>
+    </a>
+  </div>
+
+  <div class="section-h"><span class="num">5</span>The HomeTest cast</div>
+  <div class="quick-links">
+    <a class="ql" href="DTx OM - Persona Abdul.html">
+      <div class="ql-eyebrow">Patient &middot; patient-init</div>
+      <div class="ql-name">Abdul</div>
+      <div class="ql-line">CVKM screening. Self-checks BP via NHS App. The screening story.</div>
+    </a>
+    <a class="ql" href="DTx OM - Persona Mark.html">
+      <div class="ql-eyebrow">Patient &middot; clinician-init</div>
+      <div class="ql-name">Mark</div>
+      <div class="ql-line">PSA-AS for low-grade prostate cancer. Consultant requests, result reviewed before he hears.</div>
+    </a>
+    <a class="ql" href="DTx OM - Persona Layla.html">
+      <div class="ql-eyebrow">Patient &middot; GP-init</div>
+      <div class="ql-name">Layla</div>
+      <div class="ql-line">HbA1c for type 2 diabetes. GP arranges, kit comes home, result lands in the GP record.</div>
+    </a>
+    <a class="ql" href="DTx OM - Persona Joe.html">
+      <div class="ql-eyebrow">Supplier &middot; HomeTest</div>
+      <div class="ql-name">Joe</div>
+      <div class="ql-line">Kit, lab, results pipeline. The HomeTest supplier archetype.</div>
+    </a>
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HealthStore Operational: Digital Therapeutics Operating Model</title>
+<style>
+ /* Canonical topnav */
+ .topnav{background:#fff;border-bottom:1px solid #ebeef1;padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:nowrap;min-height:54px;box-sizing:border-box;width:100%;max-width:100%;margin:0;}
+ .topnav.topnav-secondary{background:#F4F8FC;border-bottom:1px solid #d6e2ef;padding:9px 36px;min-height:42px;}
+ .topnav .nav-back{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-back:hover{color:#005EB8;}
+ .topnav .nav-siblings{display:flex;gap:4px;flex-wrap:nowrap;overflow-x:auto;align-items:center;}
+ .topnav .nav-siblings a{font-size:12px;font-weight:600;color:#4C6272;text-decoration:none;padding:6px 12px;border-radius:6px;letter-spacing:0.2px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-siblings a:hover{background:#f0f4f8;color:#212B32;}
+ .topnav .nav-siblings a.active{background:#003087;color:#fff;}
+ .topnav.topnav-secondary .nav-siblings a{font-size:11.5px;padding:5px 10px;}
+ .topnav.topnav-secondary .nav-siblings a.active{background:#005EB8;color:#fff;}
+ .topnav .nav-secondary-label{font-size:10px;font-weight:800;letter-spacing:1.5px;color:#7E8B97;text-transform:uppercase;flex-shrink:0;}
+
+ :root {
+ --nhs-blue: #005EB8;
+ --nhs-dark: #003087;
+ --green: #007F3B;
+ --green-bg: #e6f4ed;
+ --amber: #9A6700;
+ --amber-bg: #fef6e6;
+ --amber-lt: #fffbf2;
+ --red: #B5121B;
+ --red-bg: #fce8e9;
+ --text: #212B32;
+ --text-sec: #4c6272;
+ --text-muted: #768692;
+ --border: #d8dde0;
+ --border-lt: #e8edee;
+ --bg: #f4f5f7;
+ --card: #ffffff;
+ --warm-amber: #FFB91D; --amber-deep: #C9A227; --warm-cream: #FFF9EC;
+ --platform: #D0E4F8;
+ --platform-dark: #005EB8;
+ --framework: #E0D4F0;
+ --framework-dark: #5B3A8C;
+ --supplier: #F0E8D8;
+ --supplier-dark: #7A5A20;
+ --commissioner: #D8F0D8;
+ --commissioner-dark: #2A6A2A;
+ --clinical: #F8E0E0;
+ --clinical-dark: #8A2020;
+ --patient: #E8E8E8;
+ --patient-dark: #444444;
+ --clinician: #FFE5D0;
+ --clinician-dark: #B5621C;
+ --ig: #E5DCEC;
+ --ig-dark: #5E4080;
+ }
+ * { margin:0; padding:0; box-sizing:border-box; }
+ body { font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; -webkit-font-smoothing:antialiased; }
+ .hdr { background:linear-gradient(135deg,var(--nhs-dark),var(--nhs-blue)); color:#fff; padding:22px 32px; min-height:170px;}
+ .hdr-in { max-width:1260px; margin:0 auto; display:flex; justify-content:space-between; align-items:flex-start; gap:20px; }
+ .hdr h1 { font-size:22px; font-weight:800; letter-spacing:-0.3px; }
+ .hdr .sub { font-size:12.5px; opacity:0.92; margin-top:5px; max-width:680px; line-height:1.55; }
+ .hdr .meta { font-size:10px; opacity:0.45; margin-top:8px; }
+ .hdr .back { color:rgba(255,255,255,0.6); text-decoration:none; font-size:11px; font-weight:500; display:inline-block; margin-top:6px; }
+ .hdr .back:hover { color:#fff; }
+ .product-selector { background:rgba(255,255,255,0.15); padding:8px 14px; display:inline-flex; gap:6px; align-items:center; border-radius:8px; margin-top:10px; }
+ .product-selector-label { font-size:10px; font-weight:800; letter-spacing:1.4px; color:rgba(255,255,255,0.78); text-transform:uppercase; }
+ .product-selector a { font-size:11.5px; font-weight:700; color:rgba(255,255,255,0.85); text-decoration:none; padding:5px 12px; border-radius:6px; }
+ .product-selector a.active { background:#fff; color:var(--nhs-dark); }
+ .product-selector a.healthsync { opacity:0.6; }
+ .product-selector a:hover:not(.active) { background:rgba(255,255,255,0.1); color:#fff; }
+ .main { max-width:1260px; margin:0 auto; padding:20px 24px; }
+ .intent { background:linear-gradient(135deg,#fafbfc,#fff); border:1px solid var(--border); border-radius:10px; padding:18px 22px; margin-bottom:14px; }
+ .intent h2 { font-size:14px; font-weight:800; color:var(--nhs-dark); margin-bottom:6px; letter-spacing:-0.2px; }
+ .intent p { font-size:11.5px; color:var(--text-sec); line-height:1.65; margin-top:8px; }
+ .intent strong { color:var(--text); }
+ .intro { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:18px 22px; margin-bottom:18px; min-height:260px;}
+ .intro h2 { font-size:14px; font-weight:700; color:var(--nhs-dark); margin-bottom:4px; }
+ .intro p { font-size:12px; color:var(--text-sec); line-height:1.65; margin-bottom:6px; }
+ .intro p:last-child { margin-bottom:0; }
+ .intro strong { color:var(--text); }
+ .pending-bar { background:#FFF8E1; border:1px solid #F0DCA0; border-left:4px solid var(--warm-amber); border-radius:0 10px 10px 0; padding:14px 18px; margin-bottom:18px; font-size:12.5px; color:#5A4A1A; line-height:1.6; }
+ .pending-bar strong { color:var(--text); }
+ .sl-card { background:var(--card); border:1px solid var(--border); border-radius:12px; overflow:hidden; margin-bottom:16px; }
+ .sl-head { padding:14px 20px; border-bottom:1px solid var(--border-lt); background:var(--bg); }
+ .sl-head h3 { font-size:15px; font-weight:700; color:var(--nhs-dark); }
+ .sl-head p { font-size:11.5px; color:var(--text-sec); margin-top:2px; line-height:1.5; }
+ .sl-wrap { overflow-x:auto; padding:12px; }
+ .sl-grid { display:grid; min-width:900px; gap:0; }
+ .sl-actor { display:flex !important; flex-direction:column; align-items:center; gap:5px; padding:8px 6px; min-height:78px; justify-content:center; font-size:10.5px; font-weight:700; border-radius:6px 0 0 6px; border-right:3px solid; }
+ .sl-actor .sl-actor-portrait { width:42px; height:42px; border-radius:50%; overflow:hidden; background:rgba(255,255,255,0.6); display:flex; align-items:end; justify-content:center; flex-shrink:0; }
+ .sl-actor .sl-actor-portrait img { width:100%; height:auto; display:block; }
+ .sl-actor .sl-actor-portrait .ph { width:100%; height:100%; background:#e0e5eb; display:flex; align-items:center; justify-content:center; font-size:18px; color:#7E8B97; }
+ .sl-actor .sl-actor-label { font-size:9px; font-weight:600; line-height:1.25; text-align:center; }
+ .sl-actor .sl-actor-name { display:block; font-size:11.5px; font-weight:800; color:var(--nhs-dark); margin-bottom:1px; letter-spacing:-0.1px; }
+ .sl-cell { padding:9px 12px; font-size:11px; color:var(--text-sec); line-height:1.55; border-bottom:1px solid var(--border-lt); min-height:78px; display:flex; align-items:flex-start; flex-direction:column; justify-content:center; }
+ .sl-cell strong { color:var(--text); font-weight:600; font-size:10.5px; display:block; margin-bottom:2px; }
+ .sl-cell em { font-style:normal; color:var(--text-muted); font-size:10px; }
+ .sl-cell .ref { font-size:9px; color:var(--text-muted); margin-top:3px; }
+ .sl-stage { font-size:9px; font-weight:700; letter-spacing:0.8px; text-transform:uppercase; padding:8px 12px; background:var(--bg); color:var(--text-muted); border-bottom:2px solid var(--border); text-align:center; }
+ .sl-empty { background:#fafafa; border-bottom:1px solid var(--border-lt); min-height:78px; }
+ .so-tag { display:inline-block; font-size:8.5px; font-weight:800; letter-spacing:0.6px; padding:2px 6px; border-radius:3px; text-transform:uppercase; margin-bottom:3px; }
+ .foundation-tag { background:#e0eaff; color:#003087; }
+ .overlay-tag { background:#fff0d6; color:#7A5A20; }
+ .sl-cell.foundation { background:#fafdff; }
+ .sl-cell.overlay { background:var(--amber-lt); }
+ .gap-flag { background:var(--red-bg); border:1px solid #f0b3b5; border-radius:6px; padding:3px 8px; font-size:9px; font-weight:700; color:var(--red); display:inline-block; margin-top:4px; }
+ .new-flag { background:#fef3c7; border:1px solid #f5d787; border-radius:6px; padding:3px 8px; font-size:9px; font-weight:700; color:#92580a; display:inline-block; margin-top:4px; }
+ .pending-flag { background:#E0E5EB; border:1px solid #b8c1cc; border-radius:6px; padding:3px 8px; font-size:9px; font-weight:700; color:#4C6272; display:inline-block; margin-top:4px; }
+ .decision-box { background:#f0f0ff; border:1px solid #d0d0e8; border-left:3px solid var(--framework-dark); border-radius:0 8px 8px 0; padding:12px 16px; margin-top:10px; }
+ .decision-box h4 { font-size:11px; font-weight:700; color:var(--framework-dark); margin-bottom:4px; }
+ .decision-box p { font-size:11px; color:var(--text-sec); line-height:1.55; margin-bottom:3px; }
+ .decision-box p:last-child { margin-bottom:0; }
+
+  
+ 
+ 
+ 
+ 
+ 
+ 
+
+  /* NHS-blue rebrand body background — matches HomeTest Op */
+  :root { --nhs-blue-deep:#003087; }
+  body { background: linear-gradient(180deg, var(--nhs-blue) 0%, var(--nhs-blue-deep) 100%) !important; background-attachment: fixed !important; }
+</style>
+<style>
+  .ecosystem-nav {
+    background: #fff;
+    border-bottom: 1px solid #ebeef1;
+    padding: 12px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 48px;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  }
+  .ecosystem-nav a {
+    font-size: 13px; font-weight: 700; color: #003087;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .ecosystem-nav a:hover { color: #005EB8; }
+  .ecosystem-nav .nav-context {
+    font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
+    color: #7E8B97; text-transform: uppercase;
+  }
+  .ecosystem-nav .nav-product {
+    font-size: 10.5px; font-weight: 800; letter-spacing: 0.8px;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 4px; color: #fff;
+  }
+  .ecosystem-nav .nav-product.dtx { background: #003087; }
+  .ecosystem-nav .nav-product.hometest { background: #003087; }
+  .ecosystem-nav .nav-product.healthstore { background: #00A9CE; }
+  .ecosystem-nav .nav-product.healthsync { background: #00A499; }
+</style>
+</head>
+<body>
+<div class="ecosystem-nav">
+  <a href="../index.html">← DTx Ecosystem</a>
+  <span class="nav-context">HealthStore Operational</span>
+  <span class="nav-product healthstore">HealthStore</span>
+</div>
+
+<nav class="topnav">
+<a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+<div class="nav-siblings">
+ <a href="DTx OM - Why.html">Why</a>
+ <a href="DTx OM - What.html">What</a>
+ <a href="DTx OM - Lifecycle.html">When</a>
+ <a href="DTx OM - HomeTest Operational.html" class="active">How</a>
+ <a href="DTx OM - Governance.html">Who</a>
+ <a href="DTx OM - Hearts and Minds.html">Hearts and Minds</a>
+ <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>
+ <a href="DTx OM - Status.html">Status</a>
+</div>
+</nav>
+
+
+
+<div class="hdr">
+ <div class="hdr-in">
+ <div>
+ <div style="width:72px;height:4px;background:var(--warm-amber);border-radius:2px;margin-bottom:14px;"></div>
+ <h1><span style="display:inline-block;background:#00A9CE;color:#fff;padding:4px 14px 6px;border-radius:10px;line-height:1;letter-spacing:-0.4px;">HealthStore</span> Operational Swimlanes <span style="font-size:13px; font-weight:400; opacity:0.65; letter-spacing:0; text-transform:none;">(HealthStore overlay)</span></h1>
+ <div class="sub">How HealthStore runs at steady state. This page is the <strong>HealthStore operational overlay</strong> within the Digital Therapeutics Operating Model. A portfolio Operational hub page (with HomeTest and HealthSync overlays alongside) will sit above this. Seven operational processes, seven actors. The patient is one of them: Pauline as the lead patient archetype, with further therapeutic areas adding their own patient archetypes as services come on. The other six are the people who prescribe, supply, govern and operate the service around the patient.</div>
+</div>
+ </div>
+</div>
+
+<div class="main">
+
+ <div class="intro">
+ <h2>How to read this</h2>
+ <p>Eight operational lanes, each describing a distinct process at steady state. <strong>Foundation</strong>-marked cells carry across all Digital Therapeutics products; <strong>Overlay</strong>-marked cells are HealthStore-specific. Where a cell is empty, that actor has no role at that stage. <strong>How to read each lane:</strong> columns flow left to right in time (Find &rarr; Decide &rarr; Onboard &rarr; Go live &rarr; Operate); cells stacked within a single column are concurrent &mdash; each actor doing their part at that stage, not happening in sequence.</p>
+ <p>This is the <strong>steady-state operating shape</strong>, not the route to get there. Today HealthStore is in design with the lead configuration progressing through the conditional NICE EVA route and a pipeline of admitted suppliers behind it. Discovery work and supplier admission cycles sit outside scope. Day-1 launch mechanics will be interim, with this page describing the steady state once a service reaches Commissioner Store v1.</p>
+ <p>Cells flagged <span class="gap-flag" style="margin-top:0;">like this</span> need a decision or evidence before they can be confirmed. Cells flagged <span class="pending-flag" style="margin-top:0;">like this</span> are pending programme detail. Cells flagged <span class="new-flag" style="margin-top:0;">like this</span> reflect recent content updates.</p>
+ <div style="margin-top:14px;padding-top:12px;border-top:1px solid rgba(0,0,0,0.08);font-size:12px;padding-top:14px;"><a href="DTx OM - Status.html" style="color:#005EB8;font-weight:700;text-decoration:none;letter-spacing:0.3px;">See all open items across the model &rarr;</a></div>
+ </div>
+
+ <div style="background:#f4f8fc;border:1px solid #c4d3e6;border-radius:10px;padding:10px 16px;margin-bottom:14px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:center;" class="product-selector">
+  <span style="font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:#003087;text-transform:uppercase;margin-right:6px;">Product overlay:</span>
+  <a href="DTx OM - HomeTest Operational.html" style="font-size:12.5px;font-weight:700;color:#003087;text-decoration:none;padding:7px 16px;border-radius:6px;border:1px solid #c4d3e6;background:#fff;">HomeTest</a>
+  <a href="DTx OM - HealthStore Operational.html" style="font-size:12.5px;font-weight:700;color:#fff;background:#00A9CE;text-decoration:none;padding:7px 16px;border-radius:6px;">HealthStore</a>
+  <a href="DTx OM - HealthSync Operational.html" style="font-size:12.5px;font-weight:700;color:#00A499;text-decoration:none;padding:7px 16px;border-radius:6px;border:1px solid #b8e0d8;background:#fff;opacity:0.9;">HealthSync</a>
+</div>
+
+<div style="background:#FFF8E6;border:1px solid #F0DCA0;border-radius:8px;padding:11px 16px;margin:0 0 18px;font-size:11.5px;color:#4C6272;line-height:1.55;">
+ <strong style="color:#9A6700;">Six foundation-level capabilities sit alongside these lanes:</strong> Post-market surveillance (regulatory: MHRA, adverse events, periodic safety updates), Pathway integration (alignment with national transformation programmes per therapeutic area), Independent assurance (third-party assurance distinct from internal Clinical Safety), Contract Management (post-execution lifecycle for each call-off), Ongoing Evidence Generation (continuous evidence accrual into the Assurance Model), and the Service Wrapper anatomy (six-touchpoint patient chain plus four local-pathway items). All cross-product capabilities, surfaced in the <a href="DTx OM - HealthStore Teamwork.html#cap-12" style="color:#9A6700;font-weight:700;text-decoration:none;">Teamwork view (Cap-12 to Cap-16)</a>, the <a href="DTx OM - Anatomical.html" style="color:#9A6700;font-weight:700;text-decoration:none;">Anatomy Built foundation</a> and the <a href="DTx OM - Governance.html#raci-foundation" style="color:#9A6700;font-weight:700;text-decoration:none;">Foundation RACI</a>.
+</div>
+
+<div class="actor-key" style="display:grid;grid-template-columns:repeat(8,1fr);gap:8px;margin-bottom:24px;padding:14px;background:#FFF9EC;border:1px solid #F0DCA0;border-radius:12px;">
+  <button class="ak active" data-lane="lane-0" onclick="showLane('lane-0')" style="display:flex;flex-direction:column;align-items:center;text-align:center;background:#FFF6D9;border:2px solid #FFB91D;border-radius:10px;padding:10px 6px 8px;cursor:pointer;transition:all 0.16s ease;font-family:inherit;color:#212B32;width:100%;box-shadow:0 4px 14px rgba(201,162,39,0.18);">
+    <div class="ak-portrait" style="height:60px;width:auto;display:flex;align-items:end;justify-content:center;margin-bottom:5px;"><a href="DTx OM - Persona Sarah.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/sarah.png" alt="Sarah" style="max-height:60px;max-width:100%;"></a></div>
+    <div class="ak-name" style="font-size:12px;font-weight:800;color:#003087;">Sarah</div>
+    <div class="ak-role" style="font-size:9px;color:#7E8B97;text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-top:2px;">1. Commissioner buying</div>
+  </button>
+  <button class="ak" data-lane="lane-1" onclick="showLane('lane-1')" style="display:flex;flex-direction:column;align-items:center;text-align:center;background:#fff;border:2px solid #ebeef1;border-radius:10px;padding:10px 6px 8px;cursor:pointer;transition:all 0.16s ease;font-family:inherit;color:#212B32;width:100%;">
+    <div class="ak-portrait" style="height:60px;width:auto;display:flex;align-items:end;justify-content:center;margin-bottom:5px;"><a href="DTx OM - Persona HealthStore supplier.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="img/marcus-final.png" alt="Marcus" style="max-height:60px;max-width:100%;border-radius:8px;"></a></div>
+    <div class="ak-name" style="font-size:12px;font-weight:800;color:#003087;">Marcus</div>
+    <div class="ak-role" style="font-size:9px;color:#7E8B97;text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-top:2px;">2. Supplier onboarding</div>
+  </button>
+  <button class="ak" data-lane="lane-2" onclick="showLane('lane-2')" style="display:flex;flex-direction:column;align-items:center;text-align:center;background:#fff;border:2px solid #ebeef1;border-radius:10px;padding:10px 6px 8px;cursor:pointer;transition:all 0.16s ease;font-family:inherit;color:#212B32;width:100%;">
+    <div class="ak-portrait" style="height:60px;width:auto;display:flex;align-items:end;justify-content:center;margin-bottom:5px;"><a href="DTx OM - Persona HealthStore prescribing clinician.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="img/ravi.png" alt="Ravi" style="max-height:60px;max-width:100%;border-radius:8px;"></a></div>
+    <div class="ak-name" style="font-size:12px;font-weight:800;color:#003087;">Ravi</div>
+    <div class="ak-role" style="font-size:9px;color:#7E8B97;text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-top:2px;">3. Prescribing workflow</div>
+  </button>
+  <button class="ak" data-lane="lane-3" onclick="showLane('lane-3')" style="display:flex;flex-direction:column;align-items:center;text-align:center;background:#fff;border:2px solid #ebeef1;border-radius:10px;padding:10px 6px 8px;cursor:pointer;transition:all 0.16s ease;font-family:inherit;color:#212B32;width:100%;">
+    <div class="ak-portrait" style="height:60px;width:auto;display:flex;align-items:end;justify-content:center;margin-bottom:5px;"><a href="DTx OM - Persona HealthStore COPD patient.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="img/pauline-final.png" alt="Pauline" style="max-height:60px;max-width:100%;border-radius:8px;"></a></div>
+    <div class="ak-name" style="font-size:12px;font-weight:800;color:#003087;">Pauline</div>
+    <div class="ak-role" style="font-size:9px;color:#7E8B97;text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-top:2px;">4. Patient &middot; Service delivery</div>
+  </button>
+  <button class="ak" data-lane="lane-4" onclick="showLane('lane-4')" style="display:flex;flex-direction:column;align-items:center;text-align:center;background:#fff;border:2px solid #ebeef1;border-radius:10px;padding:10px 6px 8px;cursor:pointer;transition:all 0.16s ease;font-family:inherit;color:#212B32;width:100%;">
+    <div class="ak-portrait" style="height:60px;width:auto;display:flex;align-items:end;justify-content:center;margin-bottom:5px;"><a href="DTx OM - Persona David.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/david.png" alt="David" style="max-height:60px;max-width:100%;"></a></div>
+    <div class="ak-name" style="font-size:12px;font-weight:800;color:#003087;">David</div>
+    <div class="ak-role" style="font-size:9px;color:#7E8B97;text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-top:2px;">5. Financial settlement</div>
+  </button>
+  <button class="ak" data-lane="lane-5" onclick="showLane('lane-5')" style="display:flex;flex-direction:column;align-items:center;text-align:center;background:#fff;border:2px solid #ebeef1;border-radius:10px;padding:10px 6px 8px;cursor:pointer;transition:all 0.16s ease;font-family:inherit;color:#212B32;width:100%;">
+    <div class="ak-portrait" style="height:60px;width:auto;display:flex;align-items:end;justify-content:center;margin-bottom:5px;"><a href="DTx OM - Persona Aisha.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/aisha.png" alt="Aisha" style="max-height:60px;max-width:100%;"></a></div>
+    <div class="ak-name" style="font-size:12px;font-weight:800;color:#003087;">Aisha</div>
+    <div class="ak-role" style="font-size:9px;color:#7E8B97;text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-top:2px;">6. Performance &amp; assurance</div>
+  </button>
+  <button class="ak" data-lane="lane-6" onclick="showLane('lane-6')" style="display:flex;flex-direction:column;align-items:center;text-align:center;background:#fff;border:2px solid #ebeef1;border-radius:10px;padding:10px 6px 8px;cursor:pointer;transition:all 0.16s ease;font-family:inherit;color:#212B32;width:100%;">
+    <div class="ak-portrait" style="height:60px;width:auto;display:flex;align-items:end;justify-content:center;margin-bottom:5px;"><a href="DTx OM - Persona Ngozi.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/ngozi.png" alt="Ngozi" style="max-height:60px;max-width:100%;"></a></div>
+    <div class="ak-name" style="font-size:12px;font-weight:800;color:#003087;">Ngozi</div>
+    <div class="ak-role" style="font-size:9px;color:#7E8B97;text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-top:2px;">7. Information governance</div>
+  </button>
+  <button class="ak" data-lane="lane-7" onclick="showLane('lane-7')" style="display:flex;flex-direction:column;align-items:center;text-align:center;background:#fff;border:2px solid #ebeef1;border-radius:10px;padding:10px 6px 8px;cursor:pointer;transition:all 0.16s ease;font-family:inherit;color:#212B32;width:100%;">
+    <div class="ak-portrait" style="height:60px;width:auto;display:flex;align-items:end;justify-content:center;margin-bottom:5px;"><a href="DTx OM - Persona Priya.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/priya.png" alt="Priya" style="max-height:60px;max-width:100%;"></a></div>
+    <div class="ak-name" style="font-size:12px;font-weight:800;color:#003087;">Priya</div>
+    <div class="ak-role" style="font-size:9px;color:#7E8B97;text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-top:2px;">8. Market dynamics</div>
+  </button>
+</div>
+
+<!-- ==================== LANE 1: COMMISSIONER BUYING ==================== -->
+ <div class="swimlane-section" id="lane-0" style="">
+  <div class="sl-card">
+ <div class="sl-head">
+ <h3>1. Commissioner buying</h3>
+ <p>How <strong>Sarah (commissioner, ICB primary)</strong> finds HealthStore, decides it's right, onboards, goes live and operates. <strong>Priya (NHSE Platform)</strong> publishes the catalogue. <strong>David (NHS Commercial)</strong> issues the call-off under NHS Standard Contract with SaaS and data schedules. The DTx supplier accepts. The prescribing clinician confirms pathway fit.</p>
+ </div>
+ <div class="sl-wrap">
+ <div class="sl-grid" style="grid-template-columns:120px repeat(5,1fr);">
+ <div class="sl-stage"></div>
+ <div class="sl-stage">Find</div>
+ <div class="sl-stage">Decide</div>
+ <div class="sl-stage">Onboard</div>
+ <div class="sl-stage">Go live</div>
+ <div class="sl-stage">Operate</div>
+<div class="sl-actor" style="background:var(--platform);color:var(--platform-dark);border-color:var(--platform-dark);"><div class="sl-actor-portrait"><a href="DTx OM - Persona Priya.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/priya.png" alt="Priya"></a></div><div class="sl-actor-label"><span class="sl-actor-name">Priya</span>NHSE Platform</div></div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I publish the catalogue.</strong>HealthStore services, conditional NICE EVA suppliers, marketplace payment schedule, milestone evidence requirements, pathway eligibility. Findable through the platform and via partnerships.</div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I provide the decision toolkit.</strong>Self-assessment pack: ICB readiness checklist, IG fit, prescribing pathway alignment, NHS Standard Contract templates with SaaS and data schedules. Sarah can self-assess before engaging.</div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I configure the platform.</strong>Catalogue picks, supplier allocation per ICB, pathway routing, population parameters, episode MI dashboards. Ready-made contract templates available.</div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I bring the ICB live.</strong>Prescribing flow switched on. Episode MI provisioned. Local clinical pathway routing tested before prescribing begins.</div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I monitor activity.</strong>Episode volumes, milestone progression, completion rates, outcome capture rates, supplier SLA. Cross-ICB benchmarking on the same therapeutic area.</div><div class="sl-actor" style="background:var(--framework);color:var(--framework-dark);border-color:var(--framework-dark);"><div class="sl-actor-portrait"><a href="DTx OM - Persona David.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/david.png" alt="David"></a></div><div class="sl-actor-label"><span class="sl-actor-name">David</span>NHS Commercial</div></div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I maintain the framework.</strong>NHS Standard Contract with SaaS schedule and data schedule. Payments mechanism design. NICE EVA conditionally-recommended admission criteria.</div><div class="sl-cell sl-empty"></div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I issue the call-off.</strong>Standard agreement between ICB and DTx supplier under NHS Standard Contract with SaaS and data schedules. Marketplace payment terms. Maximum pricing. Standardised across ICBs.<span class="gap-flag">Final form of the call-off contract instrument to be confirmed in contract architecture work</span></div><div class="sl-cell sl-empty"></div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I manage the agreement.</strong>Variations, pricing reviews, term renewals. Marketplace milestone evidence audit.</div><div class="sl-actor" style="background:var(--supplier);color:var(--supplier-dark);border-color:var(--supplier-dark);"><div class="sl-actor-portrait"><a href="DTx OM - Persona HealthStore supplier.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="img/marcus-final.png" alt="Marcus"></a></div><div class="sl-actor-label"><span class="sl-actor-name">Marcus</span>DTx founder</div></div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I appear in the catalogue.</strong>Listed as a NICE EVA conditionally-recommended admitted vendor for the relevant therapeutic area. ICBs find me through the platform catalogue. Multiple suppliers in this position today for the lead configuration.</div><div class="sl-cell sl-empty"></div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I accept the call-off.</strong>Confirm capacity, SLA, clinical responsibility scope under DCB0129 / DCB0160. Onboard the ICB into operations. Supplier-to-platform data flows operate under the data schedule.</div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I am ready.</strong>App provisioning chain activated for the ICB population. Episode tracking configured. DCB0129 manufacturer evidence in force; DCB0160 deployer responsibility activated for the live ICB.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I deliver.</strong>Service per call-off terms. I report marketplace milestones to Priya (NHSE Platform). I maintain the clinical safety case.</div><div class="sl-actor" style="background:var(--commissioner);color:var(--commissioner-dark);border-color:var(--commissioner-dark);"><div class="sl-actor-portrait"><a href="DTx OM - Persona Sarah.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/sarah.png" alt="Sarah"></a></div><div class="sl-actor-label"><span class="sl-actor-name">Sarah</span>Commissioner</div></div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I find the service.</strong>I become aware through NHS comms, peer reference or the platform. I review the HealthStore catalogue, supplier options, pricing tiers, marketplace payments schedule, evidence requirements.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I decide it is right.</strong>I self-assess against published eligibility. I confirm IG fit, prescribing pathway alignment, budget and ICB readiness. <span class="new-flag">DCB0160 deployment considerations</span> reviewed for the local CSO.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I onboard.</strong>I sign the call-off under NHS Standard Contract terms. I select the supplier(s). I agree volumes, pricing tier, milestone evidence approach. I complete IG. Budget allocated.</div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I go live.</strong>Local prescribing pathway activated. Prescribers briefed. Patient population identified. Episode tracking starts.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I operate.</strong>I hold clinical governance of prescribing decisions. I manage budget per episode. I track local outcome data. I report to the ICB board.</div><div class="sl-actor" style="background:var(--clinical);color:var(--clinical-dark);border-color:var(--clinical-dark);"><div class="sl-actor-portrait"><a href="DTx OM - Persona Aisha.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/aisha.png" alt="Aisha"></a></div><div class="sl-actor-label"><span class="sl-actor-name">Aisha</span>Clinical / CSG</div></div><div class="sl-cell sl-empty"></div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I confirm safety.</strong>Local clinical safety baseline. DCB0160 sign-off route via the local CSO.</div><div class="sl-cell sl-empty"></div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I do CATR.</strong>Clinical Assurance to Release sign-off before any prescribing using live patient data. <span class="gap-flag">CATR operational mechanics for digital therapeutics still to be defined</span></div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I oversee.</strong>Hazard log live (split between manufacturer side with the admitted supplier under DCB0129 and deployer side with NHSE under DCB0160). Clinical safety case reviewed and maintained. CAG monitoring.</div><div class="sl-actor" style="background:var(--clinician);color:var(--clinician-dark);border-color:var(--clinician-dark);"><div class="sl-actor-portrait"><a href="DTx OM - Persona HealthStore prescribing clinician.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="img/ravi.png" alt="Ravi"></a></div><div class="sl-actor-label"><span class="sl-actor-name">Ravi</span>Prescriber</div></div><div class="sl-cell sl-empty"></div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I confirm pathway fit.</strong>I confirm the digital therapeutic fits the clinical pathway for my patient population. Evidence base under NICE EVA conditionally-recommended is sufficient for me to prescribe with confidence. <span class="pending-flag">Workflow fit and evidence threshold to be confirmed with prescribing clinician validator</span></div><div class="sl-cell sl-empty"></div><div class="sl-cell sl-empty"></div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I prescribe.</strong>I identify patients who fit. I prescribe the digital therapeutic. I review engagement and outcome at follow-up. I escalate where engagement is poor or outcome is unfavourable.</div><div class="sl-actor" style="background:var(--patient);color:var(--patient-dark);border-color:var(--patient-dark);"><div class="sl-actor-portrait"><a href="DTx OM - Persona HealthStore COPD patient.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="img/pauline-final.png" alt="Pauline"></a></div><div class="sl-actor-label"><span class="sl-actor-name">Pauline</span>Patient</div></div><div class="sl-cell sl-empty"></div><div class="sl-cell sl-empty"></div><div class="sl-cell sl-empty"></div><div class="sl-cell sl-empty"></div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I receive the prescription.</strong>I see my clinician in a routine consultation. I don&apos;t see the catalogue, the call-off contract or the NICE EVA route. The digital therapeutic is the thing I&apos;m prescribed.</div><div class="sl-actor" style="background:var(--ig);color:var(--ig-dark);border-color:var(--ig-dark);"><div class="sl-actor-portrait"><a href="DTx OM - Persona Ngozi.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/ngozi.png" alt="Ngozi"></a></div><div class="sl-actor-label"><span class="sl-actor-name">Ngozi</span>IG / DPO</div></div><div class="sl-cell sl-empty"></div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I publish IG criteria.</strong>ICB self-assess pack: required DSA scope, DPIA template, lawful basis for prescribing flow, controller designation for SaaS data schedules. The ICB can self-assess IG fit before engaging me.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I approve the data flow.</strong>DPIA reviewed for the ICB configuration. DSA executed between NHSE, ICB and supplier. Controller designation confirmed for episode data. <span class="gap-flag">Controller positions for SaaS data flows still TBC</span></div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I sign off go-live.</strong>Data flows approved end-to-end. Episode data routing confirmed. IAO confirmed. Breach handling routes in place.</div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I monitor data flows.</strong>Subject access requests routed. Breach notification within statutory timescales. Annual DPIA review. Supplier data responsibilities tracked.</div>
+ </div>
+ </div>
+ <div style="padding:0 16px 16px;">
+ <div class="decision-box">
+ <h4>Open decisions</h4>
+ <p><strong>Procurement vehicle final form.</strong> The call-off contract instrument under NHS Standard Contract with SaaS and data schedules is moving forward; final form and milestone evidence requirements to be confirmed.</p>
+ <p><strong>Prescribing workflow fit.</strong> Workflow integration into routine ICB prescribing systems (EHR, prescribing tooling) needs validation with a prescribing clinician archetype.</p>
+ </div>
+ </div>
+ </div>
+</div>
+
+<!-- ==================== LANE 2: SUPPLIER ONBOARDING ==================== -->
+ <div class="swimlane-section" id="lane-1" style="display:none;">
+  <div class="sl-card">
+ <div class="sl-head">
+ <h3>2. Supplier onboarding (NICE EVA conditionally-recommended)</h3>
+ <p>How a DTx supplier joins the HealthStore market. Six-stage admission journey through NICE EVA conditionally-recommended, layered with NHS Standard Contract with SaaS and data schedules, supplier relationship for clinical safety. <strong>Priya</strong> publishes the framework. <strong>David</strong> admits the supplier. <strong>Aisha</strong> reviews safety case. <strong>Ngozi</strong> reviews data flows.</p>
+ </div>
+ <div class="sl-wrap">
+ <div class="sl-grid" style="grid-template-columns:120px repeat(6,1fr);">
+ <div class="sl-stage"></div>
+ <div class="sl-stage">Find</div>
+ <div class="sl-stage">Self-assess</div>
+ <div class="sl-stage">EOI</div>
+ <div class="sl-stage">NICE EVA conditionally-recommended</div>
+ <div class="sl-stage">Supplier agreement</div>
+ <div class="sl-stage">Catalogue listing</div>
+<div class="sl-actor" style="background:var(--platform);color:var(--platform-dark);border-color:var(--platform-dark);"><div class="sl-actor-portrait"><a href="DTx OM - Persona Priya.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/priya.png" alt="Priya"></a></div><div class="sl-actor-label"><span class="sl-actor-name">Priya</span>NHSE Platform</div></div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I publish the framework.</strong>Onboarding criteria, NICE EVA conditionally-recommended bar, NHS Standard Contract templates (SaaS schedule, data schedule), marketplace payment evidence requirements, supplier responsibilities.</div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I host the self-assessment tooling.</strong>Eligibility checklist, NICE EVA conditionally-recommended readiness, technical pre-checks (FHIR integration, NHS Login, NHS Notify compatibility, episode tracking endpoints).</div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I receive the EOI.</strong>Supplier expression of interest captured. Routed to David for commercial assessment and Aisha for clinical assessment.</div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I confirm conformance.</strong>Once-and-reuse principle. Combined submission inclusive of NICE EVA conditionally-recommended decision plus EScAL, DTAC, DCB0129/0160, SLSP, ROPA, DPIA, cyber. Conformance certificate valid across configurations.</div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I provision the supplier.</strong>API access. Episode tracking endpoints. NHS Login configuration. Supplier data schedule plumbing.</div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I list the supplier.</strong>Supplier appears in the catalogue under the relevant therapeutic area. ICBs can call them off through the framework.</div><div class="sl-actor" style="background:var(--framework);color:var(--framework-dark);border-color:var(--framework-dark);"><div class="sl-actor-portrait"><a href="DTx OM - Persona David.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/david.png" alt="David"></a></div><div class="sl-actor-label"><span class="sl-actor-name">David</span>NHS Commercial</div></div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I maintain the published terms.</strong>NHS Standard Contract with SaaS schedule and data schedule. Payments mechanism design. Maximum pricing position.</div><div class="sl-cell sl-empty"></div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I assess commercial fit.</strong>Pricing tier, capacity, geographic coverage. Marketplace payment evidence approach. Standard agreement terms.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I admit the supplier.</strong>NICE EVA conditionally-recommended decision recorded. Framework admission letter issued. Supplier enters the standard agreement.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I close the supplier agreement.</strong>Supplier manufacturer responsibilities documented. Liability split agreed. Supplier signed up to the data schedule.<span class="gap-flag">Detailed supplier terms still to be finalised by supplier-side legal</span></div><div class="sl-cell sl-empty"></div><div class="sl-actor" style="background:var(--clinical);color:var(--clinical-dark);border-color:var(--clinical-dark);"><div class="sl-actor-portrait"><a href="DTx OM - Persona Aisha.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/aisha.png" alt="Aisha"></a></div><div class="sl-actor-label"><span class="sl-actor-name">Aisha</span>Clinical / CSG</div></div><div class="sl-cell sl-empty"></div><div class="sl-cell sl-empty"></div><div class="sl-cell sl-empty"></div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I review the clinical safety case.</strong>Clinical Safety Case Report assessed at the agreed cadence at the agreed cadence. DCB0129 manufacturer evidence reviewed.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I maintain the hazard log.</strong>Deployer-side hazard log maintained at CSG cadence under DCB0160. Manufacturer-side hazard log held by the admitted supplier under DCB0129. Active risk register.</div><div class="sl-cell sl-empty"></div><div class="sl-actor" style="background:var(--supplier);color:var(--supplier-dark);border-color:var(--supplier-dark);"><div class="sl-actor-portrait"><a href="DTx OM - Persona HealthStore supplier.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="img/marcus-final.png" alt="Marcus"></a></div><div class="sl-actor-label"><span class="sl-actor-name">Marcus</span>DTx founder</div></div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I find the route in.</strong>I see the HealthStore framework published. NICE EVA conditionally-recommended process is the route. I read the criteria.</div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I self-assess.</strong>I check my product against NICE EVA conditionally-recommended criteria, NHS Standard Contract requirements, data schedule, episode tracking technical needs.</div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I express interest.</strong>I submit the EOI and supporting documentation. I confirm capacity and geographic scope.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I clear NICE EVA conditionally-recommended.</strong>I submit the combined assurance package. I clear DCB0129 as manufacturer. I clear the NICE EVA technical and clinical bars.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I author the safety case.</strong>I author the Clinical Safety Case Report as manufacturer (DCB0129); NHS England assesses and accepts it as deployer (DCB0160). I sign the data schedule.</div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I appear in the catalogue.</strong>My product is listed against the therapeutic area. I am callable by ICBs.</div><div class="sl-actor" style="background:var(--ig);color:var(--ig-dark);border-color:var(--ig-dark);"><div class="sl-actor-portrait"><a href="DTx OM - Persona Ngozi.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/ngozi.png" alt="Ngozi"></a></div><div class="sl-actor-label"><span class="sl-actor-name">Ngozi</span>IG / DPO</div></div><div class="sl-cell sl-empty"></div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I publish data-side criteria.</strong>Data schedule template. Episode data retention policy. Controller designation expectations for supplier-side data.</div><div class="sl-cell sl-empty"></div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I assess the data flow.</strong>I review the supplier DPIA. I confirm lawful basis for episode data processing. I assess SaaS controller positions.</div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I sign off data schedule.</strong>Standing DSA between NHSE, ICB and supplier. Subject access route established. Breach notification chain agreed.</div><div class="sl-cell sl-empty"></div>
+ </div>
+ </div>
+ <div style="padding:0 16px 16px;">
+ <div class="decision-box">
+ <h4>Open decisions</h4>
+ <p><strong>Detailed supplier terms.</strong> Manufacturer-side hazard log sits with the admitted supplier under DCB0129; deployer-side hazard log sits with NHS England under DCB0160; the formal supplier manufacturer responsibility terms (liability split, data responsibility, change control mechanics) are still in negotiation.</p>
+ <p><strong>Light-touch route for established suppliers.</strong> NICE EVA conditionally-recommended is the standard route; whether suppliers already admitted to similar third-party app-listing frameworks get a light-touch fast path is open.</p>
+ </div>
+ </div>
+ </div>
+</div>
+
+<!-- ==================== LANE 3: PRESCRIBING WORKFLOW (RAVI) ==================== -->
+ <div class="swimlane-section" id="lane-2" style="display:none;">
+  <div class="sl-card">
+ <div class="sl-head">
+ <h3>3. Prescribing workflow</h3>
+ <p>How <strong>Ravi (HealthStore prescriber)</strong> identifies, decides on and prescribes a digital therapeutic. Distinct workflow because HealthStore depends on a clinical prescription step that HomeTest does not. Find / Decide / Onboard / Go live / Operate across the prescribing actor and the supporting roles around him.</p>
+ </div>
+ <div class="sl-wrap">
+ <div class="sl-grid" style="grid-template-columns:120px repeat(5,1fr);">
+ <div class="sl-stage"></div>
+ <div class="sl-stage">Find</div>
+ <div class="sl-stage">Decide</div>
+ <div class="sl-stage">Onboard</div>
+ <div class="sl-stage">Go live</div>
+ <div class="sl-stage">Operate</div>
+<div class="sl-actor" style="background:var(--clinician);color:var(--clinician-dark);border-color:var(--clinician-dark);"><div class="sl-actor-portrait"><a href="DTx OM - Persona HealthStore prescribing clinician.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="img/ravi.png" alt="Ravi"></a></div><div class="sl-actor-label"><span class="sl-actor-name">Ravi</span>Prescriber</div></div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I discover the available DTx.</strong>I see the admitted digital therapeutics on the National App Formulary (the NHS catalogue of admitted digital therapeutics, like a drug formulary but for apps) for my therapeutic area. NICE EVA conditionally-recommended evidence visible. I can compare options side by side.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I decide clinical fit.</strong>I assess whether the digital therapeutic fits this patient&apos;s clinical presentation, comorbidities and pathway. I check ICB eligibility filters. <span class="pending-flag">Workflow fit and evidence threshold to be confirmed with prescribing-clinician validator</span></div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I prescribe.</strong>I issue the prescription through my clinical system. I record the rationale in the patient record. The prescription event flows to the supplier. The patient receives activation instructions.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I prescribe in BAU.</strong>I include the digital therapeutic as a standard option in my consultation flow. I discuss it with patients in the same way I discuss any other clinically-appropriate intervention.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I review and adjust.</strong>I see engagement and outcome data at follow-up. I escalate where engagement is poor. I adjust or withdraw the prescription where outcomes are unfavourable. I record clinical outcome at completion.</div><div class="sl-actor" style="background:var(--patient);color:var(--patient-dark);border-color:var(--patient-dark);"><div class="sl-actor-portrait"><a href="DTx OM - Persona HealthStore COPD patient.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="img/pauline-final.png" alt="Pauline"></a></div><div class="sl-actor-label"><span class="sl-actor-name">Pauline</span>Patient</div></div><div class="sl-cell sl-empty"></div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I understand the option.</strong>My clinician explains the digital therapeutic alongside other care options. I have a chance to ask questions and decide together.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I receive the prescription.</strong>I see the prescription in my NHS App. I get clear next steps to activate the digital therapeutic.</div><div class="sl-cell sl-empty"></div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I share progress.</strong>I report symptoms and engagement as the therapeutic asks. I attend follow-up where my clinician reviews progress with me.</div><div class="sl-actor" style="background:var(--supplier);color:var(--supplier-dark);border-color:var(--supplier-dark);"><div class="sl-actor-portrait"><a href="DTx OM - Persona HealthStore supplier.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="img/marcus-final.png" alt="Marcus"></a></div><div class="sl-actor-label"><span class="sl-actor-name">Marcus</span>DTx founder</div></div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I appear in the formulary.</strong>My product is listed against the relevant therapeutic area. Prescribers can find me. Evidence pack available.</div><div class="sl-cell sl-empty"></div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I receive the prescription event.</strong>The prescription flows from clinical system through FHIR routing to my product. I provision the patient.</div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I run the therapeutic.</strong>Patient onboarded. Programme runs. Engagement and outcome data captured per the service definition.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I feed back to the prescriber.</strong>Engagement signals and completion / outcome events flow back through the platform to the prescribing clinician&apos;s system at the agreed cadence.</div><div class="sl-actor" style="background:var(--clinical);color:var(--clinical-dark);border-color:var(--clinical-dark);"><div class="sl-actor-portrait"><a href="DTx OM - Persona Aisha.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/aisha.png" alt="Aisha"></a></div><div class="sl-actor-label"><span class="sl-actor-name">Aisha</span>Clinical / CSG</div></div><div class="sl-cell sl-empty"></div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I provide the prescribing guidance.</strong>Clinical safety bar. Eligibility criteria. Contraindications. Adverse-event reporting routes.</div><div class="sl-cell sl-empty"></div><div class="sl-cell sl-empty"></div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I monitor signal across prescriptions.</strong>I review cohort-level signal: engagement rates, outcome distribution, adverse events. I update the safety case if signal warrants.</div>
+ </div>
+ </div>
+ <div style="padding:0 16px 16px;">
+ <div class="decision-box">
+ <h4>Open decisions</h4>
+ <p><strong>Prescribing-system integration.</strong> Whether the prescription event is captured in the EHR / prescribing tooling Ravi already uses or in a separate digital-therapeutic prescribing interface needs validation with a prescribing-clinician archetype.</p>
+ <p><strong>Patient-prescriber co-decision flow.</strong> The shared-decision model for the consultation needs design.</p>
+ </div>
+ </div>
+ </div>
+</div>
+
+<!-- ==================== LANE 3: SERVICE DELIVERY (EPISODE) ==================== -->
+ <div class="swimlane-section" id="lane-3" style="display:none;">
+  <div class="sl-card">
+ <div class="sl-head">
+ <h3>4. Service delivery (episode)</h3>
+ <p>How a single episode runs. <strong>Ravi</strong> identifies and prescribes. <strong>Pauline</strong> activates and engages. <strong>Marcus</strong> provisions the app and tracks engagement. <strong>Priya</strong> routes the data. <strong>Aisha</strong> monitors clinical signal. Four milestones drive payment: start, meaningful engagement, completion, outcome capture.</p>
+ </div>
+ <div class="sl-wrap">
+ <div class="sl-grid" style="grid-template-columns:120px repeat(5,1fr);">
+ <div class="sl-stage"></div>
+ <div class="sl-stage">Identify &amp; prescribe</div>
+ <div class="sl-stage">Activate</div>
+ <div class="sl-stage">Engage</div>
+ <div class="sl-stage">Complete</div>
+ <div class="sl-stage">Outcome capture</div>
+<div class="sl-actor" style="background:var(--clinician);color:var(--clinician-dark);border-color:var(--clinician-dark);"><div class="sl-actor-portrait"><a href="DTx OM - Persona HealthStore prescribing clinician.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="img/ravi.png" alt="Ravi"></a></div><div class="sl-actor-label"><span class="sl-actor-name">Ravi</span>Prescriber</div></div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I identify and prescribe.</strong>I identify a patient who fits the relevant clinical pathway. I prescribe the digital therapeutic in the consultation. I record the prescription decision in the patient record.</div><div class="sl-cell sl-empty"></div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I review engagement at follow-up.</strong>I see engagement data at the patient&apos;s next routine appointment. I discuss progress with the patient.</div><div class="sl-cell sl-empty"></div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I record the clinical outcome.</strong>I document the outcome at the appropriate review point. I update the patient&apos;s care plan accordingly.</div><div class="sl-actor" style="background:var(--patient);color:var(--patient-dark);border-color:var(--patient-dark);"><div class="sl-actor-portrait"><a href="DTx OM - Persona HealthStore COPD patient.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="img/pauline-final.png" alt="Pauline"></a></div><div class="sl-actor-label"><span class="sl-actor-name">Pauline</span>Patient</div></div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I receive the prescription.</strong>My clinician explains the digital therapeutic during my appointment. I receive instructions to access it through the NHS App or partnered app.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I activate.</strong>I open the app. I authenticate via NHS Login. I confirm my consent.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I engage with the therapeutic.</strong>I follow the programme. I report symptoms as prompted. I complete the digital intervention as designed.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I complete the episode.</strong>I finish the prescribed programme.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I report outcomes.</strong>I complete the outcome-capture step (symptom score, function, quality of life as appropriate).</div><div class="sl-actor" style="background:var(--supplier);color:var(--supplier-dark);border-color:var(--supplier-dark);"><div class="sl-actor-portrait"><a href="DTx OM - Persona HealthStore supplier.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="img/marcus-final.png" alt="Marcus"></a></div><div class="sl-actor-label"><span class="sl-actor-name">Marcus</span>DTx founder</div></div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I provision the prescription.</strong>I receive the prescription event. I make the digital therapeutic available to the patient through the NHS App or partnered app.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I track activation.</strong>I record the patient&apos;s start event. I confirm authentication via NHS Login.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I deliver the therapeutic.</strong>I run the patient&apos;s programme. I capture engagement data per the meaningful engagement definition agreed for the service.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I record completion.</strong>I confirm the patient has reached the completion milestone per the service definition.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I capture outcome.</strong>I record the clinical outcome data as agreed in the service definition. I submit the outcome to NHS data routing.</div><div class="sl-actor" style="background:var(--platform);color:var(--platform-dark);border-color:var(--platform-dark);"><div class="sl-actor-portrait"><a href="DTx OM - Persona Priya.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/priya.png" alt="Priya"></a></div><div class="sl-actor-label"><span class="sl-actor-name">Priya</span>NHSE Platform</div></div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I route the prescription event.</strong>Prescription event flows from clinician system through FHIR to the DTx supplier.</div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I route the start event.</strong>Activation event captured and routed to commissioner MI and into the marketplace payments mechanism.</div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I route engagement signals.</strong>Engagement data flows from supplier to platform MI to ICB dashboards. Aggregated metrics published.</div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I route the completion event.</strong>Completion event captured and routed under the marketplace payments mechanism designed in Alpha.</div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I route the outcome event.</strong>Outcome data flows to the patient record (FHIR), the ICB MI dashboard and the long-term outcomes database under the marketplace payments mechanism designed in Alpha.</div><div class="sl-actor" style="background:var(--clinical);color:var(--clinical-dark);border-color:var(--clinical-dark);"><div class="sl-actor-portrait"><a href="DTx OM - Persona Aisha.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/aisha.png" alt="Aisha"></a></div><div class="sl-actor-label"><span class="sl-actor-name">Aisha</span>Clinical / CSG</div></div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I oversee clinical safety.</strong>Active hazard monitoring. Adverse event reporting routes live.</div><div class="sl-cell sl-empty"></div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I monitor signal.</strong>I monitor the active hazard log against engagement signals. I escalate any safety concerns.</div><div class="sl-cell sl-empty"></div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I review outcome distribution.</strong>I look at clinical outcome distribution across the cohort. I flag any safety signal.</div>
+ </div>
+ </div>
+ <div style="padding:0 16px 16px;">
+ <div class="decision-box">
+ <h4>Open decisions</h4>
+ <p><strong>Meaningful engagement definition per service.</strong> The threshold that constitutes meaningful engagement needs a service-by-service definition agreed with the prescribing clinician archetype and the supplier; it feeds the marketplace payments mechanism.</p>
+ <p><strong>Outcome capture instrument.</strong> Whether the outcome captured is patient-reported, clinician-reported or both per service. PROMs / clinical outcome measures still to be agreed per service.</p>
+ </div>
+ </div>
+ </div>
+</div>
+
+<!-- ==================== LANE 4: FINANCIAL SETTLEMENT ==================== -->
+ <div class="swimlane-section" id="lane-4" style="display:none;">
+  <div class="sl-card">
+ <div class="sl-head">
+ <h3>5. Financial settlement (marketplace payment)</h3>
+ <p>How money flows for HealthStore. Four-milestone marketplace payment model. <strong>David</strong> sets the schedule. <strong>Priya</strong> captures and reports milestone events. <strong>Sarah</strong> (ICB) pays. <strong>Marcus</strong> receives. Cycle aligned with episode delivery, not activations.</p>
+ </div>
+ <div class="sl-wrap">
+ <div class="sl-grid" style="grid-template-columns:120px repeat(5,1fr);">
+ <div class="sl-stage"></div>
+ <div class="sl-stage">Start (M1)</div>
+ <div class="sl-stage">Meaningful engagement (M2)</div>
+ <div class="sl-stage">Completion (M3)</div>
+ <div class="sl-stage">Outcome capture (M4)</div>
+ <div class="sl-stage">Reconciliation</div>
+<div class="sl-actor" style="background:var(--framework);color:var(--framework-dark);border-color:var(--framework-dark);"><div class="sl-actor-portrait"><a href="DTx OM - Persona David.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/david.png" alt="David"></a></div><div class="sl-actor-label"><span class="sl-actor-name">David</span>NHS Commercial</div></div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I set the start tariff.</strong>The proportion of episode value payable on activation. Agreed in the framework. <span class="gap-flag">Exact split across milestones being modelled</span></div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I set the engagement tariff.</strong>The proportion payable when meaningful engagement is reached.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I set the completion tariff.</strong>The proportion payable on completion.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I set the outcome tariff.</strong>The proportion payable on outcome capture (and where applicable, on positive outcome).</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I reconcile.</strong>I confirm milestone payments against evidence. I action any disputes through the standard agreement.</div><div class="sl-actor" style="background:var(--platform);color:var(--platform-dark);border-color:var(--platform-dark);"><div class="sl-actor-portrait"><a href="DTx OM - Persona Priya.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/priya.png" alt="Priya"></a></div><div class="sl-actor-label"><span class="sl-actor-name">Priya</span>NHSE Platform</div></div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I confirm M1.</strong>Start event captured. Confirmation event flows to settlement.</div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I confirm M2.</strong>Meaningful engagement met per the service definition. Confirmation event flows.</div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I confirm M3.</strong>Completion event captured.</div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I confirm M4.</strong>Outcome event captured.</div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I publish settlement MI.</strong>Per-marketplace milestone hits, per-supplier rates, per-ICB volumes.</div><div class="sl-actor" style="background:var(--commissioner);color:var(--commissioner-dark);border-color:var(--commissioner-dark);"><div class="sl-actor-portrait"><a href="DTx OM - Persona Sarah.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/sarah.png" alt="Sarah"></a></div><div class="sl-actor-label"><span class="sl-actor-name">Sarah</span>Commissioner</div></div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I pay M1.</strong>The start portion is paid to the supplier on activation confirmation.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I pay M2.</strong>The engagement portion paid on confirmation.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I pay M3.</strong>The completion portion paid on confirmation.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I pay M4.</strong>The outcome portion paid on confirmation.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I run my budget.</strong>I track committed vs paid against forecast. I report through the ICB finance route.</div><div class="sl-actor" style="background:var(--supplier);color:var(--supplier-dark);border-color:var(--supplier-dark);"><div class="sl-actor-portrait"><a href="DTx OM - Persona HealthStore supplier.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="img/marcus-final.png" alt="Marcus"></a></div><div class="sl-actor-label"><span class="sl-actor-name">Marcus</span>DTx founder</div></div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I receive M1.</strong>The start portion lands per the standard payment cycle.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I receive M2.</strong>The engagement portion lands. I see the revenue tied to clinical use, not activation.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I receive M3.</strong>The completion portion lands.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I receive M4.</strong>The outcome portion lands.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I evidence delivery.</strong>I retain milestone evidence for audit. I report cumulative episode-level revenue to my finance system.</div>
+ </div>
+ </div>
+ <div style="padding:0 16px 16px;">
+ <div class="decision-box">
+ <h4>Open decisions</h4>
+ <p><strong>Tariff split across milestones.</strong> The proportion paid at each of the four milestones is still being modelled. The principle (payment follows clinical use, not activation) is locked; the exact percentages are not.</p>
+ <p><strong>Outcome-based component.</strong> Whether M4 payment is conditional on a positive clinical outcome (and how positive is defined per service) is open.</p>
+ </div>
+ </div>
+ </div>
+</div>
+
+<!-- ==================== LANE 5: PERFORMANCE AND ASSURANCE ==================== -->
+ <div class="swimlane-section" id="lane-5" style="display:none;">
+  <div class="sl-card">
+ <div class="sl-head">
+ <h3>6. Performance and assurance</h3>
+ <p>How HealthStore stays safe and effective in steady state. <strong>Aisha</strong> holds clinical safety governance. <strong>Ngozi</strong> holds IG. <strong>Priya</strong> holds platform-level performance. <strong>David</strong> holds commercial performance. The DTx supplier reports against milestones, hazards and SLAs.</p>
+ </div>
+ <div class="sl-wrap">
+ <div class="sl-grid" style="grid-template-columns:120px repeat(5,1fr);">
+ <div class="sl-stage"></div>
+ <div class="sl-stage">Clinical safety</div>
+ <div class="sl-stage">IG &amp; data</div>
+ <div class="sl-stage">SLA &amp; platform</div>
+ <div class="sl-stage">Commercial &amp; framework</div>
+ <div class="sl-stage">Outcome</div>
+<div class="sl-actor" style="background:var(--clinical);color:var(--clinical-dark);border-color:var(--clinical-dark);"><div class="sl-actor-portrait"><a href="DTx OM - Persona Aisha.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/aisha.png" alt="Aisha"></a></div><div class="sl-actor-label"><span class="sl-actor-name">Aisha</span>Clinical / CSG</div></div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I maintain the hazard log.</strong>Deployer-side hazard log maintained under DCB0160; manufacturer-side hazard log sits with the admitted supplier under DCB0129. Active risks tracked, mitigations recorded. CSG-level review at agreed cadence.</div><div class="sl-cell sl-empty"></div><div class="sl-cell sl-empty"></div><div class="sl-cell sl-empty"></div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I monitor outcomes against safety.</strong>Outcome distribution reviewed against the safety case. Any safety signal escalated through CATR / CSG routes.</div><div class="sl-actor" style="background:var(--ig);color:var(--ig-dark);border-color:var(--ig-dark);"><div class="sl-actor-portrait"><a href="DTx OM - Persona Ngozi.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/ngozi.png" alt="Ngozi"></a></div><div class="sl-actor-label"><span class="sl-actor-name">Ngozi</span>IG / DPO</div></div><div class="sl-cell sl-empty"></div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I monitor data flows.</strong>Subject access requests, breach notifications, controller responsibilities under the data schedule, lawful basis renewals. Annual DPIA refresh.</div><div class="sl-cell sl-empty"></div><div class="sl-cell sl-empty"></div><div class="sl-cell sl-empty"></div><div class="sl-actor" style="background:var(--platform);color:var(--platform-dark);border-color:var(--platform-dark);"><div class="sl-actor-portrait"><a href="DTx OM - Persona Priya.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/priya.png" alt="Priya"></a></div><div class="sl-actor-label"><span class="sl-actor-name">Priya</span>NHSE Platform</div></div><div class="sl-cell sl-empty"></div><div class="sl-cell sl-empty"></div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I monitor SLA.</strong>Platform integration availability. Supplier API health. Episode tracking endpoint performance. NHS Login / Notify / FHIR routing health.</div><div class="sl-cell sl-empty"></div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I publish performance MI.</strong>Marketplace milestone hit rates per supplier. Outcome capture rates. Across-ICB benchmarking.</div><div class="sl-actor" style="background:var(--framework);color:var(--framework-dark);border-color:var(--framework-dark);"><div class="sl-actor-portrait"><a href="DTx OM - Persona David.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/david.png" alt="David"></a></div><div class="sl-actor-label"><span class="sl-actor-name">David</span>NHS Commercial</div></div><div class="sl-cell sl-empty"></div><div class="sl-cell sl-empty"></div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I monitor SLA against framework terms.</strong>Supplier SLA reporting against framework expectations. Action on breach.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I monitor commercial.</strong>Pricing reviews, framework renewals, supplier admission renewals at the agreed cadence.</div><div class="sl-cell sl-empty"></div><div class="sl-actor" style="background:var(--supplier);color:var(--supplier-dark);border-color:var(--supplier-dark);"><div class="sl-actor-portrait"><a href="DTx OM - Persona HealthStore supplier.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="img/marcus-final.png" alt="Marcus"></a></div><div class="sl-actor-label"><span class="sl-actor-name">Marcus</span>DTx founder</div></div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I report safety.</strong>Adverse events reported through the hazard log. Supplier responsibilities maintained.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I report data flows.</strong>Subject access responses, breach notifications per the standard agreement.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I report SLA.</strong>Platform availability against my SaaS schedule. API health.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I report commercial.</strong>Episode volumes per ICB, milestone evidence per episode, revenue.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I report outcomes.</strong>Aggregated outcome distribution per cohort per ICB.</div>
+ </div>
+ </div>
+ </div>
+</div>
+
+<!-- ==================== LANE 7: INFORMATION GOVERNANCE (NGOZI) ==================== -->
+ <div class="swimlane-section" id="lane-6" style="display:none;">
+  <div class="sl-card">
+ <div class="sl-head">
+ <h3>7. Information governance</h3>
+ <p>How <strong>Ngozi (IG / DPO)</strong> governs the data flow across HealthStore configurations. DPIA, controller designation, lawful basis, DSA, subject access and breach handling. Federated controller arrangement across NHSE, ICB and DTx supplier. Same Find / Decide / Onboard / Go live / Operate shape as commissioner buying.</p>
+ </div>
+ <div class="sl-wrap">
+ <div class="sl-grid" style="grid-template-columns:120px repeat(5,1fr);">
+ <div class="sl-stage"></div>
+ <div class="sl-stage">Find</div>
+ <div class="sl-stage">Decide</div>
+ <div class="sl-stage">Onboard</div>
+ <div class="sl-stage">Go live</div>
+ <div class="sl-stage">Operate</div>
+<div class="sl-actor" style="background:var(--ig);color:var(--ig-dark);border-color:var(--ig-dark);"><div class="sl-actor-portrait"><a href="DTx OM - Persona Ngozi.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/ngozi.png" alt="Ngozi"></a></div><div class="sl-actor-label"><span class="sl-actor-name">Ngozi</span>IG / DPO</div></div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I publish IG criteria.</strong>DSA scope, DPIA template, lawful basis guidance for prescribing flow, controller designation expectations for SaaS data schedules. Commissioners self-assess IG fit before engaging.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I assess the configuration.</strong>I review the supplier DPIA. I confirm lawful basis for episode data processing. I assess SaaS controller positions across NHSE, ICB and supplier. <span class="gap-flag">Controller positions for SaaS data flows still TBC at portfolio level</span></div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I execute the DSA.</strong>Data Sharing Agreement signed between NHSE, ICB and supplier. Controller designations confirmed. Lawful basis documented per data type. Episode-data retention policy in force.</div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I sign off go-live.</strong>Data flows approved end-to-end. Episode data routing confirmed. IAO confirmed. Breach handling routes in place.</div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I monitor data flows.</strong>Subject access requests routed. Breach notification within statutory timescales. Annual DPIA review. Supplier data responsibilities tracked against the data schedule.</div><div class="sl-actor" style="background:var(--commissioner);color:var(--commissioner-dark);border-color:var(--commissioner-dark);"><div class="sl-actor-portrait"><a href="DTx OM - Persona Sarah.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/sarah.png" alt="Sarah"></a></div><div class="sl-actor-label"><span class="sl-actor-name">Sarah</span>Commissioner</div></div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I self-assess IG fit.</strong>I use the published IG pack to check whether my ICB&apos;s data environment fits the configuration. I identify any local-system mitigation needed.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I complete the DPIA.</strong>I complete the ICB-side DPIA using the standard template. I document local data flows and controller positions.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I sign the DSA.</strong>I sign the ICB side of the DSA. I confirm ICB controller scope for the prescribing flow.</div><div class="sl-cell sl-empty"></div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I monitor local IG.</strong>Local subject access routing. Local breach reporting. Annual DPIA refresh on the ICB side.</div><div class="sl-actor" style="background:var(--supplier);color:var(--supplier-dark);border-color:var(--supplier-dark);"><div class="sl-actor-portrait"><a href="DTx OM - Persona HealthStore supplier.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="img/marcus-final.png" alt="Marcus"></a></div><div class="sl-actor-label"><span class="sl-actor-name">Marcus</span>DTx founder</div></div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I evidence IG readiness.</strong>My supplier-side DPIA pack, lawful basis position, technical-organisational measures. Audit-ready.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I clear supplier-side IG.</strong>My supplier DPIA reviewed by Ngozi. Any required mitigations actioned. Sub-processor list confirmed.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I sign the data schedule.</strong>Supplier signature on the data schedule. Sub-processor flows agreed. Patient-data handling and retention positions locked.</div><div class="sl-cell sl-empty"></div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I report and respond.</strong>I report any data incident per the standard agreement. I respond to subject access requests within statutory windows.</div><div class="sl-actor" style="background:var(--platform);color:var(--platform-dark);border-color:var(--platform-dark);"><div class="sl-actor-portrait"><a href="DTx OM - Persona Priya.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/priya.png" alt="Priya"></a></div><div class="sl-actor-label"><span class="sl-actor-name">Priya</span>NHSE Platform</div></div><div class="sl-cell sl-empty"></div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I confirm platform data flows.</strong>FHIR routing, NHS Login authentication, NHS Notify, episode-tracking endpoints. Data residency and processing positions confirmed for the platform.</div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I configure routing.</strong>Platform-level data routing configured for the ICB. Audit-log routes in place.</div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I evidence platform compliance.</strong>DSPT alignment. Platform-level controller responsibilities documented. Audit-trail integrity confirmed.</div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I monitor platform data integrity.</strong>Routing health. Audit-log completeness. Breach detection at platform level.</div>
+ </div>
+ </div>
+ <div style="padding:0 16px 16px;">
+ <div class="decision-box">
+ <h4>Open decisions</h4>
+ <p><strong>Controller designation for SaaS data flows.</strong> Final controller positions across NHSE, ICB and supplier for episode-level SaaS-processed data are not yet locked at portfolio level.</p>
+ <p><strong>Lawful basis for cross-configuration data reuse.</strong> Whether evidence flows from one configuration can be reused as evidence for another (assurance portability) under the same lawful basis is open.</p>
+ </div>
+ </div>
+ </div>
+</div>
+
+<!-- ==================== LANE 7: MARKET DYNAMICS ==================== -->
+ <div class="swimlane-section" id="lane-7" style="display:none;">
+  <div class="sl-card">
+ <div class="sl-head">
+ <h3>8. Market dynamics</h3>
+ <p>How the HealthStore market keeps itself healthy. <strong>Priya</strong> monitors market health. <strong>David</strong> manages supplier admission cycles. <strong>Aisha</strong> watches clinical innovation. New services come on through SHAPE; suppliers come on through Onboarding; both feed back into the next round.</p>
+ </div>
+ <div class="sl-wrap">
+ <div class="sl-grid" style="grid-template-columns:120px repeat(5,1fr);">
+ <div class="sl-stage"></div>
+ <div class="sl-stage">Discovery</div>
+ <div class="sl-stage">New services</div>
+ <div class="sl-stage">New suppliers</div>
+ <div class="sl-stage">Supplier exit</div>
+ <div class="sl-stage">Pricing review</div>
+<div class="sl-actor" style="background:var(--platform);color:var(--platform-dark);border-color:var(--platform-dark);"><div class="sl-actor-portrait"><a href="DTx OM - Persona Priya.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/priya.png" alt="Priya"></a></div><div class="sl-actor-label"><span class="sl-actor-name">Priya</span>NHSE Platform</div></div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I run horizon scanning.</strong>New digital therapeutic areas surfaced through NICE EVA pipeline, clinical literature, ICB demand signals.</div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I onboard new services.</strong>New therapeutic area added to the catalogue once NICE EVA conditionally-recommended is in place and the framework templates are configured.</div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I onboard new suppliers.</strong>New suppliers added per the admission process. Five today for the lead configuration; further suppliers as the market matures.</div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I handle supplier exit.</strong>Suppliers exiting the framework: data handling per the data schedule, episode migration to alternative supplier where possible, ICB notification.</div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I publish pricing benchmarks.</strong>Anonymised episode-level pricing and outcome data feeds into the next pricing review cycle.</div><div class="sl-actor" style="background:var(--framework);color:var(--framework-dark);border-color:var(--framework-dark);"><div class="sl-actor-portrait"><a href="DTx OM - Persona David.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/david.png" alt="David"></a></div><div class="sl-actor-label"><span class="sl-actor-name">David</span>NHS Commercial</div></div><div class="sl-cell sl-empty"></div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I configure the framework for new services.</strong>NHS Standard Contract templates tailored per therapeutic area. Episode tariff schedule agreed.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I admit new suppliers.</strong>NICE EVA conditionally-recommended, supplier agreement, data schedule per the standard process.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I action exit terms.</strong>Standard exit terms in the framework agreement.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I review pricing.</strong>Annual pricing review against benchmarks. Maximum pricing position updated.</div><div class="sl-actor" style="background:var(--clinical);color:var(--clinical-dark);border-color:var(--clinical-dark);"><div class="sl-actor-portrait"><a href="DTx OM - Persona Aisha.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/aisha.png" alt="Aisha"></a></div><div class="sl-actor-label"><span class="sl-actor-name">Aisha</span>Clinical / CSG</div></div><div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I track clinical evidence.</strong>Outcome data from existing services feeds into the next round of therapeutic area selection.</div><div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I clinical-validate new services.</strong>Each new service goes through clinical safety review before catalogue listing.</div><div class="sl-cell sl-empty"></div><div class="sl-cell sl-empty"></div><div class="sl-cell sl-empty"></div>
+ </div>
+ </div>
+ </div>
+</div>
+
+</div>
+
+
+<script>
+function showLane(laneId) {
+  // Hide all swimlane sections
+  document.querySelectorAll('.swimlane-section').forEach(function(section) {
+    section.style.display = 'none';
+  });
+  // Show the selected one
+  var target = document.getElementById(laneId);
+  if (target) target.style.display = 'block';
+  // Update button active states
+  document.querySelectorAll('.ak').forEach(function(btn) {
+    var isActive = btn.getAttribute('data-lane') === laneId;
+    btn.style.borderColor = isActive ? '#FFB91D' : '#ebeef1';
+    btn.style.background = isActive ? '#FFF6D9' : '#fff';
+    btn.style.boxShadow = isActive ? '0 4px 14px rgba(201,162,39,0.18)' : 'none';
+  });
+}
+</script>
+
+
+<div style="max-width:1100px;margin:32px auto 24px;padding:0 32px;">
+  <div style="font-size:11px;font-weight:800;letter-spacing:2px;color:#005EB8;text-transform:uppercase;margin-bottom:10px;">What the swimlanes decompose to</div>
+  <div class="service-blueprint-frame" style="background:#fff;border:1px solid #ebeef1;border-left:6px solid #005EB8;border-radius:12px;padding:22px 26px;margin-bottom:18px;">
+  <div style="font-size:10.5px;font-weight:800;letter-spacing:1.6px;color:#005EB8;text-transform:uppercase;margin-bottom:8px;">Service blueprint frame</div>
+  <h2 style="font-size:20px;font-weight:800;color:#003087;letter-spacing:-0.3px;line-height:1.2;margin-bottom:10px;">Four service roles. Eight operational lanes.</h2>
+  <p style="font-size:13.5px;color:#4C6272;line-height:1.65;margin:0 0 12px;">The HealthStore service breaks into four high-level roles that any admitted digital therapeutic has to be served by. The eight operational lanes above decompose those four roles into the actor-by-actor process detail. Read the four roles first if you want the shape; drop into the lanes for the mechanics.</p>
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px;">
+    <div style="background:#F4F8FC;border:1px solid #D5E8F0;border-radius:8px;padding:12px 14px;">
+      <div style="font-size:11px;font-weight:800;color:#003087;letter-spacing:0.4px;margin-bottom:4px;">1. Authorisation for NHS use</div>
+      <div style="font-size:12px;color:#4C6272;line-height:1.55;">National decision that a digital therapeutic is clinically and economically suitable for the HealthStore. Maps to lanes <strong>2 (Supplier onboarding)</strong> and <strong>6 (Performance &amp; assurance)</strong>.</div>
+    </div>
+    <div style="background:#F4F8FC;border:1px solid #D5E8F0;border-radius:8px;padding:12px 14px;">
+      <div style="font-size:11px;font-weight:800;color:#003087;letter-spacing:0.4px;margin-bottom:4px;">2. NHS App onboarding</div>
+      <div style="font-size:12px;color:#4C6272;line-height:1.55;">Technical integration of the admitted digital therapeutic into the NHS App so a prescription becomes a patient-usable experience. Maps to lanes <strong>2 (Supplier onboarding)</strong> and <strong>8 (Market dynamics)</strong>.</div>
+    </div>
+    <div style="background:#F4F8FC;border:1px solid #D5E8F0;border-radius:8px;padding:12px 14px;">
+      <div style="font-size:11px;font-weight:800;color:#003087;letter-spacing:0.4px;margin-bottom:4px;">3. NHS App experience</div>
+      <div style="font-size:12px;color:#4C6272;line-height:1.55;">How the digital therapeutic actually works for the patient: find, sign-in, launch, manage, escalate, return. Maps to lanes <strong>3 (Prescribing workflow)</strong> and <strong>4 (Service delivery)</strong>.</div>
+    </div>
+    <div style="background:#F4F8FC;border:1px solid #D5E8F0;border-radius:8px;padding:12px 14px;">
+      <div style="font-size:11px;font-weight:800;color:#003087;letter-spacing:0.4px;margin-bottom:4px;">4. Outcome capture &amp; ongoing assurance</div>
+      <div style="font-size:12px;color:#4C6272;line-height:1.55;">How the digital therapeutic produces and proves value over time: outcome capture, milestone settlement, clinical safety monitoring, evidence accrual, IG oversight. Maps to lanes <strong>5 (Financial settlement)</strong>, <strong>6 (Performance &amp; assurance)</strong> and <strong>7 (Information governance)</strong>.</div>
+    </div>
+  </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,414 @@
+/* Position Papers — visual language aligned to DTx Operating Model */
+:root {
+  --nhs-dark: #003087;
+  --nhs-blue: #005EB8;
+  --nhs-green: #006747;
+  --nhs-pink: #AE2573;
+  --amber: #FFB91D;
+  --amber-deep: #C9A227;
+  --warm-cream: #FFF9EC;
+  --text: #212B32;
+  --text-sec: #4C6272;
+  --text-muted: #7E8B97;
+  --border: #d9dee3;
+  --border-lt: #ebeef1;
+  --card: #ffffff;
+  --bg: #f8fafc;
+  --green: #007F3B;
+  --green-pale: #E2F1E8;
+  --amber-bg: #fef6e6;
+  --amber-warn: #9A6700;
+  --red: #B5121B;
+  --hometest: #003087;
+  --healthstore: #00A9CE;
+  --healthsync: #00A499;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Top navigation — canonical DTx pattern */
+.topnav {
+  background: #fff;
+  border-bottom: 1px solid var(--border-lt);
+  padding: 14px 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: nowrap;
+  min-height: 54px;
+  box-sizing: border-box;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+}
+.topnav .nav-back {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--nhs-dark);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+.topnav .nav-back:hover { color: var(--nhs-blue); }
+.topnav .nav-context {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+/* Page wrap */
+.pp-page {
+  max-width: 1080px;
+  margin: 0 auto;
+  background: #fff;
+  min-height: calc(100vh - 54px);
+  box-shadow: 0 6px 28px rgba(0,32,64,0.06);
+}
+
+/* Banner — DTx OM header pattern */
+.pp-banner {
+  background: #fff;
+  padding: 44px 48px 24px;
+  border-bottom: 1px solid var(--border-lt);
+}
+.pp-banner-eyebrow {
+  display: inline-block;
+  background: var(--nhs-dark);
+  color: #fff;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+  padding: 7px 16px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+.pp-banner-title {
+  font-size: 38px;
+  font-weight: 800;
+  color: var(--nhs-dark);
+  letter-spacing: -0.5px;
+  line-height: 1.12;
+  margin-bottom: 12px;
+}
+.pp-banner-sub {
+  font-size: 16px;
+  color: var(--text-sec);
+  font-weight: 500;
+  line-height: 1.55;
+  max-width: 760px;
+  margin-bottom: 0;
+}
+.pp-banner::after {
+  content: '';
+  display: block;
+  width: 72px;
+  height: 4px;
+  background: var(--amber);
+  border-radius: 2px;
+  margin: 18px 0 0;
+}
+
+/* Body container */
+.pp-body { padding: 26px 48px 16px; }
+
+/* Status strip — pale blue card */
+.pp-status {
+  margin: 0 0 32px;
+  background: linear-gradient(90deg, #f5f8fc, #fafbfd);
+  border: 1px solid var(--border-lt);
+  border-left: 4px solid var(--nhs-blue);
+  border-radius: 0 10px 10px 0;
+  padding: 18px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px 36px;
+  font-size: 12.5px;
+  box-shadow: 0 1px 3px rgba(0,32,64,0.04);
+}
+.pp-status-item { display: flex; flex-direction: column; gap: 4px; min-width: 150px; }
+.pp-status-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.pp-status-value { font-weight: 700; color: var(--text); font-size: 13.5px; }
+.pp-status-value.active { color: var(--green); }
+.pp-status-value.under-review { color: var(--amber-warn); }
+
+/* Section headings — DTx OM section-h pattern with numbered circle */
+.pp-section-h {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 36px 0 16px;
+}
+.pp-section-h::before {
+  content: '';
+  display: inline-block;
+  width: 28px;
+  height: 4px;
+  background: var(--amber);
+  border-radius: 2px;
+}
+
+/* Position callout — the load-bearing statement */
+.pp-position {
+  background: linear-gradient(135deg, var(--warm-cream), #FFFCF1);
+  border: 1px solid #F0DCA0;
+  border-left: 5px solid var(--amber);
+  border-radius: 0 12px 12px 0;
+  padding: 22px 26px;
+  margin: 0;
+  box-shadow: 0 2px 8px rgba(201,162,39,0.10);
+}
+.pp-position p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--text);
+  font-weight: 500;
+}
+.pp-position p strong {
+  color: var(--nhs-dark);
+  font-weight: 800;
+}
+
+/* Body prose */
+.pp-body > p { margin: 0 0 16px; font-size: 14.5px; color: var(--text-sec); line-height: 1.7; }
+.pp-body > p strong { color: var(--text); font-weight: 700; }
+
+/* Lists — NHS-blue dash bullets */
+.pp-body ul { margin: 0 0 18px; padding-left: 6px; list-style: none; }
+.pp-body li {
+  position: relative;
+  padding-left: 26px;
+  margin-bottom: 10px;
+  line-height: 1.6;
+  font-size: 14px;
+  color: var(--text-sec);
+}
+.pp-body li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 11px;
+  width: 14px;
+  height: 3px;
+  background: var(--nhs-blue);
+  border-radius: 2px;
+}
+.pp-body li strong { color: var(--nhs-dark); font-weight: 700; }
+
+/* Related-plays / related-architecture pale panel */
+.pp-related {
+  background: #fff;
+  border: 1px solid var(--border-lt);
+  border-radius: 12px;
+  padding: 18px 24px;
+  margin: 0;
+  box-shadow: 0 1px 3px rgba(0,32,64,0.04);
+}
+.pp-related p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text-sec);
+}
+.pp-related a {
+  color: var(--nhs-blue);
+  text-decoration: none;
+  font-weight: 700;
+  border-bottom: 1px dotted var(--nhs-blue);
+}
+.pp-related a:hover {
+  color: var(--nhs-dark);
+  border-bottom-style: solid;
+}
+
+/* Footer — DTx OM foot pattern */
+.pp-footer {
+  margin: 48px 0 0;
+  padding: 22px 48px 28px;
+  border-top: 1px solid var(--border-lt);
+  font-size: 11.5px;
+  color: var(--text-muted);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.pp-footer a {
+  color: var(--nhs-blue);
+  text-decoration: none;
+  font-weight: 700;
+}
+.pp-footer a:hover { color: var(--nhs-dark); }
+
+/* Index page — intro callout */
+.pp-intro {
+  font-size: 14.5px;
+  color: var(--text-sec);
+  margin: 0 0 30px;
+  padding: 20px 24px;
+  background: linear-gradient(135deg, var(--warm-cream), #FFFCF1);
+  border: 1px solid #F0DCA0;
+  border-left: 4px solid var(--amber);
+  border-radius: 0 10px 10px 0;
+  line-height: 1.65;
+}
+.pp-intro strong { color: var(--nhs-dark); font-weight: 800; }
+
+/* Index — card grid */
+.pp-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+@media (max-width: 800px) { .pp-grid { grid-template-columns: 1fr; } }
+
+.pp-card {
+  background: #fff;
+  border: 1px solid var(--border-lt);
+  border-radius: 14px;
+  padding: 22px 24px 22px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,32,64,0.04);
+}
+.pp-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 5px;
+  background: var(--nhs-blue);
+  transition: width 0.18s ease;
+}
+.pp-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0,32,64,0.12);
+  border-color: var(--nhs-blue);
+}
+.pp-card:hover::before { width: 7px; }
+
+.pp-card-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.pp-card-num {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  color: #fff;
+  background: var(--nhs-dark);
+  padding: 4px 10px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+.pp-card-status {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+.pp-card-status.active {
+  background: var(--green-pale);
+  color: var(--green);
+}
+.pp-card-status.under-review {
+  background: #FFF8E6;
+  color: var(--amber-warn);
+}
+.pp-card-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--nhs-dark);
+  line-height: 1.3;
+  margin: 2px 0 0;
+  letter-spacing: -0.2px;
+}
+.pp-card-desc {
+  font-size: 13px;
+  color: var(--text-sec);
+  line-height: 1.6;
+  flex: 1;
+}
+.pp-card-cta {
+  font-size: 11.5px;
+  font-weight: 800;
+  color: var(--nhs-blue);
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+.pp-card-cta::after { content: ' →'; }
+
+/* Mobile */
+@media (max-width: 720px) {
+  .pp-banner { padding: 32px 28px 20px; }
+  .pp-banner-title { font-size: 30px; }
+  .pp-banner-sub { font-size: 14.5px; }
+  .pp-body { padding: 22px 28px 12px; }
+  .pp-footer { padding: 18px 28px 22px; }
+  .topnav { padding: 12px 22px; }
+}
+
+/* Print */
+@media print {
+  body { background: #fff; }
+  .topnav { display: none; }
+  .pp-page { max-width: 100%; box-shadow: none; }
+  .pp-footer { background: #fff; }
+  .pp-card { page-break-inside: avoid; }
+}
+
+
+/* Inline play references — link to the playbook in a new tab */
+.play-ref {
+  color: #005EB8;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0,94,184,0.30);
+  transition: color 0.15s ease, border-bottom-color 0.15s ease;
+}
+.play-ref:hover {
+  color: #003087;
+  border-bottom-color: #003087;
+}
+.play-ref::after {
+  content: " ↗";
+  font-size: 0.85em;
+  color: rgba(0,94,184,0.65);
+  margin-left: 1px;
+}

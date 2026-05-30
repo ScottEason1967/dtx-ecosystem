@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HealthSync MEASURE: Digital Therapeutics Operating Model</title>
+<style>
+ /* Canonical topnav */
+ .topnav{background:#fff;border-bottom:1px solid #ebeef1;padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:nowrap;min-height:54px;box-sizing:border-box;width:100%;max-width:100%;margin:0;position:sticky;top:0;z-index:200;}
+ .topnav.topnav-secondary{background:#F4F8FC;border-bottom:1px solid #d6e2ef;padding:9px 36px;min-height:42px;}
+ .topnav .nav-back{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-back:hover{color:#005EB8;}
+ .topnav .nav-siblings{display:flex;gap:4px;flex-wrap:nowrap;overflow-x:auto;align-items:center;}
+ .topnav .nav-siblings a{font-size:12px;font-weight:600;color:#4C6272;text-decoration:none;padding:6px 12px;border-radius:6px;letter-spacing:0.2px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-siblings a:hover{background:#f0f4f8;color:#212B32;}
+ .topnav .nav-siblings a.active{background:#003087;color:#fff;}
+ .topnav.topnav-secondary .nav-siblings a{font-size:11.5px;padding:5px 10px;}
+ .topnav.topnav-secondary .nav-siblings a.active{background:#005EB8;color:#fff;}
+ .topnav .nav-secondary-label{font-size:10px;font-weight:800;letter-spacing:1.5px;color:#7E8B97;text-transform:uppercase;flex-shrink:0;}
+
+  :root {
+    --nhs-dark:#003087; --nhs-blue:#005EB8;
+    --accent:#7E8B97;
+    --amber:#FFB91D;
+    --text:#212B32; --text-sec:#4C6272; --text-muted:#7E8B97;
+    --border-lt:#ebeef1;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;background:#f8fafc;color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;}
+  
+  
+  
+  
+  
+  .product-selector{background:#f0f3f6;padding:10px 36px;display:flex;gap:8px;align-items:center;border-bottom:1px solid var(--border-lt);}
+  .product-selector-label{font-size:10px;font-weight:800;letter-spacing:1.4px;color:var(--text-muted);text-transform:uppercase;margin-right:4px;}
+  .product-selector a{font-size:12px;font-weight:700;color:var(--text-sec);text-decoration:none;padding:6px 14px;border-radius:6px;}
+  .product-selector a.active{background:var(--accent);color:#fff;}
+  .page{max-width:900px;margin:0 auto;padding:50px 40px 80px;}
+  .amber-rule{width:72px;height:4px;background:var(--amber);border-radius:2px;margin-bottom:18px;}
+  .h-eyebrow{display:inline-block;background:var(--accent);color:#fff;font-size:10.5px;font-weight:800;letter-spacing:1.6px;padding:6px 14px;border-radius:4px;text-transform:uppercase;margin-bottom:14px;}
+  .h-title{font-size:42px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.6px;line-height:1.1;margin-bottom:14px;}
+  .pending{background:#FFF8E1;border:1px solid #F0DCA0;border-radius:12px;padding:24px 28px;margin:24px 0;font-size:13px;color:var(--text-sec);line-height:1.7;}
+  .pending strong{color:var(--text);font-weight:700;}
+  body{background:linear-gradient(180deg,#00A499 0%,var(--nhs-dark) 100%)!important;background-attachment:fixed!important;}
+  
+  .page{background:#ffffff;border-radius:18px;box-shadow:0 14px 40px rgba(0,48,135,0.20);margin-top:30px!important;margin-bottom:50px!important;}
+
+ .product-selector{background:#f0f3f6;padding:10px 36px;display:flex;gap:8px;align-items:center;border-bottom:1px solid var(--border-lt);}
+ .product-selector-label{font-size:10px;font-weight:800;letter-spacing:1.4px;color:var(--text-muted);text-transform:uppercase;margin-right:4px;}
+ .product-selector a{font-size:12px;font-weight:700;color:var(--text-sec);text-decoration:none;padding:6px 14px;border-radius:6px;}
+ .product-selector a.active{background:#00A499;color:#fff;}
+ .product-selector a.healthsync{}
+ .page{max-width:1100px;margin:0 auto;padding:40px 40px 80px;}
+ .amber-rule{width:72px;height:4px;background:var(--amber);border-radius:2px;margin-bottom:14px;}
+ .h-eyebrow{display:inline-block;background:#00A499;color:#fff;font-size:10px;font-weight:800;letter-spacing:1.6px;padding:6px 14px;border-radius:4px;text-transform:uppercase;margin-bottom:14px;}
+ .h-mega{font-size:88px;font-weight:900;color:#00A499;letter-spacing:-2.5px;line-height:0.95;margin:6px 0 6px;}
+ .h-title{font-size:36px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.5px;line-height:1.15;margin-bottom:14px;}
+ .h-sub{font-size:16px;color:var(--text-sec);margin-bottom:16px;font-weight:500;}
+ .h-intro{max-width:820px;font-size:14px;color:var(--text-sec);line-height:1.75;}
+ .h-intro strong{color:var(--text);font-weight:700;}
+ .section-h{font-size:11.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--text-muted);margin:40px 0 14px;}
+ .detail-block{background:#fff;border:1px solid var(--border-lt);border-radius:10px;padding:18px 22px;margin-bottom:10px;border-left:4px solid #00A499;}
+ .detail-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:8px;}
+ .detail-block h3{font-size:15px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.2px;}
+ .detail-block p{font-size:13px;color:var(--text-sec);line-height:1.7;}
+ .detail-block strong{color:var(--text);font-weight:700;}
+ .pill{display:inline-block;font-size:9.5px;font-weight:800;padding:3px 8px;border-radius:10px;letter-spacing:0.6px;text-transform:uppercase;flex-shrink:0;}
+ .pill-live{background:#e6f4ed;color:#007F3B;}
+ .pill-flight{background:#fef6e6;color:#9A6700;}
+ .pill-open{background:#fce8e9;color:#B5121B;}
+ .pill-blocked{background:#f0e8ed;color:#7C2855;}
+ .pill-pending{background:#E0E5EB;color:#4C6272;}
+ .open-decision{background:#FFF8E1;border:1px solid #F0DCA0;border-left:4px solid #F9A825;border-radius:0 10px 10px 0;padding:14px 18px;margin-bottom:8px;}
+ .open-decision-title{font-size:12px;font-weight:800;color:#8D6E1A;margin-bottom:4px;letter-spacing:0.2px;}
+ .open-decision-body{font-size:12px;color:var(--text-sec);line-height:1.65;}
+ :root { --healthsync:#00A499; --border-lt:#ebeef1; --text-muted:#7E8B97; --text-sec:#4C6272; --text:#212B32; --nhs-dark:#003087; --amber:#FFB91D; }
+ body{background:linear-gradient(180deg,#00A499 0%,var(--nhs-dark) 100%) !important;background-attachment:fixed !important;}
+ .page{background:#ffffff;border-radius:18px;box-shadow:0 14px 40px rgba(0,48,135,0.20);margin-top:30px !important;margin-bottom:50px !important;}
+</style>
+<style>
+  .ecosystem-nav {
+    background: #fff;
+    border-bottom: 1px solid #ebeef1;
+    padding: 12px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 48px;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  }
+  .ecosystem-nav a {
+    font-size: 13px; font-weight: 700; color: #003087;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .ecosystem-nav a:hover { color: #005EB8; }
+  .ecosystem-nav .nav-context {
+    font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
+    color: #7E8B97; text-transform: uppercase;
+  }
+  .ecosystem-nav .nav-product {
+    font-size: 10.5px; font-weight: 800; letter-spacing: 0.8px;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 4px; color: #fff;
+  }
+  .ecosystem-nav .nav-product.dtx { background: #003087; }
+  .ecosystem-nav .nav-product.hometest { background: #003087; }
+  .ecosystem-nav .nav-product.healthstore { background: #00A9CE; }
+  .ecosystem-nav .nav-product.healthsync { background: #00A499; }
+</style>
+</head>
+<body>
+<div class="ecosystem-nav">
+  <a href="../index.html">← DTx Ecosystem</a>
+  <span class="nav-context">HealthSync MEASURE</span>
+  <span class="nav-product healthsync">HealthSync</span>
+</div>
+<nav class="topnav">
+<a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+<div class="nav-siblings">
+ <a href="DTx OM - Why.html">Why</a>
+ <a href="DTx OM - What.html">What</a>
+ <a href="DTx OM - Lifecycle.html" class="active">When</a>
+ <a href="DTx OM - HomeTest Operational.html">How</a>
+ <a href="DTx OM - Governance.html">Who</a>
+ <a href="DTx OM - Hearts and Minds.html">Hearts and Minds</a>
+ <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>
+ <a href="DTx OM - Status.html">Status</a>
+</div>
+</nav>
+
+<nav class="topnav topnav-secondary">
+<div class="nav-secondary-label">HealthSync stage</div>
+<div class="nav-siblings">
+ <a href="DTx OM - HealthSync SHAPE.html">SHAPE</a>
+ <a href="DTx OM - HealthSync ASSURE.html">ASSURE</a>
+ <a href="DTx OM - HealthSync CONTRACT.html">CONTRACT</a>
+ <a href="DTx OM - HealthSync FULFIL.html">FULFIL</a>
+ <a href="DTx OM - HealthSync MEASURE.html" class="active">MEASURE</a>
+</div>
+</nav>
+
+<div class="product-selector">
+  <span class="product-selector-label">Product overlay:</span>
+  <a href="DTx OM - HomeTest MEASURE v4.html">HomeTest</a>
+  <a href="DTx OM - HealthStore MEASURE.html">HealthStore</a>
+  <a href="DTx OM - HealthSync MEASURE.html" class="active">HealthSync</a>
+</div>
+
+<div class="page">
+
+  <div class="amber-rule"></div>
+  <div class="h-eyebrow">HealthSync &middot; MEASURE</div>
+  <h1 class="h-title"><span style="display:inline-block;background:#00A499;color:#fff;padding:4px 14px 6px;border-radius:10px;line-height:1;letter-spacing:-0.3px;">HealthSync</span> at MEASURE.</h1>
+
+  <p class="h-sub">Measurement of the data flow itself, of clinical signal quality, of patient engagement, of equity, and of pathway outcome</p>
+  <p class="h-intro">MEASURE for HealthSync covers a different measurement shape from HomeTest and HealthStore. There is no test result event to count; no completed therapeutic episode to attribute outcome to. The measurement is of the data flow itself (volume, quality, reliability), the clinical signal (true alerts vs false), the patient engagement (permission grant rate, revocation patterns, sustained sharing), the equity profile (who can use HealthSync vs who is excluded), and the pathway outcome (whether between-appointment data correlates with better clinical results).</p>
+
+
+  <div class="section-h">What MEASURE has to capture</div>
+
+  <div class="detail-block">
+   <div class="detail-head"><h3>Data flow quality and reliability</h3><span class="pill pill-flight">In flight</span></div>
+   <p>Data volume by use case, by consumer platform, by data type. Latency from device to NHS App. Schema mapping quality. Routing failure rates. Without baseline data on the pipeline itself, downstream measurement is unreliable.</p>
+  </div>
+
+  <div class="detail-block">
+   <div class="detail-head"><h3>Threshold-alerting performance</h3><span class="pill pill-pending">In design</span></div>
+   <p>For use cases with clinical alerting (BP starts here), measure false-positive and false-negative rates of the threshold logic. The threshold needs continuous tuning against real-world outcome data; without measurement, the alerting either over-triggers (cries wolf) or under-triggers (misses signal).</p>
+  </div>
+
+  <div class="detail-block">
+   <div class="detail-head"><h3>Patient engagement metrics</h3><span class="pill pill-flight">In flight</span></div>
+   <p>Permission grant rate at onboarding (what proportion of NHS App users with a relevant condition enable data sharing). Sustained sharing over time. Revocation patterns (which data types are revoked first, what events trigger revocation). The metrics drive the patient permission UX iteration cycle.</p>
+  </div>
+
+  <div class="detail-block">
+   <div class="detail-head"><h3>Equity-of-access metrics</h3><span class="pill pill-pending">In design</span></div>
+   <p>Adoption rates by demographic and geographic split, completion rates by deprivation index, consumer-device ownership patterns, digital exclusion proxy metrics. The metrics feed the EHIA discipline at Foundation. HealthSync needs these particularly clearly because of the device-ownership prerequisite.</p>
+  </div>
+
+  <div class="detail-block">
+   <div class="detail-head"><h3>Clinical signal-to-outcome correlation</h3><span class="pill pill-pending">In design</span></div>
+   <p>Whether between-appointment data correlates with better clinical outcomes. For BP: did the longitudinal signal lead to earlier dose adjustment? Did the patient have fewer cardiovascular events than the comparator? The clinical evidence base is what makes HealthSync defensible as an NHS investment.</p>
+  </div>
+
+  <div class="detail-block">
+   <div class="detail-head"><h3>Pathway-level outcome integration</h3><span class="pill pill-pending">In design</span></div>
+   <p>Where HealthSync data feeds an active HealthStore therapeutic or a HomeTest configuration, the cross-product outcome measurement is the load-bearing case for &ldquo;one operating model, three products&rdquo;. Errol&apos;s journey is the canonical example; the measurement of his journey is the demonstration that the model is delivering.</p>
+  </div>
+
+  <div class="section-h">Open decisions and dependencies</div>
+
+  <div class="open-decision">
+   <div class="open-decision-title">Outcome attribution methodology</div>
+   <div class="open-decision-body">Attributing clinical outcomes to HealthSync data flow vs other care-team interventions is methodologically hard. Outcome attribution methodology needs sign-off before measurement claims become assurance-grade. Coupling tight with Ongoing Evidence Generation at Foundation.</div>
+  </div>
+
+  <div class="open-decision">
+   <div class="open-decision-title">Equity baseline establishment</div>
+   <div class="open-decision-body">Without an equity baseline (who is already excluded from HealthSync because of device ownership patterns), the equity metrics have no comparator. Baseline data gathering at Alpha.</div>
+  </div>
+
+  <div class="open-decision">
+   <div class="open-decision-title">PMS routes for the data flow</div>
+   <div class="open-decision-body">Post-market surveillance for the data flow itself: how do incidents get reported, what counts as a HealthSync incident, who is the reporting body. The discipline at Foundation applies; HealthSync-specific shape lands at Alpha.</div>
+  </div>
+
+  <div class="open-decision">
+   <div class="open-decision-title">Long-term data retention and analysis</div>
+   <div class="open-decision-body">How long is HealthSync data retained for clinical and outcome research use, under what governance, with what access controls. Sits at IG / Information Governance level.</div>
+  </div>
+
+</div>
+
+</body>
+</html>

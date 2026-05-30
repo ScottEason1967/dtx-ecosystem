@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HealthStore ASSURE: Digital Therapeutics Operating Model</title>
+<style>
+ /* Canonical topnav */
+ .topnav{background:#fff;border-bottom:1px solid #ebeef1;padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:nowrap;min-height:54px;box-sizing:border-box;width:100%;max-width:100%;margin:0;position:sticky;top:0;z-index:200;}
+ .topnav.topnav-secondary{background:#F4F8FC;border-bottom:1px solid #d6e2ef;padding:9px 36px;min-height:42px;}
+ .topnav .nav-back{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-back:hover{color:#005EB8;}
+ .topnav .nav-siblings{display:flex;gap:4px;flex-wrap:nowrap;overflow-x:auto;align-items:center;}
+ .topnav .nav-siblings a{font-size:12px;font-weight:600;color:#4C6272;text-decoration:none;padding:6px 12px;border-radius:6px;letter-spacing:0.2px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-siblings a:hover{background:#f0f4f8;color:#212B32;}
+ .topnav .nav-siblings a.active{background:#003087;color:#fff;}
+ .topnav.topnav-secondary .nav-siblings a{font-size:11.5px;padding:5px 10px;}
+ .topnav.topnav-secondary .nav-siblings a.active{background:#005EB8;color:#fff;}
+ .topnav .nav-secondary-label{font-size:10px;font-weight:800;letter-spacing:1.5px;color:#7E8B97;text-transform:uppercase;flex-shrink:0;}
+
+ :root {
+ --nhs-dark:#003087; --nhs-blue:#005EB8; --nhs-cyan:#00A9CE;
+ --stage:#41B6E6;
+ --accent:var(--stage);
+ --amber:#FFB91D; --amber-deep:#C9A227;
+ --text:#212B32; --text-sec:#4C6272; --text-muted:#7E8B97;
+ --border:#d9dee3; --border-lt:#ebeef1;
+ --card:#ffffff; --bg:#f8fafc;
+ }
+ *{box-sizing:border-box;margin:0;padding:0;}
+ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;}.product-selector{background:#f0f3f6;padding:10px 36px;display:flex;gap:8px;align-items:center;border-bottom:1px solid var(--border-lt);}.product-selector-label{font-size:10px;font-weight:800;letter-spacing:1.4px;color:var(--text-muted);text-transform:uppercase;margin-right:4px;}.product-selector a{font-size:12px;font-weight:700;color:var(--text-sec);text-decoration:none;padding:6px 14px;border-radius:6px;}.product-selector a.active{background:#005EB8;color:#fff;}.product-selector a.healthsync{opacity:0.6;}.page{max-width:1100px;margin:0 auto;padding:40px 40px 80px;}.amber-rule{width:72px;height:4px;background:var(--amber);border-radius:2px;margin-bottom:14px;}.h-eyebrow{display:inline-block;background:var(--accent);color:#fff;font-size:10px;font-weight:800;letter-spacing:1.6px;padding:6px 14px;border-radius:4px;text-transform:uppercase;margin-bottom:14px;}.h-mega{font-size:88px;font-weight:900;color:var(--accent);letter-spacing:-2.5px;line-height:0.95;margin:6px 0 6px;}.h-title{font-size:36px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.5px;line-height:1.15;margin-bottom:14px;}.h-sub{font-size:16px;color:var(--text-sec);margin-bottom:16px;font-weight:500;}.h-intro{max-width:820px;font-size:14px;color:var(--text-sec);line-height:1.75;}.h-intro strong{color:var(--text);font-weight:700;}.section-h{font-size:11.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--text-muted);margin:40px 0 14px;}.detail-block{background:#fff;border:1px solid var(--border-lt);border-radius:10px;padding:18px 22px;margin-bottom:10px;border-left:4px solid var(--accent);}.detail-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:8px;}.detail-block h3{font-size:15px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.2px;}.detail-block p{font-size:13px;color:var(--text-sec);line-height:1.7;}.detail-block strong{color:var(--text);font-weight:700;}.pill{display:inline-block;font-size:9.5px;font-weight:800;padding:3px 8px;border-radius:10px;letter-spacing:0.6px;text-transform:uppercase;flex-shrink:0;}.pill-live{background:#e6f4ed;color:#007F3B;}.pill-flight{background:#fef6e6;color:#9A6700;}.pill-open{background:#fce8e9;color:#B5121B;}.pill-blocked{background:#f0e8ed;color:#7C2855;}.pill-pending{background:#E0E5EB;color:#4C6272;}.open-decision{background:#FFF8E1;border:1px solid #F0DCA0;border-left:4px solid #F9A825;border-radius:0 10px 10px 0;padding:14px 18px;margin-bottom:8px;}.open-decision-title{font-size:12px;font-weight:800;color:#8D6E1A;margin-bottom:4px;letter-spacing:0.2px;}.open-decision-body{font-size:12px;color:var(--text-sec);line-height:1.65;}.ref-box{background:#f4f8fc;border:1px solid #D5E8F0;border-radius:10px;padding:14px 18px;margin-top:20px;font-size:12.5px;color:var(--text-sec);line-height:1.6;}.ref-box strong{color:var(--text);font-weight:700;}
+ body{background:linear-gradient(180deg,var(--stage) 0%,var(--nhs-dark) 100%)!important;background-attachment:fixed!important;}.page{background:#ffffff;border-radius:18px;box-shadow:0 14px 40px rgba(0,48,135,0.20);margin-top:30px!important;margin-bottom:50px!important;}
+</style>
+<style>
+  .ecosystem-nav {
+    background: #fff;
+    border-bottom: 1px solid #ebeef1;
+    padding: 12px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 48px;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  }
+  .ecosystem-nav a {
+    font-size: 13px; font-weight: 700; color: #003087;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .ecosystem-nav a:hover { color: #005EB8; }
+  .ecosystem-nav .nav-context {
+    font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
+    color: #7E8B97; text-transform: uppercase;
+  }
+  .ecosystem-nav .nav-product {
+    font-size: 10.5px; font-weight: 800; letter-spacing: 0.8px;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 4px; color: #fff;
+  }
+  .ecosystem-nav .nav-product.dtx { background: #003087; }
+  .ecosystem-nav .nav-product.hometest { background: #003087; }
+  .ecosystem-nav .nav-product.healthstore { background: #00A9CE; }
+  .ecosystem-nav .nav-product.healthsync { background: #00A499; }
+</style>
+
+<style>
+  .position-refs {
+    background: #f6f9fc;
+    border-bottom: 1px solid #e1e7ef;
+    padding: 9px 28px;
+    font-size: 12px;
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .position-refs .pr-label {
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #5C6B82;
+  }
+  .position-refs a {
+    color: #003087;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 3px 9px;
+    background: #fff;
+    border: 1px solid #d5e0eb;
+    border-radius: 14px;
+  }
+  .position-refs a:hover {
+    background: #003087;
+    color: #fff;
+  }
+</style>
+
+</head>
+<body>
+<div class="ecosystem-nav">
+  <a href="../index.html">← DTx Ecosystem</a>
+  <span class="nav-context">HealthStore ASSURE</span>
+  <span class="nav-product healthstore">HealthStore</span>
+</div>
+<div class="position-refs">
+  <span class="pr-label">Related positions →</span>
+  <a href="../position-papers/position-assurance-primacy.html">Position: Assurance is primary</a>
+  <a href="../position-papers/position-assurance-envelope-boundary.html">Position: Assurance envelope boundary</a>
+</div>
+<nav class="topnav">
+<a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+<div class="nav-siblings">
+ <a href="DTx OM - Why.html">Why</a>
+ <a href="DTx OM - What.html">What</a>
+ <a href="DTx OM - Lifecycle.html" class="active">When</a>
+ <a href="DTx OM - HomeTest Operational.html">How</a>
+ <a href="DTx OM - Governance.html">Who</a>
+ <a href="DTx OM - Hearts and Minds.html">Hearts and Minds</a>
+ <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>
+ <a href="DTx OM - Status.html">Status</a>
+</div>
+</nav>
+
+<nav class="topnav topnav-secondary">
+<div class="nav-secondary-label">HealthStore stage</div>
+<div class="nav-siblings">
+ <a href="DTx OM - HealthStore SHAPE.html">SHAPE</a>
+ <a href="DTx OM - HealthStore ASSURE.html" class="active">ASSURE</a>
+ <a href="DTx OM - HealthStore CONTRACT.html">CONTRACT</a>
+ <a href="DTx OM - HealthStore FULFIL.html">FULFIL</a>
+ <a href="DTx OM - HealthStore MEASURE.html">MEASURE</a>
+</div>
+</nav>
+
+<div class="product-selector">
+ <span class="product-selector-label">Product overlay:</span>
+ <a href="DTx OM - HomeTest ASSURE v4.html">HomeTest</a>
+ <a href="DTx OM - HealthStore ASSURE.html" class="active">HealthStore</a>
+ <a href="DTx OM - HealthSync ASSURE.html" class="healthsync">HealthSync</a>
+</div>
+
+<div class="page">
+ <div class="amber-rule"></div>
+ <div class="h-eyebrow">HealthStore &middot; ASSURE</div>
+ <div class="h-mega">ASSURE</div>
+ <h1 class="h-title"><span style="display:inline-block;background:#00A9CE;color:#fff;padding:4px 14px 6px;border-radius:10px;line-height:1;letter-spacing:-0.3px;">HealthStore</span> at ASSURE.</h1>
+ <p class="h-sub">Onboarding digital therapeutic suppliers against clinical, technical, economic and IG bars</p>
+ <p class="h-intro">ASSURE for HealthStore is the second stage of the six-stage commercial journey (innovate &rarr; onboard &rarr; initial use &rarr; full use &rarr; update &rarr; offboard). Onboarding has two halves: assurance against the bars, and agreement on price. This page covers the assurance half. The structural position is that HealthStore <strong>coordinates with existing assurance frameworks</strong>; HealthStore is not a central assurance body and does not duplicate what NICE, DCB and the Innovator Passport already do.</p>
+
+ <div class="section-h">The assurance bars HealthStore admits against</div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>NICE EVA conditionally-recommended</h3><span class="pill pill-live">Live</span></div>
+  <p>The software-as-a-medical-device route specific to digital therapeutics. Conditional recommendation means plausibly clinically and cost effective but further evidence required. Always &ldquo;NICE EVA conditionally recommended&rdquo;; never &ldquo;NICE approved&rdquo;. Suppliers cannot imply approval where the recommendation is conditional.</p>
+ </div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>DCB0129 &mdash; manufacturer responsibility</h3><span class="pill pill-live">Live</span></div>
+  <p>Clinical risks inherent to a digital therapeutic identified and managed by the supplier during development and maintenance. DCB0129 sits with the admitted supplier as manufacturer. The supplier owns the hazard log for the manufacturer side and the Clinical Safety Case Report. Mandatory under Section 251 of the Health and Social Care Act 2012.</p>
+ </div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>DCB0160 &mdash; deployer responsibility</h3><span class="pill pill-live">Live</span></div>
+  <p>Clinical risks arising from deployment and use of a digital therapeutic within NHS services identified and managed by the deploying organisation. DCB0160 sits with the NHS organisation that deploys the digital therapeutic (typically the ICB or Trust running the pathway), with HealthStore as the national platform supporting the deployer-side governance. There is no co-manufacturer construct; manufacturer and deployer responsibilities are split, not joint.</p>
+ </div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>ISO 14971 + ISO/IEC 27001</h3><span class="pill pill-live">Live</span></div>
+  <p>Medical device risk management (ISO 14971) and information security (ISO/IEC 27001). Applied as principle-level expectations for any admitted digital therapeutic. Sit alongside the DCB framework.</p>
+ </div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>SCAL, DTAC, Innovator Passport, UK quality assurance marking</h3><span class="pill pill-flight">In flight</span></div>
+  <p>NHS Supplier Conformance Assessment, Digital Technology Assessment Criteria, the Innovator Passport supplier credentials package, and UK quality assurance marking are existing national assurance instruments. Interim assurance arrangements during Alpha and Beta align with these instruments rather than duplicating them. HealthStore consumes their outputs.</p>
+ </div>
+
+ <div class="section-h">How the bars compose into a single admission</div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>Combined submission, once-and-reuse</h3><span class="pill pill-flight">In flight</span></div>
+  <p>Once-and-reuse principle. A single combined submission inclusive of NICE EVA conditionally-recommended, DCB0129 / 0160 evidence, DTAC, SLSP, ROPA, DPIA, cyber and SCAL outputs. Conformance certificate valid across HealthStore configurations within the supplier&apos;s admitted scope so the supplier does not re-evidence at every ICB.</p>
+ </div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>Evidence-generation commitments at admission</h3><span class="pill pill-open">Open</span></div>
+  <p>Strong interest in making admission contingent on the supplier committing to support their NICE evidence-generation plan post-admission. Mitigates the risk of suppliers benefiting from conditional status without continuing to generate evidence. Mechanism for monitoring and enforcement still to be designed.</p>
+ </div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>Hazard-log split between manufacturer and deployer</h3><span class="pill pill-flight">In flight</span></div>
+  <p>The manufacturer-side hazard log sits with the admitted supplier under DCB0129. The deployer-side hazard log sits with the deploying NHS organisation under DCB0160. HealthStore as the national platform maintains visibility across both and is the point of integration where issues affecting multiple ICBs surface. Operational cadence and escalation route to the Clinical Safety Group still being agreed.</p>
+ </div>
+
+ <div class="section-h">Information governance and legal landscape</div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>Data controllership architecture</h3><span class="pill pill-open">Open</span></div>
+  <p>Digital therapeutics create or use temporary copies of patient data for the duration of the therapeutic episode but the NHS digital hub remains the system of record. Controller designation per therapeutic configuration still being scoped; the lawful basis position (direct consent vs legal directions) is unresolved at SLT level. Affects every DPIA, every data-sharing agreement and every supplier contract.</p>
+ </div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>NHS Login and NHS Notify positions</h3><span class="pill pill-live">Live</span></div>
+  <p>NHS Login operates under specific NHS legal directions and is the patient-identity component. NHS Notify provides the communications instrument. Both carry their own service contracts, DCB compliance, DPIAs and data controllership statements that HealthStore inherits at integration.</p>
+ </div>
+
+ <div class="section-h">Mobilisation status &mdash; ASSURE</div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>Clinical safety case scoped at Alpha</h3><span class="pill pill-flight">In flight</span></div>
+  <p>The hazard log and clinical safety case content are being scoped at Alpha alongside named clinical safety leadership. Pathway-level hazards are identified across service design rather than just the regulated digital therapeutic products themselves &mdash; the clinical safety case covers the whole pathway sitting around the digital therapeutic, not just the SaMD product.</p>
+ </div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>Independent assurance evidence package per supplier</h3><span class="pill pill-flight">In flight</span></div>
+  <p>The independent assurance evidence package is being designed so that each admitted supplier&apos;s assurance is portable across ICBs and configurations. The "assure once, deploy many" discipline is what allows HealthStore to scale without each ICB redoing assurance. Coupling tight to NICE EVA conditional evaluation interface and the DCB-split clinical safety frame.</p>
+ </div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>DCB framework split &mdash; not joint</h3><span class="pill pill-flight">In flight</span></div>
+  <p>DCB0129 (manufacturer responsibility) sits with the admitted supplier. DCB0160 (deployer responsibility) sits with the deploying NHS organisation. The two are coordinated, not jointly held. Any framing that implies joint accountability across the split is the co-manufacturer narrative in different clothes; the artefact carries the split discipline.</p>
+ </div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>NICE EVA conditional admission flow</h3><span class="pill pill-flight">In flight</span></div>
+  <p>NICE EVA conditional admission is the route into the catalogue. Multiple suppliers progressing through the conditional pipeline for the lead therapeutic area. The conditional framing (technologies plausibly clinically and cost effective but further evidence is required) means evidence-generation commitments at admission are a load-bearing part of the assurance package, not optional.</p>
+ </div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>Innovator Passport lighter route under design</h3><span class="pill pill-pending">In design</span></div>
+  <p>NHS Innovation Service Innovator Passport is being designed as a lighter assurance route for suppliers with a Passport in hand. Reduces duplication across upstream assurance bodies. Sits inside the Assurance Model alongside NICE EVA conditional and the DCB framework split.</p>
+ </div>
+
+ <div class="section-h">Open decisions and dependencies</div>
+
+ <div class="open-decision">
+  <div class="open-decision-title">Evidence-generation conditionality at admission</div>
+  <div class="open-decision-body">Whether HealthStore admission is contingent on the supplier committing to NICE evidence-generation post-admission, and what the monitoring / enforcement mechanism is. If yes, an annual evidence-progress signal needs to surface back to the Commissioner Store.</div>
+ </div>
+
+ <div class="open-decision">
+  <div class="open-decision-title">Combined submission design</div>
+  <div class="open-decision-body">The shape of the once-and-reuse combined submission, including what suppliers submit, what HealthStore inherits from upstream bodies (NICE, DTAC, Innovator Passport), and where the conformance certificate boundary sits. Reduces supplier admission cost and time.</div>
+ </div>
+
+ <div class="open-decision">
+  <div class="open-decision-title">Surveillance and reassurance cadence</div>
+  <div class="open-decision-body">Frequency and form of post-admission reassurance. NICE contacts companies annually during evidence generation and scores responses; HealthStore can consume this signal as part of surveillance.</div>
+ </div>
+
+ <div class="open-decision">
+  <div class="open-decision-title">Data controllership designation per configuration</div>
+  <div class="open-decision-body">Resolves the lawful basis position and downstream DPIA / data-sharing agreement / supplier-contract architecture. SLT decision with NHS Legal and Caldicott Guardian.</div>
+ </div>
+
+</div>
+
+</body>
+</html>

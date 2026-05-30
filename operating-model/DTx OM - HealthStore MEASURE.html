@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HealthStore MEASURE: Digital Therapeutics Operating Model</title>
+<style>
+ /* Canonical topnav */
+ .topnav{background:#fff;border-bottom:1px solid #ebeef1;padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:nowrap;min-height:54px;box-sizing:border-box;width:100%;max-width:100%;margin:0;position:sticky;top:0;z-index:200;}
+ .topnav.topnav-secondary{background:#F4F8FC;border-bottom:1px solid #d6e2ef;padding:9px 36px;min-height:42px;}
+ .topnav .nav-back{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-back:hover{color:#005EB8;}
+ .topnav .nav-siblings{display:flex;gap:4px;flex-wrap:nowrap;overflow-x:auto;align-items:center;}
+ .topnav .nav-siblings a{font-size:12px;font-weight:600;color:#4C6272;text-decoration:none;padding:6px 12px;border-radius:6px;letter-spacing:0.2px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-siblings a:hover{background:#f0f4f8;color:#212B32;}
+ .topnav .nav-siblings a.active{background:#003087;color:#fff;}
+ .topnav.topnav-secondary .nav-siblings a{font-size:11.5px;padding:5px 10px;}
+ .topnav.topnav-secondary .nav-siblings a.active{background:#005EB8;color:#fff;}
+ .topnav .nav-secondary-label{font-size:10px;font-weight:800;letter-spacing:1.5px;color:#7E8B97;text-transform:uppercase;flex-shrink:0;}
+
+ :root {
+ --nhs-dark:#003087; --nhs-blue:#005EB8; --nhs-cyan:#00A9CE;
+ --stage:#7C2855;
+ --accent:var(--stage);
+ --amber:#FFB91D; --amber-deep:#C9A227;
+ --text:#212B32; --text-sec:#4C6272; --text-muted:#7E8B97;
+ --border:#d9dee3; --border-lt:#ebeef1;
+ --card:#ffffff; --bg:#f8fafc;
+ }
+ *{box-sizing:border-box;margin:0;padding:0;}
+ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;}.product-selector{background:#f0f3f6;padding:10px 36px;display:flex;gap:8px;align-items:center;border-bottom:1px solid var(--border-lt);}.product-selector-label{font-size:10px;font-weight:800;letter-spacing:1.4px;color:var(--text-muted);text-transform:uppercase;margin-right:4px;}.product-selector a{font-size:12px;font-weight:700;color:var(--text-sec);text-decoration:none;padding:6px 14px;border-radius:6px;}.product-selector a.active{background:#005EB8;color:#fff;}.product-selector a.healthsync{opacity:0.6;}.page{max-width:1100px;margin:0 auto;padding:40px 40px 80px;}.amber-rule{width:72px;height:4px;background:var(--amber);border-radius:2px;margin-bottom:14px;}.h-eyebrow{display:inline-block;background:var(--accent);color:#fff;font-size:10px;font-weight:800;letter-spacing:1.6px;padding:6px 14px;border-radius:4px;text-transform:uppercase;margin-bottom:14px;}.h-mega{font-size:88px;font-weight:900;color:var(--accent);letter-spacing:-2.5px;line-height:0.95;margin:6px 0 6px;}.h-title{font-size:36px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.5px;line-height:1.15;margin-bottom:14px;}.h-sub{font-size:16px;color:var(--text-sec);margin-bottom:16px;font-weight:500;}.h-intro{max-width:820px;font-size:14px;color:var(--text-sec);line-height:1.75;}.h-intro strong{color:var(--text);font-weight:700;}.section-h{font-size:11.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--text-muted);margin:40px 0 14px;}.detail-block{background:#fff;border:1px solid var(--border-lt);border-radius:10px;padding:18px 22px;margin-bottom:10px;border-left:4px solid var(--accent);}.detail-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:8px;}.detail-block h3{font-size:15px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.2px;}.detail-block p{font-size:13px;color:var(--text-sec);line-height:1.7;}.detail-block strong{color:var(--text);font-weight:700;}.pill{display:inline-block;font-size:9.5px;font-weight:800;padding:3px 8px;border-radius:10px;letter-spacing:0.6px;text-transform:uppercase;flex-shrink:0;}.pill-live{background:#e6f4ed;color:#007F3B;}.pill-flight{background:#fef6e6;color:#9A6700;}.pill-open{background:#fce8e9;color:#B5121B;}.pill-blocked{background:#f0e8ed;color:#7C2855;}.pill-pending{background:#E0E5EB;color:#4C6272;}.open-decision{background:#FFF8E1;border:1px solid #F0DCA0;border-left:4px solid #F9A825;border-radius:0 10px 10px 0;padding:14px 18px;margin-bottom:8px;}.open-decision-title{font-size:12px;font-weight:800;color:#8D6E1A;margin-bottom:4px;letter-spacing:0.2px;}.open-decision-body{font-size:12px;color:var(--text-sec);line-height:1.65;}.ref-box{background:#f4f8fc;border:1px solid #D5E8F0;border-radius:10px;padding:14px 18px;margin-top:20px;font-size:12.5px;color:var(--text-sec);line-height:1.6;}.ref-box strong{color:var(--text);font-weight:700;}
+ body{background:linear-gradient(180deg,var(--stage) 0%,var(--nhs-dark) 100%)!important;background-attachment:fixed!important;}.page{background:#ffffff;border-radius:18px;box-shadow:0 14px 40px rgba(0,48,135,0.20);margin-top:30px!important;margin-bottom:50px!important;}
+</style>
+<style>
+  .ecosystem-nav {
+    background: #fff;
+    border-bottom: 1px solid #ebeef1;
+    padding: 12px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 48px;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  }
+  .ecosystem-nav a {
+    font-size: 13px; font-weight: 700; color: #003087;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .ecosystem-nav a:hover { color: #005EB8; }
+  .ecosystem-nav .nav-context {
+    font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
+    color: #7E8B97; text-transform: uppercase;
+  }
+  .ecosystem-nav .nav-product {
+    font-size: 10.5px; font-weight: 800; letter-spacing: 0.8px;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 4px; color: #fff;
+  }
+  .ecosystem-nav .nav-product.dtx { background: #003087; }
+  .ecosystem-nav .nav-product.hometest { background: #003087; }
+  .ecosystem-nav .nav-product.healthstore { background: #00A9CE; }
+  .ecosystem-nav .nav-product.healthsync { background: #00A499; }
+</style>
+</head>
+<body>
+<div class="ecosystem-nav">
+  <a href="../index.html">← DTx Ecosystem</a>
+  <span class="nav-context">HealthStore MEASURE</span>
+  <span class="nav-product healthstore">HealthStore</span>
+</div>
+<nav class="topnav">
+<a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+<div class="nav-siblings">
+ <a href="DTx OM - Why.html">Why</a>
+ <a href="DTx OM - What.html">What</a>
+ <a href="DTx OM - Lifecycle.html" class="active">When</a>
+ <a href="DTx OM - HomeTest Operational.html">How</a>
+ <a href="DTx OM - Governance.html">Who</a>
+ <a href="DTx OM - Hearts and Minds.html">Hearts and Minds</a>
+ <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>
+ <a href="DTx OM - Status.html">Status</a>
+</div>
+</nav>
+
+<nav class="topnav topnav-secondary">
+<div class="nav-secondary-label">HealthStore stage</div>
+<div class="nav-siblings">
+ <a href="DTx OM - HealthStore SHAPE.html">SHAPE</a>
+ <a href="DTx OM - HealthStore ASSURE.html">ASSURE</a>
+ <a href="DTx OM - HealthStore CONTRACT.html">CONTRACT</a>
+ <a href="DTx OM - HealthStore FULFIL.html">FULFIL</a>
+ <a href="DTx OM - HealthStore MEASURE.html" class="active">MEASURE</a>
+</div>
+</nav>
+
+<div class="product-selector">
+ <span class="product-selector-label">Product overlay:</span>
+ <a href="DTx OM - HomeTest MEASURE v4.html">HomeTest</a>
+ <a href="DTx OM - HealthStore MEASURE.html" class="active">HealthStore</a>
+ <a href="DTx OM - HealthSync MEASURE.html" class="healthsync">HealthSync</a>
+</div>
+
+<div class="page">
+ <div class="amber-rule"></div>
+ <div class="h-eyebrow">HealthStore &middot; MEASURE</div>
+ <div class="h-mega">MEASURE</div>
+ <h1 class="h-title"><span style="display:inline-block;background:#00A9CE;color:#fff;padding:4px 14px 6px;border-radius:10px;line-height:1;letter-spacing:-0.3px;">HealthStore</span> at MEASURE.</h1>
+ <p class="h-sub">Outcomes, evidence and the feedback loop into the rest of the model</p>
+ <p class="h-intro">MEASURE for HealthStore answers two related questions. First: is the digital therapeutic working for patients and for the system? Second: what signal does the rest of the model need from MEASURE in order to evolve the next iteration of admission, contracting and fulfilment? The model is honest that this view is the least populated today &mdash; much of MEASURE for HealthStore is in design.</p>
+
+ <div class="section-h">What MEASURE has to capture</div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>Patient-actually-used data</h3><span class="pill pill-flight">In flight</span></div>
+  <p>NICE described patient-actually-used data as &ldquo;gold dust&rdquo; and one of the hardest data points to obtain. The digital therapeutic captures session-level use through the app. The HealthStore data architecture has to make that signal available at the right altitude for NICE evidence generation, for the commissioner&apos;s pathway evaluation and for the supplier&apos;s product iteration.</p>
+ </div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>PROMs and self-reported outcomes</h3><span class="pill pill-flight">In flight</span></div>
+  <p>Patient-reported outcome measures captured through the therapeutic at scheduled intervals. Configured per therapeutic area &mdash; COPD-relevant measures differ from cardiac rehab measures from MSK measures. Written back to the NHS hub as the system of record under the fourth commercial principle.</p>
+ </div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>Pathway-level outcomes</h3><span class="pill pill-open">Open</span></div>
+  <p>The digital therapeutic is one component of a clinical pathway. Outcome measurement at pathway level (avoided escalation, hospital admission rates, primary care contact reduction, return-to-work, mortality) is the level at which the commissioner case lands. Attribution of pathway-level outcomes to the digital therapeutic component &mdash; rather than to the wider pathway redesign &mdash; is methodologically hard. Currently open.</p>
+ </div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>Equity tracking</h3><span class="pill pill-open">Open</span></div>
+  <p>Who is reached and who is not, by demographic and geographic cut. One of the discovery-stage outcome drivers. The Frontline Productivity Programme links its allocations to system improvements that include equity; HealthStore signals into the same instrument. Tracking method per therapeutic area not yet designed.</p>
+ </div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>NICE annual monitoring signal</h3><span class="pill pill-flight">In flight</span></div>
+  <p>NICE contacts companies annually during evidence generation, asks for a written update, and scores responses (doing well, doing okay, struggling). HealthStore consumes this signal as part of ongoing supplier surveillance. Where a supplier scores poorly, the commissioner-facing visibility of evidence status needs to surface that, similar to how medicines are shown as pending, approved, under review or subject to further evidence.</p>
+ </div>
+
+ <div class="section-h">Where the signal goes</div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>Feedback into ASSURE / CONTRACT</h3><span class="pill pill-flight">In flight</span></div>
+  <p>Evidence-generation performance feeds back into admission decisions for the next iteration of the supplier&apos;s product, into renewal of the NICE EVA conditional recommendation and into HealthStore contracting terms. A supplier consistently failing to deliver against evidence-generation commitments is a candidate for offboarding.</p>
+ </div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>Feedback into Commissioner Store</h3><span class="pill pill-flight">In flight</span></div>
+  <p>The Commissioner Store needs to surface supplier-level evidence status so commissioners can make informed choices between admitted therapeutics. Pattern similar to medicines: clear status indicators (pending, approved, under review, further evidence required).</p>
+ </div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>Feedback into SHAPE</h3><span class="pill pill-open">Open</span></div>
+  <p>What MEASURE tells SHAPE about which therapeutic areas are working, which are not, where the pipeline of admissable products needs deepening, where commissioner demand is concentrating. The feedback loop closes the lifecycle and is what makes the operating model evolutionary rather than static. Currently undesigned for HealthStore.</p>
+ </div>
+
+ <div class="section-h">Mobilisation status &mdash; MEASURE</div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>Outcome data capture in design</h3><span class="pill pill-flight">In flight</span></div>
+  <p>Outcome data capture for COPD Alpha is being designed alongside the meaningful engagement definitions. The data flow routes outcome events from supplier to platform MI, into the patient record via FHIR, into the ICB MI dashboard, and into the long-term outcomes database that feeds NICE re-evaluation. The data-return touchpoint of the Service Wrapper closes the loop.</p>
+ </div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>NICE re-evaluation evidence package</h3><span class="pill pill-flight">In flight</span></div>
+  <p>The NICE re-evaluation evidence package per admitted supplier is being designed at Alpha. Real-world data quality standards, outcome attribution methodology, and the cadence of evidence submission are scoped at the platform so each supplier carries the same package shape. Independent Assurance and Ongoing Evidence Generation feed it.</p>
+ </div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>Post-market surveillance routes</h3><span class="pill pill-flight">In flight</span></div>
+  <p>Post-market surveillance for admitted DTx products is regulatory: MHRA Yellow Card scheme for adverse events, periodic safety updates per supplier, lab-side equivalent for any specimen / device elements. Distinct from internal clinical safety oversight. The PMS framework sits at platform level so the regulatory burden is shared across admitted suppliers rather than left on each one in isolation.</p>
+ </div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>Best-practice tariff evidence pipeline</h3><span class="pill pill-flight">In flight</span></div>
+  <p>Outcome and economic data from MEASURE feeds the best-practice tariff evidence pipeline. Best-practice tariffs at pathway level are the structural unlock for ICB funding; building the evidence base inside MEASURE is what makes the pathway-level case credible to HM Treasury / NHSE. Tariff design itself sits outside this operating model; the evidence pipeline that feeds it lives here.</p>
+ </div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>Equity-of-access metrics</h3><span class="pill pill-pending">In design</span></div>
+  <p>EHIA monitoring metrics for the COPD Alpha are being designed. Adoption rates by demographic and geographic split, completion rates by deprivation index, digital-exclusion proxy metrics, clinical outcome distribution by population segment. The metrics feed the equity tracking section of MEASURE and the cross-product EHIA discipline at Foundation level.</p>
+ </div>
+
+ <div class="section-h">Open decisions and dependencies</div>
+
+ <div class="open-decision">
+  <div class="open-decision-title">KPI framework for HealthStore</div>
+  <div class="open-decision-body">Not yet designed. Mix of patient-actually-used, PROMs, pathway-level outcomes, equity, supplier evidence-generation performance and commissioner adoption. Different audiences need different KPIs; HealthStore needs a coherent set.</div>
+ </div>
+
+ <div class="open-decision">
+  <div class="open-decision-title">Pathway-level outcome attribution methodology</div>
+  <div class="open-decision-body">How to attribute pathway-level outcomes to the digital therapeutic component vs the wider pathway redesign. Methodologically hard; affects every business-case argument the commissioner makes.</div>
+ </div>
+
+ <div class="open-decision">
+  <div class="open-decision-title">Equity tracking method per therapeutic area</div>
+  <div class="open-decision-body">How equity-of-access is measured per therapeutic area, given different baseline populations and different pathway profiles.</div>
+ </div>
+
+ <div class="open-decision">
+  <div class="open-decision-title">Form and frequency of NICE evidence-status surfacing in the Commissioner Store</div>
+  <div class="open-decision-body">How NICE evidence-generation status (the annual scoring signal) is rendered for commissioners. Frequency, granularity, threshold for status change. Needs careful design so it&apos;s informative without being misleading.</div>
+ </div>
+
+ <div class="open-decision">
+  <div class="open-decision-title">MEASURE&rarr;SHAPE feedback loop design</div>
+  <div class="open-decision-body">The mechanism through which MEASURE signal feeds SHAPE prioritisation. Not yet designed. Without it the operating model is static rather than evolutionary.</div>
+ </div>
+
+</div>
+
+</body>
+</html>

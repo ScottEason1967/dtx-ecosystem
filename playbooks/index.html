@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Playbooks · NHS DTx Ecosystem</title>
+<style>
+  :root {
+    --nhs-dark: #003087; --nhs-blue: #005EB8; --nhs-green: #006747; --nhs-pink: #AE2573;
+    --amber: #FFB91D; --amber-deep: #C9A227; --amber-warn: #9A6700;
+    --warm-cream: #FFF9EC;
+    --text: #212B32; --text-sec: #4C6272; --text-muted: #7E8B97;
+    --border: #d9dee3; --border-lt: #ebeef1; --bg: #f8fafc;
+    --green: #007F3B; --green-pale: #E2F1E8;
+    --hometest: #003087; --healthstore: #00A9CE; --healthsync: #00A499;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif; font-size: 14.5px; line-height: 1.6; color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; }
+  .topnav { background: #fff; border-bottom: 1px solid var(--border-lt); padding: 14px 36px; display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 54px; position: sticky; top: 0; z-index: 200; }
+  .topnav .nav-back { font-size: 13px; font-weight: 700; color: var(--nhs-dark); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
+  .topnav .nav-back:hover { color: var(--nhs-blue); }
+  .topnav-context { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; color: var(--text-muted); text-transform: uppercase; }
+  .pb-page { max-width: 1280px; margin: 0 auto; background: #fff; min-height: calc(100vh - 54px); box-shadow: 0 6px 28px rgba(0,32,64,0.06); }
+  .pb-banner { padding: 50px 48px 32px; background: #fff; border-bottom: 1px solid var(--border-lt); }
+  .pb-banner-eyebrow { display: inline-block; background: var(--nhs-dark); color: #fff; font-size: 10.5px; font-weight: 800; letter-spacing: 1.8px; padding: 7px 16px; border-radius: 4px; text-transform: uppercase; margin-bottom: 20px; }
+  .pb-banner-title { font-size: 42px; font-weight: 800; color: var(--nhs-dark); letter-spacing: -0.5px; line-height: 1.1; margin-bottom: 14px; }
+  .pb-banner-sub { font-size: 17px; color: var(--text-sec); font-weight: 500; line-height: 1.55; max-width: 760px; }
+  .pb-banner::after { content: ''; display: block; width: 72px; height: 4px; background: var(--amber); border-radius: 2px; margin: 22px 0 0; }
+  .pb-body { padding: 32px 48px 20px; }
+  .pb-intro { margin: 0 0 32px; padding: 20px 26px; background: linear-gradient(135deg, var(--warm-cream), #FFFCF1); border: 1px solid #F0DCA0; border-left: 4px solid var(--amber); border-radius: 0 12px 12px 0; font-size: 14px; color: var(--text-sec); line-height: 1.7; }
+  .pb-intro strong { color: var(--nhs-dark); font-weight: 800; }
+  .pb-section-h { display: flex; align-items: center; gap: 12px; font-size: 11.5px; font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase; color: var(--text-muted); margin: 8px 0 18px; }
+  .pb-section-h::before { content: ''; display: inline-block; width: 28px; height: 4px; background: var(--amber); border-radius: 2px; }
+  .pb-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  @media (max-width: 1040px) { .pb-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .pb-grid { grid-template-columns: 1fr; } }
+  .pb-product { background: #fff; border: 1px solid var(--border-lt); border-radius: 16px; padding: 26px 24px 24px; text-decoration: none; color: inherit; transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease; display: flex; flex-direction: column; gap: 14px; position: relative; overflow: hidden; box-shadow: 0 3px 10px rgba(0,32,64,0.06); }
+  .pb-product::before { content: ''; position: absolute; left: 0; top: 0; right: 0; height: 6px; transition: height 0.18s ease; }
+  .pb-product.hometest::before { background: var(--hometest); }
+  .pb-product.healthstore::before { background: var(--healthstore); }
+  .pb-product.healthsync::before { background: var(--healthsync); }
+  .pb-product:hover { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(0,32,64,0.14); }
+  .pb-product:hover::before { height: 8px; }
+  .pb-product.planned { background: #fafbfc; border-style: dashed; box-shadow: none; }
+  .pb-product.planned:hover { transform: none; box-shadow: none; cursor: not-allowed; }
+  .pb-product-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 6px; }
+  .pb-product-tag { font-size: 11px; font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase; padding: 5px 12px; border-radius: 4px; color: #fff; }
+  .pb-product.hometest .pb-product-tag { background: var(--hometest); }
+  .pb-product.healthstore .pb-product-tag { background: var(--healthstore); }
+  .pb-product.healthsync .pb-product-tag { background: var(--healthsync); }
+  .pb-product-status { font-size: 9.5px; font-weight: 800; letter-spacing: 0.8px; padding: 4px 10px; border-radius: 4px; margin-left: auto; text-transform: uppercase; }
+  .pb-product-status.live { background: var(--green-pale); color: var(--green); }
+  .pb-product-status.planned { background: #EDEEF1; color: var(--text-muted); }
+  .pb-product-title { font-size: 22px; font-weight: 800; color: var(--nhs-dark); line-height: 1.2; margin: 4px 0 0; letter-spacing: -0.3px; }
+  .pb-product.planned .pb-product-title { color: var(--text-sec); }
+  .pb-product-desc { font-size: 13.5px; color: var(--text-sec); line-height: 1.6; flex: 1; }
+  .pb-product-count { font-size: 11.5px; color: var(--text-muted); padding-top: 10px; border-top: 1px solid var(--border-lt); line-height: 1.55; }
+  .pb-product-count strong { color: var(--nhs-dark); font-weight: 700; }
+  .pb-product.planned .pb-product-count strong { color: var(--text-sec); }
+  .pb-product-cta { font-size: 11.5px; font-weight: 800; color: var(--nhs-blue); letter-spacing: 0.6px; text-transform: uppercase; }
+  .pb-product-cta::after { content: ' →'; }
+  .pb-product.planned .pb-product-cta { color: var(--text-muted); }
+  .pb-product.planned .pb-product-cta::after { content: ' · in scoping'; }
+  .pb-footer { margin: 48px 0 0; padding: 22px 48px 28px; border-top: 1px solid var(--border-lt); font-size: 11.5px; color: var(--text-muted); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+  .pb-footer a { color: var(--nhs-blue); text-decoration: none; font-weight: 700; }
+  .pb-footer a:hover { color: var(--nhs-dark); }
+  @media (max-width: 720px) { .topnav { padding: 12px 22px; } .pb-banner { padding: 36px 28px 24px; } .pb-banner-title { font-size: 30px; } .pb-body { padding: 24px 28px 12px; } .pb-footer { padding: 18px 28px 22px; } }
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <a class="nav-back" href="../index.html">← Front door</a>
+  <span class="topnav-context">NHS DTx Ecosystem · Playbooks</span>
+</div>
+
+<div class="pb-page">
+
+  <div class="pb-banner">
+    <div class="pb-banner-eyebrow">NHS DTx Ecosystem</div>
+    <h1 class="pb-banner-title">Playbooks</h1>
+    <p class="pb-banner-sub">Operating manuals for the teams running the DTx commercial programmes day-to-day. Pick a product to see its playbooks.</p>
+  </div>
+
+  <div class="pb-body">
+
+    <p class="pb-intro">
+      <strong>How this is structured.</strong> Each DTx product has its own set of playbooks because the operating mechanics differ by product. HomeTest is the live product today and currently has one playbook (Commercial). HealthStore and HealthSync are on the roadmap; their playbooks will appear here as the programmes mature.
+    </p>
+
+    <div class="pb-section-h">Pick a product</div>
+
+    <div class="pb-grid">
+
+      <a class="pb-product hometest" href="hometest.html">
+        <div class="pb-product-head">
+          <span class="pb-product-tag">HomeTest</span>
+          <span class="pb-product-status live">Live</span>
+        </div>
+        <h3 class="pb-product-title">HomeTest</h3>
+        <p class="pb-product-desc">At-home diagnostic testing. HIV is the first live cohort; PSA, others to follow. The most mature of the three DTx products on the commercial side.</p>
+        <div class="pb-product-count"><strong>One playbook live:</strong> Commercial. Clinical, IG, Platform, Engagement, Strategic Finance on the roadmap.</div>
+        <div class="pb-product-cta">Open HomeTest playbooks</div>
+      </a>
+
+      <a class="pb-product healthstore planned" href="#">
+        <div class="pb-product-head">
+          <span class="pb-product-tag">HealthStore</span>
+          <span class="pb-product-status planned">In scoping</span>
+        </div>
+        <h3 class="pb-product-title">HealthStore</h3>
+        <p class="pb-product-desc">Digital therapeutics platform. COPD Alpha running via ACE plus NHS Standard Contract. ICB-primary commissioning with clinician-prescribed initiation.</p>
+        <div class="pb-product-count"><strong>No playbooks yet.</strong> Programme entering Alpha-to-Beta.</div>
+        <div class="pb-product-cta">Open HealthStore playbooks</div>
+      </a>
+
+      <a class="pb-product healthsync planned" href="#">
+        <div class="pb-product-head">
+          <span class="pb-product-tag">HealthSync</span>
+          <span class="pb-product-status planned">In scoping</span>
+        </div>
+        <h3 class="pb-product-title">HealthSync</h3>
+        <p class="pb-product-desc">Wearables and connected-device data stream into NHS pathways. Lagging workstream of the three; Year-1 wave shape still firming up.</p>
+        <div class="pb-product-count"><strong>No playbooks yet.</strong> Programme in early scoping.</div>
+        <div class="pb-product-cta">Open HealthSync playbooks</div>
+      </a>
+
+    </div>
+
+  </div>
+
+  <div class="pb-footer">
+    <span>NHS DTx Ecosystem · Playbooks landing · 28 May 2026</span>
+    <span><a href="../index.html">← Back to front door</a></span>
+  </div>
+
+</div>
+</body>
+</html>

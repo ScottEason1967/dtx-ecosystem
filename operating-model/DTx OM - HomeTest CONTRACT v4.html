@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HomeTest CONTRACT: Digital Therapeutics Operating Model</title>
+<style>
+ /* Canonical topnav */
+ .topnav{background:#fff;border-bottom:1px solid #ebeef1;padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:nowrap;min-height:54px;box-sizing:border-box;width:100%;max-width:100%;margin:0;position:sticky;top:0;z-index:200;}
+ .topnav.topnav-secondary{background:#F4F8FC;border-bottom:1px solid #d6e2ef;padding:9px 36px;min-height:42px;}
+ .topnav .nav-back{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-back:hover{color:#005EB8;}
+ .topnav .nav-siblings{display:flex;gap:4px;flex-wrap:nowrap;overflow-x:auto;align-items:center;}
+ .topnav .nav-siblings a{font-size:12px;font-weight:600;color:#4C6272;text-decoration:none;padding:6px 12px;border-radius:6px;letter-spacing:0.2px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-siblings a:hover{background:#f0f4f8;color:#212B32;}
+ .topnav .nav-siblings a.active{background:#003087;color:#fff;}
+ .topnav.topnav-secondary .nav-siblings a{font-size:11.5px;padding:5px 10px;}
+ .topnav.topnav-secondary .nav-siblings a.active{background:#005EB8;color:#fff;}
+ .topnav .nav-secondary-label{font-size:10px;font-weight:800;letter-spacing:1.5px;color:#7E8B97;text-transform:uppercase;flex-shrink:0;}
+
+  :root {
+    --nhs-blue: #005EB8;
+    --nhs-dark: #003087;
+    --stage-color: #005EB8;
+    --feedback-color: #AE2573;
+    --status-decided: #00703C;
+    --status-progress: #ED8B00;
+    --status-open: #DA291C;
+    --near-black: #231F20;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;
+    background: #f8f9fa;
+    color: var(--near-black);
+    line-height: 1.55;
+  }
+
+  .header {
+    background: linear-gradient(135deg, var(--nhs-dark), var(--stage-color));
+    color: white;
+    padding: 22px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .header .stage-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.18);
+    color: white;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .header h1 { font-size: 28px; font-weight: 700; letter-spacing: 0.5px; }
+  .header .subtitle { font-size: 14px; opacity: 0.9; margin-top: 4px; }
+
+  .back-btn {
+    background: rgba(255,255,255,0.18);
+    color: white;
+    text-decoration: none;
+    padding: 9px 16px;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.15s;
+    border: 1px solid rgba(255,255,255,0.25);
+  }
+  .back-btn:hover { background: rgba(255,255,255,0.3); }
+
+  .main { max-width: 920px; margin: 0 auto; padding: 28px 32px 40px; }
+
+  .stage-intro {
+    background: white;
+    border: 1px solid #e5e5e5;
+    border-left: 4px solid var(--stage-color);
+    border-radius: 6px;
+    padding: 18px 22px;
+    margin-bottom: 26px;
+  }
+  .stage-intro h2 {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #888;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .stage-intro p {
+    font-size: 13.5px;
+    color: #444;
+    margin-bottom: 8px;
+  }
+  .stage-intro p:last-child { margin-bottom: 0; }
+  .asymmetry-callout {
+    margin-top: 12px;
+    padding: 8px 14px;
+    background: #f0f7ff;
+    border-left: 3px solid var(--nhs-blue);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--nhs-dark);
+    border-radius: 0 4px 4px 0;
+  }
+
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--near-black);
+    margin: 8px 0 14px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid #eee;
+  }
+
+  .status-section {
+    background: white;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 12px;
+  }
+  .status-section:last-child { margin-bottom: 0; }
+  .status-section.open-section {
+    background: #fef4f3;
+    border: 1px solid #f5c6c2;
+    border-left: 5px solid var(--status-open);
+  }
+  .status-section.decided-section {
+    border-left: 5px solid var(--status-decided);
+    background: #f4faf6;
+    border-color: #c8e6d0;
+  }
+  .status-section.progress-section {
+    border-left: 5px solid var(--status-progress);
+  }
+
+  .status-heading {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 12.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    margin-bottom: 8px;
+  }
+  .status-dot {
+    width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0;
+  }
+  .dot-decided { background: var(--status-decided); }
+  .dot-progress { background: var(--status-progress); }
+  .dot-open { background: var(--status-open); }
+  .heading-decided { color: var(--status-decided); }
+  .heading-progress { color: var(--status-progress); }
+  .heading-open { color: var(--status-open); }
+  .status-count {
+    margin-left: auto;
+    background: rgba(0,0,0,0.05);
+    padding: 2px 9px;
+    border-radius: 10px;
+    font-size: 11px;
+    color: #666;
+  }
+  .open-section .status-count {
+    background: rgba(218,41,28,0.12);
+    color: var(--status-open);
+  }
+  .decided-section .status-count {
+    background: rgba(0,112,60,0.12);
+    color: var(--status-decided);
+  }
+
+  .status-list { list-style: none; padding: 0; margin: 0; }
+  .status-list li {
+    padding: 5px 0 5px 18px;
+    position: relative;
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: #333;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .status-list li:last-child { border-bottom: none; }
+  .status-list li::before {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 12px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+  }
+  .status-list.decided li::before { background: var(--status-decided); }
+  .status-list.progress li::before { background: var(--status-progress); }
+  .status-list.open li::before { background: var(--status-open); }
+  .open-section .status-list li { font-weight: 500; color: #2a2a2a; }
+  .decided-section .status-list li { font-weight: 500; }
+
+  .split-block { margin-bottom: 26px; }
+  .split-block-header {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 8px 14px;
+    border-radius: 5px 5px 0 0;
+    color: white;
+  }
+  .split-block-header.supplier { background: #ED8B00; }
+  .split-block-header .desc { font-weight: 400; opacity: 0.85; margin-left: 8px; }
+  .split-block-header.customer { background: #009639; }
+  .split-block-body {
+    border: 1px solid #e5e5e5;
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+    padding: 14px;
+  }
+  .split-block-body .status-section { margin-bottom: 12px; }
+  .split-block-body .status-section:last-child { margin-bottom: 0; }
+
+  .prev-next {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 12px;
+    margin-top: 32px;
+    padding-top: 22px;
+    border-top: 2px solid #eee;
+    align-items: stretch;
+  }
+  .nav-link {
+    text-decoration: none;
+    color: var(--near-black);
+    background: white;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+    padding: 12px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    transition: border-color 0.15s, transform 0.15s;
+  }
+  .nav-link:hover {
+    border-color: var(--stage-color);
+    transform: translateY(-2px);
+  }
+  .nav-link.next { text-align: right; align-items: flex-end; }
+  .nav-link .nav-label {
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    color: #999;
+    font-weight: 600;
+  }
+  .nav-link .nav-stage {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--nhs-dark);
+  }
+  .home-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--nhs-blue);
+    color: white;
+    padding: 12px 22px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: background 0.15s;
+    align-self: center;
+  }
+  .home-btn:hover { background: var(--nhs-dark); }
+
+  .version-stamp {
+    text-align: right;
+    font-size: 11px;
+    color: #aaa;
+    margin-top: 18px;
+  }
+
+  @media (max-width: 700px) {
+    .prev-next { grid-template-columns: 1fr; }
+    .nav-link.next { text-align: left; align-items: flex-start; }
+    .header { padding: 18px 22px; }
+    .main { padding: 22px 22px 36px; }
+  }
+
+  /* ---- Site nav (added for four-frame integration) ---- */
+  
+  
+  
+  
+  
+  
+  
+  
+
+  /* NHS-blue rebrand override */
+  body { background: linear-gradient(180deg, var(--nhs-blue) 0%, var(--nhs-dark) 100%) !important; background-attachment: fixed !important; }
+  
+  .main { background:#ffffff; border-radius:18px; box-shadow:0 14px 40px rgba(0,48,135,0.20); margin-top:24px !important; margin-bottom:50px !important; }
+  @media (max-width:720px){ .main { border-radius:12px; margin-top:14px !important; } }
+
+
+  /* Actors strip */
+  .actors-strip {
+    background: white;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .actors-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: #888;
+    flex-shrink: 0;
+  }
+  .actors-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .actor {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 12px 4px 4px;
+    background: #f6f8fa;
+    border-radius: 24px;
+  }
+  .actor img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1.5px solid #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    object-fit: cover;
+    object-position: top center;
+    flex-shrink: 0;
+  }
+  .actor.lead img {
+    width: 44px;
+    height: 44px;
+    border: 2px solid #FFB91D;
+    box-shadow: 0 2px 6px rgba(201,162,39,0.35);
+  }
+  .actor .actor-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+  }
+  .actor .actor-name {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: #212B32;
+  }
+  .actor .actor-role {
+    font-size: 10.5px;
+    color: #4C6272;
+    margin-top: 2px;
+  }
+
+
+  /* Holding Q callouts (pathology / pharmacy / etc) */
+  .holding-q { background: var(--warm-cream, #FFF9EC); border: 1px solid #F0DCA0; border-left: 4px solid #FFB91D; border-radius: 8px; padding: 16px 20px; margin: 14px 0; font-size: 13px; color: #4C6272; line-height: 1.6; }
+  .holding-q .holding-q-h { font-size: 11px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: #C9A227; margin-bottom: 6px; }
+  .holding-q strong { color: #212B32; font-weight: 700; }
+  .holding-q em { color: #4C6272; font-style: italic; }
+
+</style>
+<style>
+  .ecosystem-nav {
+    background: #fff;
+    border-bottom: 1px solid #ebeef1;
+    padding: 12px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 48px;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  }
+  .ecosystem-nav a {
+    font-size: 13px; font-weight: 700; color: #003087;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .ecosystem-nav a:hover { color: #005EB8; }
+  .ecosystem-nav .nav-context {
+    font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
+    color: #7E8B97; text-transform: uppercase;
+  }
+  .ecosystem-nav .nav-product {
+    font-size: 10.5px; font-weight: 800; letter-spacing: 0.8px;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 4px; color: #fff;
+  }
+  .ecosystem-nav .nav-product.dtx { background: #003087; }
+  .ecosystem-nav .nav-product.hometest { background: #003087; }
+  .ecosystem-nav .nav-product.healthstore { background: #00A9CE; }
+  .ecosystem-nav .nav-product.healthsync { background: #00A499; }
+</style>
+</head>
+<body>
+<div class="ecosystem-nav">
+  <a href="../index.html">← DTx Ecosystem</a>
+  <span class="nav-context">HomeTest CONTRACT v4</span>
+  <span class="nav-product hometest">HomeTest</span>
+</div>
+<nav class="topnav">
+<a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+<div class="nav-siblings">
+ <a href="DTx OM - Why.html">Why</a>
+ <a href="DTx OM - What.html">What</a>
+ <a href="DTx OM - Lifecycle.html" class="active">When</a>
+ <a href="DTx OM - HomeTest Operational.html">How</a>
+ <a href="DTx OM - Governance.html">Who</a>
+ <a href="DTx OM - Hearts and Minds.html">Hearts and Minds</a>
+ <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>
+ <a href="DTx OM - Status.html">Status</a>
+</div>
+</nav>
+
+<nav class="topnav topnav-secondary">
+<div class="nav-secondary-label">HomeTest stage</div>
+<div class="nav-siblings">
+ <a href="DTx OM - HomeTest SHAPE v4.html">SHAPE</a>
+ <a href="DTx OM - HomeTest ASSURE v4.html">ASSURE</a>
+ <a href="DTx OM - HomeTest CONTRACT v4.html" class="active">CONTRACT</a>
+ <a href="DTx OM - HomeTest FULFIL v4.html">FULFIL</a>
+ <a href="DTx OM - HomeTest MEASURE v4.html">MEASURE</a>
+</div>
+</nav>
+<div style="background:#f0f3f6;padding:10px 36px;display:flex;gap:8px;align-items:center;border-bottom:1px solid #ebeef1;" class="product-selector">
+  <span style="font-size:10px;font-weight:800;letter-spacing:1.4px;color:#7E8B97;text-transform:uppercase;margin-right:4px;">Product overlay:</span>
+  <a href="DTx OM - HomeTest CONTRACT v4.html" style="font-size:12px;font-weight:700;color:#fff;background:#003087;text-decoration:none;padding:6px 14px;border-radius:6px;">HomeTest</a>
+  <a href="DTx OM - HealthStore CONTRACT.html" style="font-size:12px;font-weight:700;color:#4C6272;text-decoration:none;padding:6px 14px;border-radius:6px;">HealthStore</a>
+  <a href="DTx OM - HealthSync CONTRACT.html" style="font-size:12px;font-weight:700;color:#4C6272;text-decoration:none;padding:6px 14px;border-radius:6px;opacity:0.6;">HealthSync</a>
+</div>
+
+
+
+<div style="background:#F4F8FC;border:1px solid #d6e2ef;border-radius:8px;padding:12px 16px;margin:18px 32px;font-size:11.5px;color:#4C6272;line-height:1.55;">
+ <div style="font-size:10.5px;font-weight:800;letter-spacing:1.8px;color:#003087;text-transform:uppercase;margin-bottom:8px;">TOM components at CONTRACT (HomeTest)</div>
+ <div style="margin-bottom:9px;"><strong style="color:#003087;font-size:11.5px;">Contract Management framework.</strong> <span style="color:#4C6272;font-size:11.5px;line-height:1.55;">Post-execution lifecycle for each framework call-off. Variations, pricing reviews, renewals, per-completed evidence audit, supplier performance monitoring.</span></div><div style="margin-bottom:9px;"><strong style="color:#003087;font-size:11.5px;">Best-practice tariff.</strong> <span style="color:#4C6272;font-size:11.5px;line-height:1.55;">Tariff is in the pathway, not the test. Cost / benefit dislocation across budget lines means best-practice tariffs at pathway level are the unlock — explicit dependency that sits outside the operating model but bears on contracting decisions.</span></div><div style="margin-bottom:9px;"><strong style="color:#003087;font-size:11.5px;">Federated controller.</strong> <span style="color:#4C6272;font-size:11.5px;line-height:1.55;">NHSE, ICB and supplier as controllers in their own right. Coordinated through the data sharing arrangement and DSPT.</span></div>
+ <div style="margin-top:8px;padding-top:8px;border-top:1px solid #d6e2ef;font-size:10.5px;color:#7E8B97;line-height:1.55;">Cross-references: <a href="DTx OM - Anatomical.html" style="color:#003087;font-weight:700;text-decoration:none;">Anatomy Built foundation</a> &middot; <a href="DTx OM - HomeTest Teamwork.html" style="color:#003087;font-weight:700;text-decoration:none;">Teamwork capabilities</a> &middot; <a href="DTx OM - Governance.html#raci-foundation" style="color:#003087;font-weight:700;text-decoration:none;">Foundation RACI</a></div>
+</div>
+
+<div class="header">
+  <div>
+    <div style="width:60px;height:3px;background:#FFB91D;border-radius:2px;margin-bottom:10px;"></div>
+    <span class="stage-tag">Stage 3 of 5</span>
+    <h1>CONTRACT <span style="display:inline-block;background:#003087;color:#fff;padding:3px 10px 4px;border-radius:8px;font-size:11px;font-weight:700;letter-spacing:0.4px;text-transform:none;vertical-align:middle;">HomeTest overlay</span></h1>
+    <div class="subtitle">Commercial framework and access</div>
+  </div>
+  <a href="DTx OM - Lifecycle.html" class="back-btn">&larr; Back to Operating Model</a>
+</div>
+
+<div class="main">
+
+  <div class="actors-strip">
+    <span class="actors-label">Who contracts this stage</span>
+    <div class="actors-list">
+      <div class="actor lead">
+        <a href="DTx OM - Persona David.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/david.png" alt="David"></a>
+        <div class="actor-text">
+          <span class="actor-name">David</span>
+          <span class="actor-role">NHS Commercial · lead</span>
+        </div>
+      </div>
+      <div class="actor">
+        <a href="DTx OM - Persona Sarah.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/sarah.png" alt="Sarah"></a>
+        <div class="actor-text">
+          <span class="actor-name">Sarah</span>
+          <span class="actor-role">Commissioner</span>
+        </div>
+      </div>
+      <div class="actor">
+        <a href="DTx OM - Persona Joe.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/joe.png" alt="Joe"></a>
+        <div class="actor-text">
+          <span class="actor-name">Joe</span>
+          <span class="actor-role">Supplier</span>
+        </div>
+      </div>
+      <div class="actor">
+        <a href="DTx OM - Persona Ngozi.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/ngozi.png" alt="Ngozi"></a>
+        <div class="actor-text">
+          <span class="actor-name">Ngozi</span>
+          <span class="actor-role">IG / DPO</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="stage-intro">
+    <h2>About this stage</h2>
+    <p><strong>Same asymmetry as ASSURE.</strong> Suppliers are held to commercial terms: pricing constraints, service levels, exit provisions. Commissioners get a simplified buying experience: call-off from frameworks, clear pricing, minimal procurement overhead.</p>
+    <p><strong>Interim contracting shape:</strong> The current working shape is PSR plus standard NHS call-off plus an approved supplier list (pending NHSE Legal sign-off). NHSE convenes the system, assures supplier quality and introduces approved suppliers to commissioners; NHSE is not a party to the bilateral call-off. The GPIT three-layer construct (catalogue agreement, framework agreement, call-off agreement) remains a reference if a formal framework is stood up in future, with PA23 dynamic market the leading candidate vehicle.</p>
+    <p><strong>Procurement routing:</strong> HomeTest is operating in the interim commercial shape. The working interim legal vehicle is PSR plus standard NHS call-off plus an approved supplier list, pending written NHSE Legal sign-off. No formal commercial framework is being stood up in this window. The originally targeted April 2027 framework standup has been retired as unachievable in the current planning horizon. The framework conversation reopens at named triggers (see <a href="../position-papers/position-framework-status.html">Position paper: Framework status</a>). If reopened, PA23 dynamic market is the leading candidate vehicle.</p>
+    <p><strong>Options Matrix &middot; historical context:</strong> A four-option matrix was scored earlier in the discovery (O1 PSR or PA23 Framework, O2 PA23 Dynamic Market, O3 Notify-style centralised, O4 Digital Primary Care Framework) against 15 commercial criteria. PA23 Dynamic Market led on procedural fit. April 2027 deliverability was a partial against it. The matrix is superseded by the current position: operate in the interim shape now; reopen the framework conversation at named triggers; PA23 dynamic market remains the leading candidate vehicle if reopened.</p>
+    <p><strong>Scope and lock date.</strong> The Options Matrix is a 12-week HomeTest discovery output, not a portfolio-wide procurement decision. HealthStore and HealthSync sit on different procurement constructs and are not in scope here. Sourcing strategy lock: <strong>mid-June 2026</strong>, draft in flight from end May. Recommendation lands as part of the discovery sign-off.</p>
+    <p style="background:#FFF9EC;border:1px solid #F0DCA0;border-left:4px solid #C9A227;border-radius:0 6px 6px 0;padding:10px 14px;font-size:13px;line-height:1.6;"><strong>Broader driver &middot; tariff conversation at SLT level.</strong> The Options Matrix sits inside a wider conversation about how Digital Therapeutics pathways are funded at scale, currently live at SLT level alongside NHSE strategic finance. The procurement vehicle question (which PA23 instrument) and the tariff question (best-practice pathway tariff design) are separate workstreams but interlocked: a procurement route that assumes long-run test-economics funding will not survive the tariff conclusion. The lock target above is the procurement question; the tariff question runs on its own SLT cadence and is not gated by this matrix.</p>
+    <p style="background:#FFF9EC;border:1px solid #F0DCA0;border-left:4px solid #C9A227;border-radius:0 6px 6px 0;padding:10px 14px;font-size:13px;line-height:1.6;margin-top:10px;"><strong>Tariff planning window and 2027/28 availability.</strong> Planning guidance for the relevant tariff cycle lands October to November 2026, with health-economics modelling having to land in August to September to feed it. The primary-care contractual mechanism is <strong>not available within the 2027/28 window</strong> &mdash; the route is too contentious to use in the time available. The practical opportunity for the 2027/28 cycle sits with <strong>PSA Active Surveillance via a best-practice tariff</strong>, plus <strong>MSK and cardiac rehab via the DTx route</strong>. The configurations that depend on a primary-care funding route fall outside this window and require an alternative funding articulation.</p>
+    <div class="asymmetry-callout">Suppliers are contracted tightly. Commissioners buy easily.</div>
+  <div class="holding-q">
+    <div class="holding-q-h">Open Q for SLT &middot; pathway-level economics</div>
+    <strong>The commissioner case lands at pathway level, not test level.</strong> Cost and benefit sit on different budget lines. Pathology networks do not run phlebotomy; the saving falls with clinical services or the ICB while the new test cost falls with another holder. A commissioner already funding venepuncture cannot fund the switch out of test economics alone &mdash; the test reads as a cost pressure on top of an existing line. The unlock is best-practice tariffs at the pathway level, costed end-to-end against the condition pathway. <em>Tariff design itself sits outside this operating model as a separate workstream; the dependency does not. Owner: SLT with NHSE strategic finance, Health Economist input required.</em>
+  </div>
+
+  <div class="holding-q">
+    <div class="holding-q-h">Open Q for SLT &middot; pathology lab dual position</div>
+    <strong>Where do pathology contracts live?</strong> Inside the HomeTest framework as suppliers, or outside it as clinical infrastructure HomeTest plugs into? Affects procurement vehicle, tariff treatment, exclusivity terms. <em>Aisha's persona page treats pathology as both a supplier and a clinical infrastructure partner; the contract architecture has not yet picked a side. Owner: SLT.</em>
+  </div>
+
+  <div class="holding-q">
+    <div class="holding-q-h">Open Q for SLT &middot; pharmacy-led prescribing</div>
+    <strong>Where does pharmacy-led prescribing fit in the framework?</strong> Different governance regime (Community Pharmacy Contractual Framework), different tariff implications, different IG flows between GP and pharmacy systems. Holding position: sub-area of Aisha's clinical governance pending input. <em>Owner: SLT. Real positioning to be agreed once the GP-init journeys (e.g. Layla's HbA1c) are operationally specified.</em>
+  </div>
+
+  </div>
+
+  <h2 class="section-title">Current Status</h2>
+
+  <!-- SUPPLIER SIDE -->
+  <div class="split-block">
+    <div class="split-block-header supplier">
+      &#9650; Supplier Side <span class="desc">Held to terms</span>
+    </div>
+    <div class="split-block-body">
+
+      <div class="status-section progress-section">
+        <div class="status-heading heading-progress">
+          <span class="status-dot dot-progress"></span>
+          In Progress
+          <span class="status-count">9 items</span>
+        </div>
+        <ul class="status-list progress">
+          <li>Interim legal vehicle is PSR plus standard NHS call-off plus approved supplier list, pending written NHSE Legal sign-off. PA23 dynamic market is the leading candidate vehicle if the framework conversation reopens at the named triggers</li>
+          <li>All-inclusive supplier model is the working default, but it&apos;s not locked. Internal challenge on whether it holds when suppliers only cover a subset of test cases. Framework needs to support both single-supplier end-to-end delivery and commissioner-assembled multi-supplier chains. Direction only at this stage</li>
+          <li>SBS exploration in early stages. One initial meeting held; it was promising but no decision made. SBS Lot 1 is the vehicle for the current ACE Framework call-off in Alpha (SBS10255), but no existing SBS framework covers HomeTest end-to-end. Any SBS route would need a new or extended framework. Whether SBS becomes a partner is still open</li>
+          <li>Interim contracting shape (PSR plus standard NHS call-off plus approved supplier list) carries the work in this window. GPIT three-layer construct (catalogue agreement, framework agreement, call-off agreement) is held as a reference for the framework conversation if it reopens at the named triggers</li>
+          <li>Administrator question (NHSE directly vs NHS Supply Chain vs CCS) parked while no framework is being stood up in this window. NHS Supply Chain is going through major organisational change and infrastructure upgrade, carrying delivery risk if it became host. Question reopens with the framework conversation at the named triggers</li>
+          <li>Sourcing strategy timeline: draft by mid-June 2026, final by end June. Gating document for procurement route and framework administration decisions. Much content reusable from recommendation report</li>
+          <li>Pricing model direction: three-tier structure (mobilisation fee, activity on cost per valid result, volume floor) under a national maximum, with commissioners negotiating below ceiling locally. Flat per-kit pricing rejected through RFI and supplier forums; subscription rejected at strategic level. PSA Active Surveillance is a separate model (per-patient-per-year Monitoring Episode). Component-level pricing understanding needed before setting maximum; next step is to map existing service elements and test whether components can be purchased individually or only bundled. Final activity-unit position is A9 in the recommendation paper.</li>
+          <li>Framework must accommodate both end-to-end single-supplier and disaggregated multi-supplier supply chains. HIV is the end-to-end reference; other conditions may need commissioners to access different parts of the chain from different suppliers</li>
+          <li>15 commercial criteria used to score the Procurement Options Matrix (historical exercise, now superseded by the interim-shape position). Criteria covered pricing model, procurement route, framework administration, supplier switching, commissioner funding, evidence requirements and deliverability. Criteria are re-usable if the framework conversation reopens at the named triggers</li>
+          <li>Procurement Options Matrix (last scored 8 May, four options against 15 criteria) is now superseded by the interim-shape position. No formal framework is being stood up in this window; the matrix becomes the starting point if the framework conversation reopens at the named triggers, with PA23 dynamic market as the leading candidate vehicle</li>
+        </ul>
+      </div>
+
+      <div class="status-section open-section">
+        <div class="status-heading heading-open">
+          <span class="status-dot dot-open"></span>
+          Open Decisions
+          <span class="status-count">4 items</span>
+        </div>
+        <ul class="status-list open">
+          <li>Delivery model assessment: should suppliers deliver directly to patients or through NHS infrastructure? This determines the commercial model architecture</li>
+          <li>If the framework conversation reopens, whether a future framework would be purpose-built or hosted on an existing vehicle. SBS Lot 1 is the live call-off vehicle under ACE for HomeTest HIV Alpha (per signed contracts); whether SBS becomes a host for any future framework is still open</li>
+          <li>Exit terms and offboarding contractual mechanics</li>
+          <li>How any future framework would accommodate additional conditions beyond HIV without requiring a new procurement each time. PA23 dynamic market natively supports continuous admission and is the leading candidate vehicle if the conversation reopens</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- COMMISSIONER SIDE -->
+  <div class="split-block">
+    <div class="split-block-header customer">
+      &#9660; Commissioner Side <span class="desc">Frictionless access</span>
+    </div>
+    <div class="split-block-body">
+
+      <div class="status-section progress-section">
+        <div class="status-heading heading-progress">
+          <span class="status-dot dot-progress"></span>
+          In Progress
+          <span class="status-count">2 items</span>
+        </div>
+        <ul class="status-list progress">
+          <li>Health economist on board. Initial scope: mapping existing funding flows, costing current service components, identifying gaps and blockers. Market research on existing home testing solutions</li>
+          <li>NHS Online confirmed as most likely first customer. Establishes one-to-many payment shape: NHS Online as commissioner, platform in middle, multiple suppliers

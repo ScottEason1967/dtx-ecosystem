@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tariq: Digital Therapeutics Operating Model</title>
+<style>
+ /* Canonical topnav */
+ .topnav{background:#fff;border-bottom:1px solid #ebeef1;padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:nowrap;min-height:54px;box-sizing:border-box;width:100%;max-width:100%;margin:0;position:sticky;top:0;z-index:200;}
+ .topnav .nav-back{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-back:hover{color:#005EB8;}
+ .topnav .nav-siblings{display:flex;gap:4px;flex-wrap:nowrap;overflow-x:auto;align-items:center;}
+ .topnav .nav-siblings a{font-size:12px;font-weight:600;color:#4C6272;text-decoration:none;padding:6px 12px;border-radius:6px;letter-spacing:0.2px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-siblings a:hover{background:#f0f4f8;color:#212B32;}
+ .topnav .nav-siblings a.active{background:#003087;color:#fff;}
+
+ :root {
+ --nhs-dark:#003087; --nhs-blue:#005EB8; --nhs-green:#006747; --nhs-pink:#AE2573; --healthsync:#00A499;
+ --amber:#FFB91D; --amber-deep:#C9A227; --warm-cream:#FFF9EC;
+ --accent:#00A499;
+ --text:#212B32; --text-sec:#4C6272; --text-muted:#7E8B97;
+ --border-lt:#ebeef1; --card:#ffffff; --bg:#f8fafc;
+ --nhs-blue-deep:#003087;
+ }
+ *{box-sizing:border-box;margin:0;padding:0;}
+ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,var(--nhs-blue) 0%,var(--nhs-blue-deep) 100%) !important;background-attachment:fixed !important;color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;}
+ .page{max-width:1100px;margin:0 auto;padding:50px 40px 80px;background:#ffffff;border-radius:18px;box-shadow:0 14px 40px rgba(0,48,135,0.20);margin-top:30px !important;margin-bottom:50px !important;}
+ .amber-rule{width:72px;height:4px;background:var(--amber);border-radius:2px;margin-bottom:18px;}
+ .h-eyebrow{font-size:11px;font-weight:700;letter-spacing:2.2px;color:var(--text-sec);text-transform:uppercase;margin-bottom:18px;}
+ .h-flex{display:grid;grid-template-columns:1.6fr 1fr;gap:48px;align-items:center;margin-bottom:48px;}
+ .h-title{font-size:54px;font-weight:800;color:var(--nhs-dark);letter-spacing:-1.4px;line-height:1.05;margin-bottom:14px;}
+ .h-role{font-size:13px;font-weight:800;letter-spacing:1.6px;color:var(--accent);text-transform:uppercase;margin-bottom:20px;}
+ .h-quote{font-size:18px;color:var(--text);line-height:1.5;font-weight:500;font-style:italic;border-left:4px solid var(--amber);padding-left:16px;margin-bottom:18px;}
+ .h-bio{font-size:15px;color:var(--text-sec);line-height:1.7;}
+ .h-portrait{display:flex;justify-content:center;align-items:center;}
+ .h-portrait img{max-width:260px;width:100%;height:auto;border-radius:14px;}
+ .section-h{font-size:24px;font-weight:800;color:var(--nhs-dark);margin:42px 0 14px;letter-spacing:-0.4px;}
+ .section-body{font-size:15px;color:var(--text-sec);line-height:1.75;max-width:760px;}
+ .section-body strong{color:var(--text);font-weight:700;}
+ .where-list{display:flex;flex-direction:column;gap:8px;margin-top:14px;}
+ .where-list li{font-size:14px;color:var(--text-sec);line-height:1.6;padding-left:16px;position:relative;list-style:none;}
+ .where-list li::before{content:'';position:absolute;left:0;top:9px;width:8px;height:8px;background:var(--healthsync);border-radius:50%;}
+ .three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px;}
+ .three-col .card{background:#fff;border:1px solid var(--border-lt);border-top:4px solid var(--accent);border-radius:12px;padding:18px 20px;}
+ .three-col .card-h{font-size:11px;font-weight:800;letter-spacing:1.4px;color:var(--accent);text-transform:uppercase;margin-bottom:8px;}
+ .three-col .card-body{font-size:13px;color:var(--text-sec);line-height:1.65;}
+ .three-col .card-body strong{color:var(--text);font-weight:700;}
+ @media(max-width:820px){.h-flex{grid-template-columns:1fr;}.h-title{font-size:36px;}.page{padding:40px 22px 60px;}.three-col{grid-template-columns:1fr;}}
+</style>
+<style>
+  .ecosystem-nav {
+    background: #fff;
+    border-bottom: 1px solid #ebeef1;
+    padding: 12px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 48px;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  }
+  .ecosystem-nav a {
+    font-size: 13px; font-weight: 700; color: #003087;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .ecosystem-nav a:hover { color: #005EB8; }
+  .ecosystem-nav .nav-context {
+    font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
+    color: #7E8B97; text-transform: uppercase;
+  }
+  .ecosystem-nav .nav-product {
+    font-size: 10.5px; font-weight: 800; letter-spacing: 0.8px;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 4px; color: #fff;
+  }
+  .ecosystem-nav .nav-product.dtx { background: #003087; }
+  .ecosystem-nav .nav-product.hometest { background: #003087; }
+  .ecosystem-nav .nav-product.healthstore { background: #00A9CE; }
+  .ecosystem-nav .nav-product.healthsync { background: #00A499; }
+</style>
+</head>
+<body>
+<div class="ecosystem-nav">
+  <a href="../index.html">← DTx Ecosystem</a>
+  <span class="nav-context">Persona Tariq</span>
+  <span class="nav-product dtx">DTx</span>
+</div>
+
+<nav class="topnav">
+<a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+<div class="nav-siblings">
+ <a href="DTx OM - Why.html">Why</a>
+ <a href="DTx OM - What.html">What</a>
+ <a href="DTx OM - Lifecycle.html">When</a>
+ <a href="DTx OM - HomeTest Operational.html">How</a>
+ <a href="DTx OM - Governance.html">Who</a>
+ <a href="DTx OM - Hearts and Minds.html">Hearts and Minds</a>
+ <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>
+ <a href="DTx OM - Status.html">Status</a>
+</div>
+</nav>
+
+<div class="page">
+
+  <div class="amber-rule"></div>
+  <div class="h-eyebrow">HealthSync &middot; The consumer-platform side of the relationship</div>
+
+  <div class="h-flex">
+    <div>
+      <h1 class="h-title">Tariq.</h1>
+      <div class="h-role">Consumer-platform integration partner</div>
+      <div class="h-quote">&ldquo;I'm not a supplier in the way you mean it. I'm the bridge. My company makes the wearable; my job is making sure what it captures lands in the NHS App in a form a clinician can actually use.&rdquo;</div>
+      <div class="h-bio">Tariq is in his late thirties. He's spent a decade in health-tech &mdash; started at a wearables company, moved to a consumer-platform health team, now leads UK NHS partnerships. He's seen the cycle of NHS integration projects that started with enthusiasm and collapsed under bespoke procurement requirements that fragmented the market. He's looking for something different this time. He understands NHS politics better than most outsiders do. He has the patience to wait for the right structural setup, no patience for being treated like a vendor who sells boxes.</div>
+    </div>
+    <div class="h-portrait">
+      <img src="img/tariq.png" alt="Tariq" onerror="this.style.display='none';">
+    </div>
+  </div>
+
+  <h2 class="section-h">What drives him</h2>
+  <p class="section-body"><strong>His father, Faisal.</strong> Late sixties, born in Pakistan, came to the UK in the seventies, diagnosed with Type 2 diabetes in his fifties. For fifteen years his GP managed him on the same paper-and-blood-test pattern the NHS has used since before Tariq was born. Faisal's HbA1c crept up for years before anyone noticed because the data sat in disconnected systems. By the time the conversation about insulin happened, his retinopathy was already advanced. The wearable Faisal wears now still talks to nothing on the NHS side. The CGM trial Tariq pulled strings to get his father onto wasn't available on the NHS in his postcode. Tariq has watched his dad navigate fifteen years of fragmented care while working in the very industry that could have shortened the gap. That's not abstract for him.</p>
+  <p class="section-body" style="margin-top:14px;"><strong>Why he's passionate but careful.</strong> He's seen the NHS pilot pattern multiple times in his career &mdash; twice from inside, three or four times from his peer network. The shape is always the same. Pitch lands. Pilot wins. Build runs. Deployment happens. Evidence gathers. Then the pilot dies. Sometimes because the local IG team couldn't sign off in time. Sometimes because the procurement loop kept restarting. Sometimes because the senior sponsor changed roles or the trust IT priority shifted that quarter. Good ideas with good evidence killed by the system's inability to actually adopt them at the scale they were proven at. He calls it &ldquo;pilot purgatory&rdquo; privately. He's stopped getting excited about the photo opportunity at launch because he knows the photo opportunity is usually where the work stops.</p>
+  <p class="section-body" style="margin-top:14px;"><strong>That's why this framework matters to him.</strong> Not because it's another good idea &mdash; he's seen good ideas die. Because if the structural setup is different (platform-partner rather than vendor, federated controller rather than joint, standards-based rather than bespoke), the failure mode that killed every previous attempt might not happen this time. His patience is real but conditional. He's giving NHSE the benefit of the doubt because the framing genuinely is different. If the framework holds against the next reorg or the next funding cycle, he stays. If it falls back to &ldquo;we need bespoke for this trust&rdquo;, his company moves on and the NHS misses another window.</p>
+
+  <h2 class="section-h">What he cares about</h2>
+  <p class="section-body">Five things, in roughly this order of weight:</p>
+  <ul class="where-list">
+    <li><strong>Long-term partnership, not a one-off integration project.</strong> NHS integrations he's seen before have a habit of getting redesigned every two years. The framework has to last longer than the next reorganisation.</li>
+    <li><strong>Standards-based integration.</strong> FHIR routing, OpenAPI, predictable interfaces. He wants to integrate once at the standard and serve all his users, not just NHS ones.</li>
+    <li><strong>Data governance that his users will trust.</strong> His company lives or dies on user trust in how their health data is handled. He needs the NHS-side governance to be airtight.</li>
+    <li><strong>Being recognised as a platform partner, not a supplier.</strong> Different commercial mechanic. Different governance posture. He doesn't price per-unit; he doesn't sit inside a procurement framework as a contracted vendor. He's a partner with a federated controller arrangement.</li>
+    <li><strong>Real clinical outcomes from the integration.</strong> Without proof points, his internal case for sustained investment weakens. Errol's BP story matters to him more than the slide decks.</li>
+  </ul>
+
+  <h2 class="section-h">What scares him</h2>
+  <p class="section-body">The patterns that have broken NHS integrations before. He's watched them happen and he's keeping a quiet eye out for the same signals here:</p>
+  <ul class="where-list">
+    <li><strong>NHS treating him as a commercial supplier.</strong> Breaks his commercial model and his governance posture entirely. The HealthSync framing has to hold.</li>
+    <li><strong>Bespoke NHS integration requirements that fragment the platform.</strong> Every NHS organisation wanting its own variant pushes integration cost up linearly. He needs one integration to serve all.</li>
+    <li><strong>Policy changes that disrupt the integration mid-flight.</strong> Especially data-side policy. A late change to lawful-basis position could halt the data flow for months.</li>
+    <li><strong>Lawful-basis uncertainty around consumer-platform-to-NHS data flow.</strong> If his legal team can't write the lawful-basis statement cleanly, the integration doesn't ship.</li>
+    <li><strong>The platform getting used as a pipe rather than as a partner.</strong> Data extracted but no relationship around it. He's not interested in being a passive data source.</li>
+  </ul>
+
+  <h2 class="section-h">What the operating model gives him</h2>
+  <div class="three-col">
+    <div class="card">
+      <div class="card-h">Platform-partner role</div>
+      <div class="card-body">HealthSync is explicitly built around platform integration, not around buying boxes. Tariq sits as <strong>integration partner</strong>, not commercial supplier. The Operational page reserves Lane 2 for the integration-partner role distinctly from the HomeTest supplier role (Joe) and the HealthStore supplier role (Marcus).</div>
+    </div>
+    <div class="card">
+      <div class="card-h">Federated controller clarity</div>
+      <div class="card-body">The Federated controller for consumer-platform data Foundation construct clarifies that his platform-operator role and NHS's controller-for-NHS-App-view role sit cleanly side by side. No joint-controller ambiguity. His IG team can write the position statement.</div>
+    </div>
+    <div class="card">
+      <div class="card-h">Standards-based interfaces</div>
+      <div class="card-body">FHIR routing, NHS Login, PHR aggregation layer, Apple HealthKit / Google Health Connect interfaces all surfaced as named Foundation chips on Anatomy. He integrates once at the standard. Reusable across configurations.</div>
+    </div>
+    <div class="card">
+      <div class="card-h">Lawful basis per data type</div>
+      <div class="card-body">Consent vs public task per use of the data downstream. Surfaced explicitly in the HealthSync TOM. Means his legal team has a position to write against, not an ambiguity to mitigate.</div>
+    </div>
+    <div class="card">
+      <div class="card-h">Real-world proof anchor</div>
+      <div class="card-body">Errol's BP story is the empirical demonstration that consumer-device data flows into NHS systems and is operationally usable. Builds Tariq's internal case for sustained investment from his company.</div>
+    </div>
+    <div class="card">
+      <div class="card-h">Predictable governance cadence</div>
+      <div class="card-body">Standing forum touchpoints rather than ad-hoc reviews. Tariq can plan around the cadence; his company's roadmap can sync with NHS milestones.</div>
+    </div>
+  </div>
+
+  <h2 class="section-h">Where Tariq appears in the model</h2>
+  <ul class="where-list">
+    <li><strong>HealthSync Operational, Lane 2</strong> &mdash; Integration-partner onboarding. The supplier-side role on the HealthSync swimlanes.</li>
+    <li><strong>Anatomy, Built foundation (HealthSync-specific chips)</strong> &mdash; PHR aggregation layer, Apple HealthKit interface, Google Health Connect interface, Consumer-platform interoperability discipline. These are the interfaces Tariq's company integrates against.</li>
+    <li><strong>Ecosystem</strong> &mdash; consumer-platform operators surface as a category in the HealthSync ecosystem column.</li>
+    <li><strong>Governance &mdash; HealthSync RACI</strong> &mdash; integration-partner role named alongside the universal accountabilities.</li>
+    <li><strong>Errol's Journey</strong> &mdash; cross-portfolio patient whose smartwatch data flow runs through Tariq's company's platform into the NHS App. The story Tariq points his internal stakeholders at.</li>
+  </ul>
+
+</div>
+
+</body>
+</html>

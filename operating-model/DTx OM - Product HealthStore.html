@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HealthStore: Digital Therapeutics Operating Model</title>
+<style>
+ /* Canonical topnav */
+ .topnav{background:#fff;border-bottom:1px solid #ebeef1;padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:nowrap;min-height:54px;box-sizing:border-box;width:100%;max-width:100%;margin:0;position:sticky;top:0;z-index:200;}
+ .topnav.topnav-secondary{background:#F4F8FC;border-bottom:1px solid #d6e2ef;padding:9px 36px;min-height:42px;}
+ .topnav .nav-back{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-back:hover{color:#005EB8;}
+ .topnav .nav-siblings{display:flex;gap:4px;flex-wrap:nowrap;overflow-x:auto;align-items:center;}
+ .topnav .nav-siblings a{font-size:12px;font-weight:600;color:#4C6272;text-decoration:none;padding:6px 12px;border-radius:6px;letter-spacing:0.2px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-siblings a:hover{background:#f0f4f8;color:#212B32;}
+ .topnav .nav-siblings a.active{background:#003087;color:#fff;}
+ .topnav.topnav-secondary .nav-siblings a{font-size:11.5px;padding:5px 10px;}
+ .topnav.topnav-secondary .nav-siblings a.active{background:#005EB8;color:#fff;}
+ .topnav .nav-secondary-label{font-size:10px;font-weight:800;letter-spacing:1.5px;color:#7E8B97;text-transform:uppercase;flex-shrink:0;}
+
+  :root {
+    --nhs-dark:#003087; --nhs-blue:#005EB8; --nhs-green:#006747; --nhs-pink:#AE2573;
+    --nhs-cyan:#00A9CE;
+    --amber:#FFB91D; --amber-deep:#C9A227; --warm-cream:#FFF9EC;
+    --accent:var(--nhs-blue);
+    --text:#212B32; --text-sec:#4C6272; --text-muted:#7E8B97;
+    --border:#d9dee3; --border-lt:#ebeef1;
+    --card:#ffffff; --bg:#f8fafc;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;}
+  
+  
+  
+  
+  
+  
+  
+  .page{max-width:1100px;margin:0 auto;padding:50px 40px 80px;}
+  .amber-rule{width:72px;height:4px;background:var(--amber);border-radius:2px;margin-bottom:18px;}
+  .h-eyebrow{display:inline-block;background:var(--accent);color:#fff;font-size:10.5px;font-weight:800;letter-spacing:1.8px;padding:7px 16px;border-radius:4px;text-transform:uppercase;margin-bottom:18px;}
+  .h-flex{display:grid;grid-template-columns:2fr 1fr;gap:48px;align-items:start;margin-bottom:40px;}
+  .h-title{font-size:64px;font-weight:900;color:var(--nhs-dark);letter-spacing:-2px;line-height:0.95;margin-bottom:14px;}
+  .h-sub{font-size:18px;color:var(--text-sec);line-height:1.65;max-width:600px;}
+  .h-sub strong{color:var(--text);font-weight:700;}
+  .h-status-card{background:#fff;border:1px solid var(--border-lt);border-radius:12px;padding:22px 24px;box-shadow:0 2px 6px rgba(0,32,64,0.06);}
+  .h-status-card-eyebrow{font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:var(--amber-deep);text-transform:uppercase;margin-bottom:8px;}
+  .h-status-card-title{font-size:18px;font-weight:800;color:var(--nhs-dark);margin-bottom:12px;letter-spacing:-0.3px;}
+  .h-status-card-row{font-size:12.5px;color:var(--text-sec);line-height:1.5;margin-bottom:8px;}
+  .h-status-card-row strong{color:var(--text);font-weight:700;}
+  .section-h{font-size:11.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--text-muted);margin:48px 0 14px;display:flex;align-items:center;gap:10px;}
+  .section-h .num{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;font-size:12px;font-weight:800;}
+  .what-card{background:linear-gradient(135deg,#fafbfc,#fff);border:1px solid var(--border);border-radius:12px;padding:24px 28px;margin-bottom:14px;}
+  .what-card h3{font-size:17px;font-weight:800;color:var(--nhs-dark);margin-bottom:8px;letter-spacing:-0.2px;}
+  .what-card p{font-size:13px;color:var(--text-sec);line-height:1.7;margin-bottom:10px;}
+  .what-card p:last-child{margin-bottom:0;}
+  .what-card strong{color:var(--text);font-weight:700;}
+  .anat-stack{display:flex;flex-direction:column;gap:8px;margin:14px 0;}
+  .anat-row{border-radius:10px;padding:16px 20px;}
+  .anat-row.l1{background:linear-gradient(135deg,#001F5C,#003087);color:#fff;}
+  .anat-row.l2{background:linear-gradient(135deg,#003F8B,#005EB8);color:#fff;}
+  .anat-row.l3{background:linear-gradient(135deg,#D5E8F0,#E8F1F6);color:var(--text);border:1px solid rgba(0,94,184,0.20);}
+  .anat-row.l4{background:linear-gradient(135deg,#F5F8FC,#FAFBFD);color:var(--text);border:1px solid rgba(0,94,184,0.16);}
+  .anat-label{font-size:10.5px;font-weight:800;letter-spacing:1.6px;opacity:0.78;margin-bottom:4px;}
+  .anat-name{font-size:16px;font-weight:800;margin-bottom:6px;letter-spacing:0.3px;}
+  .anat-body{font-size:12px;line-height:1.65;}
+  .anat-l1 .anat-body, .anat-l2 .anat-body{opacity:0.95;}
+  .lifecycle-stages{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:14px 0;}
+  .ls-stage{background:#fff;border:1px solid var(--border-lt);border-radius:10px;padding:14px 14px;border-top:4px solid var(--accent);}
+  .ls-stage-name{font-size:11px;font-weight:800;letter-spacing:1.2px;color:var(--nhs-dark);text-transform:uppercase;margin-bottom:6px;}
+  .ls-stage-body{font-size:11px;color:var(--text-sec);line-height:1.55;}
+  @media(max-width:820px){.lifecycle-stages{grid-template-columns:1fr 1fr;} .h-flex{grid-template-columns:1fr;} .h-title{font-size:42px;}}
+  .open-q{background:#FFF8E1;border-left:4px solid #F9A825;border-radius:0 10px 10px 0;padding:14px 20px;margin-bottom:10px;}
+  .open-q-tag{font-size:10px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:#8D6E1A;margin-bottom:4px;}
+  .open-q-body{font-size:12.5px;color:var(--text-sec);line-height:1.6;}
+  .open-q-body strong{color:var(--text);font-weight:700;}
+  .quick-links{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0;}
+  .ql{display:block;background:#fff;border:1px solid var(--border-lt);border-radius:10px;padding:14px 16px;text-decoration:none;color:inherit;transition:transform 0.15s, box-shadow 0.18s;}
+  .ql:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,32,64,0.08);}
+  .ql-eyebrow{font-size:9.5px;font-weight:800;letter-spacing:1.2px;color:var(--text-muted);text-transform:uppercase;margin-bottom:6px;}
+  .ql-name{font-size:13px;font-weight:800;color:var(--nhs-dark);margin-bottom:4px;letter-spacing:-0.1px;}
+  .ql-line{font-size:11px;color:var(--text-sec);line-height:1.5;}
+  @media(max-width:820px){.quick-links{grid-template-columns:1fr 1fr;}}
+  body{background:linear-gradient(180deg,var(--nhs-blue) 0%,var(--nhs-dark) 100%)!important;background-attachment:fixed!important;}
+  
+  .page{background:#ffffff;border-radius:18px;box-shadow:0 14px 40px rgba(0,48,135,0.20);margin-top:30px!important;margin-bottom:50px!important;}
+</style>
+<style>
+  .ecosystem-nav {
+    background: #fff;
+    border-bottom: 1px solid #ebeef1;
+    padding: 12px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 48px;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  }
+  .ecosystem-nav a {
+    font-size: 13px; font-weight: 700; color: #003087;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .ecosystem-nav a:hover { color: #005EB8; }
+  .ecosystem-nav .nav-context {
+    font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
+    color: #7E8B97; text-transform: uppercase;
+  }
+  .ecosystem-nav .nav-product {
+    font-size: 10.5px; font-weight: 800; letter-spacing: 0.8px;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 4px; color: #fff;
+  }
+  .ecosystem-nav .nav-product.dtx { background: #003087; }
+  .ecosystem-nav .nav-product.hometest { background: #003087; }
+  .ecosystem-nav .nav-product.healthstore { background: #00A9CE; }
+  .ecosystem-nav .nav-product.healthsync { background: #00A499; }
+</style>
+</head>
+<body>
+<div class="ecosystem-nav">
+  <a href="../index.html">← DTx Ecosystem</a>
+  <span class="nav-context">Product HealthStore</span>
+  <span class="nav-product healthstore">HealthStore</span>
+</div>
+<nav class="topnav">
+<a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+<div class="nav-siblings">
+ <a href="DTx OM - Why.html">Why</a>
+ <a href="DTx OM - What.html" class="active">What</a>
+ <a href="DTx OM - Lifecycle.html">When</a>
+ <a href="DTx OM - HomeTest Operational.html">How</a>
+ <a href="DTx OM - Governance.html">Who</a>
+ <a href="DTx OM - Hearts and Minds.html">Hearts and Minds</a>
+ <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>
+ <a href="DTx OM - Status.html">Status</a>
+</div>
+</nav>
+
+<div class="page">
+
+  <div class="amber-rule"></div>
+  <div class="h-eyebrow">Product &middot; HealthStore</div>
+
+  <div class="h-flex">
+    <div>
+      <h1 class="h-title"><span style="display:inline-block;background:#00A9CE;color:#fff;padding:6px 22px 10px;border-radius:14px;line-height:1;letter-spacing:-1px;">HealthStore</span>.</h1>
+      <p class="h-sub">A digital therapeutics service. A clinician identifies a patient who fits the pathway, prescribes the digital intervention, and the patient engages with it through the NHS App or a partnered app. Engagement and clinical outcomes are captured per episode and fed back into the pathway. <strong>COPD Alpha</strong> is the lead service in design today, with three suppliers progressed through the lead Alpha procurement. The architecture is built to host further therapeutic areas as they come into scope.</p>
+    </div>
+    <div class="h-status-card">
+      <div class="h-status-card-eyebrow">HealthStore today</div>
+      <div class="h-status-card-title">In design &middot; Alpha</div>
+      <div class="h-status-card-row"><strong>Lead service:</strong> COPD Alpha</div>
+      <div class="h-status-card-row"><strong>Funding envelope:</strong> &pound;11m approved</div>
+      <div class="h-status-card-row"><strong>Supplier route:</strong> Three suppliers progressed through the lead Alpha procurement</div>
+      <div class="h-status-card-row"><strong>Commercial route:</strong> Tier C, NICE EVA conditionally-recommended, marketplace payment</div>
+      <div class="h-status-card-row"><strong>Contract instrument:</strong> NHS Standard Contract with SaaS and data schedules</div>
+      <div class="h-status-card-row"><strong>Roadmap horizon:</strong> 18 months to Commissioner Store v1</div>
+    </div>
+  </div>
+
+  <div class="section-h"><span class="num">1</span>HealthStore in the four-level anatomy</div>
+  <div class="anat-stack">
+    <div class="anat-row l1">
+      <div class="anat-label">Level 1 &middot; Foundation</div>
+      <div class="anat-name">Digital Therapeutics platform layer</div>
+      <div class="anat-body">HealthStore runs on the Digital Therapeutics platform layer: NHS Login for patient identity, NHS Notify for messaging, the NHS App for patient surface, FHIR routing for clinical data, the contracting instrument that admits suppliers (HealthStore uses ACE plus the NHS Standard Contract today; the HomeTest interim shape and any future framework conversation are tracked separately), the IG framework structure, the hazard log structure, the assurance gateway and the SHAPE / ASSURE / CONTRACT / FULFIL / MEASURE capability loop. The platform layer is the same across every Digital Therapeutics product; HealthStore consumes it without owning or building it.</div>
+    </div>
+    <div class="anat-row l2">
+      <div class="anat-label">Level 2 &middot; HealthStore overlay</div>
+      <div class="anat-name">App provisioning, prescribing, in-app engagement, outcome capture</div>
+      <div class="anat-body">The HealthStore overlay covers the eight dimensions where this product expresses itself distinctively: clinician-prescribed initiation, ICB-primary commissioning, NICE EVA conditionally-recommended software supply, marketplace payments mechanism (designed in Alpha), pathway-level tariff treatment, NICE EVA accreditation route, COPD-specific clinical safety content, NHS Standard Contract with SaaS and data schedules. This is the layer where HealthStore looks and behaves like HealthStore.</div>
+    </div>
+    <div class="anat-row l3">
+      <div class="anat-label">Level 3 &middot; Pattern picks</div>
+      <div class="anat-name">The reusable options HealthStore selects</div>
+      <div class="anat-body">NICE EVA conditionally-recommended accreditation route. Tier C funding category. Marketplace payment commercial model with marketplace payments mechanism (start, meaningful engagement, completion, outcome capture). NHS Standard Contract with SaaS schedule and data schedule. Supplier model for clinical safety (the supplier and NHS England jointly hold manufacturer responsibility). Each pick is a documented option in the platform catalogue; HealthStore combines them into the configuration that suits the service.</div>
+    </div>
+    <div class="anat-row l4">
+      <div class="anat-label">Level 4 &middot; Configurations</div>
+      <div class="anat-name">Live and planned deployments</div>
+      <div class="anat-body"><strong>COPD Alpha</strong> is the lead service in design today. Three suppliers progressed through the lead Alpha procurement. Each future therapeutic area runs as a new configuration inside the HealthStore overlay; the architecture lets a new area come online without rebuilding the foundation or the overlay structure.</div>
+    </div>
+  </div>
+
+  <div class="section-h"><span class="num">2</span>HealthStore through the lifecycle</div>
+  <div class="lifecycle-stages">
+    <div class="ls-stage">
+      <div class="ls-stage-name">Shape</div>
+      <div class="ls-stage-body">Discovery and design of the therapeutic area with commissioners. COPD as the lead. Pathway fit, equity and population sizing.</div>
+    </div>
+    <div class="ls-stage">
+      <div class="ls-stage-name">Assure</div>
+      <div class="ls-stage-body">DCB0129 and DCB0160 clinical safety. NICE EVA conditionally-recommended accreditation. hazard log (supplier-manufactured). clinical safety case.</div>
+    </div>
+    <div class="ls-stage">
+      <div class="ls-stage-name">Contract</div>
+      <div class="ls-stage-body">NHS Standard Contract with SaaS and data schedules. Marketplace payments mechanism. Three suppliers progressed through the lead Alpha procurement.</div>
+    </div>
+    <div class="ls-stage">
+      <div class="ls-stage-name">Fulfil</div>
+      <div class="ls-stage-body">Clinician prescribes. App provisioned to the patient. In-app engagement measured. Outcome captured per episode.</div>
+    </div>
+    <div class="ls-stage">
+      <div class="ls-stage-name">Measure</div>
+      <div class="ls-stage-body">Engagement and completion measured per episode. Outcomes fed into pathway-level evaluation. Activity reported through the platform.</div>
+    </div>
+  </div>
+
+  <div class="section-h"><span class="num">3</span>The shape of a HealthStore episode</div>
+  <div class="what-card">
+    <h3>How an episode runs</h3>
+    <p>A clinician identifies a patient who fits the pathway and prescribes the digital therapeutic. The patient is offered access through the NHS App or a partnered app. Engagement is tracked through four marketplace milestones: <strong>start</strong> (the patient activates the app), <strong>meaningful engagement</strong> (defined per service), <strong>completion</strong> (the episode finishes), <strong>outcome capture</strong> (the clinical outcome is recorded). Supplier payment triggers against milestones rather than per activation.</p>
+    <p>The supplier carries clinical supplier responsibility alongside NHS England. The platform handles identity (NHS Login), notifications (NHS Notify), data routing (FHIR) and the contracting instrument (HealthStore: ACE plus NHS Standard Contract). The commissioner buys the service for their population under the NHS Standard Contract. Clinical safety governance runs through the DCB framework.</p>
+  </div>
+
+  <div class="section-h"><span class="num">4</span>Where to read more</div>
+  <div class="quick-links">
+    <a class="ql" href="DTx OM - Lifecycle.html">
+      <div class="ql-eyebrow">When</div>
+      <div class="ql-name">Lifecycle</div>
+      <div class="ql-line">SHAPE / ASSURE / CONTRACT / FULFIL / MEASURE across the portfolio</div>
+    </a>
+    <a class="ql" href="DTx OM - Anatomical.html">
+      <div class="ql-eyebrow">What</div>
+      <div class="ql-name">Anatomy</div>
+      <div class="ql-line">The four-level architecture. HealthStore as one product column.</div>
+    </a>
+    <a class="ql" href="DTx OM - HomeTest Operational.html">
+      <div class="ql-eyebrow">How</div>
+      <div class="ql-name">Operational hub</div>
+      <div class="ql-line">Operational view across the portfolio. HealthStore overlay.</div>
+    </a>
+    <a class="ql" href="DTx OM - HomeTest Teamwork.html">
+      <div class="ql-eyebrow">Teamwork</div>
+      <div class="ql-name">Teamwork hub</div>
+      <div class="ql-line">BAU capabilities at portfolio level. HealthStore capability set.</div>
+    </a>
+  </div>
+
+  <div class="section-h"><span class="num">5</span>Open questions and dependencies</div>
+  <div class="open-q">
+    <div class="open-q-tag">Validator</div>
+    <div class="open-q-body">A named HealthStore-side validator is needed for operational specifics, persona-level granularity and live commercial state. Likely the deputy SRO or the supplier-side commercial lead. <strong>To be confirmed.</strong></div>
+  </div>
+  <div class="open-q">
+    <div class="open-q-tag">Procurement vehicle final form</div>
+    <div class="open-q-body">Tier C and NICE EVA conditionally-recommended is the working position. The route to call-off, the standard agreement form and the milestone evidence requirements <strong>are moving forward through the contract architecture work</strong>.</div>
+  </div>
+  <div class="open-q">
+    <div class="open-q-tag">Persona depth</div>
+    <div class="open-q-body">HealthStore patient archetype (COPD), prescribing clinician archetype and supplier archetype are in the cast at placeholder identity. Named characters and full backstory <strong>follow when primaries support them</strong>.</div>
+  </div>
+  <div class="open-q">
+    <div class="open-q-tag">Steady-state operations</div>
+    <div class="open-q-body">Operational swimlanes by actor and stage build out as Alpha matures. Today the operational shape is described at episode level; the per-actor and per-stage detail comes once the design firms up.</div>
+  </div>
+
+</div>
+
+</body>
+</html>

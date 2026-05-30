@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HomeTest FULFIL: Digital Therapeutics Operating Model</title>
+<style>
+ /* Canonical topnav */
+ .topnav{background:#fff;border-bottom:1px solid #ebeef1;padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:nowrap;min-height:54px;box-sizing:border-box;width:100%;max-width:100%;margin:0;position:sticky;top:0;z-index:200;}
+ .topnav.topnav-secondary{background:#F4F8FC;border-bottom:1px solid #d6e2ef;padding:9px 36px;min-height:42px;}
+ .topnav .nav-back{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-back:hover{color:#005EB8;}
+ .topnav .nav-siblings{display:flex;gap:4px;flex-wrap:nowrap;overflow-x:auto;align-items:center;}
+ .topnav .nav-siblings a{font-size:12px;font-weight:600;color:#4C6272;text-decoration:none;padding:6px 12px;border-radius:6px;letter-spacing:0.2px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-siblings a:hover{background:#f0f4f8;color:#212B32;}
+ .topnav .nav-siblings a.active{background:#003087;color:#fff;}
+ .topnav.topnav-secondary .nav-siblings a{font-size:11.5px;padding:5px 10px;}
+ .topnav.topnav-secondary .nav-siblings a.active{background:#005EB8;color:#fff;}
+ .topnav .nav-secondary-label{font-size:10px;font-weight:800;letter-spacing:1.5px;color:#7E8B97;text-transform:uppercase;flex-shrink:0;}
+
+  :root {
+    --nhs-blue: #005EB8;
+    --nhs-dark: #003087;
+    --stage-color: #005EB8;
+    --feedback-color: #AE2573;
+    --status-decided: #00703C;
+    --status-progress: #ED8B00;
+    --status-open: #DA291C;
+    --near-black: #231F20;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;
+    background: #f8f9fa;
+    color: var(--near-black);
+    line-height: 1.55;
+  }
+
+  .header {
+    background: linear-gradient(135deg, var(--nhs-dark), var(--stage-color));
+    color: white;
+    padding: 22px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .header .stage-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.18);
+    color: white;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .header h1 { font-size: 28px; font-weight: 700; letter-spacing: 0.5px; }
+  .header .subtitle { font-size: 14px; opacity: 0.9; margin-top: 4px; }
+
+  .back-btn {
+    background: rgba(255,255,255,0.18);
+    color: white;
+    text-decoration: none;
+    padding: 9px 16px;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.15s;
+    border: 1px solid rgba(255,255,255,0.25);
+  }
+  .back-btn:hover { background: rgba(255,255,255,0.3); }
+
+  .main { max-width: 920px; margin: 0 auto; padding: 28px 32px 40px; }
+
+  .stage-intro {
+    background: white;
+    border: 1px solid #e5e5e5;
+    border-left: 4px solid var(--stage-color);
+    border-radius: 6px;
+    padding: 18px 22px;
+    margin-bottom: 26px;
+  }
+  .stage-intro h2 {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #888;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .stage-intro p {
+    font-size: 13.5px;
+    color: #444;
+    margin-bottom: 8px;
+  }
+  .stage-intro p:last-child { margin-bottom: 0; }
+
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--near-black);
+    margin: 8px 0 14px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid #eee;
+  }
+
+  .status-section {
+    background: white;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    padding: 16px 20px 14px;
+    margin-bottom: 16px;
+  }
+  .status-section.open-section {
+    background: #fef4f3;
+    border: 1px solid #f5c6c2;
+    border-left: 5px solid var(--status-open);
+  }
+  .status-section.decided-section {
+    border-left: 5px solid var(--status-decided);
+  }
+  .status-section.progress-section {
+    border-left: 5px solid var(--status-progress);
+  }
+
+  .status-heading {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    margin-bottom: 10px;
+  }
+  .status-dot {
+    width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0;
+  }
+  .dot-decided { background: var(--status-decided); }
+  .dot-progress { background: var(--status-progress); }
+  .dot-open { background: var(--status-open); }
+  .heading-decided { color: var(--status-decided); }
+  .heading-progress { color: var(--status-progress); }
+  .heading-open { color: var(--status-open); }
+  .status-count {
+    margin-left: auto;
+    background: rgba(0,0,0,0.05);
+    padding: 2px 9px;
+    border-radius: 10px;
+    font-size: 11px;
+    color: #666;
+  }
+  .open-section .status-count {
+    background: rgba(218,41,28,0.12);
+    color: var(--status-open);
+  }
+
+  .status-list { list-style: none; padding: 0; margin: 0; }
+  .status-list li {
+    padding: 6px 0 6px 20px;
+    position: relative;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #333;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .status-list li:last-child { border-bottom: none; }
+  .status-list li::before {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 13px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+  }
+  .status-list.decided li::before { background: var(--status-decided); }
+  .status-list.progress li::before { background: var(--status-progress); }
+  .status-list.open li::before { background: var(--status-open); }
+  .open-section .status-list li {
+    font-weight: 500;
+    color: #2a2a2a;
+  }
+
+  .prev-next {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 12px;
+    margin-top: 32px;
+    padding-top: 22px;
+    border-top: 2px solid #eee;
+    align-items: stretch;
+  }
+  .nav-link {
+    text-decoration: none;
+    color: var(--near-black);
+    background: white;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+    padding: 12px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    transition: border-color 0.15s, transform 0.15s;
+  }
+  .nav-link:hover {
+    border-color: var(--stage-color);
+    transform: translateY(-2px);
+  }
+  .nav-link.next { text-align: right; align-items: flex-end; }
+  .nav-link .nav-label {
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    color: #999;
+    font-weight: 600;
+  }
+  .nav-link .nav-stage {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--nhs-dark);
+  }
+  .home-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--nhs-blue);
+    color: white;
+    padding: 12px 22px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: background 0.15s;
+    align-self: center;
+  }
+  .home-btn:hover { background: var(--nhs-dark); }
+
+  .version-stamp {
+    text-align: right;
+    font-size: 11px;
+    color: #aaa;
+    margin-top: 18px;
+  }
+
+  @media (max-width: 700px) {
+    .prev-next { grid-template-columns: 1fr; }
+    .nav-link.next { text-align: left; align-items: flex-start; }
+    .header { padding: 18px 22px; }
+    .main { padding: 22px 22px 36px; }
+  }
+
+  /* ---- Site nav (added for four-frame integration) ---- */
+  
+  
+  
+  
+  
+  
+  
+  
+
+  /* NHS-blue rebrand override */
+  body { background: linear-gradient(180deg, var(--nhs-blue) 0%, var(--nhs-dark) 100%) !important; background-attachment: fixed !important; }
+  
+  .main { background:#ffffff; border-radius:18px; box-shadow:0 14px 40px rgba(0,48,135,0.20); margin-top:24px !important; margin-bottom:50px !important; }
+  @media (max-width:720px){ .main { border-radius:12px; margin-top:14px !important; } }
+
+
+  /* Actors strip */
+  .actors-strip {
+    background: white;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .actors-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: #888;
+    flex-shrink: 0;
+  }
+  .actors-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .actor {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 12px 4px 4px;
+    background: #f6f8fa;
+    border-radius: 24px;
+  }
+  .actor img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1.5px solid #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    object-fit: cover;
+    object-position: top center;
+    flex-shrink: 0;
+  }
+  .actor.lead img {
+    width: 44px;
+    height: 44px;
+    border: 2px solid #FFB91D;
+    box-shadow: 0 2px 6px rgba(201,162,39,0.35);
+  }
+  .actor .actor-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+  }
+  .actor .actor-name {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: #212B32;
+  }
+  .actor .actor-role {
+    font-size: 10.5px;
+    color: #4C6272;
+    margin-top: 2px;
+  }
+
+</style>
+<style>
+  .ecosystem-nav {
+    background: #fff;
+    border-bottom: 1px solid #ebeef1;
+    padding: 12px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 48px;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  }
+  .ecosystem-nav a {
+    font-size: 13px; font-weight: 700; color: #003087;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .ecosystem-nav a:hover { color: #005EB8; }
+  .ecosystem-nav .nav-context {
+    font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
+    color: #7E8B97; text-transform: uppercase;
+  }
+  .ecosystem-nav .nav-product {
+    font-size: 10.5px; font-weight: 800; letter-spacing: 0.8px;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 4px; color: #fff;
+  }
+  .ecosystem-nav .nav-product.dtx { background: #003087; }
+  .ecosystem-nav .nav-product.hometest { background: #003087; }
+  .ecosystem-nav .nav-product.healthstore { background: #00A9CE; }
+  .ecosystem-nav .nav-product.healthsync { background: #00A499; }
+</style>
+</head>
+<body>
+<div class="ecosystem-nav">
+  <a href="../index.html">← DTx Ecosystem</a>
+  <span class="nav-context">HomeTest FULFIL v4</span>
+  <span class="nav-product hometest">HomeTest</span>
+</div>
+<nav class="topnav">
+<a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+<div class="nav-siblings">
+ <a href="DTx OM - Why.html">Why</a>
+ <a href="DTx OM - What.html">What</a>
+ <a href="DTx OM - Lifecycle.html" class="active">When</a>
+ <a href="DTx OM - HomeTest Operational.html">How</a>
+ <a href="DTx OM - Governance.html">Who</a>
+ <a href="DTx OM - Hearts and Minds.html">Hearts and Minds</a>
+ <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>
+ <a href="DTx OM - Status.html">Status</a>
+</div>
+</nav>
+
+<nav class="topnav topnav-secondary">
+<div class="nav-secondary-label">HomeTest stage</div>
+<div class="nav-siblings">
+ <a href="DTx OM - HomeTest SHAPE v4.html">SHAPE</a>
+ <a href="DTx OM - HomeTest ASSURE v4.html">ASSURE</a>
+ <a href="DTx OM - HomeTest CONTRACT v4.html">CONTRACT</a>
+ <a href="DTx OM - HomeTest FULFIL v4.html" class="active">FULFIL</a>
+ <a href="DTx OM - HomeTest MEASURE v4.html">MEASURE</a>
+</div>
+</nav>
+<div style="background:#f0f3f6;padding:10px 36px;display:flex;gap:8px;align-items:center;border-bottom:1px solid #ebeef1;" class="product-selector">
+  <span style="font-size:10px;font-weight:800;letter-spacing:1.4px;color:#7E8B97;text-transform:uppercase;margin-right:4px;">Product overlay:</span>
+  <a href="DTx OM - HomeTest FULFIL v4.html" style="font-size:12px;font-weight:700;color:#fff;background:#003087;text-decoration:none;padding:6px 14px;border-radius:6px;">HomeTest</a>
+  <a href="DTx OM - HealthStore FULFIL.html" style="font-size:12px;font-weight:700;color:#4C6272;text-decoration:none;padding:6px 14px;border-radius:6px;">HealthStore</a>
+  <a href="DTx OM - HealthSync FULFIL.html" style="font-size:12px;font-weight:700;color:#4C6272;text-decoration:none;padding:6px 14px;border-radius:6px;opacity:0.6;">HealthSync</a>
+</div>
+
+
+
+<div style="background:#F4F8FC;border:1px solid #d6e2ef;border-radius:8px;padding:12px 16px;margin:18px 32px;font-size:11.5px;color:#4C6272;line-height:1.55;">
+ <div style="font-size:10.5px;font-weight:800;letter-spacing:1.8px;color:#003087;text-transform:uppercase;margin-bottom:8px;">TOM components at FULFIL (HomeTest)</div>
+ <div style="margin-bottom:9px;"><strong style="color:#003087;font-size:11.5px;">Service Wrapper six-touchpoint chain.</strong> <span style="color:#4C6272;font-size:11.5px;line-height:1.55;">Referral / Invite → Login &amp; onboard → In-life Help &amp; Support → Use &amp; Motivation → Signposting / Offboarding → Data return. Adapted for HomeTest: the test journey rather than the therapeutic journey.</span></div><div style="margin-bottom:9px;"><strong style="color:#003087;font-size:11.5px;">Pathology network.</strong> <span style="color:#4C6272;font-size:11.5px;line-height:1.55;">NHS-pathology-first with private backstop, or parallel mixed-economy model. Lab capacity, accreditation under UKAS, sample-handling logistics, Royal Mail Large Letter constraints.</span></div><div style="margin-bottom:9px;"><strong style="color:#003087;font-size:11.5px;">PIDS operational execution.</strong> <span style="color:#4C6272;font-size:11.5px;line-height:1.55;">Where the Patient Initiated Diagnostic Service framing meets actual operational delivery — kit dispatch, patient activation, sample return, lab processing, result return.</span></div>
+ <div style="margin-top:8px;padding-top:8px;border-top:1px solid #d6e2ef;font-size:10.5px;color:#7E8B97;line-height:1.55;">Cross-references: <a href="DTx OM - Anatomical.html" style="color:#003087;font-weight:700;text-decoration:none;">Anatomy Built foundation</a> &middot; <a href="DTx OM - HomeTest Teamwork.html" style="color:#003087;font-weight:700;text-decoration:none;">Teamwork capabilities</a> &middot; <a href="DTx OM - Governance.html#raci-foundation" style="color:#003087;font-weight:700;text-decoration:none;">Foundation RACI</a></div>
+</div>
+
+<div class="header">
+  <div>
+    <div style="width:60px;height:3px;background:#FFB91D;border-radius:2px;margin-bottom:10px;"></div>
+    <span class="stage-tag">Stage 4 of 5</span>
+    <h1>FULFIL <span style="display:inline-block;background:#003087;color:#fff;padding:3px 10px 4px;border-radius:8px;font-size:11px;font-weight:700;letter-spacing:0.4px;text-transform:none;vertical-align:middle;">HomeTest overlay</span></h1>
+    <div class="subtitle">Where products live and look different</div>
+  </div>
+  <a href="DTx OM - Lifecycle.html" class="back-btn">&larr; Back to Operating Model</a>
+</div>
+
+<div class="main">
+
+  <div class="actors-strip">
+    <span class="actors-label">Who lives in this stage</span>
+    <div class="actors-list">
+      <div class="actor lead">
+        <a href="DTx OM - Persona Abdul.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/abdul.png" alt="Abdul"></a>
+        <div class="actor-text">
+          <span class="actor-name">Abdul</span>
+          <span class="actor-role">Patient · HIV (patient-init)</span>
+        </div>
+      </div>
+      <div class="actor">
+        <a href="DTx OM - Persona Ngozi.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/ngozi.png" alt="Ngozi"></a>
+        <div class="actor-text">
+          <span class="actor-name">Ngozi</span>
+          <span class="actor-role">IG / DPO</span>
+        </div>
+      </div>
+      <div class="actor lead">
+        <a href="DTx OM - Persona Mark.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/mark.png" alt="Mark"></a>
+        <div class="actor-text">
+          <span class="actor-name">Mark</span>
+          <span class="actor-role">Patient · PSA-AS (clinician-init)</span>
+        </div>
+      </div>
+      <div class="actor lead">
+        <a href="DTx OM - Persona Layla.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/layla.png" alt="Layla"></a>
+        <div class="actor-text">
+          <span class="actor-name">Layla</span>
+          <span class="actor-role">Patient · HbA1c (GP-init)</span>
+        </div>
+      </div>
+      <div class="actor">
+        <a href="DTx OM - Persona Joe.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/joe.png" alt="Joe"></a>
+        <div class="actor-text">
+          <span class="actor-name">Joe</span>
+          <span class="actor-role">Supplier</span>
+        </div>
+      </div>
+      <div class="actor">
+        <a href="DTx OM - Persona Aisha.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/aisha.png" alt="Aisha"></a>
+        <div class="actor-text">
+          <span class="actor-name">Aisha</span>
+          <span class="actor-role">Clinical / CSG</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="stage-intro">
+    <h2>About this stage</h2>
+    <p><strong>This is where products primarily live.</strong> SHAPE, ASSURE and CONTRACT are largely product-agnostic (with product-specific parameters). FULFIL is where each product looks and feels different.</p>
+    <p><strong>HomeTest:</strong> Kit ordering, sample logistics, lab processing, result return, clinical safety net, patient notifications via NHS Notify.</p>
+    <p><strong>HealthStore:</strong> Digital therapeutic onboarding, licence management, usage monitoring, clinical pathway integration, outcome tracking.</p>
+    <p><strong>HealthSync (Wearables):</strong> Wearable data integration, continuous monitoring protocols, clinical alerting, device management. Not yet scoped beyond high-level concept.</p>
+    <p>Supplier switching and operational transition mechanisms live here. When a supplier exits, FULFIL manages the patient-facing transition to maintain continuity of care.</p>
+  </div>
+
+  <h2 class="section-title">Current Status</h2>
+
+  <div class="status-section progress-section">
+    <div class="status-heading heading-progress">
+      <span class="status-dot dot-progress"></span>
+      In Progress
+      <span class="status-count">7 items</span>
+    </div>
+    <ul class="status-list progress">
+      <li>Supply chain architecture: Notify capability assessment completed 29 April. Notify can do digital communications (SMS, email, NHS App, letters via Royal Mail) but has no infrastructure for physical kit fulfilment, lab linkage or end-to-end logistics. Notify would have to build fulfilment from scratch. Strawman drafted 30 April for Notify to mark up. Likely direction forming: Notify in for comms, parked for fulfilment and labs. All-inclusive supplier model remains working default for kit fulfilment</li>
+      <li>Efficio Consulting engaged as external supply chain advisory (20 Apr). Working group established across commercial, clinical, and programme leads</li>
+      <li>NHS Notify integration for patient notifications: digital comms settled as Notify's domain. Notify works through dedicated Royal Mail Health function (NHS-facing, ~18 months old). Covers large-letter postal tariffs and volume discounts</li>
+      <li><strong>Royal Devon confirmed as preferred acute partner for the PSA Active Surveillance pathway.</strong> Engagement window June 2026 to March 2027, mobilising 1 June 2026 under MOU. Working cohort circa 100 to 200 patients on PSA Active Surveillance through the engagement. Royal Devon carries acute self-sample pathways, high-sensitivity PSA analysers and a National Institute for Health Research centre. Treated as external pathology provider, API in / API out. Engaged as clinical partner, not commercial supplier. Reserves identified for backstop and roll-forward but not named here.</li>
+      <li>Beta scope: Private Beta up to 100 targeted tests. Public Beta up to 1,000+, December 2026 to March 2027 window. GDS Alpha Assessment completed 30 April. Private Beta approval being sought</li>
+      <li>HPV Self-Testing architecture as comparator. Prime contractor + 8 regional NHS labs model. 4 million invitations planned year 1, 18% uptake baseline. Procurement failed twice including one legal challenge. Lessons directly applicable to framework design</li>
+      <li>Four pathology supplier phenotypes identified: NHS-supplied pathology (14 networks), NHS commercial partnerships (51/49 JVs), NHS trusts with their own commercial offering, commercial suppliers (~8 HIV-active, 15+ via transdermal RFI)</li>
+    </ul>
+  </div>
+
+  <div class="status-section open-section">
+    <div class="status-heading heading-open">
+      <span class="status-dot dot-open"></span>
+      Open Decisions
+      <span class="status-count">7 items</span>
+    </div>
+    <ul class="status-list open">
+      <li>Service standards and SLAs not yet defined</li>
+      <li>Supplier switching process and patient continuity during transitions</li>
+      <li>How HealthStore fulfilment differs from HomeTest (not yet scoped). Notify centralised-payment model assessed as not replicable for HealthStore due to complexity</li>
+      <li>HealthSync: not yet scoped beyond high-level concept. No delivery timeline</li>
+      <li>Cold chain logistics for temperature-sensitive tests (e.g. capillary blood for PSA)</li>
+      <li>Royal Mail engagement under way. Strategic Royal Mail contact identified through the Notify team and Commercial colleagues; meeting scheduled with Royal Mail and MarketReach for 13 May to address two threads surfaced from Supplier Forum feedback: (1) reliability of the Tracked 24 service for kit logistics, (2) potential new 'Health Samples' package category sized to fit new blood collection devices that currently fall outside Large Letter format and require Small Parcel format at up to three times the price. Notify works through Royal Mail Health; this engagement is via MarketReach; route alignment between the three paths still to be reconciled</li>
+      <li>Whether centralised kit procurement (NHS taking on stock holding and management) is viable or contradicts the platform-orchestrates-doesn't-operate principle. Notify flagged this dependency explicitly in the 29 April session</li>
+    </ul>
+  </div>
+
+
+  <div style="margin-top:14px;padding-top:12px;border-top:1px solid rgba(0,0,0,0.08);font-size:12px;padding-top:14px;margin-bottom:24px;"><a href="DTx OM - Status.html" style="color:#005EB8;font-weight:700;text-decoration:none;letter-spacing:0.3px;">See all open items across the model &rarr;</a></div>
+
+  <div class="prev-next">
+    <a href="DTx%20OM%20-%20HomeTest%20CONTRACT%20v4.html" class="nav-link prev">
+      <span class="nav-label">&larr; Previous in cycle</span>
+      <span class="nav-stage">3. CONTRACT</span>
+    </a>
+    <a href="DTx OM - Lifecycle.html" class="home-btn">
+      &#8

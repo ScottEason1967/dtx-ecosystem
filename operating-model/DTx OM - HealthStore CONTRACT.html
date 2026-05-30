@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HealthStore CONTRACT: Digital Therapeutics Operating Model</title>
+<style>
+ /* Canonical topnav */
+ .topnav{background:#fff;border-bottom:1px solid #ebeef1;padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:nowrap;min-height:54px;box-sizing:border-box;width:100%;max-width:100%;margin:0;position:sticky;top:0;z-index:200;}
+ .topnav.topnav-secondary{background:#F4F8FC;border-bottom:1px solid #d6e2ef;padding:9px 36px;min-height:42px;}
+ .topnav .nav-back{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-back:hover{color:#005EB8;}
+ .topnav .nav-siblings{display:flex;gap:4px;flex-wrap:nowrap;overflow-x:auto;align-items:center;}
+ .topnav .nav-siblings a{font-size:12px;font-weight:600;color:#4C6272;text-decoration:none;padding:6px 12px;border-radius:6px;letter-spacing:0.2px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-siblings a:hover{background:#f0f4f8;color:#212B32;}
+ .topnav .nav-siblings a.active{background:#003087;color:#fff;}
+ .topnav.topnav-secondary .nav-siblings a{font-size:11.5px;padding:5px 10px;}
+ .topnav.topnav-secondary .nav-siblings a.active{background:#005EB8;color:#fff;}
+ .topnav .nav-secondary-label{font-size:10px;font-weight:800;letter-spacing:1.5px;color:#7E8B97;text-transform:uppercase;flex-shrink:0;}
+
+ :root {
+ --nhs-dark:#003087; --nhs-blue:#005EB8; --nhs-cyan:#00A9CE;
+ --stage:#003087;
+ --accent:var(--stage);
+ --amber:#FFB91D; --amber-deep:#C9A227;
+ --text:#212B32; --text-sec:#4C6272; --text-muted:#7E8B97;
+ --border:#d9dee3; --border-lt:#ebeef1;
+ --card:#ffffff; --bg:#f8fafc;
+ }
+ *{box-sizing:border-box;margin:0;padding:0;}
+ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;}.product-selector{background:#f0f3f6;padding:10px 36px;display:flex;gap:8px;align-items:center;border-bottom:1px solid var(--border-lt);}.product-selector-label{font-size:10px;font-weight:800;letter-spacing:1.4px;color:var(--text-muted);text-transform:uppercase;margin-right:4px;}.product-selector a{font-size:12px;font-weight:700;color:var(--text-sec);text-decoration:none;padding:6px 14px;border-radius:6px;}.product-selector a.active{background:#005EB8;color:#fff;}.product-selector a.healthsync{opacity:0.6;}.page{max-width:1100px;margin:0 auto;padding:40px 40px 80px;}.amber-rule{width:72px;height:4px;background:var(--amber);border-radius:2px;margin-bottom:14px;}.h-eyebrow{display:inline-block;background:var(--accent);color:#fff;font-size:10px;font-weight:800;letter-spacing:1.6px;padding:6px 14px;border-radius:4px;text-transform:uppercase;margin-bottom:14px;}.h-mega{font-size:88px;font-weight:900;color:var(--accent);letter-spacing:-2.5px;line-height:0.95;margin:6px 0 6px;}.h-title{font-size:36px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.5px;line-height:1.15;margin-bottom:14px;}.h-sub{font-size:16px;color:var(--text-sec);margin-bottom:16px;font-weight:500;}.h-intro{max-width:820px;font-size:14px;color:var(--text-sec);line-height:1.75;}.h-intro strong{color:var(--text);font-weight:700;}.section-h{font-size:11.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--text-muted);margin:40px 0 14px;}.detail-block{background:#fff;border:1px solid var(--border-lt);border-radius:10px;padding:18px 22px;margin-bottom:10px;border-left:4px solid var(--accent);}.detail-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:8px;}.detail-block h3{font-size:15px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.2px;}.detail-block p{font-size:13px;color:var(--text-sec);line-height:1.7;}.detail-block strong{color:var(--text);font-weight:700;}.pill{display:inline-block;font-size:9.5px;font-weight:800;padding:3px 8px;border-radius:10px;letter-spacing:0.6px;text-transform:uppercase;flex-shrink:0;}.pill-live{background:#e6f4ed;color:#007F3B;}.pill-flight{background:#fef6e6;color:#9A6700;}.pill-open{background:#fce8e9;color:#B5121B;}.pill-blocked{background:#f0e8ed;color:#7C2855;}.pill-pending{background:#E0E5EB;color:#4C6272;}.open-decision{background:#FFF8E1;border:1px solid #F0DCA0;border-left:4px solid #F9A825;border-radius:0 10px 10px 0;padding:14px 18px;margin-bottom:8px;}.open-decision-title{font-size:12px;font-weight:800;color:#8D6E1A;margin-bottom:4px;letter-spacing:0.2px;}.open-decision-body{font-size:12px;color:var(--text-sec);line-height:1.65;}.ref-box{background:#f4f8fc;border:1px solid #D5E8F0;border-radius:10px;padding:14px 18px;margin-top:20px;font-size:12.5px;color:var(--text-sec);line-height:1.6;}.ref-box strong{color:var(--text);font-weight:700;}
+ body{background:linear-gradient(180deg,var(--stage) 0%,var(--nhs-dark) 100%)!important;background-attachment:fixed!important;}.page{background:#ffffff;border-radius:18px;box-shadow:0 14px 40px rgba(0,48,135,0.20);margin-top:30px!important;margin-bottom:50px!important;}
+</style>
+<style>
+  .ecosystem-nav {
+    background: #fff;
+    border-bottom: 1px solid #ebeef1;
+    padding: 12px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 48px;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  }
+  .ecosystem-nav a {
+    font-size: 13px; font-weight: 700; color: #003087;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .ecosystem-nav a:hover { color: #005EB8; }
+  .ecosystem-nav .nav-context {
+    font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
+    color: #7E8B97; text-transform: uppercase;
+  }
+  .ecosystem-nav .nav-product {
+    font-size: 10.5px; font-weight: 800; letter-spacing: 0.8px;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 4px; color: #fff;
+  }
+  .ecosystem-nav .nav-product.dtx { background: #003087; }
+  .ecosystem-nav .nav-product.hometest { background: #003087; }
+  .ecosystem-nav .nav-product.healthstore { background: #00A9CE; }
+  .ecosystem-nav .nav-product.healthsync { background: #00A499; }
+</style>
+
+<style>
+  .position-refs {
+    background: #f6f9fc;
+    border-bottom: 1px solid #e1e7ef;
+    padding: 9px 28px;
+    font-size: 12px;
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .position-refs .pr-label {
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #5C6B82;
+  }
+  .position-refs a {
+    color: #003087;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 3px 9px;
+    background: #fff;
+    border: 1px solid #d5e0eb;
+    border-radius: 14px;
+  }
+  .position-refs a:hover {
+    background: #003087;
+    color: #fff;
+  }
+</style>
+
+</head>
+<body>
+<div class="ecosystem-nav">
+  <a href="../index.html">← DTx Ecosystem</a>
+  <span class="nav-context">HealthStore CONTRACT</span>
+  <span class="nav-product healthstore">HealthStore</span>
+</div>
+<div class="position-refs">
+  <span class="pr-label">Related positions →</span>
+  <a href="../position-papers/position-existing-routes.html">Position: Existing routes for current proof points</a>
+</div>
+<nav class="topnav">
+<a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+<div class="nav-siblings">
+ <a href="DTx OM - Why.html">Why</a>
+ <a href="DTx OM - What.html">What</a>
+ <a href="DTx OM - Lifecycle.html" class="active">When</a>
+ <a href="DTx OM - HomeTest Operational.html">How</a>
+ <a href="DTx OM - Governance.html">Who</a>
+ <a href="DTx OM - Hearts and Minds.html">Hearts and Minds</a>
+ <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>
+ <a href="DTx OM - Status.html">Status</a>
+</div>
+</nav>
+
+<nav class="topnav topnav-secondary">
+<div class="nav-secondary-label">HealthStore stage</div>
+<div class="nav-siblings">
+ <a href="DTx OM - HealthStore SHAPE.html">SHAPE</a>
+ <a href="DTx OM - HealthStore ASSURE.html">ASSURE</a>
+ <a href="DTx OM - HealthStore CONTRACT.html" class="active">CONTRACT</a>
+ <a href="DTx OM - HealthStore FULFIL.html">FULFIL</a>
+ <a href="DTx OM - HealthStore MEASURE.html">MEASURE</a>
+</div>
+</nav>
+
+<div class="product-selector">
+ <span class="product-selector-label">Product overlay:</span>
+ <a href="DTx OM - HomeTest CONTRACT v4.html">HomeTest</a>
+ <a href="DTx OM - HealthStore CONTRACT.html" class="active">HealthStore</a>
+ <a href="DTx OM - HealthSync CONTRACT.html" class="healthsync">HealthSync</a>
+</div>
+
+<div class="page">
+ <div class="amber-rule"></div>
+ <div class="h-eyebrow">HealthStore &middot; CONTRACT</div>
+ <div class="h-mega">CONTRACT</div>
+ <h1 class="h-title"><span style="display:inline-block;background:#00A9CE;color:#fff;padding:4px 14px 6px;border-radius:10px;line-height:1;letter-spacing:-0.3px;">HealthStore</span> at CONTRACT.</h1>
+ <p class="h-sub">Commercial framework and the price-and-procurement half of supplier onboarding</p>
+ <p class="h-intro">CONTRACT is the second half of the onboarding stage in the six-stage commercial journey. ASSURE confirms the bars are met; CONTRACT confirms the commercial terms are agreed. The structural framing is B2B2C: the commercial relationships sit B2B between HealthStore and digital therapeutic suppliers; the patient experience runs through the NHS App. The four commercial principles agreed at programme level (third-party only, nationally approved, NHS-integrated, NHS as patient-data custodian) are the operating constraint that shapes what gets contracted and how.</p>
+
+ <div class="section-h">The four-layer commercial pyramid</div>
+ <p class="h-intro" style="margin-bottom:18px;">A four-layer adoption-dependency model that HealthStore CONTRACT activity needs to land coherently. Each layer depends on the one above. The aim by end of Alpha is three to five credible delivery archetypes, with clear articulation of national blockers.</p>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>1. Policy and national signals</h3></div>
+  <p>The top of the pyramid. National policy positions on digital therapeutics, alignment with the wider NHS strategy on long-term condition management, and the signals that make digital therapeutics an investable national category. Without this layer the layers below have no air cover.</p>
+ </div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>2. Funding routes</h3></div>
+  <p>Where the money to pay for digital therapeutics comes from. Frontline Productivity Programme explicitly includes digital therapeutics as a valid investment option; regions hold the prioritisation. Tariff reform is the medium-term route. ICB direct funding is the local route. Funding routes need to be visible to commissioners or the proposition does not get bought.</p>
+ </div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>3. Payment mechanisms</h3></div>
+  <p>How money flows from the commissioner to the supplier once the funding is in place. Marketplace payments mechanism designed in Alpha. The detail of price points, payment timing and the relationship between activity and outcome is the design work in this layer.</p>
+ </div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>4. Procurement and contracting</h3></div>
+  <p>The instrument that admits suppliers to the marketplace and the contract that governs the relationship between HealthStore and each admitted supplier. ACE framework (Approved Care Ecosystem) used for the Alpha procurement; three bids received. NHS Standard Contract with SaaS and data schedules is the contract pattern. Steady-state route post-Alpha is open.</p>
+ </div>
+
+ <div class="section-h">The three-step selection model</div>
+ <p class="h-intro" style="margin-bottom:18px;">A digital therapeutic in the HealthStore is selected three times. The model has to support all three steps and the criteria that apply at each one.</p>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>1. Digital Therapeutic Approver &mdash; national gate</h3></div>
+  <p>Selection of a digital therapeutic as suitable for the national HealthStore. NICE EVA conditionally-recommended is the route in. HealthStore admission against the four assurance bars (clinical safety, technical quality, economic value, IG) is the gate. This is the step where the four commercial principles get applied.</p>
+ </div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>2. Commissioner &mdash; commissioning gate</h3></div>
+  <p>Selection of a digital therapeutic as appropriate for a commissioner&apos;s population, against local need, pathway design and budget. ICBs are the primary commissioner archetype. The Commissioner Store surfaces admitted digital therapeutics with the supporting evidence and pricing. This is the step where pathway-level economics gets evaluated.</p>
+ </div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>3. Clinician &mdash; clinical gate</h3></div>
+  <p>Selection of a digital therapeutic as suitable for a specific patient at the point of care. The prescribing clinician chooses from the commissioner-approved set for that patient&apos;s condition. This is the step where the patient journey actually starts.</p>
+ </div>
+
+ <div class="section-h">Contracting mechanics</div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>NHS Standard Contract with SaaS and data schedules</h3><span class="pill pill-flight">In flight</span></div>
+  <p>The contract pattern between HealthStore and each admitted supplier. Standard Contract carries the body of terms; SaaS schedule covers the software-as-a-service operating model; data schedule covers the data flow, retention, controllership and breach handling. Configuration of the schedules per therapeutic area still being finalised.</p>
+ </div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>Marketplace payments mechanism</h3><span class="pill pill-flight">In flight</span></div>
+  <p>Designed in Alpha. The mechanism through which commissioners pay for digital therapeutics from admitted suppliers. Programme Board direction: cost neutral or cost saving overall. Pump priming funding may be required initially to bridge into adoption. There is no episode-payment-with-milestones construct; the payments mechanism is being designed as a marketplace operating model.</p>
+ </div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>ACE framework as the Alpha procurement route</h3><span class="pill pill-live">Live</span></div>
+  <p>Approved Care Ecosystem is the existing NHS Innovation Procurement Taskforce framework used for the Alpha. Three bids received. Used because it allows admission of innovation-stage suppliers at speed; steady-state route after Alpha is open.</p>
+ </div>
+
+ <div class="section-h">Mobilisation status &mdash; CONTRACT</div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>Marketplace payments mechanism design</h3><span class="pill pill-flight">In flight</span></div>
+  <p>Marketplace payments mechanism design is progressing in Alpha. Three to five credible delivery archetypes are being targeted by the end of Alpha. The payment mechanism interlocks with the milestone reporting from the Service Wrapper data return touchpoint &mdash; payment events are triggered by validated milestone evidence, not by invoice cycles.</p>
+ </div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>Pricing tier architecture</h3><span class="pill pill-flight">In flight</span></div>
+  <p>Pricing tier architecture under design as part of the NICE Tier C conditional commercial position. Tariff and funding routes are progressing alongside the Frontline Productivity Programme. Pump-priming positions explicitly acknowledged for early ICBs. No separate patient charge anywhere in the model.</p>
+ </div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>Variation control mechanics</h3><span class="pill pill-pending">In design</span></div>
+  <p>Variation control mechanics for the standard contract are in design. Variations cover supplier-side product changes, NICE EVA renewal cycles, regulatory changes, volume changes at the ICB call-off level. The variation pathway is set at framework level so the same mechanics apply per call-off regardless of which ICB is contracting.</p>
+ </div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>Alpha procurement vehicle progression</h3><span class="pill pill-flight">In flight</span></div>
+  <p>Alpha procurement is moving through the established commercial route to admit the first wave of suppliers under the conditional EVA arrangement. Direction-setting and lower-level technical design are running in parallel. Progression to build is targeted subject to Alpha outcomes and funding decisions.</p>
+ </div>
+
+ <div class="detail-block">
+  <div class="detail-head"><h3>Pathway-level tariff dependency</h3><span class="pill pill-open">Open dependency</span></div>
+  <p>The commissioner case lands at pathway level, not at app level. Best-practice tariffs at pathway level are the structural unlock for ICB funding. The tariff workstream sits outside this operating model; the dependency on tariff design lands on CONTRACT activity, where pricing architecture meets ICB funding architecture. Without the tariff unlock, contracting depth is constrained by what each ICB can fund through residual budgets.</p>
+ </div>
+
+ <div class="section-h">Open decisions and dependencies</div>
+
+ <div class="open-decision">
+  <div class="open-decision-title">Pathway-level tariff dependency</div>
+  <div class="open-decision-body">The commissioner case lands at pathway level, not app level. Cost (the digital therapeutic itself) and benefit (avoided escalation, freed clinician time, pathway-step removal) sit on different budget lines. Best-practice tariffs at pathway level are the structural unlock. Tariff design sits outside this operating model as a separate workstream; the dependency does not. CONTRACT mechanics need to anticipate that the funding side resolves elsewhere.</div>
+ </div>
+
+ <div class="open-decision">
+  <div class="open-decision-title">Steady-state procurement route post-Alpha</div>
+  <div class="open-decision-body">ACE was the Alpha route. The steady-state procurement and admission route for HealthStore is not yet locked. Options include extending ACE, standing up a new HealthStore-specific instrument, or piggy-backing on another existing framework. Each carries different supplier-dynamism and admission-cadence trade-offs.</div>
+ </div>
+
+ <div class="open-decision">
+  <div class="open-decision-title">Marketplace payments-mechanism design</div>
+  <div class="open-decision-body">The detail of how the marketplace payments mechanism works: price points, payment cadence, relationship between activity and outcome, treatment of multi-pathway or multi-condition therapeutics. The mechanism design is one of the Alpha deliverables.</div>
+ </div>
+
+ <div class="open-decision">
+  <div class="open-decision-title">Funding-route mix at steady state</div>
+  <div class="open-decision-body">Mix of tariff reform, Frontline Productivity Programme regional allocations and ICB direct funding that supports HealthStore at scale. Each route has different decision points, different timing and different evidence requirements.</div>
+ </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sarah's story: Digital Therapeutics Operating Model</title>
+<style>
+ /* Canonical topnav */
+ .topnav{background:#fff;border-bottom:1px solid #ebeef1;padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:nowrap;min-height:54px;box-sizing:border-box;width:100%;max-width:100%;margin:0;position:sticky;top:0;z-index:200;}
+ .topnav.topnav-secondary{background:#F4F8FC;border-bottom:1px solid #d6e2ef;padding:9px 36px;min-height:42px;}
+ .topnav .nav-back{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-back:hover{color:#005EB8;}
+ .topnav .nav-siblings{display:flex;gap:4px;flex-wrap:nowrap;overflow-x:auto;align-items:center;}
+ .topnav .nav-siblings a{font-size:12px;font-weight:600;color:#4C6272;text-decoration:none;padding:6px 12px;border-radius:6px;letter-spacing:0.2px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-siblings a:hover{background:#f0f4f8;color:#212B32;}
+ .topnav .nav-siblings a.active{background:#003087;color:#fff;}
+ .topnav.topnav-secondary .nav-siblings a{font-size:11.5px;padding:5px 10px;}
+ .topnav.topnav-secondary .nav-siblings a.active{background:#005EB8;color:#fff;}
+ .topnav .nav-secondary-label{font-size:10px;font-weight:800;letter-spacing:1.5px;color:#7E8B97;text-transform:uppercase;flex-shrink:0;}
+
+:root {
+  --nhs-dark:#003087;
+  --nhs-blue:#005EB8;
+  --nhs-cyan:#00A9CE;
+  --nhs-grey:#7E8B97;
+  --hometest:#003087;
+  --healthstore:#00A9CE;
+  --healthsync:#00A499;
+  --amber:#FFB91D;
+  --amber-deep:#C9A227;
+  --gold:#FFD66B;
+  --warm-cream:#FFF9EC;
+  --text:#212B32;
+  --text-sec:#4C6272;
+  --text-muted:#7E8B97;
+  --border-lt:#ebeef1;
+  --card:#ffffff;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,var(--nhs-blue) 0%, var(--nhs-dark) 100%);background-attachment:fixed;color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;margin:0;padding:0;width:100%;}
+
+/* Page container */
+.page{max-width:1180px;margin:30px auto 50px;background:#ffffff;border-radius:18px;box-shadow:0 14px 40px rgba(0,48,135,0.20);overflow:hidden;}
+
+/* ============================================================ */
+/* HERO                                                          */
+/* ============================================================ */
+.hero{position:relative;padding:70px 60px 60px;background:linear-gradient(135deg,#001a4d 0%,#003087 50%,#005EB8 100%);color:#fff;overflow:hidden;}
+.hero::after{content:'';position:absolute;right:-80px;bottom:-120px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(255,214,107,0.18),transparent 65%);pointer-events:none;}
+.hero-inner{position:relative;display:grid;grid-template-columns:1.5fr 1fr;gap:50px;align-items:center;z-index:1;}
+.hero-rule{width:60px;height:4px;background:var(--gold);border-radius:2px;margin-bottom:22px;}
+.hero-eyebrow{font-size:11px;font-weight:800;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:24px;}
+.hero-title{font-size:72px;font-weight:900;color:#fff;letter-spacing:-2.4px;line-height:0.95;margin-bottom:28px;}
+.hero-title em{font-style:normal;color:var(--gold);}
+.hero-strap{font-size:18px;color:rgba(255,255,255,0.94);line-height:1.65;max-width:560px;}
+.hero-strap strong{color:var(--gold);font-weight:700;}
+.hero-image-box{display:flex;flex-direction:column;align-items:center;gap:12px;}
+.image-slot{position:relative;background:linear-gradient(135deg,rgba(255,255,255,0.18),rgba(255,255,255,0.06));border-radius:16px;border:2px dashed rgba(255,255,255,0.30);display:flex;flex-direction:column;align-items:center;justify-content:center;color:rgba(255,255,255,0.78);text-align:center;padding:24px;font-size:11.5px;font-weight:700;letter-spacing:0.4px;overflow:hidden;}
+.image-slot img{display:block;width:100%;height:100%;object-fit:cover;}
+.image-slot-icon{font-size:48px;opacity:0.45;margin-bottom:8px;}
+.image-slot.hero-image{width:340px;height:340px;}
+.image-slot-caption{font-size:10.5px;font-weight:600;opacity:0.78;letter-spacing:0.4px;}
+
+.hero-portrait-strip{display:flex;flex-direction:column;gap:6px;text-align:center;color:#fff;}
+.hero-portrait-name{font-size:16px;font-weight:800;letter-spacing:0.4px;}
+.hero-portrait-role{font-size:11px;color:var(--gold);letter-spacing:1.4px;text-transform:uppercase;font-weight:700;}
+
+/* ============================================================ */
+/* JOURNEY RIBBON                                                */
+/* ============================================================ */
+.ribbon-wrap{background:#fafbfd;border-bottom:1px solid var(--border-lt);padding:32px 60px 28px;}
+.ribbon-eyebrow{font-size:10.5px;font-weight:800;letter-spacing:2px;color:var(--text-muted);text-transform:uppercase;margin-bottom:14px;text-align:center;}
+.ribbon{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;position:relative;align-items:start;}
+.ribbon-stage{display:flex;flex-direction:column;align-items:center;gap:8px;position:relative;cursor:pointer;text-decoration:none;color:inherit;padding:8px 4px;border-radius:8px;transition:background 0.15s;}
+.ribbon-stage:hover{background:rgba(0,48,135,0.04);}
+.ribbon-num{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--nhs-dark),var(--nhs-blue));color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;letter-spacing:-0.5px;box-shadow:0 4px 10px rgba(0,48,135,0.18);}
+.ribbon-label{font-size:11px;font-weight:800;color:var(--nhs-dark);text-align:center;line-height:1.3;letter-spacing:0.2px;}
+.ribbon-streams{display:flex;gap:3px;margin-top:4px;}
+.ribbon-stream{width:18px;height:5px;border-radius:2px;background:#dde3eb;}
+.ribbon-stream.hometest.on{background:var(--hometest);}
+.ribbon-stream.healthstore.on{background:var(--healthstore);}
+.ribbon-stream.healthsync.on{background:var(--healthsync);}
+.ribbon-legend{display:flex;justify-content:center;gap:24px;margin-top:18px;flex-wrap:wrap;}
+.ribbon-legend-item{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--text-sec);letter-spacing:0.3px;}
+.ribbon-legend-dot{width:14px;height:5px;border-radius:2px;}
+.ribbon-legend-dot.hometest{background:var(--hometest);}
+.ribbon-legend-dot.healthstore{background:var(--healthstore);}
+.ribbon-legend-dot.healthsync{background:var(--healthsync);}
+.ribbon-legend-dot.dormant{background:#dde3eb;}
+
+/* ============================================================ */
+/* FRAMING                                                       */
+/* ============================================================ */
+.framing{padding:50px 60px 36px;background:#fff;}
+.framing-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;}
+.framing-tile{background:linear-gradient(135deg,#F4F8FC,#FFFFFF);border:1px solid #D5E8F0;border-radius:14px;padding:22px 24px;}
+.framing-tile-eyebrow{font-size:10px;font-weight:800;letter-spacing:1.8px;color:var(--nhs-blue);text-transform:uppercase;margin-bottom:8px;}
+.framing-tile-h{font-size:15px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.2px;margin-bottom:8px;line-height:1.3;}
+.framing-tile-body{font-size:12.5px;color:var(--text-sec);line-height:1.65;}
+.framing-tile-body strong{color:var(--text);font-weight:700;}
+
+/* ============================================================ */
+/* STAGE                                                         */
+/* ============================================================ */
+.stages{padding:24px 60px 50px;background:#fff;}
+.stage{display:grid;grid-template-columns:140px 1fr;gap:36px;margin-bottom:14px;position:relative;}
+.stage-side{display:flex;flex-direction:column;align-items:flex-end;padding-top:14px;position:sticky;top:0;}
+.stage-number{font-size:110px;font-weight:900;color:var(--nhs-dark);letter-spacing:-6px;line-height:0.85;opacity:0.10;}
+.stage-side-streams{display:flex;flex-direction:column;gap:6px;margin-top:14px;align-items:flex-end;}
+.stage-side-stream{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:800;letter-spacing:0.6px;color:var(--text-muted);text-transform:uppercase;}
+.stage-side-stream-bar{width:30px;height:4px;border-radius:2px;background:#e0e6ed;}
+.stage-side-stream.on.hometest .stage-side-stream-bar{background:var(--hometest);}
+.stage-side-stream.on.healthstore .stage-side-stream-bar{background:var(--healthstore);}
+.stage-side-stream.on.healthsync .stage-side-stream-bar{background:var(--healthsync);}
+.stage-side-stream.on{color:var(--nhs-dark);}
+
+.stage-main{padding:24px 0 36px;border-bottom:1px solid var(--border-lt);}
+.stage-eyebrow{font-size:10.5px;font-weight:800;letter-spacing:2.4px;color:var(--text-muted);text-transform:uppercase;margin-bottom:8px;}
+.stage-title{font-size:32px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.7px;line-height:1.18;margin-bottom:26px;max-width:760px;}
+
+/* Stage image */
+.stage-image{width:100%;max-width:560px;aspect-ratio:1/1;background:linear-gradient(135deg,#F4F8FC,#E0E5EB);border-radius:14px;border:2px dashed #c4d3e6;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--text-muted);text-align:center;padding:20px;font-size:12.5px;font-weight:700;letter-spacing:0.3px;margin:0 auto 24px;overflow:hidden;position:relative;}
+.stage-image img{display:block;width:100%;height:100%;object-fit:cover;border-radius:12px;}
+.stage-image-icon{font-size:54px;opacity:0.40;margin-bottom:10px;}
+.stage-image-caption{font-size:11.5px;font-weight:600;opacity:0.85;letter-spacing:0.3px;max-width:480px;line-height:1.5;}
+
+/* Pull-quote commissioner voice */
+.pull-quote{margin:20px 0 24px;padding:32px 20px 28px;text-align:center;position:relative;}
+.pull-quote::before{content:'\201C';position:absolute;left:8px;top:-12px;font-size:110px;color:var(--gold);font-family:Georgia,serif;line-height:1;opacity:0.65;}
+.pull-quote-text{font-size:24px;font-weight:600;color:var(--text);line-height:1.45;letter-spacing:-0.3px;max-width:780px;margin:0 auto;font-style:italic;}
+.pull-quote-attribution{font-size:11.5px;font-weight:800;letter-spacing:2px;color:var(--amber-deep);text-transform:uppercase;margin-top:18px;}
+
+/* What's happening */
+.whats-happening{background:#F4F8FC;border-left:5px solid var(--nhs-blue);border-radius:0 12px 12px 0;padding:20px 24px;margin-bottom:18px;}
+.whats-happening-label{font-size:10.5px;font-weight:800;letter-spacing:1.8px;color:var(--nhs-blue);text-transform:uppercase;margin-bottom:8px;}
+.whats-happening-body{font-size:14px;color:var(--text);line-height:1.7;}
+.whats-happening-body strong{color:var(--nhs-dark);font-weight:700;}
+
+/* The old way callout: contrast device */
+.old-way{background:#FFF6E8;border:1px solid #F0DCA0;border-left:5px solid var(--amber-deep);border-radius:0 12px 12px 0;padding:16px 22px;margin-bottom:18px;}
+.old-way-label{font-size:10px;font-weight:800;letter-spacing:1.6px;color:var(--amber-deep);text-transform:uppercase;margin-bottom:6px;}
+.old-way-body{font-size:13px;color:var(--text-sec);line-height:1.65;font-style:italic;}
+.old-way-body strong{color:var(--text);font-weight:700;font-style:normal;}
+
+/* Team it touches */
+.careteam{background:#fff;border:1px solid var(--border-lt);border-radius:10px;padding:14px 18px;margin-bottom:18px;display:flex;gap:14px;align-items:flex-start;}
+.careteam-icon{font-size:18px;color:var(--nhs-blue);flex-shrink:0;margin-top:1px;}
+.careteam-body{flex:1;}
+.careteam-label{font-size:10px;font-weight:800;letter-spacing:1.4px;color:var(--text-muted);text-transform:uppercase;margin-bottom:4px;}
+.careteam-text{font-size:13px;color:var(--text-sec);line-height:1.65;}
+
+/* Cross-links */
+.crosslinks{margin-top:20px;}
+.crosslinks-label{font-size:10px;font-weight:800;letter-spacing:1.6px;color:var(--text-muted);text-transform:uppercase;margin-bottom:10px;}
+.crosslinks-row{display:flex;flex-wrap:wrap;gap:6px;}
+.crosslinks-row a{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;color:var(--nhs-blue);text-decoration:none;padding:7px 12px;border-radius:6px;border:1px solid #c4d3e6;background:#fff;transition:background 0.15s,transform 0.12s;}
+.crosslinks-row a:hover{background:#F4F8FC;transform:translateY(-1px);}
+.crosslinks-row a::after{content:' ↗';font-size:10px;color:var(--text-muted);margin-left:2px;}
+.crosslinks-row .crosslinks-tag{font-size:9.5px;font-weight:800;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;background:#f0f4f8;padding:3px 8px;border-radius:4px;margin-right:4px;align-self:center;}
+
+/* ============================================================ */
+/* COMMISSIONER DASHBOARD MOCKUP                                */
+/* ============================================================ */
+.dashboard{background:linear-gradient(135deg,#001a4d,#003087);border-radius:18px;padding:30px 32px 28px;color:#fff;margin:24px 0 18px;box-shadow:0 10px 30px rgba(0,26,77,0.4);}
+.dashboard-eyebrow{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:8px;}
+.dashboard-title{font-size:18px;font-weight:800;color:#fff;margin-bottom:18px;letter-spacing:-0.3px;}
+.dashboard-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:14px;}
+.dashboard-card{background:rgba(255,255,255,0.10);border:1px solid rgba(255,255,255,0.18);border-radius:10px;padding:14px 16px;}
+.dashboard-card-head{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+.dashboard-card-dot{width:8px;height:8px;border-radius:50%;}
+.dashboard-card-dot.hometest{background:#4F8AC0;}
+.dashboard-card-dot.healthstore{background:#5EBCDB;}
+.dashboard-card-dot.healthsync{background:#5BC9B8;}
+.dashboard-card-label{font-size:10px;font-weight:800;letter-spacing:1.4px;color:rgba(255,255,255,0.78);text-transform:uppercase;}
+.dashboard-metric{font-size:24px;font-weight:900;color:#fff;letter-spacing:-0.5px;line-height:1;margin-bottom:6px;}
+.dashboard-metric-sub{font-size:11px;color:rgba(255,255,255,0.65);line-height:1.4;}
+.dashboard-chart{height:36px;background:linear-gradient(180deg,transparent,rgba(255,255,255,0.05));border-radius:6px;margin-top:8px;position:relative;overflow:hidden;}
+.dashboard-chart svg{display:block;width:100%;height:100%;}
+.dashboard-footer{font-size:11.5px;color:rgba(255,255,255,0.78);line-height:1.55;padding-top:14px;border-top:1px solid rgba(255,255,255,0.15);}
+.dashboard-footer strong{color:var(--gold);}
+
+/* ============================================================ */
+/* CONCLUSION                                                    */
+/* ============================================================ */
+.conclusion{padding:60px 60px 70px;background:linear-gradient(180deg,#FFF9EC,#FFFFFF);}
+.conclusion-eyebrow{font-size:11px;font-weight:800;letter-spacing:2.8px;color:var(--amber-deep);text-transform:uppercase;margin-bottom:14px;text-align:center;}
+.conclusion-title{font-size:40px;font-weight:900;color:var(--nhs-dark);letter-spacing:-1px;line-height:1.1;text-align:center;margin-bottom:14px;max-width:880px;margin-left:auto;margin-right:auto;}
+.conclusion-strap{font-size:15.5px;color:var(--text-sec);line-height:1.7;text-align:center;max-width:760px;margin:0 auto 36px;}
+
+.outcomes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:32px;}
+.outcome{background:#fff;border:1px solid var(--border-lt);border-radius:14px;padding:24px 26px;}
+.outcome-icon-wrap{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,#003087,#005EB8);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:22px;font-weight:900;margin-bottom:14px;}
+.outcome-h{font-size:11px;font-weight:800;letter-spacing:1.6px;color:var(--text-muted);text-transform:uppercase;margin-bottom:6px;}
+.outcome-title{font-size:18px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.3px;line-height:1.3;margin-bottom:10px;}
+.outcome-body{font-size:13px;color:var(--text-sec);line-height:1.65;}
+
+.conclusion-line{font-size:22px;font-weight:800;color:var(--nhs-dark);text-align:center;letter-spacing:-0.4px;line-height:1.4;padding:24px;border-top:1px solid #F0DCA0;}
+
+/* ============================================================ */
+/* RESPONSIVE                                                    */
+/* ============================================================ */
+@media(max-width:1000px){
+  .hero{padding:50px 36px 44px;}
+  .hero-inner{grid-template-columns:1fr;gap:36px;}
+  .hero-title{font-size:48px;}
+  .image-slot.hero-image{width:100%;max-width:340px;height:320px;}
+  .ribbon-wrap,.framing,.stages,.conclusion{padding-left:30px;padding-right:30px;}
+  .ribbon{grid-template-columns:repeat(3,1fr);gap:14px;}
+  .framing-grid,.outcomes-grid,.dashboard-row{grid-template-columns:1fr;}
+  .stage{grid-template-columns:80px 1fr;gap:18px;}
+  .stage-number{font-size:64px;letter-spacing:-3px;}
+  .stage-title{font-size:24px;}
+  .stage-image{height:240px;}
+  .pull-quote-text{font-size:20px;}
+  .conclusion-title{font-size:28px;}
+}
+</style>
+<style>
+  .ecosystem-nav {
+    background: #fff;
+    border-bottom: 1px solid #ebeef1;
+    padding: 12px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 48px;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  }
+  .ecosystem-nav a {
+    font-size: 13px; font-weight: 700; color: #003087;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .ecosystem-nav a:hover { color: #005EB8; }
+  .ecosystem-nav .nav-context {
+    font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
+    color: #7E8B97; text-transform: uppercase;
+  }
+  .ecosystem-nav .nav-product {
+    font-size: 10.5px; font-weight: 800; letter-spacing: 0.8px;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 4px; color: #fff;
+  }
+  .ecosystem-nav .nav-product.dtx { background: #003087; }
+  .ecosystem-nav .nav-product.hometest { background: #003087; }
+  .ecosystem-nav .nav-product.healthstore { background: #00A9CE; }
+  .ecosystem-nav .nav-product.healthsync { background: #00A499; }
+</style>
+</head>
+<body>
+<div class="ecosystem-nav">
+  <a href="../index.html">← DTx Ecosystem</a>
+  <span class="nav-context">Sarah Journey</span>
+  <span class="nav-product dtx">DTx</span>
+</div>
+
+<nav class="topnav">
+<a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+<div class="nav-siblings">
+ <a href="DTx OM - Why.html">Why</a>
+ <a href="DTx OM - What.html">What</a>
+ <a href="DTx OM - Lifecycle.html">When</a>
+ <a href="DTx OM - HomeTest Operational.html">How</a>
+ <a href="DTx OM - Governance.html">Who</a>
+ <a href="DTx OM - Hearts and Minds.html" class="active">Hearts and Minds</a>
+ <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>
+ <a href="DTx OM - Status.html">Status</a>
+</div>
+</nav>
+
+<div class="page">
+
+  <!-- ============================================================ -->
+  <!-- HERO                                                          -->
+  <!-- ============================================================ -->
+  <div class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-rule"></div>
+        <div class="hero-eyebrow">A commissioner&apos;s story through the operating model</div>
+        <h1 class="hero-title">Sarah&apos;s six weeks,<br>not <em>eighteen</em><br>months.</h1>
+        <p class="hero-strap">Sarah commissions for a population of three hundred thousand. She has a cardiovascular detection gap, rising COPD admissions and a director asking what digital can actually do about either. She has budget. She does not have eighteen months for three separate procurements, three integration projects and three contract negotiations. <strong>This is the story of one commissioner, three workstreams, and one operating model doing the hard part for her.</strong></p>
+      </div>
+      <div class="hero-image-box">
+        <div class="image-slot hero-image">
+          <img src="img/Sarah%20hero.png" alt="Sarah at her desk reviewing the population brief" style="border-radius:14px;" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;image-slot-icon&quot;>&#x1F464;</div><div>Sarah hero illustration</div><div class=&quot;image-slot-caption&quot;>commissioner&apos;s desk &middot; population dashboards &middot; board paper drafts &middot; calm focus before the work begins&apos;';">
+        </div>
+        <div class="hero-portrait-strip">
+          <div class="hero-portrait-name">Sarah</div>
+          <div class="hero-portrait-role">ICB commissioner &middot; population health</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- JOURNEY RIBBON                                                -->
+  <!-- ============================================================ -->
+  <div class="ribbon-wrap">
+    <div class="ribbon-eyebrow">Sarah&apos;s journey at a glance &middot; six stages, three workstreams</div>
+    <div class="ribbon">
+      <a class="ribbon-stage" href="#stage-1">
+        <div class="ribbon-num">1</div>
+        <div class="ribbon-label">The brief</div>
+        <div class="ribbon-streams">
+          <div class="ribbon-stream hometest"></div>
+          <div class="ribbon-stream healthstore"></div>
+          <div class="ribbon-stream healthsync"></div>
+        </div>
+      </a>
+      <a class="ribbon-stage" href="#stage-2">
+        <div class="ribbon-num">2</div>
+        <div class="ribbon-label">One front door</div>
+        <div class="ribbon-streams">
+          <div class="ribbon-stream hometest on"></div>
+          <div class="ribbon-stream healthstore on"></div>
+          <div class="ribbon-stream healthsync on"></div>
+        </div>
+      </a>
+      <a class="ribbon-stage" href="#stage-3">
+        <div class="ribbon-num">3</div>
+        <div class="ribbon-label">The fit assessment</div>
+        <div class="ribbon-streams">
+          <div class="ribbon-stream hometest on"></div>
+          <div class="ribbon-stream healthstore on"></div>
+          <div class="ribbon-stream healthsync on"></div>
+        </div>
+      </a>
+      <a class="ribbon-stage" href="#stage-4">
+        <div class="ribbon-num">4</div>
+        <div class="ribbon-label">One call-off</div>
+        <div class="ribbon-streams">
+          <div class="ribbon-stream hometest on"></div>
+          <div class="ribbon-stream healthstore on"></div>
+          <div class="ribbon-stream healthsync on"></div>
+        </div>
+      </a>
+      <a class="ribbon-stage" href="#stage-5">
+        <div class="ribbon-num">5</div>
+        <div class="ribbon-label">Live operation</div>
+        <div class="ribbon-streams">
+          <div class="ribbon-stream hometest on"></div>
+          <div class="ribbon-stream healthstore on"></div>
+          <div class="ribbon-stream healthsync on"></div>
+        </div>
+      </a>
+      <a class="ribbon-stage" href="#stage-6">
+        <div class="ribbon-num">6</div>
+        <div class="ribbon-label">The board paper</div>
+        <div class="ribbon-streams">
+          <div class="ribbon-stream hometest on"></div>
+          <div class="ribbon-stream healthstore on"></div>
+          <div class="ribbon-stream healthsync on"></div>
+        </div>
+      </a>
+    </div>
+    <div class="ribbon-legend">
+      <div class="ribbon-legend-item"><div class="ribbon-legend-dot hometest"></div>HomeTest active</div>
+      <div class="ribbon-legend-item"><div class="ribbon-legend-dot healthstore"></div>HealthStore active</div>
+      <div class="ribbon-legend-item"><div class="ribbon-legend-dot healthsync"></div>HealthSync active</div>
+      <div class="ribbon-legend-item"><div class="ribbon-legend-dot dormant"></div>not active</div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- FRAMING                                                       -->
+  <!-- ============================================================ -->
+  <div class="framing">
+    <div class="framing-grid" style="grid-template-columns:1fr 1fr;">
+      <div class="framing-tile">
+        <div class="framing-tile-eyebrow">The credibility unlock</div>
+        <div class="framing-tile-h">Easy buying. Find. Decide. Onboard. Go live. Operate.</div>
+        <div class="framing-tile-body">Commissioners don&apos;t buy digital therapeutics for the joy of running procurements. They buy them to close a detection gap, lower an admission rate, or get more out of a stretched workforce. The operating model exists so the buying gets out of the way and the population outcome stays in focus. <strong>Easy buying is the North Star</strong>, not because procurement should be lazy, but because effort spent on procurement is effort not spent on population health.</div>
+      </div>
+      <div class="framing-tile">
+        <div class="framing-tile-eyebrow">Why one operating model matters to her</div>
+        <div class="framing-tile-h">One framework. One signature. Three workstreams in flight.</div>
+        <div class="framing-tile-body">Three separate operating models would mean three procurements, three integration projects, three contract negotiations, three sets of MI. The operating model means Sarah signs once, the same NHS Login carries her cohort, the same payment milestone structure tracks all three workstreams, and the same MI feed answers the same questions. <strong>The integration was done before she walked in.</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- STAGES                                                        -->
+  <!-- ============================================================ -->
+  <div class="stages">
+
+    <!-- ========== STAGE 1 ========== -->
+    <div class="stage" id="stage-1">
+      <div class="stage-side">
+        <div class="stage-number">01</div>
+        <div class="stage-side-streams">
+          <div class="stage-side-stream"><span>HomeTest</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream"><span>HealthStore</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream"><span>HealthSync</span><div class="stage-side-stream-bar"></div></div>
+        </div>
+      </div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">The brief &middot; a population, a gap, a year to close it</div>
+        <h2 class="stage-title">Sarah has a cardiovascular detection gap and a director asking what digital can do about it. She has budget and a timeline. She does not have eighteen months for three procurements.</h2>
+
+        <div class="stage-image">
+          <img src="img/Sarah%201.png" alt="Sarah reviewing her population health brief" style="border-radius:12px;" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;stage-image-icon&quot;>&#x1F4CA;</div><div>Stage 1 illustration</div><div class=&quot;stage-image-caption&quot;>Sarah at her desk &middot; population brief open on screen &middot; detection-gap chart visible &middot; stickies and budget figures &middot; clear-eyed, work-mode';">
+        </div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">I&apos;ve got a gap I can see on the dashboard, money on the table and twelve months to show movement. What I don&apos;t have is the headcount to run three separate procurements end-to-end.</p>
+          <div class="pull-quote-attribution">Sarah</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What she walks in with</div>
+          <div class="whats-happening-body">A population brief covering cardiovascular detection, COPD admission and a high-risk cohort needing closer monitoring. The clinical question is settled: HomeTest for CVKM screening, a HealthStore COPD therapeutic, HealthSync for the wearable layer on the high-risk cohort. What&apos;s in front of her is procurement, integration and assurance. <strong>This is the moment the operating model has to earn its keep.</strong></div>
+        </div>
+
+        <div class="old-way">
+          <div class="old-way-label">The old way she&apos;s done this before</div>
+          <div class="old-way-body">Three separate procurements, each taking six to nine months. Three sets of clinical-safety assurance to verify. Three IG assessments. Three integration projects. Three sets of MI. A year and a half if everything ran in parallel; closer to two if it didn&apos;t. The last cardiovascular detection programme she stood up before the framework existed took twenty-two months from board paper to first patient.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What her team is looking at</div>
+            <div class="careteam-text">Detection-gap analysis, cohort sizing, budget envelope, timeline. Clinical case settled with the relevant pathway teams. Procurement and integration ahead, owners not yet assigned.</div>
+          </div>
+        </div>
+
+        <div class="crosslinks">
+          <div class="crosslinks-label">Where this lives in the model</div>
+          <div class="crosslinks-row">
+            <span class="crosslinks-tag">Why</span>
+            <a href="DTx OM - Why.html" target="_blank">Why one operating model</a>
+            <span class="crosslinks-tag">Who</span>
+            <a href="DTx OM - Persona Sarah.html" target="_blank">Sarah persona</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== STAGE 2 ========== -->
+    <div class="stage" id="stage-2">
+      <div class="stage-side">
+        <div class="stage-number">02</div>
+        <div class="stage-side-streams">
+          <div class="stage-side-stream on hometest"><span>HomeTest</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream on healthstore"><span>HealthStore</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream on healthsync"><span>HealthSync</span><div class="stage-side-stream-bar"></div></div>
+        </div>
+      </div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">One front door &middot; the framework opens</div>
+        <h2 class="stage-title">She opens the framework. Three product overlays. Configurations admitted. Suppliers on the catalogue. National terms. Prices visible. No procurement to design from scratch.</h2>
+
+        <div class="stage-image">
+          <img src="img/Sarah%202.png" alt="The national framework opens" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;stage-image-icon&quot;>&#x1F5C2;</div><div>Stage 2 illustration</div><div class=&quot;stage-image-caption&quot;>Sarah&apos;s screen &middot; the national framework catalogue open &middot; three product overlays visible &middot; admitted suppliers per overlay &middot; same look and feel across all three';">
+        </div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">I expected to be writing a spec. I&apos;m looking at suppliers I can already call off. The framework did the heavy lifting before I logged in.</p>
+          <div class="pull-quote-attribution">Sarah</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">A coherent set of contracting instruments carries all three product overlays — different per product, common shape. HomeTest suppliers admitted via UKAS / ISO lab accreditation and the supplier admission gate (interim: PSR plus standard NHS call-off plus approved supplier list). HealthStore products admitted via the <strong>NICE EVA conditionally-recommended</strong> route into the National App Formulary (ACE plus NHS Standard Contract). HealthSync configurations admitted via consumer-platform integration agreement. <strong>Eligibility Filters</strong> let Sarah filter for products that fit her pathway, her IG profile, her DCB0160 deployer readiness. The contracting instruments, the Assurance Model and the Pattern catalogue are all <strong>Foundation</strong>, built once, reused per commissioner.</div>
+          </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What her team is looking at</div>
+            <div class="careteam-text">Catalogue view across three product overlays. Admitted suppliers per overlay with clinical-safety, regulatory and IG evidence packs ready to consume. Maximum pricing visible. Call-off templates pre-loaded.</div>
+          </div>
+        </div>
+
+        <div class="crosslinks">
+          <div class="crosslinks-label">Where this lives in the model</div>
+          <div class="crosslinks-row">
+            <span class="crosslinks-tag">How</span>
+            <a href="DTx OM - HomeTest Operational.html" target="_blank">HomeTest Operational</a>
+            <a href="DTx OM - HealthStore Operational.html" target="_blank">HealthStore Operational</a>
+            
+            <span class="crosslinks-tag">What</span>
+            <a href="DTx OM - Anatomical.html" target="_blank">Foundation &middot; Framework instrument, National App Formulary, Eligibility Filters</a>
+            <a href="DTx OM - Ecosystem.html" target="_blank">Ecosystem &middot; admitted suppliers</a>
+            <span class="crosslinks-tag">When</span>
+            <a href="DTx OM - HomeTest SHAPE v4.html" target="_blank">HomeTest SHAPE</a>
+            <a href="DTx OM - HealthStore SHAPE.html" target="_blank">HealthStore SHAPE</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== STAGE 3 ========== -->
+    <div class="stage" id="stage-3">
+      <div class="stage-side">
+        <div class="stage-number">03</div>
+        <div class="stage-side-streams">
+          <div class="stage-side-stream on hometest"><span>HomeTest</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream on healthstore"><span>HealthStore</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream on healthsync"><span>HealthSync</span><div class="stage-side-stream-bar"></div></div>
+        </div>
+      </div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">The fit assessment &middot; whether each configuration actually works for her ICB</div>
+        <h2 class="stage-title">The Self-Assessment Toolkit asks four questions of each configuration. Pathway fit. IG fit. Prescribing alignment. DCB0160 readiness. Sarah and her team work through them inside a fortnight.</h2>
+
+        <div class="stage-image">
+          <img src="img/Sarah%203.png" alt="Sarah working through the fit assessment" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;stage-image-icon&quot;>&#x1F50D;</div><div>Stage 3 illustration</div><div class=&quot;stage-image-caption&quot;>Sarah with her clinical safety officer and her IG lead &middot; whiteboard with the four-question filter &middot; tick / partial / open per configuration &middot; collaborative working session';">
+        </div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">It told me where I needed to do work, not where to start writing a spec from scratch. Three of the four questions came back clean. The fourth had a mitigation route ready to go.</p>
+          <div class="pull-quote-attribution">Sarah</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">The Self-Assessment Toolkit is commissioner-facing: the same four-question filter used across HomeTest, HealthStore and HealthSync. Behind it sits the <strong>Assurance Model</strong> coordinating Independent Assurance, NICE EVA, DTAC, DCB0129 (manufacturer) and DCB0160 (deployer). Suppliers have already been through the upstream assurance bar; Sarah&apos;s work is verifying local fit, not re-doing assurance someone else has already passed. <strong>Assurance portability</strong> at Foundation level is what makes this cheap: evidence done once at the centre, consumed many times by commissioners.</div>
+        </div>
+
+        <div class="old-way">
+          <div class="old-way-label">The old way she&apos;s done this before</div>
+          <div class="old-way-body">A 60-page supplier due-diligence template per supplier. Clinical-safety case review from scratch. DPIA written cold. Pathway-fit assessment done by a working group across three months. Today: a four-question toolkit per configuration, evidence packs pre-loaded, a fortnight of focused work with the right people in the room.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">Who&apos;s in the room with her</div>
+            <div class="careteam-text">Her clinical-safety officer, her IG lead, the prescribing pathway lead for the COPD configuration, and her cardiovascular pathway lead. Plus the framework&apos;s commissioner-engagement contact for the open question.</div>
+          </div>
+        </div>
+
+        <div class="crosslinks">
+          <div class="crosslinks-label">Where this lives in the model</div>
+          <div class="crosslinks-row">
+            <span class="crosslinks-tag">How</span>
+            <a href="DTx OM - HomeTest Operational.html" target="_blank">HomeTest Operational</a>
+            <a href="DTx OM - HealthStore Operational.html" target="_blank">HealthStore Operational</a>
+            
+            <span class="crosslinks-tag">What</span>
+            <a href="DTx OM - Anatomical.html" target="_blank">Foundation &middot; Eligibility Filters, Assurance Model, Assurance portability</a>
+            <span class="crosslinks-tag">When</span>
+            <a href="DTx OM - HomeTest ASSURE v4.html" target="_blank">HomeTest ASSURE</a>
+            <a href="DTx OM - HealthStore ASSURE.html" target="_blank">HealthStore ASSURE</a>
+            <span class="crosslinks-tag">Who</span>
+            <a href="DTx OM - Persona Aisha.html" target="_blank">Aisha &middot; clinical framework</a>
+            <a href="DTx OM - Persona Ngozi.html" target="_blank">Ngozi &middot; IG framework</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== STAGE 4 ========== -->
+    <div class="stage" id="stage-4">
+      <div class="stage-side">
+        <div class="stage-number">04</div>
+        <div class="stage-side-streams">
+          <div class="stage-side-stream on hometest"><span>HomeTest</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream on healthstore"><span>HealthStore</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream on healthsync"><span>HealthSync</span><div class="stage-side-stream-bar"></div></div>
+        </div>
+      </div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">One call-off &middot; the contract that wasn&apos;t six contracts</div>
+        <h2 class="stage-title">Call-off under the NHS Standard Contract with SaaS and data schedules. One legal instrument. Multiple suppliers underneath it. The same payment milestone structure across all three workstreams.</h2>
+
+        <div class="stage-image">
+          <img src="img/Sarah%204.png" alt="Sarah signing the call-off agreement" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;stage-image-icon&quot;>&#x270D;&#xFE0F;</div><div>Stage 4 illustration</div><div class=&quot;stage-image-caption&quot;>Sarah at her desk signing electronically &middot; the call-off document on screen with a single signature panel &middot; supplier names listed beneath &middot; clean and quiet';">
+        </div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">One signature. Same legal instrument. Same milestone structure. The procurement we&apos;d expected to lose six months to was done in six weeks.</p>
+          <div class="pull-quote-attribution">Sarah</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">Call-off agreement under the NHS Standard Contract with SaaS and data schedules. The same legal instrument carries the HomeTest CVKM configuration, the HealthStore COPD therapeutic and the HealthSync wearable cohort. National terms, max pricing and supplier admission rules already baked into the framework agreement above her call-off. Payment milestone structure is shared across all three workstreams: mobilisation, activity, volume floor where it applies; per-episode against milestone evidence where it doesn&apos;t. <strong>NHS Commercial</strong> (David) sits behind the contract architecture as part of the platform. <strong>NHS Legal</strong> sits behind the framework architecture above her. She isn&apos;t negotiating either. She&apos;s calling off against them.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What changes on the day she signs</div>
+            <div class="careteam-text">Suppliers receive the call-off notification and the operational handover packs. The MI feed begins pre-populating. Her cohort identifiers move from planning to live in the contracting instrument. Mobilisation timer starts.</div>
+          </div>
+        </div>
+
+        <div class="crosslinks">
+          <div class="crosslinks-label">Where this lives in the model</div>
+          <div class="crosslinks-row">
+            <span class="crosslinks-tag">How</span>
+            <a href="DTx OM - HomeTest Operational.html" target="_blank">HomeTest Operational</a>
+            <a href="DTx OM - HealthStore Operational.html" target="_blank">HealthStore Operational</a>
+            
+            <span class="crosslinks-tag">What</span>
+            <a href="DTx OM - Anatomical.html" target="_blank">Foundation &middot; Framework instrument, Contract Management framework</a>
+            <span class="crosslinks-tag">When</span>
+            <a href="DTx OM - HomeTest CONTRACT v4.html" target="_blank">HomeTest CONTRACT</a>
+            <a href="DTx OM - HealthStore CONTRACT.html" target="_blank">HealthStore CONTRACT</a>
+            <span class="crosslinks-tag">Who</span>
+            <a href="DTx OM - Persona David.html" target="_blank">David &middot; commercial framework</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== STAGE 5 ========== -->
+    <div class="stage" id="stage-5">
+      <div class="stage-side">
+        <div class="stage-number">05</div>
+        <div class="stage-side-streams">
+          <div class="stage-side-stream on hometest"><span>HomeTest</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream on healthstore"><span>HealthStore</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream on healthsync"><span>HealthSync</span><div class="stage-side-stream-bar"></div></div>
+        </div>
+      </div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">Live operation &middot; mobilisation, MI, supplier performance, payment</div>
+        <h2 class="stage-title">Six months in. Three workstreams in flight, one MI feed, one supplier-performance view, one set of payment milestones. The integration was done before she got here.</h2>
+
+        <div class="stage-image">
+          <img src="img/Sarah%205.png" alt="Sarah at her desk with the population dashboard live" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;stage-image-icon&quot;>&#x1F4C8;</div><div>Stage 5 illustration</div><div class=&quot;stage-image-caption&quot;>Sarah&apos;s screen showing the population dashboard live &middot; three workstreams threaded into one view &middot; supplier-performance and cohort metrics &middot; calm, in-control';">
+        </div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">The dashboard tells me what&apos;s actually happening. I&apos;m not reconciling three suppliers&apos; reporting templates against three MI feeds. The platform does that. I look at the population, not the plumbing.</p>
+          <div class="pull-quote-attribution">Sarah</div>
+        </div>
+
+        <!-- Population dashboard mockup -->
+        <div class="dashboard">
+          <div class="dashboard-eyebrow">The commissioner view &middot; three workstreams, one population</div>
+          <div class="dashboard-title">Sarah&apos;s cohort &middot; six-month checkpoint</div>
+          <div class="dashboard-row">
+            <div class="dashboard-card">
+              <div class="dashboard-card-head">
+                <div class="dashboard-card-dot hometest"></div>
+                <div class="dashboard-card-label">HomeTest &middot; CVKM detection</div>
+              </div>
+              <div class="dashboard-metric">+24%</div>
+              <div class="dashboard-metric-sub">detection rate vs baseline &middot; cohort of 18,400</div>
+              <div class="dashboard-chart">
+                <svg viewBox="0 0 100 30" preserveAspectRatio="none">
+                  <polyline fill="none" stroke="#4F8AC0" stroke-width="2" points="0,24 14,22 28,18 42,15 56,12 70,9 84,7 100,5"/>
+                </svg>
+              </div>
+            </div>
+            <div class="dashboard-card">
+              <div class="dashboard-card-head">
+                <div class="dashboard-card-dot healthstore"></div>
+                <div class="dashboard-card-label">HealthStore &middot; COPD admissions</div>
+              </div>
+              <div class="dashboard-metric">&minus;18%</div>
+              <div class="dashboard-metric-sub">admissions vs 12-month rolling &middot; cohort of 2,100</div>
+              <div class="dashboard-chart">
+                <svg viewBox="0 0 100 30" preserveAspectRatio="none">
+                  <polyline fill="none" stroke="#5EBCDB" stroke-width="2" points="0,8 14,10 28,13 42,15 56,18 70,21 84,23 100,25"/>
+                </svg>
+              </div>
+            </div>
+            <div class="dashboard-card">
+              <div class="dashboard-card-head">
+                <div class="dashboard-card-dot healthsync"></div>
+                <div class="dashboard-card-label">HealthSync &middot; high-risk cohort</div>
+              </div>
+              <div class="dashboard-metric">92%</div>
+              <div class="dashboard-metric-sub">engaged with passive monitoring &middot; cohort of 1,250</div>
+              <div class="dashboard-chart">
+                <svg viewBox="0 0 100 30" preserveAspectRatio="none">
+                  <polyline fill="none" stroke="#5BC9B8" stroke-width="2" points="0,20 14,17 28,14 42,11 56,9 70,8 84,7 100,7"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="dashboard-row">
+            <div class="dashboard-card">
+              <div class="dashboard-card-head">
+                <div class="dashboard-card-dot hometest"></div>
+                <div class="dashboard-card-label">Supplier SLA &middot; HomeTest</div>
+              </div>
+              <div class="dashboard-metric">98%</div>
+              <div class="dashboard-metric-sub">kit-to-result inside 5 working days</div>
+              <div class="dashboard-chart">
+                <svg viewBox="0 0 100 30" preserveAspectRatio="none">
+                  <polyline fill="none" stroke="#4F8AC0" stroke-width="2" points="0,8 25,7 50,7 75,6 100,6"/>
+                </svg>
+              </div>
+            </div>
+            <div class="dashboard-card">
+              <div class="dashboard-card-head">
+                <div class="dashboard-card-dot healthstore"></div>
+                <div class="dashboard-card-label">DTx adherence &middot; cohort average</div>
+              </div>
+              <div class="dashboard-metric">84%</div>
+              <div class="dashboard-metric-sub">12-week sustained &middot; ahead of evidence benchmark</div>
+              <div class="dashboard-chart">
+                <svg viewBox="0 0 100 30" preserveAspectRatio="none">
+                  <polyline fill="none" stroke="#5EBCDB" stroke-width="2" points="0,22 14,19 28,16 42,13 56,11 70,9 84,8 100,8"/>
+                </svg>
+              </div>
+            </div>
+            <div class="dashboard-card">
+              <div class="dashboard-card-head">
+                <div class="dashboard-card-dot healthsync"></div>
+                <div class="dashboard-card-label">Cohort cost &middot; per-patient-per-month</div>
+              </div>
+              <div class="dashboard-metric">&pound;&middot;&middot;</div>
+              <div class="dashboard-metric-sub">vs commissioner-set ceiling &middot; under by margin</div>
+              <div class="dashboard-chart">
+                <svg viewBox="0 0 100 30" preserveAspectRatio="none">
+                  <polyline fill="none" stroke="#5BC9B8" stroke-width="2" points="0,12 14,13 28,12 42,11 56,12 70,11 84,12 100,11"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="dashboard-footer">Three workstreams. <strong>One commissioner view.</strong> Supplier-performance, cohort outcomes, financial discipline, threaded through the same MI feed. Sarah didn&apos;t build it; the framework did.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What her team is doing</div>
+            <div class="careteam-text">Population-level review fortnightly. Supplier-performance conversation with the framework owner monthly. Exception-handling on the few cases where the configuration didn&apos;t fit cleanly. The rest of the team&apos;s capacity has gone back to the next problem on her list.</div>
+          </div>
+        </div>
+
+        <div class="crosslinks">
+          <div class="crosslinks-label">Where this lives in the model</div>
+          <div class="crosslinks-row">
+            <span class="crosslinks-tag">How</span>
+            <a href="DTx OM - HomeTest Operational.html" target="_blank">HomeTest Operational</a>
+            <a href="DTx OM - HealthStore Operational.html" target="_blank">HealthStore Operational</a>
+            <a href="DTx OM - HealthSync Operational.html" target="_blank">HealthSync Operational</a>
+            
+            <span class="crosslinks-tag">When</span>
+            <a href="DTx OM - HomeTest FULFIL v4.html" target="_blank">HomeTest FULFIL</a>
+            <a href="DTx OM - HealthStore FULFIL.html" target="_blank">HealthStore FULFIL</a>
+            <a href="DTx OM - HealthSync FULFIL.html" target="_blank">HealthSync FULFIL</a>
+            <span class="crosslinks-tag">What</span>
+            <a href="DTx OM - Anatomical.html" target="_blank">Foundation &middot; MI / data flow integrity, Contract Management framework</a>
+            <span class="crosslinks-tag">Who</span>
+            <a href="DTx OM - HomeTest Teamwork.html#cap-15" target="_blank">Cap-15 Contract Management</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== STAGE 6 ========== -->
+    <div class="stage" id="stage-6">
+      <div class="stage-side">
+        <div class="stage-number">06</div>
+        <div class="stage-side-streams">
+          <div class="stage-side-stream on hometest"><span>HomeTest</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream on healthstore"><span>HealthStore</span><div class="stage-side-stream-bar"></div></div>
+          <div class="stage-side-stream on healthsync"><span>HealthSync</span><div class="stage-side-stream-bar"></div></div>
+        </div>
+      </div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">The board paper &middot; the case made</div>
+        <h2 class="stage-title">Twelve months on. Detection up. Admissions down. Cohort engagement holding. One narrative, one set of numbers, three workstreams pulling in the same direction.</h2>
+
+        <div class="stage-image">
+          <img src="img/Sarah%206.png" alt="Sarah presenting at the board" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;stage-image-icon&quot;>&#x1F4DD;</div><div>Stage 6 illustration</div><div class=&quot;stage-image-caption&quot;>Sarah presenting at the ICB board &middot; population outcomes slide on screen &middot; calm, prepared &middot; question time looking like a victory lap, not a defence';">
+        </div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">The case writes itself. Detection up, admissions down, cohort engaged, suppliers performing, cost inside the envelope. I&apos;m not defending the model. I&apos;m recommending we extend it.</p>
+          <div class="pull-quote-attribution">Sarah</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model produced</div>
+          <div class="whats-happening-body">A board case made with the evidence the operating model itself generated. <strong>Ongoing Evidence Generation</strong> at Foundation level threads real-world outcomes back into the Assurance Model and into Sarah&apos;s reporting line at the same time. The same data that satisfies her board is the data that satisfies NICE re-evaluation, the data that feeds best-practice tariff evidence, and the data that earns the framework its renewal. <strong>The evidence flywheel runs once.</strong> Sarah benefits from it locally; the centre benefits from it nationally; the next commissioner benefits from it without building it.</div>
+        </div>
+
+        <div class="crosslinks">
+          <div class="crosslinks-label">Where this lives in the model</div>
+          <div class="crosslinks-row">
+            <span class="crosslinks-tag">How</span>
+            <a href="DTx OM - HomeTest Operational.html" target="_blank">HomeTest Operational</a>
+            <a href="DTx OM - HealthStore Operational.html" target="_blank">HealthStore Operational</a>
+            
+            <span class="crosslinks-tag">Why</span>
+            <a href="DTx OM - Why.html" target="_blank">Why this exists at all</a>
+            <span class="crosslinks-tag">When</span>
+            <a href="DTx OM - HomeTest MEASURE v4.html" target="_blank">HomeTest MEASURE</a>
+            <a href="DTx OM - HealthStore MEASURE.html" target="_blank">HealthStore MEASURE</a>
+            <span class="crosslinks-tag">Who</span>
+            <a href="DTx OM - HomeTest Teamwork.html#cap-16" target="_blank">Cap-16 Ongoing Evidence Generation</a>
+            <span class="crosslinks-tag">Status</span>
+            <a href="DTx OM - Status.html" target="_blank">What we still need to land for this to be real at scale</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- CONCLUSION                                                    -->
+  <!-- ============================================================ -->
+  <div class="conclusion">
+    <div class="conclusion-eyebrow">What Sarah&apos;s story shows</div>
+    <h2 class="conclusion-title">Three workstreams, one operating model.<br>Three changes, for three audiences.</h2>
+    <p class="conclusion-strap">Three separate operating models would have forced Sarah to run three procurements, write three business cases, manage three integrations and reconcile three sets of MI. Her year would have gone on the plumbing, not the population. The operating model exists so that none of that happens, and so that the things that <strong>do</strong> happen are the ones that move outcomes for the people she commissions for.</p>
+
+    <div class="outcomes-grid">
+      <div class="outcome">
+        <div style="width:96px;height:96px;border-radius:50%;overflow:hidden;margin-bottom:14px;background:#E0E5EB;box-shadow:0 4px 14px rgba(0,48,135,0.15);"><a href="DTx OM - Persona Sarah.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/sarah.png" alt="Sarah" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block;"></a></div>
+        <div class="outcome-h">For Sarah</div>
+        <div class="outcome-title">A year not lost to procurement.</div>
+        <div class="outcome-body">Six weeks from brief to call-off, not eighteen months. One legal instrument, not six. One MI feed, not three. The procurement, integration and assurance work she would have done locally has been done once at the centre and reused. The time she got back went into the next problem on her list, not into chasing supplier reporting templates.</div>
+      </div>
+      <div class="outcome">
+        <div style="width:96px;height:96px;border-radius:50%;overflow:hidden;margin-bottom:14px;background:#003087;box-shadow:0 4px 14px rgba(0,48,135,0.15);"><img src="img/icon-care.png" alt="Population icon" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        <div class="outcome-h">For her population</div>
+        <div class="outcome-title">Care arriving faster.</div>
+        <div class="outcome-body">Detection earlier in the cardiovascular cohort. Admission rates lower in the COPD cohort. Passive monitoring catching high-risk patients before crisis. The patients didn&apos;t see a procurement. They saw a service in the NHS App. The eighteen months she didn&apos;t spend on the back office is the eighteen months they didn&apos;t spend waiting.</div>
+      </div>
+      <div class="outcome">
+        <div style="width:96px;height:96px;border-radius:50%;overflow:hidden;margin-bottom:14px;background:#003087;box-shadow:0 4px 14px rgba(0,48,135,0.15);"><img src="img/icon-system.png" alt="System icon" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        <div class="outcome-h">For the system</div>
+        <div class="outcome-title">A pattern, not a one-off.</div>
+        <div class="outcome-body">What Sarah did, the next commissioner does without rebuilding it. The framework, the assurance evidence, the contract architecture, the MI feed, built once, reused many times. Sarah&apos;s outcomes feed into the evidence flywheel that admits the next supplier, supports the next NICE re-evaluation and informs the next best-practice tariff. <strong>Easy buying scales.</strong></div>
+      </div>
+    </div>
+
+    <div class="conclusion-line">One commissioner. One signature. One year. <span style="color:var(--amber-deep);">The model carried the weight.</span></div>
+  </div>
+
+</div>
+
+</body>
+</html>

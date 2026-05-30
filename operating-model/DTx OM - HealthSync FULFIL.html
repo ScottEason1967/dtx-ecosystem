@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HealthSync FULFIL: Digital Therapeutics Operating Model</title>
+<style>
+ /* Canonical topnav */
+ .topnav{background:#fff;border-bottom:1px solid #ebeef1;padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:nowrap;min-height:54px;box-sizing:border-box;width:100%;max-width:100%;margin:0;position:sticky;top:0;z-index:200;}
+ .topnav.topnav-secondary{background:#F4F8FC;border-bottom:1px solid #d6e2ef;padding:9px 36px;min-height:42px;}
+ .topnav .nav-back{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-back:hover{color:#005EB8;}
+ .topnav .nav-siblings{display:flex;gap:4px;flex-wrap:nowrap;overflow-x:auto;align-items:center;}
+ .topnav .nav-siblings a{font-size:12px;font-weight:600;color:#4C6272;text-decoration:none;padding:6px 12px;border-radius:6px;letter-spacing:0.2px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-siblings a:hover{background:#f0f4f8;color:#212B32;}
+ .topnav .nav-siblings a.active{background:#003087;color:#fff;}
+ .topnav.topnav-secondary .nav-siblings a{font-size:11.5px;padding:5px 10px;}
+ .topnav.topnav-secondary .nav-siblings a.active{background:#005EB8;color:#fff;}
+ .topnav .nav-secondary-label{font-size:10px;font-weight:800;letter-spacing:1.5px;color:#7E8B97;text-transform:uppercase;flex-shrink:0;}
+
+  :root {
+    --nhs-dark:#003087; --nhs-blue:#005EB8;
+    --accent:#7E8B97;
+    --amber:#FFB91D;
+    --text:#212B32; --text-sec:#4C6272; --text-muted:#7E8B97;
+    --border-lt:#ebeef1;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;background:#f8fafc;color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;}
+  
+  
+  
+  
+  
+  .product-selector{background:#f0f3f6;padding:10px 36px;display:flex;gap:8px;align-items:center;border-bottom:1px solid var(--border-lt);}
+  .product-selector-label{font-size:10px;font-weight:800;letter-spacing:1.4px;color:var(--text-muted);text-transform:uppercase;margin-right:4px;}
+  .product-selector a{font-size:12px;font-weight:700;color:var(--text-sec);text-decoration:none;padding:6px 14px;border-radius:6px;}
+  .product-selector a.active{background:var(--accent);color:#fff;}
+  .page{max-width:900px;margin:0 auto;padding:50px 40px 80px;}
+  .amber-rule{width:72px;height:4px;background:var(--amber);border-radius:2px;margin-bottom:18px;}
+  .h-eyebrow{display:inline-block;background:var(--accent);color:#fff;font-size:10.5px;font-weight:800;letter-spacing:1.6px;padding:6px 14px;border-radius:4px;text-transform:uppercase;margin-bottom:14px;}
+  .h-title{font-size:42px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.6px;line-height:1.1;margin-bottom:14px;}
+  .pending{background:#FFF8E1;border:1px solid #F0DCA0;border-radius:12px;padding:24px 28px;margin:24px 0;font-size:13px;color:var(--text-sec);line-height:1.7;}
+  .pending strong{color:var(--text);font-weight:700;}
+  body{background:linear-gradient(180deg,#00A499 0%,var(--nhs-dark) 100%)!important;background-attachment:fixed!important;}
+  
+  .page{background:#ffffff;border-radius:18px;box-shadow:0 14px 40px rgba(0,48,135,0.20);margin-top:30px!important;margin-bottom:50px!important;}
+
+ .product-selector{background:#f0f3f6;padding:10px 36px;display:flex;gap:8px;align-items:center;border-bottom:1px solid var(--border-lt);}
+ .product-selector-label{font-size:10px;font-weight:800;letter-spacing:1.4px;color:var(--text-muted);text-transform:uppercase;margin-right:4px;}
+ .product-selector a{font-size:12px;font-weight:700;color:var(--text-sec);text-decoration:none;padding:6px 14px;border-radius:6px;}
+ .product-selector a.active{background:#00A499;color:#fff;}
+ .product-selector a.healthsync{}
+ .page{max-width:1100px;margin:0 auto;padding:40px 40px 80px;}
+ .amber-rule{width:72px;height:4px;background:var(--amber);border-radius:2px;margin-bottom:14px;}
+ .h-eyebrow{display:inline-block;background:#00A499;color:#fff;font-size:10px;font-weight:800;letter-spacing:1.6px;padding:6px 14px;border-radius:4px;text-transform:uppercase;margin-bottom:14px;}
+ .h-mega{font-size:88px;font-weight:900;color:#00A499;letter-spacing:-2.5px;line-height:0.95;margin:6px 0 6px;}
+ .h-title{font-size:36px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.5px;line-height:1.15;margin-bottom:14px;}
+ .h-sub{font-size:16px;color:var(--text-sec);margin-bottom:16px;font-weight:500;}
+ .h-intro{max-width:820px;font-size:14px;color:var(--text-sec);line-height:1.75;}
+ .h-intro strong{color:var(--text);font-weight:700;}
+ .section-h{font-size:11.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--text-muted);margin:40px 0 14px;}
+ .detail-block{background:#fff;border:1px solid var(--border-lt);border-radius:10px;padding:18px 22px;margin-bottom:10px;border-left:4px solid #00A499;}
+ .detail-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:8px;}
+ .detail-block h3{font-size:15px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.2px;}
+ .detail-block p{font-size:13px;color:var(--text-sec);line-height:1.7;}
+ .detail-block strong{color:var(--text);font-weight:700;}
+ .pill{display:inline-block;font-size:9.5px;font-weight:800;padding:3px 8px;border-radius:10px;letter-spacing:0.6px;text-transform:uppercase;flex-shrink:0;}
+ .pill-live{background:#e6f4ed;color:#007F3B;}
+ .pill-flight{background:#fef6e6;color:#9A6700;}
+ .pill-open{background:#fce8e9;color:#B5121B;}
+ .pill-blocked{background:#f0e8ed;color:#7C2855;}
+ .pill-pending{background:#E0E5EB;color:#4C6272;}
+ .open-decision{background:#FFF8E1;border:1px solid #F0DCA0;border-left:4px solid #F9A825;border-radius:0 10px 10px 0;padding:14px 18px;margin-bottom:8px;}
+ .open-decision-title{font-size:12px;font-weight:800;color:#8D6E1A;margin-bottom:4px;letter-spacing:0.2px;}
+ .open-decision-body{font-size:12px;color:var(--text-sec);line-height:1.65;}
+ :root { --healthsync:#00A499; --border-lt:#ebeef1; --text-muted:#7E8B97; --text-sec:#4C6272; --text:#212B32; --nhs-dark:#003087; --amber:#FFB91D; }
+ body{background:linear-gradient(180deg,#00A499 0%,var(--nhs-dark) 100%) !important;background-attachment:fixed !important;}
+ .page{background:#ffffff;border-radius:18px;box-shadow:0 14px 40px rgba(0,48,135,0.20);margin-top:30px !important;margin-bottom:50px !important;}
+</style>
+<style>
+  .ecosystem-nav {
+    background: #fff;
+    border-bottom: 1px solid #ebeef1;
+    padding: 12px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 48px;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  }
+  .ecosystem-nav a {
+    font-size: 13px; font-weight: 700; color: #003087;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .ecosystem-nav a:hover { color: #005EB8; }
+  .ecosystem-nav .nav-context {
+    font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
+    color: #7E8B97; text-transform: uppercase;
+  }
+  .ecosystem-nav .nav-product {
+    font-size: 10.5px; font-weight: 800; letter-spacing: 0.8px;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 4px; color: #fff;
+  }
+  .ecosystem-nav .nav-product.dtx { background: #003087; }
+  .ecosystem-nav .nav-product.hometest { background: #003087; }
+  .ecosystem-nav .nav-product.healthstore { background: #00A9CE; }
+  .ecosystem-nav .nav-product.healthsync { background: #00A499; }
+</style>
+</head>
+<body>
+<div class="ecosystem-nav">
+  <a href="../index.html">← DTx Ecosystem</a>
+  <span class="nav-context">HealthSync FULFIL</span>
+  <span class="nav-product healthsync">HealthSync</span>
+</div>
+<nav class="topnav">
+<a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+<div class="nav-siblings">
+ <a href="DTx OM - Why.html">Why</a>
+ <a href="DTx OM - What.html">What</a>
+ <a href="DTx OM - Lifecycle.html" class="active">When</a>
+ <a href="DTx OM - HomeTest Operational.html">How</a>
+ <a href="DTx OM - Governance.html">Who</a>
+ <a href="DTx OM - Hearts and Minds.html">Hearts and Minds</a>
+ <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>
+ <a href="DTx OM - Status.html">Status</a>
+</div>
+</nav>
+
+<nav class="topnav topnav-secondary">
+<div class="nav-secondary-label">HealthSync stage</div>
+<div class="nav-siblings">
+ <a href="DTx OM - HealthSync SHAPE.html">SHAPE</a>
+ <a href="DTx OM - HealthSync ASSURE.html">ASSURE</a>
+ <a href="DTx OM - HealthSync CONTRACT.html">CONTRACT</a>
+ <a href="DTx OM - HealthSync FULFIL.html" class="active">FULFIL</a>
+ <a href="DTx OM - HealthSync MEASURE.html">MEASURE</a>
+</div>
+</nav>
+
+<div class="product-selector">
+  <span class="product-selector-label">Product overlay:</span>
+  <a href="DTx OM - HomeTest FULFIL v4.html">HomeTest</a>
+  <a href="DTx OM - HealthStore FULFIL.html">HealthStore</a>
+  <a href="DTx OM - HealthSync FULFIL.html" class="active">HealthSync</a>
+</div>
+
+<div class="page">
+
+  <div class="amber-rule"></div>
+  <div class="h-eyebrow">HealthSync &middot; FULFIL</div>
+  <h1 class="h-title"><span style="display:inline-block;background:#00A499;color:#fff;padding:4px 14px 6px;border-radius:10px;line-height:1;letter-spacing:-0.3px;">HealthSync</span> at FULFIL.</h1>
+
+  <p class="h-sub">Delivery: from patient consent through to care-team visibility and between-appointment alerting</p>
+  <p class="h-intro">FULFIL for HealthSync is the journey of a single piece of data from the consumer device, through the consumer-platform layer, into the NHS App, into the patient record, and through to the care team. It is also the journey of the patient through onboarding, permission management, and use. The model is different from HomeTest (test ordered, kit delivered, sample returned, result given) and HealthStore (digital therapeutic prescribed, app activated, episode completed). For HealthSync, the delivery is continuous data flow, not discrete episodes.</p>
+
+
+  <div class="section-h">The fulfilment shape</div>
+
+  <div class="detail-block">
+   <div class="detail-head"><h3>Patient enables data sharing</h3><span class="pill pill-flight">In flight</span></div>
+   <p>Patient opens the consumer-platform health app on their phone, selects the NHS App as a permitted reader, and chooses which data types to share. The permission decision is granular and revocable. The NHS App holds the permission state on its side; the consumer platform holds it on the platform side. Both layers can revoke independently.</p>
+  </div>
+
+  <div class="detail-block">
+   <div class="detail-head"><h3>Data flow through Apple HealthKit / Google Health Connect</h3><span class="pill pill-flight">In flight</span></div>
+   <p>On consent, the consumer platform routes the selected data types to the NHS App via the platform APIs. The NHS App is one reader among many that the patient may have authorised. Frequency and granularity vary per data type and per platform.</p>
+  </div>
+
+  <div class="detail-block">
+   <div class="detail-head"><h3>NHS App ingestion and routing</h3><span class="pill pill-flight">In flight</span></div>
+   <p>Data flows into the NHS App where it is mapped to NHS schema, routed via FHIR into the patient record (Single Patient Record), and surfaced in the patient&apos;s view in the NHS App. Routing into care-team view depends on the use case and the configured permissions.</p>
+  </div>
+
+  <div class="detail-block">
+   <div class="detail-head"><h3>Care-team visibility</h3><span class="pill pill-flight">In flight</span></div>
+   <p>Care team sees the data either passively (at annual review or scheduled clinical contact) or actively (via threshold-based alerting). The visibility model is configured per use case: BP signal goes to GP; CGM signal goes to diabetes team; activity / sleep data may go to no-one until aggregated.</p>
+  </div>
+
+  <div class="detail-block">
+   <div class="detail-head"><h3>Threshold-based alerting and escalation</h3><span class="pill pill-pending">In design</span></div>
+   <p>For use cases where between-appointment signal matters clinically, threshold-based alerting drives Clinician-Initiated Escalation. For use cases where patient-side signal change drives the patient to seek contact, Patient-Initiated Escalation routes the patient to the right care contact. Alerting governance sits at clinical pathway level, configured per use case.</p>
+  </div>
+
+  <div class="detail-block">
+   <div class="detail-head"><h3>Annual review with data in hand</h3><span class="pill pill-flight">In flight</span></div>
+   <p>For longitudinal use cases (BP, CGM, weight, activity), the annual review is the moment the longitudinal data has most clinical value. The care team sees the trend, can discuss with the patient, and adjust treatment. The annual review experience changes shape when between-appointment data is available.</p>
+  </div>
+
+  <div class="section-h">Open decisions and dependencies</div>
+
+  <div class="open-decision">
+   <div class="open-decision-title">Patient permission UX maturity</div>
+   <div class="open-decision-body">Granularity and clarity of the permission UX evolves through Alpha. Beta-onwards work expects richer per-data-type controls, clearer revocation, and a single coherent permission view across NHS App and consumer-platform layers.</div>
+  </div>
+
+  <div class="open-decision">
+   <div class="open-decision-title">Care-team alerting capacity</div>
+   <div class="open-decision-body">Between-appointment alerting only adds value if care-team capacity is funded to act. The capacity model needs alignment with primary-care workforce planning. Dependency on workforce capacity sits outside the operating model.</div>
+  </div>
+
+  <div class="open-decision">
+   <div class="open-decision-title">Use-case-specific threshold setting</div>
+   <div class="open-decision-body">Each new use case needs clinical sign-off on the thresholds that drive alerting. The governance route for threshold setting is being designed and will repeat per use case.</div>
+  </div>
+
+  <div class="open-decision">
+   <div class="open-decision-title">Cross-product data correlation</div>
+   <div class="open-decision-body">When a patient (like Errol) is using HealthSync alongside HomeTest and HealthStore, the data from all three converges in the patient record. The care-team view of the combined picture is a Foundation-level integration challenge that surfaces in FULFIL.</div>
+  </div>
+
+</div>
+
+</body>
+</html>

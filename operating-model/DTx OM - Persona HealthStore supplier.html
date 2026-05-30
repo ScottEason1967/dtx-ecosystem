@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Marcus: Digital Therapeutics Operating Model</title>
+<style>
+ /* Canonical topnav */
+ .topnav{background:#fff;border-bottom:1px solid #ebeef1;padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:nowrap;min-height:54px;box-sizing:border-box;width:100%;max-width:100%;margin:0;position:sticky;top:0;z-index:200;}
+ .topnav.topnav-secondary{background:#F4F8FC;border-bottom:1px solid #d6e2ef;padding:9px 36px;min-height:42px;}
+ .topnav .nav-back{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-back:hover{color:#005EB8;}
+ .topnav .nav-siblings{display:flex;gap:4px;flex-wrap:nowrap;overflow-x:auto;align-items:center;}
+ .topnav .nav-siblings a{font-size:12px;font-weight:600;color:#4C6272;text-decoration:none;padding:6px 12px;border-radius:6px;letter-spacing:0.2px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-siblings a:hover{background:#f0f4f8;color:#212B32;}
+ .topnav .nav-siblings a.active{background:#003087;color:#fff;}
+ .topnav.topnav-secondary .nav-siblings a{font-size:11.5px;padding:5px 10px;}
+ .topnav.topnav-secondary .nav-siblings a.active{background:#005EB8;color:#fff;}
+ .topnav .nav-secondary-label{font-size:10px;font-weight:800;letter-spacing:1.5px;color:#7E8B97;text-transform:uppercase;flex-shrink:0;}
+
+ :root {
+ --nhs-dark:#003087; --nhs-blue:#005EB8; --nhs-green:#006747; --nhs-pink:#AE2573;
+ --amber:#FFB91D; --amber-deep:#C9A227; --warm-cream:#FFF9EC;
+ --accent:#006747;
+ --text:#212B32; --text-sec:#4C6272; --text-muted:#7E8B97;
+ --border-lt:#ebeef1; --card:#ffffff; --bg:#f8fafc;
+ }
+ *{box-sizing:border-box;margin:0;padding:0;}
+ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ .page{max-width:1100px;margin:0 auto;padding:50px 40px 80px;}
+ .amber-rule{width:72px;height:4px;background:var(--amber);border-radius:2px;margin-bottom:18px;}
+ .h-eyebrow{font-size:11px;font-weight:700;letter-spacing:2.2px;color:var(--text-sec);text-transform:uppercase;margin-bottom:18px;}
+ .h-flex{display:grid;grid-template-columns:1.6fr 1fr;gap:48px;align-items:center;margin-bottom:48px;}
+ .h-title{font-size:54px;font-weight:800;color:var(--nhs-dark);letter-spacing:-1.4px;line-height:1.05;margin-bottom:14px;}
+ .h-role{font-size:13px;font-weight:800;letter-spacing:1.6px;color:var(--accent);text-transform:uppercase;margin-bottom:20px;}
+ .h-quote{font-size:18px;color:var(--text);line-height:1.5;font-weight:500;font-style:italic;border-left:4px solid var(--amber);padding-left:16px;margin-bottom:18px;}
+ .h-bio{font-size:15px;color:var(--text-sec);line-height:1.7;}
+ .h-portrait{display:flex;justify-content:center;align-items:center;}
+ .h-portrait img{max-width:260px;width:100%;height:auto;border-radius:14px;}
+ .section-h{font-size:24px;font-weight:800;color:var(--nhs-dark);margin:42px 0 14px;letter-spacing:-0.4px;}
+ .section-body{font-size:15px;color:var(--text-sec);line-height:1.75;max-width:760px;}
+ .section-body strong{color:var(--text);font-weight:700;}
+ .where-list{display:flex;flex-direction:column;gap:8px;margin-top:14px;}
+ .where-list li{font-size:14px;color:var(--text-sec);line-height:1.6;padding-left:16px;position:relative;list-style:none;}
+ .where-list li::before{content:'';position:absolute;left:0;top:9px;width:8px;height:8px;background:var(--amber);border-radius:50%;}
+ .pair-callout{background:var(--warm-cream);border:1px solid #F0DCA0;border-radius:12px;padding:18px 22px;margin-top:18px;font-size:13.5px;color:var(--text-sec);line-height:1.65;}
+ .pair-callout strong{color:var(--text);font-weight:700;}
+ .placeholder-note{background:#E0E5EB;border-left:4px solid var(--text-muted);border-radius:0 8px 8px 0;padding:14px 18px;margin:18px 0;font-size:12.5px;color:var(--text-sec);line-height:1.6;}
+ .placeholder-note strong{color:var(--text);font-weight:700;}
+ @media(max-width:820px){.h-flex{grid-template-columns:1fr;}.h-title{font-size:36px;}.page{padding:40px 22px 60px;}}
+ :root { --nhs-blue-deep:#003087; }
+ body { background: linear-gradient(180deg, var(--nhs-blue) 0%, var(--nhs-blue-deep) 100%) !important; background-attachment: fixed !important; }
+ 
+ .page { background:#ffffff; border-radius:18px; box-shadow:0 14px 40px rgba(0,48,135,0.20); margin-top:30px !important; margin-bottom:50px !important; }
+</style>
+<style>
+  .ecosystem-nav {
+    background: #fff;
+    border-bottom: 1px solid #ebeef1;
+    padding: 12px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 48px;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  }
+  .ecosystem-nav a {
+    font-size: 13px; font-weight: 700; color: #003087;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .ecosystem-nav a:hover { color: #005EB8; }
+  .ecosystem-nav .nav-context {
+    font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
+    color: #7E8B97; text-transform: uppercase;
+  }
+  .ecosystem-nav .nav-product {
+    font-size: 10.5px; font-weight: 800; letter-spacing: 0.8px;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 4px; color: #fff;
+  }
+  .ecosystem-nav .nav-product.dtx { background: #003087; }
+  .ecosystem-nav .nav-product.hometest { background: #003087; }
+  .ecosystem-nav .nav-product.healthstore { background: #00A9CE; }
+  .ecosystem-nav .nav-product.healthsync { background: #00A499; }
+</style>
+</head>
+<body>
+<div class="ecosystem-nav">
+  <a href="../index.html">← DTx Ecosystem</a>
+  <span class="nav-context">Persona HealthStore supplier</span>
+  <span class="nav-product healthstore">HealthStore</span>
+</div>
+<nav class="topnav">
+<a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+<div class="nav-siblings">
+ <a href="DTx OM - Why.html">Why</a>
+ <a href="DTx OM - What.html">What</a>
+ <a href="DTx OM - Lifecycle.html">When</a>
+ <a href="DTx OM - HomeTest Operational.html">How</a>
+ <a href="DTx OM - Governance.html" class="active">Who</a>
+ <a href="DTx OM - Hearts and Minds.html">Hearts and Minds</a>
+ <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>
+ <a href="DTx OM - Status.html">Status</a>
+</div>
+</nav>
+
+<nav class="topnav topnav-secondary">
+<div class="nav-secondary-label">Cast</div>
+<div class="nav-siblings">
+ <a href="DTx OM - Persona Sarah.html">Sarah</a>
+ <a href="DTx OM - Persona Aisha.html">Aisha</a>
+ <a href="DTx OM - Persona Priya.html">Priya</a>
+ <a href="DTx OM - Persona David.html">David</a>
+ <a href="DTx OM - Persona Ngozi.html">Ngozi</a>
+ <a href="DTx OM - Persona Abdul.html">Abdul</a>
+ <a href="DTx OM - Persona Mark.html">Mark</a>
+ <a href="DTx OM - Persona Layla.html">Layla</a>
+ <a href="DTx OM - Persona Joe.html">Joe</a>
+ <a href="DTx OM - Persona HealthStore COPD patient.html">Pauline</a>
+ <a href="DTx OM - Persona HealthStore prescribing clinician.html">Ravi</a>
+ <a href="DTx OM - Persona HealthStore supplier.html" class="active">Marcus</a>
+ <a href="DTx OM - Persona HealthSync diabetes patient.html">Mei</a>
+ <a href="DTx OM - Persona HealthSync patient.html">Errol</a>
+</div>
+</nav>
+
+<div class="page">
+
+ <div class="amber-rule"></div>
+ <div class="h-eyebrow">The cast &middot; meet Marcus &middot; HealthStore DTx supplier archetype</div>
+
+ <div class="h-flex">
+ <div>
+ <h1 class="h-title">Marcus.</h1>
+ <div class="h-role">Supplier &middot; DTx founder</div>
+ <div class="h-quote">&ldquo;We&rsquo;ve spent four years getting the clinical evidence right. Conditional admission means we can scale before that evidence is published, as long as we keep generating it.&rdquo;</div>
+ <div class="h-bio">42, founder and CEO of a UK-based DTx start-up of around 35 staff. Background in respiratory clinical research, then a stint at a med-tech consultancy, founded the company in 2021. Has lived the NICE EVA conditional admission process end to end. Carries DCB0129 manufacturer responsibility for the digital therapeutic; NHSE and the deploying organisation carry DCB0160 deployer responsibility. Cares about ICB adoption volume, the marketplace payments mechanism being designed in Alpha, the regulatory bar staying stable, and not getting cut out when the framework matures.</div>
+ </div>
+ <div class="h-portrait">
+ <img src="img/marcus-final.png" alt="Marcus">
+ </div>
+ </div>
+
+ <h2 class="section-h">Why Marcus matters in the model</h2>
+ <p class="section-body">Marcus is the third-party DTx supplier the HealthStore depends on. He builds the digital therapeutic, owns the DCB0129 manufacturer responsibility for it, and carries the NICE EVA conditional recommendation. Without suppliers like Marcus, HealthStore has no marketplace. His commercial model is volume of meaningful adoption rather than per-activation; the marketplace payments mechanism is being designed in Alpha. HealthStore admission is increasingly tied to suppliers continuing to support NICE evidence generation post-recommendation; Marcus has to keep generating evidence to keep his place.</p>
+
+ <div class="pair-callout">
+ <strong>What Marcus tells the model.</strong> The HealthStore can only contain third-party DTx apps; NHSE is explicit that it will not develop NHS DTx apps because doing so would remove the incentive for suppliers like Marcus to invest. Clinical safety responsibility runs through the two NHS England mandatory standards: DCB0129 (manufacturer, sits with Marcus) and DCB0160 (deployer, sits with the deploying organisation). HealthStore does not duplicate assurance; it coordinates with NICE EVA, Innovator Passport and DTAC. The marketplace shape means Marcus competes on clinical evidence, integration quality and outcome generation rather than on sales relationships with individual commissioners.
+ </div>
+
+ <h2 class="section-h">What is distinctive about Marcus&rsquo;s role</h2>
+ <p class="section-body">The commercial mechanism is a marketplace payments mechanism being designed in Alpha alongside three to five credible delivery archetypes. The contract instrument is NHS Standard Contract with SaaS and data schedules between the commissioner and the admitted supplier; HealthStore holds the framework. Supplier admission runs through the NICE EVA conditional recommendation route. Clinical safety runs through DCB0129 (manufacturer, sits with Marcus) and DCB0160 (deployer, sits with the deploying organisation). None of these are individually unique to HealthStore, but the combination produces a supplier role that does not exist elsewhere in the portfolio in this shape.</p>
+
+ <h2 class="section-h">Where Marcus appears in the model</h2>
+ <ul class="where-list">
+ <li>The HealthStore supplier slot in the home page cast (hub-and-spoke actor visualisation, HealthStore product group)</li>
+ <li>The supplier lane in the HealthStore <a href="DTx OM - HealthStore Operational.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">Operational</a> overlay (Find, Decide, Onboard, Go live, Operate columns)</li>
+ <li>The supply-chain, commercial, accreditation and contract instrument overlay rows in <a href="DTx OM - Anatomical.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">Anatomy</a></li>
+ <li>The HealthStore ASSURE and CONTRACT stage detail pages (manufacturer governance, conditional admission, marketplace payments mechanism)</li>
+ <li>The <a href="DTx OM - Product HealthStore.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">HealthStore product page</a> (supplier route in the status card)</li>
+ <li>The HealthStore section in <a href="DTx OM - Status.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">Status</a></li>
+ </ul>
+
+  <h2 class="section-h" style="margin-top:48px;">TOM components &mdash; what this persona owns or participates in</h2>
+  <ul class="where-list">
+    <li><a href="DTx OM - Anatomical.html" style="color:#5E35B2;font-weight:600;text-decoration:none;"><strong>NICE EVA conditional admission</strong> as the route into the catalogue</a></li>
+    <li><a href="DTx OM - Governance.html" style="color:#5E35B2;font-weight:600;text-decoration:none;"><strong>DCB0129 manufacturer responsibility</strong> (sits with him, not jointly with NHS)</a></li>
+    <li><a href="DTx OM - HealthStore Teamwork.html#cap-9" style="color:#5E35B2;font-weight:600;text-decoration:none;"><strong>Marketplace Payments</strong> as Cap-9 counterparty (milestone-based)</a></li>
+    <li><a href="DTx OM - HealthStore Teamwork.html#cap-12" style="color:#5E35B2;font-weight:600;text-decoration:none;"><strong>Post-market surveillance</strong> DTx-side as Cap-12 contributor</a></li>
+    <li><a href="DTx OM - HealthStore Teamwork.html#cap-14" style="color:#5E35B2;font-weight:600;text-decoration:none;"><strong>Independent Assurance</strong> framework participant for the admitted product</a></li>
+    <li><a href="DTx OM - HealthStore Teamwork.html#cap-16" style="color:#5E35B2;font-weight:600;text-decoration:none;"><strong>Ongoing Evidence Generation</strong> data feed as Cap-16 contributor</a></li>
+  </ul>
+</div>
+</body>
+</html>

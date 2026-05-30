@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Digital Therapeutics Operating Model: Governance</title>
+<style>
+ /* Canonical topnav */
+ .topnav{background:#fff;border-bottom:1px solid #ebeef1;padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:nowrap;min-height:54px;box-sizing:border-box;width:100%;max-width:100%;margin:0;position:sticky;top:0;z-index:200;}
+ .topnav.topnav-secondary{background:#F4F8FC;border-bottom:1px solid #d6e2ef;padding:9px 36px;min-height:42px;}
+ .topnav .nav-back{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-back:hover{color:#005EB8;}
+ .topnav .nav-siblings{display:flex;gap:4px;flex-wrap:nowrap;overflow-x:auto;align-items:center;}
+ .topnav .nav-siblings a{font-size:12px;font-weight:600;color:#4C6272;text-decoration:none;padding:6px 12px;border-radius:6px;letter-spacing:0.2px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-siblings a:hover{background:#f0f4f8;color:#212B32;}
+ .topnav .nav-siblings a.active{background:#003087;color:#fff;}
+ .topnav.topnav-secondary .nav-siblings a{font-size:11.5px;padding:5px 10px;}
+ .topnav.topnav-secondary .nav-siblings a.active{background:#005EB8;color:#fff;}
+ .topnav .nav-secondary-label{font-size:10px;font-weight:800;letter-spacing:1.5px;color:#7E8B97;text-transform:uppercase;flex-shrink:0;}
+
+  :root {
+    --nhs-dark:#003087; --nhs-blue:#005EB8; --nhs-green:#006747; --nhs-pink:#AE2573;
+    --amber:#FFB91D; --amber-deep:#C9A227; --warm-cream:#FFF9EC;
+    --accent:var(--nhs-pink);
+    --text:#212B32; --text-sec:#4C6272; --text-muted:#7E8B97;
+    --border:#d9dee3; --border-lt:#ebeef1;
+    --card:#ffffff; --bg:#f8fafc;
+  }
+  .amber-rule { width: 72px; height: 4px; background: var(--amber); border-radius: 2px; margin-bottom: 18px; }
+  .gov-cast { display:grid; grid-template-columns:repeat(9,1fr); gap:8px; margin:24px 0 36px; padding:14px; background:var(--warm-cream); border:1px solid #F0DCA0; border-radius:12px; }
+  .gov-cast .gc { display:flex; flex-direction:column; align-items:center; text-align:center; min-width:0; }
+  .gov-cast .gc-portrait { height:62px; width:auto; display:flex; align-items:end; justify-content:center; margin-bottom:6px; }
+  .gov-cast .gc-portrait img { max-height:62px; max-width:100%; }
+  .gov-cast .gc-name { font-size:11px; font-weight:800; color:var(--nhs-dark); }
+  .gov-cast .gc-role { font-size:8.5px; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.8px; font-weight:700; margin-top:2px; }
+  .gov-cast .gc-decision { font-size:9.5px; color:var(--text-sec); margin-top:6px; line-height:1.45; padding:0 2px; }
+  .gov-cast .gc-decision strong { color:var(--text); font-weight:700; }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;}
+  
+  
+  
+  
+  
+  
+  
+  .page{max-width:1180px;margin:0 auto;padding:50px 40px 80px;}
+  .header{margin-bottom:42px;}
+  .h-eyebrow{display:inline-block;background:var(--accent);color:#fff;font-size:10.5px;font-weight:800;letter-spacing:1.8px;padding:7px 16px;border-radius:4px;text-transform:uppercase;margin-bottom:18px;}
+  .h-title{font-size:42px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.5px;line-height:1.1;margin-bottom:12px;}
+  .h-subtitle{font-size:18px;color:var(--text-sec);font-weight:500;margin-bottom:18px;}
+  .h-intro{max-width:820px;font-size:14.5px;color:var(--text-sec);line-height:1.7;}
+  .h-intro strong{color:var(--text);font-weight:700;}
+  /* Status banner */
+  .status-banner{background:#FFF3CD;border-left:4px solid #F9A825;padding:14px 20px;margin:22px 0 36px;border-radius:0 8px 8px 0;}
+  .status-banner-h{font-size:11px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:#8D6E1A;margin-bottom:4px;}
+  .status-banner-body{font-size:12.5px;color:var(--text-sec);line-height:1.6;}
+  .status-banner-body strong{color:var(--text);}
+  /* RACI table */
+  .raci-section{margin-bottom:48px;}
+  .raci-section h2{font-size:22px;font-weight:800;color:var(--nhs-dark);margin-bottom:6px;letter-spacing:-0.2px;}
+  .raci-section .raci-sub{font-size:13.5px;color:var(--text-sec);margin-bottom:18px;}
+  .raci-table{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--border-lt);box-shadow:0 1px 3px rgba(0,32,64,0.04);}
+  .raci-table th{background:var(--accent);color:#fff;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:14px 16px;text-align:left;}
+  .raci-table th.col-r,.raci-table th.col-a,.raci-table th.col-c,.raci-table th.col-i{text-align:center;width:14%;}
+  .raci-table td{padding:14px 16px;border-bottom:1px solid var(--border-lt);font-size:13px;color:var(--text-sec);vertical-align:top;}
+  .raci-table td.label{font-weight:700;color:var(--text);width:18%;background:#FAFBFC;}
+  .raci-table td.col-r,.raci-table td.col-a,.raci-table td.col-c,.raci-table td.col-i{text-align:center;font-size:11.5px;}
+  .raci-table tr:last-child td{border-bottom:none;}
+  .tbc{display:inline-block;font-size:9.5px;font-weight:800;letter-spacing:0.5px;color:#999;background:#f0f0f0;padding:3px 8px;border-radius:4px;text-transform:uppercase;}
+  .raci-key{display:flex;gap:18px;margin-top:14px;font-size:11.5px;color:var(--text-muted);flex-wrap:wrap;}
+  .raci-key strong{color:var(--text);}
+  /* Decision rights */
+  .decisions{display:grid;grid-template-columns:1fr;gap:14px;}
+  .decision{background:#fff;border:1px solid var(--border-lt);border-radius:10px;padding:18px 22px;display:grid;grid-template-columns:240px 1fr 200px;gap:24px;align-items:start;box-shadow:0 1px 3px rgba(0,32,64,0.04);}
+  .decision-q{font-size:13.5px;font-weight:700;color:var(--text);line-height:1.5;}
+  .decision-d{font-size:12.5px;color:var(--text-sec);line-height:1.6;}
+  .decision-d strong{color:var(--text);}
+  .decision-owner{font-size:12px;color:var(--text-sec);font-style:italic;line-height:1.5;}
+  .decision-owner-tag{display:block;font-size:9.5px;font-weight:800;letter-spacing:0.8px;color:var(--accent);text-transform:uppercase;margin-bottom:4px;font-style:normal;}
+  /* Foot */
+  .foot{margin-top:48px;text-align:center;font-size:11.5px;color:var(--text-muted);line-height:1.6;}
+  .foot strong{color:var(--text-sec);font-weight:700;}
+  @media(max-width:820px){
+    .decision{grid-template-columns:1fr;gap:12px;}
+    .h-title{font-size:30px;}
+    .page{padding:30px 22px 60px;}
+    
+  }
+
+  /* NHS-blue rebrand override */
+  :root { --nhs-blue-deep:#003087; }
+  body { background: linear-gradient(180deg, var(--nhs-blue) 0%, var(--nhs-blue-deep) 100%) !important; background-attachment: fixed !important; }
+  
+  .page { background:#ffffff; border-radius:18px; box-shadow:0 14px 40px rgba(0,48,135,0.20); margin-top:30px !important; margin-bottom:50px !important; }
+  @media (max-width:720px){ .page { border-radius:12px; margin-top:18px !important; } }
+
+
+  /* === Ecosystem map + accordion restructure (D2) === */
+  .toc-bar { position:sticky; top:0; z-index:50; background:rgba(255,255,255,0.96); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); padding:10px 16px; margin:-30px -28px 26px; border-bottom:1px solid var(--border-lt); border-radius:18px 18px 0 0; }
+  .toc-bar-inner { display:flex; gap:6px; flex-wrap:wrap; align-items:center; }
+  .toc-bar-label { font-size:10px; font-weight:800; letter-spacing:1.4px; color:var(--text-muted); text-transform:uppercase; margin-right:8px; }
+  .toc-bar a { font-size:11.5px; font-weight:700; color:var(--text-sec); text-decoration:none; padding:5px 10px; border-radius:6px; background:#f4f8fc; transition:background 0.15s, color 0.15s; }
+  .toc-bar a:hover { background:var(--accent); color:#fff; }
+
+  .eco-lede { background:linear-gradient(135deg, #f4f8fc, #ffffff); border:1px solid var(--border-lt); border-left:4px solid var(--nhs-blue); border-radius:0 12px 12px 0; padding:16px 22px; margin:0 0 14px; }
+  .eco-lede-h { font-size:13px; font-weight:800; letter-spacing:1.6px; color:var(--nhs-blue); text-transform:uppercase; margin-bottom:8px; }
+  .eco-lede-title { font-size:22px; font-weight:800; color:var(--nhs-dark); letter-spacing:-0.4px; line-height:1.25; margin-bottom:10px; }
+  .eco-lede-body { font-size:14px; color:var(--text-sec); line-height:1.7; max-width:840px; }
+  .eco-lede-body strong { color:var(--text); font-weight:700; }
+
+  .eco-cards { display:grid; grid-template-columns:1fr; gap:6px; margin-bottom:28px; }
+  details.eco-card { background:#fff; border:1px solid var(--border-lt); border-radius:10px; overflow:hidden; transition:box-shadow 0.2s; }
+  details.eco-card[open] { box-shadow:0 4px 14px rgba(0,32,64,0.08); }
+  details.eco-card summary { list-style:none; cursor:pointer; padding:10px 18px; display:grid; grid-template-columns:32px 1fr auto; gap:12px; align-items:center; user-select:none; }
+  details.eco-card summary::-webkit-details-marker { display:none; }
+  details.eco-card .eco-num { font-size:11px; font-weight:900; letter-spacing:0.4px; color:#fff; background:var(--text-muted); width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
+  details.eco-card.eco-built .eco-num { background:#005EB8; }
+  details.eco-card.eco-consumed .eco-num { background:#00A9CE; }
+  details.eco-card.eco-regulated .eco-num { background:#7C2855; }
+  details.eco-card.eco-contracted .eco-num { background:#C9A227; }
+  details.eco-card.eco-served .eco-num { background:#006747; }
+  details.eco-card .eco-head-text { display:flex; flex-direction:column; gap:3px; min-width:0; }
+  details.eco-card .eco-name { font-size:13.5px; font-weight:800; color:var(--text); letter-spacing:-0.1px; }
+  details.eco-card .eco-line { font-size:11.5px; color:var(--text-sec); line-height:1.45; }
+  details.eco-card .eco-count { font-size:11px; font-weight:700; color:var(--text-muted); background:#f4f6f8; padding:4px 10px; border-radius:999px; flex-shrink:0; letter-spacing:0.3px; }
+  details.eco-card summary::after { content:'\25BC'; font-size:10px; color:var(--text-muted); margin-left:6px; transition:transform 0.18s; }
+  details.eco-card[open] summary::after { transform:rotate(180deg); }
+  details.eco-card .eco-body { padding:6px 18px 16px; border-top:1px solid var(--border-lt); }
+  .eco-entities { display:grid; grid-template-columns:1fr; gap:10px; margin-top:8px; }
+  .eco-entity { display:grid; grid-template-columns:200px 1fr; gap:18px; padding:10px 0; border-bottom:1px solid #f1f4f7; }
+  .eco-entity:last-child { border-bottom:none; }
+  .eco-entity-name { font-size:12.5px; font-weight:700; color:var(--text); }
+  .eco-entity-line { font-size:12.5px; color:var(--text-sec); line-height:1.55; }
+  @media(max-width:700px){
+    .eco-entity { grid-template-columns:1fr; gap:4px; }
+    details.eco-card summary { grid-template-columns:30px 1fr; }
+    .eco-count { grid-column:2; justify-self:start; margin-top:6px; }
+  }
+
+  /* Accordion sections (wraps existing raci-section blocks) */
+  details.section-acc { background:#fff; border:1px solid var(--border-lt); border-radius:12px; margin-bottom:14px; overflow:hidden; transition:box-shadow 0.2s; }
+  details.section-acc[open] { box-shadow:0 4px 14px rgba(0,32,64,0.08); }
+  details.section-acc > summary { list-style:none; cursor:pointer; padding:18px 26px; display:flex; align-items:center; justify-content:space-between; gap:14px; user-select:none; }
+  details.section-acc > summary::-webkit-details-marker { display:none; }
+  details.section-acc > summary::after { content:'\25BC'; font-size:11px; color:var(--text-muted); transition:transform 0.18s; }
+  details.section-acc[open] > summary::after { transform:rotate(180deg); }
+  details.section-acc .acc-title { font-size:17px; font-weight:800; color:var(--nhs-dark); letter-spacing:-0.2px; }
+  details.section-acc .acc-sub { font-size:12px; color:var(--text-muted); font-weight:500; margin-top:3px; }
+  details.section-acc .acc-body { padding:6px 26px 26px; border-top:1px solid var(--border-lt); }
+  details.section-acc .raci-section { margin-bottom:0; }
+  details.section-acc .raci-section h2 { display:none; }
+  details.section-acc .raci-section .raci-sub { margin-top:14px; }
+
+  /* Collapsible open-questions banner */
+  details.gov-q-banner { background:#FBEAF2; border-left:4px solid var(--accent); padding:0; margin:22px 0 36px; border-radius:0 8px 8px 0; overflow:hidden; }
+  details.gov-q-banner > summary { list-style:none; cursor:pointer; padding:14px 20px; display:flex; align-items:center; justify-content:space-between; user-select:none; }
+  details.gov-q-banner > summary::-webkit-details-marker { display:none; }
+  details.gov-q-banner > summary::after { content:'\25BC'; font-size:11px; color:var(--accent); transition:transform 0.18s; }
+  details.gov-q-banner[open] > summary::after { transform:rotate(180deg); }
+  details.gov-q-banner .gov-q-h { font-size:11px; font-weight:800; letter-spacing:1.2px; text-transform:uppercase; color:var(--accent); }
+  details.gov-q-banner .gov-q-count { font-size:10px; font-weight:700; color:var(--accent); background:rgba(174,37,115,0.12); padding:3px 9px; border-radius:999px; margin-left:10px; }
+  details.gov-q-banner .gov-q-body { padding:6px 20px 18px; border-top:1px solid rgba(174,37,115,0.18); }
+
+</style>
+<style>
+  .ecosystem-nav {
+    background: #fff;
+    border-bottom: 1px solid #ebeef1;
+    padding: 12px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 48px;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  }
+  .ecosystem-nav a {
+    font-size: 13px; font-weight: 700; color: #003087;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .ecosystem-nav a:hover { color: #005EB8; }
+  .ecosystem-nav .nav-context {
+    font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
+    color: #7E8B97; text-transform: uppercase;
+  }
+  .ecosystem-nav .nav-product {
+    font-size: 10.5px; font-weight: 800; letter-spacing: 0.8px;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 4px; color: #fff;
+  }
+  .ecosystem-nav .nav-product.dtx { background: #003087; }
+  .ecosystem-nav .nav-product.hometest { background: #003087; }
+  .ecosystem-nav .nav-product.healthstore { background: #00A9CE; }
+  .ecosystem-nav .nav-product.healthsync { background: #00A499; }
+</style>
+
+<style>
+  .position-refs {
+    background: #f6f9fc;
+    border-bottom: 1px solid #e1e7ef;
+    padding: 9px 28px;
+    font-size: 12px;
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .position-refs .pr-label {
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #5C6B82;
+  }
+  .position-refs a {
+    color: #003087;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 3px 9px;
+    background: #fff;
+    border: 1px solid #d5e0eb;
+    border-radius: 14px;
+  }
+  .position-refs a:hover {
+    background: #003087;
+    color: #fff;
+  }
+</style>
+
+</head>
+<body>
+<div class="ecosystem-nav">
+  <a href="../index.html">← DTx Ecosystem</a>
+  <span class="nav-context">Governance</span>
+  <span class="nav-product dtx">DTx</span>
+</div>
+<div class="position-refs">
+  <span class="pr-label">Related positions →</span>
+  <a href="../position-papers/position-assurance-primacy.html">Position: Assurance is primary</a>
+  <a href="../position-papers/position-assurance-envelope-boundary.html">Position: Assurance envelope boundary</a>
+</div>
+
+<nav class="topnav">
+<a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+<div class="nav-siblings">
+ <a href="DTx OM - Why.html">Why</a>
+ <a href="DTx OM - What.html">What</a>
+ <a href="DTx OM - Lifecycle.html">When</a>
+ <a href="DTx OM - HomeTest Operational.html">How</a>
+ <a href="DTx OM - Governance.html" class="active">Who</a>
+ <a href="DTx OM - Hearts and Minds.html">Hearts and Minds</a>
+ <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>
+ <a href="DTx OM - Status.html">Status</a>
+</div>
+</nav>
+
+<div class="page">
+
+  <div class="toc-bar">
+    <div class="toc-bar-inner">
+      <span class="toc-bar-label">On this page</span>
+      <a href="#raci-four-levels">RACI by level</a>
+      <a href="#raci-foundation">Foundation ops</a>
+      <a href="#raci-hiv">HIV ops</a>
+      <a href="#raci-psa">PSA ops</a>
+      <a href="#decisions">Decision rights</a>
+      <a href="#open-q">Open Qs</a>
+    </div>
+  </div>
+
+  <div class="header">
+    <div class="amber-rule"></div>
+    <div class="h-eyebrow">Governance frame</div>
+    <div style="font-size:96px;font-weight:900;color:var(--accent);letter-spacing:-2.5px;line-height:0.95;margin:6px 0 6px;">WHO</div>
+    <h1 class="h-title">Governance &middot; who is accountable</h1>
+    <div class="h-subtitle">Decision rights, accountability, escalation</div>
+    <p class="h-intro">The other three frames describe what the operating model is, when it runs and how it operates. This frame is what makes it a thing people own rather than a thing people describe. Names against each part of the operating model. Decision rights for changes. Escalation routes when configurations or products conflict. Without this layer the operating model is a beautiful piece of architecture nobody is responsible for. Governance described here holds at portfolio level (NHSE accountability shared across HomeTest, HealthStore and HealthSync). Per-product supplier admission and clinical safety governance vary inside this frame.</p>
+
+  <div style="background:#E8F1F6;border:1px solid #B5D4E5;border-left:4px solid #005EB8;border-radius:0 10px 10px 0;padding:14px 20px;margin:18px 0;font-size:13px;color:#1A4570;line-height:1.65;">
+    <strong style="color:#003087;">Portfolio scope.</strong> NHSE accountability and the contracting instruments hold across HomeTest, HealthStore and HealthSync (HomeTest: interim PSR plus standard call-off plus approved list; HealthStore: ACE plus NHS Standard Contract; HealthSync: instrument pending). Per-product supplier admission and clinical safety governance vary inside this frame. The operational sections below carry the configuration RACI for each product: HomeTest configurations (HIV and PSA), the HealthStore lead configuration (COPD Alpha), and the HealthSync reserved configuration slot.
+  </div>
+  </div>
+
+  <div class="status-banner">
+    <div class="status-banner-h">Roles populated, named accountability still to land</div>
+    <div class="status-banner-body">This frame uses <strong>roles, not named individuals</strong>. It describes who is accountable, responsible, consulted and informed once the operating model is live and running &mdash; the end-state RACI. Roles are deliberately not named to individuals on this page; that is the SRO's call once the model is signed off. The architectural RACI rows show <em>Open at SRO level</em> where the end-state owner has not yet been agreed. These are decisions to be taken by the SRO, not gaps in source.</div>
+  </div>
+
+  <details class="gov-q-banner" id="open-q">
+    <summary>
+      <span><span class="gov-q-h">Key open governance questions</span><span class="gov-q-count">10 items</span></span>
+    </summary>
+    <div class="gov-q-body">
+      Ten things SLT needs to land before this skeleton becomes named accountability. The <em>Open at SRO level</em> cells across the architectural RACI and the configuration-specific tables are pointing at these: making them explicit here.
+      <ul style="margin:10px 0 0 22px; padding:0; font-size:12.5px; line-height:1.6;">
+        <li><strong>Permanent platform hosting post-Beta.</strong> Architectural RACI for the Foundation is open at SRO level. When HomeTest exits discovery, where does the platform live permanently: inside NHSE, an ALB, or a new entity? <em>Owner: SRO with Commercial Lead.</em></li>
+        <li><strong>Interim commercial vehicle sign-off.</strong> NHSE Legal written sign-off on the interim shape (PSR plus standard NHS call-off plus approved supplier list). Open question rephrased: the four-option matrix from earlier discovery is now historical context. The framework conversation reopens at named triggers (see Framework status position paper); PA23 dynamic market is the leading candidate vehicle if reopened. <em>Owner: Commercial Lead with NHSE Legal.</em></li>
+        <li><strong>Aisha's accountability split across initiation patterns.</strong> The two configuration RACIs below split clinical accountability differently: Sex Health Service Clinical Lead in HIV, Acute Trust Consultant and Clinical Safety Officer in PSA. Aisha's overarching accountability across both pathways needs an explicit single statement. <em>Owner: Clinical Safety Group.</em></li>
+        <li><strong>National Assurance Board composition and constitutional layer.</strong> Who sits on it? Who owns final authority? How are disputes arbitrated? What is the appeals process? How are standards updated? How are suppliers challenged? Currently a name in the architecture, not a constituted body. <em>Owner: SRO with NHSE, Clinical Safety Group input.</em></li>
+        <li><strong>National orchestration BAU funding.</strong> Who funds the routing, DevOps, interoperability, assurance management, Blue Book maintenance, supplier onboarding, analytics and standards updates at steady state? The percent-fee-per-transaction model covers the platform foundation but the BAU team and its likely cost have not been sized. <em>Owner: Commercial Lead with Health Economist input.</em></li>
+        <li><strong>Adoption as a named function in the model.</strong> Adoption activity is being delivered through the Partnerships workstream. The unresolved question is whether adoption should be surfaced structurally in the operating model itself (an overlay, a foundation capability, a row in the RACI) or stay implicit inside Partnerships. <em>Decision: SLT to confirm.</em></li>
+        <li><strong>National rollout without local fragmentation.</strong> The architecture answers what the model is composed of. It does not yet answer how the model gets rolled out at national scale so that LAs, ICBs and Trusts adopt it consistently rather than each diverging from the agreed pattern. This is execution discipline (sequencing, priorities, governance of variation), not architecture. <em>Owner: SRO with Commercial Lead.</em></li>
+        <li><strong>Data controller framework.</strong> The federated multi-controller model has NHSE as controller for the foundation, commissioner as controller for the testing purpose, and supplier as processor. Joint-controller arrangements have been ruled out. The exact controller designation per configuration is still being scoped, and the lawful basis position (direct consent vs legal directions) is unresolved at SLT level. Affects every DPIA, every DSA and every supplier contract. <em>Decision: SLT with NHS Legal and Caldicott Guardian.</em></li>
+        <li><strong>IAO appointment.</strong> NHSE policy requires the Information Asset Owner to be a permanent NHSE employee. The programme is heavily contractor-led; no eligible IAO has yet been identified. Without one, the platform cannot be formally signed off as ready to process live patient data. <em>Critical blocker. Owner: SRO.</em></li>
+        <li><strong>Cost-benefit dislocation at local system level.</strong> Home testing replaces venepuncture, but the saving and the new spend land in different parts of the local budget. Pathology networks don't run phlebotomy; phlebotomy sits in clinical services or under the ICB. Without best-practice tariffs at pathway level, ICBs see home testing as a cost pressure rather than a value case, even when the whole-pathway economics are positive. The economic case is the unlock for adoption. <em>Decision: SLT with NHSE strategic finance and Health Economist input.</em></li>
+      </ul>
+      <div style="margin-top:14px;padding-top:12px;border-top:1px solid rgba(0,0,0,0.08);font-size:12px;"><a href="DTx OM - Status.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;letter-spacing:0.3px;">See all open items across the model &rarr;</a></div>
+    </div>
+  </details>
+
+  <div class="gov-cast">
+    <div class="gc"><div class="gc-portrait"><a href="DTx OM - Persona Abdul.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/abdul.png" alt="Abdul"></a></div><div class="gc-name">Abdul</div><div class="gc-role">Patient &middot; CVKM</div><div class="gc-decision"><strong>Informed</strong> across most decisions. Consulted on patient-facing changes.</div></div>
+    <div class="gc"><div class="gc-portrait"><a href="DTx OM - Persona Mark.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/mark.png" alt="Mark"></a></div><div class="gc-name">Mark</div><div class="gc-role">Patient &middot; PSA-AS</div><div class="gc-decision"><strong>Informed</strong> via consultant. Consulted only after clinical review.</div></div>
+    <div class="gc"><div class="gc-portrait"><a href="DTx OM - Persona Layla.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/layla.png" alt="Layla"></a></div><div class="gc-name">Layla</div><div class="gc-role">Patient &middot; HbA1c</div><div class="gc-decision"><strong>Informed</strong> via GP. Consulted only when GP flags action.</div></div>
+    <div class="gc"><div class="gc-portrait"><a href="DTx OM - Persona Aisha.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/aisha.png" alt="Aisha"></a></div><div class="gc-name">Aisha</div><div class="gc-role">Clinical / CSG</div><div class="gc-decision"><strong>Accountable</strong> for clinical safety. <strong>Consulted</strong> on configuration changes.</div></div>
+    <div class="gc"><div class="gc-portrait"><a href="DTx OM - Persona Sarah.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/sarah.png" alt="Sarah"></a></div><div class="gc-name">Sarah</div><div class="gc-role">Commissioner</div><div class="gc-decision"><strong>Responsible</strong> for local configuration. <strong>Informed</strong> on framework changes.</div></div>
+    <div class="gc"><div class="gc-portrait"><a href="DTx OM - Persona Joe.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/joe.png" alt="Joe"></a></div><div class="gc-name">Joe</div><div class="gc-role">Supplier</div><div class="gc-decision"><strong>Responsible</strong> for delivery against call-off. <strong>Consulted</strong> on framework rules.</div></div>
+    <div class="gc"><div class="gc-portrait"><a href="DTx OM - Persona Priya.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/priya.png" alt="Priya"></a></div><div class="gc-name">Priya</div><div class="gc-role">NHSE Platform</div><div class="gc-decision"><strong>Responsible</strong> for foundation integrity. <strong>Accountable</strong> for platform standards.</div></div>
+    <div class="gc"><div class="gc-portrait"><a href="DTx OM - Persona David.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/david.png" alt="David"></a></div><div class="gc-name">David</div><div class="gc-role">NHS Commercial</div><div class="gc-decision"><strong>Accountable</strong> for the framework. <strong>Responsible</strong> for catalogue integrity.</div></div>
+    <div class="gc"><div class="gc-portrait"><a href="DTx OM - Persona Ngozi.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../../Assets/Personas/ngozi.png" alt="Ngozi"></a></div><div class="gc-name">Ngozi</div><div class="gc-role">IG / DPO</div><div class="gc-decision"><strong>Accountable</strong> for DPIA, DSA and controller designation. <strong>Consulted</strong> on every data flow.</div></div>
+  </div>
+
+  <div class="status-banner" style="background:#F4F8FC;border-left:4px solid var(--nhs-blue);padding:18px 22px;margin:0 0 30px;border-radius:0 8px 8px 0;">
+    <div class="status-banner-h" style="color:var(--nhs-blue);font-size:13px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;margin-bottom:8px;">Where the cast sits structurally</div>
+    <div class="status-banner-body" style="font-size:13.5px;color:var(--text-sec);line-height:1.7;">
+      Working assumption: the operating cast (Sarah aside, who is the buyer) sit as part of the <strong>BAU team for the platform</strong> in steady state. They are not project roles. Joe represents the supplier-side population, Aisha represents the clinical safety function, Priya represents the platform engineering function, David represents the commercial framework function, Ngozi represents the information governance function. Each function exists permanently once the platform is operational.
+      <br><br>
+      Senior accountability for those functions sits on a <strong>Blue Book assurance board</strong> (working name): a constituted body with named individuals accountable for clinical safety, IG, commercial integrity and platform standards at the most senior level. The cast roles are the conduit through which the platform's day-to-day work runs; the assurance board is where senior accountability lives. <em>Both the BAU team sizing and the assurance board composition are open governance questions.</em>
+    </div>
+  </div>
+
+  <details class="section-acc" id="raci-four-levels">
+    <summary>
+      <div>
+        <div class="acc-title">Accountability across the four levels</div>
+        <div class="acc-sub">RACI for the operating-model elements: foundation, overlays, patterns, configurations.</div>
+      </div>
+    </summary>
+    <div class="acc-body">
+
+  <div class="raci-section">
+    <h2>Accountability across the four levels</h2>
+    <div class="raci-sub">RACI for the operating-model elements rather than for tasks. Who is responsible for the integrity of the foundation, who for each overlay, who for the pattern catalogue, who for each live configuration.</div>
+    <table class="raci-table">
+      <thead>
+        <tr>
+          <th>Element</th>
+          <th class="col-r">Responsible</th>
+          <th class="col-a">Accountable</th>
+          <th class="col-c">Consulted</th>
+          <th class="col-i">Informed</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="label">Foundation (Level 1)<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">The universal foundation. Integration, identity, comms, onboarding gateway, IG framework, clinical safety case structure, hazard log structure, MI / data flows.</span></td>
+          <td class="col-r"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-a"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-c"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-i"><span class="tbc">Open at SRO level</span></td>
+        </tr>
+        <tr>
+          <td class="label">Information governance overlay<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">DPIA, DSA, DPA, IAO, controller designation, lawful basis. The data side of every configuration.</span></td>
+          <td class="col-r">Ngozi (IG / DPO)</td>
+          <td class="col-a">Ngozi (IG / DPO)</td>
+          <td class="col-c">SRO, NHS Legal, Caldicott Guardian</td>
+          <td class="col-i">Aisha, Priya, David, commissioner, supplier</td>
+        </tr>
+        <tr>
+          <td class="label">Initiation overlay<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Patient-init, Clinician-init, GP-init.</span></td>
+          <td class="col-r"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-a"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-c"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-i"><span class="tbc">Open at SRO level</span></td>
+        </tr>
+        <tr>
+          <td class="label">Commissioning overlay<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">LA, Acute trust, ICB, NHSE.</span></td>
+          <td class="col-r"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-a"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-c"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-i"><span class="tbc">Open at SRO level</span></td>
+        </tr>
+        <tr>
+          <td class="label">Supply chain overlay<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">All-inclusive, Specialist + logistics split, Pathology network led.</span></td>
+          <td class="col-r"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-a"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-c"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-i"><span class="tbc">Open at SRO level</span></td>
+        </tr>
+        <tr>
+          <td class="label">Commercial overlay<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Per-completed, Activity-based, Volume-tiered.</span></td>
+          <td class="col-r"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-a"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-c"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-i"><span class="tbc">Open at SRO level</span></td>
+        </tr>
+        <tr>
+          <td class="label">Tariff treatment overlay<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Commissioner-paid, Acute envelope, NHS Payment Scheme.</span></td>
+          <td class="col-r"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-a"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-c"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-i"><span class="tbc">Open at SRO level</span></td>
+        </tr>
+        <tr>
+          <td class="label">Accreditation bar overlay<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">UKAS / ISO, Capillary draw, Microsampling.</span></td>
+          <td class="col-r"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-a"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-c"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-i"><span class="tbc">Open at SRO level</span></td>
+        </tr>
+        <tr>
+          <td class="label">Sign-off route overlay<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Sex health service, Acute trust governance, Primary care.</span></td>
+          <td class="col-r"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-a"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-c"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-i"><span class="tbc">Open at SRO level</span></td>
+        </tr>
+        <tr>
+          <td class="label">Result handling overlay<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Patient-direct, Clinician-first, Hybrid.</span></td>
+          <td class="col-r"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-a"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-c"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-i"><span class="tbc">Open at SRO level</span></td>
+        </tr>
+        <tr>
+          <td class="label">Pattern catalogue (Level 3)<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">The library of pattern options inside each overlay.</span></td>
+          <td class="col-r"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-a"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-c"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-i"><span class="tbc">Open at SRO level</span></td>
+        </tr>
+        <tr>
+          <td class="label">HomeTest HIV configuration<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Live deployment under LA commissioning.</span></td>
+          <td class="col-r"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-a"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-c"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-i"><span class="tbc">Open at SRO level</span></td>
+        </tr>
+        <tr>
+          <td class="label">HomeTest PSA configuration<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Prospective deployment under acute trust commissioning with a specialist lab.</span></td>
+          <td class="col-r"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-a"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-c"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-i"><span class="tbc">Open at SRO level</span></td>
+        </tr>
+        <tr>
+          <td class="label">HealthStore COPD Alpha configuration<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Lead HealthStore configuration in design under ICB commissioning with a conditionally admitted DTx supplier.</span></td>
+          <td class="col-r"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-a"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-c"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-i"><span class="tbc">Open at SRO level</span></td>
+        </tr>
+        <tr>
+          <td class="label">HealthSync configuration<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Reserved configuration slot. Content lands as the HealthSync programme progresses.</span></td>
+          <td class="col-r"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-a"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-c"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-i"><span class="tbc">Open at SRO level</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="raci-key">
+      <span><strong>R</strong> &middot; Responsible &middot; does the work</span>
+      <span><strong>A</strong> &middot; Accountable &middot; signs off, single owner</span>
+      <span><strong>C</strong> &middot; Consulted &middot; two-way input before decision</span>
+      <span><strong>I</strong> &middot; Informed &middot; one-way update after decision</span>
+    </div>
+  </div>
+
+    </div>
+  </details>
+
+  <details class="section-acc" id="raci-foundation">
+    <summary>
+      <div>
+        <div class="acc-title">Operational accountability: Foundation</div>
+        <div class="acc-sub">Activities that run universally across every configuration. Held centrally.</div>
+      </div>
+    </summary>
+    <div class="acc-body">
+
+  <div class="raci-section">
+    <h2>Operational accountability: Foundation</h2>
+    <div class="raci-sub">Activities that run universally across every configuration. Roles, not named individuals. Foundation operational responsibility cuts across all configurations and is held centrally.</div>
+    <table class="raci-table">
+      <thead>
+        <tr>
+          <th>Activity</th>
+          <th class="col-r">Responsible</th>
+          <th class="col-a">Accountable</th>
+          <th class="col-c">Consulted</th>
+          <th class="col-i">Informed</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="label">Platform integration uptime<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">NHS App, NHS Login, NHS Notify, supplier APIs.</span></td>
+          <td class="col-r">NHSE Platform Operations</td>
+          <td class="col-a">NHSE Platform Lead</td>
+          <td class="col-c">Suppliers</td>
+          <td class="col-i">All Commissioners</td>
+        </tr>
+        <tr>
+          <td class="label">Supplier onboarding gateway<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Seven-stage onboarding journey for new suppliers joining the platform.</span></td>
+          <td class="col-r">Supplier Onboarding Team</td>
+          <td class="col-a">Commercial Lead</td>
+          <td class="col-c">Clinical Safety Officer, IG Lead, Procurement Lead</td>
+          <td class="col-i">All Commissioners</td>
+        </tr>
+        <tr>
+          <td class="label">Hazard log structure maintenance<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">The framework that hazards across configurations get logged into; not the hazards themselves.</span></td>
+          <td class="col-r">NHSE Clinical Safety Officer</td>
+          <td class="col-a">National Assurance Board</td>
+          <td class="col-c">Clinical Safety Group, Configuration Clinical Leads</td>
+          <td class="col-i">All Configurations</td>
+        </tr>
+        <tr>
+          <td class="label">IG framework maintenance<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">The federated multi-controller framework all deployments inherit.</span></td>
+          <td class="col-r">NHSE IG Lead</td>
+          <td class="col-a">National Assurance Board</td>
+          <td class="col-c">DPO at each deploying organisation, Configuration IG Leads</td>
+          <td class="col-i">All Configurations</td>
+        </tr>
+        <tr>
+          <td class="label">Pattern catalogue maintenance<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">The library of pattern options inside each overlay.</span></td>
+          <td class="col-r">Commercial Lead</td>
+          <td class="col-a">SRO</td>
+          <td class="col-c">Clinical Safety Officer, IG Lead, Procurement Lead</td>
+          <td class="col-i">All Configurations</td>
+        </tr>
+        <tr>
+          <td class="label">Cross-platform incident triage<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Incidents affecting multiple configurations or the foundation itself.</span></td>
+          <td class="col-r">NHSE Platform Operations</td>
+          <td class="col-a">NHSE Programme Lead</td>
+          <td class="col-c">Affected Configuration Leads</td>
+          <td class="col-i">All Configurations</td>
+        </tr>
+        <tr>
+          <td class="label">MI and data flow integrity<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Foundation-level reporting and analytics across configurations.</span></td>
+          <td class="col-r">NHSE Data Team</td>
+          <td class="col-a">NHSE Platform Lead</td>
+          <td class="col-c">Suppliers</td>
+          <td class="col-i">All Commissioners</td>
+        </tr>
+              <tr>
+          <td class="label">Post-market surveillance<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Cross-product regulatory PMS function. Adverse event collection, MHRA reporting, periodic safety updates and post-market data feedback into configuration design.</span></td>
+          <td class="col-r">PMS Lead</td>
+          <td class="col-a">SRO</td>
+          <td class="col-c">Clinical Safety Officer, Suppliers, MHRA</td>
+          <td class="col-i">All Configurations</td>
+        </tr>
+        <tr>
+          <td class="label">Pathway integration discipline<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Cross-product pathway integration function. Pathway mapping per configuration, EPR / prescribing-system integration patterns, integration playbook maintenance.</span></td>
+          <td class="col-r">Pathway Integration Lead</td>
+          <td class="col-a">SRO</td>
+          <td class="col-c">Clinical Leads, National pathway programmes, ICB pathway teams</td>
+          <td class="col-i">All Configurations</td>
+        </tr>
+        <tr>
+          <td class="label">Independent assurance<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Third-party assurance discipline separate from internal Clinical Safety. Regulatory standards, clinical and financial efficacy, independent review of admitted products, assurance portability across configurations.</span></td>
+          <td class="col-r">Independent Assurance Lead</td>
+          <td class="col-a">SRO</td>
+          <td class="col-c">NICE, MHRA, UKAS, CSG, Suppliers</td>
+          <td class="col-i">All Configurations</td>
+        </tr>
+        <tr>
+          <td class="label">Contract Management<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Post-execution lifecycle for each call-off agreement. Variations, pricing reviews, term renewals, milestone evidence audit, supplier performance against contract. Distinct from Framework administration.</span></td>
+          <td class="col-r">Contract Management Lead</td>
+          <td class="col-a">SRO</td>
+          <td class="col-c">NHS Commercial, NHS Legal, Commissioners, Suppliers</td>
+          <td class="col-i">All Configurations</td>
+        </tr>
+        <tr>
+          <td class="label">Ongoing Evidence Generation<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Continuous evidence accrual across admitted products. Outcome data, real-world evidence, NICE re-evaluation inputs, best-practice tariff evidence pipeline. Feeds Assurance and Independent Assurance.</span></td>
+          <td class="col-r">Evidence Generation Lead</td>
+          <td class="col-a">SRO</td>
+          <td class="col-c">NICE, Outcomes &amp; Measurement, Suppliers, Academic partners</td>
+          <td class="col-i">All Configurations</td>
+        </tr>
+        <tr>
+          <td class="label">National App Formulary<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">The HealthStore catalogue as a named TOM construct — lists nationally-recommended digital therapeutics admitted via NICE EVA conditional route.</span></td>
+          <td class="col-r">NHSE Platform</td>
+          <td class="col-a">SRO</td>
+          <td class="col-c">NICE, NHS Commercial, Suppliers</td>
+          <td class="col-i">All HealthStore configurations</td>
+        </tr>
+        <tr>
+          <td class="label">Assurance Model<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">The overall assurance discipline coordinating Independent Assurance, NICE EVA, DTAC, DCB0129 (manufacturer) and DCB0160 (deployer) across configurations.</span></td>
+          <td class="col-r">Clinical Safety Officer with Independent Assurance Lead</td>
+          <td class="col-a">SRO</td>
+          <td class="col-c">NICE, MHRA, NHS Legal</td>
+          <td class="col-i">All Configurations</td>
+        </tr>
+        <tr>
+          <td class="label">Assurance portability<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Cross-configuration reuse of assurance evidence so suppliers don&apos;t reassure for each ICB. Coupled to the contracting instrument and the Assurance Model.</span></td>
+          <td class="col-r">Independent Assurance Lead</td>
+          <td class="col-a">SRO</td>
+          <td class="col-c">NICE, NHS Commercial, Suppliers</td>
+          <td class="col-i">All Configurations</td>
+        </tr>
+        <tr>
+          <td class="label">Eligibility Filters<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Commissioner-side filters and self-assessment toolkit for which configurations apply to which ICBs. Pathway fit, IG fit, prescribing alignment, DCB0160 deployer readiness.</span></td>
+          <td class="col-r">NHSE Platform with Independent Assurance Lead</td>
+          <td class="col-a">SRO</td>
+          <td class="col-c">Commissioners, Clinical Safety Officer, IG Lead</td>
+          <td class="col-i">All Configurations</td>
+        </tr>
+        <tr>
+          <td class="label">Service Wrapper anatomy<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Decomposition of the Service Wrapper Foundation item into the six-touchpoint patient chain (Referral, Login &amp; onboard, In-life Help &amp; Support, Use &amp; Motivation, Signposting / Offboarding, Data return) plus four local-pathway items (Local use support, Remote / Passive monitoring, PI/CI escalation, NH team integration).</span></td>
+          <td class="col-r">Service Design Lead</td>
+          <td class="col-a">SRO</td>
+          <td class="col-c">Clinical leads, Patient advocates, NH teams</td>
+          <td class="col-i">All Configurations</td>
+        </tr>
+        <tr>
+          <td class="label">EHIA discipline<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Equality and Health Inequalities Assessment. Cross-product discipline ensuring every configuration is assessed for equity-of-access and health-inequalities impact. Particularly load-bearing for HomeTest (telephony non-digital channel, handed-out kit patterns, digital exclusion).</span></td>
+          <td class="col-r">EHIA Lead</td>
+          <td class="col-a">SRO</td>
+          <td class="col-c">Patient advocates, NH teams, IG Lead, Clinical leads</td>
+          <td class="col-i">All Configurations</td>
+        </tr>
+        <tr>
+          <td class="label">UK NSC interface<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">UK National Screening Committee. Recommendation pathway for screening-adjacent configurations. Active for HIV testing-and-treat where screening framing matters; relevant to future configurations that touch formal screening.</span></td>
+          <td class="col-r">Clinical Lead with Independent Assurance Lead</td>
+          <td class="col-a">SRO</td>
+          <td class="col-c">UK NSC, NHSE Screening, Clinical Safety Officer</td>
+          <td class="col-i">HomeTest configurations primarily</td>
+        </tr>
+        <tr>
+          <td class="label">DSPT alignment<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Data Security and Protection Toolkit. National IG compliance baseline for admitted suppliers and the platform. Coordinated with DPIA and federated controller arrangements.</span></td>
+          <td class="col-r">IG Lead</td>
+          <td class="col-a">SRO</td>
+          <td class="col-c">NHSE Cyber, Suppliers, NHS Legal</td>
+          <td class="col-i">All Configurations</td>
+        </tr>
+        <tr>
+          <td class="label">PIDS framing<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Patient Initiated Diagnostic Service. Programme-level framing for the patient-initiated diagnostic pattern. HIV self-testing sits inside PIDS. Influences pathway-level economics and equity-of-access positioning.</span></td>
+          <td class="col-r">NHSE Policy with Programme Lead</td>
+          <td class="col-a">SRO</td>
+          <td class="col-c">Clinical leads, Commissioners, EHIA Lead</td>
+          <td class="col-i">Patient-init configurations</td>
+        </tr>
+</tbody>
+    </table>
+  </div>
+
+    </div>
+  </details>
+
+  <details class="section-acc" id="raci-hiv">
+    <summary>
+      <div>
+        <div class="acc-title">Operational accountability: HomeTest HIV configuration</div>
+        <div class="acc-sub">LA-commissioned, patient-init, all-inclusive supplier, sex health service governance, patient-direct results.</div>
+      </div>
+    </summary>
+    <div class="acc-body">
+
+  <div class="raci-section">
+    <h2>Operational accountability: HomeTest HIV configuration</h2>
+    <div class="raci-sub">Activities specific to the HIV deployment (LA-commissioned, patient-init, all-inclusive supplier, sex health service governance, patient-direct results). Roles named, not individuals.</div>
+    <table class="raci-table">
+      <thead>
+        <tr>
+          <th>Activity</th>
+          <th class="col-r">Responsible</th>
+          <th class="col-a">Accountable</th>
+          <th class="col-c">Consulted</th>
+          <th class="col-i">Informed</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="label">Eligibility and ordering<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Patient self-service in the NHS App.</span></td>
+          <td class="col-r">NHSE Platform</td>
+          <td class="col-a">LA Sex Health Service Commissioner</td>
+          <td class="col-c">Patient</td>
+          <td class="col-i">Test Supplier</td>
+        </tr>
+        <tr>
+          <td class="label">Kit dispatch and logistics<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">All-inclusive supplier model.</span></td>
+          <td class="col-r">Test Supplier</td>
+          <td class="col-a">LA Sex Health Service Commissioner</td>
+          <td class="col-c">NHSE Platform</td>
+          <td class="col-i">Patient</td>
+        </tr>
+        <tr>
+          <td class="label">Sample analysis and lab turnaround<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">UKAS / ISO accredited lab inside the supplier.</span></td>
+          <td class="col-r">Test Supplier Lab</td>
+          <td class="col-a">LA Sex Health Service Commissioner</td>
+          <td class="col-c">NHSE Platform</td>
+          <td class="col-i">Patient (turnaround SLA only)</td>
+        </tr>
+        <tr>
+          <td class="label">Result return: non-reactive<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Result direct to the NHS App; prevention signposting; journey ends.</span></td>
+          <td class="col-r">NHSE Platform / Test Supplier</td>
+          <td class="col-a">LA Sex Health Service Commissioner</td>
+          <td class="col-c">Sex Health Service Clinical Lead</td>
+          <td class="col-i">Patient</td>
+        </tr>
+        <tr>
+          <td class="label">Result return: reactive<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Result triggers urgent clinical pathway; sex health service contacts patient; confirmatory testing.</span></td>
+          <td class="col-r">Sex Health Service Clinical Lead</td>
+          <td class="col-a">Sex Health Service Clinical Lead</td>
+          <td class="col-c">HIV Specialist Service, NHSE Platform</td>
+          <td class="col-i">Patient, GP (with consent)</td>
+        </tr>
+        <tr>
+          <td class="label">Clinical handover: reactive to specialist HIV team<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Transfer of clinical responsibility once a reactive is confirmed.</span></td>
+          <td class="col-r">Sex Health Service Clinical Lead</td>
+          <td class="col-a">Sex Health Service Clinical Lead</td>
+          <td class="col-c">HIV Specialist Service</td>
+          <td class="col-i">Patient, NHSE Platform</td>
+        </tr>
+        <tr>
+          <td class="label">Patient signposting (non-reactive: prevention)<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Routine prevention messaging through NHS App.</span></td>
+          <td class="col-r">NHSE Platform</td>
+          <td class="col-a">LA Sex Health Service Commissioner</td>
+          <td class="col-c">Sex Health Service Clinical Lead</td>
+          <td class="col-i">Patient</td>
+        </tr>
+        <tr>
+          <td class="label">Hazard arising in HIV pathway<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Anything in the live service that breaches the hazard log.</span></td>
+          <td class="col-r">Whoever observed</td>
+          <td class="col-a">Sex Health Service Clinical Lead</td>
+          <td class="col-c">NHSE Clinical Safety Officer, Clinical Safety Group</td>
+          <td class="col-i">LA Commissioner, NHSE Platform</td>
+        </tr>
+        <tr>
+          <td class="label">IG breach in HIV pathway<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Personal data exposed, lost, or shared without lawful basis.</span></td>
+          <td class="col-r">LA DPO</td>
+          <td class="col-a">LA Sex Health Service Commissioner</td>
+          <td class="col-c">NHSE IG Lead, NHSE DPO</td>
+          <td class="col-i">Patient (per ICO guidance), CQC</td>
+        </tr>
+        <tr>
+          <td class="label">Supplier SLA review (HIV-specific)<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Performance against contracted SLAs for the HIV configuration.</span></td>
+          <td class="col-r">LA Sex Health Service Commissioner</td>
+          <td class="col-a">LA Sex Health Service Commissioner</td>
+          <td class="col-c">NHSE Platform Performance, Test Supplier</td>
+          <td class="col-i">Commercial Lead</td>
+        </tr>
+        <tr>
+          <td class="label">Patient complaint or feedback<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Triage and resolution of patient-raised concerns.</span></td>
+          <td class="col-r">Test Supplier (first contact) then Sex Health Service</td>
+          <td class="col-a">LA Sex Health Service Commissioner</td>
+          <td class="col-c">NHSE Platform</td>
+          <td class="col-i">NHSE Platform Performance</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+    </div>
+  </details>
+
+  <details class="section-acc" id="raci-psa">
+    <summary>
+      <div>
+        <div class="acc-title">Operational accountability: HomeTest PSA configuration</div>
+        <div class="acc-sub">Acute trust commissioning, clinician-init, specialist lab plus logistics split, clinician-first results.</div>
+      </div>
+    </summary>
+    <div class="acc-body">
+
+  <div class="raci-section">
+    <h2>Operational accountability: HomeTest PSA configuration</h2>
+    <div class="raci-sub">Activities specific to the PSA deployment (acute trust commissioning, clinician-init, specialist lab + logistics split, capillary draw, clinician-first results, acute trust governance). Roles named, not individuals.</div>
+    <table class="raci-table">
+      <thead>
+        <tr>
+          <th>Activity</th>
+          <th class="col-r">Responsible</th>
+          <th class="col-a">Accountable</th>
+          <th class="col-c">Consulted</th>
+          <th class="col-i">Informed</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="label">Patient identification and selection<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">From the active surveillance list.</span></td>
+          <td class="col-r">Acute Trust Consultant</td>
+          <td class="col-a">Acute Trust Specialist Service Lead</td>
+          <td class="col-c">Patient, GP</td>
+          <td class="col-i">NHSE Platform</td>
+        </tr>
+        <tr>
+          <td class="label">Test request<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Clinician-initiated request to despatch a kit to the patient.</span></td>
+          <td class="col-r">Acute Trust Consultant</td>
+          <td class="col-a">Acute Trust Specialist Service Lead</td>
+          <td class="col-c">Patient</td>
+          <td class="col-i">Logistics Supplier, Specialist Pathology Lab</td>
+        </tr>
+        <tr>
+          <td class="label">Kit dispatch (capillary draw kit)<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Logistics-only supplier, no lab inside.</span></td>
+          <td class="col-r">Logistics Supplier</td>
+          <td class="col-a">Acute Trust Commissioner</td>
+          <td class="col-c">NHSE Platform</td>
+          <td class="col-i">Patient</td>
+        </tr>
+        <tr>
+          <td class="label">Sample analysis (specialist lab)<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Specialist pathology lab, separately contracted.</span></td>
+          <td class="col-r">Specialist Pathology Lab</td>
+          <td class="col-a">Acute Trust Commissioner</td>
+          <td class="col-c">Acute Trust Consultant</td>
+          <td class="col-i">Patient (turnaround SLA only)</td>
+        </tr>
+        <tr>
+          <td class="label">Result return to consultant<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Numeric result, not yet visible to patient.</span></td>
+          <td class="col-r">Specialist Pathology Lab</td>
+          <td class="col-a">Acute Trust Consultant</td>
+          <td class="col-c">NHSE Platform (delivery channel only)</td>
+          <td class="col-i">Acute Trust admin</td>
+        </tr>
+        <tr>
+          <td class="label">Result interpretation<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Reading the value in context of trend and surveillance protocol.</span></td>
+          <td class="col-r">Acute Trust Consultant</td>
+          <td class="col-a">Acute Trust Consultant</td>
+          <td class="col-c">Multidisciplinary team if escalation needed</td>
+          <td class="col-i">Patient (after clinician review)</td>
+        </tr>
+        <tr>
+          <td class="label">Clinical handover: in range, continue surveillance<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Routine path; no escalation.</span></td>
+          <td class="col-r">Acute Trust Consultant</td>
+          <td class="col-a">Acute Trust Consultant</td>
+          <td class="col-c">Patient</td>
+          <td class="col-i">GP, Acute Trust admin</td>
+        </tr>
+        <tr>
+          <td class="label">Clinical handover: out of range, escalate<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Trigger biopsy referral or specialist follow-up.</span></td>
+          <td class="col-r">Acute Trust Consultant</td>
+          <td class="col-a">Acute Trust Consultant</td>
+          <td class="col-c">Specialist Urology Service, MDT</td>
+          <td class="col-i">Patient, GP, Acute Trust admin</td>
+        </tr>
+        <tr>
+          <td class="label">Patient communication of result<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">After clinician review; via NHS App and clinic channel.</span></td>
+          <td class="col-r">Acute Trust Consultant</td>
+          <td class="col-a">Acute Trust Consultant</td>
+          <td class="col-c">NHSE Platform (delivery channel)</td>
+          <td class="col-i">Acute Trust admin, GP</td>
+        </tr>
+        <tr>
+          <td class="label">Hazard arising in PSA pathway<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Examples: range misinterpretation, missed escalation, monitoring gap.</span></td>
+          <td class="col-r">Whoever observed</td>
+          <td class="col-a">Acute Trust Clinical Safety Officer</td>
+          <td class="col-c">NHSE Clinical Safety Officer, Clinical Safety Group</td>
+          <td class="col-i">Acute Trust admin, NHSE Platform</td>
+        </tr>
+        <tr>
+          <td class="label">IG breach in PSA pathway<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Personal data exposed, lost, or shared without lawful basis.</span></td>
+          <td class="col-r">Acute Trust DPO</td>
+          <td class="col-a">Acute Trust Commissioner</td>
+          <td class="col-c">NHSE IG Lead, NHSE DPO</td>
+          <td class="col-i">Patient (per ICO guidance), CQC</td>
+        </tr>
+        <tr>
+          <td class="label">Supplier SLA review (PSA-specific)<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Performance against contracted SLAs for the PSA configuration. Two suppliers: logistics and specialist lab.</span></td>
+          <td class="col-r">Acute Trust Commissioner</td>
+          <td class="col-a">Acute Trust Commissioner</td>
+          <td class="col-c">NHSE Platform Performance, Specialist Lab, Logistics Supplier</td>
+          <td class="col-i">Commercial Lead</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+    </div>
+  </details>
+
+  <details class="section-acc" id="raci-healthstore-copd">
+    <summary>
+      <div>
+        <div class="acc-title">Operational accountability: HealthStore COPD Alpha configuration</div>
+        <div class="acc-sub">ICB-commissioned, clinician-prescribed, SaaS supplier admitted via conditional route, supplier clinical safety, milestone outcome capture.</div>
+      </div>
+    </summary>
+    <div class="acc-body">
+
+  <div class="raci-section">
+    <h2>Operational accountability: HealthStore COPD Alpha configuration</h2>
+    <div class="raci-sub">Activities specific to the HealthStore COPD Alpha deployment (ICB-commissioned, clinician-prescribed, SaaS supplier via conditional admission, supplier clinical safety, marketplace outcome capture). Roles named, not individuals.</div>
+    <table class="raci-table">
+      <thead>
+        <tr>
+          <th>Activity</th>
+          <th class="col-r">Responsible</th>
+          <th class="col-a">Accountable</th>
+          <th class="col-c">Consulted</th>
+          <th class="col-i">Informed</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="label">Patient identification and eligibility<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Prescribing clinician identifies an eligible patient on the COPD pathway.</span></td>
+          <td class="col-r">Prescribing Clinician</td>
+          <td class="col-a">ICB Commissioner</td>
+          <td class="col-c">DTx Supplier</td>
+          <td class="col-i">NHSE Platform</td>
+        </tr>
+        <tr>
+          <td class="label">Prescription and activation<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Clinician prescribes the digital therapeutic; patient activates via the NHS App.</span></td>
+          <td class="col-r">Prescribing Clinician</td>
+          <td class="col-a">ICB Commissioner</td>
+          <td class="col-c">DTx Supplier, NHSE Platform</td>
+          <td class="col-i">Patient</td>
+        </tr>
+        <tr>
+          <td class="label">Onboarding and baseline capture<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">First-use setup, baseline measures recorded against the start milestone.</span></td>
+          <td class="col-r">DTx Supplier</td>
+          <td class="col-a">ICB Commissioner</td>
+          <td class="col-c">Prescribing Clinician</td>
+          <td class="col-i">NHSE Platform, Patient</td>
+        </tr>
+        <tr>
+          <td class="label">Engagement and adherence tracking<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Daily / weekly usage events tracked against the meaningful-engagement milestone.</span></td>
+          <td class="col-r">DTx Supplier</td>
+          <td class="col-a">ICB Commissioner</td>
+          <td class="col-c">Prescribing Clinician, NHSE Platform</td>
+          <td class="col-i">Patient</td>
+        </tr>
+        <tr>
+          <td class="label">Symptom logging and self-report<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Patient self-reports breathlessness, sputum, mood and exacerbation indicators in the app.</span></td>
+          <td class="col-r">Patient (assisted by DTx Supplier)</td>
+          <td class="col-a">Prescribing Clinician</td>
+          <td class="col-c">DTx Supplier</td>
+          <td class="col-i">ICB Commissioner</td>
+        </tr>
+        <tr>
+          <td class="label">Exacerbation escalation<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">App detects deterioration and routes the patient to the prescribing clinician or back to NHS 111 / urgent care per the configuration's escalation rules.</span></td>
+          <td class="col-r">DTx Supplier</td>
+          <td class="col-a">Prescribing Clinician</td>
+          <td class="col-c">NHSE Clinical Safety Officer</td>
+          <td class="col-i">ICB Commissioner, Patient</td>
+        </tr>
+        <tr>
+          <td class="label">Outcome capture<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">End-of-episode outcome measure captured against the outcome-capture milestone.</span></td>
+          <td class="col-r">DTx Supplier</td>
+          <td class="col-a">ICB Commissioner</td>
+          <td class="col-c">Prescribing Clinician, NHSE Platform</td>
+          <td class="col-i">Patient</td>
+        </tr>
+        <tr>
+          <td class="label">Clinical handover: non-engagement<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Patient stops using the app or fails to hit engagement thresholds; flag to prescribing clinician for review.</span></td>
+          <td class="col-r">DTx Supplier</td>
+          <td class="col-a">Prescribing Clinician</td>
+          <td class="col-c">ICB Commissioner</td>
+          <td class="col-i">NHSE Platform, Patient</td>
+        </tr>
+        <tr>
+          <td class="label">Clinical handover: exacerbation confirmed<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Confirmed deterioration transferred to the standard COPD clinical pathway.</span></td>
+          <td class="col-r">Prescribing Clinician</td>
+          <td class="col-a">Prescribing Clinician</td>
+          <td class="col-c">Respiratory Specialist, DTx Supplier</td>
+          <td class="col-i">ICB Commissioner, NHSE Platform, Patient</td>
+        </tr>
+        <tr>
+          <td class="label">Patient communication of outcomes<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">End-of-episode summary delivered to the patient in the app and to the prescribing clinician.</span></td>
+          <td class="col-r">DTx Supplier</td>
+          <td class="col-a">Prescribing Clinician</td>
+          <td class="col-c">NHSE Platform</td>
+          <td class="col-i">ICB Commissioner, Patient</td>
+        </tr>
+        <tr>
+          <td class="label">Hazard arising in COPD Alpha pathway<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Anything in the live service that breaches the hazard log. Supplier pattern means supplier as manufacturer responsibility on the safety case.</span></td>
+          <td class="col-r">Whoever observed</td>
+          <td class="col-a">DTx Supplier and NHSE jointly (supplier)</td>
+          <td class="col-c">NHSE Clinical Safety Officer, Clinical Safety Group</td>
+          <td class="col-i">ICB Commissioner, Prescribing Clinician, Patient</td>
+        </tr>
+        <tr>
+          <td class="label">IG breach in HealthStore pathway<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Personal data exposed, lost, or shared without lawful basis.</span></td>
+          <td class="col-r">DTx Supplier DPO</td>
+          <td class="col-a">ICB Commissioner (controller for the prescribing population)</td>
+          <td class="col-c">NHSE IG Lead, NHSE DPO</td>
+          <td class="col-i">Patient (per ICO guidance), CQC</td>
+        </tr>
+        <tr>
+          <td class="label">Supplier SLA review (COPD Alpha-specific)<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Performance against contracted SLAs and marketplace payment milestone evidence requirements.</span></td>
+          <td class="col-r">ICB Commissioner</td>
+          <td class="col-a">ICB Commissioner</td>
+          <td class="col-c">NHSE Platform Performance, DTx Supplier</td>
+          <td class="col-i">Commercial Lead</td>
+        </tr>
+        <tr>
+          <td class="label">Patient complaint or feedback<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Triage and resolution of patient-raised concerns through the app or the clinician.</span></td>
+          <td class="col-r">DTx Supplier (first contact) then Prescribing Clinician</td>
+          <td class="col-a">ICB Commissioner</td>
+          <td class="col-c">NHSE Platform</td>
+          <td class="col-i">NHSE Platform Performance</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="raci-section" style="margin-top:30px;">
+    <h2>HealthStore-specific governance features</h2>
+    <div class="raci-sub">Where HealthStore governance differs from the HomeTest configurations. Same DCB clinical safety framework, same IG framework structure, same NHSE platform accountability. Per-product variation lives in supplier admission and the supplier relationship.</div>
+    <ul class="where-list" style="margin-top:14px;">
+      <li><strong>Conditional supplier admission.</strong> NICE EVA conditionally-recommended admission rather than UKAS lab accreditation. Three suppliers progressed through the lead Alpha procurement for the lead configuration.</li>
+      <li><strong>Supplier governance.</strong> The DTx supplier and NHS England jointly carry manufacturer responsibility per configuration. Hazard log and clinical safety case co-maintained. Supplier-manufacturer agreement terms in negotiation.</li>
+      <li><strong>NHS Standard Contract with SaaS and data schedules.</strong> Standard contract instrument layered with a SaaS schedule (software-as-a-service terms) and a data schedule (controller designation, processor responsibilities, episode and outcome data handling).</li>
+      <li><strong>Marketplace payment milestone governance.</strong> Payments mechanism within the marketplace, designed in Alpha. Evidence audit cadence under the standard agreement. Disputes resolved through framework terms.</li>
+      <li><strong>ICB call-off mechanics.</strong> ICB commissioner is the primary buyer. Standardised call-off terms across ICBs. Local CSO holds DCB0160 deployer responsibility per ICB.</li>
+      <li><strong>Therapeutic area selection.</strong> COPD as the lead configuration. Selection criteria and governance for additional therapeutic areas confirmed as the lead configuration matures.</li>
+    </ul>
+
+    <div class="pair-callout" style="background:#FFF8E1;border:1px solid #F0DCA0;margin-top:18px;padding:14px 18px;border-radius:10px;">
+      <strong>Open at HealthStore level.</strong> Final form of the call-off contract instrument under NHS Standard Contract with SaaS and data schedules. Tariff split across the marketplace payments mechanism. Outcome capture instrument per service (PROMs or clinical outcome measure). CATR adaptation for software-as-a-medical-device. Supplier joint-agreement terms.
+    </div>
+  </div>
+
+    </div>
+  </details>
+
+  <details class="section-acc" id="raci-healthsync">
+    <summary>
+      <div>
+        <div class="acc-title">Operational accountability: HealthSync configuration</div>
+        <div class="acc-sub">PHR-anchored integration of consumer health data into the NHS App. Activity shape reflects the operational pattern; ownership decisions open at SRO level.</div>
+      </div>
+    </summary>
+    <div class="acc-body">
+
+  <div class="raci-section">
+    <h2>Operational accountability: HealthSync configuration</h2>
+    <div class="raci-sub">Activities reflect the HealthSync operational shape: patient-supplied data flowing through the consumer-platform connection (operated by <a href="DTx OM - Persona Tariq.html" style="color:#00A499;font-weight:700;text-decoration:none;">Tariq</a> as the integration partner) into the NHS App and the patient record. Ownership decisions are open at SRO level.</div>
+    <table class="raci-table">
+      <thead>
+        <tr>
+          <th>Activity</th>
+          <th class="col-r">Responsible</th>
+          <th class="col-a">Accountable</th>
+          <th class="col-c">Consulted</th>
+          <th class="col-i">Informed</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="label">Patient enables data sharing<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Patient authenticates via NHS Login and connects a consumer health platform (Apple HealthKit on iOS, Google Health Connect on Android) to the NHS App. Consent captured.</span></td>
+          <td class="col-r"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-a"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-c">NHSE IG Lead, NHSE DPO</td>
+          <td class="col-i">Patient</td>
+        </tr>
+        <tr>
+          <td class="label">Consumer-platform integration maintenance<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Integration with Apple HealthKit and Google Health Connect maintained at platform level. Tariq (consumer-platform integration partner) owns the consumer-side relationship; NHSE consumes via the agreed interface.</span></td>
+          <td class="col-r">NHSE Platform Operations with Tariq (integration partner)</td>
+          <td class="col-a"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-c">Tariq (consumer-platform integration partner)</td>
+          <td class="col-i">All Configurations</td>
+        </tr>
+        <tr>
+          <td class="label">Data flow from consumer device to NHS App<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Patient-supplied data syncs from the consumer platform to the NHS App. Routing under the data schedule. Patient remains in control of what is shared.</span></td>
+          <td class="col-r">NHSE Platform Operations</td>
+          <td class="col-a"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-c">NHSE IG Lead</td>
+          <td class="col-i">Patient</td>
+        </tr>
+        <tr>
+          <td class="label">Routing to patient record<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Patient-supplied data routed via FHIR into the patient record where configuration requires. NHS as custodian of the record.</span></td>
+          <td class="col-r">NHSE Data Team</td>
+          <td class="col-a"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-c">NHSE IG Lead, Single Patient Record team</td>
+          <td class="col-i">Patient, Care team</td>
+        </tr>
+        <tr>
+          <td class="label">Care-team visibility between appointments<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Care team views patient-supplied data alongside the clinical record. Where the configuration uses thresholds, alerts surface for clinician review.</span></td>
+          <td class="col-r">Care team (per configuration)</td>
+          <td class="col-a"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-c">NHSE Clinical Safety Officer</td>
+          <td class="col-i">Patient</td>
+        </tr>
+        <tr>
+          <td class="label">Threshold-based alerting and escalation<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Per-configuration thresholds. Where breached, alert routed to the responsible clinical pathway. Escalation rules vary by use case (e.g. BP, glucose).</span></td>
+          <td class="col-r"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-a">Clinical pathway lead (per configuration)</td>
+          <td class="col-c">NHSE Clinical Safety Officer, Clinical Safety Group</td>
+          <td class="col-i">Patient, Care team</td>
+        </tr>
+        <tr>
+          <td class="label">Patient data review and permission change<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Patient can review what is shared and update permissions at any time through the NHS App.</span></td>
+          <td class="col-r">Patient (assisted by NHS App)</td>
+          <td class="col-a"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-c">NHSE IG Lead</td>
+          <td class="col-i">Care team (where permissions change affects clinical flow)</td>
+        </tr>
+        <tr>
+          <td class="label">Patient revokes data sharing<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Patient can revoke the consumer-platform connection. Data retention and disposal handled per the data schedule.</span></td>
+          <td class="col-r">Patient (assisted by NHS App)</td>
+          <td class="col-a"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-c">NHSE IG Lead, NHSE DPO</td>
+          <td class="col-i">Care team</td>
+        </tr>
+        <tr>
+          <td class="label">Hazard arising in patient-supplied data pathway<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Examples: data accuracy concerns, alert fatigue, misinterpretation of consumer-grade data in a clinical context, equity-of-access concerns from device ownership.</span></td>
+          <td class="col-r">Whoever observed</td>
+          <td class="col-a"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-c">NHSE Clinical Safety Officer, Clinical Safety Group</td>
+          <td class="col-i">Care team, NHSE Platform</td>
+        </tr>
+        <tr>
+          <td class="label">IG concern in patient-supplied data flow<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Novel data controllership questions for consumer-platform data entering NHS records. Lawful basis, retention, breach handling.</span></td>
+          <td class="col-r">NHSE IG Lead</td>
+          <td class="col-a"><span class="tbc">Open at SRO level</span></td>
+          <td class="col-c">NHSE DPO, Caldicott Guardian</td>
+          <td class="col-i">Patient (per ICO guidance), ICO</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="pair-callout" style="background:#F4F8FC;border:1px solid #d6e2ef;margin-top:18px;padding:14px 18px;border-radius:10px;color:#4C6272;">
+      <strong style="color:#003087;">Honest framing.</strong> The activity list above reflects the actual Wearables operational shape. The R/A/C/I cells marked <em>Open at SRO level</em> are decisions the SRO needs to take to land the configuration; the model surfaces the shape and the dependencies but does not invent ownership. Clinical and IG dependencies named where the framework already runs through them (NHSE Clinical Safety Officer, Clinical Safety Group, NHSE IG Lead, NHSE DPO).
+    </div>
+  </div>
+
+    </div>
+  </details>
+
+  
+
+  <details class="section-acc" id="decisions">
+    <summary>
+      <div>
+        <div class="acc-title">Decision rights for key changes</div>
+        <div class="acc-sub">Who decides what when a change is proposed.</div>
+      </div>
+    </summary>
+    <div class="acc-body">
+
+    <div class="raci-section">
+      <h2>Decision rights for key changes</h2>
+      <div class="raci-sub">Who decides what when a change is proposed. Used when a configuration needs a pattern that does not yet exist, when a pattern needs to change, when an overlay needs a new pattern added, or when a procurement regime change is on the table. Decision rights hold across HomeTest, HealthStore and HealthSync.</div>
+      <div class="decisions">
+        <div class="decision">
+          <div class="decision-q">Add a new configuration to a product</div>
+          <div class="decision-d"><strong>Decision:</strong> whether to add the configuration; which patterns to pick from each overlay; whether any new patterns are needed; product alignment.</div>
+          <div class="decision-owner"><span class="decision-owner-tag">Roles</span>Commercial Lead recommends. SRO / SLT approves. Configuration Clinical Leads consulted.</div>
+        </div>
+        <div class="decision">
+          <div class="decision-q">Add a new pattern to an existing overlay</div>
+          <div class="decision-d"><strong>Decision:</strong> whether the pattern is sufficiently distinct to warrant a new entry; whether it conflicts with existing patterns; what the assurance bar is for the new pattern.</div>
+          <div class="decision-owner"><span class="decision-owner-tag">Roles</span>Commercial Lead decides. SRO accountable. Clinical Safety Officer and IG Lead consulted. All Configurations informed.</div>
+        </div>
+        <div class="decision">
+          <div class="decision-q">Change or refresh an existing pattern</div>
+          <div class="decision-d"><strong>Decision:</strong> whether the change is material enough to require re-assurance; whether the change affects existing live deployments; what the transition path is for existing users.</div>
+          <div class="decision-owner"><span class="decision-owner-tag">Roles</span>Commercial Lead decides. SRO accountable. Clinical Safety Officer and IG Lead consulted. All Configurations informed.</div>
+        </div>
+        <div class="decision">
+          <div class="decision-q">Admit a new supplier under a product's framework</div>
+          <div class="decision-d"><strong>Decision:</strong> whether the supplier meets the admission gate for that product (UKAS / ISO lab accreditation for HomeTest, NICE EVA conditionally-recommended for HealthStore, consumer-platform integration agreement for HealthSync); supplier assurance evidence; framework call-off terms.</div>
+          <div class="decision-owner"><span class="decision-owner-tag">Roles</span>Commercial Lead decides. Clinical Safety Officer and IG Lead consulted. Procurement Lead executes. ICB / LA commissioners informed.</div>
+        </div>
+        <div class="decision">
+          <div class="decision-q">Add a new product to the portfolio</div>
+          <div class="decision-d"><strong>Decision:</strong> whether the new product fits the inheritance model; what Foundation pieces it inherits; which overlays it varies; what the funding envelope looks like.</div>
+          <div class="decision-owner"><span class="decision-owner-tag">Roles</span>SRO recommends. SLT approves. Commercial Lead architects. Clinical Safety Officer and IG Lead consulted.</div>
+        </div>
+        <div class="decision">
+          <div class="decision-q">Approve the operating model itself for SLT sign-off</div>
+          <div class="decision-d"><strong>Decision:</strong> whether the operating model is fit to recommend to SLT, whether to publish externally, whether to anchor the recommendation paper on it.</div>
+          <div class="decision-owner"><span class="decision-owner-tag">Roles</span>Commercial Lead recommends. Senior Responsible Owner and Head of Product and Technology approve.</div>
+        </div>
+      </div>
+    </div>
+
+    </div>
+  </details>
+
+  <div class="status-banner" style="background:#E8F1F6;border-left-color:var(--nhs-blue);">
+    <div class="status-banner-h" style="color:var(--nhs-blue);">Next step</div>
+    <div class="status-banner-body">This is the end-state accountability layer for the operating model. It describes who will run, govern and own each part once live. The work to deliver the model into this end-state &mdash; designing each piece, agreeing each owner, sequencing the build &mdash; is tracked separately as project ownership. Both have to be true: the end-state has to be defined (this page), and the path to it has to be delivered (project plan).</div>
+  </div>
+
+</div>
+
+
+<script>
+(function(){
+  function openTarget(){
+    var id = location.hash.replace('#','');
+    if (!id) return;
+    var el = document.getElementById(id);
+    if (!el) return;
+    // Walk up and open any <details> ancestors and the target itself if it's a details
+    var node = el;
+    while (node && node !== document.body) {
+      if (node.tagName && node.tagName.toLowerCase() === 'details') {
+        node.open = true;
+      }
+      node = node.parentNode;
+    }
+    // Small delay then re-scroll so the opened element lands properly
+    setTimeout(function(){
+      el.scrollIntoView({behavior:'smooth', block:'start'});
+    }, 50);
+  }
+  window.addEventListener('load', openTarget);
+  window.addEventListener('hashchange', openTarget);
+})();
+</script>
+
+</body>
+</html>

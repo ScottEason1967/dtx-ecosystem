@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HealthSync Teamwork: Digital Therapeutics Operating Model</title>
+<style>
+ /* Canonical topnav */
+ .topnav{background:#fff;border-bottom:1px solid #ebeef1;padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:nowrap;min-height:54px;box-sizing:border-box;width:100%;max-width:100%;margin:0;position:sticky;top:0;z-index:200;}
+ .topnav.topnav-secondary{background:#F4F8FC;border-bottom:1px solid #d6e2ef;padding:9px 36px;min-height:42px;}
+ .topnav .nav-back{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-back:hover{color:#005EB8;}
+ .topnav .nav-siblings{display:flex;gap:4px;flex-wrap:nowrap;overflow-x:auto;align-items:center;}
+ .topnav .nav-siblings a{font-size:12px;font-weight:600;color:#4C6272;text-decoration:none;padding:6px 12px;border-radius:6px;letter-spacing:0.2px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-siblings a:hover{background:#f0f4f8;color:#212B32;}
+ .topnav .nav-siblings a.active{background:#003087;color:#fff;}
+ .topnav.topnav-secondary .nav-siblings a{font-size:11.5px;padding:5px 10px;}
+ .topnav.topnav-secondary .nav-siblings a.active{background:#005EB8;color:#fff;}
+ .topnav .nav-secondary-label{font-size:10px;font-weight:800;letter-spacing:1.5px;color:#7E8B97;text-transform:uppercase;flex-shrink:0;}
+
+ :root {
+ --nhs-dark:#003087; --nhs-blue:#005EB8;
+ --accent:#7E8B97;
+ --amber:#FFB91D;
+ --text:#212B32; --text-sec:#4C6272; --text-muted:#7E8B97;
+ --border-lt:#ebeef1;
+ }
+ *{box-sizing:border-box;margin:0;padding:0;}
+ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;background:#f8fafc;color:var(--text);line-height:1.5;}
+ .hdr{background:linear-gradient(135deg,#00A499,var(--nhs-dark));color:#fff;padding:22px 32px;}
+ .hdr-in{max-width:1100px;margin:0 auto;}
+ .hdr h1{font-size:22px;font-weight:800;letter-spacing:-0.3px;}
+ .hdr .sub{font-size:12.5px;opacity:0.92;margin-top:5px;line-height:1.55;}
+ .product-selector{background:rgba(255,255,255,0.15);padding:8px 14px;display:inline-flex;gap:6px;align-items:center;border-radius:8px;margin-top:10px;}
+ .product-selector-label{font-size:10px;font-weight:800;letter-spacing:1.4px;color:rgba(255,255,255,0.78);text-transform:uppercase;}
+ .product-selector a{font-size:11.5px;font-weight:700;color:rgba(255,255,255,0.85);text-decoration:none;padding:5px 12px;border-radius:6px;}
+ .product-selector a.active{background:#fff;color:var(--nhs-dark);}
+ .back{color:rgba(255,255,255,0.6);text-decoration:none;font-size:11px;font-weight:500;display:inline-block;margin-top:6px;}
+ .page{max-width:900px;margin:0 auto;padding:50px 40px 80px;}
+ .amber-rule{width:72px;height:4px;background:var(--amber);border-radius:2px;margin-bottom:18px;}
+ .h-eyebrow{display:inline-block;background:var(--accent);color:#fff;font-size:10.5px;font-weight:800;letter-spacing:1.6px;padding:6px 14px;border-radius:4px;text-transform:uppercase;margin-bottom:14px;}
+ .h-title{font-size:42px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.6px;line-height:1.1;margin-bottom:14px;}
+ .pending{background:#FFF8E1;border:1px solid #F0DCA0;border-radius:12px;padding:24px 28px;margin:24px 0;font-size:13px;color:var(--text-sec);line-height:1.7;}
+ .pending strong{color:var(--text);font-weight:700;}
+ body{background:linear-gradient(180deg,#00A499 0%,var(--nhs-dark) 100%)!important;background-attachment:fixed!important;}
+ .page{background:#ffffff;border-radius:18px;box-shadow:0 14px 40px rgba(0,48,135,0.20);margin-top:30px!important;margin-bottom:50px!important;}
+
+  
+ 
+ 
+ 
+ 
+ 
+ 
+
+  /* NHS-blue rebrand body background — matches HomeTest Op */
+  :root { --nhs-blue-deep:#003087; }
+  body { background: linear-gradient(180deg, var(--nhs-blue) 0%, var(--nhs-blue-deep) 100%) !important; background-attachment: fixed !important; }
+</style>
+<style>
+  .ecosystem-nav {
+    background: #fff;
+    border-bottom: 1px solid #ebeef1;
+    padding: 12px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 48px;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  }
+  .ecosystem-nav a {
+    font-size: 13px; font-weight: 700; color: #003087;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .ecosystem-nav a:hover { color: #005EB8; }
+  .ecosystem-nav .nav-context {
+    font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
+    color: #7E8B97; text-transform: uppercase;
+  }
+  .ecosystem-nav .nav-product {
+    font-size: 10.5px; font-weight: 800; letter-spacing: 0.8px;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 4px; color: #fff;
+  }
+  .ecosystem-nav .nav-product.dtx { background: #003087; }
+  .ecosystem-nav .nav-product.hometest { background: #003087; }
+  .ecosystem-nav .nav-product.healthstore { background: #00A9CE; }
+  .ecosystem-nav .nav-product.healthsync { background: #00A499; }
+</style>
+</head>
+<body>
+<div class="ecosystem-nav">
+  <a href="../index.html">← DTx Ecosystem</a>
+  <span class="nav-context">HealthSync Teamwork</span>
+  <span class="nav-product healthsync">HealthSync</span>
+</div>
+
+<nav class="topnav">
+<a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+<div class="nav-siblings">
+ <a href="DTx OM - Why.html">Why</a>
+ <a href="DTx OM - What.html">What</a>
+ <a href="DTx OM - Lifecycle.html">When</a>
+ <a href="DTx OM - HomeTest Operational.html">How</a>
+ <a href="DTx OM - Governance.html">Who</a>
+ <a href="DTx OM - Hearts and Minds.html">Hearts and Minds</a>
+ <a href="DTx OM - HomeTest Teamwork.html" class="active">Teamwork</a>
+ <a href="DTx OM - Status.html">Status</a>
+</div>
+</nav>
+
+
+<div class="page">
+
+  <div style="background:#f4f8fc;border:1px solid #c4d3e6;border-radius:10px;padding:10px 16px;margin:0 0 20px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:center;position:sticky;top:55px;z-index:199;box-shadow:0 4px 10px rgba(0,48,135,0.06);" class="product-selector">
+    <span style="font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:#003087;text-transform:uppercase;margin-right:6px;">Product overlay:</span>
+    <a href="DTx OM - HomeTest Teamwork.html" style="font-size:12.5px;font-weight:700;color:#003087;text-decoration:none;padding:7px 16px;border-radius:6px;border:1px solid #c4d3e6;background:#fff;">HomeTest</a>
+    <a href="DTx OM - HealthStore Teamwork.html" style="font-size:12.5px;font-weight:700;color:#003087;text-decoration:none;padding:7px 16px;border-radius:6px;border:1px solid #c4d3e6;background:#fff;">HealthStore</a>
+    <a href="DTx OM - HealthSync Teamwork.html" style="font-size:12.5px;font-weight:700;color:#fff;background:#00A499;text-decoration:none;padding:7px 16px;border-radius:6px;">HealthSync</a>
+  </div>
+
+ <div class="amber-rule"></div>
+ <div class="h-eyebrow">HealthSync &middot; Teamwork overlay</div>
+ <h1 class="h-title"><span style="display:inline-block;background:#00A499;color:#fff;padding:4px 14px 6px;border-radius:10px;line-height:1;letter-spacing:-0.4px;">HealthSync</span> Teamwork.</h1>
+
+ <div style="background:#F4F8FC;border:1px solid #d6e2ef;border-radius:8px;padding:14px 18px;margin:0 0 22px;font-size:11.5px;color:#4C6272;line-height:1.6;">
+ <div style="font-size:10.5px;font-weight:800;letter-spacing:1.8px;color:#00A499;text-transform:uppercase;margin-bottom:10px;">TOM components identified in primary source</div>
+ <p style="margin:0 0 10px;">The following HealthSync TOM components are identified at structural level:</p>
+ <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px 16px;font-size:11px;color:#4C6272;line-height:1.55;">
+  <div><strong style="color:#00A499;">PHR aggregation layer</strong> &middot; the NHS App PHR construct that ingests consumer-platform data.</div>
+  <div><strong style="color:#00A499;">Apple HealthKit integration</strong> &middot; iOS-side consumer platform interface.</div>
+  <div><strong style="color:#00A499;">Google Health Connect integration</strong> &middot; Android-side consumer platform interface.</div>
+  <div><strong style="color:#00A499;">Consumer-platform interoperability discipline</strong> &middot; standards for what flows where, with what permissions, in what form.</div>
+  <div><strong style="color:#00A499;">BP use case (lead configuration)</strong> &middot; blood pressure self-monitoring with consumer-device data flowing to NHS App and care team.</div>
+  <div><strong style="color:#00A499;">Threshold-based alerting / PIE-CIE escalation</strong> &middot; data-driven escalation between appointments.</div>
+  <div><strong style="color:#00A499;">Patient permission and revocation model</strong> &middot; granular controls at consumer-platform layer and NHS App layer.</div>
+  <div><strong style="color:#00A499;">Federated controller for consumer-platform data</strong> &middot; Apple / Google as platform operator, NHS as controller for the NHS App view.</div>
+  <div><strong style="color:#00A499;">Lawful basis per data type</strong> &middot; consent vs public task per use of the data downstream.</div>
+  <div><strong style="color:#00A499;">Real-world proof-of-concept anchor</strong> &middot; empirical demonstration that consumer-device BP data flows into NHS systems and is operationally usable.</div>
+ </div>
+ <p style="margin:10px 0 0;padding-top:10px;border-top:1px solid #d6e2ef;font-size:11px;color:#4C6272;line-height:1.55;"><strong style="color:#00A499;">Operational shape on this page is deliberately reserved.</strong> Surfacing these TOM components as operational lane content / capability sections would require HealthSync-side programme detail and a validator review that have not happened. The Governance Who page carries the source-rebuilt HealthSync RACI; this page reserves the structural slot at the same shape as HomeTest and HealthStore.</p>
+</div>
+
+<div class="pending">
+ <strong>In design.</strong> HealthSync BAU capability content is not populated. The Digital Therapeutics Operating Model reserves a HealthSync teamwork overlay slot at the same structural shape as HomeTest and HealthStore (numbered capabilities, stand-up vs steady-state breakdown, FTE sizing).<br><br>
+ Content lands when the HealthSync prog

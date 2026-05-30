@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NHS DTx Ecosystem · Front door</title>
+<style>
+  :root {
+    --nhs-dark: #003087;
+    --nhs-blue: #005EB8;
+    --nhs-green: #006747;
+    --nhs-pink: #AE2573;
+    --amber: #FFB91D;
+    --amber-deep: #C9A227;
+    --amber-warn: #9A6700;
+    --warm-cream: #FFF9EC;
+    --text: #212B32;
+    --text-sec: #4C6272;
+    --text-muted: #7E8B97;
+    --border: #d9dee3;
+    --border-lt: #ebeef1;
+    --card: #ffffff;
+    --bg: #f8fafc;
+    --green: #007F3B;
+    --green-pale: #E2F1E8;
+    --hometest: #003087;
+    --healthstore: #00A9CE;
+    --healthsync: #00A499;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Top nav — canonical DTx pattern */
+  .topnav {
+    background: #fff;
+    border-bottom: 1px solid var(--border-lt);
+    padding: 14px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: nowrap;
+    min-height: 54px;
+    box-sizing: border-box;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+  }
+  .topnav-context {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+  .topnav-product-strip { display: flex; gap: 10px; align-items: center; }
+  .topnav-product {
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: #fff;
+  }
+  .topnav-product.hometest { background: var(--hometest); }
+  .topnav-product.healthstore { background: var(--healthstore); }
+  .topnav-product.healthsync { background: var(--healthsync); }
+
+  /* Page wrap */
+  .fd-page {
+    max-width: 1280px;
+    margin: 0 auto;
+    background: #fff;
+    min-height: calc(100vh - 54px);
+    box-shadow: 0 6px 28px rgba(0,32,64,0.06);
+  }
+
+  /* Hero / header */
+  .fd-banner {
+    padding: 50px 48px 32px;
+    background: #fff;
+    border-bottom: 1px solid var(--border-lt);
+    position: relative;
+  }
+  .fd-banner-eyebrow {
+    display: inline-block;
+    background: var(--nhs-dark);
+    color: #fff;
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+    padding: 7px 16px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .fd-banner-title {
+    font-size: 44px;
+    font-weight: 800;
+    color: var(--nhs-dark);
+    letter-spacing: -0.6px;
+    line-height: 1.08;
+    margin-bottom: 14px;
+  }
+  .fd-banner-sub {
+    font-size: 18px;
+    color: var(--text-sec);
+    font-weight: 500;
+    line-height: 1.55;
+    max-width: 780px;
+  }
+  .fd-banner::after {
+    content: '';
+    display: block;
+    width: 72px;
+    height: 4px;
+    background: var(--amber);
+    border-radius: 2px;
+    margin: 22px 0 0;
+  }
+
+  /* Body */
+  .fd-body { padding: 32px 48px 20px; }
+
+  /* Intro callout */
+  .fd-intro {
+    margin: 0 0 32px;
+    padding: 20px 26px;
+    background: linear-gradient(135deg, var(--warm-cream), #FFFCF1);
+    border: 1px solid #F0DCA0;
+    border-left: 4px solid var(--amber);
+    border-radius: 0 12px 12px 0;
+    font-size: 14px;
+    color: var(--text-sec);
+    line-height: 1.7;
+  }
+  .fd-intro strong { color: var(--nhs-dark); font-weight: 800; }
+
+  /* Section heading — DTx OM pattern */
+  .fd-section-h {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 11.5px;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 8px 0 18px;
+  }
+  .fd-section-h::before {
+    content: '';
+    display: inline-block;
+    width: 28px;
+    height: 4px;
+    background: var(--amber);
+    border-radius: 2px;
+  }
+
+  /* Door grid */
+  .fd-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 1040px) { .fd-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .fd-grid { grid-template-columns: 1fr; } }
+
+  .fd-door {
+    background: #fff;
+    border: 1px solid var(--border-lt);
+    border-radius: 16px;
+    padding: 26px 24px 24px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0,32,64,0.06);
+  }
+  .fd-door::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, var(--nhs-dark), var(--nhs-blue));
+    transition: height 0.18s ease;
+  }
+  .fd-door:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 36px rgba(0,32,64,0.14);
+    border-color: var(--nhs-blue);
+  }
+  .fd-door:hover::before { height: 8px; }
+  .fd-door.planned { background: #fafbfc; border-style: dashed; box-shadow: none; }
+  .fd-door.planned::before { background: linear-gradient(90deg, var(--text-muted), #b0b8c0); }
+  .fd-door.planned:hover { transform: none; box-shadow: none; cursor: not-allowed; border-color: var(--border-lt); }
+  .fd-door.planned:hover::before { height: 6px; }
+
+  .fd-door-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 6px;
+  }
+  .fd-door-num {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--nhs-dark), var(--nhs-blue));
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+  .fd-door.planned .fd-door-num {
+    background: linear-gradient(135deg, var(--text-muted), #b0b8c0);
+  }
+  .fd-door-status {
+    font-size: 9.5px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-left: auto;
+    text-transform: uppercase;
+  }
+  .fd-door-status.live { background: var(--green-pale); color: var(--green); }
+  .fd-door-status.planned { background: #EDEEF1; color: var(--text-muted); }
+  .fd-door-title {
+    font-size: 19px;
+    font-weight: 800;
+    color: var(--nhs-dark);
+    line-height: 1.25;
+    margin: 0;
+    letter-spacing: -0.2px;
+  }
+  .fd-door.planned .fd-door-title { color: var(--text-sec); }
+  .fd-door-desc {
+    font-size: 13.5px;
+    color: var(--text-sec);
+    line-height: 1.6;
+    flex: 1;
+  }
+  .fd-door-meta {
+    font-size: 11.5px;
+    color: var(--text-muted);
+    padding-top: 10px;
+    border-top: 1px solid var(--border-lt);
+    line-height: 1.55;
+  }
+  .fd-door-meta strong { color: var(--nhs-dark); font-weight: 700; }
+  .fd-door.planned .fd-door-meta strong { color: var(--text-sec); }
+  .fd-door-cta {
+    font-size: 11.5px;
+    font-weight: 800;
+    color: var(--nhs-blue);
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+  }
+  .fd-door-cta::after { content: ' →'; }
+  .fd-door.planned .fd-door-cta { color: var(--text-muted); }
+  .fd-door.planned .fd-door-cta::after { content: ' · in scoping'; }
+
+  /* Stack visual — show the DTx artefact stack */
+  .fd-stack {
+    margin: 36px 0 0;
+    background: linear-gradient(135deg, #f5f8fc, #fafbfd);
+    border: 1px solid var(--border-lt);
+    border-radius: 14px;
+    padding: 22px 26px;
+  }
+  .fd-stack-title {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--nhs-dark);
+    letter-spacing: -0.1px;
+    margin-bottom: 4px;
+  }
+  .fd-stack-sub {
+    font-size: 12.5px;
+    color: var(--text-sec);
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+  .fd-stack-bands {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .fd-stack-band {
+    border-radius: 8px;
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 12.5px;
+  }
+  .fd-stack-band-l1 { background: linear-gradient(135deg, #001F5C, #003087); color: #fff; }
+  .fd-stack-band-l2 { background: linear-gradient(135deg, #003F8B, #005EB8); color: #fff; }
+  .fd-stack-band-l3 { background: linear-gradient(135deg, #D5E8F0, #E8F1F6); color: var(--text); border: 1px solid rgba(0,94,184,0.18); }
+  .fd-stack-band-l4 { background: linear-gradient(135deg, #F5F8FC, #FAFBFD); color: var(--text); border: 1px solid rgba(0,94,184,0.14); }
+  .fd-stack-band-l5 { background: linear-gradient(135deg, var(--warm-cream), #FFFCF1); color: var(--text); border: 1px solid #F0DCA0; }
+  .fd-stack-num {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.6px;
+    opacity: 0.78;
+    min-width: 50px;
+  }
+  .fd-stack-name { font-weight: 800; font-size: 13px; }
+  .fd-stack-tag { font-weight: 500; opacity: 0.85; font-size: 12px; flex: 1; }
+
+  /* Footer */
+  .fd-footer {
+    margin: 48px 0 0;
+    padding: 22px 48px 28px;
+    border-top: 1px solid var(--border-lt);
+    font-size: 11.5px;
+    color: var(--text-muted);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  @media (max-width: 720px) {
+    .topnav { padding: 12px 22px; }
+    .fd-banner { padding: 36px 28px 24px; }
+    .fd-banner-title { font-size: 32px; }
+    .fd-banner-sub { font-size: 15.5px; }
+    .fd-body { padding: 24px 28px 12px; }
+    .fd-footer { padding: 18px 28px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- =============================================================
+     PASSWORD GATE
+     Client-side only. Acts as friction, not security.
+     To change the password: edit GATE_PWD on the line below.
+     ============================================================= -->
+<div id="gate-overlay" style="position:fixed;inset:0;background:linear-gradient(135deg,#005EB8,#003087);display:flex;align-items:center;justify-content:center;z-index:99999;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;">
+  <div style="background:#fff;padding:36px 36px 30px;border-radius:14px;width:380px;max-width:90vw;box-shadow:0 24px 60px rgba(0,0,0,0.32);">
+    <div style="width:48px;height:4px;background:#FFB91D;border-radius:2px;margin-bottom:18px;"></div>
+    <h2 style="font-size:22px;font-weight:800;color:#003087;letter-spacing:-0.4px;margin:0 0 6px;">NHS DTx Ecosystem</h2>
+    <p style="font-size:13px;color:#4C6272;line-height:1.5;margin:0 0 22px;">Internal access only. Enter the access password.</p>
+    <input type="password" id="gate-pwd" placeholder="Password" autofocus autocomplete="off" style="width:100%;padding:11px 13px;font-size:14px;font-family:inherit;border:1px solid #d9dee3;border-radius:6px;margin-bottom:10px;box-sizing:border-box;outline:none;">
+    <button id="gate-btn" style="background:#003087;color:#fff;border:none;padding:11px 16px;border-radius:6px;font-weight:700;font-family:inherit;cursor:pointer;width:100%;font-size:14px;">Enter</button>
+    <div id="gate-msg" style="color:#DA291C;font-size:12px;margin-top:10px;min-height:14px;"></div>
+  </div>
+</div>
+<script>
+(function(){
+  // *** CHANGE THIS PASSWORD before pushing to GitHub. ***
+  // Anyone who views page source can read it; this is friction, not security.
+  var GATE_PWD = 'HomeTest2026';
+  var SESSION_KEY = 'dtx-ecosystem-gate-ok';
+
+  // If already authenticated this session, hide the overlay and stop.
+  if (sessionStorage.getItem(SESSION_KEY) === '1') {
+    document.getElementById('gate-overlay').style.display = 'none';
+    return;
+  }
+
+  function attempt() {
+    var input = document.getElementById('gate-pwd').value;
+    if (input === GATE_PWD) {
+      sessionStorage.setItem(SESSION_KEY, '1');
+      document.getElementById('gate-overlay').style.display = 'none';
+    } else {
+      document.getElementById('gate-msg').textContent = 'Incorrect password.';
+      document.getElementById('gate-pwd').value = '';
+      document.getElementById('gate-pwd').focus();
+    }
+  }
+
+  document.getElementById('gate-btn').addEventListener('click', attempt);
+  document.getElementById('gate-pwd').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') attempt();
+  });
+})();
+</script>
+
+<div class="topnav">
+  <span class="topnav-context">NHS DTx Ecosystem · Front door</span>
+  <div class="topnav-product-strip">
+    <span class="topnav-product hometest">HomeTest</span>
+    <span class="topnav-product healthstore">HealthStore</span>
+    <span class="topnav-product healthsync">HealthSync</span>
+  </div>
+</div>
+
+<div class="fd-page">
+
+  <div class="fd-banner">
+    <div class="fd-banner-eyebrow">NHS DTx Ecosystem · Internal</div>
+    <h1 class="fd-banner-title">NHS Digital Therapeutics ecosystem</h1>
+    <p class="fd-banner-sub">A single way in to the work across the DTx programmes. The strategic map, the operating model architecture, the operating playbooks, the formal positions adopted and the engagement materials that bring it to life. Three products in scope: HomeTest, HealthStore, HealthSync. Pick a door.</p>
+  </div>
+
+  <div class="fd-body">
+
+    <p class="fd-intro">
+      <strong>Who this is for.</strong> NHSE colleagues working on or alongside the DTx commercial programmes. HomeTest is the live product today; HealthStore and HealthSync follow. Programme leads, commercial teams, IG and clinical leads, sponsors, NHS Legal contacts, finance, integration partners. Each door takes you to a specific part of the landscape. Doors marked <em>In scoping</em> are work committed but not yet built.
+    </p>
+
+    <div class="fd-section-h">The doors</div>
+
+    <div class="fd-grid">
+
+      <a class="fd-door" href="operating-model/DTx OM - Map to 2030 v3.html">
+        <div class="fd-door-head">
+          <div class="fd-door-num">1</div>
+          <span class="fd-door-status live">Live</span>
+        </div>
+        <h3 class="fd-door-title">The Map to 2030</h3>
+        <p class="fd-door-desc">Where we are going and when. The strategic front door. Narrates the DTx commercial journey, named decision gates, Hearts and Minds character moments, and the planning horizon out to 2030.</p>
+        <div class="fd-door-meta"><strong>Reader:</strong> Sponsors and external readers. The first thing to open.</div>
+        <div class="fd-door-cta">Enter</div>
+      </a>
+
+      <a class="fd-door" href="operating-model/DTx OM - Index.html">
+        <div class="fd-door-head">
+          <div class="fd-door-num">2</div>
+          <span class="fd-door-status live">Live</span>
+        </div>
+        <h3 class="fd-door-title">The DTx Operating Model</h3>
+        <p class="fd-door-desc">What this thing is made of. The architectural reference. Operational lanes, lifecycle stages, foundation chips, governance roles, personas and capabilities the model rests on.</p>
+        <div class="fd-door-meta"><strong>Reader:</strong> Sponsors needing the architecture. Anyone building against the model.</div>
+        <div class="fd-door-cta">Enter</div>
+      </a>
+
+      <a class="fd-door" href="playbooks/index.html">
+        <div class="fd-door-head">
+          <div class="fd-door-num">3</div>
+          <span class="fd-door-status live">Live</span>
+        </div>
+        <h3 class="fd-door-title">Playbooks</h3>
+        <p class="fd-door-desc">How the teams actually run it. Operating manuals organised by product: HomeTest, HealthStore, HealthSync. HomeTest Commercial is live; others on the roadmap.</p>
+        <div class="fd-door-meta"><strong>Reader:</strong> The teams running each programme day-to-day.</div>
+        <div class="fd-door-cta">Enter</div>
+      </a>
+
+      <a class="fd-door" href="position-papers/index.html">
+        <div class="fd-door-head">
+          <div class="fd-door-num">4</div>
+          <span class="fd-door-status live">Live</span>
+        </div>
+        <h3 class="fd-door-title">Position papers</h3>
+        <p class="fd-door-desc">What we have formally adopted. Each paper crystallises a single position, the rationale, the triggers that would reopen it, and the dependencies it rests on. Nine positions live today.</p>
+        <div class="fd-door-meta"><strong>Reader:</strong> Sponsors, senior colleagues, anyone needing the position without reading a playbook.</div>
+        <div class="fd-door-cta">Enter</div>
+      </a>
+
+      <a class="fd-door planned" href="#">
+        <div class="fd-door-head">
+          <div class="fd-door-num">5</div>
+          <span class="fd-door-status planned">In scoping</span>
+        </div>
+        <h3 class="fd-door-title">Hearts and Minds materials</h3>
+        <p class="fd-door-desc">The story we tell on the road. Pitch decks, character pages, evidence pack, supporting collateral. Drawn from the operating model's Hearts and Minds character work.</p>
+        <div class="fd-door-meta"><strong>Reader:</strong> Pre-sales cell, sponsors briefing partners, anyone presenting DTx externally.</div>
+        <div class="fd-door-cta">Open</div>
+      </a>
+
+      <a class="fd-door planned" href="#">
+        <div class="fd-door-head">
+          <div class="fd-door-num">6</div>
+          <span class="fd-door-status planned">In scoping</span>
+        </div>
+        <h3 class="fd-door-title">Reference</h3>
+        <p class="fd-door-desc">The connective tissue. Glossary, source materials, primary documents, change log, live open-decisions register, standing artefacts (approved list, standard call-off, assurance standard, CoI register).</p>
+        <div class="fd-door-meta"><strong>Reader:</strong> Anyone, any time. The reference layer underneath the rest.</div>
+        <div class="fd-door-cta">Open</div>
+      </a>
+
+    </div>
+
+    <div class="fd-stack">
+      <div class="fd-stack-title">How the artefacts fit together</div>
+      <p class="fd-stack-sub">The five spine artefacts form a stack. The Map sits at the top as the strategic front door. The DTx OM sits behind it as the architectural reference. The Playbooks sit in the middle as the operations layer. The Position Papers sit below as the formal stated positions. The Hearts and Minds materials sit alongside as the persuasion layer drawn from the OM's character work.</p>
+      <div class="fd-stack-bands">
+        <div class="fd-stack-band fd-stack-band-l1">
+          <span class="fd-stack-num">L1</span>
+          <span class="fd-stack-name">The Map to 2030</span>
+          <span class="fd-stack-tag">Where we are going and when</span>
+        </div>
+        <div class="fd-stack-band fd-stack-band-l2">
+          <span class="fd-stack-num">L2</span>
+          <span class="fd-stack-name">DTx Operating Model</span>
+          <span class="fd-stack-tag">What this thing is made of</span>
+        </div>
+        <div class="fd-stack-band fd-stack-band-l3">
+          <span class="fd-stack-num">L3</span>
+          <span class="fd-stack-name">Playbooks</span>
+          <span class="fd-stack-tag">How the team actually runs it</span>
+        </div>
+        <div class="fd-stack-band fd-stack-band-l4">
+          <span class="fd-stack-num">L4</span>
+          <span class="fd-stack-name">Position Papers</span>
+          <span class="fd-stack-tag">What we have formally adopted</span>
+        </div>
+        <div class="fd-stack-band fd-stack-band-l5">
+          <span class="fd-stack-num">L5</span>
+          <span class="fd-stack-name">Hearts and Minds materials</span>
+          <span class="fd-stack-tag">The story we tell on the road</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="fd-footer">
+    <span>NHS DTx Ecosystem · Front door · 28 May 2026</span>
+    <span>Four doors live · Two in scoping</span>
+  </div>
+
+</div>
+</body>
+</html>

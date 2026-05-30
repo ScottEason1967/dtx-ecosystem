@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mei: Digital Therapeutics Operating Model</title>
+<style>
+ /* Canonical topnav */
+ .topnav{background:#fff;border-bottom:1px solid #ebeef1;padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:nowrap;min-height:54px;box-sizing:border-box;width:100%;max-width:100%;margin:0;position:sticky;top:0;z-index:200;}
+ .topnav.topnav-secondary{background:#F4F8FC;border-bottom:1px solid #d6e2ef;padding:9px 36px;min-height:42px;}
+ .topnav .nav-back{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-back:hover{color:#005EB8;}
+ .topnav .nav-siblings{display:flex;gap:4px;flex-wrap:nowrap;overflow-x:auto;align-items:center;}
+ .topnav .nav-siblings a{font-size:12px;font-weight:600;color:#4C6272;text-decoration:none;padding:6px 12px;border-radius:6px;letter-spacing:0.2px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-siblings a:hover{background:#f0f4f8;color:#212B32;}
+ .topnav .nav-siblings a.active{background:#003087;color:#fff;}
+ .topnav.topnav-secondary .nav-siblings a{font-size:11.5px;padding:5px 10px;}
+ .topnav.topnav-secondary .nav-siblings a.active{background:#005EB8;color:#fff;}
+ .topnav .nav-secondary-label{font-size:10px;font-weight:800;letter-spacing:1.5px;color:#7E8B97;text-transform:uppercase;flex-shrink:0;}
+
+ :root {
+ --nhs-dark:#003087; --nhs-blue:#005EB8; --nhs-green:#006747; --nhs-pink:#AE2573;
+ --amber:#FFB91D; --amber-deep:#C9A227; --warm-cream:#FFF9EC;
+ --accent:#7E8B97;
+ --text:#212B32; --text-sec:#4C6272; --text-muted:#7E8B97;
+ --border-lt:#ebeef1; --card:#ffffff; --bg:#f8fafc;
+ }
+ *{box-sizing:border-box;margin:0;padding:0;}
+ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ .page{max-width:1100px;margin:0 auto;padding:50px 40px 80px;}
+ .amber-rule{width:72px;height:4px;background:var(--amber);border-radius:2px;margin-bottom:18px;}
+ .h-eyebrow{font-size:11px;font-weight:700;letter-spacing:2.2px;color:var(--text-sec);text-transform:uppercase;margin-bottom:18px;}
+ .h-flex{display:grid;grid-template-columns:1.6fr 1fr;gap:48px;align-items:center;margin-bottom:48px;}
+ .h-title{font-size:54px;font-weight:800;color:var(--nhs-dark);letter-spacing:-1.4px;line-height:1.05;margin-bottom:14px;}
+ .h-role{font-size:13px;font-weight:800;letter-spacing:1.6px;color:var(--accent);text-transform:uppercase;margin-bottom:20px;}
+ .h-quote{font-size:18px;color:var(--text);line-height:1.5;font-weight:500;font-style:italic;border-left:4px solid var(--amber);padding-left:16px;margin-bottom:18px;}
+ .h-bio{font-size:15px;color:var(--text-sec);line-height:1.7;}
+ .h-portrait{display:flex;justify-content:center;align-items:center;}
+ .h-portrait img{max-width:260px;width:100%;height:auto;border-radius:14px;}
+ .h-portrait .portrait-placeholder{width:260px;height:300px;background:linear-gradient(135deg,#E0E5EB,#c8d0d8);border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#7E8B97;font-size:13px;font-weight:700;letter-spacing:0.4px;text-align:center;padding:20px;border:2px dashed #aab3bd;}
+ .h-portrait .portrait-placeholder-icon{font-size:60px;margin-bottom:12px;opacity:0.5;}
+ .section-h{font-size:24px;font-weight:800;color:var(--nhs-dark);margin:42px 0 14px;letter-spacing:-0.4px;}
+ .section-body{font-size:15px;color:var(--text-sec);line-height:1.75;max-width:760px;}
+ .section-body strong{color:var(--text);font-weight:700;}
+ .where-list{display:flex;flex-direction:column;gap:8px;margin-top:14px;}
+ .where-list li{font-size:14px;color:var(--text-sec);line-height:1.6;padding-left:16px;position:relative;list-style:none;}
+ .where-list li::before{content:'';position:absolute;left:0;top:9px;width:8px;height:8px;background:var(--amber);border-radius:50%;}
+ .pair-callout{background:var(--warm-cream);border:1px solid #F0DCA0;border-radius:12px;padding:18px 22px;margin-top:18px;font-size:13.5px;color:var(--text-sec);line-height:1.65;}
+ .pair-callout strong{color:var(--text);font-weight:700;}
+ @media(max-width:820px){.h-flex{grid-template-columns:1fr;}.h-title{font-size:36px;}.page{padding:40px 22px 60px;}}
+ :root { --nhs-blue-deep:#003087; }
+ body { background: linear-gradient(180deg, var(--nhs-blue) 0%, var(--nhs-blue-deep) 100%) !important; background-attachment: fixed !important; }
+ 
+ .page { background:#ffffff; border-radius:18px; box-shadow:0 14px 40px rgba(0,48,135,0.20); margin-top:30px !important; margin-bottom:50px !important; }
+</style>
+<style>
+  .ecosystem-nav {
+    background: #fff;
+    border-bottom: 1px solid #ebeef1;
+    padding: 12px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 48px;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  }
+  .ecosystem-nav a {
+    font-size: 13px; font-weight: 700; color: #003087;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .ecosystem-nav a:hover { color: #005EB8; }
+  .ecosystem-nav .nav-context {
+    font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
+    color: #7E8B97; text-transform: uppercase;
+  }
+  .ecosystem-nav .nav-product {
+    font-size: 10.5px; font-weight: 800; letter-spacing: 0.8px;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 4px; color: #fff;
+  }
+  .ecosystem-nav .nav-product.dtx { background: #003087; }
+  .ecosystem-nav .nav-product.hometest { background: #003087; }
+  .ecosystem-nav .nav-product.healthstore { background: #00A9CE; }
+  .ecosystem-nav .nav-product.healthsync { background: #00A499; }
+</style>
+</head>
+<body>
+<div class="ecosystem-nav">
+  <a href="../index.html">← DTx Ecosystem</a>
+  <span class="nav-context">Persona HealthSync diabetes patient</span>
+  <span class="nav-product healthsync">HealthSync</span>
+</div>
+<nav class="topnav">
+<a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+<div class="nav-siblings">
+ <a href="DTx OM - Why.html">Why</a>
+ <a href="DTx OM - What.html">What</a>
+ <a href="DTx OM - Lifecycle.html">When</a>
+ <a href="DTx OM - HomeTest Operational.html">How</a>
+ <a href="DTx OM - Governance.html" class="active">Who</a>
+ <a href="DTx OM - Hearts and Minds.html">Hearts and Minds</a>
+ <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>
+ <a href="DTx OM - Status.html">Status</a>
+</div>
+</nav>
+
+<nav class="topnav topnav-secondary">
+<div class="nav-secondary-label">Cast</div>
+<div class="nav-siblings">
+ <a href="DTx OM - Persona Sarah.html">Sarah</a>
+ <a href="DTx OM - Persona Aisha.html">Aisha</a>
+ <a href="DTx OM - Persona Priya.html">Priya</a>
+ <a href="DTx OM - Persona David.html">David</a>
+ <a href="DTx OM - Persona Ngozi.html">Ngozi</a>
+ <a href="DTx OM - Persona Abdul.html">Abdul</a>
+ <a href="DTx OM - Persona Mark.html">Mark</a>
+ <a href="DTx OM - Persona Layla.html">Layla</a>
+ <a href="DTx OM - Persona Joe.html">Joe</a>
+ <a href="DTx OM - Persona HealthStore COPD patient.html">Pauline</a>
+ <a href="DTx OM - Persona HealthStore prescribing clinician.html">Ravi</a>
+ <a href="DTx OM - Persona HealthStore supplier.html">Marcus</a>
+ <a href="DTx OM - Persona HealthSync diabetes patient.html" class="active">Mei</a>
+ <a href="DTx OM - Persona HealthSync patient.html">Errol</a>
+</div>
+</nav>
+
+<div class="page">
+
+ <div class="amber-rule"></div>
+ <div class="h-eyebrow">The cast &middot; meet Mei &middot; HealthSync patient archetype</div>
+
+ <div class="h-flex">
+ <div>
+ <h1 class="h-title">Mei.</h1>
+ <div class="h-role">Patient &middot; HealthSync</div>
+ <div class="h-quote">&ldquo;The strip on my arm shows me what bread does to my blood sugar in real time. I&apos;ve learnt more in six months than I learnt in eight years of being told to watch what I eat.&rdquo;</div>
+ <div class="h-bio">52, British-Chinese, lives in north London with her husband and her two grown sons (one at university, one starting his second job). Works in HR for a London borough. Diagnosed with type 2 diabetes eight years ago; family history on her father&apos;s side. Manages mostly through diet, walking and tai chi, on a low dose of metformin. Six months ago her GP suggested a continuous glucose monitor (CGM) &mdash; she wears the small sensor on her upper arm, replaced every fortnight, paired to her phone. The data syncs through the NHS App into her record. Her GP sees the trend at her annual review and can pick up the phone if anything obvious is shifting. Mei has used what the sensor shows her to genuinely change how she eats, which is the part she could never quite crack with the old quarterly HbA1c result alone.</div>
+ </div>
+ <div class="h-portrait">
+ <img src="img/mei.png" alt="Mei">
+ </div>
+ </div>
+
+ <h2 class="section-h">Why Mei matters in the model</h2>
+ <p class="section-body">Mei is the patient face of the HealthSync workstream when the wearable layer is doing the whole job on its own. She is not crossing into HomeTest or HealthStore. The continuous glucose monitor is the intervention; the consumer-platform integration is the plumbing; the NHS App is the visibility. The model has to work for her even when no test arrives at the door and no digital therapeutic is prescribed. The HealthSync workstream has to land as its own thing, not as a feeder for the others.</p>
+
+ <div class="pair-callout">
+ <strong>What Mei tells the model.</strong> Wearable-only configurations are real configurations, not waiting rooms for something else to happen. The architecture has to support a patient whose entire HealthSync engagement is a sensor on her arm and a chart in the NHS App. The clinical pathway behind it is GP-led, between annual reviews, with the data carrying the relationship. Equity-of-access matters in this configuration in a particular way: T2 diabetes burden falls disproportionately on South Asian, East Asian, Black African and African Caribbean communities (East Asian and South Asian populations develop T2D at lower BMIs than white European populations), and CGM access has been uneven by area. The model has to be honest that this workstream reaches some patients more easily than others.
+ </div>
+
+ <h2 class="section-h">What is distinctive about Mei&rsquo;s journey</h2>
+ <p class="section-body">No external test event triggers Mei&apos;s engagement. The sensor is continuous: applied, worn for fourteen days, scanned by her phone, replaced. The data flows out of the consumer-platform integration into the NHS App and her record. Her GP sees what she sees, plus the trend over time. Where the configuration uses thresholds (sustained high readings, hypoglycaemic events, persistent unfavourable patterns) the alert routes to the responsible clinical pathway. Most of the time nothing alerts because most of the time nothing needs to. The value of the configuration is the visibility, not the alert &mdash; the chart that lets Mei see for herself what a slice of toast does to her glucose curve at half-three on a Wednesday. Outcome capture is the HbA1c that arrives at her next routine blood test and the time-in-range metric the CGM produces continuously.</p>
+
+ <h2 class="section-h">Where Mei appears in the model</h2>
+ <ul class="where-list">
+ <li>The HealthSync patient slot in the home page cast</li>
+ <li>The HealthSync column in the <a href="DTx OM - Anatomical.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">Anatomy</a> catalogue (initiation pattern, supply chain, data flow, information governance)</li>
+ <li>The patient lane in the HealthSync operational shape captured in the <a href="DTx OM - Governance.html#raci-healthsync" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">Governance Who page RACI</a> (data sharing consent, data review, permission change, revocation)</li>
+ <li>The <a href="DTx OM - Product HealthSync.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">HealthSync product page</a> hero context</li>
+ <li>The HealthSync section in <a href="DTx OM - Status.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">Status</a></li>
+ </ul>
+
+  <h2 class="section-h" style="margin-top:48px;">TOM components &mdash; what this persona owns or participates in</h2>
+  <ul class="where-list">
+    <li><a href="DTx OM - Anatomical.html" style="color:#5E35B2;font-weight:600;text-decoration:none;"><strong>Apple HealthKit / Google Health Connect</strong> consumer-platform integration</a></li>
+    <li><a href="DTx OM - Status.html#healthsync" style="color:#5E35B2;font-weight:600;text-decoration:none;"><strong>Patient permission and revocation</strong> at consumer-platform layer and NHS App layer</a></li>
+    <li><a href="DTx OM - Status.html#healthsync" style="color:#5E35B2;font-weight:600;text-decoration:none;"><strong>Threshold-based alerting</strong> for between-appointment data signals</a></li>
+    <li><a href="DTx OM - Anatomical.html" style="color:#5E35B2;font-weight:600;text-decoration:none;"><strong>Federated controller for consumer-platform data</strong></a></li>
+  </ul>
+</div>
+</body>
+</html>
+                                                                                                                                                                                                         
