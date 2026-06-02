@@ -2,7 +2,7 @@
 <html lang="en-GB">
 <head>
 <meta charset="UTF-8">
-<title>DTx OM — The Map to 2030 (SKETCH v2)</title>
+<title>DTx OM — The Map to 2030</title>
 <style>
   * { box-sizing: border-box; }
   body {
@@ -13,20 +13,10 @@
     line-height: 1.5;
   }
 
-  .sketch-banner {
-    background: #FFF3CD;
-    border-bottom: 2px solid #E5C880;
-    padding: 12px 32px;
-    font-size: 13px;
-    color: #5C4A1A;
-  }
-  .sketch-banner strong { color: #231F20; }
-  .sketch-banner .nb { display: block; margin-top: 3px; font-style: italic; opacity: 0.85; font-size: 12px; }
-
   .header {
     background: linear-gradient(135deg, #003087 0%, #1A4C9C 100%);
     color: #fff;
-    padding: 32px 48px 28px;
+    padding: 36px 48px 32px;
   }
   .header .eyebrow {
     font-size: 11px;
@@ -34,37 +24,35 @@
     text-transform: uppercase;
     color: #7EC8E3;
     font-weight: 700;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
   .header h1 {
-    margin: 0 0 8px;
-    font-size: 34px;
+    margin: 0 0 10px;
+    font-size: 36px;
     font-weight: 900;
     letter-spacing: -0.7px;
   }
   .header .sub {
-    font-size: 15px;
+    font-size: 15.5px;
     color: rgba(255,255,255,0.92);
-    max-width: 920px;
+    max-width: 940px;
     line-height: 1.55;
   }
 
   .map-shell {
-    padding: 28px 24px 40px;
+    padding: 32px 24px 48px;
     max-width: 1520px;
     margin: 0 auto;
   }
 
-  /* MAP CANVAS — uses CSS grid for years × lanes, but inside each cell uses positioned content */
   .canvas {
     background: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0,30,90,0.06);
-    padding: 0;
     overflow: hidden;
+    position: relative;
   }
 
-  /* YEAR HEADER ROW */
   .year-header {
     display: grid;
     grid-template-columns: 110px repeat(4, 1fr) 0.65fr;
@@ -120,7 +108,6 @@
     opacity: 0.95;
   }
 
-  /* LANE STRUCTURE */
   .lane-row {
     display: grid;
     grid-template-columns: 110px repeat(4, 1fr) 0.65fr;
@@ -150,6 +137,44 @@
     margin-top: 3px;
     line-height: 1.35;
   }
+  .lane-label .ll-ref {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(0,30,90,0.08);
+    font-size: 10px;
+    line-height: 1.4;
+  }
+  .lane-label .ll-ref a {
+    display: block;
+    color: #003087;
+    text-decoration: none;
+    margin: 2px 0;
+    font-weight: 600;
+  }
+  .lane-label .ll-ref a:hover { text-decoration: underline; }
+  .lane-label .ll-ref .ll-ref-label {
+    color: #5C6B82;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    font-size: 9px;
+    margin-bottom: 3px;
+  }
+  .character {
+    text-decoration: none;
+    color: inherit;
+  }
+  .character .c-play {
+    display: block;
+    font-size: 9.5px;
+    color: #003087;
+    font-weight: 700;
+    margin-top: 2px;
+    letter-spacing: 0.3px;
+  }
+  a.character:hover .c-body .c-name { color: #003087; }
+  .gate-body a { color: inherit; text-decoration: underline; text-decoration-style: dotted; text-decoration-color: rgba(184,148,31,0.6); }
+  .gate.major .gate-body a { text-decoration-color: rgba(192,57,43,0.7); }
   .year-col {
     padding: 12px;
     border-right: 1px dashed #E1E7EF;
@@ -157,12 +182,11 @@
   }
   .year-col:last-child { border-right: none; background: #FAFBFD; }
 
-  /* DECISIONS LANE — track style */
+  /* DECISIONS LANE */
   .lane-row.decisions { min-height: 86px; background: #FFFBEE; }
   .lane-row.decisions .lane-label { background: #FAF1D8; border-right-color: #E5D9B0; }
   .lane-row.decisions .lane-label .ll-title { color: #8A6E1C; }
   .gate {
-    position: relative;
     background: #fff;
     border: 2px solid #B8941F;
     border-radius: 6px;
@@ -221,24 +245,59 @@
     box-shadow: 0 1px 2px rgba(0,0,0,0.04);
   }
   .test-chip .chip-id {
+    display: block;
     font-weight: 800;
     color: #003087;
     font-size: 10px;
     letter-spacing: 0.3px;
+    margin-bottom: 1px;
   }
   .test-chip .chip-name {
+    display: block;
     font-weight: 600;
     font-size: 10.5px;
+    line-height: 1.3;
   }
   .test-chip .chip-vol {
+    display: block;
     color: #5C6B82;
     font-size: 9.5px;
+    margin-top: 1px;
   }
   .test-chip.proven {
     background: #F0F7F2;
     border-left-color: #2D6B3F;
   }
   .test-chip.proven .chip-id { color: #2D6B3F; }
+  .test-chip.hs {
+    background: #EAF7FB;
+    border-left-color: #00A9CE;
+  }
+  .test-chip.hs .chip-id { color: #007A99; }
+  .test-chip.hsy {
+    background: #E8F6F4;
+    border-left-color: #00A499;
+  }
+  .test-chip.hsy .chip-id { color: #00766E; }
+  .test-chip.placeholder {
+    border-style: dashed;
+    border-left-style: solid;
+    border-color: rgba(0,0,0,0.08);
+    border-width: 1px;
+  }
+  .test-chip .tbc {
+    display: inline-block;
+    background: #FFF3CD;
+    color: #5C4A1A;
+    font-size: 8.5px;
+    font-weight: 800;
+    padding: 0 4px;
+    border-radius: 2px;
+    margin-left: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    vertical-align: middle;
+  }
   .volume-band {
     margin-top: 8px;
     padding: 5px 8px;
@@ -256,16 +315,12 @@
     color: #B6CFE6;
     margin-top: 1px;
   }
-  .volume-band.proven {
-    background: #2D6B3F;
-  }
+  .volume-band.proven { background: #2D6B3F; }
   .volume-band.proven .vb-sub { color: #B0DBC0; }
-  .volume-band.beyond {
-    background: #5C6B82;
-  }
+  .volume-band.beyond { background: #5C6B82; }
   .volume-band.beyond .vb-sub { color: #C2CCD8; }
 
-  /* VEHICLE LANE — single continuous band visual */
+  /* VEHICLE LANE */
   .lane-row.vehicle { min-height: 100px; }
   .lane-row.vehicle .lane-label .ll-title { color: #1A4C9C; }
   .vehicle-block {
@@ -310,9 +365,7 @@
     border-left: 3px solid #C0392B;
     text-align: center;
   }
-  .vehicle-block.gate-cell .v-title {
-    color: #6B2018;
-  }
+  .vehicle-block.gate-cell .v-title { color: #6B2018; }
   .vehicle-block.pa23 {
     background: #003087;
     color: #fff;
@@ -391,25 +444,20 @@
     color: #5A1A3D;
     font-size: 11px;
   }
-  .audience.proven .a-marker {
-    background: #2D6B3F;
-    color: #fff;
-  }
+  .audience.proven .a-marker { background: #2D6B3F; }
   .audience .a-marker.future {
     background: #fff;
     border: 2px solid #7C2855;
     color: #7C2855;
   }
 
-  /* Character — real portrait in circular frame, anchored on lane */
   .character {
     display: flex;
     gap: 8px;
     align-items: center;
-    padding: 5px 0 5px;
+    padding: 5px 8px 5px 0;
     background: rgba(255,255,255,0.65);
     border-radius: 30px 8px 8px 30px;
-    padding-right: 8px;
     box-shadow: 0 1px 3px rgba(124,40,85,0.08);
     margin-top: 4px;
   }
@@ -443,61 +491,9 @@
     font-size: 10px;
   }
 
-  /* CONNECTOR LINE - visual hint that lanes link */
-  .canvas { position: relative; }
-
-  /* NOTES BLOCK */
-  .notes {
-    margin-top: 32px;
-    padding: 22px 26px;
-    background: #fff;
-    border: 1px solid #D5E8F0;
-    border-radius: 10px;
-  }
-  .notes h2 {
-    margin: 0 0 14px;
-    font-size: 18px;
-    color: #003087;
-    font-weight: 800;
-  }
-  .notes h3 {
-    margin: 18px 0 6px;
-    font-size: 13px;
-    color: #231F20;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.6px;
-  }
-  .notes p {
-    margin: 0 0 9px;
-    font-size: 13px;
-    line-height: 1.6;
-    color: #3A4456;
-  }
-  .change-row {
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 18px;
-    padding: 8px 0;
-    font-size: 12.5px;
-    border-bottom: 1px dashed #E1E7EF;
-  }
-  .change-row:last-child { border-bottom: none; }
-  .change-row .ck { font-weight: 700; color: #003087; }
-  .change-row .cv { color: #3A4456; line-height: 1.5; }
-  .judgement-call {
-    background: #FFF8E1;
-    border-left: 3px solid #B8941F;
-    padding: 9px 13px;
-    margin: 6px 0;
-    border-radius: 4px;
-    font-size: 12.5px;
-  }
-
-  /* LEGEND */
   .legend {
-    margin-top: 14px;
-    padding: 12px 16px;
+    margin-top: 18px;
+    padding: 14px 18px;
     background: #fff;
     border: 1px solid #D5E8F0;
     border-radius: 6px;
@@ -510,20 +506,6 @@
   .legend-item { display: flex; align-items: center; gap: 6px; }
   .legend-swatch { width: 13px; height: 13px; border-radius: 3px; }
   .legend-swatch.circ { border-radius: 50%; }
-
-  /* CHANGES BANNER */
-  .v2-changes {
-    margin-bottom: 24px;
-    background: #E8F0FA;
-    border: 1px solid #B3CDE6;
-    border-radius: 8px;
-    padding: 14px 18px;
-    font-size: 12.5px;
-    color: #1A4C9C;
-  }
-  .v2-changes strong { color: #003087; font-size: 13.5px; }
-  .v2-changes ul { margin: 8px 0 0; padding-left: 20px; }
-  .v2-changes li { margin: 3px 0; line-height: 1.5; }
 
   @media (max-width: 1240px) {
     .map-shell { padding: 14px; }
@@ -568,13 +550,8 @@
 <body>
 <div class="ecosystem-nav">
   <a href="../index.html">← DTx Ecosystem</a>
-  <span class="nav-context">Map to 2030 SKETCH v2</span>
+  <span class="nav-context">Map to 2030</span>
   <span class="nav-product dtx">DTx</span>
-</div>
-
-<div class="sketch-banner">
-  <strong>SKETCH v2 — corrected against primary-source target dates and confirmed volumes.</strong>
-  <span class="nb">Standalone. Not wired into the rest of the site. Notes at the bottom flag what changed from v1 and what still needs your reaction.</span>
 </div>
 
 <div class="header">
@@ -585,22 +562,8 @@
 
 <div class="map-shell">
 
-  <div class="v2-changes">
-    <strong>What changed from v1</strong>
-    <ul>
-      <li>Timeline shifted left a year. Starts at FY 26/27 (current proving year), ends at FY 29/30 (the 2030 endpoint). "Beyond" rail captures FY 30/31 onwards.</li>
-      <li>Year themes added to header from programme planning language (Proving / Ready to scale / Scaling / Routine care).</li>
-      <li>Hearts &amp; Minds character placements moved to match real target dates. Marcus and Sarah now anchor in FY 26/27 (supplier onboarding + Commissioner Store prototype + 2 ICB partners are all this year). Ravi at FY 26/27 → 27/28 transition (COPD beta to MVP). Errol holds at FY 27/28 (cross-product needs HIV public + COPD MVP both live).</li>
-      <li>Terrence Higgins Trust February 2027 proposition added to Q4 FY 26/27 — major HIV beta milestone I missed in v1.</li>
-      <li>Scale lane carries confirmed per-FY test volumes (5/10/15/20% utilisation ramp) plus the current-year HIV and COPD proven volumes (10k kits, 500 new COPD patients).</li>
-      <li>Decisions rail uses quarter tags (Q1-Q4) where the source has them.</li>
-      <li>Real character portraits where placed (Marcus, Ravi, Sarah, Errol).</li>
-    </ul>
-  </div>
-
   <div class="canvas">
 
-    <!-- YEAR HEADER -->
     <div class="year-header">
       <div class="yh-cell yh-corner">
         <div class="yh-title">The Map</div>
@@ -633,32 +596,34 @@
       </div>
     </div>
 
-    <!-- DECISIONS LANE -->
     <div class="lane-row decisions">
       <div class="lane-label">
         <div class="ll-title">Decisions</div>
         <div class="ll-sub">SLT gates that have to land for the next stage to start</div>
+        <div class="ll-ref">
+          <div class="ll-ref-label">Anchors in</div>
+          <a href="../position-papers/position-framework-status.html">Position: Framework status</a>
+        </div>
       </div>
       <div class="year-col">
         <div class="gate"><span class="gate-q">Q3</span><span class="gate-mark">1</span><span class="gate-body">HomeTest UC1 (HIV) Private Beta launched in 2 LAs</span></div>
         <div class="gate"><span class="gate-q">Q4</span><span class="gate-mark">2</span><span class="gate-body">Commercial &amp; assurance model launched (HT-009 / HS-007); 27/28 funding established</span></div>
       </div>
       <div class="year-col">
-        <div class="gate"><span class="gate-mark">3</span><span class="gate-body">Step 1 SBS PSR bridge live for HIV (six months); Alpha/Beta MOUs continue for live deployments</span></div>
+        <div class="gate"><span class="gate-mark">3</span><span class="gate-body">Procurement vehicle confirmed (matchmaker with assurance, no central levy)</span></div>
         <div class="gate"><span class="gate-mark">4</span><span class="gate-body">Best-practice tariff at pathway level agreed</span></div>
       </div>
       <div class="year-col">
-        <div class="gate major"><span class="gate-mark">5</span><span class="gate-body">STEP 2 PROCUREMENT VEHICLE GATE — PA23 vs PSR settled; Plan A (PA23 Option B framework or Dynamic Market), Plan B (Digital Primary Care framework leverage) or Plan C (commissioner-led direct purchase) confirmed</span></div>
+        <div class="gate major"><span class="gate-mark">5</span><span class="gate-body">FRAMEWORK REOPEN GATE — do reopen triggers justify standing a framework up? If yes, PA23 is the leading candidate. <a href="../position-papers/position-framework-status.html">See position paper</a></span></div>
       </div>
       <div class="year-col">
-        <div class="gate"><span class="gate-mark">6</span><span class="gate-body">Step 3 framework administration route lands (NHSE, SBS, CCS, third-party) under the chosen Step 2 vehicle</span></div>
+        <div class="gate"><span class="gate-mark">6</span><span class="gate-body">Framework revenue model switches on (if PA23 chosen)</span></div>
       </div>
       <div class="year-col">
         <div class="gate"><span class="gate-mark">7</span><span class="gate-body">Full commercial model in steady state</span></div>
       </div>
     </div>
 
-    <!-- SCALE LANE -->
     <div class="lane-row scale">
       <div class="lane-label">
         <div class="ll-title">Scale</div>
@@ -674,10 +639,13 @@
       </div>
       <div class="year-col">
         <div class="scale-stack">
-          <div class="test-chip"><span class="chip-id">T01 · Wave 1</span><span class="chip-name">TPSA — Prostate Ca Active Surveillance</span><span class="chip-vol">15,000 tests (5% ramp) · £30/test</span></div>
+          <div class="test-chip"><span class="chip-id">T01 · Wave 1</span><span class="chip-name">TPSA — Prostate Ca Active Surveillance</span><span class="chip-vol">15,000 tests (5% ramp) · £30/test</span><span class="chip-vol" style="color:#2A6A2A;font-weight:700;">Aligned with NHS Online &middot; National Cancer Plan</span></div>
           <div class="test-chip"><span class="chip-id">T04 · Wave 1</span><span class="chip-name">MRSA — Hip &amp; Knee surgery</span><span class="chip-vol">12,577 tests (5% ramp) · £20/test</span></div>
+          <div class="test-chip hs"><span class="chip-id">HS · COPD<span class="tbc">TBC</span></span><span class="chip-name">COPD MVP scaling beyond beta sites</span><span class="chip-vol">Volume / pace TBC</span></div>
+          <div class="test-chip hs"><span class="chip-id">HS · UC2 / UC3<span class="tbc">TBC</span></span><span class="chip-name">Cardiac Rehab + MSK MVP live</span><span class="chip-vol">Use cases agreed FY 26/27 · volumes TBC</span></div>
+          <div class="test-chip hsy"><span class="chip-id">HSy<span class="tbc">TBC</span></span><span class="chip-name">First HealthSync use case scoping</span><span class="chip-vol">Workstream behind HT and HS</span></div>
         </div>
-        <div class="volume-band">FY 27/28 · 27,577 tests<div class="vb-sub">Wave 1 onboard · c.£701k gross</div></div>
+        <div class="volume-band">FY 27/28 · 27,577 HT tests<div class="vb-sub">Wave 1 onboard · c.£701k gross · HS/HSy volumes TBC</div></div>
       </div>
       <div class="year-col">
         <div class="scale-stack">
@@ -685,69 +653,79 @@
           <div class="test-chip"><span class="chip-id">T05 · Wave 2</span><span class="chip-name">Raised PSA</span><span class="chip-vol">10,375 tests (5%) · £30</span></div>
           <div class="test-chip"><span class="chip-id">T06 · Wave 2</span><span class="chip-name">ACL — MRSA</span><span class="chip-vol">1,500 tests (5%) · £20</span></div>
           <div class="test-chip"><span class="chip-id">T07 · Wave 2</span><span class="chip-name">IBD — FCP</span><span class="chip-vol">25,000 tests (5%) · £35</span></div>
+          <div class="test-chip hs"><span class="chip-id">HS portfolio<span class="tbc">TBC</span></span><span class="chip-name">3+ use cases at scale across multiple ICBs</span><span class="chip-vol">New conditions onboarded · volumes TBC</span></div>
+          <div class="test-chip hsy"><span class="chip-id">HSy<span class="tbc">TBC</span></span><span class="chip-name">First HealthSync use case private beta</span><span class="chip-vol">Volume TBC · workstream catching up</span></div>
         </div>
-        <div class="volume-band">FY 28/29 · 92,028 tests<div class="vb-sub">W1 ramping + W2 onboard · c.£2.6m gross</div></div>
+        <div class="volume-band">FY 28/29 · 92,028 HT tests<div class="vb-sub">W1 ramping + W2 onboard · c.£2.6m gross · HS/HSy TBC</div></div>
       </div>
       <div class="year-col">
         <div class="scale-stack">
           <div class="test-chip"><span class="chip-id">W1 · ramping</span><span class="chip-name">Wave 1 to 15%</span><span class="chip-vol">82,730 tests</span></div>
           <div class="test-chip"><span class="chip-id">W2 · ramping</span><span class="chip-name">Wave 2 to 10%</span><span class="chip-vol">73,875 tests</span></div>
           <div class="test-chip"><span class="chip-id">W3 · onboard</span><span class="chip-name">T08 iron-def · T09/T10 LUTS · T11 shoulder · T12 menopause</span><span class="chip-vol">95,000 tests (5%) · c.£3.2m</span></div>
+          <div class="test-chip hs"><span class="chip-id">HS portfolio<span class="tbc">TBC</span></span><span class="chip-name">Routine adoption across COPD / CR / MSK + new conditions</span><span class="chip-vol">Patient volumes at scale · TBC</span></div>
+          <div class="test-chip hsy"><span class="chip-id">HSy<span class="tbc">TBC</span></span><span class="chip-name">HealthSync at scaled beta / MVP</span><span class="chip-vol">Volume TBC</span></div>
         </div>
-        <div class="volume-band">FY 29/30 · 251,605 tests<div class="vb-sub">All three waves live · c.£7.7m gross</div></div>
+        <div class="volume-band">FY 29/30 · 251,605 HT tests<div class="vb-sub">All three waves live · c.£7.7m gross · HS/HSy TBC</div></div>
       </div>
       <div class="year-col">
         <div class="scale-stack">
-          <div class="test-chip" style="border-left-color:#5C6B82;"><span class="chip-id" style="color:#5C6B82;">Steady state</span><span class="chip-name">All 10 tests at 20% utilisation</span><span class="chip-vol">c.640k tests/year</span></div>
+          <div class="test-chip" style="border-left-color:#5C6B82;"><span class="chip-id" style="color:#5C6B82;">Steady state</span><span class="chip-name">All 10 HT tests at 20% utilisation</span><span class="chip-vol">c.640k tests/year</span></div>
+          <div class="test-chip hs"><span class="chip-id">HS portfolio<span class="tbc">TBC</span></span><span class="chip-name">HealthStore at portfolio steady state</span><span class="chip-vol">TBC</span></div>
+          <div class="test-chip hsy"><span class="chip-id">HSy<span class="tbc">TBC</span></span><span class="chip-name">HealthSync at scale</span><span class="chip-vol">TBC</span></div>
         </div>
-        <div class="volume-band beyond">2030+ · c.£20m/year<div class="vb-sub">Steady state at target utilisation</div></div>
+        <div class="volume-band beyond">2030+ · c.£20m/year HT<div class="vb-sub">Steady state · HS/HSy TBC</div></div>
       </div>
     </div>
 
-    <!-- VEHICLE LANE -->
     <div class="lane-row vehicle">
       <div class="lane-label">
         <div class="ll-title">Vehicle</div>
         <div class="ll-sub">Commercial mechanism. Light now. Heavier only once earned.</div>
+        <div class="ll-ref">
+          <div class="ll-ref-label">Anchors in</div>
+          <a href="../position-papers/position-nhse-role.html">Position: NHSE role</a>
+          <a href="../position-papers/position-interim-legal-vehicle.html">Position: Interim legal vehicle</a>
+          <a href="../position-papers/position-existing-routes.html">Position: Existing routes</a>
+        </div>
       </div>
       <div class="year-col" style="padding: 0;">
         <div class="vehicle-block now">
           <div class="v-eyebrow">Now · current arrangements</div>
-          <div class="v-title">Direct supplier contracts (HIV, COPD beta)</div>
-          <div class="v-body">Bespoke per-supplier deals via ACE / existing routes. Not built to scale.</div>
+          <div class="v-title">Existing routes</div>
+          <div class="v-body">Interim arrangements via ACE / direct contracts. Delivering the HIV and COPD beta proof points. Designed to support proving, not to carry scale.</div>
         </div>
       </div>
-      <div class="year-col" style="padding: 0;" colspan="2">
+      <div class="year-col" style="padding: 0;">
         <div class="vehicle-block psr">
-          <div class="v-eyebrow">FY 27/28 — FY 28/29</div>
-          <div class="v-title">Step 1 interim route + Step 2 decision in flight</div>
-          <div class="v-body">Six-month SBS PSR bridge for HIV; Alpha/Beta MOUs continue for live deployments. In parallel, Step 2 vehicle decision in flight: dual-route Plan A (PA23 Option B framework or Dynamic Market), Plan B (Digital Primary Care framework leverage), Plan C (commissioner-led direct purchase). <strong>PA23 vs PSR not settled in law.</strong></div>
+          <div class="v-eyebrow">FY 27/28</div>
+          <div class="v-title">Matchmaker with assurance</div>
+          <div class="v-body">Approved list. Published assurance standard. Standard call-off contract between supplier and commissioner. <strong>NHSE convenes, assures, introduces. Not a party to the contract. No percentage take.</strong> The live operating model.</div>
+        </div>
+      </div>
+      <div class="year-col" style="padding: 0;">
+        <div class="vehicle-block psr">
+          <div class="v-eyebrow">FY 28/29</div>
+          <div class="v-title">Matchmaker maturing</div>
+          <div class="v-body">Wave 1 + 2 live. Evidence accruing. Reopen triggers tracked: volume threshold, supplier demand, commercial case.</div>
         </div>
       </div>
       <div class="year-col" style="padding: 0;">
         <div class="vehicle-block gate-cell">
-          <div class="v-eyebrow" style="color:#C0392B;">Step 2 gate</div>
-          <div class="v-title">Plan A / B / C settled</div>
-          <div class="v-body" style="color:#6B2018; font-size: 10.5px;">Step 2 vehicle confirmed; Step 3 framework administration route lands underneath. Could land as a formal framework (Plan A or B) or as a commissioner-led direct-purchase route (Plan C).</div>
-        </div>
-      </div>
-      <div class="year-col" style="padding: 0;">
-        <div class="vehicle-block pa23">
-          <div class="v-eyebrow">FY 29/30</div>
-          <div class="v-title">Step 2 vehicle live</div>
-          <div class="v-body">The chosen Plan A/B/C vehicle is live with the Step 3 administration route running it.</div>
+          <div class="v-eyebrow" style="color:#C0392B;">Reopen gate</div>
+          <div class="v-title">Framework yes/no?</div>
+          <div class="v-body" style="color:#6B2018; font-size: 10.5px;">Have reopen triggers fired? If yes, what kind of framework? PA23 leads as candidate. Matchmaker may continue indefinitely if triggers don't justify the standup cost.</div>
         </div>
       </div>
       <div class="year-col" style="padding: 0;">
         <div class="vehicle-block beyond">
           <div class="v-eyebrow">2030+</div>
           <div class="v-title">Steady state</div>
-          <div class="v-body">Operating under the chosen Step 2 vehicle with Step 3 administration.</div>
+          <div class="v-body">Either matchmaker at maturity, or formal framework (PA23 leading) with commercial layer activated. Decision dependent on what proves out.</div>
         </div>
       </div>
     </div>
 
-    <!-- ASSURANCE LANE -->
     <div class="lane-row assurance">
       <div class="lane-label">
         <div class="ll-title">Assurance</div>
@@ -770,38 +748,42 @@
       </div>
     </div>
 
-    <!-- HEARTS & MINDS LANE -->
     <div class="lane-row hearts">
       <div class="lane-label">
         <div class="ll-title">Hearts &amp; Minds</div>
         <div class="ll-sub">Audiences earned, in order. 95% of the work. Characters anchor where their moment matters.</div>
+        <div class="ll-ref">
+          <div class="ll-ref-label">Anchors in</div>
+          <a href="../position-papers/position-engagement-cell.html">Position: Engagement cell</a>
+          <a href="../hometest/commercial-playbook/index.html">Playbook · all plays</a>
+        </div>
       </div>
       <div class="year-col">
         <div class="hm-stack">
           <div class="audience proven"><span class="a-marker">✓</span><span class="a-body"><span class="a-name">Salford</span> HIV beta funded beyond expectations. First proof point.</span></div>
           <div class="audience"><span class="a-marker">○</span><span class="a-body"><span class="a-name">Bradford / Cornwall / Hampshire</span> MOUs in progress (value-less, c.June 2026 target).</span></div>
-          <div class="audience"><span class="a-marker">★</span><span class="a-body"><span class="a-name">Terrence Higgins Trust</span> · February 2027 proposition decision (Q4).</span></div>
-          <div class="character"><div class="portrait"><img src="img/marcus-final.png" alt="Marcus"></div><div class="c-body"><span class="c-name">Marcus</span><span class="c-moment">First HealthStore supplier confidence (Q2-Q3 onboarding)</span></div></div>
-          <div class="character"><div class="portrait"><img src="img/Sarah hero.png" alt="Sarah"></div><div class="c-body"><span class="c-name">Sarah</span><span class="c-moment">Commissioner Store prototype tested · 2 ICBs partner on COPD</span></div></div>
+          <div class="audience"><span class="a-marker">★</span><span class="a-body"><span class="a-name">Terrence Higgins Trust</span> February 2027 proposition decision (Q4).</span></div>
+          <a class="character" href="../hometest/commercial-playbook/index.html#play-2"><div class="portrait"><img src="img/marcus-final.png" alt="Marcus"></div><div class="c-body"><span class="c-name">Marcus</span><span class="c-moment">First HealthStore supplier confidence (Q2-Q3 onboarding)</span><span class="c-play">→ Playbook · Play 5 Onboard a supplier</span></div></a>
+          <a class="character" href="../hometest/commercial-playbook/index.html#play-4"><div class="portrait"><img src="../assets/personas/sarah.png" alt="Sarah"></div><div class="c-body"><span class="c-name">Sarah</span><span class="c-moment">Commissioner Store prototype tested · 2 ICBs partner on COPD</span><span class="c-play">→ Playbook · Play 10 Engage a local commissioner partner</span></div></a>
         </div>
       </div>
       <div class="year-col">
         <div class="hm-stack">
-          <div class="character"><div class="portrait"><img src="img/ravi.png" alt="Ravi"></div><div class="c-body"><span class="c-name">Ravi</span><span class="c-moment">Clinician confidence as COPD MVP scales beyond beta sites</span></div></div>
-          <div class="character"><div class="portrait"><img src="img/errol-hero.jpg" alt="Errol"></div><div class="c-body"><span class="c-name">Errol</span><span class="c-moment">Cross-product journey lands (HIV public + COPD MVP both live)</span></div></div>
-          <div class="audience"><span class="a-marker future">○</span><span class="a-body"><span class="a-name">Next-wave ICBs</span> seeing the Step 1 interim route work without central interference.</span></div>
+          <a class="character" href="../hometest/commercial-playbook/index.html#play-5"><div class="portrait"><img src="img/ravi.png" alt="Ravi"></div><div class="c-body"><span class="c-name">Ravi</span><span class="c-moment">Clinician confidence as COPD MVP scales beyond beta sites</span><span class="c-play">→ Playbook · Play 11 Engage an acute NHS-to-NHS partner</span></div></a>
+          <a class="character" href="../position-papers/position-engagement-cell.html"><div class="portrait"><img src="img/errol-portrait.png" alt="Errol"></div><div class="c-body"><span class="c-name">Errol</span><span class="c-moment">Cross-product journey lands (HIV public + COPD MVP both live)</span><span class="c-play">→ Position: Engagement cell carries the story</span></div></a>
+          <div class="audience"><span class="a-marker future">○</span><span class="a-body"><span class="a-name">Next-wave ICBs</span> seeing the matchmaker-with-assurance model work without central interference.</span></div>
         </div>
       </div>
       <div class="year-col">
         <div class="hm-stack">
-          <div class="audience"><span class="a-marker future">○</span><span class="a-body"><span class="a-name">Sceptical ICBs warming</span> · evidence from Wave 1 + 2 tests changes the conversation.</span></div>
-          <div class="audience"><span class="a-marker future">○</span><span class="a-body"><span class="a-name">NHSE Commercial counterparts</span> · the Step 1 interim route earns the right to a Step 2 vehicle decision on its merits.</span></div>
+          <div class="audience"><span class="a-marker future">○</span><span class="a-body"><span class="a-name">Later-wave ICBs</span> evidence from Wave 1 + 2 tests changes the conversation.</span></div>
+          <div class="audience"><span class="a-marker future">○</span><span class="a-body"><span class="a-name">NHSE Commercial colleagues</span> matchmaker has earned the right to a richer framework discussion.</span></div>
         </div>
       </div>
       <div class="year-col">
         <div class="hm-stack">
-          <div class="audience"><span class="a-marker future">○</span><span class="a-body"><span class="a-name">Mainstream NHSE adoption</span> · Step 2 vehicle decision lands as the natural next step from the proving year.</span></div>
-          <div class="audience"><span class="a-marker future">○</span><span class="a-body"><span class="a-name">National conversation shifts</span> · DTx is part of routine care.</span></div>
+          <div class="audience"><span class="a-marker future">○</span><span class="a-body"><span class="a-name">Mainstream NHSE adoption</span> framework decision feels obvious because matchmaker proved the case.</span></div>
+          <div class="audience"><span class="a-marker future">○</span><span class="a-body"><span class="a-name">National conversation shifts</span> DTx is part of routine care.</span></div>
         </div>
       </div>
       <div class="year-col">
@@ -813,43 +795,19 @@
 
   </div>
 
-  <!-- LEGEND -->
   <div class="legend">
     <div class="legend-item"><span class="legend-swatch" style="background:#2D6B3F;"></span>Proven / Live today</div>
     <div class="legend-item"><span class="legend-swatch" style="background:#003087;"></span>HomeTest test (10 modelled in spreadsheet)</div>
-    <div class="legend-item"><span class="legend-swatch" style="background:#1A4C9C;"></span>Step 1 interim route (six-month SBS PSR bridge for HIV)</div>
+    <div class="legend-item"><span class="legend-swatch" style="background:#00A9CE;"></span>HealthStore (TBC volumes)</div>
+    <div class="legend-item"><span class="legend-swatch" style="background:#00A499;"></span>HealthSync (TBC volumes, workstream behind)</div>
+    <div class="legend-item"><span class="legend-swatch" style="background:#1A4C9C;"></span>Matchmaker with assurance (live operating model)</div>
     <div class="legend-item"><span class="legend-swatch" style="background:#C0392B;"></span>Major decision gate</div>
     <div class="legend-item"><span class="legend-swatch" style="background:#B8941F;"></span>SLT decision</div>
     <div class="legend-item"><span class="legend-swatch circ" style="background:#7C2855;"></span>Hearts &amp; Minds character (links to journey)</div>
-  </div>
-
-  <!-- NOTES -->
-  <div class="notes">
-    <h2>What changed and what's still open for your reaction</h2>
-
-    <h3>Date corrections traced to primary source</h3>
-    <div class="change-row"><div class="ck">Timeline</div><div class="cv">Now FY 26/27 → FY 29/30 + Beyond, matching the programme planning Y1-Y4 vision (slide 6 of DDTx 26 27 Planning v2). "Map to 2030" is literally the end of FY 29/30 / start of FY 30/31.</div></div>
-    <div class="change-row"><div class="ck">Marcus</div><div class="cv">Moved from FY 27/28 to FY 26/27. DTx Supplier EOI Q1, supplier onboarding Q2-Q3, at least 2 HealthStore suppliers onboarded across this year (HS outcome 006). His first confidence moment is now, not next year.</div></div>
-    <div class="change-row"><div class="ck">Ravi</div><div class="cv">Moved from FY 28/29 to FY 27/28. HealthStore Private Beta starts Q3 FY 26/27, COPD Private Beta live in NHS App same quarter, HealthStore MVP full launch (3 use cases) end Q4 FY 26/27 / start FY 27/28. Clinician confidence builds through the beta and crystallises at MVP launch.</div></div>
-    <div class="change-row"><div class="ck">Sarah</div><div class="cv">Moved from FY 28/29 to FY 26/27. Commissioner Store prototype tested this year (outcome 003), 2 ICBs partnering on COPD Q3 (outcome 004), Commissioner engagement plan Q1, 27/28 funding established Q4.</div></div>
-    <div class="change-row"><div class="ck">Errol</div><div class="cv">Held at FY 27/28. His cross-product journey requires HIV public beta and COPD MVP both live, which lands FY 27/28. HealthSync remains the lagging workstream so his full three-workstream journey may slip later.</div></div>
-    <div class="change-row"><div class="ck">THT Feb 2027</div><div class="cv">Added to FY 26/27 Q4 — major HIV beta milestone I missed in v1 (slide 52: "Terrence Higgins Trust February 2027 proposition decided").</div></div>
-    <div class="change-row"><div class="ck">Year themes</div><div class="cv">Added to header from programme planning slide 6. Y1 Proving / Y2 Ready to scale / Y3 Scaling / Y4 Routine care.</div></div>
-    <div class="change-row"><div class="ck">Volumes</div><div class="cv">Now confirmed ramped tests per FY (5/10/15/20% utilisation per spreadsheet), not addressable TAM. Adds proven current-year HIV (10k kits) and COPD (500 new + 6k existing) numbers.</div></div>
-    <div class="change-row"><div class="ck">Portraits</div><div class="cv">Real portraits in for Marcus, Sarah, Ravi, Errol. Bradford / Cornwall / Hampshire shown as audience markers, not characters.</div></div>
-
-    <h3>Visual changes from v1</h3>
-    <p>Single white canvas with subtle lane background tints rather than every cell as a separate card. Cleaner timeline header with NHS dark blue and a year-theme line under each FY. Decisions rail uses Q1-Q4 quarter tags where the primary source has them. Hearts &amp; Minds now uses real portraits in proper circular frames anchored at the right point in time. Volume bands at the bottom of each Scale column show ramped totals at glance. Vehicle lane reads as one continuous band (Now → Step 1 → Step 2 gate → Step 2 vehicle → Beyond) rather than separate blocks.</p>
-    <p>Still not happy with: (a) Scale lane is text-heavy in the middle years; want a thin SVG volume curve drawn behind the chips showing the ramp shape, (b) the Vehicle decision gate could be a stronger vertical break across all lanes (a hard line at the end of FY 28/29), (c) overall the canvas is dense — could benefit from being scroll-horizontal at narrower viewports rather than compressing.</p>
-
-    <h3>Judgment calls still open</h3>
-    <div class="judgement-call"><strong>Where does the Step 2 vehicle gate sit?</strong> Currently at end of FY 28/29 / start of FY 29/30 — i.e. two and a bit years of Step 1 interim route before the Step 2 call. Aligns with the "do less, prove, prove" interim posture but might be too generous a runway. Could be a year earlier (end FY 27/28).</div>
-    <div class="judgement-call"><strong>HealthStore and HealthSync on the Scale lane.</strong> Currently only COPD (HS) and HIV (HT) are shown as "proven live" in FY 26/27. The Scale lane from FY 27/28 onwards is dominated by the 10 HomeTest tests because that's what the spreadsheet covers. Should we (a) keep it HomeTest-tests-focused and accept HealthStore/HealthSync appear only in Y1, (b) add TBC-placeholder HealthStore use cases as later waves (UC2 Cardiac Rehab, UC3 MSK), (c) build a parallel Map per workstream?</div>
-    <div class="judgement-call"><strong>"Sceptical ICBs" and "NHSE Commercial counterparts" framing.</strong> These are real audiences from Matt's analysis but the language could read as sniping. Soften to "later-wave ICBs" and "NHSE Commercial colleagues"? Or keep blunt because that's the political reality?</div>
-    <div class="judgement-call"><strong>The "Now" vehicle block (FY 26/27).</strong> I've drawn it as "Direct supplier contracts via ACE / existing routes — not built to scale". This is true but it's possibly more honest than the current artefact says publicly. Comfortable having that on the front door?</div>
   </div>
 
 </div>
 
 </body>
 </html>
+   

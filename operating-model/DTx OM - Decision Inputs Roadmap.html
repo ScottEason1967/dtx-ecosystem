@@ -585,28 +585,28 @@ var ITEMS = [
     title: 'Is what we are buying mostly clinical?',
     date: '2026-06-30', dateLabel: 'Working position by end June, written confirmation by 15 September',
     owner: 'NHSE Legal with clinical input',
-    consequence: 'The answer changes which procurement law applies. If mostly clinical, the Procurement Act 2023 (PA23) is the route, and a PA23 dynamic market is the leading long-term vehicle. If not, the Procurement Services Regulations (PSR) apply. Without a working position, we cannot draft an OBC that points at the right legislation.',
-    body: 'Is the service we are buying more than half clinical service, rather than goods, kits or technology? Our working assumption is yes, it is mostly clinical. That points to PA23 as the procurement regime, and to a PA23 dynamic market as the long-term vehicle if we ever stand a framework up. NHSE Legal needs to confirm in writing.',
+    consequence: 'The answer is one of the inputs into Step 2 (PA23 vs PSR). NHS Legal advice is that a case can be made for either route; the recommended approach is to start from the desired solution and work backwards. Without a working position on clinical-ness, the OBC cannot be drafted against the chosen route with conviction.',
+    body: 'Is the service we are buying more than half clinical service, rather than goods, kits or technology? Our working assumption is yes, it is mostly clinical. That feeds into the Step 2 vehicle decision: Plan A would land as a PA23 Option B framework or Dynamic Market; Plan B would land as Digital Primary Care framework leverage; Plan C would land as commissioner-led direct purchase. NHSE Legal needs to confirm the clinical-ness position in writing.',
     rollup: [
-      'Working assumption logged in writing: yes, the service is mostly clinical, so PA23 applies and a PA23 dynamic market is the leading long-term vehicle.',
-      'Confirmation that the interim shape (PSR plus standard call-off plus approved list) sits comfortably alongside the assumption, so we can run interim now and reopen the framework later.',
+      'Working assumption logged in writing on whether the service is mostly clinical.',
+      'Confirmation that the Step 1 SBS PSR bridge for HIV sits comfortably alongside the assumption while the Step 2 decision is in flight.',
       'Confirmation that the SBS Sexual Health framework remains usable as a parallel route while the interim runs.'
     ]
   },
   { id: '05', cluster: 'end-jun', status: 'burning', statusLabel: 'Burning',
-    title: 'NHSE Legal written view on the interim shape',
+    title: 'NHSE Legal written view on the Step 1 interim route',
     date: '2026-06-30', dateLabel: 'Verbal position by end June, written sign-off by 15 September',
     owner: 'NHSE Legal',
-    consequence: 'Without a verbal position, the interim shape cannot be defended at SLT playback. Without a written sign-off by Requirements Creation, the OBC carries a load-bearing assumption that can be challenged.',
-    body: 'The interim shape is PSR plus a standard NHS call-off plus an approved supplier list. NHSE Legal is content verbally. We need that view in writing, signed off, so the architecture rests on more than a conversation.',
+    consequence: 'Without a verbal position, the Step 1 interim route cannot be defended at SLT playback. Without a written sign-off by Requirements Creation, the OBC carries a load-bearing assumption that can be challenged.',
+    body: 'The Step 1 interim route is a six-month SBS PSR bridge for the HIV use case only, with Alpha/Beta MOUs continuing to cover live deployments. NHSE Legal advice is that a case can be made for either PA23 or PSR overall; the bridge runs while the Step 2 vehicle decision is in flight. We need NHSE Legal’s view in writing on the Step 1 shape so the architecture rests on more than a conversation.',
     rollup: [
-      'Framework administration route (NHSE direct, SBS, CCS, third-party)',
+      'Step 3 framework administration route (NHSE direct, SBS, CCS, third-party)',
       'Standard call-off template authored and signed off',
       'Approved supplier list register format and governance',
       'Public Beta commercial route for HIV',
       'Permanent platform hosting (NHSE, ALB, new entity)',
       'CONTRACT exit terms inside the contractual instrument',
-      'How framework accommodates future conditions beyond HIV',
+      'How the Step 2 vehicle accommodates future conditions beyond HIV',
       'NHS Supply Chain POCT framework interface'
     ]
   },
@@ -781,11 +781,11 @@ var ITEMS = [
     rollup: ['Scenario B Framework Start.']
   },
   { id: 'G5', cluster: 'fy27', status: 'gate', statusLabel: 'Map Gate',
-    title: 'Map Gate 5 · Framework reopen evaluation',
+    title: 'Map Gate 5 · Step 2 vehicle evaluation',
     date: '2027-11-15', dateLabel: 'FY28/29 planning round',
     owner: 'SLT with NHSE Legal',
-    consequence: 'Reopen triggers evaluated. If triggers fire, PA23 dynamic market is the leading candidate vehicle.',
-    body: 'Reopen triggers evaluated against the named conditions: portfolio scale (around ten live tests), aggregate transacted volume, supplier asks, NHSE Legal interim-vehicle position. PA23 dynamic market the leading candidate if reopened. Evaluation at FY28/29 planning round.',
+    consequence: 'Step 2 vehicle settled. Plan A (PA23 Option B framework or Dynamic Market), Plan B (Digital Primary Care framework leverage) or Plan C (commissioner-led direct purchase) confirmed.',
+    body: 'Step 2 procurement vehicle evaluated against the named conditions: portfolio scale (around ten live tests), aggregate transacted volume, supplier asks, NHSE Legal position on the dual-route recommendation. Evaluation at FY28/29 planning round.',
     rollup: ['Map Gate 5 anchor.']
   },
   { id: 'G3c', cluster: 'fy27', status: 'gate', statusLabel: 'Map Gate',
