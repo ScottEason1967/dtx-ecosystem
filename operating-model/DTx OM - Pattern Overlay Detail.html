@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Digital Therapeutics Operating Model: Pattern Overlay Detail</title>
+<style>
+ /* Canonical topnav */
+ .topnav{background:#fff;border-bottom:1px solid #ebeef1;padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:nowrap;min-height:54px;box-sizing:border-box;width:100%;max-width:100%;margin:0;position:sticky;top:0;z-index:200;}
+ .topnav .nav-back{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-back:hover{color:#005EB8;}
+ .topnav .nav-siblings{display:flex;gap:4px;flex-wrap:nowrap;overflow-x:auto;align-items:center;}
+ .topnav .nav-siblings a{font-size:12px;font-weight:600;color:#4C6272;text-decoration:none;padding:6px 12px;border-radius:6px;letter-spacing:0.2px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-siblings a:hover{background:#f0f4f8;color:#212B32;}
+ .topnav .nav-siblings a.active{background:#003087;color:#fff;}
+
+ :root {
+  --nhs-dark:#003087; --nhs-blue:#005EB8; --nhs-green:#006747; --nhs-pink:#AE2573;
+  --amber:#FFB91D; --amber-deep:#C9A227; --warm-cream:#FFF9EC;
+  --accent:var(--nhs-dark);
+  --text:#212B32; --text-sec:#4C6272; --text-muted:#7E8B97;
+  --border:#d9dee3; --border-lt:#ebeef1;
+  --card:#ffffff; --bg:#f8fafc;
+  --hometest:#003087; --healthstore:#00A9CE; --healthsync:#00A499;
+  --hiv:#009688; --psa:#E91E63; --hba1c:#FB8C00; --hba1c-deep:#E65100; --pharm:#7E57C2; --pharm-deep:#5E35B2;
+ }
+ *{box-sizing:border-box;margin:0;padding:0;}
+ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;}
+
+ .page{max-width:1280px;margin:0 auto;padding:50px 40px 80px;}
+ .header{margin-bottom:36px;}
+ .amber-rule { width: 72px; height: 4px; background: var(--amber); border-radius: 2px; margin-bottom: 18px; }
+ .h-eyebrow{display:inline-block;background:var(--accent);color:#fff;font-size:10.5px;font-weight:800;letter-spacing:1.8px;padding:7px 16px;border-radius:4px;text-transform:uppercase;margin-bottom:18px;}
+ .h-title{font-size:42px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.5px;line-height:1.1;margin-bottom:12px;}
+ .h-subtitle{font-size:18px;color:var(--text-sec);font-weight:500;margin-bottom:18px;}
+ .h-intro{max-width:880px;font-size:14.5px;color:var(--text-sec);line-height:1.7;}
+ .h-intro strong{color:var(--text);font-weight:700;}
+ .h-intro p{margin-bottom:12px;}
+
+ .toc{background:#fff;border:1px solid var(--border-lt);border-radius:12px;padding:22px 24px;margin:34px 0 48px;box-shadow:0 2px 10px rgba(0,32,64,0.04);}
+ .toc-h{font-size:11px;font-weight:800;letter-spacing:1.8px;color:var(--text-muted);text-transform:uppercase;margin-bottom:14px;}
+ .toc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px 22px;}
+ .toc-grid a{font-size:13px;font-weight:700;color:var(--nhs-dark);text-decoration:none;padding:8px 12px;border-radius:6px;border:1px solid var(--border-lt);background:#fafbfc;display:flex;align-items:center;gap:10px;}
+ .toc-grid a:hover{background:#f0f4f8;border-color:var(--nhs-blue);}
+ .toc-grid a .num{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;font-size:10.5px;font-weight:800;flex-shrink:0;}
+
+ .ov-section{margin-bottom:54px;scroll-margin-top:80px;}
+ .ov-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px;}
+ .ov-num{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;font-size:13px;font-weight:800;flex-shrink:0;}
+ .ov-title{font-size:24px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.3px;}
+ .ov-decides{background:var(--warm-cream);border:1px solid #F0DCA0;border-left:4px solid var(--amber-deep);border-radius:0 8px 8px 0;padding:14px 18px;margin:14px 0 22px;font-size:13.5px;color:var(--text);line-height:1.6;}
+ .ov-decides .label{font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:#9A6700;text-transform:uppercase;display:block;margin-bottom:4px;}
+
+ .ov-product-band{margin-top:20px;}
+ .ov-product-band-head{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap;}
+ .ov-product-label{font-size:11px;font-weight:800;letter-spacing:1.4px;padding:5px 12px;border-radius:5px;text-transform:uppercase;color:#fff;}
+ .ov-product-label.hometest{background:var(--hometest);}
+ .ov-product-label.healthstore{background:var(--healthstore);}
+ .ov-product-label.healthsync{background:var(--healthsync);}
+ .ov-product-strap{font-size:11.5px;font-weight:700;color:var(--text-sec);letter-spacing:0.3px;text-transform:uppercase;}
+
+ .ov-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+ .ov-grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+ .ov-grid-1{display:grid;grid-template-columns:1fr;gap:14px;}
+ .ov-card{background:#fff;border:1px solid var(--border-lt);border-radius:10px;padding:18px;box-shadow:0 1px 3px rgba(0,32,64,0.04);display:flex;flex-direction:column;}
+ .ov-card.hiv{border-top:4px solid var(--hiv);}
+ .ov-card.psa{border-top:4px solid var(--psa);}
+ .ov-card.hba1c{border-top:4px dashed var(--hba1c);}
+ .ov-card.pharm{border-top:4px dotted var(--pharm);}
+ .ov-card.healthstore{border-top:4px solid var(--healthstore);}
+ .ov-card.healthsync{border-top:4px solid var(--healthsync);}
+ .ov-card-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px;}
+ .ov-card-name{font-size:13.5px;font-weight:800;letter-spacing:-0.1px;color:var(--text);}
+ .ov-card.hiv .ov-card-name{color:var(--hiv);}
+ .ov-card.psa .ov-card-name{color:var(--psa);}
+ .ov-card.hba1c .ov-card-name{color:var(--hba1c-deep);}
+ .ov-card.pharm .ov-card-name{color:var(--pharm-deep);}
+ .ov-card.healthstore .ov-card-name{color:#00789A;}
+ .ov-card.healthsync .ov-card-name{color:#00756F;}
+
+ .status-pill{display:inline-block;font-size:9.5px;font-weight:800;letter-spacing:0.6px;padding:3px 8px;border-radius:4px;text-transform:uppercase;}
+ .status-live{background:#E0F2EE;color:#00695C;}
+ .status-prospective{background:#FCE4EC;color:#AD1457;}
+ .status-design{background:#FFF3E0;color:#E65100;}
+ .status-sketch{background:#EDE7F6;color:#4527A0;}
+ .status-tbc{background:#ECEFF1;color:#546E7A;}
+ .status-reserved{background:#F0F4F8;color:#4C6272;}
+
+ .pick{background:#f0f4f8;border-radius:6px;padding:6px 10px;font-size:11.5px;font-weight:700;color:var(--text);margin-bottom:10px;letter-spacing:0.2px;align-self:flex-start;}
+ .ov-card.hiv .pick{background:rgba(0,150,136,0.10);color:#00695C;}
+ .ov-card.psa .pick{background:rgba(233,30,99,0.10);color:#AD1457;}
+ .ov-card.hba1c .pick{background:rgba(251,140,0,0.12);color:#E65100;}
+ .ov-card.pharm .pick{background:rgba(126,87,194,0.12);color:#4527A0;}
+ .ov-card.healthstore .pick{background:rgba(0,169,206,0.10);color:#00789A;}
+ .ov-card.healthsync .pick{background:rgba(0,164,153,0.10);color:#00756F;}
+
+ .ov-card-body{font-size:12.5px;color:var(--text-sec);line-height:1.6;}
+ .ov-card-body strong{color:var(--text);font-weight:700;}
+ .ov-card-body em{color:var(--text-sec);font-style:italic;}
+ .ov-card-body p{margin-bottom:8px;}
+ .ov-card-body p:last-child{margin-bottom:0;}
+
+ .ov-note{margin-top:14px;padding:12px 16px;background:#F4F8FC;border:1px solid #d6e2ef;border-radius:8px;font-size:12.5px;color:var(--text-sec);line-height:1.6;}
+ .ov-note .label{font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:var(--nhs-blue);text-transform:uppercase;display:block;margin-bottom:4px;}
+
+ .foot{margin-top:60px;padding:24px;background:#fff;border:1px solid var(--border-lt);border-radius:12px;font-size:13px;color:var(--text-sec);line-height:1.65;}
+ .foot strong{color:var(--text);}
+ .foot a{color:var(--nhs-blue);font-weight:700;text-decoration:none;}
+
+ @media (max-width: 980px){
+  .ov-grid{grid-template-columns:repeat(2,1fr);}
+  .toc-grid{grid-template-columns:repeat(2,1fr);}
+ }
+ @media (max-width: 640px){
+  .ov-grid, .ov-grid-2{grid-template-columns:1fr;}
+  .toc-grid{grid-template-columns:1fr;}
+  .h-title{font-size:32px;}
+  .page{padding:30px 18px 60px;}
+  .topnav{padding:12px 20px;}
+ }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+<a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+<div class="nav-siblings">
+ <a href="DTx OM - Why.html">Why</a>
+ <a href="DTx OM - What.html" class="active">What</a>
+ <a href="DTx OM - Lifecycle.html">When</a>
+ <a href="DTx OM - HomeTest Operational.html">How</a>
+ <a href="DTx OM - Governance.html">Who</a>
+ <a href="DTx OM - Hearts and Minds.html">Hearts and Minds</a>
+ <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>
+ <a href="DTx OM - Status.html">Status</a>
+</div>
+</nav>
+
+<div class="page">
+
+ <div class="header">
+  <div class="amber-rule"></div>
+  <div class="h-eyebrow">Pattern catalogue &middot; deep dive</div>
+  <h1 class="h-title">Pattern overlays in detail.</h1>
+  <p class="h-subtitle">Plain-English explanation of every Level 3 overlay across the portfolio.</p>
+  <div class="h-intro">
+   <p>The Level 3 stack on the Anatomical page shows nine overlays across the three products (HomeTest, HealthStore, HealthSync), with picks expressed as short pills (Per-completed, UKAS / ISO, Sex-health svc, and so on). The pills are short by design but the labels do not carry their own meaning. This page is the reference for what each overlay actually decides and what each configuration has picked.</p>
+   <p>The portfolio sits across three products. <strong>HomeTest</strong> is operationally mature, with four configurations on or near the model: HIV (live Beta), PSA Active Surveillance (clinician-initiated, prospective), HbA1c (GP-initiated, design phase), and Pharmacy-initiated (working sketch only). <strong>HealthStore</strong> is in design, with COPD Alpha as the lead configuration. <strong>HealthSync</strong> is reserved at L4 with the first configuration in design.</p>
+  </div>
+ </div>
+
+ <div class="toc">
+  <div class="toc-h">Nine overlays</div>
+  <div class="toc-grid">
+   <a href="#initiation"><span class="num">1</span>Initiation</a>
+   <a href="#commissioning"><span class="num">2</span>Commissioning</a>
+   <a href="#supply-chain"><span class="num">3</span>Supply chain</a>
+   <a href="#commercial"><span class="num">4</span>Commercial</a>
+   <a href="#tariff"><span class="num">5</span>Tariff</a>
+   <a href="#accreditation"><span class="num">6</span>Accreditation</a>
+   <a href="#sign-off"><span class="num">7</span>Sign-off</a>
+   <a href="#result-handling"><span class="num">8</span>Result handling</a>
+   <a href="#ig"><span class="num">9</span>IG / data controller</a>
+  </div>
+ </div>
+
+ <!-- 1. Initiation -->
+ <section class="ov-section" id="initiation">
+  <div class="ov-head"><span class="ov-num">1</span><h2 class="ov-title">Initiation</h2></div>
+  <div class="ov-decides"><span class="label">What this overlay decides</span>Who triggers the patient activity. The patient themselves, or a clinician acting on their behalf. The initiation pattern shapes everything downstream: who orders, who pays, where the result or data lands, and how onward action is owned.</div>
+
+  <div class="ov-product-band">
+   <div class="ov-product-band-head"><span class="ov-product-label hometest">HomeTest</span><span class="ov-product-strap">Four configurations across patient-, clinician-, GP- and pharmacy-initiated patterns</span></div>
+   <div class="ov-grid">
+    <div class="ov-card hiv"><div class="ov-card-head"><div class="ov-card-name">HIV</div><span class="status-pill status-live">Live</span></div><div class="pick">Patient-initiated</div><div class="ov-card-body"><p>The patient orders a test themselves through the NHS App. Triggered by symptoms, a screening invite, a peer recommendation, or self-initiated browse. No clinician request needed.</p></div></div>
+    <div class="ov-card psa"><div class="ov-card-head"><div class="ov-card-name">PSA-AS</div><span class="status-pill status-prospective">Prospective</span></div><div class="pick">Clinician-initiated (acute)</div><div class="ov-card-body"><p>An acute trust consultant requests follow-up monitoring on their patient. The patient receives the kit at home, returns the sample, and the result returns to the clinician.</p><p><em>Year 1 cohort: radiotherapy follow-up plus a monitoring-gap cohort (men referred to Urology with elevated PSA but no cancer diagnosis).</em></p></div></div>
+    <div class="ov-card hba1c"><div class="ov-card-head"><div class="ov-card-name">HbA1c</div><span class="status-pill status-design">Design</span></div><div class="pick">GP-initiated</div><div class="ov-card-body"><p>The patient&apos;s GP arranges routine diabetes monitoring. The result returns to the GP record as part of the standard primary-care diabetes review cycle.</p></div></div>
+    <div class="ov-card pharm"><div class="ov-card-head"><div class="ov-card-name">Pharmacy-init</div><span class="status-pill status-sketch">Sketch</span></div><div class="pick">Pharmacy-initiated</div><div class="ov-card-body"><p>A community pharmacist initiates testing as part of medication management (HRT, GLP-1, DMARDs / steroids, RA, etc.). Working sketch from the discovery taxonomy. Not on the Year 1 plan.</p></div></div>
+   </div>
+  </div>
+
+  <div class="ov-product-band">
+   <div class="ov-product-band-head"><span class="ov-product-label healthstore">HealthStore</span><span class="ov-product-strap">Clinician-prescribed; lead configuration is COPD Alpha</span></div>
+   <div class="ov-grid-1">
+    <div class="ov-card healthstore"><div class="ov-card-head"><div class="ov-card-name">COPD Alpha</div><span class="status-pill status-design">Design</span></div><div class="pick">Clinician-prescribed</div><div class="ov-card-body"><p>The clinician prescribes the digital therapeutic to the patient during a consultation. The patient activates the prescribed product through the NHS App or a partnered app, authenticated via NHS Login. Three further HealthStore configuration slots are reserved at L4 (initiation pick TBC per configuration).</p></div></div>
+   </div>
+  </div>
+
+  <div class="ov-product-band">
+   <div class="ov-product-band-head"><span class="ov-product-label healthsync">HealthSync</span><span class="ov-product-strap">First configuration in design; three further slots reserved</span></div>
+   <div class="ov-grid-1">
+    <div class="ov-card healthsync"><div class="ov-card-head"><div class="ov-card-name">First configuration</div><span class="status-pill status-design">Design</span></div><div class="pick">In design</div><div class="ov-card-body"><p>Initiation pattern for the first HealthSync configuration not yet selected. The working frame is patient-managed enrolment through the NHS App with a consumer-platform integration partner (Apple HealthKit or Google Health Connect).</p></div></div>
+   </div>
+  </div>
+ </section>
+
+ <!-- 2. Commissioning -->
+ <section class="ov-section" id="commissioning">
+  <div class="ov-head"><span class="ov-num">2</span><h2 class="ov-title">Commissioning</h2></div>
+  <div class="ov-decides"><span class="label">What this overlay decides</span>Which budget-holder pays for the service and on what contractual basis. The commissioner is the buyer in the model: the body that signs the call-off, owns the contract, and holds the budget.</div>
+
+  <div class="ov-product-band">
+   <div class="ov-product-band-head"><span class="ov-product-label hometest">HomeTest</span><span class="ov-product-strap">Commissioning route varies by initiation pattern</span></div>
+   <div class="ov-grid">
+    <div class="ov-card hiv"><div class="ov-card-head"><div class="ov-card-name">HIV</div><span class="status-pill status-live">Live</span></div><div class="pick">Local Authority</div><div class="ov-card-body"><p>The Local Authority commissions through its sexual health budget. NHS Standard Contract under the existing SBS Sexual Health Framework (Lot 1). Two live Beta deployments.</p></div></div>
+    <div class="ov-card psa"><div class="ov-card-head"><div class="ov-card-name">PSA-AS</div><span class="status-pill status-prospective">Prospective</span></div><div class="pick">Acute trust</div><div class="ov-card-body"><p>An acute trust holds the contract under the tariff envelope, not the LA budget. Pathway 2 commissioning work in progress.</p><p>NHS Online is the likely first customer at a central layer above the acute trust, establishing a one-to-many payment shape: NHS Online commissions, multiple suppliers serve through the platform.</p></div></div>
+    <div class="ov-card hba1c"><div class="ov-card-head"><div class="ov-card-name">HbA1c</div><span class="status-pill status-design">Design</span></div><div class="pick">ICB / GP</div><div class="ov-card-body"><p>Primary-care commissioning route. ICB or GP practice as commissioner. Funding through QOF (Quality and Outcomes Framework) or outpatient tariff is being considered. Position depends on primary-care contractual mechanism, which is not available within the 2027/28 tariff window.</p></div></div>
+    <div class="ov-card pharm"><div class="ov-card-head"><div class="ov-card-name">Pharmacy-init</div><span class="status-pill status-sketch">Sketch</span></div><div class="pick">Pharmacy network / ICB</div><div class="ov-card-body"><p>Community pharmacy network or ICB. Different governance regime under the Community Pharmacy Contractual Framework (CPCF). Open question about where this fits in the framework architecture.</p></div></div>
+   </div>
+  </div>
+
+  <div class="ov-product-band">
+   <div class="ov-product-band-head"><span class="ov-product-label healthstore">HealthStore</span><span class="ov-product-strap">ICB-led call-off under the National App Formulary</span></div>
+   <div class="ov-grid-1">
+    <div class="ov-card healthstore"><div class="ov-card-head"><div class="ov-card-name">COPD Alpha</div><span class="status-pill status-design">Design</span></div><div class="pick">ICB</div><div class="ov-card-body"><p>The ICB commissions a NICE EVA conditionally-recommended product from the National App Formulary using a standard call-off under NHS Standard Contract with SaaS and data schedules. NHSE publishes the catalogue and maintains the framework; the ICB signs the call-off and holds the relationship with the prescribing clinical service. Three further HealthStore configurations TBC.</p></div></div>
+   </div>
+  </div>
+
+  <div class="ov-product-band">
+   <div class="ov-product-band-head"><span class="ov-product-label healthsync">HealthSync</span></div>
+   <div class="ov-grid-1">
+    <div class="ov-card healthsync"><div class="ov-card-head"><div class="ov-card-name">First configuration</div><span class="status-pill status-design">Design</span></div><div class="pick">In design</div><div class="ov-card-body"><p>Commissioning shape for HealthSync configurations not yet selected. Likely ICB or pathway-commissioned given the integration sits inside the care-team workflow rather than as a standalone diagnostic.</p></div></div>
+   </div>
+  </div>
+ </section>
+
+ <!-- 3. Supply chain -->
+ <section class="ov-section" id="supply-chain">
+  <div class="ov-head"><span class="ov-num">3</span><h2 class="ov-title">Supply chain</h2></div>
+  <div class="ov-decides"><span class="label">What this overlay decides</span>Which supplier delivers which components of the journey (kit dispatch, sample draw, lab analysis, sample return, result delivery for HomeTest; app provisioning, data flows, integration for HealthStore and HealthSync). The supply chain pattern affects single vs multi-supplier framework design, accreditation reach, and where the operational risk sits.</div>
+
+  <div class="ov-product-band">
+   <div class="ov-product-band-head"><span class="ov-product-label hometest">HomeTest</span></div>
+   <div class="ov-grid">
+    <div class="ov-card hiv"><div class="ov-card-head"><div class="ov-card-name">HIV</div><span class="status-pill status-live">Live</span></div><div class="pick">All-inclusive supplier</div><div class="ov-card-body"><p>One supplier per pathway covers everything end-to-end: kit dispatch, sample analysis, result return. Single point of accountability. Two live Alpha suppliers, each running the whole chain for their LA.</p></div></div>
+    <div class="ov-card psa"><div class="ov-card-head"><div class="ov-card-name">PSA-AS</div><span class="status-pill status-prospective">Prospective</span></div><div class="pick">Specialist lab + logistics partner</div><div class="ov-card-body"><p>A specialist lab handles the analysis; logistics may sit with a separate kit-fulfilment partner. Capillary draw equivalence to venous draw is being assessed by the Pathology SIG and the Royal College of Pathologists.</p><p>NHS-pathology-first versus parallel mixed-economy supply chain is a live commercial-workstream decision.</p></div></div>
+    <div class="ov-card hba1c"><div class="ov-card-head"><div class="ov-card-name">HbA1c</div><span class="status-pill status-design">Design</span></div><div class="pick">Lab-led</div><div class="ov-card-body"><p>A pathology lab leads the chain; logistics integrate around the existing primary-care diabetes pathway. Working assumption pending Use Case 3 design work.</p></div></div>
+    <div class="ov-card pharm"><div class="ov-card-head"><div class="ov-card-name">Pharmacy-init</div><span class="status-pill status-sketch">Sketch</span></div><div class="pick">Local lab</div><div class="ov-card-body"><p>Local pathology lab serving the pharmacy network. Working sketch. Practical mechanics not designed.</p></div></div>
+   </div>
+   <div class="ov-note"><span class="label">Emerging pattern at L3</span><strong>Collection-first as alternative to delivery-first.</strong> Today HomeTest assumes delivery-first (kit posted to patient, patient returns by post). A collection-first pattern (pharmacy or community-hub pickup) removes the 5-7 day delivery wait and addresses unsafe-address barriers. Open question on whether to formalise collection-first as a named L3 pattern alongside All-inclusive.</div>
+  </div>
+
+  <div class="ov-product-band">
+   <div class="ov-product-band-head"><span class="ov-product-label healthstore">HealthStore</span></div>
+   <div class="ov-grid-1">
+    <div class="ov-card healthstore"><div class="ov-card-head"><div class="ov-card-name">COPD Alpha</div><span class="status-pill status-design">Design</span></div><div class="pick">SaaS supplier</div><div class="ov-card-body"><p>The supplier delivers the digital therapeutic as a SaaS product. Patient accesses through the NHS App or a partnered app, authenticated via NHS Login. The supplier holds DCB0129 manufacturer responsibility for the product itself; NHSE holds DCB0160 deployer responsibility. No kit dispatch, no physical sample. Three further HealthStore configurations TBC.</p></div></div>
+   </div>
+  </div>
+
+  <div class="ov-product-band">
+   <div class="ov-product-band-head"><span class="ov-product-label healthsync">HealthSync</span></div>
+   <div class="ov-grid-1">
+    <div class="ov-card healthsync"><div class="ov-card-head"><div class="ov-card-name">First configuration</div><span class="status-pill status-design">Design</span></div><div class="pick">In design</div><div class="ov-card-body"><p>Consumer-platform integration partner (Apple HealthKit or Google Health Connect) feeds device data into the PHR aggregation layer of the NHS App. The wearable or biosensor device itself sits outside the supply chain; the patient owns it. The integration partner provides the data pipe.</p></div></div>
+   </div>
+  </div>
+ </section>
+
+ <!-- 4. Commercial -->
+ <section class="ov-section" id="commercial">
+  <div class="ov-head"><span class="ov-num">4</span><h2 class="ov-title">Commercial</h2></div>
+  <div class="ov-decides"><span class="label">What this overlay decides</span>How the supplier gets paid and from which budget. Important: <strong>this is the payment to the supplier, not to the commissioner</strong>. The supplier delivers the test or therapeutic; the commercial pattern sets the payment shape and source.</div>
+
+  <div class="ov-product-band">
+   <div class="ov-product-band-head"><span class="ov-product-label hometest">HomeTest</span></div>
+   <div class="ov-grid">
+    <div class="ov-card hiv"><div class="ov-card-head"><div class="ov-card-name">HIV</div><span class="status-pill status-live">Live</span></div><div class="pick">Per-completed-test, LA budget</div><div class="ov-card-body"><p>The supplier is paid <strong>per completed test</strong>, not per kit dispatched. A kit only counts when the patient returns the sample, the lab analyses it, and the result is delivered. Incomplete journeys do not trigger payment.</p><p>Funded from the LA&apos;s sexual health budget through the ACE call-off in Alpha; new commissioning route for Beta. Volume-tiered maximum pricing applies.</p></div></div>
+    <div class="ov-card psa"><div class="ov-card-head"><div class="ov-card-name">PSA-AS</div><span class="status-pill status-prospective">Prospective</span></div><div class="pick">Activity-based, acute envelope</div><div class="ov-card-body"><p>Activity-based payment wrapped inside the acute provider tariff envelope. The supplier&apos;s revenue is tied to the volume of PSA monitoring episodes delivered, paid out of the acute trust budget.</p><p>Cost-stack still being modelled by the Health Economist.</p></div></div>
+    <div class="ov-card hba1c"><div class="ov-card-head"><div class="ov-card-name">HbA1c</div><span class="status-pill status-tbc">TBC</span></div><div class="pick">TBC</div><div class="ov-card-body"><p>Genuinely undecided. Could be activity-based, episode-based, or absorbed into a primary-care tariff. Depends on the commissioning route landed (ICB versus GP practice) and primary-care contractual mechanism availability.</p></div></div>
+    <div class="ov-card pharm"><div class="ov-card-head"><div class="ov-card-name">Pharmacy-init</div><span class="status-pill status-sketch">Sketch</span></div><div class="pick">Per-review</div><div class="ov-card-body"><p>Working assumption: a per-review fee covering the pharmacist consultation plus the test, mirroring the payment shape used for existing community pharmacy services (such as the New Medicine Service).</p></div></div>
+   </div>
+   <div class="ov-note"><span class="label">Underneath all four</span><strong>Ceiling-price model</strong> is the drafted commercial approach for the framework or dynamic market: maximum prices set nationally, individual commissioners run their own competitions and price down based on volume. Three-tier structure underneath: <strong>mobilisation fee + activity (cost per valid result) + volume floor</strong>. Flat per-kit pricing was rejected through the RFI and supplier forums; subscription rejected at strategic level. PSA Active Surveillance Monitoring Episode is a separate model.</div>
+  </div>
+
+  <div class="ov-product-band">
+   <div class="ov-product-band-head"><span class="ov-product-label healthstore">HealthStore</span></div>
+   <div class="ov-grid-1">
+    <div class="ov-card healthstore"><div class="ov-card-head"><div class="ov-card-name">COPD Alpha</div><span class="status-pill status-design">Design</span></div><div class="pick">Episode payment, milestone-based</div><div class="ov-card-body"><p>The supplier is paid against an episode of care, with milestones (activation, completion, outcome capture) triggering payments. Funded out of the ICB call-off budget. Marketplace payments model is in design under the HealthStore Commercial workstream. Three further HealthStore configurations TBC.</p></div></div>
+   </div>
+  </div>
+
+  <div class="ov-product-band">
+   <div class="ov-product-band-head"><span class="ov-product-label healthsync">HealthSync</span></div>
+   <div class="ov-grid-1">
+    <div class="ov-card healthsync"><div class="ov-card-head"><div class="ov-card-name">First configuration</div><span class="status-pill status-design">Design</span></div><div class="pick">In design</div><div class="ov-card-body"><p>Commercial pattern not yet selected. Wearable devices are patient-owned; integration partners (Apple HealthKit, Google Health Connect) operate under platform-level agreements rather than per-patient payment. Commercial design pending the first configuration scope.</p></div></div>
+   </div>
+  </div>
+ </section>
+
+ <!-- 5. Tariff -->
+ <section class="ov-section" id="tariff">
+  <div class="ov-head"><span class="ov-num">5</span><h2 class="ov-title">Tariff treatment</h2></div>
+  <div class="ov-decides"><span class="label">What this overlay decides</span>How the patient gets the service free at point of care, and which national tariff (if any) the cost sits inside. Tariff treatment is what makes the configuration sustainable at scale: where the money comes from in the system, not how the supplier is paid.</div>
+
+  <div class="ov-product-band">
+   <div class="ov-product-band-head"><span class="ov-product-label hometest">HomeTest</span></div>
+   <div class="ov-grid">
+    <div class="ov-card hiv"><div class="ov-card-head"><div class="ov-card-name">HIV</div><span class="status-pill status-live">Live</span></div><div class="pick">Commissioner-paid</div><div class="ov-card-body"><p>Free at point of care for the patient. Funded via the LA test-and-treat budget through ACE call-off (Alpha) or new commissioning route (Beta). No national tariff line; sits inside LA commissioning budgets.</p></div></div>
+    <div class="ov-card psa"><div class="ov-card-head"><div class="ov-card-name">PSA-AS</div><span class="status-pill status-prospective">Prospective</span></div><div class="pick">Acute envelope</div><div class="ov-card-body"><p>Free at point of care. Diagnostic test sits inside the existing acute provider tariff.</p><p><strong>PSA Active Surveillance Monitoring Episode tariff in design.</strong> Patient-Not-Present tariff being designed by NHSE Strategic Finance. Glide-path: shadow 26/27, dual-run 27/28 at 50%, live 28/29 at 100%. Five reconciliation mechanisms in play.</p></div></div>
+    <div class="ov-card hba1c"><div class="ov-card-head"><div class="ov-card-name">HbA1c</div><span class="status-pill status-design">Design</span></div><div class="pick">QOF / outpatient</div><div class="ov-card-body"><p>Possibly QOF (Quality and Outcomes Framework, the primary-care payment mechanism) or outpatient tariff. Depends on commissioning route.</p><p>Primary-care contractual mechanism is not available within the 2027/28 tariff window; HbA1c may fall outside that cycle and require alternative funding articulation.</p></div></div>
+    <div class="ov-card pharm"><div class="ov-card-head"><div class="ov-card-name">Pharmacy-init</div><span class="status-pill status-sketch">Sketch</span></div><div class="pick">New code?</div><div class="ov-card-body"><p>No existing tariff applies. Would need a new payment code under the Community Pharmacy Contractual Framework. Open question pending SLT scoping decision.</p></div></div>
+   </div>
+  </div>
+
+  <div class="ov-product-band">
+   <div class="ov-product-band-head"><span class="ov-product-label healthstore">HealthStore</span></div>
+   <div class="ov-grid-1">
+    <div class="ov-card healthstore"><div class="ov-card-head"><div class="ov-card-name">COPD Alpha</div><span class="status-pill status-design">Design</span></div><div class="pick">Tier C conditionally-recommended</div><div class="ov-card-body"><p>Funded via ICB pathway budgets against NICE EVA conditionally-recommended status (Tier C). Patient receives the prescribed digital therapeutic free at point of care. Tariff treatment for digital therapeutics inside HealthStore is part of the broader digital therapeutics funding articulation that runs alongside the per-test PSA Active Surveillance work.</p></div></div>
+   </div>
+  </div>
+
+  <div class="ov-product-band">
+   <div class="ov-product-band-head"><span class="ov-product-label healthsync">HealthSync</span></div>
+   <div class="ov-grid-1">
+    <div class="ov-card healthsync"><div class="ov-card-head"><div class="ov-card-name">First configuration</div><span class="status-pill status-design">Design</span></div><div class="pick">In design</div><div class="ov-card-body"><p>Tariff treatment for wearable data integration not yet defined. Working frame: the data pipe is platform infrastructure rather than a per-patient diagnostic, so any funding sits at platform-utility level rather than per-episode tariff.</p></div></div>
+   </div>
+  </div>
+
+  <div class="ov-note"><span class="label">Common shape across the portfolio</span>Tariff design itself sits outside the operating model as a separate workstream. The operating model&apos;s job is to make the dependency explicit. Configurations only land where the commissioner has a viable funding route at the pathway level.</div>
+ </section>
+
+ <!-- 6. Accreditation -->
+ <section class="ov-section" id="accreditation">
+  <div class="ov-head"><span class="ov-num">6</span><h2 class="ov-title">Accreditation</h2></div>
+  <div class="ov-decides"><span class="label">What this overlay decides</span>Which body certifies the lab, service component or product as fit to operate, and to what standard. Accreditation is the regulatory ticket: without it the lab cannot legally analyse NHS clinical samples, or the digital product cannot be admitted to the NHS App route.</div>
+
+  <div class="ov-product-band">
+   <div class="ov-product-band-head"><span class="ov-product-label hometest">HomeTest</span></div>
+   <div class="ov-grid">
+    <div class="ov-card hiv"><div class="ov-card-head"><div class="ov-card-name">HIV</div><span class="status-pill status-live">Live</span></div><div class="pick">UKAS / ISO 15189</div><div class="ov-card-body"><p>The UK Accreditation Service (UKAS) certifies the lab under ISO 15189, the international standard for medical lab quality. This is the standard NHS lab accreditation. Both live Alpha supplier labs hold UKAS accreditation against ISO 15189.</p><p>Mature methodology, no equivalence question to resolve.</p></div></div>
+    <div class="ov-card psa"><div class="ov-card-head"><div class="ov-card-name">PSA-AS</div><span class="status-pill status-prospective">Open question</span></div><div class="pick">Capillary draw equivalence</div><div class="ov-card-body"><p>The PSA-AS pathway uses a <strong>capillary draw</strong> (finger-prick) rather than a traditional venous draw. Whether capillary results are clinically equivalent to venous results for PSA is the open accreditation question.</p><p>Pathology SIG and the Royal College of Pathologists are assessing equivalence. Until that lands, the accreditation route for capillary PSA is not settled.</p></div></div>
+    <div class="ov-card hba1c"><div class="ov-card-head"><div class="ov-card-name">HbA1c</div><span class="status-pill status-design">Design</span></div><div class="pick">UKAS / ISO 15189</div><div class="ov-card-body"><p>Same standard NHS lab accreditation as HIV. UKAS-certified labs under ISO 15189. Mature methodology, well-established for HbA1c.</p></div></div>
+    <div class="ov-card pharm"><div class="ov-card-head"><div class="ov-card-name">Pharmacy-init</div><span class="status-pill status-sketch">Sketch</span></div><div class="pick">GPhC + UKAS</div><div class="ov-card-body"><p>Two accreditation regimes layered. The <strong>General Pharmaceutical Council (GPhC)</strong> accredits the pharmacist as a registered provider of the service. The <strong>UKAS / ISO 15189</strong> accreditation still applies to whichever lab analyses the sample.</p></div></div>
+   </div>
+  </div>
+
+  <div class="ov-product-band">
+   <div class="ov-product-band-head"><span class="ov-product-label healthstore">HealthStore</span></div>
+   <div class="ov-grid-1">
+    <div class="ov-card healthstore"><div class="ov-card-head"><div class="ov-card-name">COPD Alpha</div><span class="status-pill status-design">Design</span></div><div class="pick">NICE EVA conditionally-recommended</div><div class="ov-card-body"><p>The digital therapeutic is admitted to the National App Formulary through the NICE EVA (Evidence-Generation Assessment) conditionally-recommended route. NICE EVA is the accreditation gate; once conditionally recommended, the product is callable by ICBs through the framework. DCB0129 (manufacturer) and DCB0160 (deployer) safety-case standards apply on top.</p></div></div>
+   </div>
+  </div>
+
+  <div class="ov-product-band">
+   <div class="ov-product-band-head"><span class="ov-product-label healthsync">HealthSync</span></div>
+   <div class="ov-grid-1">
+    <div class="ov-card healthsync"><div class="ov-card-head"><div class="ov-card-name">First configuration</div><span class="status-pill status-design">Design</span></div><div class="pick">In design</div><div class="ov-card-body"><p>Accreditation for consumer-device integration partners not yet defined. Working frame: ISO 27001 for the integration partner platform, plus any device-specific MHRA classification on the wearable itself if marketed for clinical use.</p></div></div>
+   </div>
+  </div>
+ </section>
+
+ <!-- 7. Sign-off -->
+ <section class="ov-section" id="sign-off">
+  <div class="ov-head"><span class="ov-num">7</span><h2 class="ov-title">Sign-off</h2></div>
+  <div class="ov-decides"><span class="label">What this overlay decides</span>Which clinical authority holds the clinical sign-off on the result or output and owns what happens next, especially on a reactive or abnormal signal. Sign-off is where the clinical accountability for the patient lands once the test, intervention or reading has produced a clinical signal.</div>
+
+  <div class="ov-product-band">
+   <div class="ov-product-band-head"><span class="ov-product-label hometest">HomeTest</span></div>
+   <div class="ov-grid">
+    <div class="ov-card hiv"><div class="ov-card-head"><div class="ov-card-name">HIV</div><span class="status-pill status-live">Live</span></div><div class="pick">LA sexual health service</div><div class="ov-card-body"><p>The LA-commissioned sexual health service holds clinical sign-off. If the result is reactive, the supplier&apos;s clinical team makes contact first (per the Reactive Result clinical pathway: five follow-up attempts before escalation). Onward referral routes into the LA sexual health service for confirmatory testing, treatment and ongoing care.</p></div></div>
+    <div class="ov-card psa"><div class="ov-card-head"><div class="ov-card-name">PSA-AS</div><span class="status-pill status-prospective">Prospective</span></div><div class="pick">Acute trust governance</div><div class="ov-card-body"><p>Acute trust governance holds sign-off. The requesting consultant urologist sees the result first, interprets it against the patient&apos;s PSA history, and decides next steps directly with the patient.</p></div></div>
+    <div class="ov-card hba1c"><div class="ov-card-head"><div class="ov-card-name">HbA1c</div><span class="status-pill status-design">Design</span></div><div class="pick">GP / diabetes team</div><div class="ov-card-body"><p>The GP or practice diabetes team signs off on the result. Onward action sits in primary care: adjusting medication, referring to specialist diabetes services, or lifestyle intervention.</p></div></div>
+    <div class="ov-card pharm"><div class="ov-card-head"><div class="ov-card-name">Pharmacy-init</div><span class="status-pill status-sketch">Sketch</span></div><div class="pick">Pharmacist + GP joint</div><div class="ov-card-body"><p>Joint sign-off. The pharmacist does the initial review at the consultation. The GP holds responsibility for any onward action (medication change, referral). Hand-off pattern between pharmacist and GP still being designed.</p></div></div>
+   </div>
+  </div>
+
+  <div class="ov-product-band">
+   <div class="ov-product-band-head"><span class="ov-product-label healthstore">HealthStore</span></div>
+   <div class="ov-grid-1">
+    <div class="ov-card healthstore"><div class="ov-card-head"><div class="ov-card-name">COPD Alpha</div><span class="status-pill status-design">Design</span></div><div class="pick">DCB0160 deployer</div><div class="ov-card-body"><p>NHSE holds DCB0160 deployer sign-off at the platform layer. The prescribing clinical service holds local clinical sign-off for each prescription. Cohort-level safety signal monitoring sits with the Clinical Safety Group against the active hazard log; escalation route to the CSG still being agreed.</p></div></div>
+   </div>
+  </div>
+
+  <div class="ov-product-band">
+   <div class="ov-product-band-head"><span class="ov-product-label healthsync">HealthSync</span></div>
+   <div class="ov-grid-1">
+    <div class="ov-card healthsync"><div class="ov-card-head"><div class="ov-card-name">First configuration</div><span class="status-pill status-design">Design</span></div><div class="pick">In design</div><div class="ov-card-body"><p>Clinical sign-off for wearable-data alerts not yet defined. Threshold setting and alerting governance is itself an open decision: who sets clinical thresholds that trigger care-team alerting, at care-team or pathway level. PI/CI escalation between appointments is the named operational pattern, but the sign-off authority is under design.</p></div></div>
+   </div>
+  </div>
+ </section>
+
+ <!-- 8. Result handling -->
+ <section class="ov-section" id="result-handling">
+  <div class="ov-head"><span class="ov-num">8</span><h2 class="ov-title">Result handling</h2></div>
+  <div class="ov-decides"><span class="label">What this overlay decides</span>How the result, output or data reaches the patient and what experience they have. Result handling shapes the patient interface: direct via NHS App, mediated through a clinician, integrated into an existing clinical workflow, or surfaced as an in-app milestone.</div>
+
+  <div class="ov-product-band">
+   <div class="ov-product-band-head"><span class="ov-product-label hometest">HomeTest</span></div>
+   <div class="ov-grid">
+    <div class="ov-card hiv"><div class="ov-card-head"><div class="ov-card-name">HIV</div><span class="status-pill status-live">Live</span></div><div class="pick">Patient-direct via NHS App</div><div class="ov-card-body"><p>The result goes directly to the patient via the NHS App. For non-reactive results, this is the full journey.</p><p>For reactive results, the platform-side safety control withholds the user-visible release (status held at RECEIVED, db record set to RESULT_WITHHELD) and triggers the clinical follow-up pathway through the supplier. Reactive results are never given digitally.</p></div></div>
+    <div class="ov-card psa"><div class="ov-card-head"><div class="ov-card-name">PSA-AS</div><span class="status-pill status-prospective">Prospective</span></div><div class="pick">Clinician-first</div><div class="ov-card-body"><p>The result goes to the requesting clinician first. The clinician interprets it (especially against the patient&apos;s existing PSA history and trajectory) and discusses with the patient. The patient does not see the raw number before the clinician.</p></div></div>
+    <div class="ov-card hba1c"><div class="ov-card-head"><div class="ov-card-name">HbA1c</div><span class="status-pill status-design">Design</span></div><div class="pick">GP record</div><div class="ov-card-body"><p>The result flows into the GP record through FHIR-based integration. The GP or practice nurse contacts the patient as part of the routine diabetes review cycle. The patient experience anchors on the existing primary-care review rhythm, not a stand-alone result delivery.</p></div></div>
+    <div class="ov-card pharm"><div class="ov-card-head"><div class="ov-card-name">Pharmacy-init</div><span class="status-pill status-sketch">Sketch</span></div><div class="pick">Mixed</div><div class="ov-card-body"><p>Mixed model: pharmacist sees the result first and may share with the patient at the pharmacy consultation, or routes to the GP for onward action. Pattern still being designed.</p></div></div>
+   </div>
+  </div>
+
+  <div class="ov-product-band">
+   <div class="ov-product-band-head"><span class="ov-product-label healthstore">HealthStore</span></div>
+   <div class="ov-grid-1">
+    <div class="ov-card healthstore"><div class="ov-card-head"><div class="ov-card-name">COPD Alpha</div><span class="status-pill status-design">Design</span></div><div class="pick">Milestone-based</div><div class="ov-card-body"><p>Outputs are episode milestones (activation, meaningful engagement, completion, outcome capture) surfaced to the prescribing clinician through the platform MI feed, and to the patient through the digital therapeutic interface itself. Deterioration alerts and adverse-event signals follow the cohort safety signal monitoring route into the prescribing clinical service.</p></div></div>
+   </div>
+  </div>
+
+  <div class="ov-product-band">
+   <div class="ov-product-band-head"><span class="ov-product-label healthsync">HealthSync</span></div>
+   <div class="ov-grid-1">
+    <div class="ov-card healthsync"><div class="ov-card-head"><div class="ov-card-name">First configuration</div><span class="status-pill status-design">Design</span></div><div class="pick">In design</div><div class="ov-card-body"><p>Result-handling pattern not yet defined. Working frame: continuous-data flows into the NHS App PHR aggregation layer with threshold-based alerting that surfaces to the patient&apos;s care team between appointments. Patient sees their own data; care team sees alerts when thresholds breach.</p></div></div>
+   </div>
+  </div>
+ </section>
+
+ <!-- 9. IG -->
+ <section class="ov-section" id="ig">
+  <div class="ov-head"><span class="ov-num">9</span><h2 class="ov-title">IG / data controller</h2></div>
+  <div class="ov-decides"><span class="label">What this overlay decides</span>Who is the data controller for the patient&apos;s data at each step of the journey, and what consent or lawful basis applies. The IG overlay determines the DPIA shape, the DSA structure, and the controller / processor designation per configuration.</div>
+
+  <div class="ov-product-band">
+   <div class="ov-product-band-head"><span class="ov-product-label hometest">HomeTest</span></div>
+   <div class="ov-grid">
+    <div class="ov-card hiv"><div class="ov-card-head"><div class="ov-card-name">HIV</div><span class="status-pill status-live">Live</span></div><div class="pick">Federated multi-controller</div><div class="ov-card-body"><p>NHSE controls the App / Notify foundation. The Local Authority commissioning the sexual health service controls the testing purpose. The supplier acts as processor. DPIA, DSA and DPA executed before go-live.</p><p>Joint-controller ruled out. Federated controller model is the foundation pattern.</p></div></div>
+    <div class="ov-card psa"><div class="ov-card-head"><div class="ov-card-name">PSA-AS</div><span class="status-pill status-prospective">Prospective</span></div><div class="pick">Federated multi-controller</div><div class="ov-card-body"><p>Same foundation framework as HIV. Condition-specific DPIA. Some controller positions TBC pending SLT decisions (specifically around the acute trust controller designation and lawful basis).</p></div></div>
+    <div class="ov-card hba1c"><div class="ov-card-head"><div class="ov-card-name">HbA1c</div><span class="status-pill status-design">Design</span></div><div class="pick">GP-record DSA</div><div class="ov-card-body"><p>The data flow integrates with the GP record. A Data Sharing Agreement governs the flow from supplier to GP system. The GP practice is controller for the GP record; NHSE and supplier roles still being mapped.</p></div></div>
+    <div class="ov-card pharm"><div class="ov-card-head"><div class="ov-card-name">Pharmacy-init</div><span class="status-pill status-sketch">Sketch</span></div><div class="pick">Pharmacy DSA</div><div class="ov-card-body"><p>Pharmacy holds initial data; flow into clinical systems governed by a pharmacy-specific DSA. Different IG regime under the Community Pharmacy Contractual Framework.</p></div></div>
+   </div>
+  </div>
+
+  <div class="ov-product-band">
+   <div class="ov-product-band-head"><span class="ov-product-label healthstore">HealthStore</span></div>
+   <div class="ov-grid-1">
+    <div class="ov-card healthstore"><div class="ov-card-head"><div class="ov-card-name">COPD Alpha</div><span class="status-pill status-design">Design</span></div><div class="pick">Federated multi-controller</div><div class="ov-card-body"><p>NHSE controls the App / Notify foundation. The commissioning ICB controls the prescribing purpose. The supplier acts as processor for the SaaS data schedule and may control elements where it holds the manufacturer responsibility. DPIA, DSA executed before any prescribing using live patient data. Controller positions for SaaS data flows are part of the open IG operations decisions.</p></div></div>
+   </div>
+  </div>
+
+  <div class="ov-product-band">
+   <div class="ov-product-band-head"><span class="ov-product-label healthsync">HealthSync</span></div>
+   <div class="ov-grid-1">
+    <div class="ov-card healthsync"><div class="ov-card-head"><div class="ov-card-name">First configuration</div><span class="status-pill status-design">Design</span></div><div class="pick">In design</div><div class="ov-card-body"><p>Federated controller arrangement covering the consumer-platform operator (Apple or Google) as platform operator, the patient as data subject with permission and revocation at platform and NHS App layers, and NHSE as controller for the NHS App view. Lawful basis varies per data type (consent versus public task per use of the data downstream). Patient permission and revocation model is one of the eight stand-it-up items on HealthSync.</p></div></div>
+   </div>
+  </div>
+
+  <div class="ov-note"><span class="label">Underneath all three products</span>The IG framework itself is foundation (built once, reused). What varies per configuration is the contents of the DPIA, the specific lawful basis and the controller designation per actor. The shape stays the same.</div>
+ </section>
+
+ <div class="foot">
+  <strong>How to use this page.</strong> Each overlay sits as a row on the Level 3 stack on the <a href="DTx OM - Anatomical.html">Anatomical view</a>. The pills there are deliberately short. This page is the reference for what the short labels actually mean in each configuration across the portfolio, with the level of detail you would expect to need in an SLT conversation. Settled positions are flagged Live or Prospective; design-phase positions carry honest TBCs where they exist.
+ </div>
+
+</div>
+
+</body>
+</html>

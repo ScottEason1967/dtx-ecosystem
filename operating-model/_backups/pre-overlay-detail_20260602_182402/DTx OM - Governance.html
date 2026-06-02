@@ -162,32 +162,6 @@
   details.gov-q-banner .gov-q-count { font-size:10px; font-weight:700; color:var(--accent); background:rgba(174,37,115,0.12); padding:3px 9px; border-radius:999px; margin-left:10px; }
   details.gov-q-banner .gov-q-body { padding:6px 20px 18px; border-top:1px solid rgba(174,37,115,0.18); }
 
-  /* Four-level explainer panel (sits before the elements RACI) */
-  .four-level-panel { margin: 8px 0 28px; }
-  .four-level-h { font-size: 11px; font-weight: 800; letter-spacing: 1.8px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 12px; }
-  .four-level-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-  .four-level-card { background:#fff; border:1px solid var(--border-lt); border-top:4px solid var(--nhs-blue); border-radius:8px; padding:14px 16px; box-shadow:0 1px 3px rgba(0,32,64,0.04); }
-  .four-level-card .fl-eyebrow { font-size:10px; font-weight:800; letter-spacing:1.4px; color: var(--nhs-blue); text-transform: uppercase; margin-bottom: 4px; }
-  .four-level-card .fl-title { font-size: 14px; font-weight: 800; color: var(--nhs-dark); letter-spacing: -0.2px; margin-bottom: 8px; }
-  .four-level-card .fl-body { font-size: 12px; color: var(--text-sec); line-height: 1.55; }
-  .four-level-card .fl-body strong { color: var(--text); font-weight: 700; }
-  @media (max-width: 900px) { .four-level-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 560px) { .four-level-grid { grid-template-columns: 1fr; } }
-
-  /* RACI level-band header rows inside the elements table */
-  .raci-table tr.raci-level-row td {
-    background: linear-gradient(180deg, #EAF1FA 0%, #F4F8FC 100%);
-    border-top: 2px solid var(--nhs-blue);
-    border-bottom: 1px solid #d6e2ef;
-    padding: 9px 14px;
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 1.4px;
-    text-transform: uppercase;
-    color: var(--nhs-dark);
-  }
-  .raci-table tr.raci-level-row td .level-strap { font-size: 11px; font-weight: 600; color: var(--text-sec); letter-spacing: 0.3px; text-transform: none; margin-left: 8px; }
-
 </style>
 <style>
   .ecosystem-nav {
@@ -288,10 +262,8 @@
   <div class="toc-bar">
     <div class="toc-bar-inner">
       <span class="toc-bar-label">On this page</span>
-      <a href="#four-level-explainer">Four levels</a>
-      <a href="#raci-four-levels">Elements RACI</a>
+      <a href="#raci-four-levels">RACI by level</a>
       <a href="#raci-foundation">Foundation ops</a>
-      <a href="#raci-overlays">Overlays ops</a>
       <a href="#raci-hiv">HIV ops</a>
       <a href="#raci-psa">PSA ops</a>
       <a href="#decisions">Decision rights</a>
@@ -360,32 +332,6 @@
     </div>
   </div>
 
-  <div class="four-level-panel" id="four-level-explainer">
-    <div class="four-level-h">The four levels</div>
-    <div class="four-level-grid">
-      <div class="four-level-card">
-        <div class="fl-eyebrow">Level 1</div>
-        <div class="fl-title">Foundation</div>
-        <div class="fl-body">The <strong>universal layer</strong> every product runs on. Identity, comms, the App, the integration spine, the IG framework structure, the clinical safety case structure, the hazard log structure, the assurance gateway, the contracting instrument. Built once, reused across every condition.</div>
-      </div>
-      <div class="four-level-card">
-        <div class="fl-eyebrow">Level 2</div>
-        <div class="fl-title">Overlays</div>
-        <div class="fl-body">The <strong>nine dimensions</strong> where conditions diverge. Initiation, Commissioning, Supply chain, Commercial, Tariff, Accreditation, Sign-off, Result handling, IG. Each overlay sets the choices available to a configuration.</div>
-      </div>
-      <div class="four-level-card">
-        <div class="fl-eyebrow">Level 3</div>
-        <div class="fl-title">Pattern catalogue</div>
-        <div class="fl-body">The <strong>library of available choices</strong> inside each overlay. Patient-init versus Clinician-init versus GP-init for Initiation; All-inclusive versus Specialist lab plus logistics for Supply chain; and so on across the nine overlays.</div>
-      </div>
-      <div class="four-level-card">
-        <div class="fl-eyebrow">Level 4</div>
-        <div class="fl-title">Configurations</div>
-        <div class="fl-body">The <strong>real-world deployments</strong>. HIV under LA commissioning. PSA-AS under acute trust commissioning. COPD Alpha under ICB commissioning. Each configuration picks its own value across all nine overlays.</div>
-      </div>
-    </div>
-  </div>
-
   <details class="section-acc" id="raci-four-levels">
     <summary>
       <div>
@@ -409,7 +355,6 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="raci-level-row"><td colspan="5">Level 1 &mdash; Foundation<span class="level-strap">universal, built once, reused across every condition</span></td></tr>
         <tr>
           <td class="label">Foundation (Level 1)<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">The universal foundation. Integration, identity, comms, onboarding gateway, IG framework, clinical safety case structure, hazard log structure, MI / data flows.</span></td>
           <td class="col-r"><span class="tbc">Open at SRO level</span></td>
@@ -417,7 +362,6 @@
           <td class="col-c"><span class="tbc">Open at SRO level</span></td>
           <td class="col-i"><span class="tbc">Open at SRO level</span></td>
         </tr>
-        <tr class="raci-level-row"><td colspan="5">Level 2 &mdash; Overlays<span class="level-strap">nine overlays, the dimensions where conditions diverge</span></td></tr>
         <tr>
           <td class="label">Information governance overlay<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">DPIA, DSA, DPA, IAO, controller designation, lawful basis. The data side of every configuration.</span></td>
           <td class="col-r">Ngozi (IG / DPO)</td>
@@ -481,7 +425,6 @@
           <td class="col-c"><span class="tbc">Open at SRO level</span></td>
           <td class="col-i"><span class="tbc">Open at SRO level</span></td>
         </tr>
-        <tr class="raci-level-row"><td colspan="5">Level 3 &mdash; Pattern catalogue<span class="level-strap">the library of available choices inside each overlay</span></td></tr>
         <tr>
           <td class="label">Pattern catalogue (Level 3)<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">The library of pattern options inside each overlay.</span></td>
           <td class="col-r"><span class="tbc">Open at SRO level</span></td>
@@ -489,7 +432,6 @@
           <td class="col-c"><span class="tbc">Open at SRO level</span></td>
           <td class="col-i"><span class="tbc">Open at SRO level</span></td>
         </tr>
-        <tr class="raci-level-row"><td colspan="5">Level 4 &mdash; Configurations<span class="level-strap">real-world deployments, each picks its own value across all nine overlays</span></td></tr>
         <tr>
           <td class="label">HomeTest HIV configuration<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Live deployment under LA commissioning.</span></td>
           <td class="col-r"><span class="tbc">Open at SRO level</span></td>
@@ -703,126 +645,6 @@
         </tr>
 </tbody>
     </table>
-  </div>
-
-    </div>
-  </details>
-
-  <details class="section-acc" id="raci-overlays">
-    <summary>
-      <div>
-        <div class="acc-title">Operational accountability: Overlays</div>
-        <div class="acc-sub">RACI across the nine overlays. Two pinned, two working, five TBC awaiting SLT decisions.</div>
-      </div>
-    </summary>
-    <div class="acc-body">
-
-  <div class="raci-section">
-    <h2>Operational accountability: Overlays</h2>
-    <div class="raci-sub">Nine overlays each need a named accountable role. Two pinned today, two working, five awaiting SLT decisions. The honest picture, not a fake fill. Pattern catalogue accountability sits inside the overlay discussion: the library of choices is a function of the overlay it sits in.</div>
-    <table class="raci-table">
-      <thead>
-        <tr>
-          <th>Overlay</th>
-          <th class="col-r">Responsible</th>
-          <th class="col-a">Accountable</th>
-          <th class="col-c">Consulted</th>
-          <th class="col-i">Informed</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="raci-level-row"><td colspan="6">Pinned<span class="level-strap">named roles agreed; accountability worked through</span></td></tr>
-        <tr>
-          <td class="label">IG / data controller<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">DPIA, DSA, DPA, controller designation, lawful basis. The data side of every configuration.</span></td>
-          <td class="col-r">IG / DPO</td>
-          <td class="col-a">National Assurance Board</td>
-          <td class="col-c">NHS Legal, Caldicott Guardian, IAO</td>
-          <td class="col-i">All Configurations</td>
-          <td><span class="tbc" style="background:#E0F2EE;color:#00695C;">Pinned</span></td>
-        </tr>
-        <tr>
-          <td class="label">Clinical safety / Accreditation bar<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">DCB0129 manufacturer plus DCB0160 deployer plus hazard log plus accreditation route per configuration.</span></td>
-          <td class="col-r">Chief Safety Officer with Clinical Safety Group</td>
-          <td class="col-a">National Assurance Board</td>
-          <td class="col-c">UKAS, NICE, MHRA, Suppliers</td>
-          <td class="col-i">All Configurations</td>
-          <td><span class="tbc" style="background:#E0F2EE;color:#00695C;">Pinned</span></td>
-        </tr>
-        <tr class="raci-level-row"><td colspan="6">Working<span class="level-strap">roles named at working level, formal sign-off pending</span></td></tr>
-        <tr>
-          <td class="label">Commercial<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Framework instrument, supplier admission, call-off mechanics, pricing cap administration. Step 1 SBS PSR bridge through Step 2 dual-route vehicle decision.</span></td>
-          <td class="col-r">NHS Commercial</td>
-          <td class="col-a">SRO</td>
-          <td class="col-c">NHS Legal, NHS Supply Chain, Commissioners, Suppliers</td>
-          <td class="col-i">All Configurations</td>
-          <td><span class="tbc" style="background:#FFF3E0;color:#E65100;">Working</span></td>
-        </tr>
-        <tr>
-          <td class="label">Tariff<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">PSA Active Surveillance Monitoring Episode tariff design. Best-practice tariff at pathway level. Funding articulation across the portfolio.</span></td>
-          <td class="col-r">NHSE Strategic Finance</td>
-          <td class="col-a">SRO</td>
-          <td class="col-c">Health Economist, NHS Commercial, ICBs</td>
-          <td class="col-i">All Configurations</td>
-          <td><span class="tbc" style="background:#FFF3E0;color:#E65100;">Working</span></td>
-        </tr>
-        <tr class="raci-level-row"><td colspan="6">TBC<span class="level-strap">accountability not yet pinned; awaiting SLT decisions</span></td></tr>
-        <tr>
-          <td class="label">Sign-off route<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Which clinical authority signs off on the result or output per configuration, especially on a reactive or abnormal signal.</span></td>
-          <td class="col-r"><span class="tbc">TBC</span></td>
-          <td class="col-a"><span class="tbc">TBC</span></td>
-          <td class="col-c"><span class="tbc">TBC</span></td>
-          <td class="col-i"><span class="tbc">TBC</span></td>
-          <td><span class="tbc">TBC</span></td>
-        </tr>
-        <tr>
-          <td class="label">Initiation<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Who triggers the patient activity per configuration: patient, clinician, GP, pharmacist.</span></td>
-          <td class="col-r"><span class="tbc">TBC</span></td>
-          <td class="col-a"><span class="tbc">TBC</span></td>
-          <td class="col-c"><span class="tbc">TBC</span></td>
-          <td class="col-i"><span class="tbc">TBC</span></td>
-          <td><span class="tbc">TBC</span></td>
-        </tr>
-        <tr>
-          <td class="label">Commissioning<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Which budget-holder pays and on what contractual basis per configuration. LA, acute trust, ICB, GP, pharmacy network.</span></td>
-          <td class="col-r"><span class="tbc">TBC</span></td>
-          <td class="col-a"><span class="tbc">TBC</span></td>
-          <td class="col-c"><span class="tbc">TBC</span></td>
-          <td class="col-i"><span class="tbc">TBC</span></td>
-          <td><span class="tbc">TBC</span></td>
-        </tr>
-        <tr>
-          <td class="label">Supply chain<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">All-inclusive supplier, specialist lab plus logistics, SaaS supplier, consumer-platform integration partner. Single versus disaggregated chains.</span></td>
-          <td class="col-r"><span class="tbc">TBC</span></td>
-          <td class="col-a"><span class="tbc">TBC</span></td>
-          <td class="col-c"><span class="tbc">TBC</span></td>
-          <td class="col-i"><span class="tbc">TBC</span></td>
-          <td><span class="tbc">TBC</span></td>
-        </tr>
-        <tr>
-          <td class="label">Result handling<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">How the result, output or data reaches the patient: NHS App direct, clinician-first, GP record, milestone-based, in-app.</span></td>
-          <td class="col-r"><span class="tbc">TBC</span></td>
-          <td class="col-a"><span class="tbc">TBC</span></td>
-          <td class="col-c"><span class="tbc">TBC</span></td>
-          <td class="col-i"><span class="tbc">TBC</span></td>
-          <td><span class="tbc">TBC</span></td>
-        </tr>
-</tbody>
-    </table>
-    <div class="raci-key">
-      <span><strong>R</strong> &middot; Responsible &middot; does the work</span>
-      <span><strong>A</strong> &middot; Accountable &middot; signs off, single owner</span>
-      <span><strong>C</strong> &middot; Consulted &middot; two-way input before decision</span>
-      <span><strong>I</strong> &middot; Informed &middot; one-way update after decision</span>
-    </div>
-    <div style="margin-top:18px;padding:14px 18px;background:#FFF9EC;border:1px solid #F0DCA0;border-left:4px solid #C9A227;border-radius:0 8px 8px 0;font-size:13px;color:var(--text);line-height:1.6;">
-      <strong style="color:#9A6700;text-transform:uppercase;letter-spacing:1.2px;font-size:10.5px;display:block;margin-bottom:4px;">Where the gap sits</strong>
-      Two overlays are pinned (IG, Clinical safety). Two have working-level roles ahead of formal sign-off (Commercial, Tariff). Five carry honest TBCs (Sign-off route, Initiation, Commissioning, Supply chain, Result handling). Pinning the five TBC overlays to named accountable roles is the explicit outcome the accountability workshop is driving towards. Without it, configurations sit on top of overlays that nobody has formally agreed to own.
-    </div>
-    <div style="margin-top:14px;padding:12px 16px;background:#F4F8FC;border:1px solid #d6e2ef;border-radius:8px;font-size:12.5px;color:var(--text-sec);line-height:1.6;">
-      <strong style="color:var(--nhs-blue);text-transform:uppercase;letter-spacing:1.4px;font-size:10.5px;display:block;margin-bottom:4px;">Pattern catalogue accountability</strong>
-      The pattern catalogue (Level 3) is the library of choices inside each overlay. Accountability for the catalogue sits inside the overlay it belongs to. Curating which patterns are available for Initiation, for instance, is part of the Initiation overlay&apos;s accountability, not a separate Level 3 role.
-    </div>
   </div>
 
     </div>
@@ -1357,29 +1179,4 @@
 
 
 <script>
-(function(){
-  function openTarget(){
-    var id = location.hash.replace('#','');
-    if (!id) return;
-    var el = document.getElementById(id);
-    if (!el) return;
-    // Walk up and open any <details> ancestors and the target itself if it's a details
-    var node = el;
-    while (node && node !== document.body) {
-      if (node.tagName && node.tagName.toLowerCase() === 'details') {
-        node.open = true;
-      }
-      node = node.parentNode;
-    }
-    // Small delay then re-scroll so the opened element lands properly
-    setTimeout(function(){
-      el.scrollIntoView({behavior:'smooth', block:'start'});
-    }, 50);
-  }
-  window.addEventListener('load', openTarget);
-  window.addEventListener('hashchange', openTarget);
-})();
-</script>
-
-</body>
-</html>
+(function()

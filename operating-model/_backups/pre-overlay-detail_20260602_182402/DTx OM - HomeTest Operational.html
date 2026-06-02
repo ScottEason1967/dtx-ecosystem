@@ -279,59 +279,11 @@
  <div class="intro">
  <h2>How to read this</h2>
  <p>Seven operational lanes, each describing a distinct process at steady state. Each lane has the same seven actors. Where a cell is empty, that actor genuinely has no role at that stage.</p>
- <p>This is the <strong>steady-state national operating model</strong>, not the route to get there. Discovery / Alpha / Beta selection processes sit outside scope. The live service support model carries two tiers: a Day-1 tier covering beta cutover and early-life support, and the steady-state tier shown on this page from go-live (April onward). Day-1 mechanics are interim. Where steady-state behaviour is different, the steady-state behaviour is what the lanes describe.</p>
+ <p>This is the <strong>steady-state national operating model</strong>, not the route to get there. Discovery / Alpha / Beta selection processes (including specific EOIs for Acute Use Case Partner and COPD test cases) sit outside scope. The live service support model carries two tiers: a Day-1 tier covering beta cutover and early-life support, and the steady-state tier shown on this page from go-live (April onward). Day-1 mechanics are interim. Where steady-state behaviour is different, the steady-state behaviour is what the lanes describe.</p>
  <p>Cells flagged <span class="gap-flag" style="margin-top:0;">like this</span> need a decision or evidence before they can be confirmed. Cells flagged <span class="new-flag" style="margin-top:0;">like this</span> reflect recent content updates.</p>
  <div style="margin-top:14px;padding-top:12px;border-top:1px solid rgba(0,0,0,0.08);font-size:12px;padding-top:14px;"><a href="DTx OM - Status.html" style="color:#005EB8;font-weight:700;text-decoration:none;letter-spacing:0.3px;">See all open items across the model &rarr;</a></div>
-
+ 
  </div>
-
- <details class="op-glossary" style="margin:18px 0 24px;background:#fff;border:1px solid #ebeef1;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,32,64,0.04);">
-  <summary style="list-style:none;cursor:pointer;padding:14px 22px;display:flex;align-items:center;justify-content:space-between;user-select:none;background:linear-gradient(180deg,#F4F8FC 0%,#fff 100%);">
-   <span style="font-size:11px;font-weight:800;letter-spacing:1.4px;color:#003087;text-transform:uppercase;">Inline glossary &middot; acronyms and dense terms on this page</span>
-   <span style="font-size:11px;color:#7E8B97;">click to expand</span>
-  </summary>
-  <div style="padding:18px 24px 22px;border-top:1px solid #ebeef1;display:grid;grid-template-columns:repeat(2,1fr);gap:8px 28px;font-size:12.5px;color:#4C6272;line-height:1.55;">
-   <div><strong style="color:#212B32;">DCB0129</strong> &mdash; the clinical safety standard the manufacturer must meet for any product touching clinical care. Manufacturer-side.</div>
-   <div><strong style="color:#212B32;">DCB0160</strong> &mdash; the clinical safety standard the deploying organisation (e.g. NHSE for the platform, an ICB for a local service) must meet when putting a product into live use.</div>
-   <div><strong style="color:#212B32;">CSO</strong> &mdash; Clinical Safety Officer. The named clinician accountable for the safety case at a deploying organisation.</div>
-   <div><strong style="color:#212B32;">CSG</strong> &mdash; Clinical Safety Group. The standing body that reviews safety cases and hazards across the portfolio.</div>
-   <div><strong style="color:#212B32;">CATR</strong> &mdash; Clinical Assurance to Release. The gate that confirms a deployment is safe to handle live patient data, before any go-live.</div>
-   <div><strong style="color:#212B32;">DPIA</strong> &mdash; Data Protection Impact Assessment. Required risk assessment when personal data is processed in new ways.</div>
-   <div><strong style="color:#212B32;">DSA</strong> &mdash; Data Sharing Agreement. Governs flows of personal data between organisations.</div>
-   <div><strong style="color:#212B32;">DPA</strong> &mdash; Data Processing Agreement. The processor-side counterpart to a DSA: terms under which a processor handles data for a controller.</div>
-   <div><strong style="color:#212B32;">Controller / Processor</strong> &mdash; under data protection law, the controller decides what data is collected and why; the processor handles data on the controller&apos;s instructions.</div>
-   <div><strong style="color:#212B32;">Lawful basis</strong> &mdash; the legal ground under UK GDPR for processing personal data (consent, public task, legitimate interests, etc.).</div>
-   <div><strong style="color:#212B32;">ROPA</strong> &mdash; Record of Processing Activities. Mandatory inventory of how personal data is processed.</div>
-   <div><strong style="color:#212B32;">IAO</strong> &mdash; Information Asset Owner. Senior accountable role for an information asset; must be a permanent NHSE employee.</div>
-   <div><strong style="color:#212B32;">DPO</strong> &mdash; Data Protection Officer. Statutory role advising on data protection compliance.</div>
-   <div><strong style="color:#212B32;">FHIR</strong> &mdash; Fast Healthcare Interoperability Resources. The standard for exchanging clinical data between NHS systems.</div>
-   <div><strong style="color:#212B32;">UKAS / ISO 15189</strong> &mdash; UK Accreditation Service certification of a medical lab against the international standard ISO 15189. The standard NHS lab accreditation.</div>
-   <div><strong style="color:#212B32;">ISO 27001</strong> &mdash; international information security management standard. Common evidence for supplier IG admission.</div>
-   <div><strong style="color:#212B32;">EOI</strong> &mdash; Expression of Interest. A supplier&apos;s formal indication that it wants to join a procurement route.</div>
-   <div><strong style="color:#212B32;">Atamis</strong> &mdash; the NHS procurement workflow platform. Hosts EOI submissions under Plan A routes.</div>
-   <div><strong style="color:#212B32;">PA23</strong> &mdash; Procurement Act 2023. The general public procurement regime.</div>
-   <div><strong style="color:#212B32;">PSR</strong> &mdash; Provider Selection Regime. The healthcare-specific procurement regime that applies where services are commissioned under NHS rules.</div>
-   <div><strong style="color:#212B32;">DPC framework</strong> &mdash; Digital Primary Care Framework. One of the candidate steady-state vehicles under Plan B.</div>
-   <div><strong style="color:#212B32;">MOU</strong> &mdash; Memorandum of Understanding. The contracting vehicle used during Alpha and Beta only.</div>
-   <div><strong style="color:#212B32;">ACE</strong> &mdash; the framework under which the current Alpha call-off sits.</div>
-   <div><strong style="color:#212B32;">MVP</strong> &mdash; Minimum Viable Product. The smallest version of the live service that can run end-to-end.</div>
-   <div><strong style="color:#212B32;">MI</strong> &mdash; Management Information. The data feed that supports operational decisions across the platform.</div>
-   <div><strong style="color:#212B32;">KPI / SLA / TAT</strong> &mdash; Key Performance Indicator / Service Level Agreement / Turnaround Time. The metrics that measure operational performance.</div>
-   <div><strong style="color:#212B32;">LA / ICB</strong> &mdash; Local Authority / Integrated Care Board. Two of the commissioner archetypes.</div>
-   <div><strong style="color:#212B32;">MDT</strong> &mdash; Multidisciplinary Team. The clinical team that holds onward action.</div>
-   <div><strong style="color:#212B32;">CAG</strong> &mdash; Confidentiality Advisory Group. Advises on lawful access to confidential patient information without consent.</div>
-   <div><strong style="color:#212B32;">ICO</strong> &mdash; Information Commissioner&apos;s Office. UK regulator for data protection.</div>
-   <div><strong style="color:#212B32;">Caldicott</strong> &mdash; Caldicott Guardian. Named senior person in an NHS organisation responsible for protecting the confidentiality of patient information.</div>
-   <div><strong style="color:#212B32;">Three-tier pricing</strong> &mdash; the commercial pattern: Tier 1 mobilisation fee, Tier 2 activity per valid result, Tier 3 volume floor. Sits under a ceiling-price model.</div>
-   <div><strong style="color:#212B32;">Shadow / dual-run / live</strong> &mdash; the standard NHS tariff introduction stages. Shadow runs alongside the old route without paying; dual-run pays partial; live replaces the old route fully.</div>
-   <div><strong style="color:#212B32;">PbR / HRG / CDS / SUS</strong> &mdash; Payment by Results / Healthcare Resource Group / Commissioning Dataset / Secondary Uses Service. The activity-recording and payment plumbing for hospital-based care.</div>
-   <div><strong style="color:#212B32;">NHSBSA / OPCS</strong> &mdash; NHS Business Services Authority (which runs the Drug Tariff among other things) / OPCS-4 (the national procedure coding standard).</div>
-   <div><strong style="color:#212B32;">P1 / P2 / P3</strong> &mdash; Pathway 1 (HIV, patient-init), Pathway 2 (PSA Active Surveillance, clinician-init), Pathway 3 (HbA1c, GP-init).</div>
-   <div><strong style="color:#212B32;">FDP / SPR</strong> &mdash; Federated Data Platform / Single Patient Record. The national data architecture HomeTest plugs into.</div>
-   <div><strong style="color:#212B32;">PTT</strong> &mdash; Privacy Transparency Team. NHSE function that reviews privacy posture on new services.</div>
-   <div><strong style="color:#212B32;">NHS App / Login / Notify</strong> &mdash; the patient-facing app, the single sign-on identity service, the messaging service. Foundation services HomeTest consumes.</div>
-  </div>
- </details>
 
  
  <div style="background:#f4f8fc;border:1px solid #c4d3e6;border-radius:10px;padding:10px 16px;margin-bottom:14px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:center;">
@@ -380,7 +332,7 @@
 
  <div class="sl-actor" style="background:var(--platform);color:var(--platform-dark);border-color:var(--platform-dark);"><div class="sl-actor-portrait"><a href="DTx OM - Persona Priya.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../assets/personas/priya.png" alt="Priya"></a></div><div class="sl-actor-label"><span class="sl-actor-name">Priya</span>NHSE Platform</div></div>
  <div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I publish the catalogue.</strong>Tests, pathways, pricing tiers, eligibility criteria, supplier list. Visible in the public domain. Findable via Future NHS, partnerships team and the platform itself.</div>
- <div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I publish the self-service toolkit.</strong>Four items the commissioner can use without engaging me first. <strong>Self-assessment checklist</strong>: confirms whether the service fits the local pathway. <strong>IG templates</strong> (DSA scope, DPIA template, lawful-basis position): the IG fit can be worked through locally. <strong>Clinical templates</strong> (CSO checklist, hazard-log starter, CATR readiness): the clinical safety fit can be worked through locally. <strong>Route-to-buy guidance</strong>: which call-off vehicle, which pricing tier, which timeline. Design principle: publish the criteria, don&apos;t gate them.</div>
+ <div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I provide the toolkit.</strong>Self-assessment checklist. Ready-made IG and clinical templates. Route-to-buy guidance. Sarah can work out whether HomeTest fits her area without engaging me first.</div>
  <div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I set the platform up for Sarah.</strong>Catalogue picks, supplier allocation, pathway routing, population parameters, MI dashboards. Ready-made contract templates available.</div>
  <div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I bring Sarah live.</strong>Ordering switched on. MI provisioned. Local comms and pathway routing tested before patients arrive.</div>
  <div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I monitor activity.</strong>Volumes, SLA compliance, pathway completion rates. Cross-commissioner benchmarking. I charge a platform fee on activity (long term).</div>
@@ -401,7 +353,7 @@
 
  <div class="sl-actor" style="background:var(--commissioner);color:var(--commissioner-dark);border-color:var(--commissioner-dark);"><div class="sl-actor-portrait"><a href="DTx OM - Persona Sarah.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../assets/personas/sarah.png" alt="Sarah"></a></div><div class="sl-actor-label"><span class="sl-actor-name">Sarah</span>Commissioner</div></div>
  <div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I find the service.</strong>I become aware via NHS comms, partnerships team, peer reference, or browsing the platform. I review catalogue, pricing tiers, supplier options. I identify pathway and population fit.</div>
- <div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I decide it&apos;s right.</strong>Four named checks using the published toolkit. <strong>IG fit</strong>: scope of any DSA I need, whether a local DPIA is required on top of NHSE&apos;s, who plays my DPO role. <strong>Budget alignment</strong>: which of my budget lines pays for the activity and whether it has capacity for forecast volumes. <strong>Pathway alignment</strong>: whether the clinical pathway my population uses is one of the configurations HomeTest supports. <strong>Local readiness</strong>: whether the clinical service that will receive results is mobilised. <span class="new-flag">DCB0160 deployment considerations</span> are the clinical safety obligations I take on as the deploying organisation: confirming the local clinical safety case is in place, the local hazard log is maintained, and a named CSO is in role.</div>
+ <div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I decide it&apos;s right.</strong>I self-assess against published eligibility. I confirm IG fit (DSA scope, local DPIA need, local CSO availability), budget and pathway alignment, local readiness. <span class="new-flag">DCB0160 deployment considerations</span> reviewed.</div>
  <div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I onboard.</strong>I sign the call-off under framework terms. I select supplier(s). I agree volumes, pricing tier, pathway config. I complete IG. Budget allocated. <span class="gap-flag">Call-off mechanism depends on which procurement vehicle lands — see CONTRACT stage detail</span></div>
  <div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I go live.</strong>Local comms launched. Pathway referral routes activated. Staff briefed.</div>
  <div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I operate.</strong>I hold clinical governance of results / follow-up. I manage budget. I track local pathway outcomes. I report to local health boards. <span class="new-flag">GP information sharing where the patient wants it</span></div>
@@ -410,7 +362,7 @@
  <div class="sl-cell sl-empty"></div>
  <div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I confirm safety.</strong>Local clinical safety baseline. DCB0160 sign-off route via local CSO.</div>
  <div class="sl-cell sl-empty"></div>
- <div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I do CATR.</strong>CATR (Clinical Assurance to Release) is the clinical safety gate before any deployment handles live patient data. The CATR sign-off confirms four things are in place: <strong>DCB0129 manufacturer evidence</strong> from the supplier, <strong>DCB0160 deployer safety case</strong> on the NHSE side, <strong>hazard log</strong> live and being maintained, and <strong>incident route</strong> for anything that breaches the hazard log once running. Without CATR the deployment cannot go live. <span class="gap-flag">CATR operational mechanics (who issues, how it links to DCB0160 sign-off, how it scales across commissioners) still to be defined</span></div>
+ <div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I do CATR.</strong>Clinical Assurance to Release sign-off before any deployment using live patient/citizen data. <span class="gap-flag">CATR operational mechanics (who issues, how it links to DCB0160 sign-off, how it scales across commissioners) still to be defined</span></div>
  <div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I oversee.</strong>Hazard log live. CAG monitoring. Alignment to relevant national clinical strategies tracked on the risk register.</div>
 
  <div class="sl-actor" style="background:var(--patient);color:var(--patient-dark);border-color:var(--patient-dark);flex-direction:column;align-items:center;padding:8px 6px;"><div class="sl-actor-portrait" style="width:auto;height:auto;background:transparent;display:flex;flex-direction:row;gap:0;justify-content:center;"><a href="DTx OM - Persona Abdul.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../assets/personas/abdul.png" alt="Abdul" style="width:28px;height:28px;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,0.25);background:#fff;object-fit:cover;object-position:top center;"></a><a href="DTx OM - Persona Mark.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../assets/personas/mark.png" alt="Mark" style="width:28px;height:28px;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,0.25);background:#fff;object-fit:cover;object-position:top center;margin-left:-8px;"></a><a href="DTx OM - Persona Layla.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../assets/personas/layla.png" alt="Layla" style="width:28px;height:28px;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,0.25);background:#fff;object-fit:cover;object-position:top center;margin-left:-8px;"></a></div><div class="sl-actor-label" style="margin-top:5px;"><span class="sl-actor-name" style="display:block;font-size:11px;font-weight:800;color:var(--nhs-dark);">Patient</span><span style="font-size:8.5px;color:var(--text-muted);">Abdul / Mark / Layla</span></div></div>
@@ -452,7 +404,7 @@
  <div class="sl-stage"></div>
  <div class="sl-stage">Find</div>
  <div class="sl-stage">Self-assessment</div>
- <div class="sl-stage">Apply</div>
+ <div class="sl-stage">EOI</div>
  <div class="sl-stage">Automated triage</div>
  <div class="sl-stage">Human review</div>
  <div class="sl-stage">Onboarding proper</div>
@@ -470,7 +422,7 @@
  <div class="sl-actor" style="background:var(--framework);color:var(--framework-dark);border-color:var(--framework-dark);"><div class="sl-actor-portrait"><a href="DTx OM - Persona David.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../assets/personas/david.png" alt="David"></a></div><div class="sl-actor-label"><span class="sl-actor-name">David</span>NHS Commercial</div></div>
  <div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I publish the criteria.</strong>Five dimensions (commercial, clinical, IG, technical, operational), tiered (core / scaled / aspirational). Public domain.</div>
  <div class="sl-cell sl-empty"></div>
- <div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I receive Joe&apos;s (supplier) application.</strong>Structured submission: API(s), scope, self-assessment by criterion, evidence references. The submission instrument varies by route: Atamis EOI under Plan A (PA23), SBS supplier portal under the Step 1 PSR bridge, light-touch form under Route C partnership routes. The activity is the same in all three cases.</div>
+ <div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I receive Joe&apos;s (supplier) EOI.</strong>Structured submission: API(s), scope, self-assessment by criterion, evidence references. Formal procurement vehicle for vendor admission; lighter form for partnership routes.</div>
  <div class="sl-cell sl-empty"></div>
  <div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I review commercial.</strong>Commercial dimension review by named commercial lead. Time-boxed SLA.</div>
  <div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I admit Joe (supplier).</strong>Formal admission. Catalogue agreement signed. Pricing within max. Available for call-off.</div>
@@ -479,7 +431,7 @@
  <div class="sl-actor" style="background:var(--supplier);color:var(--supplier-dark);border-color:var(--supplier-dark);"><div class="sl-actor-portrait"><a href="DTx OM - Persona Joe.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../assets/personas/joe.png" alt="Joe"></a></div><div class="sl-actor-label"><span class="sl-actor-name">Joe</span>Supplier</div></div>
  <div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I find the pack.</strong>I locate the published criteria. I read what is required. I decide whether to proceed before engaging NHSE.</div>
  <div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I self-assess.</strong>I work through the published checklist using boilerplate artefacts (DPIA template, DSA template, privacy notice template, clinical safety starter, technical integration guide). Output: my declared position by criterion with evidence references.</div>
- <div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I apply.</strong>API(s) I want, scope (tests, pathways, territory), self-assessment result, evidence references. Submission route depends on which procurement vehicle is live: Atamis EOI under Plan A, SBS supplier portal under the Step 1 PSR bridge, light-touch form under partnership routes.</div>
+ <div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I submit my EOI.</strong>API(s) I want, scope (tests, pathways, territory), self-assessment result, evidence references.</div>
  <div class="sl-cell sl-empty"></div>
  <div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I provide evidence.</strong>Accreditation certificates (UKAS / ISO 15189). DCB0129 clinical safety case. CSO sign-off. Operational capacity statement. Pricing within max.</div>
  <div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I integrate &amp; go live.</strong>I build to API spec. Conformance testing. I go live. I&apos;m listed in the catalogue.</div>
@@ -628,7 +580,7 @@
  <div class="sl-stage">Refresh</div>
 
  <div class="sl-actor" style="background:var(--framework);color:var(--framework-dark);border-color:var(--framework-dark);"><div class="sl-actor-portrait"><a href="DTx OM - Persona David.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../assets/personas/david.png" alt="David"></a></div><div class="sl-actor-label"><span class="sl-actor-name">David</span>NHS Commercial</div></div>
- <div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I publish the framework pricing.</strong>Ceiling-price model: maximum prices set nationally, commissioners run their own competitions and price down based on volume. Three-tier structure sits underneath the ceiling. <strong>Tier 1 mobilisation fee</strong>: a one-off payment that covers the supplier&apos;s setup costs for a new commissioner. <strong>Tier 2 activity per valid result</strong>: the supplier is paid only when a kit returns and a valid result is delivered, not per kit dispatched. <strong>Tier 3 volume floor</strong>: a minimum payment that protects the supplier against low-volume launches. Same shape applies to every commissioner. <span class="gap-flag">Flat per-kit pricing was rejected; subscription rejected at strategic level. Final position on the activity unit (A9) carried in the recommendation paper. PSA Active Surveillance is a separate model (per-patient-per-year Monitoring Episode), not a variant of this question.</span></div>
+ <div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I publish the approved-list pricing.</strong>Working structure: three-tier pricing (mobilisation fee plus activity plus volume floor) with cost per valid result on the activity tier. Same terms for every commissioner. Pricing schedule sits inside the interim contracting instrument (standard NHS call-off plus approved supplier list). <span class="gap-flag">Flat per-kit pricing was rejected; subscription rejected at strategic level. Final position on the activity unit (A9) carried in the recommendation paper. PSA Active Surveillance is a separate model (per-patient-per-year Monitoring Episode), not a variant of this question.</span></div>
  <div class="sl-cell sl-empty"></div>
  <div class="sl-cell sl-empty"></div>
  <div class="sl-cell foundation"><span class="so-tag foundation-tag">Foundation</span><strong>I monitor framework-level pricing.</strong>Cross-supplier price trends. Variance from published rates flagged. Aggregate value-of-framework data fed to the Commercial Lead and Health Economist.</div>
@@ -636,7 +588,7 @@
 
  <div class="sl-actor" style="background:var(--commissioner);color:var(--commissioner-dark);border-color:var(--commissioner-dark);"><div class="sl-actor-portrait"><a href="DTx OM - Persona Sarah.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../assets/personas/sarah.png" alt="Sarah"></a></div><div class="sl-actor-label"><span class="sl-actor-name">Sarah</span>Commissioner</div></div>
  <div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I agree pricing in the call-off.</strong>Pick the volume tier and pathway scope from the published framework. Local budget code allocated.</div>
- <div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I receive invoices direct from Joe.</strong>Joe invoices me per the cadence we agreed in the call-off. I pay from my own budget: LA test-and-treat budget for HIV, my acute envelope for PSA, the ICB or GP funding route for HbA1c. <span class="gap-flag">For PSA the source of my money shifts as the AS Monitoring Episode tariff comes in. The tariff goes through the standard NHS introduction stages: <strong>shadow</strong> in 26/27 (the tariff runs alongside the old route without paying, so I can model it without changing where the money comes from), <strong>dual-run at 50%</strong> in 27/28 (the tariff pays half and my existing acute envelope pays half), and <strong>live at 100%</strong> in 28/29 (the tariff replaces the envelope fully).</span></div>
+ <div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I receive invoices direct from Joe.</strong>Joe invoices me per the cadence we agreed in the call-off. I pay from my own budget: LA test-and-treat budget for HIV, my acute envelope for PSA, the ICB or GP funding route for HbA1c. <span class="gap-flag">For PSA the source of my money shifts as the AS Monitoring Episode tariff comes in: today I pay from my acute envelope; from 26/27 the new tariff runs in shadow, from 27/28 dual-runs at 50%, and from 28/29 fully replaces the envelope route</span></div>
  <div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I pay Joe direct.</strong>NHSE does not sit in the payment flow under MVP. Standard commissioner-to-supplier payment route applies. <span class="gap-flag">Centralised invoicing remains a longer-term option, not designed</span></div>
  <div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I close the period.</strong>Activity records from Joe matched against invoiced amounts. Local budget reconciliation. Variance reported through local finance route.</div>
  <div class="sl-cell overlay"><span class="so-tag overlay-tag">Overlay</span><strong>I review terms annually.</strong>Accept the framework refresh or negotiate variation within published bands. Forward plan against the next tariff cycle where one applies.</div>
@@ -658,7 +610,7 @@
  </div>
 
  <div class="note-box">
- <strong>NHS Online payment flow as reference architecture.</strong> The payment plumbing for an analogous central service uses standard NHS mechanisms. <strong>ICB host &harr; NHS Online</strong> via NHS Standard Contract: the host ICB carries the central relationship. <strong>ICB local &harr; Diagnostic Provider</strong> via <strong>PbR</strong> (Payment by Results &mdash; activity-driven payment), <strong>CDS</strong> (Commissioning Dataset &mdash; the activity record), <strong>SUS</strong> (Secondary Uses Service &mdash; the national activity store) and <strong>HRG</strong> (Healthcare Resource Group &mdash; the grouped tariff unit): a local commissioner pays the provider per recorded activity through the standard hospital-data flow. <strong>NHSBSA</strong> (NHS Business Services Authority, which runs the Drug Tariff) <strong>&harr; Pharmacy</strong> via Drug Tariff: the prescription side pays the pharmacy through the existing national mechanism. <strong>OPCS-4</strong> (the procedure coding standard) classifies the activity. The friction point: a central platform generates local activity that local commissioners did not plan or contract for. Same gap HomeTest faces at scale.
+ <strong>NHS Online payment flow as reference architecture.</strong> The PbR / CDS / SUS / HRG / NHSBSA / OPCS plumbing for an analogous central service: ICB host &harr; NHS Online via NHS Standard Contract; ICB local &harr; Diagnostic Provider via PbR / CDS / SUS / HRG; NHSBSA &harr; Pharmacy via Drug Tariff. The friction point: central platform generates local activity that local commissioners did not plan or contract for. Same gap HomeTest faces at scale.
  </div>
  <div class="note-box" style="background:#fef3c7;border-color:#f5d787;color:#92580a;">
  <strong>The tariff position.</strong> No live NHS tariff code yet covers home testing, but a Patient-Not-Present tariff design is now in flight. NHSE Strategic Finance has drafted a <strong>PSA Active Surveillance Monitoring Episode</strong> tariff with a glide-path: shadow 26/27, dual-run at 50% in 27/28, live at 100% in 28/29. Five reconciliation mechanisms sit underneath it (bundled episode, efficiency-factor offset, glide-path, capacity-release credits, ICB-level capitated AS top-up). The longer-term "no tariff code" framing is therefore wrong in flavour for PSA; for HIV the LA budget route remains the position. Planned volumes and opt-in commissioning still apply where the tariff has not yet landed.
@@ -918,24 +870,4 @@
  <p><strong>The framework administrator role is the hardest new capability.</strong> Whether NHSE self-administers or outsources, somebody has to run continuous supplier admission, performance management, pricing compliance, market health monitoring. That&apos;s a standing team, not a project function.</p>
  <p><strong>The centre&apos;s role is matchmaker, not contract counterparty.</strong> The centre runs onboarding, sets standards, builds integration, monitors market health. It does not sign local contracts on behalf of LAs, own billing, or operate logistics.</p>
  <p><strong>Systematisation is the work.</strong> Most of these processes need to be designed and built as standing capabilities, not as project-mode workarounds. The framework administrator role and the centre&apos;s standing onboarding, performance, and market-health functions are where this concentrates.</p>
- <p><strong>The financial lane is still the weakest part of the design.</strong> The PSA Active Surveillance Monitoring Episode tariff is now in design with a 26/27 to 28/29 glide-path, but the addressable market model, central funding for the platform itself, and overflow backstop remain unresolved.</p>
- </div>
-
-</div>
-
-<script>
-function showLane(n){
- // Activate the right swimlane section
- document.querySelectorAll('.swimlane-section').forEach(function(s){s.classList.remove('active');});
- var lane = document.getElementById('lane-'+n);
- if (lane) { lane.classList.add('active'); }
-
- // Sync the persona key cards at the top
- document.querySelectorAll('.ak').forEach(function(a){
-   a.classList.toggle('active', a.getAttribute('data-lane') === String(n));
- });
-}
-</script>
-
-</body>
-</html>
+ <p><strong>The financial lane is still the weakest part of the design.</strong> The PSA Active Surveillance Monitoring Episode tariff is now in design with a 26/27 to 28/29 glide-path, but the addressable market model, central funding for the 
