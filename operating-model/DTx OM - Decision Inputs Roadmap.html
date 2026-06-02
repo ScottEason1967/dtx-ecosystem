@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DTx OM — Decision Inputs Roadmap</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: #231F20;
+    background: #F4F7FB;
+    line-height: 1.5;
+  }
+
+  /* Ecosystem topnav */
+  .ecosystem-nav {
+    background: #fff;
+    border-bottom: 1px solid #ebeef1;
+    padding: 12px 36px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+  }
+  .ecosystem-nav a { font-size: 13px; font-weight: 700; color: #003087; text-decoration: none; }
+  .ecosystem-nav .nav-context { font-size: 12px; color: #5C6B82; font-weight: 600; letter-spacing: 0.3px; }
+  .ecosystem-nav .nav-product { font-size: 10.5px; font-weight: 800; letter-spacing: 1.2px; padding: 4px 10px; border-radius: 10px; color: #fff; text-transform: uppercase; }
+  .ecosystem-nav .nav-product.dtx { background: #003087; }
+
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, #003087 0%, #1A4C9C 100%);
+    color: #fff;
+    padding: 40px 48px 36px;
+  }
+  .header-rule { width: 72px; height: 4px; background: #FFB91D; border-radius: 2px; margin-bottom: 18px; }
+  .header .eyebrow { font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; color: #FFD66B; font-weight: 700; margin-bottom: 10px; }
+  .header h1 { margin: 0 0 12px; font-size: 38px; font-weight: 900; letter-spacing: -0.8px; line-height: 1.05; }
+  .header .sub { font-size: 15.5px; color: rgba(255,255,255,0.92); max-width: 960px; line-height: 1.6; }
+  .header .sub strong { color: #fff; font-weight: 700; }
+
+  /* Shell */
+  .shell { max-width: 1320px; margin: 0 auto; padding: 32px 32px 60px; }
+
+  /* Framing */
+  .framing {
+    background: #fff; border-radius: 14px; box-shadow: 0 4px 14px rgba(0,30,90,0.06);
+    padding: 24px 28px; margin-bottom: 28px; border-left: 5px solid #FFB91D;
+  }
+  .framing .frame-eyebrow { font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #9A6700; margin-bottom: 8px; }
+  .framing h2 { margin: 0 0 12px; font-size: 22px; font-weight: 800; color: #003087; letter-spacing: -0.4px; }
+  .framing p { font-size: 13.5px; color: #3C4856; line-height: 1.65; margin: 0 0 10px; }
+  .framing p:last-child { margin-bottom: 0; }
+  .framing strong { color: #003087; font-weight: 700; }
+
+  /* Procurement scenarios */
+  .scenarios {
+    background: #fff; border-radius: 14px; box-shadow: 0 4px 14px rgba(0,30,90,0.06);
+    padding: 26px 28px; margin-bottom: 28px;
+  }
+  .scenarios .sec-eyebrow { font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #003087; margin-bottom: 6px; }
+  .scenarios h2 { margin: 0 0 6px; font-size: 22px; font-weight: 800; color: #003087; letter-spacing: -0.4px; }
+  .scenarios .sec-intro { font-size: 13px; color: #3C4856; line-height: 1.6; margin-bottom: 18px; max-width: 980px; }
+  .scen-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .scen-card { border-radius: 11px; padding: 18px 20px 16px; color: #fff; }
+  .scen-card.r30  { background: linear-gradient(135deg,#2A6A2A,#3F8B3F); }
+  .scen-card.r250 { background: linear-gradient(135deg,#005EB8,#1A78D5); }
+  .scen-card.sbs  { background: linear-gradient(135deg,#7A5A20,#A88143); }
+  .scen-card .scen-tag { font-size: 10px; font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase; opacity: 0.92; margin-bottom: 8px; }
+  .scen-card .scen-title { font-size: 18px; font-weight: 900; letter-spacing: -0.3px; line-height: 1.15; margin-bottom: 10px; }
+  .scen-card .scen-go-live { font-size: 13px; font-weight: 800; color: #FFD66B; margin-bottom: 14px; }
+  .scen-card.sbs .scen-go-live { color: #FFE6A0; }
+  .scen-card .scen-mile { display: grid; grid-template-columns: 1fr auto; gap: 8px; font-size: 11.5px; line-height: 1.5; padding: 4px 0; border-top: 1px solid rgba(255,255,255,0.18); }
+  .scen-card .scen-mile:first-of-type { border-top: none; }
+  .scen-card .scen-mile span:last-child { color: rgba(255,255,255,0.92); font-weight: 700; }
+  .scen-foot { margin-top: 16px; padding: 12px 16px; border-radius: 8px; background: #FFF9EC; border-left: 4px solid #C9A227; font-size: 12.5px; color: #5C4A1A; line-height: 1.55; }
+  .scen-foot strong { color: #5C4A1A; font-weight: 800; }
+
+  /* Cardinal call */
+  .cardinal-call {
+    background: linear-gradient(135deg, #1A1F2E 0%, #2A3344 100%);
+    color: #fff; border-radius: 14px;
+    padding: 18px 24px; margin-bottom: 28px;
+    box-shadow: 0 6px 18px rgba(0,30,90,0.12);
+    display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: center;
+  }
+  .cardinal-call .cc-mark {
+    font-size: 11px; font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase;
+    color: #FFD66B; background: rgba(255,214,107,0.10);
+    padding: 6px 12px; border-radius: 6px; border: 1px solid rgba(255,214,107,0.25);
+    white-space: nowrap;
+  }
+  .cardinal-call .cc-body { font-size: 13px; color: rgba(255,255,255,0.92); line-height: 1.55; }
+  .cardinal-call .cc-body strong { color: #FFD66B; font-weight: 800; }
+
+  /* Compact timeline strip (visual orientation only) */
+  .strip-wrap {
+    background: #fff; border-radius: 14px; box-shadow: 0 4px 14px rgba(0,30,90,0.06);
+    padding: 22px 28px 26px; margin-bottom: 28px;
+  }
+  .strip-eyebrow { font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #003087; margin-bottom: 6px; }
+  .strip-title { margin: 0 0 6px; font-size: 20px; font-weight: 800; color: #003087; letter-spacing: -0.4px; }
+  .strip-intro { font-size: 12.5px; color: #3C4856; line-height: 1.55; margin-bottom: 18px; max-width: 920px; }
+  .strip {
+    position: relative;
+    height: 170px;
+    background: linear-gradient(180deg, #FAFBFD 0%, #F4F7FB 100%);
+    border: 1px solid #E1E7EF;
+    border-radius: 8px;
+    padding: 14px 32px 0;
+  }
+  .strip-axis {
+    position: absolute;
+    left: 32px; right: 32px;
+    bottom: 28px;
+    height: 2px;
+    background: #003087;
+  }
+  .strip-tick {
+    position: absolute;
+    bottom: -2px;
+    transform: translateX(-50%);
+    width: 1px; height: 8px;
+    background: #003087;
+  }
+  .strip-tick-label {
+    position: absolute;
+    bottom: -22px;
+    transform: translateX(-50%);
+    font-size: 10px; font-weight: 700;
+    color: #003087;
+    white-space: nowrap;
+  }
+  .strip-tick-sub {
+    display: block;
+    font-size: 8.5px; font-weight: 600;
+    color: #5C6B82;
+    margin-top: 1px;
+  }
+  .strip-today {
+    position: absolute;
+    bottom: 0;
+    width: 2px; height: 140px;
+    background: #C0392B;
+    opacity: 0.55;
+  }
+  .strip-today-label {
+    position: absolute;
+    bottom: 142px;
+    transform: translateX(-50%);
+    background: #C0392B; color: #fff;
+    font-size: 8.5px; font-weight: 800; letter-spacing: 0.8px;
+    padding: 2px 6px; border-radius: 3px;
+  }
+
+  /* Strip dots — clickable. Each dot links to its card below. */
+  .strip-dot {
+    position: absolute;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 1px 4px rgba(0,30,90,0.18);
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .strip-dot:hover {
+    transform: translateX(-50%) scale(1.45);
+    box-shadow: 0 4px 12px rgba(0,30,90,0.32);
+    z-index: 5;
+  }
+  .strip-dot.cardinal { background: #C9A227; width: 14px; height: 14px; }
+  .strip-dot.burning  { background: #C0392B; width: 10px; height: 10px; }
+  .strip-dot.tracked  { background: #C9A227; width: 10px; height: 10px; }
+  .strip-dot.future   { background: #2A6A2A; width: 10px; height: 10px; }
+  .strip-dot.gate {
+    background: #5B3A8C; width: 10px; height: 10px;
+    border-radius: 2px;
+    transform: translateX(-50%) rotate(45deg);
+  }
+  .strip-dot.gate:hover { transform: translateX(-50%) rotate(45deg) scale(1.45); }
+
+  /* When a card is briefly highlighted by a dot click */
+  @keyframes card-flash {
+    0%   { box-shadow: 0 0 0 4px rgba(0,48,135,0.30), 0 6px 18px rgba(0,30,90,0.18); }
+    100% { box-shadow: 0 2px 8px rgba(0,30,90,0.05); }
+  }
+  .card.flash { animation: card-flash 1.4s ease-out; }
+
+  /* Legend */
+  .legend {
+    display: flex; flex-wrap: wrap; gap: 14px 22px;
+    margin-top: 18px; padding: 12px 14px;
+    background: #F8FAFC; border-radius: 8px;
+    font-size: 11.5px; color: #3C4856;
+  }
+  .legend-item { display: inline-flex; align-items: center; gap: 7px; }
+  .legend-swatch { display: inline-block; }
+  .legend-swatch.cardinal { width: 14px; height: 14px; border-radius: 50%; background: #C9A227; border: 1px solid #9A6700; }
+  .legend-swatch.burning  { width: 12px; height: 12px; border-radius: 50%; background: #C0392B; }
+  .legend-swatch.tracked  { width: 12px; height: 12px; border-radius: 50%; background: #C9A227; }
+  .legend-swatch.future   { width: 12px; height: 12px; border-radius: 50%; background: #2A6A2A; }
+  .legend-swatch.gate     { width: 11px; height: 11px; background: #5B3A8C; transform: rotate(45deg); }
+  .legend strong { color: #003087; font-weight: 700; }
+
+  /* Items list */
+  .items-section { margin-bottom: 28px; }
+  .items-h {
+    display: flex; align-items: baseline; gap: 14px; margin: 8px 0 14px;
+  }
+  .items-h h2 {
+    margin: 0; font-size: 22px; font-weight: 800; color: #003087; letter-spacing: -0.4px;
+  }
+  .items-h .items-h-sub {
+    font-size: 12.5px; color: #5C6B82; font-weight: 600; margin-left: auto;
+  }
+
+  .cluster {
+    margin-bottom: 18px;
+  }
+  .cluster-h {
+    display: flex; align-items: baseline; gap: 12px;
+    padding: 8px 14px; margin-bottom: 8px;
+    background: #003087; color: #fff;
+    border-radius: 8px;
+  }
+  .cluster-h .cluster-date {
+    font-size: 14px; font-weight: 900; letter-spacing: -0.2px;
+  }
+  .cluster-h .cluster-anchor {
+    font-size: 11.5px; font-weight: 600; color: rgba(255,255,255,0.85); margin-left: auto;
+  }
+  .cluster-h .cluster-anchor strong { color: #FFD66B; font-weight: 800; }
+
+  .cluster.burning .cluster-h { background: #C0392B; }
+  .cluster.tracked .cluster-h { background: #9A6700; }
+  .cluster.future  .cluster-h { background: #2A6A2A; }
+  .cluster.gate    .cluster-h { background: #5B3A8C; }
+
+  /* Cards */
+  .card {
+    background: #fff; border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,30,90,0.05);
+    margin-bottom: 8px;
+    border-left: 5px solid #E1E7EF;
+    cursor: pointer;
+    transition: box-shadow 0.18s ease, transform 0.18s ease;
+  }
+  .card:hover {
+    box-shadow: 0 6px 18px rgba(0,30,90,0.12);
+    transform: translateY(-1px);
+  }
+  .card.cardinal { border-left-color: #C9A227; }
+  .card.burning  { border-left-color: #C0392B; }
+  .card.tracked  { border-left-color: #C9A227; }
+  .card.future   { border-left-color: #2A6A2A; }
+  .card.gate     { border-left-color: #5B3A8C; }
+
+  .card-head {
+    display: grid;
+    grid-template-columns: 56px 1fr auto auto;
+    gap: 14px; align-items: center;
+    padding: 14px 18px;
+  }
+  .card-id {
+    background: #F4F7FB; color: #003087;
+    font-size: 13px; font-weight: 900; letter-spacing: 0.3px;
+    padding: 6px 8px; border-radius: 6px;
+    text-align: center;
+    border: 1px solid #D9E2EE;
+  }
+  .card.cardinal .card-id { background: #FFF9EC; color: #9A6700; border-color: #F0DCA0; }
+  .card.burning  .card-id { background: #FCEFEF; color: #C0392B; border-color: rgba(192,57,43,0.3); }
+  .card.tracked  .card-id { background: #FFF9EC; color: #9A6700; border-color: #F0DCA0; }
+  .card.future   .card-id { background: #F0F7F2; color: #2A6A2A; border-color: rgba(42,106,42,0.3); }
+  .card.gate     .card-id { background: #F1EAF7; color: #5B3A8C; border-color: rgba(91,58,140,0.3); }
+
+  .card-titlewrap { min-width: 0; }
+  .card-title {
+    font-size: 14.5px; font-weight: 800; color: #003087; letter-spacing: -0.2px;
+    line-height: 1.25;
+  }
+  .card-owner {
+    font-size: 11.5px; color: #5C6B82; margin-top: 3px;
+  }
+  .card-owner strong { color: #003087; font-weight: 700; }
+
+  .card-status {
+    font-size: 10px; font-weight: 800; letter-spacing: 1.2px;
+    padding: 4px 8px; border-radius: 4px; text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .card-status.cardinal { background: #FFF9EC; color: #9A6700; }
+  .card-status.burning  { background: #FCEFEF; color: #C0392B; }
+  .card-status.tracked  { background: #FFF9EC; color: #9A6700; }
+  .card-status.future   { background: #F0F7F2; color: #2A6A2A; }
+  .card-status.gate     { background: #F1EAF7; color: #5B3A8C; }
+
+  .card-toggle {
+    width: 28px; height: 28px;
+    border-radius: 6px;
+    background: #F4F7FB;
+    color: #003087;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 800;
+    transition: transform 0.18s ease, background 0.18s ease;
+  }
+  .card.open .card-toggle { transform: rotate(45deg); background: #003087; color: #fff; }
+
+  .card-body {
+    display: none;
+    padding: 0 18px 18px;
+    border-top: 1px solid #EFF3F8;
+    margin-top: -2px;
+  }
+  .card.open .card-body { display: block; }
+  .card-body-intro {
+    font-size: 13px; color: #3C4856; line-height: 1.6;
+    padding: 14px 0 12px;
+  }
+  .meta-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+    margin-bottom: 16px;
+  }
+  .meta-card {
+    background: #F8FAFC; border-radius: 8px; padding: 10px 12px;
+    border-left: 3px solid #E1E7EF;
+  }
+  .meta-card.owner { border-left-color: #003087; }
+  .meta-card.date  { border-left-color: #C9A227; }
+  .meta-card.cons  { border-left-color: #C0392B; }
+  .meta-h {
+    font-size: 9.5px; font-weight: 800; letter-spacing: 1.4px;
+    text-transform: uppercase; margin-bottom: 4px; color: #5C6B82;
+  }
+  .meta-h.owner { color: #003087; }
+  .meta-h.date  { color: #9A6700; }
+  .meta-h.cons  { color: #C0392B; }
+  .meta-body { font-size: 12px; color: #231F20; line-height: 1.5; }
+
+  .rollup-h {
+    font-size: 11px; font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase;
+    color: #5B3A8C; margin: 6px 0 6px;
+  }
+  .rollup-intro { font-size: 12px; color: #3C4856; margin-bottom: 8px; line-height: 1.55; }
+  .rollup-list { margin: 0; padding-left: 20px; font-size: 12px; color: #3C4856; line-height: 1.6; }
+  .rollup-list li { margin-bottom: 3px; }
+  .rollup-list li strong { color: #003087; font-weight: 700; }
+
+  /* Operating logic */
+  .oplog {
+    background: linear-gradient(135deg,#FFF9EC,#FFFFFF);
+    border: 1px solid #F0DCA0; border-left: 6px solid #C9A227;
+    border-radius: 12px; padding: 22px 26px; margin-bottom: 20px;
+  }
+  .oplog .op-eyebrow { font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #9A6700; margin-bottom: 6px; }
+  .oplog h2 { margin: 0 0 10px; font-size: 22px; font-weight: 800; color: #003087; letter-spacing: -0.4px; }
+  .oplog p { font-size: 13px; color: #3C4856; line-height: 1.65; margin: 0 0 10px; }
+  .oplog p:last-child { margin-bottom: 0; }
+  .oplog strong { color: #003087; font-weight: 700; }
+
+  .pf {
+    margin-top: 28px; padding: 16px 20px; background: #fff; border-radius: 10px;
+    border: 1px dashed #d9dee3; font-size: 11.5px; color: #5C6B82; line-height: 1.6;
+  }
+  .pf strong { color: #003087; }
+
+  @media (max-width: 980px) {
+    .scen-grid { grid-template-columns: 1fr; }
+    .meta-grid { grid-template-columns: 1fr; }
+    .cardinal-call { grid-template-columns: 1fr; }
+    .card-head { grid-template-columns: 56px 1fr auto; }
+    .card-status { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="ecosystem-nav">
+  <a href="../index.html">← DTx Ecosystem</a>
+  <span class="nav-context">Decision Inputs Roadmap</span>
+  <span class="nav-product dtx">DTx</span>
+</div>
+
+<div class="header">
+  <div class="header-rule"></div>
+  <div class="eyebrow">Decision inputs roadmap</div>
+  <h1>What we need from the wider programme, and by when.</h1>
+  <div class="sub">The commercial workstream is the <strong>recipient</strong> of the decisions that determine when a procurement vehicle can land. Each card below is an input the programme owes back to commercial. <strong>Click any card to expand the detail</strong>: the substance, the functional owner, the working by-when date, what fails if it slips, and the operational items that roll up to it.</div>
+</div>
+
+<div class="shell">
+
+  <!-- Framing -->
+  <div class="framing">
+    <div class="frame-eyebrow">How to read this page</div>
+    <h2>Drip-feed by dependency, not by architecture.</h2>
+    <p>Three things in order. <strong>One</strong>, the procurement scenarios below show the routes available and what happens if Project Initiation slips. <strong>Two</strong>, the timeline strip is a visual orientation showing where each input sits in time. <strong>Three</strong>, the cards underneath are the inputs themselves, grouped by date cluster. Click any card to expand it for the full detail.</p>
+  </div>
+
+  <!-- Procurement scenarios -->
+  <div class="scenarios">
+    <h2>Three procurement scenarios. One decision window.</h2>
+    <p class="sec-intro">Three routes are live. The route picked depends on the procurement size category (under £50m, over £150m, or SBS framework adoption) and the regime selection (PA23 versus PSR). Each carries its own framework start date. <strong>Project Initiation has to begin on 1 July 2026 for the NHSE routes, or 1 September 2026 for SBS. Everything else downstream is paced from that start date.</strong></p>
+
+    <div class="scen-grid">
+      <div class="scen-card r30">
+        <div class="scen-tag">Scenario A · Fastest</div>
+        <div class="scen-title">NHSE under £50m</div>
+        <div class="scen-go-live">Framework Start · 01 / 07 / 2027</div>
+        <div class="scen-mile"><span>Project Initiation</span><span>01 / 07 / 2026</span></div>
+        <div class="scen-mile"><span>PME</span><span>01 / 08 / 2026</span></div>
+        <div class="scen-mile"><span>Requirements complete</span><span>15 / 09 / 2026</span></div>
+        <div class="scen-mile"><span>OBC DHSC CAB</span><span>30 / 10 / 2026</span></div>
+        <div class="scen-mile"><span>ITT Release</span><span>30 / 11 / 2026</span></div>
+        <div class="scen-mile"><span>FBC DHSC CAB</span><span>15 / 04 / 2027</span></div>
+        <div class="scen-mile"><span>Standstill end</span><span>10 / 06 / 2027</span></div>
+        <div class="scen-mile"><span><strong>Framework Start</strong></span><span><strong>01 / 07 / 2027</strong></span></div>
+      </div>
+      <div class="scen-card r250">
+        <div class="scen-tag">Scenario B · Mid</div>
+        <div class="scen-title">NHSE over £150m</div>
+        <div class="scen-go-live">Framework Start · 01 / 11 / 2027</div>
+        <div class="scen-mile"><span>Project Initiation</span><span>01 / 07 / 2026</span></div>
+        <div class="scen-mile"><span>PME</span><span>01 / 08 / 2026</span></div>
+        <div class="scen-mile"><span>Requirements complete</span><span>15 / 09 / 2026</span></div>
+        <div class="scen-mile"><span>OBC HMT &amp; CO</span><span>15 / 11 / 2026</span></div>
+        <div class="scen-mile"><span>ITT Release</span><span>01 / 02 / 2027</span></div>
+        <div class="scen-mile"><span>ITT Deadline</span><span>15 / 03 / 2027</span></div>
+        <div class="scen-mile"><span>FBC HMT &amp; CO</span><span>22 / 07 / 2027</span></div>
+        <div class="scen-mile"><span>Standstill end</span><span>10 / 10 / 2027</span></div>
+        <div class="scen-mile"><span><strong>Framework Start</strong></span><span><strong>01 / 11 / 2027</strong></span></div>
+      </div>
+      <div class="scen-card sbs">
+        <div class="scen-tag">Scenario C · SBS adoption</div>
+        <div class="scen-title">SBS Sexual Health framework</div>
+        <div class="scen-go-live">Framework Start · 10 / 07 / 2028</div>
+        <div class="scen-mile"><span>Project Initiation</span><span>01 / 09 / 2026</span></div>
+        <div class="scen-mile"><span>PME</span><span>19 / 10 / 2026</span></div>
+        <div class="scen-mile"><span>OBC HMT &amp; CO</span><span>05 / 04 / 2027</span></div>
+        <div class="scen-mile"><span>ITT Release</span><span>13 / 08 / 2027</span></div>
+        <div class="scen-mile"><span>ITT Deadline</span><span>27 / 09 / 2027</span></div>
+        <div class="scen-mile"><span>FBC HMT &amp; CO</span><span>07 / 02 / 2028</span></div>
+        <div class="scen-mile"><span>Standstill end</span><span>31 / 05 / 2028</span></div>
+        <div class="scen-mile"><span><strong>Framework Start</strong></span><span><strong>10 / 07 / 2028</strong></span></div>
+      </div>
+    </div>
+    <div class="scen-foot">
+      <strong>The consequence read.</strong> The fastest route (under £50m) saves four months of governance over the over-£150m route. The SBS route adds twelve months over the under-£50m route. If Project Initiation slips past 1 July 2026 on the NHSE routes, the under-£50m option falls away and the SBS route becomes the only viable path. Framework lands mid-2028 instead of mid-2027.
+    </div>
+  </div>
+
+  <!-- Cardinal callout -->
+  <div class="cardinal-call">
+    <div class="cc-mark">The cardinal four</div>
+    <div class="cc-body">Four inputs identified by SLT. Each one has to land in some form before Project Initiation can begin on 1 July. <strong>Volumes, lotting, commissioning model, clinical &gt;50% determination.</strong> Each can be split: a working position by end June; the detail by mid-September when Requirements Creation closes. Cards C1 to C4 below.</div>
+  </div>
+
+  <!-- Compact timeline strip (visual orientation) -->
+  <div class="strip-wrap">
+    <div class="strip-eyebrow">Timeline · visual orientation</div>
+    <h3 class="strip-title">Where each input sits in time.</h3>
+    <p class="strip-intro">Each dot below marks an input at the date it is needed by. Cardinal four are larger amber dots. The vertical red line marks today. The strip is for orientation only; click the cards underneath to read the detail.</p>
+    <div class="strip" id="strip">
+      <div class="strip-axis"></div>
+    </div>
+    <div class="legend">
+      <span class="legend-item"><span class="legend-swatch cardinal"></span><strong>Cardinal four</strong> · the four named inputs needed before Project Initiation</span>
+      <span class="legend-item"><span class="legend-swatch burning"></span><strong>Burning</strong> · we need an answer now, the deadline is here or has already passed</span>
+      <span class="legend-item"><span class="legend-swatch tracked"></span><strong>Tracked</strong> · working date set, work is in flight</span>
+      <span class="legend-item"><span class="legend-swatch future"></span><strong>Future</strong> · further out, on the radar</span>
+      <span class="legend-item"><span class="legend-swatch gate"></span><strong>Map gate</strong> · a milestone on the wider roadmap</span>
+    </div>
+  </div>
+
+  <!-- Items list -->
+  <div class="items-section">
+    <div class="items-h">
+      <h2>The inputs</h2>
+      <div class="items-h-sub">Click any card to expand</div>
+    </div>
+    <div id="items"></div>
+  </div>
+
+  <!-- Operating logic -->
+  <div class="oplog">
+    <div class="op-eyebrow">Operating logic</div>
+    <h2>How the page is used.</h2>
+    <p>Items live on the programme risk register, framed as dependencies. The wider programme-risk review is the operational forum where the items move. This page is the commercial workstream's view of what is on the register. It does not replace the register; it makes the dependencies legible.</p>
+    <p><strong>Status colour.</strong> Burning items need an answer now: the deadline is here or has already passed. Tracked items have a working date set with work in flight to land them. Future items are further out and on the radar. Cardinal items are the four inputs SLT named on 1 June, each of which has to be answered in some form before Project Initiation begins.</p>
+    <p><strong>Bang the drum.</strong> Commercial is the recipient of these inputs; the programme owns surfacing them. Where a date slips, commercial flags it as a programme-level risk with the named consequence. The conversation is not "you have failed to deliver this." It is "without this by the date below, the procurement timetable shifts to a slower scenario."</p>
+    <p><strong>Updating.</strong> The page is live. Items move status as the inputs land. When an input arrives, the operating model gets updated first; this page follows.</p>
+  </div>
+
+
+</div>
+
+<script>
+// ==========================================================================
+// Decision Inputs Roadmap v0.3 — list-with-strip layout
+// ==========================================================================
+
+// Timeline span (used only for the visual strip — items are listed by cluster)
+var TL_START = new Date('2026-06-01');
+var TL_END   = new Date('2029-03-31');
+
+function pctFor(dateStr) {
+  var d = new Date(dateStr);
+  var total = TL_END - TL_START;
+  var offset = d - TL_START;
+  return Math.max(0, Math.min(100, (offset / total) * 100));
+}
+
+// Axis ticks for the visual strip
+var TICKS = [
+  { date: '2026-07-01', label: 'Jul 26', sub: 'NHSE Init' },
+  { date: '2026-09-01', label: 'Sep 26', sub: 'SBS Init' },
+  { date: '2026-11-15', label: 'Nov 26', sub: 'FY27/28 cycle' },
+  { date: '2027-03-31', label: 'Mar 27', sub: 'Q4 26/27' },
+  { date: '2027-07-01', label: 'Jul 27', sub: 'A starts' },
+  { date: '2027-11-01', label: 'Nov 27', sub: 'B starts' },
+  { date: '2028-07-10', label: 'Jul 28', sub: 'C starts' },
+  { date: '2029-03-31', label: 'Mar 29', sub: 'FY28/29 end' }
+];
+
+// Clusters
+var CLUSTERS = [
+  { id: 'end-jun', label: 'End June 2026', anchor: 'Project Initiation 1 July', status: 'burning' },
+  { id: 'end-jul', label: 'End July 2026', anchor: 'Post-playback consolidation', status: 'tracked' },
+  { id: 'end-q3',  label: 'End Q3 2026 (September)', anchor: 'OBC submission and Public Beta scaling', status: 'tracked' },
+  { id: 'end-q4',  label: 'End Q4 2026 (December)', anchor: 'ITT release and FY27/28 Payment Scheme', status: 'tracked' },
+  { id: 'fy27',    label: 'FY27/28 and beyond', anchor: 'Framework operational and reopen evaluation', status: 'future' }
+];
+
+// Items — pre-categorised by cluster so the renderer is dumb
+var ITEMS = [
+
+  // ---- End June 2026 ----
+  { id: 'C1', cluster: 'end-jun', status: 'cardinal', statusLabel: 'Cardinal',
+    title: 'Volumes',
+    date: '2026-06-30', dateLabel: 'Headline by end June, full numbers by 15 September',
+    owner: 'Programme team (delivery leadership with pathology networks lead)',
+    consequence: 'Without a working headline, we cannot pick the size category for the procurement (under £50m, over £150m, or SBS adoption). Without the full numbers by Requirements Creation, the business case cannot be written.',
+    body: 'How many HIV and PSA tests are we expecting per year, and how many tests live in total on the approved list? A working headline of test numbers and scale is enough to pick the size of the procurement. The full numbers come in later, as the picture firms up.',
+    rollup: [
+      'Beta volume strategy reconciliation (10,000-test FY26/27 commitment, London contingency)',
+      'Addressable market sizing (working order-of-magnitude one million tests)',
+      'Capacity ceilings and overflow mechanism (local commissioning budgets cap volumes)',
+      'PSA-AS volumes profile for the worked example tariff articulation'
+    ],
+},
+  { id: 'C2', cluster: 'end-jun', status: 'cardinal', statusLabel: 'Cardinal',
+    title: 'Lotting',
+    date: '2026-06-30', dateLabel: 'Headline by end June, detail by 15 September',
+    owner: 'Programme team with SLT call',
+    consequence: 'Procurement vehicle cannot be sized. Supplier admission criteria cannot be set. Headline categories must land before Project Initiation; detail by Requirements Creation.',
+    body: 'Articulation of what is being bought: kits, services, diagnostic tests, pathology lab access, end-to-end providers. Drives the £30m vs £250m sizing on the NHSE routes.',
+    rollup: [
+      'Pathology supplier-mix architecture (NHS-pathology-first vs parallel mixed-economy)',
+      'Pathology labs: clinical infrastructure under CSO vs supplier under Commercial Lead',
+      'All-inclusive supplier model viability when suppliers cover a subset of test cases',
+      'Collection-first vs delivery-first supply chain pattern',
+      'Centralised kit procurement viability (NHS stock holding)',
+      'Panel-of-tests sequencing — order in which panels enter the catalogue'
+    ]
+  },
+  { id: 'C3', cluster: 'end-jun', status: 'cardinal', statusLabel: 'Cardinal',
+    title: 'Who is the buyer?',
+    date: '2026-06-30', dateLabel: 'Headline by end June, detail by 15 September',
+    owner: 'Programme team / partnerships lead',
+    consequence: 'Without a working position on who buys the service, we cannot write the contracts. Local authorities, trusts, integrated care boards and pathology networks each need different contract shapes. Generic call-off templates do not survive the first commissioner conversation.',
+    body: 'Who actually pays for the service and signs the contract? The buyer could be a local authority, an NHS trust, an integrated care board (ICB), a pathology network, or NHSE itself. A working position on the most likely buyer for HIV and for PSA is enough to start drafting templates. Detail follows once the buyer is named.',
+    rollup: [
+      'Who is the most likely buyer for HIV? Most likely a local authority. Confirmation needed.',
+      'Who is the most likely buyer for PSA? A trust, an ICB, or a pathology network. Conversation with the pathology networks lead is pending.',
+      'Where do Neighbourhood Health Centres fit? Are they buyers in their own right, or a delivery channel paid for through another budget?',
+      'Is the NHS App the default place a patient orders a kit, or does that journey live somewhere else?',
+      'How does the platform plug into trust systems? Reuse the existing genomics integration platform, collaborate on a shared one, or build new.'
+    ]
+  },
+  { id: 'C4', cluster: 'end-jun', status: 'cardinal', statusLabel: 'Cardinal',
+    title: 'Is what we are buying mostly clinical?',
+    date: '2026-06-30', dateLabel: 'Working position by end June, written confirmation by 15 September',
+    owner: 'NHSE Legal with clinical input',
+    consequence: 'The answer changes which procurement law applies. If mostly clinical, the Procurement Act 2023 (PA23) is the route, and a PA23 dynamic market is the leading long-term vehicle. If not, the Procurement Services Regulations (PSR) apply. Without a working position, we cannot draft an OBC that points at the right legislation.',
+    body: 'Is the service we are buying more than half clinical service, rather than goods, kits or technology? Our working assumption is yes, it is mostly clinical. That points to PA23 as the procurement regime, and to a PA23 dynamic market as the long-term vehicle if we ever stand a framework up. NHSE Legal needs to confirm in writing.',
+    rollup: [
+      'Working assumption logged in writing: yes, the service is mostly clinical, so PA23 applies and a PA23 dynamic market is the leading long-term vehicle.',
+      'Confirmation that the interim shape (PSR plus standard call-off plus approved list) sits comfortably alongside the assumption, so we can run interim now and reopen the framework later.',
+      'Confirmation that the SBS Sexual Health framework remains usable as a parallel route while the interim runs.'
+    ]
+  },
+  { id: '05', cluster: 'end-jun', status: 'burning', statusLabel: 'Burning',
+    title: 'NHSE Legal written view on the interim shape',
+    date: '2026-06-30', dateLabel: 'Verbal position by end June, written sign-off by 15 September',
+    owner: 'NHSE Legal',
+    consequence: 'Without a verbal position, the interim shape cannot be defended at SLT playback. Without a written sign-off by Requirements Creation, the OBC carries a load-bearing assumption that can be challenged.',
+    body: 'The interim shape is PSR plus a standard NHS call-off plus an approved supplier list. NHSE Legal is content verbally. We need that view in writing, signed off, so the architecture rests on more than a conversation.',
+    rollup: [
+      'Framework administration route (NHSE direct, SBS, CCS, third-party)',
+      'Standard call-off template authored and signed off',
+      'Approved supplier list register format and governance',
+      'Public Beta commercial route for HIV',
+      'Permanent platform hosting (NHSE, ALB, new entity)',
+      'CONTRACT exit terms inside the contractual instrument',
+      'How framework accommodates future conditions beyond HIV',
+      'NHS Supply Chain POCT framework interface'
+    ]
+  },
+  { id: '06', cluster: 'end-jun', status: 'burning', statusLabel: 'Burning',
+    title: 'PTT directions decision on HIV private beta',
+    date: '2026-06-30', dateLabel: 'Initial steer by end June, definitive yes/no by 15 September',
+    owner: 'PTT (NHSE IG)',
+    consequence: 'Without an initial steer, the private beta cannot run with confidence. Without a definitive answer by Requirements Creation, we cannot lock the IG architecture for the procurement.',
+    body: 'Is a legal direction required for the HIV private beta? Question issued early May, six-week SLA already burned, escalation route active. An initial steer is enough to keep the private beta moving; the definitive yes or no needs to land before Requirements Creation.',
+    rollup: [
+      'Standing joint forum between IG / DPO, Commercial, Clinical Safety',
+      'Standing template library (DPIA, DSA, supplier IG criteria)',
+      'Escalation route to NHSE IG / DPO leadership',
+      'Formal IG / DPO sign-off on the pipes-vs-treatment-plant screening lens',
+      'Controller framework per configuration; lawful basis confirmation',
+      'DSPT alignment surfaced as a structural TOM component',
+      'DHSC / NHSE merger replacement mechanism (Apr 2027 merger)',
+      'PTT scope portability across clinical areas'
+    ]
+  },
+  { id: '08', cluster: 'end-jun', status: 'burning', statusLabel: 'Overdue',
+    title: 'Health Economist onboarded',
+    date: '2026-06-15', dateLabel: 'Overdue, should already have happened',
+    owner: 'SRO with Commercial Lead escalation',
+    consequence: 'The recommendation paper itself can still land without this in place. The work behind it cannot. Pricing model, supply-chain cost analysis, financial impairment and volumes substantiation all stall. The longer this slips, the thinner the substantiation behind anything we recommend.',
+    body: 'Two days a week, MVP requirement. Stuck in the approval chain since late April. Was meant to be in seat weeks ago. Onboarding needs to happen as soon as the approval chain releases, not at end June.',
+    rollup: [
+      'Cost-per-test baseline established (MEASURE)',
+      'Attribution methodology linking a kit to a downstream clinical outcome',
+      'Pricing structure (A9) substantiation: three-tier model on cost per valid result',
+      'Addressable market sizing model',
+      'Capacity ceilings and overflow mechanism',
+      'KPI framework designed',
+      'MEASURE marketplace health metrics (NPS, referral rates, satisfaction)'
+    ]
+  },
+
+  // ---- End July 2026 ----
+  { id: '07', cluster: 'end-jul', status: 'tracked', statusLabel: 'Tracked',
+    title: 'IAO finalisation',
+    date: '2026-07-31', dateLabel: 'End July 2026',
+    owner: 'SRO',
+    consequence: 'Platform cannot be formally signed off as ready to process live patient data.',
+    body: 'A candidate has been agreed in principle. Finalisation pending HomeTest transition from Digital Prevention Services Portfolio to At Home and Community from mid-June. Four-week settle window after the transition.',
+    rollup: [
+      'IAO appointment finalised post-transition',
+      'IAO scope confirmed in the new parent function',
+      'Boilerplate IG packs (light-touch option for commissioners with pre-cleared artefacts)',
+      'HealthStore lawful basis for cross-configuration data reuse',
+      'HealthSync patient permission / consent model lawful basis'
+    ]
+  },
+  { id: '10', cluster: 'end-jul', status: 'tracked', statusLabel: 'Tracked',
+    title: 'Engagement team confirmed and resourced',
+    date: '2026-07-31', dateLabel: 'End July 2026',
+    owner: 'Programme sponsor / SLT',
+    consequence: 'Without a named engagement team in place and resourced, the work to bring commissioners and suppliers in cannot begin. The model relies on one coordinated team doing this; without it, conversations happen ad hoc and lose momentum.',
+    body: 'A small team running the conversations with commissioners, suppliers, clinical leads and senior NHS contacts. We need the sponsor to confirm the team is wanted, name a lead, and approve the time allocation across the people who will sit in it.',
+    rollup: [
+      'A named lead for the engagement team',
+      'Agreed time allocation (roughly how many days a week per person)',
+      'A pitch-deck kit the team can use in conversations',
+      'Clear handover point between the team and the commercial machinery once a partner is warmed up'
+    ]
+  },
+  { id: '12a', cluster: 'end-jul', status: 'tracked', statusLabel: 'Tracked',
+    title: 'PSA Active Surveillance tariff position',
+    date: '2026-08-15', dateLabel: 'Position formed by end July, submitted to NHSE Pricing in August',
+    owner: 'Strategic Finance · Tariff lead',
+    consequence: 'NHSE Pricing closes its August window for the FY27/28 Payment Scheme. Miss it and PSA-AS goes through the next cycle without a tariff position; commissioners pay through other budgets in the meantime.',
+    body: 'A defended position on how PSA Active Surveillance home tests get paid for. Strategic Finance is writing the proposal; commercial needs the position to be set so the recommendation paper can carry the tariff approach. The proposal goes through NHSE Pricing in August to land in the FY27/28 Payment Scheme cycle.',
+    rollup: [
+      'Should-cost substantiation: a defended view of what the test actually costs to deliver, supported by analysis',
+      'Pricing structure agreed: a mix of mobilisation fee, per-test activity and volume floor',
+      'How payment flows in the early months before the steady-state route is operational',
+      'Whether centralised invoicing is a longer-term option to consider'
+    ]
+  },
+
+  // ---- End Q3 2026 ----
+  { id: '11', cluster: 'end-q3', status: 'tracked', statusLabel: 'Tracked',
+    title: 'Supplier admission and removal machinery',
+    date: '2026-09-30', dateLabel: 'Both halves by end Q3 2026 (admission journey and removal protocol)',
+    owner: 'Commercial Lead with NHSE Legal',
+    consequence: 'Without a tested admission journey, suppliers cannot join the approved list with confidence. Without a defensible removal protocol the first time it bites, the approved list locks in to first-mover suppliers by default. Public Beta cannot scale without both.',
+    body: 'The machinery by which suppliers get onto the approved list and the machinery by which they come off it. Admission criteria, application route, assessment, contract sign, go-live on one side. Triggers, thresholds, evidence, appeals and patient continuity on the removal side. Real-world example needed before the first wave of admissions in private beta scales out.',
+    rollup: [
+      'Admission criteria across the five dimensions: accreditation, clinical safety, data handling, technical fit, commercial terms',
+      'Application route: how a supplier expresses interest, lodges evidence, gets assessed',
+      'Sign-off authority for admission to the approved list (who actually says yes)',
+      'Standard call-off template that wave entrants sign once they are admitted',
+      'Removal triggers: what counts as failing the standard',
+      'Evidence threshold: how much evidence is enough to remove',
+      'Appeals route for a supplier facing removal',
+      'Patient continuity when a supplier is removed mid-cohort',
+      'Audit trail discipline so every admission and removal can be defended later',
+      'Minimum supplier count to keep choice alive (per region, per pathway)'
+    ]
+  },
+  { id: '09', cluster: 'end-q3', status: 'tracked', statusLabel: 'Tracked',
+    title: 'Two senior posts to fill: Independent Assurance and Clinical Safety',
+    date: '2026-09-30', dateLabel: 'End Q3 2026',
+    owner: 'SRO',
+    consequence: 'Without these two roles in seat, there is nobody senior independent of suppliers checking they meet the bar, and nobody senior owning clinical safety across HIV, PSA and whatever follows. The approved list cannot scale safely.',
+    body: 'Two senior posts that need to exist before scaling. An Independent Assurance Lead who checks suppliers meet the standard before they join the approved list. A Chief Safety Officer who owns clinical safety across the products. Both posts need creating and filling.',
+    rollup: [
+      'Independent Assurance Lead post created and filled, with authority to gate supplier admission',
+      'Chief Safety Officer post created and filled, with clinical accountability across HIV, PSA and future conditions',
+      'How clinical safety is arranged for PSA Active Surveillance (radiotherapy cohort is the lead case)',
+      'Where NHSE clinical responsibility sits when a local authority commissions the test'
+    ]
+  },
+  { id: '14', cluster: 'end-q3', status: 'tracked', statusLabel: 'Tracked',
+    title: 'Body that signs off supplier admissions',
+    date: '2026-09-30', dateLabel: 'End Q3 2026',
+    owner: 'SRO with Clinical Safety lead',
+    consequence: 'Without a final-authority body, every supplier admission sits with one person. Disputes have nowhere to escalate. The list cannot scale.',
+    body: 'A board with named members and clear authority. It signs off supplier admissions, hears disputes, and updates the standards over time. Without it, the approved list machinery cannot run at scale.',
+    rollup: [
+      'Membership of the board agreed',
+      'Authority of the board defined: which decisions it owns end-to-end',
+      'Cadence: how often it meets, when it can be called urgently',
+      'Dispute and appeals process',
+      'How standards updates flow through the board'
+    ]
+  },
+
+  // ---- End Q4 2026 ----
+  { id: '12b', cluster: 'end-q4', status: 'tracked', statusLabel: 'Tracked',
+    title: 'Longer-term tariff architecture',
+    date: '2026-12-15', dateLabel: 'End Q4 2026',
+    owner: 'Strategic Finance with HealthStore lead',
+    consequence: 'The FY28/29 cycle lacks the longer-term picture. The platform itself has no funding mechanism beyond per-test payment. Cross-product assurance work has no funding home.',
+    body: 'Two tariff questions sit beyond the per-test position for PSA Active Surveillance. How does the shared platform get funded as a utility used by every product, once the Build money runs out? How does the assurance work get funded across the portfolio, not per product? Both need a position in time for the FY28/29 Payment Scheme cycle.',
+    rollup: [
+      'How the shared platform is funded once Build money runs out',
+      'How the assurance work is funded across HIV, PSA and HealthStore',
+      'HealthStore co-sign on both positions',
+      'Interim bridge mechanisms between the per-test position and the longer-term picture'
+    ]
+  },
+  { id: '13', cluster: 'end-q4', status: 'tracked', statusLabel: 'Tracked',
+    title: 'Cross-product roles to define and fill',
+    date: '2026-12-15', dateLabel: 'End Q4 2026',
+    owner: 'SRO with SLT',
+    consequence: 'Several jobs need owners working across products, not per product. Without named owners, the work gets picked up by accident or falls through the cracks. Steady-state operation lacks clear accountability.',
+    body: 'A handful of jobs that thread across HIV, PSA and future conditions need named owners. Without them, the work either gets done by accident or not at all.',
+    rollup: [
+      'Post-market surveillance lead: monitors safety after products go live; interface with the MHRA',
+      'Pathway integration lead: makes sure admitted products plug into local clinical workflows',
+      'Contract management lead: post-execution lifecycle for each call-off',
+      'Evidence generation lead: continuous evidence across admitted products',
+      'Equality and health-inequality assessment lead: cross-product EHIA discipline'
+    ]
+  },
+
+  // ---- FY27/28 and beyond — map gates only ----
+  { id: 'G3a', cluster: 'fy27', status: 'gate', statusLabel: 'Map Gate',
+    title: 'Gate 3 · Scenario A · NHSE under £50m',
+    date: '2027-07-01', dateLabel: '01 / 07 / 2027',
+    owner: 'SLT with NHSE Legal',
+    consequence: 'Procurement vehicle confirmed and operational under the NHSE under-£50m route.',
+    body: 'Framework Start date if the under-£50m route is picked. Fastest of the three scenarios.',
+    rollup: ['Scenario A Framework Start.']
+  },
+  { id: 'G3b', cluster: 'fy27', status: 'gate', statusLabel: 'Map Gate',
+    title: 'Gate 3 · Scenario B · NHSE over £150m',
+    date: '2027-11-01', dateLabel: '01 / 11 / 2027',
+    owner: 'SLT with NHSE Legal',
+    consequence: 'Procurement vehicle confirmed and operational under the NHSE over-£150m route.',
+    body: 'Framework Start date if the over-£150m route is picked. Adds four months versus Scenario A for the additional governance.',
+    rollup: ['Scenario B Framework Start.']
+  },
+  { id: 'G5', cluster: 'fy27', status: 'gate', statusLabel: 'Map Gate',
+    title: 'Map Gate 5 · Framework reopen evaluation',
+    date: '2027-11-15', dateLabel: 'FY28/29 planning round',
+    owner: 'SLT with NHSE Legal',
+    consequence: 'Reopen triggers evaluated. If triggers fire, PA23 dynamic market is the leading candidate vehicle.',
+    body: 'Reopen triggers evaluated against the named conditions: portfolio scale (around ten live tests), aggregate transacted volume, supplier asks, NHSE Legal interim-vehicle position. PA23 dynamic market the leading candidate if reopened. Evaluation at FY28/29 planning round.',
+    rollup: ['Map Gate 5 anchor.']
+  },
+  { id: 'G3c', cluster: 'fy27', status: 'gate', statusLabel: 'Map Gate',
+    title: 'Gate 3 · Scenario C · SBS Sexual Health',
+    date: '2028-07-10', dateLabel: '10 / 07 / 2028',
+    owner: 'SLT with NHSE Legal',
+    consequence: 'Procurement vehicle confirmed and operational under the SBS framework adoption route. Slowest of the three scenarios.',
+    body: 'Framework Start date if the SBS Sexual Health framework adoption route is picked. Twelve months later than Scenario A.',
+    rollup: ['Scenario C Framework Start.']
+  }
+
+];
+
+// ===== Helper =====
+function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+// ===== Render the timeline strip =====
+(function renderStrip() {
+  var strip = document.getElementById('strip');
+  if (!strip) return;
+  var stripWidth = function() { return strip.clientWidth - 64; }; // 32px padding each side
+
+  // Ticks
+  TICKS.forEach(function(t) {
+    var p = pctFor(t.date);
+    var tick = document.createElement('div');
+    tick.className = 'strip-tick';
+    tick.style.left = 'calc(32px + ' + p + '% * (100% - 64px) / 100%)';
+    // Use simpler positioning: percentage of strip width
+    tick.style.left = 'calc(' + p + '% * (100% - 64px) / 100% + 32px)';
+    // Easier: use absolute pixel-based; we'll position with percentages of usable area
+    // Reset and use a wrapper-based approach
+    strip.appendChild(tick);
+    var lab = document.createElement('div');
+    lab.className = 'strip-tick-label';
+    lab.style.left = tick.style.left;
+    lab.innerHTML = t.label + '<span class="strip-tick-sub">' + t.sub + '</span>';
+    strip.appendChild(lab);
+  });
+
+  // Dots — one per ITEM. Stagger vertically when items share (or nearly share)
+  // a date so they don't sit on top of each other. The earliest item in a
+  // cluster sits closest to the axis; later ones rise above it.
+  var CLUSTER_TOL = 0.6; // % of timeline span; ~6 days at this scale
+  var STACK_STEP = 17;   // px between stacked dots — enough that 14px cardinal dots clear the 10px burning dots above them
+  var stackTracker = []; // { p: percent, count: int }
+
+  ITEMS.forEach(function(item) {
+    var p = pctFor(item.date);
+    // Find an existing cluster within tolerance
+    var cluster = null;
+    for (var i = 0; i < stackTracker.length; i++) {
+      if (Math.abs(stackTracker[i].p - p) < CLUSTER_TOL) { cluster = stackTracker[i]; break; }
+    }
+    var stackIndex;
+    if (cluster) { stackIndex = cluster.count; cluster.count++; }
+    else { stackIndex = 0; stackTracker.push({ p: p, count: 1 }); }
+
+    var dot = document.createElement('div');
+    dot.className = 'strip-dot ' + item.status;
+    dot.style.left = 'calc(' + p + '% * (100% - 64px) / 100% + 32px)';
+    var baseBottom = item.status === 'cardinal' ? 34 : 32;
+    dot.style.bottom = (baseBottom + stackIndex * STACK_STEP) + 'px';
+    dot.title = item.id + ' · ' + item.title + ' · ' + item.dateLabel;
+    dot.setAttribute('data-target', item.id);
+
+    dot.addEventListener('click', function() {
+      var card = document.querySelector('.card[data-id="' + item.id + '"]');
+      if (!card) return;
+      card.classList.add('open');
+      // Brief flash so the eye lands on it after the scroll
+      card.classList.remove('flash');
+      void card.offsetWidth;
+      card.classList.add('flash');
+      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    strip.appendChild(dot);
+  });
+
+  // TODAY line
+  var todayPct = pctFor(new Date().toISOString().slice(0,10));
+  var today = document.createElement('div');
+  today.className = 'strip-today';
+  today.style.left = 'calc(' + todayPct + '% * (100% - 64px) / 100% + 32px)';
+  strip.appendChild(today);
+  var tlab = document.createElement('div');
+  tlab.className = 'strip-today-label';
+  tlab.style.left = today.style.left;
+  tlab.textContent = 'TODAY';
+  strip.appendChild(tlab);
+})();
+
+// ===== Render the items list =====
+(function renderItems() {
+  var container = document.getElementById('items');
+  if (!container) return;
+
+  CLUSTERS.forEach(function(c) {
+    var clusterItems = ITEMS.filter(function(it) { return it.cluster === c.id; });
+    if (!clusterItems.length) return;
+    // Sort so urgency is the read-order: burning (and overdue) first, then
+    // cardinal, then tracked, then future, then map gates. Inside a status
+    // bucket, keep array order.
+    var rank = { burning: 0, cardinal: 1, tracked: 2, future: 3, gate: 4 };
+    clusterItems.sort(function(a, b) {
+      return (rank[a.status] !== undefined ? rank[a.status] : 99)
+           - (rank[b.status] !== undefined ? rank[b.status] : 99);
+    });
+
+    var cl = document.createElement('div');
+    cl.className = 'cluster ' + c.status;
+
+    var ch = document.createElement('div');
+    ch.className = 'cluster-h';
+    ch.innerHTML =
+      '<span class="cluster-date">' + esc(c.label) + '</span>' +
+      '<span class="cluster-anchor">Anchor · <strong>' + esc(c.anchor) + '</strong></span>';
+    cl.appendChild(ch);
+
+    clusterItems.forEach(function(item) {
+      var card = document.createElement('div');
+      card.className = 'card ' + item.status;
+      card.setAttribute('data-id', item.id);
+
+      var rollupHtml = item.rollup.map(function(r) { return '<li>' + esc(r) + '</li>'; }).join('');
+
+      card.innerHTML =
+        '<div class="card-head">' +
+          '<div class="card-id">' + esc(item.id) + '</div>' +
+          '<div class="card-titlewrap">' +
+            '<div class="card-title">' + esc(item.title) + '</div>' +
+            '<div class="card-owner"><strong>' + esc(item.dateLabel) + '</strong> · ' + esc(item.owner) + '</div>' +
+          '</div>' +
+          '<div class="card-status ' + item.status + '">' + esc(item.statusLabel) + '</div>' +
+          '<div class="card-toggle">+</div>' +
+        '</div>' +
+        '<div class="card-body">' +
+          '<p class="card-body-intro">' + esc(item.body) + '</p>' +
+          '<div class="meta-grid">' +
+            '<div class="meta-card owner"><div class="meta-h owner">Owner</div><div class="meta-body">' + esc(item.owner) + '</div></div>' +
+            '<div class="meta-card date"><div class="meta-h date">By when</div><div class="meta-body">' + esc(item.dateLabel) + '</div></div>' +
+            '<div class="meta-card cons"><div class="meta-h cons">If it slips</div><div class="meta-body">' + esc(item.consequence) + '</div></div>' +
+          '</div>' +
+          '<div class="rollup-h">Operational rollup</div>' +
+          '<p class="rollup-intro">The questions that need answering inside this dependency.</p>' +
+          '<ul class="rollup-list">' + rollupHtml + '</ul>' +
+        '</div>';
+
+      // Toggle on click. Whole card area is the click target so misses are impossible.
+      card.addEventListener('click', function() {
+        card.classList.toggle('open');
+      });
+
+      cl.appendChild(card);
+    });
+
+    container.appendChild(cl);
+  });
+})();
+</script>
+
+</body>
+</html>

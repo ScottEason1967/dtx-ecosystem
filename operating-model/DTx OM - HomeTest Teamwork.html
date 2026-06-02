@@ -717,6 +717,7 @@
       <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
     </summary>
     <div class="cap-detail">
+      <div style="margin:0 0 14px;padding:11px 14px;background:#F4F6F8;border-left:3px solid #005EB8;border-radius:0 4px 4px 0;font-size:12.5px;line-height:1.5;color:#3C4856;">Live tracker of the open inputs and dependencies this capability is waiting on the wider programme to land: <a href="DTx OM - Decision Inputs Roadmap.html" style="color:#005EB8;font-weight:700;text-decoration:none;">Decision Inputs Roadmap &rarr;</a></div>
       <div class="detail-section">
         <div class="detail-h detail-h-stand">Stand it up &mdash; detail</div>
         <div class="stand-detail">
@@ -1047,7 +1048,8 @@
             <li>Permanent BAU operations team sized and stood up</li>
             <li>Steady-state incident management mechanics defined</li>
             <li>Service standards and SLAs defined</li>
-            <li>Result handling for unhappy paths designed</li>
+            <li>Result delivery failure handling designed</li>
+            <li>Reactive result clinical pathway hardened pre-BAU</li>
             <li>Patient withdrawal handling defined</li>
             <li>Repeat-test cadence codified per configuration</li>
             <li>Supplier-switching mechanism operational</li>
@@ -1083,7 +1085,8 @@
           <div class="stand-row"><div class="stand-row-text"><strong>BAU operations team (sizing, building, running)</strong>The standing team that runs the live service every day once the platform is in steady state. Has to be sized, scoped (shifts, supplier liaison shape, capacity, escalation routes) and stood up before Year 2 with a five-month lead time.</div><span class="pill pill-open">Open</span><span class="size-pill size-xl">XL</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Incident management and cross-platform support</strong>How operational incidents are triaged, who owns resolution, how clinical and IG incidents escalate, how cross-supplier issues are coordinated when multiple suppliers and labs are in the same incident chain. Steady-state mechanics not defined.</div><span class="pill pill-open">Open</span><span class="size-pill size-s">S</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Service standards and SLAs</strong>Service Level Agreements that define what good operational performance looks like: kit dispatch times, sample return windows, result turnaround, exception handling response times. Not yet defined; needed before commissioners can hold the service to account.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Result handling for unhappy paths</strong>What the platform does if a result is missing, late, or fails delivery via NHS App. Backstop process not specified.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Result delivery failure handling</strong>What the platform does if a result is missing, late, or fails delivery via NHS App. Backstop process not specified.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Reactive result clinical pathway</strong>What happens clinically when a result is reactive or abnormal. Architecture is in place: Reactive Results API implemented, supplier obligation of clinical follow-up before escalation, platform-side safety control withholds the result from user-visible release and triggers the clinical pathway, data controller split defined across platform, commissioned service and supplier. Onward referral routes mapped per configuration (LA sexual health for HIV, acute trust for PSA Active Surveillance, GP for HbA1c, CVKM pathway for cardiovascular). Hardening pre-BAU: watertight safety-net evidence is a Beta exit criterion; hard-coded fail-safes still under validation.</div><span class="pill pill-flight">In flight</span><span class="size-pill size-m">M</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Patient withdrawal</strong>What happens if a patient orders a test, then withdraws consent, fails to return the sample, or the kit times out. Affects data retention, lab notification, clinician notification, and whether the patient is later re-prompted. Not yet defined.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Repeat-test cadence</strong>How often patients should retest after a non-reactive or in-range result. Varies by configuration and not yet codified.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Panel-of-tests sequencing</strong>How multi-condition panels (e.g. a combined HIV + STI panel) are introduced to commissioners over time, and the order in which they enter the catalogue. Affects supplier admission, accreditation and sign-off because each panel changes the clinical and IG profile. Not yet defined.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>

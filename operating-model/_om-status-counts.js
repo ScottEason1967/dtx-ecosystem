@@ -17,7 +17,7 @@
 // =============================================================================
 
 window.OM_STATUS_COUNTS = {
-  hometest:    { unresolved: 80, in_progress: 35 },
+  hometest:    { unresolved: 80, in_progress: 36 },
   // Add HealthStore and HealthSync when their Status sections are stood up:
   // healthstore: { unresolved: 0, in_progress: 0 },
   // healthsync:  { unresolved: 0, in_progress: 0 },

@@ -317,6 +317,16 @@
   .fd-stack-band-l3 { background: linear-gradient(135deg, #D5E8F0, #E8F1F6); color: var(--text); border: 1px solid rgba(0,94,184,0.18); }
   .fd-stack-band-l4 { background: linear-gradient(135deg, #F5F8FC, #FAFBFD); color: var(--text); border: 1px solid rgba(0,94,184,0.14); }
   .fd-stack-band-l5 { background: linear-gradient(135deg, var(--warm-cream), #FFFCF1); color: var(--text); border: 1px solid #F0DCA0; }
+  .fd-stack-derived-h {
+    font-size: 10px; font-weight: 800; letter-spacing: 1.8px; text-transform: uppercase;
+    color: #5B3A8C; margin: 20px 0 6px; padding: 0 4px;
+  }
+  .fd-stack-band-derived {
+    background: linear-gradient(135deg, #F1EAF7, #FAF6FE);
+    color: var(--text); border: 1px dashed rgba(91,58,140,0.35);
+  }
+  .fd-stack-band-derived .fd-stack-num { background: #5B3A8C; color: #fff; }
+  .fd-stack-band-derived .fd-stack-name { color: #5B3A8C; }
   .fd-stack-num {
     font-size: 10px;
     font-weight: 800;
@@ -493,11 +503,22 @@
         <div class="fd-door-cta">Open</div>
       </a>
 
+      <a class="fd-door" href="operating-model/DTx OM - Decision Inputs Roadmap.html">
+        <div class="fd-door-head">
+          <div class="fd-door-num">7</div>
+          <span class="fd-door-status live">Live</span>
+        </div>
+        <h3 class="fd-door-title">Decision Inputs Roadmap</h3>
+        <p class="fd-door-desc">What we need from the wider programme, and by when. Cardinal inputs anchored to the procurement timetable shared by NHSE Commercial (2 June 2026). Three procurement scenarios mapped (NHSE under £50m, NHSE over £150m, SBS framework adoption) with the consequence of slip per scenario.</p>
+        <div class="fd-door-meta"><strong>Reader:</strong> SLT and programme leads. The drip-feed view of what is owed back to commercial.</div>
+        <div class="fd-door-cta">Open</div>
+      </a>
+
     </div>
 
     <div class="fd-stack">
       <div class="fd-stack-title">How the artefacts fit together</div>
-      <p class="fd-stack-sub">The five spine artefacts form a stack. The Map sits at the top as the strategic front door. The DTx OM sits behind it as the architectural reference. The Playbooks sit in the middle as the operations layer. The Position Papers sit below as the formal stated positions. The Hearts and Minds materials sit alongside as the persuasion layer drawn from the OM's character work.</p>
+      <p class="fd-stack-sub">The five spine artefacts form a stack. The Map sits at the top as the strategic front door. The DTx OM sits behind it as the architectural reference. The Playbooks sit in the middle as the operations layer. The Position Papers sit below as the formal stated positions. The Hearts and Minds materials sit alongside as the persuasion layer drawn from the OM's character work. A derived view sits alongside the spine: the Decision Inputs Roadmap, consolidated from the spine artefacts to surface what we need from the wider programme and by when.</p>
       <div class="fd-stack-bands">
         <div class="fd-stack-band fd-stack-band-l1">
           <span class="fd-stack-num">L1</span>
@@ -523,6 +544,12 @@
           <span class="fd-stack-num">L5</span>
           <span class="fd-stack-name">Hearts and Minds materials</span>
           <span class="fd-stack-tag">The story we tell on the road</span>
+        </div>
+        <div class="fd-stack-derived-h">Derived view · drip-feed surface</div>
+        <div class="fd-stack-band fd-stack-band-derived">
+          <span class="fd-stack-num">DV</span>
+          <span class="fd-stack-name">Decision Inputs Roadmap</span>
+          <span class="fd-stack-tag">What we need from the wider programme, and by when</span>
         </div>
       </div>
     </div>
