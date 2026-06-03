@@ -71,7 +71,7 @@
  .q-who { color: var(--nhs-pink); font-weight: 800; }
  .q-why { color: var(--amber-deep); font-weight: 800; }
  .grid-wrap { position: relative; margin-bottom: 80px; }
- .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+ .grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 4px; }
  .tile-cell { position: relative; display: flex; }
  .tile { background: var(--card); border: 1px solid var(--border-lt); border-radius: 14px; padding: 30px 30px 26px; text-decoration: none; color: inherit; transition: transform 0.18s ease, box-shadow 0.22s ease, border-color 0.18s ease; position: relative; display: flex; flex-direction: column; box-shadow: 0 2px 6px rgba(0,32,64,0.04); overflow: hidden; width: 100%; min-height: 380px; }
  .tile:hover { transform: translateY(-3px); box-shadow: 0 14px 34px rgba(0,32,64,0.10); }
@@ -132,7 +132,7 @@
  .cast-rule { width: 72px; height: 4px; background: var(--amber); border-radius: 2px; margin-bottom: 18px; }
  .cast-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 2.2px; color: rgba(255,255,255,0.85); text-transform: uppercase; margin-bottom: 14px; }
  .cast-title { font-size: 32px; font-weight: 800; color: #fff; letter-spacing: -0.7px; line-height: 1.1; margin-bottom: 12px; }
- .cast-intro { font-size: 14.5px; color: rgba(255,255,255,0.92); line-height: 1.65; max-width: 640px; margin-bottom: 28px; }
+ .cast-intro { font-size: 14.5px; color: rgba(255,255,255,0.92); line-height: 1.65; max-width: none; margin-bottom: 28px; }
  .cast-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
  .cast-row.cast-patients { grid-template-columns: repeat(3, 1fr); max-width: 720px; margin: 0 auto 14px; }
  .cast-row.cast-roles { grid-template-columns: repeat(6, 1fr); margin-top: 14px; }
@@ -662,8 +662,8 @@
   <div class="cast">
  <div class="cast-rule"></div>
  <div class="cast-eyebrow">The cast</div>
- <h2 class="cast-title">Universal actors at the centre. Product-specific actors around them.</h2>
- <p class="cast-intro">An operating model is a set of relationships between people. <strong>NHSE orchestrates the market; the people do the work.</strong> Five universal operating roles thread through every Digital Therapeutics product (Sarah, Aisha, Priya, David, Ngozi). <strong>Aisha, David and Ngozi are part of the platform itself</strong>: Aisha is the clinical framework, David the commercial framework, Ngozi the information governance framework. The Service Wrapper they form is what surrounds every supplier-commissioner-patient triangle. Product-specific actors sit around the wraparound: HomeTest, HealthStore and HealthSync each have their own supplier archetype and patient archetypes.</p>
+ <h2 class="cast-title">Universal roles at the centre. Product-specific actors around them.</h2>
+ <p class="cast-intro">An operating model is a set of relationships between people. <strong>NHSE orchestrates the market; the people do the work.</strong> Six universal operating roles thread through every Digital Therapeutics product. <strong>Four are platform-level</strong> (Aisha clinical / CSG, Priya NHSE Platform, David NHS Commercial, Ngozi IG): one person each, identical across products. <strong>Two are role archetypes</strong> (Commissioner, Clinician): the role threads through every product, but the institution or specialty behind it varies per configuration. Product-specific actors sit around the wraparound: HomeTest, HealthStore and HealthSync each have their own supplier archetype and patient archetypes.</p>
 
  <!-- HUB: universal actors -->
  <div class="hub-centre-panel" style="background:linear-gradient(135deg,rgba(255,255,255,0.98),rgba(255,255,255,0.94));border:1px solid rgba(255,255,255,0.20);border-radius:16px;padding:28px 32px;margin:24px 0 14px;box-shadow:0 14px 40px rgba(0,32,64,0.10);">
@@ -671,12 +671,25 @@
  <div style="width:48px;height:4px;background:var(--amber);border-radius:2px;"></div>
  <div style="font-size:11px;font-weight:800;letter-spacing:1.6px;color:var(--amber-deep);text-transform:uppercase;">Universal &middot; the hub</div>
  </div>
- <h3 style="font-size:20px;font-weight:800;color:var(--nhs-dark);margin-bottom:6px;letter-spacing:-0.3px;">Five operating roles. One across every product.</h3>
- <p style="font-size:13px;color:var(--text-sec);line-height:1.6;margin-bottom:18px;">The same five people thread through HomeTest, HealthStore and HealthSync. Their role does not vary by product; their counterparts do.</p>
- <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;">
- <a href="DTx OM - Persona Sarah.html" class="actor">
- <div class="actor-portrait"><img src="../assets/personas/sarah.png" alt="Sarah"></div>
- <div class="actor-name">Sarah</div><div class="actor-role">Commissioner</div>
+ <h3 style="font-size:20px;font-weight:800;color:var(--nhs-dark);margin-bottom:6px;letter-spacing:-0.3px;">Six operating roles. Threading through every product.</h3>
+ <p style="font-size:13px;color:var(--text-sec);line-height:1.6;margin-bottom:18px;">Four platform-level people plus two role archetypes (Commissioner and Clinician) whose specific persona changes per configuration. Tiles with multiple portraits click through to a role-overview page showing every persona filling that role.</p>
+ <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px;">
+ <a href="DTx OM - Role Commissioner.html" class="actor">
+ <div class="actor-portrait" style="display:flex;flex-direction:row;justify-content:center;align-items:end;height:110px;gap:0;">
+ <img src="../assets/personas/sarah.png" alt="Sarah" style="width:46px;height:46px;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,0.18);object-fit:cover;object-position:top center;background:#fff;">
+ <div style="width:46px;height:46px;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,0.18);background:linear-gradient(160deg,#1B3A6B,#003087);color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:600;margin-left:-12px;">C</div>
+ <img src="../assets/personas/Ruth.png" alt="Ruth" style="width:46px;height:46px;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,0.18);object-fit:cover;object-position:top center;background:#fff;margin-left:-12px;">
+ <div style="width:46px;height:46px;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,0.18);background:linear-gradient(160deg,#1B3A6B,#003087);color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:600;margin-left:-12px;">A</div>
+ <div style="width:46px;height:46px;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,0.18);background:linear-gradient(160deg,#1B3A6B,#003087);color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:600;margin-left:-12px;">D</div>
+ </div>
+ <div class="actor-name">Commissioner</div><div class="actor-role">5 named &middot; one per config</div>
+ </a>
+ <a href="DTx OM - Role Clinician.html" class="actor">
+ <div class="actor-portrait" style="display:flex;flex-direction:row;justify-content:center;align-items:end;height:110px;gap:0;">
+ <img src="../assets/personas/Adam.png" alt="Adam" style="width:62px;height:62px;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,0.18);object-fit:cover;object-position:top center;background:#fff;">
+ <img src="img/ravi.png" alt="Ravi" style="width:62px;height:62px;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,0.18);object-fit:cover;object-position:top center;background:#fff;margin-left:-14px;">
+ </div>
+ <div class="actor-name">Clinician</div><div class="actor-role">Adam &middot; Ravi</div>
  </a>
  <a href="DTx OM - Persona Aisha.html" class="actor">
  <div class="actor-portrait"><img src="../assets/personas/aisha.png" alt="Aisha"></div>
@@ -728,21 +741,13 @@
  <div class="actor-portrait"><img src="../assets/personas/joe.png" alt="Joe" style="border-radius:50%;width:88px;height:88px;object-fit:cover;object-position:top center;"></div>
  <div class="actor-name">Joe</div><div class="actor-role">Supplier</div>
  </a>
- <a href="DTx OM - Persona Adam.html" class="actor" style="background:rgba(255,255,255,0.96);">
- <div class="actor-portrait"><img src="../assets/personas/adam.png" alt="Adam" style="border-radius:50%;width:88px;height:88px;object-fit:cover;object-position:top center;"></div>
- <div class="actor-name">Adam</div><div class="actor-role">Clinician &middot; PSA-AS &middot; sketch</div>
+ <a href="DTx OM - Persona Abdul.html" class="actor" style="background:rgba(255,255,255,0.96);">
+ <div class="actor-portrait"><img src="../assets/personas/abdul.png" alt="Abdul" style="border-radius:50%;width:88px;height:88px;object-fit:cover;object-position:top center;"></div>
+ <div class="actor-name">Abdul</div><div class="actor-role">Patient &middot; CVKM</div>
  </a>
  <a href="DTx OM - Persona Mark.html" class="actor" style="background:rgba(255,255,255,0.96);">
  <div class="actor-portrait"><img src="../assets/personas/mark.png" alt="Mark" style="border-radius:50%;width:88px;height:88px;object-fit:cover;object-position:top center;"></div>
  <div class="actor-name">Mark</div><div class="actor-role">Patient &middot; PSA-AS</div>
- </a>
- <a href="DTx OM - Persona Ruth.html" class="actor" style="background:rgba(255,255,255,0.96);">
- <div class="actor-portrait"><img src="../assets/personas/ruth.png" alt="Ruth" style="border-radius:50%;width:88px;height:88px;object-fit:cover;object-position:top center;"></div>
- <div class="actor-name">Ruth</div><div class="actor-role">Commissioner &middot; Pathway 2 &middot; TBC</div>
- </a>
- <a href="DTx OM - Persona Abdul.html" class="actor" style="background:rgba(255,255,255,0.96);">
- <div class="actor-portrait"><img src="../assets/personas/abdul.png" alt="Abdul" style="border-radius:50%;width:88px;height:88px;object-fit:cover;object-position:top center;"></div>
- <div class="actor-name">Abdul</div><div class="actor-role">Patient &middot; CVKM</div>
  </a>
  <a href="DTx OM - Persona Layla.html" class="actor" style="background:rgba(255,255,255,0.96);">
  <div class="actor-portrait"><img src="../assets/personas/layla.png" alt="Layla" style="border-radius:50%;width:88px;height:88px;object-fit:cover;object-position:top center;"></div>
@@ -756,13 +761,9 @@
  <div style="font-size:9.5px;font-weight:800;letter-spacing:1.6px;opacity:0.85;text-transform:uppercase;margin-bottom:4px;">Product spoke</div>
  <h4 style="font-size:20px;font-weight:900;letter-spacing:-0.4px;margin-bottom:14px;">HealthStore</h4>
  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
- <a href="DTx OM - Persona HealthStore supplier.html" class="actor" style="background:rgba(255,255,255,0.96);grid-column:1 / -1;">
+ <a href="DTx OM - Persona HealthStore supplier.html" class="actor" style="background:rgba(255,255,255,0.96);">
  <div class="actor-portrait"><img src="img/marcus-final.png" alt="Marcus" style="border-radius:50%;width:88px;height:88px;object-fit:cover;object-position:top center;"></div>
  <div class="actor-name">Marcus</div><div class="actor-role">DTx founder</div>
- </a>
- <a href="DTx OM - Persona HealthStore prescribing clinician.html" class="actor" style="background:rgba(255,255,255,0.96);">
- <div class="actor-portrait"><img src="img/ravi.png" alt="Ravi" style="border-radius:50%;width:88px;height:88px;object-fit:cover;object-position:top center;"></div>
- <div class="actor-name">Ravi</div><div class="actor-role">HealthStore prescriber</div>
  </a>
  <a href="DTx OM - Persona HealthStore COPD patient.html" class="actor" style="background:rgba(255,255,255,0.96);">
  <div class="actor-portrait"><img src="img/pauline-final.png" alt="Pauline" style="border-radius:50%;width:88px;height:88px;object-fit:cover;object-position:top center;"></div>
@@ -799,25 +800,4 @@
 <script>
 // Position the WHY wrap at the actual grid intersection of the four tile cells.
 (function() {
- function positionWhyWrap() {
- var gridWrap = document.querySelector('.grid-wrap');
- var topLeft = document.querySelector('.tile-cell-tl');
- var topRight = document.querySelector('.tile-cell-tr');
- var whyWrap = document.querySelector('.why-wrap');
- if (!gridWrap || !topLeft || !topRight || !whyWrap) return;
- var topRowHeight = Math.max(topLeft.offsetHeight, topRight.offsetHeight);
- var intersectionY = topRowHeight + 2;
- whyWrap.style.top = intersectionY + 'px';
- whyWrap.style.transform = 'translate(-50%, -50%)';
- }
- if (document.readyState === 'loading') {
- document.addEventListener('DOMContentLoaded', positionWhyWrap);
- } else {
- positionWhyWrap();
- }
- window.addEventListener('load', positionWhyWrap);
- window.addEventListener('resize', positionWhyWrap);
-})();
-</script>
-</body>
-</html>
+ function positi

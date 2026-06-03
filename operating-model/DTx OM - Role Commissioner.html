@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Commissioner role: Digital Therapeutics Operating Model</title>
+<style>
+ /* Canonical topnav */
+ .topnav{background:#fff;border-bottom:1px solid #ebeef1;padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:nowrap;min-height:54px;box-sizing:border-box;width:100%;max-width:100%;margin:0;position:sticky;top:0;z-index:200;}
+ .topnav .nav-back{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-back:hover{color:#005EB8;}
+ .topnav .nav-siblings{display:flex;gap:4px;flex-wrap:nowrap;overflow-x:auto;align-items:center;}
+ .topnav .nav-siblings a{font-size:12px;font-weight:600;color:#4C6272;text-decoration:none;padding:6px 12px;border-radius:6px;letter-spacing:0.2px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-siblings a:hover{background:#f0f4f8;color:#212B32;}
+ .topnav .nav-siblings a.active{background:#003087;color:#fff;}
+
+ :root {
+   --nhs-dark:#003087; --nhs-blue:#005EB8;
+   --amber:#FFB91D; --amber-deep:#C9A227; --warm-cream:#FFF9EC;
+   --text:#212B32; --text-sec:#4C6272; --text-muted:#7E8B97;
+   --border-lt:#ebeef1; --bg:#f8fafc;
+   --nhs-blue-deep:#003087;
+ }
+ *{box-sizing:border-box;margin:0;padding:0;}
+ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;background:linear-gradient(180deg, var(--nhs-blue) 0%, var(--nhs-blue-deep) 100%) !important;background-attachment:fixed !important;color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;}
+
+ .page{max-width:1100px;margin:0 auto;padding:50px 40px 80px;background:#ffffff;border-radius:18px;box-shadow:0 14px 40px rgba(0,48,135,0.20);margin-top:30px !important;margin-bottom:50px !important;}
+ .amber-rule{width:72px;height:4px;background:var(--amber);border-radius:2px;margin-bottom:18px;}
+ .h-eyebrow{font-size:11px;font-weight:700;letter-spacing:2.2px;color:var(--text-sec);text-transform:uppercase;margin-bottom:18px;}
+ .h-title{font-size:48px;font-weight:800;color:var(--nhs-dark);letter-spacing:-1.2px;line-height:1.05;margin-bottom:14px;}
+ .h-strap{font-size:18px;color:var(--text-sec);font-weight:500;line-height:1.55;max-width:760px;margin-bottom:20px;}
+ .h-body{font-size:15px;color:var(--text-sec);line-height:1.7;max-width:760px;}
+ .h-body strong{color:var(--text);font-weight:700;}
+ .h-body p{margin-bottom:12px;}
+
+ .role-callout{background:var(--warm-cream);border:1px solid #F0DCA0;border-left:4px solid var(--amber-deep);border-radius:0 12px 12px 0;padding:18px 22px;margin:28px 0;font-size:14px;color:var(--text);line-height:1.65;max-width:760px;}
+ .role-callout strong{color:var(--text);font-weight:700;}
+ .role-callout-label{font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:#7A5A00;text-transform:uppercase;display:block;margin-bottom:6px;}
+
+ .section-h{font-size:24px;font-weight:800;color:var(--nhs-dark);margin:48px 0 18px;letter-spacing:-0.4px;}
+
+ .role-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px;}
+ .role-tile{background:#fff;border:1px solid var(--border-lt);border-radius:14px;padding:22px;text-decoration:none;color:inherit;transition:transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;display:flex;flex-direction:column;}
+ .role-tile:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(0,32,64,0.10);border-color:var(--amber);}
+ .role-tile.live{border-top:4px solid #009688;}
+ .role-tile.tbc{border-top:4px solid #C9A227;background:#FFFCF4;}
+ .role-tile.future{border-top:4px dashed var(--border-lt);background:#fafbfc;opacity:0.85;}
+ .role-portrait{height:120px;display:flex;align-items:end;justify-content:center;margin-bottom:14px;}
+ .role-portrait img{max-height:100%;max-width:100%;display:block;}
+ .role-name{font-size:18px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.3px;margin-bottom:4px;}
+ .role-tag{font-size:11px;font-weight:800;letter-spacing:1.4px;color:var(--text-muted);text-transform:uppercase;margin-bottom:12px;}
+ .role-desc{font-size:13px;color:var(--text-sec);line-height:1.6;flex-grow:1;}
+ .role-desc strong{color:var(--text);font-weight:700;}
+ .role-cta{font-size:11px;font-weight:800;letter-spacing:1.2px;color:var(--nhs-blue);text-transform:uppercase;margin-top:14px;display:flex;align-items:center;gap:4px;}
+ .role-tile.tbc .role-cta{color:#7A5A00;}
+ .role-tile.future .role-cta{color:var(--text-muted);}
+
+ .status-pill{display:inline-block;font-size:9.5px;font-weight:800;letter-spacing:0.6px;padding:3px 8px;border-radius:4px;text-transform:uppercase;margin-bottom:10px;}
+ .status-live{background:#E0F2EE;color:#00695C;}
+ .status-tbc{background:#FFF3CD;color:#7A5A00;}
+ .status-future{background:#EFEFEF;color:#6B6B6B;}
+
+ .foot{margin-top:60px;padding-top:24px;border-top:1px solid var(--border-lt);font-size:11.5px;color:var(--text-muted);max-width:760px;}
+
+ @media(max-width:820px){.role-grid{grid-template-columns:1fr;}.h-title{font-size:36px;}.page{padding:40px 22px 60px;}}
+
+ .ecosystem-nav{background:#fff;border-bottom:1px solid #ebeef1;padding:12px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:48px;position:sticky;top:0;z-index:9999;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;}
+ .ecosystem-nav a{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;}
+ .ecosystem-nav a:hover{color:#005EB8;}
+ .ecosystem-nav .nav-context{font-size:11px;font-weight:800;letter-spacing:1.5px;color:#7E8B97;text-transform:uppercase;}
+ .ecosystem-nav .nav-product{font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;padding:4px 10px;border-radius:4px;color:#fff;background:#003087;}
+</style>
+</head>
+<body>
+<div class="ecosystem-nav">
+  <a href="../index.html">&larr; DTx Ecosystem</a>
+  <span class="nav-context">Role &middot; Commissioner</span>
+  <span class="nav-product">DTx</span>
+</div>
+<nav class="topnav">
+<a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+<div class="nav-siblings">
+ <a href="DTx OM - Why.html">Why</a>
+ <a href="DTx OM - What.html">What</a>
+ <a href="DTx OM - Lifecycle.html">When</a>
+ <a href="DTx OM - HomeTest Operational.html">How</a>
+ <a href="DTx OM - Governance.html" class="active">Who</a>
+ <a href="DTx OM - Hearts and Minds.html">Hearts and Minds</a>
+ <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>
+ <a href="DTx OM - Status.html">Status</a>
+</div>
+</nav>
+
+<div class="page">
+
+  <div class="amber-rule"></div>
+  <div class="h-eyebrow">The cast &middot; role archetype</div>
+
+  <h1 class="h-title">Commissioner.</h1>
+  <p class="h-strap">The buyer at the front of every Digital Therapeutics service. Commissioner is the role; the institution behind it varies by product and by configuration.</p>
+
+  <div class="role-grid">
+   <a href="DTx OM - Persona Sarah.html" class="role-tile live">
+    <span class="status-pill status-live">Live archetype</span>
+    <div class="role-portrait"><img src="../assets/personas/sarah.png" alt="Sarah"></div>
+    <div class="role-name">Sarah</div>
+    <div class="role-tag">Commissioner archetype</div>
+    <p class="role-desc">The universal-shape commissioner. <strong>Local Authority</strong> for HomeTest HIV (live), <strong>Acute Trust</strong> for HomeTest PSA Active Surveillance, established radiotherapy-follow-up cohort, <strong>ICB</strong> for HealthStore COPD Alpha. Same person, same role, different institution per product.</p>
+    <div class="role-cta">Open Sarah's persona &rarr;</div>
+   </a>
+
+   <a href="DTx OM - Persona Ruth.html" class="role-tile tbc">
+    <span class="status-pill status-tbc">TBC &middot; monitoring-gap cohort in discovery</span>
+    <div class="role-portrait"><img src="../assets/personas/Ruth.png" alt="Ruth"></div>
+    <div class="role-name">Ruth</div>
+    <div class="role-tag">Monitoring-gap commissioner variant</div>
+    <p class="role-desc">The commissioner for the PSA Active Surveillance monitoring-gap cohort (men referred to Urology with elevated PSA but no cancer diagnosis). Held open as a separate persona until the cohort discovery team settles the institution. May fold back into Sarah's shape if the answer is an Acute Trust or ICB; remains distinct if a new commissioning body lands.</p>
+    <div class="role-cta">Open Ruth's persona &rarr;</div>
+   </a>
+
+   <a href="DTx OM - Persona Catherine.html" class="role-tile live">
+    <span class="status-pill status-live">Prospective</span>
+    <div class="role-portrait" style="display:flex;align-items:end;justify-content:center;"><div style="width:90px;height:108px;background:linear-gradient(160deg,#1B3A6B 0%, #003087 100%);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:46px;font-weight:300;letter-spacing:-1px;box-shadow:0 4px 12px rgba(0,48,135,0.18);">C</div></div>
+    <div class="role-name">Catherine</div>
+    <div class="role-tag">Acute Trust &middot; PSA-AS established cohort</div>
+    <p class="role-desc">Acute Trust commissioner for PSA Active Surveillance in the established radiotherapy-follow-up cohort. Commissions secondary-care services under the tariff envelope. She is Mark&apos;s commissioner.</p>
+    <div class="role-cta">Open Catherine's persona &rarr;</div>
+   </a>
+
+   <a href="DTx OM - Persona Anita.html" class="role-tile tbc">
+    <span class="status-pill status-tbc">Design &middot; HomeTest HbA1c</span>
+    <div class="role-portrait" style="display:flex;align-items:end;justify-content:center;"><div style="width:90px;height:108px;background:linear-gradient(160deg,#1B3A6B 0%, #003087 100%);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:46px;font-weight:300;letter-spacing:-1px;box-shadow:0 4px 12px rgba(0,48,135,0.18);">A</div></div>
+    <div class="role-name">Anita</div>
+    <div class="role-tag">ICB / GP &middot; HomeTest HbA1c</div>
+    <p class="role-desc">ICB or GP-side commissioner for HomeTest HbA1c. Primary-care contract mechanism still in design; funding route through QOF or outpatient tariff being considered. She is Layla&apos;s commissioner.</p>
+    <div class="role-cta">Open Anita's persona &rarr;</div>
+   </a>
+
+   <a href="DTx OM - Persona Daniel.html" class="role-tile tbc">
+    <span class="status-pill status-tbc">Design &middot; HealthStore COPD</span>
+    <div class="role-portrait" style="display:flex;align-items:end;justify-content:center;"><div style="width:90px;height:108px;background:linear-gradient(160deg,#1B3A6B 0%, #003087 100%);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:46px;font-weight:300;letter-spacing:-1px;box-shadow:0 4px 12px rgba(0,48,135,0.18);">D</div></div>
+    <div class="role-name">Daniel</div>
+    <div class="role-tag">ICB &middot; HealthStore COPD Alpha</div>
+    <p class="role-desc">ICB commissioner for HealthStore COPD Alpha. Commissions NICE EVA conditionally-recommended digital therapeutics through the National App Formulary. He is Pauline&apos;s commissioner.</p>
+    <div class="role-cta">Open Daniel's persona &rarr;</div>
+   </a>
+  </div>
+
+  <h2 class="section-h">About this role</h2>
+
+  <div class="h-body">
+   <p>Commissioners are the bodies that hold the budget and sign the call-off. Across the portfolio, the commissioner role threads through every product, but the institution sitting behind it changes depending on what is being bought. <strong>Each configuration has its own commissioner persona</strong> rather than one universal commissioner doing five different jobs.</p>
+   <p><strong>HomeTest HIV (Pathway 1)</strong> &mdash; Sarah, Local Authority sexual health commissioner. Live. <strong>HomeTest PSA Active Surveillance (Pathway 2), established cohort</strong> &mdash; Catherine, Acute Trust commissioner under the tariff envelope. Prospective. <strong>PSA-AS monitoring-gap cohort</strong> &mdash; Ruth, institution TBC pending cohort discovery output. <strong>HomeTest HbA1c (Pathway 3)</strong> &mdash; Anita, ICB / GP commissioner. In design. <strong>HealthStore COPD Alpha</strong> &mdash; Daniel, ICB commissioner. In design. <strong>HealthSync</strong> is reserved at platform level pending the first configuration landing; its commissioner persona will sit alongside the others once the configuration shape is named.</p>
+   <p>Five named commissioner personas today: Sarah, Catherine, Ruth, Anita, Daniel. The role is the same; the institution, the budget, the buying calendar and the accountability chain differ per configuration.</p>
+  </div>
+
+  <div class="role-callout">
+   <span class="role-callout-label">Why one role, multiple personas</span>
+   The four other universal-hub roles (Aisha clinical / CSG, Priya NHSE Platform, David NHS Commercial, Ngozi IG) are platform-level: one person each, central to the platform, identical across every product. The Commissioner role is different. Commissioners are buyers, and buyers vary by product. <strong>Sarah is the archetype</strong> covering the institutions that fit the universal shape. <strong>Ruth, and future commissioner personas, sit alongside her</strong> where a specific configuration needs a distinct buyer that does not fit the standard archetype.
+  </div>
+
+  <div class="foot">
+   DTx Operating Model &middot; Cast &middot; Role archetype &middot; Commissioner. The role threads through every product; the institution behind it varies per configuration.
+  </div>
+
+</div>
+</body>
+</html>

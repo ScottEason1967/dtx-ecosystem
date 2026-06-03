@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Clinician role: Digital Therapeutics Operating Model</title>
+<style>
+ /* Canonical topnav */
+ .topnav{background:#fff;border-bottom:1px solid #ebeef1;padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:nowrap;min-height:54px;box-sizing:border-box;width:100%;max-width:100%;margin:0;position:sticky;top:0;z-index:200;}
+ .topnav .nav-back{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-back:hover{color:#005EB8;}
+ .topnav .nav-siblings{display:flex;gap:4px;flex-wrap:nowrap;overflow-x:auto;align-items:center;}
+ .topnav .nav-siblings a{font-size:12px;font-weight:600;color:#4C6272;text-decoration:none;padding:6px 12px;border-radius:6px;letter-spacing:0.2px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-siblings a:hover{background:#f0f4f8;color:#212B32;}
+ .topnav .nav-siblings a.active{background:#003087;color:#fff;}
+
+ :root {
+   --nhs-dark:#003087; --nhs-blue:#005EB8;
+   --amber:#FFB91D; --amber-deep:#C9A227; --warm-cream:#FFF9EC;
+   --text:#212B32; --text-sec:#4C6272; --text-muted:#7E8B97;
+   --border-lt:#ebeef1; --bg:#f8fafc;
+   --nhs-blue-deep:#003087;
+ }
+ *{box-sizing:border-box;margin:0;padding:0;}
+ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;background:linear-gradient(180deg, var(--nhs-blue) 0%, var(--nhs-blue-deep) 100%) !important;background-attachment:fixed !important;color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;}
+
+ .page{max-width:1100px;margin:0 auto;padding:50px 40px 80px;background:#ffffff;border-radius:18px;box-shadow:0 14px 40px rgba(0,48,135,0.20);margin-top:30px !important;margin-bottom:50px !important;}
+ .amber-rule{width:72px;height:4px;background:var(--amber);border-radius:2px;margin-bottom:18px;}
+ .h-eyebrow{font-size:11px;font-weight:700;letter-spacing:2.2px;color:var(--text-sec);text-transform:uppercase;margin-bottom:18px;}
+ .h-title{font-size:48px;font-weight:800;color:var(--nhs-dark);letter-spacing:-1.2px;line-height:1.05;margin-bottom:14px;}
+ .h-strap{font-size:18px;color:var(--text-sec);font-weight:500;line-height:1.55;max-width:760px;margin-bottom:20px;}
+ .h-body{font-size:15px;color:var(--text-sec);line-height:1.7;max-width:760px;}
+ .h-body strong{color:var(--text);font-weight:700;}
+ .h-body p{margin-bottom:12px;}
+
+ .role-callout{background:var(--warm-cream);border:1px solid #F0DCA0;border-left:4px solid var(--amber-deep);border-radius:0 12px 12px 0;padding:18px 22px;margin:28px 0;font-size:14px;color:var(--text);line-height:1.65;max-width:760px;}
+ .role-callout strong{color:var(--text);font-weight:700;}
+ .role-callout-label{font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:#7A5A00;text-transform:uppercase;display:block;margin-bottom:6px;}
+
+ .section-h{font-size:24px;font-weight:800;color:var(--nhs-dark);margin:48px 0 18px;letter-spacing:-0.4px;}
+
+ .role-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px;}
+ .role-tile{background:#fff;border:1px solid var(--border-lt);border-radius:14px;padding:22px;text-decoration:none;color:inherit;transition:transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;display:flex;flex-direction:column;}
+ .role-tile:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(0,32,64,0.10);border-color:var(--amber);}
+ .role-tile.sketch{border-top:4px solid #7E57C2;}
+ .role-tile.design{border-top:4px solid #FB8C00;}
+ .role-tile.future{border-top:4px dashed var(--border-lt);background:#fafbfc;opacity:0.85;}
+ .role-portrait{height:120px;display:flex;align-items:end;justify-content:center;margin-bottom:14px;}
+ .role-portrait img{max-height:100%;max-width:100%;display:block;}
+ .role-name{font-size:18px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.3px;margin-bottom:4px;}
+ .role-tag{font-size:11px;font-weight:800;letter-spacing:1.4px;color:var(--text-muted);text-transform:uppercase;margin-bottom:12px;}
+ .role-desc{font-size:13px;color:var(--text-sec);line-height:1.6;flex-grow:1;}
+ .role-desc strong{color:var(--text);font-weight:700;}
+ .role-cta{font-size:11px;font-weight:800;letter-spacing:1.2px;color:var(--nhs-blue);text-transform:uppercase;margin-top:14px;display:flex;align-items:center;gap:4px;}
+ .role-tile.future .role-cta{color:var(--text-muted);}
+
+ .status-pill{display:inline-block;font-size:9.5px;font-weight:800;letter-spacing:0.6px;padding:3px 8px;border-radius:4px;text-transform:uppercase;margin-bottom:10px;}
+ .status-sketch{background:#EDE7F6;color:#4527A0;}
+ .status-design{background:#FFF3E0;color:#E65100;}
+ .status-future{background:#EFEFEF;color:#6B6B6B;}
+
+ .foot{margin-top:60px;padding-top:24px;border-top:1px solid var(--border-lt);font-size:11.5px;color:var(--text-muted);max-width:760px;}
+
+ @media(max-width:820px){.role-grid{grid-template-columns:1fr;}.h-title{font-size:36px;}.page{padding:40px 22px 60px;}}
+
+ .ecosystem-nav{background:#fff;border-bottom:1px solid #ebeef1;padding:12px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:48px;position:sticky;top:0;z-index:9999;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;}
+ .ecosystem-nav a{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;}
+ .ecosystem-nav a:hover{color:#005EB8;}
+ .ecosystem-nav .nav-context{font-size:11px;font-weight:800;letter-spacing:1.5px;color:#7E8B97;text-transform:uppercase;}
+ .ecosystem-nav .nav-product{font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;padding:4px 10px;border-radius:4px;color:#fff;background:#003087;}
+</style>
+</head>
+<body>
+<div class="ecosystem-nav">
+  <a href="../index.html">&larr; DTx Ecosystem</a>
+  <span class="nav-context">Role &middot; Clinician</span>
+  <span class="nav-product">DTx</span>
+</div>
+<nav class="topnav">
+<a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+<div class="nav-siblings">
+ <a href="DTx OM - Why.html">Why</a>
+ <a href="DTx OM - What.html">What</a>
+ <a href="DTx OM - Lifecycle.html">When</a>
+ <a href="DTx OM - HomeTest Operational.html">How</a>
+ <a href="DTx OM - Governance.html" class="active">Who</a>
+ <a href="DTx OM - Hearts and Minds.html">Hearts and Minds</a>
+ <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>
+ <a href="DTx OM - Status.html">Status</a>
+</div>
+</nav>
+
+<div class="page">
+
+  <div class="amber-rule"></div>
+  <div class="h-eyebrow">The cast &middot; role archetype</div>
+
+  <h1 class="h-title">Clinician.</h1>
+  <p class="h-strap">The treating clinician at the point of care. Clinician is the role; the specialty and the relationship to the platform vary by product and by configuration.</p>
+
+  <div class="role-grid">
+   <a href="DTx OM - Persona Adam.html" class="role-tile sketch">
+    <span class="status-pill status-sketch">Sketch &middot; grounded in discovery research</span>
+    <div class="role-portrait"><img src="../assets/personas/Adam.png" alt="Adam"></div>
+    <div class="role-name">Adam</div>
+    <div class="role-tag">HomeTest &middot; clinician-initiated</div>
+    <p class="role-desc">Consultant urologist on the PSA Active Surveillance clinician-initiated lane. Sets the intent to order; the patient confirms. Result returns to him for interpretation. Holds clinical accountability for the cohort.</p>
+    <div class="role-cta">Open Adam's persona &rarr;</div>
+   </a>
+
+   <a href="DTx OM - Persona HealthStore prescribing clinician.html" class="role-tile design">
+    <span class="status-pill status-design">Design &middot; HealthStore</span>
+    <div class="role-portrait"><img src="img/ravi.png" alt="Ravi"></div>
+    <div class="role-name">Ravi</div>
+    <div class="role-tag">HealthStore &middot; prescribing clinician</div>
+    <p class="role-desc">Prescribing clinician admitting the patient to a NICE EVA conditionally-recommended digital therapeutic on HealthStore. Holds the local clinical sign-off and monitors patient engagement against the platform-side cohort safety signals.</p>
+    <div class="role-cta">Open Ravi's persona &rarr;</div>
+   </a>
+
+   <div class="role-tile future">
+    <span class="status-pill status-future">Future slots</span>
+    <div class="role-portrait" style="opacity:0.4;"><svg viewBox="0 0 100 110" style="height:100%;"><circle cx="50" cy="42" r="22" fill="none" stroke="#7E8B97" stroke-width="1.5" stroke-dasharray="4 3"/><path d="M 22 100 Q 22 70 50 70 Q 78 70 78 100" fill="none" stroke="#7E8B97" stroke-width="1.5" stroke-dasharray="4 3"/></svg></div>
+    <div class="role-name" style="color:var(--text-muted);">Future personas</div>
+    <div class="role-tag">As configurations land</div>
+    <p class="role-desc">HomeTest HbA1c (GP-side clinician), Pharmacy-initiated (community pharmacist), HealthSync care-team clinician all sit as future persona slots. Held until the corresponding configuration moves out of design.</p>
+    <div class="role-cta">Pending</div>
+   </div>
+  </div>
+
+  <h2 class="section-h">About this role</h2>
+
+  <div class="h-body">
+   <p>Clinicians are the people who initiate, prescribe, interpret or sign off on what the platform delivers. The role threads through every product, but the specific clinician changes depending on what the platform is doing for the patient.</p>
+   <p><strong>HomeTest</strong> clinician-initiated configurations need a treating clinician who sets the intent to order and interprets the result (Adam, consultant urologist, PSA Active Surveillance). HbA1c configurations will need a GP-side clinician once that lands. <strong>HealthStore</strong> needs a prescribing clinician who admits the patient to the digital therapeutic (Ravi). <strong>HealthSync</strong> will need a clinician on the care team monitoring the data once the first configuration lands.</p>
+   <p>This role is distinct from <strong>Aisha</strong>, who sits in the universal hub as the central clinical safety / CSG role. Aisha is platform-level clinical governance; Adam and Ravi are treating clinicians at the point of care.</p>
+  </div>
+
+  <div class="role-callout">
+   <span class="role-callout-label">Why one role, multiple personas</span>
+   The four central platform roles (Aisha clinical / CSG, Priya NHSE Platform, David NHS Commercial, Ngozi IG) are universal in person: one person each, identical across every product. The Treating Clinician role is different. Clinicians are at the point of care, and the point of care varies by product. <strong>Adam is the HomeTest clinician-initiated archetype</strong>; <strong>Ravi is the HealthStore prescribing-clinician archetype</strong>. Future personas will sit alongside as new configurations land.
+  </div>
+
+  <div class="foot">
+   DTx Operating Model &middot; Cast &middot; Role archetype &middot; Clinician. The treating-clinician role at the point of care; specialty and relationship to the platform vary per product and configuration. Distinct from Aisha (platform-level clinical safety) who sits in the universal hub.
+  </div>
+
+</div>
+</body>
+</html>
