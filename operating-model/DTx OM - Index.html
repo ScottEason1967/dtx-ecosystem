@@ -780,3 +780,68 @@
  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
  <a href="DTx OM - Persona Tariq.html" class="actor" style="background:rgba(255,255,255,0.96);grid-column:1 / -1;">
  
+  <div class="actor-portrait"><img src="img/tariq.png" alt="Tariq" style="border-radius:50%;width:88px;height:88px;object-fit:cover;object-position:top center;"></div>
+ <div class="actor-name">Tariq</div><div class="actor-role">Integration partner</div>
+ </a>
+ <a href="DTx OM - Persona HealthSync diabetes patient.html" class="actor" style="background:rgba(255,255,255,0.96);grid-column:1 / -1;">
+ <div class="actor-portrait"><img src="img/mei.png" alt="Mei" style="border-radius:50%;width:88px;height:88px;object-fit:cover;object-position:top center;background:#E0E5EB;"></div>
+ <div class="actor-name">Mei</div><div class="actor-role">Patient &middot; T2 diabetes CGM</div>
+ </a>
+ </div>
+ </div>
+
+ </div>
+
+ <p style="font-size:11.5px;color:rgba(255,255,255,0.78);line-height:1.6;font-style:italic;margin-top:20px;text-align:center;">The universal hub works with each product spoke. Click any actor to see how they thread through the model.</p>
+ </div>
+</div>
+
+<script>
+// Keep home-page status counts in sync with the Status page.
+(async function syncStatusCounts(){
+ try {
+ const candidates = ['DTx OM - Status.html'];
+ let html = null;
+ for (const url of candidates) {
+ try {
+ const r = await fetch(url);
+ if (r.ok) { html = await r.text(); break; }
+ } catch (_) { /* try next */ }
+ }
+ if (!html) return;
+ const doc = new DOMParser().parseFromString(html, 'text/html');
+ const counts = doc.querySelectorAll('.sum-count');
+ if (counts.length < 2) return;
+ const u = document.getElementById('home-count-unresolved');
+ const p = document.getElementById('home-count-in-progress');
+ if (u) u.textContent = counts[0].textContent.trim();
+ if (p) p.textContent = counts[1].textContent.trim();
+ } catch (e) { /* keep static fallback */ }
+})();
+</script>
+
+<script>
+// Position the WHY wrap at the actual grid intersection of the four tile cells.
+(function() {
+ function positionWhyWrap() {
+ var gridWrap = document.querySelector('.grid-wrap');
+ var topLeft = document.querySelector('.tile-cell-tl');
+ var topRight = document.querySelector('.tile-cell-tr');
+ var whyWrap = document.querySelector('.why-wrap');
+ if (!gridWrap || !topLeft || !topRight || !whyWrap) return;
+ var topRowHeight = Math.max(topLeft.offsetHeight, topRight.offsetHeight);
+ var intersectionY = topRowHeight + 2;
+ whyWrap.style.top = intersectionY + 'px';
+ whyWrap.style.transform = 'translate(-50%, -50%)';
+ }
+ if (document.readyState === 'loading') {
+ document.addEventListener('DOMContentLoaded', positionWhyWrap);
+ } else {
+ positionWhyWrap();
+ }
+ window.addEventListener('load', positionWhyWrap);
+ window.addEventListener('resize', positionWhyWrap);
+})();
+</script>
+</body>
+</html>
