@@ -30,7 +30,7 @@
  .h-quote{font-size:18px;color:var(--text);line-height:1.5;font-weight:500;font-style:italic;border-left:4px solid var(--amber);padding-left:16px;margin-bottom:18px;}
  .h-bio{font-size:15px;color:var(--text-sec);line-height:1.7;}
  .h-portrait{display:flex;justify-content:center;align-items:center;}
- .h-portrait img{max-width:260px;width:100%;height:auto;border-radius:14px;}
+ .h-portrait img{width:280px;height:auto;display:block;}
  .h-portrait .portrait-placeholder{width:260px;height:300px;background:linear-gradient(135deg,#E0E5EB,#c8d0d8);border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#7E8B97;font-size:13px;font-weight:700;letter-spacing:0.4px;text-align:center;padding:20px;border:2px dashed #aab3bd;}
  .h-portrait .portrait-placeholder-icon{font-size:60px;margin-bottom:12px;opacity:0.5;}
  .section-h{font-size:24px;font-weight:800;color:var(--nhs-dark);margin:42px 0 14px;letter-spacing:-0.4px;}
@@ -46,36 +46,94 @@
  body { background: linear-gradient(180deg, var(--nhs-blue) 0%, var(--nhs-blue-deep) 100%) !important; background-attachment: fixed !important; }
  .topnav { box-shadow: 0 2px 14px rgba(0,48,135,0.18); }
  .page { background:#ffffff; border-radius:18px; box-shadow:0 14px 40px rgba(0,48,135,0.20); margin-top:30px !important; margin-bottom:50px !important; }
+
+  .where-panel{background:#F4F8FC;border:1px solid #d6e2ef;border-left:4px solid var(--nhs-blue);border-radius:0 12px 12px 0;padding:18px 22px;margin-bottom:32px;font-size:13.5px;color:var(--text-sec);line-height:1.7;}
+  .where-panel .label{font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:var(--nhs-blue);text-transform:uppercase;display:block;margin-bottom:6px;}
+</style>
+<style>
+  .ecosystem-nav {
+    background: #fff;
+    border-bottom: 1px solid #ebeef1;
+    padding: 12px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 48px;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  }
+  .ecosystem-nav a {
+    font-size: 13px; font-weight: 700; color: #003087;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .ecosystem-nav a:hover { color: #005EB8; }
+  .ecosystem-nav .nav-context {
+    font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
+    color: #7E8B97; text-transform: uppercase;
+  }
+  .ecosystem-nav .nav-product {
+    font-size: 10.5px; font-weight: 800; letter-spacing: 0.8px;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 4px; color: #fff;
+  }
+  .ecosystem-nav .nav-product.dtx { background: #003087; }
+  .topnav.topnav-secondary { background: #F4F8FC; border-bottom: 1px solid #d6e2ef; padding: 9px 36px; min-height: 42px; }
+  .topnav.topnav-secondary .nav-siblings a { font-size: 11.5px; padding: 5px 10px; }
+  .topnav.topnav-secondary .nav-siblings a.active { background: #005EB8; color: #fff; }
+  .nav-secondary-label { font-size: 10px; font-weight: 800; letter-spacing: 1.5px; color: #7E8B97; text-transform: uppercase; flex-shrink: 0; }
 </style>
 </head>
 <body>
+<div class="ecosystem-nav">
+  <a href="../index.html">← DTx Ecosystem</a>
+  <span class="nav-context">Persona Errol</span>
+  <span class="nav-product dtx">DTx</span>
+</div>
 <nav class="topnav">
- <a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
- <div class="nav-siblings">
+<a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+<div class="nav-siblings">
+ <a href="DTx OM - Why.html">Why</a>
+ <a href="DTx OM - What.html">What</a>
+ <a href="DTx OM - Lifecycle.html">When</a>
+ <a href="DTx OM - HomeTest Operational.html">How</a>
+ <a href="DTx OM - Governance.html">Who</a>
+ <a href="DTx OM - Hearts and Minds.html">Hearts and Minds</a>
+ <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>
+ <a href="DTx OM - Status.html">Status</a>
+</div>
+</nav>
+
+<nav class="topnav topnav-secondary">
+<div class="nav-secondary-label">Cast</div>
+<div class="nav-siblings">
  <a href="DTx OM - Persona Sarah.html">Sarah</a>
  <a href="DTx OM - Persona Catherine.html">Catherine</a>
  <a href="DTx OM - Persona Anita.html">Anita</a>
  <a href="DTx OM - Persona Daniel.html">Daniel</a>
  <a href="DTx OM - Persona Ruth.html">Ruth</a>
+ <span style="width:1px;height:18px;background:var(--border-lt);margin:0 4px;display:inline-block;"></span>
  <a href="DTx OM - Persona Aisha.html">Aisha</a>
  <a href="DTx OM - Persona Priya.html">Priya</a>
  <a href="DTx OM - Persona David.html">David</a>
  <a href="DTx OM - Persona Ngozi.html">Ngozi</a>
  <span style="width:1px;height:18px;background:var(--border-lt);margin:0 4px;display:inline-block;"></span>
  <a href="DTx OM - Persona Abdul.html">Abdul</a>
- <a href="DTx OM - Persona Mark.html">Mark</a>
- <a href="DTx OM - Persona Layla.html">Layla</a>
  <a href="DTx OM - Persona Adam.html">Adam</a>
  <a href="DTx OM - Persona Hannah.html">Hannah</a>
- <a href="DTx OM - Persona Joe.html">Joe</a>
- <span style="width:1px;height:18px;background:var(--border-lt);margin:0 4px;display:inline-block;"></span>
- <a href="DTx OM - Persona HealthStore COPD patient.html">Pauline</a>
  <a href="DTx OM - Persona HealthStore prescribing clinician.html">Ravi</a>
- <a href="DTx OM - Persona HealthStore supplier.html">Marcus</a>
  <span style="width:1px;height:18px;background:var(--border-lt);margin:0 4px;display:inline-block;"></span>
+ <a href="DTx OM - Persona Mark.html">Mark</a>
+ <a href="DTx OM - Persona Layla.html">Layla</a>
+ <a href="DTx OM - Persona HealthStore COPD patient.html">Pauline</a>
  <a href="DTx OM - Persona HealthSync diabetes patient.html">Mei</a>
  <a href="DTx OM - Persona HealthSync patient.html" class="active">Errol</a>
- </div>
+ <span style="width:1px;height:18px;background:var(--border-lt);margin:0 4px;display:inline-block;"></span>
+ <a href="DTx OM - Persona Joe.html">Joe</a>
+ <a href="DTx OM - Persona HealthStore supplier.html">Marcus</a>
+ <a href="DTx OM - Persona Tariq.html">Tariq</a>
+</div>
 </nav>
 
 <div class="page">
@@ -91,14 +149,17 @@
  <div class="h-bio">56, Black British, lives in Manchester with his wife. Works as a tech instructor at a community college so he&rsquo;s digital-comfortable without being a digital native. Diagnosed with hypertension three years ago after a near-miss at a routine medical; family history on his father&rsquo;s side. Started with a connected home blood-pressure cuff and a smartwatch for the wearable layer. Eighteen months ago a watch-detected pattern led to an at-home blood test and a prescribed digital therapeutic for medication adherence. He now sits across all three products in the portfolio &mdash; HealthSync continuous, HomeTest periodically, HealthStore in life. He onboarded once. He consented once. His record stays one record. Errol is the patient whose story shows the operating model working as one model rather than three.</div>
  </div>
  <div class="h-portrait">
- <div class="portrait-placeholder">
- <div class="portrait-placeholder-icon">&#x1F464;</div>
- <div>Errol portrait<br><span style="font-weight:400;font-size:11px;opacity:0.85;">placeholder &middot; portrait to be added</span></div>
- </div>
+ <img src="img/errol-portrait.png" alt="Errol">
  </div>
  </div>
 
- <h2 class="section-h">Why Errol matters in the model</h2>
+ 
+  <div class="where-panel">
+    <span class="label">Why Errol is here</span>
+    Errol is the cross-product patient archetype &mdash; he sits across HomeTest, HealthStore and HealthSync at steady state. He exists to test the central claim of the operating model: one model, one identity, one consent, one onboarding &mdash; not three products bolted together. Other patient archetypes belong inside a single workstream. Errol crosses three. Without him the model can claim to be one platform without ever proving it. With him the test is concrete: do his handoffs work without re-onboarding, does his record stay one record, does his care team see one view? If Errol&apos;s story holds, the model is one model.
+  </div>
+
+  <h2 class="section-h">Why Errol matters in the model</h2>
  <p class="section-body">Errol is the patient whose journey earns the &ldquo;one operating model&rdquo; claim. Other patient archetypes sit inside one workstream &mdash; Abdul, Mark and Layla on HomeTest; Pauline on HealthStore; Meera on HealthSync. Errol crosses all three. His story is the demonstration that the portfolio is not three products bolted together but one platform where a single patient&rsquo;s identity, consent, clinical context and data carry across every workstream boundary without re-onboarding. He is the protagonist of the journey that proves the model.</p>
 
  <div class="pair-callout">

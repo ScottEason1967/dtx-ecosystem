@@ -59,6 +59,9 @@
  body { background: linear-gradient(180deg, var(--nhs-blue) 0%, var(--nhs-blue-deep) 100%) !important; background-attachment: fixed !important; }
  
  .page { background:#ffffff; border-radius:18px; box-shadow:0 14px 40px rgba(0,48,135,0.20); margin-top:30px !important; margin-bottom:50px !important; }
+
+  .where-panel{background:#F4F8FC;border:1px solid #d6e2ef;border-left:4px solid var(--nhs-blue);border-radius:0 12px 12px 0;padding:18px 22px;margin-bottom:32px;font-size:13.5px;color:var(--text-sec);line-height:1.7;}
+  .where-panel .label{font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:var(--nhs-blue);text-transform:uppercase;display:block;margin-bottom:6px;}
 </style>
 <style>
   .ecosystem-nav {
@@ -117,21 +120,31 @@
 <nav class="topnav topnav-secondary">
 <div class="nav-secondary-label">Cast</div>
 <div class="nav-siblings">
- <a href="DTx OM - Persona Sarah.html">Sarah</a> <a href="DTx OM - Persona Catherine.html">Catherine</a> <a href="DTx OM - Persona Anita.html">Anita</a> <a href="DTx OM - Persona Daniel.html">Daniel</a> <a href="DTx OM - Persona Ruth.html">Ruth</a>
+ <a href="DTx OM - Persona Sarah.html">Sarah</a>
+ <a href="DTx OM - Persona Catherine.html">Catherine</a>
+ <a href="DTx OM - Persona Anita.html">Anita</a>
+ <a href="DTx OM - Persona Daniel.html">Daniel</a>
+ <a href="DTx OM - Persona Ruth.html">Ruth</a>
+ <span style="width:1px;height:18px;background:var(--border-lt);margin:0 4px;display:inline-block;"></span>
  <a href="DTx OM - Persona Aisha.html">Aisha</a>
  <a href="DTx OM - Persona Priya.html">Priya</a>
  <a href="DTx OM - Persona David.html">David</a>
  <a href="DTx OM - Persona Ngozi.html">Ngozi</a>
- <a href="DTx OM - Persona Abdul.html">Abdul</a> <a href="DTx OM - Persona Adam.html">Adam</a>
+ <span style="width:1px;height:18px;background:var(--border-lt);margin:0 4px;display:inline-block;"></span>
+ <a href="DTx OM - Persona Abdul.html">Abdul</a>
+ <a href="DTx OM - Persona Adam.html">Adam</a>
  <a href="DTx OM - Persona Hannah.html">Hannah</a>
+ <a href="DTx OM - Persona HealthStore prescribing clinician.html" class="active">Ravi</a>
+ <span style="width:1px;height:18px;background:var(--border-lt);margin:0 4px;display:inline-block;"></span>
  <a href="DTx OM - Persona Mark.html">Mark</a>
  <a href="DTx OM - Persona Layla.html">Layla</a>
- <a href="DTx OM - Persona Joe.html">Joe</a>
  <a href="DTx OM - Persona HealthStore COPD patient.html">Pauline</a>
- <a href="DTx OM - Persona HealthStore prescribing clinician.html" class="active">Ravi</a>
- <a href="DTx OM - Persona HealthStore supplier.html">Marcus</a>
  <a href="DTx OM - Persona HealthSync diabetes patient.html">Mei</a>
  <a href="DTx OM - Persona HealthSync patient.html">Errol</a>
+ <span style="width:1px;height:18px;background:var(--border-lt);margin:0 4px;display:inline-block;"></span>
+ <a href="DTx OM - Persona Joe.html">Joe</a>
+ <a href="DTx OM - Persona HealthStore supplier.html">Marcus</a>
+ <a href="DTx OM - Persona Tariq.html">Tariq</a>
 </div>
 </nav>
 
@@ -152,7 +165,13 @@
  </div>
  </div>
 
- <h2 class="section-h">Why Ravi matters in the model</h2>
+ 
+  <div class="where-panel">
+    <span class="label">Why Ravi is here</span>
+    Ravi is the HealthStore prescribing clinician &mdash; the clinician who admits a patient to a digital therapeutic from the National App Formulary. He is structurally distinct from HomeTest&apos;s test-initiating clinicians (<a href="DTx OM - Persona Adam.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">Adam</a>, <a href="DTx OM - Persona Hannah.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">Hannah</a>). HomeTest clinicians initiate a test and act on a result. Ravi prescribes a therapeutic and reviews engagement and outcome. The pattern is closer to a medication prescription than to a test order. Ravi is the proof point that the prescribing-clinician role lands inside existing clinical workflow without bespoke training.
+  </div>
+
+  <h2 class="section-h">Why Ravi matters in the model</h2>
  <p class="section-body">Ravi is the activator of every HealthStore episode. The digital therapeutic does not reach the patient without a prescribing decision; the prescribing decision sits in a clinical workflow that has its own incentives, time pressures and accountability. The COPD service uses risk-stratification searches to identify rising-risk patients (for instance: a COPD diagnosis plus two or more courses of oral steroids in the last twelve months); the digital therapeutic is one of the interventions the prescribing clinician can deploy from that point. If prescribing is not embedded in the natural clinical journey, HealthStore stays a curiosity. If it is, HealthStore scales. Ravi is the unit of demand on the supply side of the model.</p>
 
  <div class="pair-callout">
@@ -178,5 +197,9 @@
     <li><a href="DTx OM - Anatomical.html" style="color:#5E35B2;font-weight:600;text-decoration:none;"><strong>Clinical pathway fit assessment</strong> for the digital therapeutic in the consultation</a></li>
   </ul>
 </div>
+
+  <div class="pair-callout">
+   <strong>The cast around Ravi.</strong> Ravi is the HealthStore prescribing clinician. <a href="DTx OM - Persona Daniel.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">Daniel</a> is his ICB commissioner. <a href="DTx OM - Persona HealthStore COPD patient.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">Pauline</a> is his patient &mdash; the COPD cohort. <a href="DTx OM - Persona HealthStore supplier.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">Marcus</a> is the HealthStore DTx supplier on the other side of the prescription. Configuration: HealthStore COPD.
+  </div>
 </body>
 </html>

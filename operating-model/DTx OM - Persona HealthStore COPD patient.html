@@ -59,6 +59,9 @@
  body { background: linear-gradient(180deg, var(--nhs-blue) 0%, var(--nhs-blue-deep) 100%) !important; background-attachment: fixed !important; }
  
  .page { background:#ffffff; border-radius:18px; box-shadow:0 14px 40px rgba(0,48,135,0.20); margin-top:30px !important; margin-bottom:50px !important; }
+
+  .where-panel{background:#F4F8FC;border:1px solid #d6e2ef;border-left:4px solid var(--nhs-blue);border-radius:0 12px 12px 0;padding:18px 22px;margin-bottom:32px;font-size:13.5px;color:var(--text-sec);line-height:1.7;}
+  .where-panel .label{font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:var(--nhs-blue);text-transform:uppercase;display:block;margin-bottom:6px;}
 </style>
 <style>
   .ecosystem-nav {
@@ -117,21 +120,31 @@
 <nav class="topnav topnav-secondary">
 <div class="nav-secondary-label">Cast</div>
 <div class="nav-siblings">
- <a href="DTx OM - Persona Sarah.html">Sarah</a> <a href="DTx OM - Persona Catherine.html">Catherine</a> <a href="DTx OM - Persona Anita.html">Anita</a> <a href="DTx OM - Persona Daniel.html">Daniel</a> <a href="DTx OM - Persona Ruth.html">Ruth</a>
+ <a href="DTx OM - Persona Sarah.html">Sarah</a>
+ <a href="DTx OM - Persona Catherine.html">Catherine</a>
+ <a href="DTx OM - Persona Anita.html">Anita</a>
+ <a href="DTx OM - Persona Daniel.html">Daniel</a>
+ <a href="DTx OM - Persona Ruth.html">Ruth</a>
+ <span style="width:1px;height:18px;background:var(--border-lt);margin:0 4px;display:inline-block;"></span>
  <a href="DTx OM - Persona Aisha.html">Aisha</a>
  <a href="DTx OM - Persona Priya.html">Priya</a>
  <a href="DTx OM - Persona David.html">David</a>
  <a href="DTx OM - Persona Ngozi.html">Ngozi</a>
- <a href="DTx OM - Persona Abdul.html">Abdul</a> <a href="DTx OM - Persona Adam.html">Adam</a>
+ <span style="width:1px;height:18px;background:var(--border-lt);margin:0 4px;display:inline-block;"></span>
+ <a href="DTx OM - Persona Abdul.html">Abdul</a>
+ <a href="DTx OM - Persona Adam.html">Adam</a>
  <a href="DTx OM - Persona Hannah.html">Hannah</a>
+ <a href="DTx OM - Persona HealthStore prescribing clinician.html">Ravi</a>
+ <span style="width:1px;height:18px;background:var(--border-lt);margin:0 4px;display:inline-block;"></span>
  <a href="DTx OM - Persona Mark.html">Mark</a>
  <a href="DTx OM - Persona Layla.html">Layla</a>
- <a href="DTx OM - Persona Joe.html">Joe</a>
  <a href="DTx OM - Persona HealthStore COPD patient.html" class="active">Pauline</a>
- <a href="DTx OM - Persona HealthStore prescribing clinician.html">Ravi</a>
- <a href="DTx OM - Persona HealthStore supplier.html">Marcus</a>
  <a href="DTx OM - Persona HealthSync diabetes patient.html">Mei</a>
  <a href="DTx OM - Persona HealthSync patient.html">Errol</a>
+ <span style="width:1px;height:18px;background:var(--border-lt);margin:0 4px;display:inline-block;"></span>
+ <a href="DTx OM - Persona Joe.html">Joe</a>
+ <a href="DTx OM - Persona HealthStore supplier.html">Marcus</a>
+ <a href="DTx OM - Persona Tariq.html">Tariq</a>
 </div>
 </nav>
 
@@ -152,7 +165,13 @@
  </div>
  </div>
 
- <h2 class="section-h">Why Pauline matters in the model</h2>
+ 
+  <div class="where-panel">
+    <span class="label">Why Pauline is here</span>
+    Pauline is the HealthStore COPD patient &mdash; prescribed a digital therapeutic by her prescribing clinician. She represents the prescribed-DTx patient archetype, distinct from HomeTest (test-result patient) and HealthSync (sensor-data patient). Her configuration tests the prescribing pattern: the patient who receives the DTx as a prescription, the clinician who admits her to it, the supplier who delivers the programme, the commissioner who buys the episode. Without a named patient on the HealthStore side the architecture has no anchor for the prescribed-DTx pattern. Pauline sits inside <a href="DTx OM - Persona Daniel.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">Daniel</a>&apos;s commissioning shape and on <a href="DTx OM - Persona HealthStore prescribing clinician.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">Ravi</a>&apos;s prescription cycle.
+  </div>
+
+  <h2 class="section-h">Why Pauline matters in the model</h2>
  <p class="section-body">Pauline is the engaged-with-a-prescription archetype for HealthStore. She is already in a care relationship: her consultant prescribed the digital therapeutic, she is the one who has to use it. The model only works if engagement is real, meaningful and measured. The four commercial principles mean she is the patient experiencing a third-party digital therapeutic surfaced inside the NHS App, with the NHS as custodian of her record. The marketplace payments mechanism being designed in Alpha rests on that engagement being genuine; the pathway-level value case the commissioner needs rests on her outcome.</p>
 
  <div class="pair-callout">
