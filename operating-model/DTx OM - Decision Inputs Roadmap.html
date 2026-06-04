@@ -490,7 +490,7 @@
     <div class="op-eyebrow">Operating logic</div>
     <h2>How the page is used.</h2>
     <p>Items live on the programme risk register, framed as dependencies. The wider programme-risk review is the operational forum where the items move. This page is the commercial workstream's view of what is on the register. It does not replace the register; it makes the dependencies legible.</p>
-    <p><strong>Status colour.</strong> Burning items need an answer now: the deadline is here or has already passed. Tracked items have a working date set with work in flight to land them. Future items are further out and on the radar. Cardinal items are the four inputs SLT named on 1 June, each of which has to be answered in some form before Project Initiation begins.</p>
+    <p><strong>Status colour.</strong> Burning items need an answer now: the deadline is here or has already passed. Tracked items have a working date set with work in flight to land them. Future items are further out and on the radar. Cardinal items are the four inputs SLT named as cardinal at programme set-up, each of which has to be answered in some form before Project Initiation begins.</p>
     <p><strong>Bang the drum.</strong> Commercial is the recipient of these inputs; the programme owns surfacing them. Where a date slips, commercial flags it as a programme-level risk with the named consequence. The conversation is not "you have failed to deliver this." It is "without this by the date below, the procurement timetable shifts to a slower scenario."</p>
     <p><strong>Updating.</strong> The page is live. Items move status as the inputs land. When an input arrives, the operating model gets updated first; this page follows.</p>
   </div>
@@ -598,12 +598,13 @@ var ITEMS = [
     date: '2026-06-30', dateLabel: 'Working position by end June, reinforced through to playback and beyond',
     owner: 'SRO with SLT',
     consequence: 'Without it, the workstream stays under-resourced, dependencies do not get unblocked at the speed the procurement timetable needs, and what eventually gets bought has nothing operational to land into. The model becomes a paper exercise rather than the spine of the live service.',
-    body: 'Explicit SLT recognition that delivery of the future-state operating model is critical to the programme and does not sit behind product as a second-order workstream. The operating model is what makes the procured capability runnable: patient journey, supplier journey, commissioner journey, IG, clinical safety, financial settlement. If product lands without the model alongside it, there is nothing to plug into. This is the meta-input the SRO flagged on 1 June: the programme needs to do the thinking on the model with the same weight it puts behind the platform build.',
+    body: 'Explicit SLT recognition that delivery of the future-state operating model is critical to the programme and does not sit behind product as a second-order workstream. The operating model is what makes the procured capability runnable: patient journey, supplier journey, commissioner journey, IG, clinical safety, financial settlement. If product lands without the model alongside it, there is nothing to plug into. This is the meta-input the SRO has surfaced: the programme needs to do the thinking on the model with the same weight it puts behind the platform build. The dependencies on this page span end-June 2026 through FY27/28 and beyond. The work the model frames is not a twelve-week discovery; the dependencies are multi-year, and the workstream that holds them needs to be sized and held accordingly.',
     rollup: [
       'Resourcing commitment to the future-state workstream commensurate with its dependency role.',
       'Programme plan reflects the model alongside product, not behind it.',
       'Cross-product role definition (Pathway Integration Lead, Contract Management Lead, Evidence Generation Lead, PMS Lead, EHIA Lead) progressed at programme level.',
-      'Dependencies on the model surfaced in programme governance rather than carried implicitly by the commercial workstream.'
+      'Dependencies on the model surfaced in programme governance rather than carried implicitly by the commercial workstream.',
+      'Workstream operating cadence and roles defined for the multi-year forward shape (interim state through long-term state).'
     ]
   },
   { id: '05', cluster: 'end-jun', status: 'burning', statusLabel: 'Burning',
@@ -637,13 +638,19 @@ var ITEMS = [
       'Ongoing administration capacity once the framework is live.'
     ]
   },
-  { id: '06', cluster: 'end-jun', status: 'burning', statusLabel: 'Burning',
-    title: 'PTT directions decision on HIV private beta',
-    date: '2026-06-30', dateLabel: 'Initial steer by end June, definitive yes/no by 15 September',
-    owner: 'PTT (NHSE IG)',
-    consequence: 'Without an initial steer, the private beta cannot run with confidence. Without a definitive answer by Requirements Creation, we cannot lock the IG architecture for the procurement.',
-    body: 'Is a legal direction required for the HIV private beta? Question issued early May, six-week SLA already burned, escalation route active. An initial steer is enough to keep the private beta moving; the definitive yes or no needs to land before Requirements Creation.',
+  { id: '06', cluster: 'end-jun', status: 'tracked', statusLabel: 'Tracked',
+    title: 'PTT directions position for HIV private and public beta',
+    date: '2026-06-30', dateLabel: 'Private beta position settled (no direction needed); public beta direction scoping by 15 September',
+    owner: 'PTT (NHSE IG) with internal IG / DPO lead',
+    consequence: 'For private beta the heat is off, provided the DPIA stays inside the system delivery scenario as scoped. If wording slips back into information-system territory (analytics for any purpose beyond determining whether the pathway works), the direction question reopens and private beta timing slips. For public beta the direction question is live; without scoping in flight by Requirements Creation, the IG architecture for the procurement cannot be locked.',
+    body: 'PTT counsel has issued working guidance via a short IG note that the HIV private beta does not need a legal direction provided the work sits inside the system delivery scenario: data moves from A to B in service of the pathway (ordering, status, results, platform performance) and analytics are limited to determining whether the digital pathway works. The information system scenario (analytics for wider insight, demographics, segmentation, dissemination beyond the pathway) is where a direction is needed; that lands as a public beta question, not a private beta one. Internal DPIA wording is being tightened to stay clearly inside the system delivery boundary. Demographic and sexual health data is collected by the local authority in its own environment, not by HomeTest, which removes that source of risk from the artefact.',
     rollup: [
+      'IG note from PTT counsel landed in Confluence as the canonical reference',
+      'DPIA wording tightened by IG / DPO and product lead to sit inside the system delivery scenario',
+      'MI and analytics epic scoped against the system delivery boundary, with IG / DPO continuously in the loop',
+      'Digital Health Checks DPIA reviewed as a self-selecting precedent for analytics scope in private beta',
+      'Pseudo-anonymisation risk scoped where data links across services (Notify, App, order table) — moderate risk to track',
+      'Public beta direction question opened with PTT once analytics scope for public beta is defined',
       'Standing joint forum between IG / DPO, Commercial, Clinical Safety',
       'Standing template library (DPIA, DSA, supplier IG criteria)',
       'Escalation route to NHSE IG / DPO leadership',
@@ -707,7 +714,7 @@ var ITEMS = [
     date: '2026-07-31', dateLabel: 'First-pass model by end July, refined version by end Q3 alongside business case',
     owner: 'Health Economist (once onboarded) with Strategic Finance support',
     consequence: 'The value envelope at C1 cannot be defended without an end-to-end view. The OBC cannot be costed. The SLT-level question of where the cost savings come from when moving from as-is to to-be is unanswered, and the case for the change itself becomes hard to make.',
-    body: 'End-to-end cost picture of the service: cost-to-serve per test for the platform, cost-to-NHS across the patient journey from order to result to next step, cost-per-test at the commissioner end, and the as-is versus to-be comparison surfaced on 1 June. Depends on the Health Economist being in seat. Feeds the volumes and value substantiation at C1 and the savings narrative the OBC and SLT material need.',
+    body: 'End-to-end cost picture of the service: cost-to-serve per test for the platform, cost-to-NHS across the patient journey from order to result to next step, cost-per-test at the commissioner end, and the as-is versus to-be comparison the SRO has surfaced as the threshold question for the change. Depends on the Health Economist being in seat. Feeds the volumes and value substantiation at C1 and the savings narrative the OBC and SLT material need.',
     rollup: [
       'Cost-to-serve modelled for HomeTest (platform cost per test).',
       'Cost-to-NHS modelled across the full patient journey, by configuration.',
