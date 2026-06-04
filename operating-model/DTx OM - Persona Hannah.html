@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hannah: Digital Therapeutics Operating Model</title>
+<style>
+ .topnav{background:#fff;border-bottom:1px solid #ebeef1;padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:nowrap;min-height:54px;box-sizing:border-box;width:100%;max-width:100%;margin:0;position:sticky;top:0;z-index:200;}
+ .topnav.topnav-secondary{background:#F4F8FC;border-bottom:1px solid #d6e2ef;padding:9px 36px;min-height:42px;}
+ .topnav .nav-back{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-back:hover{color:#005EB8;}
+ .topnav .nav-siblings{display:flex;gap:4px;flex-wrap:nowrap;overflow-x:auto;align-items:center;}
+ .topnav .nav-siblings a{font-size:12px;font-weight:600;color:#4C6272;text-decoration:none;padding:6px 12px;border-radius:6px;letter-spacing:0.2px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-siblings a:hover{background:#f0f4f8;color:#212B32;}
+ .topnav .nav-siblings a.active{background:#003087;color:#fff;}
+ .topnav.topnav-secondary .nav-siblings a{font-size:11.5px;padding:5px 10px;}
+ .topnav.topnav-secondary .nav-siblings a.active{background:#005EB8;color:#fff;}
+ .topnav .nav-secondary-label{font-size:10px;font-weight:800;letter-spacing:1.5px;color:#7E8B97;text-transform:uppercase;flex-shrink:0;}
+
+  :root {
+    --nhs-dark:#003087; --nhs-blue:#005EB8; --amber:#FFB91D; --amber-deep:#C9A227; --warm-cream:#FFF9EC;
+    --accent:#1B3A6B; --text:#212B32; --text-sec:#4C6272; --text-muted:#7E8B97;
+    --border-lt:#ebeef1; --card:#ffffff; --bg:#f8fafc; --nhs-blue-deep:#003087;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;background:linear-gradient(180deg, var(--nhs-blue) 0%, var(--nhs-blue-deep) 100%) !important;background-attachment:fixed !important;color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;}
+  .page{max-width:1100px;margin:0 auto;padding:50px 40px 80px;background:#ffffff;border-radius:18px;box-shadow:0 14px 40px rgba(0,48,135,0.20);margin-top:30px !important;margin-bottom:50px !important;}
+  .amber-rule{width:72px;height:4px;background:var(--amber);border-radius:2px;margin-bottom:18px;}
+  .h-eyebrow{font-size:11px;font-weight:700;letter-spacing:2.2px;color:var(--text-sec);text-transform:uppercase;margin-bottom:18px;}
+  .h-flex{display:grid;grid-template-columns:1.6fr 1fr;gap:48px;align-items:center;margin-bottom:48px;}
+  .h-title{font-size:54px;font-weight:800;color:var(--nhs-dark);letter-spacing:-1.4px;line-height:1.05;margin-bottom:14px;}
+  .h-role{font-size:13px;font-weight:800;letter-spacing:1.6px;color:var(--accent);text-transform:uppercase;margin-bottom:20px;}
+  .h-quote{font-size:18px;color:var(--text);line-height:1.5;font-weight:500;font-style:italic;border-left:4px solid var(--amber);padding-left:16px;margin-bottom:18px;}
+  .h-bio{font-size:15px;color:var(--text-sec);line-height:1.7;}
+  .h-portrait{display:flex;justify-content:center;}
+  .h-portrait img{width:280px;height:auto;display:block;}
+  .h-portrait-ph{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:10px;}
+  .ph-disc{width:240px;height:280px;background:linear-gradient(160deg,#1B3A6B 0%, #003087 100%);border-radius:14px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:96px;font-weight:300;letter-spacing:-2px;box-shadow:0 8px 22px rgba(0,48,135,0.18);position:relative;overflow:hidden;}
+  .ph-disc::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 25%, rgba(255,255,255,0.10) 0%, transparent 55%);}
+  .ph-caption{font-size:11px;font-weight:700;letter-spacing:1.4px;color:var(--text-muted);text-transform:uppercase;}
+  .section-h{font-size:24px;font-weight:800;color:var(--nhs-dark);margin:42px 0 14px;letter-spacing:-0.4px;}
+  .section-body{font-size:15px;color:var(--text-sec);line-height:1.75;max-width:760px;}
+  .section-body strong{color:var(--text);font-weight:700;}
+  .where-list{display:flex;flex-direction:column;gap:8px;margin-top:14px;}
+  .where-list li{font-size:14px;color:var(--text-sec);line-height:1.6;padding-left:16px;position:relative;list-style:none;}
+  .where-list li::before{content:'';position:absolute;left:0;top:9px;width:8px;height:8px;background:var(--amber);border-radius:50%;}
+  .pair-callout{background:var(--warm-cream);border:1px solid #F0DCA0;border-radius:12px;padding:18px 22px;margin-top:18px;font-size:13.5px;color:var(--text-sec);line-height:1.65;}
+  .pair-callout strong{color:var(--text);font-weight:700;}
+  .status-badge{display:inline-block;background:#FFF3E0;border:1px solid #FFB066;color:#E65100;font-size:11px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;padding:6px 12px;border-radius:6px;margin-bottom:14px;}
+  .foot{margin-top:60px;padding-top:24px;border-top:1px solid var(--border-lt);font-size:11.5px;color:var(--text-muted);}
+  @media(max-width:820px){.h-flex{grid-template-columns:1fr;}.h-title{font-size:36px;}.page{padding:40px 22px 60px;}}
+  .ecosystem-nav{background:#fff;border-bottom:1px solid #ebeef1;padding:12px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:48px;position:sticky;top:0;z-index:9999;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;}
+  .ecosystem-nav a{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;}
+  .ecosystem-nav a:hover{color:#005EB8;}
+  .ecosystem-nav .nav-context{font-size:11px;font-weight:800;letter-spacing:1.5px;color:#7E8B97;text-transform:uppercase;}
+  .ecosystem-nav .nav-product{font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;padding:4px 10px;border-radius:4px;color:#fff;}
+  .ecosystem-nav .nav-product.dtx{background:#003087;}
+</style>
+</head>
+<body>
+<div class="ecosystem-nav">
+  <a href="../index.html">&larr; DTx Ecosystem</a>
+  <span class="nav-context">Persona Hannah</span>
+  <span class="nav-product dtx">DTx</span>
+</div>
+<nav class="topnav">
+<a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+<div class="nav-siblings">
+ <a href="DTx OM - Why.html">Why</a>
+ <a href="DTx OM - What.html">What</a>
+ <a href="DTx OM - Lifecycle.html">When</a>
+ <a href="DTx OM - HomeTest Operational.html">How</a>
+ <a href="DTx OM - Governance.html" class="active">Who</a>
+ <a href="DTx OM - Hearts and Minds.html">Hearts and Minds</a>
+ <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>
+ <a href="DTx OM - Status.html">Status</a>
+</div>
+</nav>
+
+<nav class="topnav topnav-secondary">
+<div class="nav-secondary-label">Cast</div>
+<div class="nav-siblings">
+ <a href="DTx OM - Persona Sarah.html">Sarah</a>
+ <a href="DTx OM - Persona Catherine.html">Catherine</a>
+ <a href="DTx OM - Persona Hannah.html" class="active">Hannah</a>
+ <a href="DTx OM - Persona Daniel.html">Daniel</a>
+ <a href="DTx OM - Persona Ruth.html">Ruth</a>
+ <a href="DTx OM - Persona Aisha.html">Aisha</a>
+ <a href="DTx OM - Persona Priya.html">Priya</a>
+ <a href="DTx OM - Persona David.html">David</a>
+ <a href="DTx OM - Persona Ngozi.html">Ngozi</a>
+ <a href="DTx OM - Persona Abdul.html">Abdul</a>
+ <a href="DTx OM - Persona Adam.html">Adam</a>
+ <a href="DTx OM - Persona Mark.html">Mark</a>
+ <a href="DTx OM - Persona Layla.html">Layla</a>
+ <a href="DTx OM - Persona Joe.html">Joe</a>
+ <a href="DTx OM - Persona HealthStore COPD patient.html">Pauline</a>
+ <a href="DTx OM - Persona HealthStore prescribing clinician.html">Ravi</a>
+ <a href="DTx OM - Persona HealthStore supplier.html">Marcus</a>
+ <a href="DTx OM - Persona HealthSync diabetes patient.html">Mei</a>
+ <a href="DTx OM - Persona HealthSync patient.html">Errol</a>
+</div>
+</nav>
+
+<div class="page">
+
+  <div class="amber-rule"></div>
+  <div class="h-eyebrow">The cast &middot; meet Hannah</div>
+
+  <span class="status-badge">Design &middot; HomeTest HbA1c</span>
+
+  <div class="h-flex">
+    <div>
+      <h1 class="h-title">Hannah.</h1>
+      <div class="h-role">GP / primary care clinician &middot; HomeTest HbA1c</div>
+      <div class="h-quote">&ldquo;My diabetes patients sit in front of me every six to twelve months for a review. The HbA1c is the anchor of that conversation. If they can do the test at home and the result is in the record before they arrive, the consultation gets to be about what we do next, not about chasing bloods.&rdquo;</div>
+      <div class="h-bio">Hannah is a GP in a primary-care practice that holds the long-term-condition register for her local population. Her clinical caseload threads through diabetes, hypertension, CVD risk, asthma and COPD. She is the clinician who initiates routine HbA1c orders during her diabetes-review consultations and acts on the results when they return to the GP record. She is Layla&apos;s GP on the HomeTest HbA1c configuration.</div>
+    </div>
+    <div class="h-portrait">
+      <img src="../assets/personas/hannah.png" alt="Hannah">
+    </div>
+  </div>
+
+  <h2 class="section-h">What she does in the pathway</h2>
+  <p class="section-body">Hannah is the GP who <strong>initiates</strong> the HbA1c order from her clinical system during a diabetes review consultation. She is also the clinician the <strong>result returns to</strong>: HbA1c lands in the GP record automatically, with a flag if it is out of range. Where the result is in-range, the patient continues on routine monitoring. Where it is out of range, Hannah contacts the patient to discuss the next step: medication adjustment, escalation, referral on. The configuration is in design phase; Hannah&apos;s clinical role is well understood, the commissioning route around her is the open question.</p>
+
+  <h2 class="section-h">What she needs from HomeTest</h2>
+  <ul class="where-list" style="margin-top:14px;">
+    <li><strong>Ordering from inside her clinical system.</strong> The HbA1c order needs to be available from the GP system she already uses, not a separate web tool. If she has to log into a parallel system, ordering rates collapse.</li>
+    <li><strong>Result back in the GP record at the right point.</strong> The result has to land in the same patient record she already reviews, flagged in the same way as a lab-side HbA1c, with the same colour-coding for out-of-range. The HbA1c needs to look like an HbA1c, not a new artefact.</li>
+    <li><strong>A clear out-of-range pathway.</strong> When the result comes back high, the system needs to flag it to her at the right priority. She is the safety net for the patient on this pathway; missed escalation is the worst-case failure mode.</li>
+    <li><strong>A confidence story she can pass to the patient.</strong> Layla and her peers will ask why their HbA1c is being done by post rather than in-surgery. Hannah needs a one-line answer that holds up: the test is the same test, the result is the same result, the lab is accredited, the only thing that has changed is the convenience.</li>
+    <li><strong>Workload that nets out flat or better.</strong> Reviews still happen; ordering shifts from in-clinic phlebotomy to a HomeTest order during the previous consultation. If the net workload on her practice goes up, adoption stalls regardless of clinical merit.</li>
+  </ul>
+
+  <h2 class="section-h">Where Hannah sits relative to the other clinicians</h2>
+  <p class="section-body">Hannah is one of the named clinicians in the portfolio. <a href="DTx OM - Persona Adam.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">Adam</a> is the consultant urologist who initiates PSA-AS tests in an acute trust setting and interprets the result against a patient&apos;s monitoring trend. <a href="DTx OM - Persona HealthStore prescribing clinician.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">Ravi</a> is the HealthStore prescriber who admits patients to a digital therapeutic. Hannah is the GP archetype who initiates HbA1c tests during long-term-condition reviews. Same role; different specialty and care setting. <a href="DTx OM - Persona Anita.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">Anita</a> is the commissioner on Hannah&apos;s configuration: she buys the service, Hannah uses it.</p>
+
+  <h2 class="section-h">Where Hannah appears in the model</h2>
+  <ul class="where-list">
+    <li>GP-initiated clinician in the HomeTest HbA1c configuration on the <a href="DTx OM - HomeTest Operational.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">How</a> page, surfacing in the clinician swim-lane rows when the HbA1c filter is active</li>
+    <li>Clinician overlay on the <a href="DTx OM - Pattern Overlay Detail.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">Pattern Overlay Detail</a> page (HbA1c row, GP-initiated pattern)</li>
+    <li>Treating-clinician role in the HbA1c configuration RACI on the <a href="DTx OM - Governance.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">Who</a> page once HbA1c governance lands</li>
+    <li>Hannah is the clinician anchored to <a href="DTx OM - Persona Layla.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">Layla&apos;s</a> cohort; <a href="DTx OM - Persona Anita.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">Anita</a> is the commissioner on the same configuration</li>
+  </ul>
+
+  <div class="pair-callout">
+    <strong>Status.</strong> Hannah is a design-phase persona. The clinical workflow for HbA1c at-home testing is well understood inside primary care; the open questions sit on the integration side (ordering inside the GP system, results back into the GP record, out-of-range flagging) and on the commissioning side (Anita's territory). Hannah's clinical role itself is not contested.
+  </div>
+
+  <div class="foot">
+    DTx Operating Model &middot; Cast &middot; Hannah &middot; GP / primary care clinician, HomeTest HbA1c.
+  </div>
+
+</div>
+</body>
+</html>

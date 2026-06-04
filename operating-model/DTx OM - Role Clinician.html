@@ -45,6 +45,9 @@
  .role-tile.sketch{border-top:4px solid #7E57C2;}
  .role-tile.design{border-top:4px solid #FB8C00;}
  .role-tile.future{border-top:4px dashed var(--border-lt);background:#fafbfc;opacity:0.85;}
+ .role-tile.hometest{border-top:5px solid #003087;}
+ .role-tile.healthstore{border-top:5px solid #00A9CE;}
+ .role-tile.healthsync{border-top:5px solid #00A499;}
  .role-portrait{height:120px;display:flex;align-items:end;justify-content:center;margin-bottom:14px;}
  .role-portrait img{max-height:100%;max-width:100%;display:block;}
  .role-name{font-size:18px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.3px;margin-bottom:4px;}
@@ -99,7 +102,7 @@
   <p class="h-strap">The treating clinician at the point of care. Clinician is the role; the specialty and the relationship to the platform vary by product and by configuration.</p>
 
   <div class="role-grid">
-   <a href="DTx OM - Persona Adam.html" class="role-tile sketch">
+   <a href="DTx OM - Persona Adam.html" class="role-tile hometest">
     <span class="status-pill status-sketch">Sketch &middot; grounded in discovery research</span>
     <div class="role-portrait"><img src="../assets/personas/adam.png" alt="Adam"></div>
     <div class="role-name">Adam</div>
@@ -108,7 +111,14 @@
     <div class="role-cta">Open Adam's persona &rarr;</div>
    </a>
 
-   <a href="DTx OM - Persona HealthStore prescribing clinician.html" class="role-tile design">
+   <a href="DTx OM - Persona Hannah.html" class="role-tile hometest">
+    <div class="role-portrait"><img src="../assets/personas/hannah.png" alt="Hannah"></div>
+    <div class="role-name">Hannah</div>
+    <p class="role-role"><strong>HomeTest GP-initiated &middot; HbA1c (T2 diabetes monitoring)</strong></p>
+    <p class="role-bio">GP archetype for the HomeTest HbA1c pathway. Initiates routine HbA1c orders for her long-term-condition patients during diabetes reviews, receives the result back into the GP record, escalates per the local management plan. Layla&apos;s GP. Status: in design.</p>
+    <div class="role-cta">Open Hannah&apos;s persona &rarr;</div>
+   </a>
+   <a href="DTx OM - Persona HealthStore prescribing clinician.html" class="role-tile healthstore">
     <span class="status-pill status-design">Design &middot; HealthStore</span>
     <div class="role-portrait"><img src="img/ravi.png" alt="Ravi"></div>
     <div class="role-name">Ravi</div>
@@ -122,7 +132,7 @@
     <div class="role-portrait" style="opacity:0.4;"><svg viewBox="0 0 100 110" style="height:100%;"><circle cx="50" cy="42" r="22" fill="none" stroke="#7E8B97" stroke-width="1.5" stroke-dasharray="4 3"/><path d="M 22 100 Q 22 70 50 70 Q 78 70 78 100" fill="none" stroke="#7E8B97" stroke-width="1.5" stroke-dasharray="4 3"/></svg></div>
     <div class="role-name" style="color:var(--text-muted);">Future personas</div>
     <div class="role-tag">As configurations land</div>
-    <p class="role-desc">HomeTest HbA1c (GP-side clinician), Pharmacy-initiated (community pharmacist), HealthSync care-team clinician all sit as future persona slots. Held until the corresponding configuration moves out of design.</p>
+    <p class="role-desc">HomeTest Pharmacy-initiated (community pharmacist), HomeTest reactive primary-care clinician for the patient-initiated HIV / CVKM path, HealthSync care-team clinician all sit as future persona slots. Held until the corresponding configuration moves out of design.</p>
     <div class="role-cta">Pending</div>
    </div>
   </div>
@@ -131,7 +141,7 @@
 
   <div class="h-body">
    <p>Clinicians are the people who initiate, prescribe, interpret or sign off on what the platform delivers. The role threads through every product, but the specific clinician changes depending on what the platform is doing for the patient.</p>
-   <p><strong>HomeTest</strong> clinician-initiated configurations need a treating clinician who sets the intent to order and interprets the result (Adam, consultant urologist, PSA Active Surveillance). HbA1c configurations will need a GP-side clinician once that lands. <strong>HealthStore</strong> needs a prescribing clinician who admits the patient to the digital therapeutic (Ravi). <strong>HealthSync</strong> will need a clinician on the care team monitoring the data once the first configuration lands.</p>
+   <p><strong>HomeTest</strong> clinician-initiated configurations need a treating clinician who sets the intent to order and interprets the result (Adam, consultant urologist, PSA Active Surveillance). HomeTest GP-initiated configurations need a GP archetype who initiates routine orders during long-term-condition reviews (Hannah, GP, HbA1c). <strong>HealthStore</strong> needs a prescribing clinician who admits the patient to the digital therapeutic (Ravi). <strong>HealthSync</strong> will need a clinician on the care team monitoring the data once the first configuration lands.</p>
    <p>This role is distinct from <strong>Aisha</strong>, who sits in the universal hub as the central clinical safety / CSG role. Aisha is platform-level clinical governance; Adam and Ravi are treating clinicians at the point of care.</p>
   </div>
 
