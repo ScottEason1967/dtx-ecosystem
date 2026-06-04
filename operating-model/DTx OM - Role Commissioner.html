@@ -120,7 +120,7 @@
 
    <a href="DTx OM - Persona Catherine.html" class="role-tile live">
     <span class="status-pill status-live">Prospective</span>
-    <div class="role-portrait" style="display:flex;align-items:end;justify-content:center;"><div style="width:90px;height:108px;background:linear-gradient(160deg,#1B3A6B 0%, #003087 100%);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:46px;font-weight:300;letter-spacing:-1px;box-shadow:0 4px 12px rgba(0,48,135,0.18);">C</div></div>
+    <div class="role-portrait" style="display:flex;align-items:end;justify-content:center;"><img src="../assets/personas/catherine.png" alt="Catherine" style="width:90px;height:108px;border-radius:10px;object-fit:cover;object-position:top center;box-shadow:0 4px 12px rgba(0,48,135,0.18);"/></div>
     <div class="role-name">Catherine</div>
     <div class="role-tag">Acute Trust &middot; PSA-AS established cohort</div>
     <p class="role-desc">Acute Trust commissioner for PSA Active Surveillance in the established radiotherapy-follow-up cohort. Commissions secondary-care services under the tariff envelope. She is Mark&apos;s commissioner.</p>
@@ -129,7 +129,7 @@
 
    <a href="DTx OM - Persona Anita.html" class="role-tile tbc">
     <span class="status-pill status-tbc">Design &middot; HomeTest HbA1c</span>
-    <div class="role-portrait" style="display:flex;align-items:end;justify-content:center;"><div style="width:90px;height:108px;background:linear-gradient(160deg,#1B3A6B 0%, #003087 100%);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:46px;font-weight:300;letter-spacing:-1px;box-shadow:0 4px 12px rgba(0,48,135,0.18);">A</div></div>
+    <div class="role-portrait" style="display:flex;align-items:end;justify-content:center;"><img src="../assets/personas/anita.png" alt="Anita" style="width:90px;height:108px;border-radius:10px;object-fit:cover;object-position:top center;box-shadow:0 4px 12px rgba(0,48,135,0.18);"/></div>
     <div class="role-name">Anita</div>
     <div class="role-tag">ICB / GP &middot; HomeTest HbA1c</div>
     <p class="role-desc">ICB or GP-side commissioner for HomeTest HbA1c. Primary-care contract mechanism still in design; funding route through QOF or outpatient tariff being considered. She is Layla&apos;s commissioner.</p>
@@ -138,7 +138,7 @@
 
    <a href="DTx OM - Persona Daniel.html" class="role-tile tbc">
     <span class="status-pill status-tbc">Design &middot; HealthStore COPD</span>
-    <div class="role-portrait" style="display:flex;align-items:end;justify-content:center;"><div style="width:90px;height:108px;background:linear-gradient(160deg,#1B3A6B 0%, #003087 100%);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:46px;font-weight:300;letter-spacing:-1px;box-shadow:0 4px 12px rgba(0,48,135,0.18);">D</div></div>
+    <div class="role-portrait" style="display:flex;align-items:end;justify-content:center;"><img src="../assets/personas/daniel.png" alt="Daniel" style="width:90px;height:108px;border-radius:10px;object-fit:cover;object-position:top center;box-shadow:0 4px 12px rgba(0,48,135,0.18);"/></div>
     <div class="role-name">Daniel</div>
     <div class="role-tag">ICB &middot; HealthStore COPD Alpha</div>
     <p class="role-desc">ICB commissioner for HealthStore COPD Alpha. Commissions NICE EVA conditionally-recommended digital therapeutics through the National App Formulary. He is Pauline&apos;s commissioner.</p>
@@ -149,4 +149,20 @@
   <h2 class="section-h">About this role</h2>
 
   <div class="h-body">
-   <p>Commissioners are the bodies that hold the budget 
+   <p>Commissioners are the bodies that hold the budget  and sign the contracts that buy what the platform delivers. The role threads through every product, but the institution and budget line behind it varies depending on the configuration.</p>
+   <p><strong>HomeTest</strong> commissioning fragments across the configuration. HIV / patient-init sits with the local authority sexual health budget (Sarah). PSA-AS / clinician-init sits with acute trust commercial commissioning (Catherine, with the monitoring-gap cohort held by Ruth, TBC). HbA1c / GP-init sits with ICB or GP-leaning system commissioning (Anita). <strong>HealthStore</strong> commissioning sits at ICB level (Daniel). <strong>HealthSync</strong> will need its own commissioner shape once the first configuration lands.</p>
+   <p>This role is distinct from <strong>David</strong> (NHS Commercial), who sits in the universal hub as the central commercial framework holder. David shapes the framework, vehicle and pricing architecture that every commissioner uses. Sarah, Catherine, Ruth, Anita and Daniel sit on the receiving side of that framework, making the actual buying decisions inside their own budget envelope.</p>
+  </div>
+
+  <div class="role-callout">
+   <span class="role-callout-label">Why one role, multiple personas</span>
+   The four central platform roles (Aisha clinical / CSG, Priya NHSE Platform, David NHS Commercial, Ngozi IG) are universal in person: one person each, identical across every product. The Commissioner role is different. The institution that holds the budget for a given configuration varies (LA, acute trust, ICB, GP), so the cast grows as configurations land. <strong>Sarah, Catherine, Ruth, Anita and Daniel</strong> are five examples today, not the full set forever.
+  </div>
+
+  <div class="foot">
+   DTx Operating Model &middot; Cast &middot; Role archetype &middot; Commissioner. The body-that-buys role; institution and budget line vary per product and configuration. Distinct from David (platform-level commercial framework) who sits in the universal hub.
+  </div>
+
+</div>
+</body>
+</html>
