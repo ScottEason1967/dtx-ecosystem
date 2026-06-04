@@ -389,7 +389,7 @@
   <div class="header-rule"></div>
   <div class="eyebrow">Decision inputs roadmap</div>
   <h1>What we need from the wider programme, and by when.</h1>
-  <div class="sub">The commercial workstream is the <strong>recipient</strong> of the decisions that determine when a procurement vehicle can land. Each card below is an input the programme owes back to commercial. <strong>Click any card to expand the detail</strong>: the substance, the functional owner, the working by-when date, what fails if it slips, and the operational items that roll up to it.</div>
+  <div class="sub">The set of information the commercial workstream needs from elsewhere in the programme to land the future-state operating model and procurement strategy. Each card is a dependency the wider programme owes back, framed as a risk or issue with consequences if it slips. Covers procurement inputs and the wider strategy, costings and engagement work that sits alongside. <strong>Click any card to expand the detail</strong>: the substance, the functional owner, the working by-when date, what fails if it slips, and the operational items that roll up to it.</div>
 </div>
 
 <div class="shell">
@@ -593,6 +593,19 @@ var ITEMS = [
       'Confirmation that the SBS Sexual Health framework remains usable as a parallel route while the interim runs.'
     ]
   },
+  { id: 'C5', cluster: 'end-jun', status: 'cardinal', statusLabel: 'Cardinal',
+    title: 'Programme positioning of the future-state workstream',
+    date: '2026-06-30', dateLabel: 'Working position by end June, reinforced through to playback and beyond',
+    owner: 'SRO with SLT',
+    consequence: 'Without it, the workstream stays under-resourced, dependencies do not get unblocked at the speed the procurement timetable needs, and what eventually gets bought has nothing operational to land into. The model becomes a paper exercise rather than the spine of the live service.',
+    body: 'Explicit SLT recognition that delivery of the future-state operating model is critical to the programme and does not sit behind product as a second-order workstream. The operating model is what makes the procured capability runnable: patient journey, supplier journey, commissioner journey, IG, clinical safety, financial settlement. If product lands without the model alongside it, there is nothing to plug into. This is the meta-input the SRO flagged on 1 June: the programme needs to do the thinking on the model with the same weight it puts behind the platform build.',
+    rollup: [
+      'Resourcing commitment to the future-state workstream commensurate with its dependency role.',
+      'Programme plan reflects the model alongside product, not behind it.',
+      'Cross-product role definition (Pathway Integration Lead, Contract Management Lead, Evidence Generation Lead, PMS Lead, EHIA Lead) progressed at programme level.',
+      'Dependencies on the model surfaced in programme governance rather than carried implicitly by the commercial workstream.'
+    ]
+  },
   { id: '05', cluster: 'end-jun', status: 'burning', statusLabel: 'Burning',
     title: 'NHSE Legal written view on the Step 1 interim route',
     date: '2026-06-30', dateLabel: 'Verbal position by end June, written sign-off by 15 September',
@@ -641,24 +654,69 @@ var ITEMS = [
       'PTT scope portability across clinical areas'
     ]
   },
+  { id: 'RFI', cluster: 'end-jun', status: 'burning', statusLabel: 'Burning',
+    title: 'RFI report feedback',
+    date: '2026-06-22', dateLabel: 'SLT feedback by 22 June playback, baked into final report soon after',
+    owner: 'SRO and SLT (with NHS Commercial preparing the report)',
+    consequence: 'Without SLT feedback ahead of the 22 June playback, the RFI report goes back out to the market carrying our view without the SLT view inside it. The supplier engagement that follows is then weaker than it needs to be, and the report cannot be relied on as the substantiation behind the procurement strategy paper.',
+    body: 'The RFI report is being readied for SLT review. We need feedback on content, gaps and areas to update before the 22 June playback so the version we issue back to the market reflects an SLT-aligned view. The findings then anchor the procurement strategy paper that lands end of next week or early the week after.',
+    rollup: [
+      'Confirmation of the SLT view on capability and capacity findings in the report.',
+      'Any gaps SLT wants closed before reissue (e.g. specific use cases, supplier categories, market segments).',
+      'Areas SLT wants stripped or de-emphasised.',
+      'Reissue version ready to support the 22 June playback session.'
+    ]
+  },
+
   { id: '08', cluster: 'end-jun', status: 'burning', statusLabel: 'Overdue',
     title: 'Health Economist onboarded',
     date: '2026-06-15', dateLabel: 'Overdue, should already have happened',
     owner: 'SRO with Commercial Lead escalation',
     consequence: 'The recommendation paper itself can still land without this in place. The work behind it cannot. Pricing model, supply-chain cost analysis, financial impairment and volumes substantiation all stall. The longer this slips, the thinner the substantiation behind anything we recommend.',
-    body: 'Two days a week, MVP requirement. Stuck in the approval chain since late April. Was meant to be in seat weeks ago. Onboarding needs to happen as soon as the approval chain releases, not at end June.',
+    body: 'Two days a week, MVP requirement. Stuck in the approval chain since late April. Was meant to be in seat weeks ago. Onboarding needs to happen as soon as the approval chain releases, not at end June. Onboarding is the prerequisite; the deliverables (benefits articulation, as-is to to-be cost modelling, savings narrative, OBC substantiation) are the actual workstream ask.',
     rollup: [
+      'Benefits articulation: as-is versus to-be model, where the cost savings come from, how the change drives operational efficiency',
       'Cost-per-test baseline established (MEASURE)',
       'Attribution methodology linking a kit to a downstream clinical outcome',
       'Pricing structure (A9) substantiation: three-tier model on cost per valid result',
       'Addressable market sizing model',
       'Capacity ceilings and overflow mechanism',
       'KPI framework designed',
-      'MEASURE marketplace health metrics (NPS, referral rates, satisfaction)'
+      'MEASURE marketplace health metrics (NPS, referral rates, satisfaction)',
+      'Savings narrative usable in the OBC and in SLT-facing material'
     ]
   },
 
   // ---- End July 2026 ----
+  { id: 'MEP', cluster: 'end-jul', status: 'tracked', statusLabel: 'Tracked',
+    title: 'Supplier and market engagement priorities',
+    date: '2026-07-31', dateLabel: 'SLT direction by end July, off the back of the reissued RFI report',
+    owner: 'SRO and SLT (with NHS Commercial executing)',
+    consequence: 'Without an SLT-sanctioned priority list, the market engagement that follows the RFI is unfocused. We risk testing the wrong propositions with the wrong suppliers, burning the early-engagement capital we have at this point in the cycle.',
+    body: 'Off the back of the RFI findings, an SLT-level call on which areas we pursue actively with the market: which capabilities, supplier categories or use cases warrant deeper engagement; where we pause; what conversations we open with suppliers we have not yet engaged. Sets the engagement plan that runs through to procurement.',
+    rollup: [
+      'Prioritised list of supplier categories to engage actively over the next quarter.',
+      'Position on supplier consolidation: parallel mixed-economy versus pathology-network-led versus all-inclusive.',
+      'Position on specific suppliers to test propositions with ahead of formal procurement.',
+      'Areas to go quiet on or hold back from market engagement until other inputs land.',
+      'Engagement plan handed back to NHS Commercial to execute.'
+    ]
+  },
+  { id: 'E2E', cluster: 'end-jul', status: 'tracked', statusLabel: 'Tracked',
+    title: 'End-to-end costings',
+    date: '2026-07-31', dateLabel: 'First-pass model by end July, refined version by end Q3 alongside business case',
+    owner: 'Health Economist (once onboarded) with Strategic Finance support',
+    consequence: 'The value envelope at C1 cannot be defended without an end-to-end view. The OBC cannot be costed. The SLT-level question of where the cost savings come from when moving from as-is to to-be is unanswered, and the case for the change itself becomes hard to make.',
+    body: 'End-to-end cost picture of the service: cost-to-serve per test for the platform, cost-to-NHS across the patient journey from order to result to next step, cost-per-test at the commissioner end, and the as-is versus to-be comparison surfaced on 1 June. Depends on the Health Economist being in seat. Feeds the volumes and value substantiation at C1 and the savings narrative the OBC and SLT material need.',
+    rollup: [
+      'Cost-to-serve modelled for HomeTest (platform cost per test).',
+      'Cost-to-NHS modelled across the full patient journey, by configuration.',
+      'Cost-per-test for the commissioner across the lifecycle of an order.',
+      'As-is versus to-be model: where the cost savings come from and how they accrue.',
+      'Sensitivity analysis against the volume scenarios (working order-of-magnitude headlines through to one million tests).',
+      'Savings narrative usable in the OBC and in SLT-facing material.'
+    ]
+  },
   { id: '07', cluster: 'end-jul', status: 'tracked', statusLabel: 'Tracked',
     title: 'IAO finalisation',
     date: '2026-07-31', dateLabel: 'End July 2026',
