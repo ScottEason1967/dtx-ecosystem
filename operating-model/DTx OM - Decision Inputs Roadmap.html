@@ -404,7 +404,7 @@
   <!-- Procurement scenarios -->
   <div class="scenarios">
     <h2>Three procurement scenarios. One decision window.</h2>
-    <p class="sec-intro">Three routes are live. The route picked depends on the procurement size category (under £50m, over £150m, or SBS framework adoption) and the regime selection (PA23 versus PSR). Each carries its own framework start date. <strong>Project Initiation has to begin on 1 July 2026 for the NHSE routes, or 1 September 2026 for SBS. Everything else downstream is paced from that start date.</strong></p>
+    <p class="sec-intro">Three routes are live. The route picked depends on the procurement size category (under £50m, over £150m, or SBS framework adoption) and the regime selection (PA23 versus PSR). Each carries its own framework start date. <strong>Project Initiation lands around 1 July 2026 for the NHSE routes, or around 1 September 2026 for the SBS route. The dates are working anchors used to back-out the downstream timeline. They are being refined against the partner timeline conversation rather than treated as committed dates.</strong></p>
 
     <div class="scen-grid">
       <div class="scen-card r30">
@@ -586,7 +586,7 @@ var ITEMS = [
     date: '2026-06-30', dateLabel: 'Working position by end June, written confirmation by 15 September',
     owner: 'NHSE Legal with clinical input',
     consequence: 'The answer is one of the inputs into Step 2 (PA23 vs PSR). NHS Legal advice is that a case can be made for either route; the recommended approach is to start from the desired solution and work backwards. Without a working position on clinical-ness, the OBC cannot be drafted against the chosen route with conviction.',
-    body: 'Is the service we are buying more than half clinical service, rather than goods, kits or technology? Our working assumption is yes, it is mostly clinical. That feeds into the Step 2 vehicle decision: Plan A would land as a PA23 Option B framework or Dynamic Market; Plan B would land as Digital Primary Care framework leverage; Plan C would land as commissioner-led direct purchase. NHSE Legal needs to confirm the clinical-ness position in writing.',
+    body: 'Is the service we are buying more than half clinical service, rather than goods, kits or technology? Our working assumption is yes, it is mostly clinical. NHSE Legal’s current verbal view is that a case can be made for either PA23 or PSR and the challenge risk is low under either route, because both invite suppliers to join. A written advice note is being drafted to support whichever direction is chosen. An external procurement counsel workshop on dynamic market viability is scheduled to inform the Plan A versus alternative call. Plan A would land as a PA23 Option B framework or a Dynamic Market; Plan B would land as Digital Primary Care framework leverage; Plan C would land as commissioner-led direct purchase. A recent challenge case (imaging services) where the wrong regime was used was upheld; NHSE Legal is reviewing.',
     rollup: [
       'Working assumption logged in writing on whether the service is mostly clinical.',
       'Confirmation that the Step 1 SBS PSR bridge for HIV sits comfortably alongside the assumption while the Step 2 decision is in flight.',
@@ -598,7 +598,7 @@ var ITEMS = [
     date: '2026-06-30', dateLabel: 'Verbal position by end June, written sign-off by 15 September',
     owner: 'NHSE Legal',
     consequence: 'Without a verbal position, the Step 1 interim route cannot be defended at SLT playback. Without a written sign-off by Requirements Creation, the OBC carries a load-bearing assumption that can be challenged.',
-    body: 'The Step 1 interim route is a six-month SBS PSR bridge for the HIV use case only, with Alpha/Beta MOUs continuing to cover live deployments. NHSE Legal advice is that a case can be made for either PA23 or PSR overall; the bridge runs while the Step 2 vehicle decision is in flight. We need NHSE Legal’s view in writing on the Step 1 shape so the architecture rests on more than a conversation.',
+    body: 'The Step 1 interim route is a six-month SBS PSR bridge for the HIV use case only, with Alpha/Beta MOUs continuing to cover live deployments. NHSE Legal advice is that a case can be made for either PA23 or PSR overall and an advice note is being drafted to support the chosen direction. The bridge runs while the Step 2 vehicle decision is in flight. We need NHSE Legal’s view in writing on the Step 1 shape so the architecture rests on more than a conversation.',
     rollup: [
       'Step 3 framework administration route (NHSE direct, SBS, CCS, third-party)',
       'Standard call-off template authored and signed off',
@@ -608,6 +608,20 @@ var ITEMS = [
       'CONTRACT exit terms inside the contractual instrument',
       'How the Step 2 vehicle accommodates future conditions beyond HIV',
       'NHS Supply Chain POCT framework interface'
+    ]
+  },
+  { id: '05b', cluster: 'end-jun', status: 'burning', statusLabel: 'Burning',
+    title: 'Step 3 framework administration partner',
+    date: '2026-06-30', dateLabel: 'Working position by end June, decision by Requirements Creation',
+    owner: 'NHSE Commercial (Senior Commercial Lead) with delivery partners',
+    consequence: 'Without a working partner position, the procurement strategy paper cannot be finalised. The partner choice changes the timetable (estimated six-month spread between NHSE-run and SBS-run scenarios) and the governance route to award.',
+    body: 'Who actually administers the framework once it lands. The choice sits between NHSE running it directly, partnering with SBS, partnering with CCS, or commissioning a third-party. The current working position is partnership with SBS over NHS Supply Chain on the basis of engagement-to-date. The internal NHSE position is unsettled and being worked through. A regroup with SBS on refined timeline assumptions sits in the diary for next week, with the procurement strategy paper landing end of next week or early the week after.',
+    rollup: [
+      'Internal NHSE chat on whether NHSE runs the framework or partners.',
+      'Refined SBS timeline against a thirty-million-pound envelope (over the contract term).',
+      'NHSE-administered comparator at the higher value envelope (working figure around two hundred and fifty million).',
+      'Resource availability inside NHSE Commercial to run the procurement.',
+      'Ongoing administration capacity once the framework is live.'
     ]
   },
   { id: '06', cluster: 'end-jun', status: 'burning', statusLabel: 'Burning',
@@ -911,69 +925,100 @@ function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').re
   var container = document.getElementById('items');
   if (!container) return;
 
+  var STATUS_ORDER = { burning: 0, cardinal: 1, tracked: 2, future: 3, gate: 4 };
+
+  function fmtDate(iso) {
+    if (!iso) return '';
+    var d = new Date(iso);
+    if (isNaN(d.getTime())) return iso;
+    return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+
   CLUSTERS.forEach(function(c) {
     var clusterItems = ITEMS.filter(function(it) { return it.cluster === c.id; });
     if (!clusterItems.length) return;
-    // Sort so urgency is the read-order: burning (and overdue) first, then
-    // cardinal, then tracked, then future, then map gates. Inside a status
-    // bucket, keep array order.
-    var rank = { burning: 0, cardinal: 1, tracked: 2, future: 3, gate: 4 };
+
     clusterItems.sort(function(a, b) {
-      return (rank[a.status] !== undefined ? rank[a.status] : 99)
-           - (rank[b.status] !== undefined ? rank[b.status] : 99);
+      var sa = STATUS_ORDER[a.status] != null ? STATUS_ORDER[a.status] : 99;
+      var sb = STATUS_ORDER[b.status] != null ? STATUS_ORDER[b.status] : 99;
+      if (sa !== sb) return sa - sb;
+      return (a.date || '').localeCompare(b.date || '');
     });
 
-    var cl = document.createElement('div');
-    cl.className = 'cluster ' + c.status;
+    var clusterDiv = document.createElement('div');
+    clusterDiv.className = 'cluster ' + c.status;
 
-    var ch = document.createElement('div');
-    ch.className = 'cluster-h';
-    ch.innerHTML =
-      '<span class="cluster-date">' + esc(c.label) + '</span>' +
-      '<span class="cluster-anchor">Anchor · <strong>' + esc(c.anchor) + '</strong></span>';
-    cl.appendChild(ch);
+    var head = document.createElement('div');
+    head.className = 'cluster-h';
+    head.innerHTML =
+      '<span class="cluster-date">' + c.label + '</span>' +
+      '<span class="cluster-anchor">Anchor: <strong>' + c.anchor + '</strong></span>';
+    clusterDiv.appendChild(head);
 
-    clusterItems.forEach(function(item) {
+    clusterItems.forEach(function(it) {
       var card = document.createElement('div');
-      card.className = 'card ' + item.status;
-      card.setAttribute('data-id', item.id);
+      card.className = 'card ' + it.status;
+      card.id = 'card-' + it.id;
+      card.setAttribute('data-id', it.id);
 
-      var rollupHtml = item.rollup.map(function(r) { return '<li>' + esc(r) + '</li>'; }).join('');
-
-      card.innerHTML =
+      var headHtml =
         '<div class="card-head">' +
-          '<div class="card-id">' + esc(item.id) + '</div>' +
+          '<div class="card-id">' + it.id + '</div>' +
           '<div class="card-titlewrap">' +
-            '<div class="card-title">' + esc(item.title) + '</div>' +
-            '<div class="card-owner"><strong>' + esc(item.dateLabel) + '</strong> · ' + esc(item.owner) + '</div>' +
+            '<div class="card-title">' + it.title + '</div>' +
+            (it.owner ? '<div class="card-owner"><strong>Owner:</strong> ' + it.owner + '</div>' : '') +
           '</div>' +
-          '<div class="card-status ' + item.status + '">' + esc(item.statusLabel) + '</div>' +
+          '<div class="card-status ' + it.status + '">' + (it.statusLabel || it.status) + '</div>' +
           '<div class="card-toggle">+</div>' +
-        '</div>' +
-        '<div class="card-body">' +
-          '<p class="card-body-intro">' + esc(item.body) + '</p>' +
-          '<div class="meta-grid">' +
-            '<div class="meta-card owner"><div class="meta-h owner">Owner</div><div class="meta-body">' + esc(item.owner) + '</div></div>' +
-            '<div class="meta-card date"><div class="meta-h date">By when</div><div class="meta-body">' + esc(item.dateLabel) + '</div></div>' +
-            '<div class="meta-card cons"><div class="meta-h cons">If it slips</div><div class="meta-body">' + esc(item.consequence) + '</div></div>' +
-          '</div>' +
-          '<div class="rollup-h">Operational rollup</div>' +
-          '<p class="rollup-intro">The questions that need answering inside this dependency.</p>' +
-          '<ul class="rollup-list">' + rollupHtml + '</ul>' +
         '</div>';
 
-      // Toggle on click. Whole card area is the click target so misses are impossible.
-      card.addEventListener('click', function() {
+      var rollupHtml = '';
+      if (it.rollup && it.rollup.length) {
+        rollupHtml = '<div class="card-rollup"><div class="card-rollup-h">Rolls up:</div><ul>' +
+          it.rollup.map(function(r) { return '<li>' + r + '</li>'; }).join('') +
+          '</ul></div>';
+      }
+
+      var bodyHtml =
+        '<div class="card-body">' +
+          (it.dateLabel ? '<div class="card-date"><strong>By:</strong> ' + it.dateLabel + (it.date ? ' (' + fmtDate(it.date) + ')' : '') + '</div>' : '') +
+          (it.body ? '<div class="card-body-text">' + it.body + '</div>' : '') +
+          (it.consequence ? '<div class="card-consequence"><strong>If it slips:</strong> ' + it.consequence + '</div>' : '') +
+          rollupHtml +
+        '</div>';
+
+      card.innerHTML = headHtml + bodyHtml;
+
+      card.addEventListener('click', function(e) {
+        if (e.target.tagName === 'A') return;
         card.classList.toggle('open');
       });
 
-      cl.appendChild(card);
+      clusterDiv.appendChild(card);
     });
 
-    container.appendChild(cl);
+    container.appendChild(clusterDiv);
   });
 })();
-</script>
 
+// ===== Hash-link open =====
+(function openFromHash() {
+  function tryOpen() {
+    var h = window.location.hash;
+    if (!h || h.length < 2) return;
+    var el = document.querySelector(h);
+    if (!el) return;
+    el.classList.add('open');
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', tryOpen);
+  } else {
+    setTimeout(tryOpen, 60);
+  }
+  window.addEventListener('hashchange', tryOpen);
+})();
+
+</script>
 </body>
 </html>
