@@ -398,6 +398,54 @@
  .page { background:#ffffff; border-radius:18px; box-shadow:0 14px 40px rgba(0,48,135,0.20); margin-top:30px !important; margin-bottom:50px !important; }
  @media (max-width:720px){ .page { border-radius:12px; margin-top:18px !important; } }
 
+
+  /* === WHEN two-loops framing — added 2026-06-07 === */
+  .loops-banner{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:30px 0 36px;}
+  .loops-cell{background:#fff;border:1px solid var(--border-lt);border-top:6px solid;border-radius:0 0 12px 12px;padding:20px 24px;}
+  .loops-cell.inner{border-top-color:#006747;}
+  .loops-cell.outer{border-top-color:#AE2573;}
+  .loops-tag{font-size:10.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;margin-bottom:6px;}
+  .loops-cell.inner .loops-tag{color:#006747;}
+  .loops-cell.outer .loops-tag{color:#7C2855;}
+  .loops-title{font-family:Georgia,'Times New Roman',serif;font-size:24px;font-weight:600;color:var(--nhs-dark);letter-spacing:-0.4px;margin-bottom:12px;font-style:italic;}
+  .loops-body{font-size:13px;color:var(--text-sec);line-height:1.65;}
+  .loops-body strong{color:var(--text);font-weight:700;}
+  .loops-divider{height:1px;background:var(--border-lt);margin:14px 0;}
+  .loops-this-model{font-size:12.5px;color:var(--text-sec);line-height:1.6;}
+  .picture-h{font-size:13px;font-weight:800;color:var(--nhs-dark);letter-spacing:1.6px;text-transform:uppercase;margin:36px 0 8px;}
+  .picture-sub{font-size:13.5px;color:var(--text-sec);line-height:1.6;margin-bottom:18px;max-width:780px;}
+  .picture-sub strong{color:var(--text);font-weight:700;}
+  .rhythm-container{position:relative;width:1100px;height:990px;margin:18px -32px 32px;}
+  .halo-svg{position:absolute;top:0;left:0;width:1100px;height:990px;pointer-events:none;z-index:1;}
+  .rhythm-ring-track{stroke:#AE2573;stroke-width:5;fill:none;opacity:0.18;}
+  .rhythm-ring{stroke:#AE2573;stroke-width:5;fill:none;opacity:0.95;stroke-dasharray:14 8;animation:rhythm-flow 14s linear infinite;}
+  @keyframes rhythm-flow{from{stroke-dashoffset:0;}to{stroke-dashoffset:-440;}}
+  @media (prefers-reduced-motion: reduce){.rhythm-ring{animation:none;}}
+  .rhythm-container .cycle-container{position:absolute;left:100px;top:60px;width:900px;height:830px;z-index:2;transform:scale(0.85);transform-origin:center center;margin:0;}
+  .beat-label{position:absolute;text-align:center;z-index:4;}
+  .beat-label.wide{width:200px;}
+  .beat-label.narrow{width:130px;}
+  .beat-label .bl-pdca{display:inline-block;font-size:9.5px;font-weight:800;letter-spacing:1.4px;background:#AE2573;color:#fff;padding:3px 10px;border-radius:3px;text-transform:uppercase;margin-bottom:5px;}
+  .beat-label .bl-name{font-size:22px;font-weight:900;letter-spacing:1.8px;color:#AE2573;line-height:1;}
+  .beat-label .bl-desc{font-size:11px;color:var(--text-sec);line-height:1.4;margin-top:5px;font-style:italic;margin-left:auto;margin-right:auto;}
+  .bpos-adapt{left:450px;top:5px;}
+  .bpos-implement{left:940px;top:435px;}
+  .bpos-review{left:450px;top:865px;}
+  .bpos-learn{left:10px;top:435px;}
+
+
+  /* === Lead-marker repaint 2026-06-07 === */
+  /* Lead amber border now works on the smaller .all-six portrait too (SHAPE, MEASURE) */
+  .stage-personas.all-six img.lead{border:2px solid var(--amber);}
+  /* Commissioner-role tile inside a stage-personas row */
+  .stage-personas .role-tile{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#5B8EE0,#003087);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;border:1.5px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,0.18);flex-shrink:0;cursor:default;}
+  .stage-personas.three .role-tile.lead{border:2px solid var(--amber);}
+
+
+  /* FULFIL has 6 personas (5 + commissioner-role tile). Shrink so they fit. */
+  .stage-box.fulfil .stage-personas.three img{width:28px;height:28px;}
+  .stage-box.fulfil .stage-personas.three img.lead{width:30px;height:30px;}
+
 </style>
 <style>
   .ecosystem-nav {
@@ -460,9 +508,9 @@
  <div class="amber-rule"></div>
  <div class="h-eyebrow">Lifecycle frame</div>
  <div style="font-size:96px;font-weight:900;color:var(--accent);letter-spacing:-2.5px;line-height:0.95;margin:6px 0 6px;">WHEN</div>
- <h1 class="h-title">Lifecycle &middot; what happens over time</h1>
- <div class="h-subtitle">Shape, Assure, Contract, Fulfil, Measure</div>
- <p class="h-intro">The operating model is not a static thing. It runs continuously through five stages. <strong>Shape</strong> is where strategy and design happen. <strong>Assure</strong> is where clinical safety, IG and accreditation are confirmed. <strong>Contract</strong> is where procurement and supplier agreements are struck. <strong>Fulfil</strong> is where the service actually runs. <strong>Measure</strong> is where outcomes feed back into the next round of shaping. The pentagon below is the master view; click any stage to drill into its detail page. Below the pentagon, each stage is mapped to the DDTx 26/27 programme outcomes, with active programme work and open items called out.</p>
+ <h1 class="h-title">Two loops, four beats</h1>
+ <div class="h-subtitle">The rhythm by which the model itself gets better &mdash; adapt, implement, review, learn</div>
+ <p class="h-intro">There are two loops in the operating model, running at the same time on different clocks. The <strong>inner loop</strong> is the rhythm of doing &mdash; the five-stage operational cycle (Shape, Assure, Contract, Fulfil, Measure). The <strong>outer loop</strong> is the slow turn by which the model itself gets better &mdash; <strong>adapt</strong> the standards and framework, <strong>implement</strong> the changes, <strong>review</strong> what they produce, <strong>learn</strong> the patterns, then adapt again. Plan, Do, Check, Act &mdash; the continuous-improvement cycle, applied to the model itself. The model is the relationship between the two loops.</p>
  </div>
 
 <div class="main">
@@ -475,7 +523,32 @@
  <span style="margin-left:auto; font-size:11px; color:#888; font-style:italic;">Click any stage to view detail</span>
  </div>
 
- <div class="cycle-container">
+ 
+  <!-- Two loops, in words === added 2026-06-07 === -->
+  <div class="loops-banner">
+    <div class="loops-cell inner">
+      <div class="loops-tag">The inner loop &middot; The cadence</div>
+      <div class="loops-title">The rhythm of doing</div>
+      <div class="loops-body">The repeating beat of the work itself. Its shape is the business: for the NHS DTx platform that is supplier admission cycles, governance reviews, contract management, service delivery and operational measurement. The loop you can feel; the one with a calendar.</div>
+      <div class="loops-divider"></div>
+      <div class="loops-this-model"><strong>On this model:</strong> the inner loop is run by the platform and the suppliers. NHSE convenes it; it is the operational pentagon below.</div>
+    </div>
+    <div class="loops-cell outer">
+      <div class="loops-tag">The outer loop &middot; The renewal</div>
+      <div class="loops-title">The loop of improving</div>
+      <div class="loops-body">The slow turn by which the model gets better: <strong>adapt &rarr; implement &rarr; review &rarr; learn</strong>. Plan, Do, Check, Act. What each cycle reveals feeds back and changes the next. The part that makes the model alive rather than fixed.</div>
+      <div class="loops-divider"></div>
+      <div class="loops-this-model"><strong>On this model:</strong> the outer loop is where NHSE earns its keep. Quiet today; gets loud as configurations multiply and patterns surface.</div>
+    </div>
+  </div>
+  <div class="picture-h">&#8635; The two loops, in picture</div>
+  <p class="picture-sub">The outer loop is drawn around the pentagon as a slow turning halo with four beats &mdash; <strong>adapt, implement, review, learn</strong> &mdash; at the compass points. The inner loop is the pentagon itself. Their relative speeds are deliberate: the inner turns several times per outer turn.</p>
+  <div class="rhythm-container">
+    <svg class="halo-svg" viewBox="0 0 1100 990" xmlns="http://www.w3.org/2000/svg">
+      <circle class="rhythm-ring-track" cx="550" cy="475" r="380"/>
+      <circle class="rhythm-ring" cx="550" cy="475" r="380"/>
+    </svg>
+    <div class="cycle-container">
 
  <svg class="cycle-svg" viewBox="0 0 900 830" xmlns="http://www.w3.org/2000/svg">
  <defs>
@@ -633,8 +706,8 @@
  <img src="../assets/personas/joe.png" alt="Joe" data-href="DTx OM - Persona Joe.html" style="cursor:pointer;">
  <img src="../assets/personas/abdul.png" alt="Abdul" data-href="DTx OM - Persona Abdul.html" style="cursor:pointer;">
  <img src="../assets/personas/david.png" alt="David" data-href="DTx OM - Persona David.html" style="cursor:pointer;">
- <img src="../assets/personas/aisha.png" alt="Aisha" data-href="DTx OM - Persona Aisha.html" style="cursor:pointer;">
- <img src="../assets/personas/priya.png" alt="Priya" data-href="DTx OM - Persona Priya.html" style="cursor:pointer;">
+ <img src="../assets/personas/aisha.png" alt="Aisha" class="lead" data-href="DTx OM - Persona Aisha.html" style="cursor:pointer;">
+ <img src="../assets/personas/priya.png" alt="Priya" class="lead" data-href="DTx OM - Persona Priya.html" style="cursor:pointer;">
  <img src="../assets/personas/ngozi.png" alt="Ngozi" data-href="DTx OM - Persona Ngozi.html" style="cursor:pointer;">
  </div>
  <span class="view-detail">View detail →</span>
@@ -655,7 +728,7 @@
  <img src="../assets/personas/aisha.png" alt="Aisha" class="lead" data-href="DTx OM - Persona Aisha.html" style="cursor:pointer;">
  <img src="../assets/personas/priya.png" alt="Priya" data-href="DTx OM - Persona Priya.html" style="cursor:pointer;">
  <img src="../assets/personas/joe.png" alt="Joe" data-href="DTx OM - Persona Joe.html" style="cursor:pointer;">
- <img src="../assets/personas/ngozi.png" alt="Ngozi" data-href="DTx OM - Persona Ngozi.html" style="cursor:pointer;">
+ <img src="../assets/personas/ngozi.png" alt="Ngozi" class="lead" data-href="DTx OM - Persona Ngozi.html" style="cursor:pointer;">
  </div>
  <span class="view-detail">View detail →</span>
  </a>
@@ -692,10 +765,11 @@
  <div class="status-line"><span class="status-dot" style="background:var(--status-open);"></span><span class="ct">7</span> Open decisions</div>
  </div>
  <div class="stage-personas three">
- <img src="../assets/personas/abdul.png" alt="Abdul" class="lead" data-href="DTx OM - Persona Abdul.html" style="cursor:pointer;">
- <img src="../assets/personas/mark.png" alt="Mark" class="lead" data-href="DTx OM - Persona Mark.html" style="cursor:pointer;">
- <img src="../assets/personas/layla.png" alt="Layla" class="lead" data-href="DTx OM - Persona Layla.html" style="cursor:pointer;">
- <img src="../assets/personas/joe.png" alt="Joe" data-href="DTx OM - Persona Joe.html" style="cursor:pointer;">
+ <img src="../assets/personas/abdul.png" alt="Abdul" data-href="DTx OM - Persona Abdul.html" style="cursor:pointer;">
+ <img src="../assets/personas/mark.png" alt="Mark" data-href="DTx OM - Persona Mark.html" style="cursor:pointer;">
+ <img src="../assets/personas/layla.png" alt="Layla" data-href="DTx OM - Persona Layla.html" style="cursor:pointer;">
+ <img src="../assets/personas/joe.png" alt="Joe" class="lead" data-href="DTx OM - Persona Joe.html" style="cursor:pointer;">
+        <img src="../assets/personas/sarah.png" alt="Commissioner" class="lead" data-href="DTx OM - Role Commissioner.html" title="Commissioner (role)" style="cursor:pointer;">
  <img src="../assets/personas/aisha.png" alt="Aisha" data-href="DTx OM - Persona Aisha.html" style="cursor:pointer;">
  </div>
  <span class="view-detail">View detail →</span>
@@ -714,10 +788,10 @@
  </div>
  <div class="stage-personas all-six">
  <img src="../assets/personas/sarah.png" alt="Sarah" data-href="DTx OM - Persona Sarah.html" style="cursor:pointer;">
- <img src="../assets/personas/joe.png" alt="Joe" data-href="DTx OM - Persona Joe.html" style="cursor:pointer;">
+ <img src="../assets/personas/joe.png" alt="Joe" class="lead" data-href="DTx OM - Persona Joe.html" style="cursor:pointer;">
  <img src="../assets/personas/abdul.png" alt="Abdul" data-href="DTx OM - Persona Abdul.html" style="cursor:pointer;">
- <img src="../assets/personas/david.png" alt="David" data-href="DTx OM - Persona David.html" style="cursor:pointer;">
- <img src="../assets/personas/aisha.png" alt="Aisha" data-href="DTx OM - Persona Aisha.html" style="cursor:pointer;">
+ <img src="../assets/personas/david.png" alt="David" class="lead" data-href="DTx OM - Persona David.html" style="cursor:pointer;">
+ <img src="../assets/personas/aisha.png" alt="Aisha" class="lead" data-href="DTx OM - Persona Aisha.html" style="cursor:pointer;">
  <img src="../assets/personas/priya.png" alt="Priya" data-href="DTx OM - Persona Priya.html" style="cursor:pointer;">
  <img src="../assets/personas/ngozi.png" alt="Ngozi" data-href="DTx OM - Persona Ngozi.html" style="cursor:pointer;">
  </div>
@@ -725,6 +799,12 @@
  </a>
 
  </div>
+    <div class="beat-label wide bpos-adapt"><span class="bl-pdca">Plan</span><div class="bl-name">ADAPT</div><div class="bl-desc">Decide what to change in the framework</div></div>
+    <div class="beat-label narrow bpos-implement"><span class="bl-pdca">Do</span><div class="bl-name">IMPLEMENT</div><div class="bl-desc">Roll the changes out</div></div>
+    <div class="beat-label wide bpos-review"><span class="bl-pdca">Check</span><div class="bl-name">REVIEW</div><div class="bl-desc">Scan what they produced</div></div>
+    <div class="beat-label narrow bpos-learn"><span class="bl-pdca">Act</span><div class="bl-name">LEARN</div><div class="bl-desc">Interpret the patterns</div></div>
+  </div>
+
 
  <!-- Feedback banner -->
  <div class="feedback-banner">
