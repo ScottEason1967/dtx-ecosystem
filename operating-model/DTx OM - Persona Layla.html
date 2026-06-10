@@ -161,7 +161,7 @@
       <h1 class="h-title">Layla.</h1>
       <div class="h-role">Patient &middot; GP-initiated</div>
       <div class="h-quote">&ldquo;I can't take half a day off for bloods. The kit comes to me, I do it on a Saturday, the GP sees the result.&rdquo;</div>
-      <div class="h-bio">42, single parent of two school-age kids, works two part-time jobs (one shift-based). Type 2 diabetes diagnosed three years ago, on metformin. Her GP needs HbA1c every six months. A clinic visit means losing income; a kit at home means she stays in work and her diabetes stays monitored. She is the access story the model has to serve.</div>
+      <div class="h-bio">42, single parent of two school-age kids, works two part-time jobs (one shift-based). Iron deficiency anaemia diagnosed three years ago, on ferrous sulphate. Her GP needs FBC and ferritin every six months to monitor her response. A clinic visit means losing income; a kit at home means she stays in work and her anaemia stays monitored. She is the access story the model has to serve.</div>
     </div>
     <div class="h-portrait">
       <img src="../assets/personas/layla.png" alt="Layla">
@@ -171,18 +171,18 @@
   
   <div class="where-panel">
     <span class="label">Why Layla is here</span>
-    Layla is a patient on the HbA1c GP-initiated configuration &mdash; type 2 diabetes review monitoring. She represents the patient-side of the GP-initiated pattern, distinct from clinician-initiated (<a href="DTx OM - Persona Mark.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">Mark</a>) and patient-initiated (<a href="DTx OM - Persona Abdul.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">Abdul</a>). Her configuration matters because primary-care monitoring is the largest pool of long-term-condition testing in the NHS; if HomeTest does not work for the HbA1c review cycle, the platform&apos;s headline volume case does not land. Layla sits inside <a href="DTx OM - Persona Anita.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">Anita</a>&apos;s commissioning shape and on <a href="DTx OM - Persona Hannah.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">Hannah</a>&apos;s review cycle.
+    Layla is a patient on the iron deficiency anaemia GP-initiated configuration &mdash; primary care anaemia monitoring. She represents the patient-side of the GP-initiated pattern, distinct from clinician-initiated (<a href="DTx OM - Persona Mark.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">Mark</a>) and patient-initiated (<a href="DTx OM - Persona Abdul.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">Abdul</a>). Her configuration matters because primary-care monitoring is the largest pool of long-term-condition testing in the NHS; if HomeTest does not work for the anaemia review cycle, the platform&apos;s headline volume case does not land. Layla sits inside <a href="DTx OM - Persona Anita.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">Anita</a>&apos;s commissioning shape and on <a href="DTx OM - Persona Hannah.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">Hannah</a>&apos;s review cycle.
   </div>
 
   <h2 class="section-h">Why this role matters</h2>
-  <p class="section-body">Layla is the third Year 1 patient archetype. <strong>Abdul</strong> is patient-initiated (he self-screens with the NHS App, CVKM Check Up follows), <strong>Mark</strong> is clinician-initiated (his consultant requests, PSA-AS), <strong>Layla</strong> is GP-initiated (her GP arranges, HbA1c monitoring). Together the three cover the SLT-confirmed initiation patterns. They also test whether the model serves access: Layla is the one whose journey to a clinic is the actual barrier. If the model only works for people who can take time off, it isn't doing the equity job.</p>
+  <p class="section-body">Layla is the third Year 1 patient archetype. <strong>Abdul</strong> is patient-initiated (he self-screens with the NHS App, CVKM Check Up follows), <strong>Mark</strong> is clinician-initiated (his consultant requests, PSA-AS), <strong>Layla</strong> is GP-initiated (her GP arranges, iron deficiency anaemia monitoring). Together the three cover the SLT-confirmed initiation patterns. They also test whether the model serves access: Layla is the one whose journey to a clinic is the actual barrier. If the model only works for people who can take time off, it isn't doing the equity job.</p>
 
   <div class="pair-callout">
     <strong>The third archetype carries the equity load.</strong> Abdul and Mark both have routes into care that don't depend on physical access barriers. Layla is the one who can't easily take time off, can't easily get to the clinic, and for whom a kit at home is the difference between staying monitored and falling out of the system. The Purpose statement (better access, earlier detection, fairer outcomes) reads true when Layla's journey works. If she can't reach the model, the model isn't doing what it says on the tin.
   </div>
 
   <h2 class="section-h">What's different about Layla's journey</h2>
-  <p class="section-body">Layla doesn't order her own test, and her consultant doesn't either. Her GP arranges it from the practice system as part of her diabetes review cycle. The kit arrives at her house, she takes the sample around her shifts, returns it via post, and the result lands directly in her GP record. Her GP only contacts her if something needs action: medication adjustment, lifestyle review, referral. The data flow is GP-system to lab to GP-record, with Layla as the sample provider rather than the orderer or recipient. This is fundamentally different to both Abdul (who initiates and receives) and Mark (whose consultant initiates and reviews): and it stresses a different part of the model: integration with primary care systems, GP-record write-back, GP-led follow-up.</p>
+  <p class="section-body">Layla doesn't order her own test, and her consultant doesn't either. Her GP arranges it from the practice system as part of her anaemia review cycle. The kit arrives at her house, she takes the sample around her shifts, returns it via post, and the result lands directly in her GP record. Her GP only contacts her if something needs action: medication adjustment, lifestyle review, referral. The data flow is GP-system to lab to GP-record, with Layla as the sample provider rather than the orderer or recipient. This is fundamentally different to both Abdul (who initiates and receives) and Mark (whose consultant initiates and reviews): and it stresses a different part of the model: integration with primary care systems, GP-record write-back, GP-led follow-up.</p>
 
   <h2 class="section-h">Where Layla appears in the model</h2>
   <ul class="where-list">
@@ -195,12 +195,12 @@
 
   <h2 class="section-h" style="margin-top:48px;">TOM components &mdash; what this persona owns or participates in</h2>
   <ul class="where-list">
-    <li><a href="DTx OM - Anatomical.html" style="color:#5E35B2;font-weight:600;text-decoration:none;"><strong>GP-init Initiation pattern</strong> (her GP initiates HbA1c testing through routine annual review)</a></li>
+    <li><a href="DTx OM - Anatomical.html" style="color:#5E35B2;font-weight:600;text-decoration:none;"><strong>GP-init Initiation pattern</strong> (her GP initiates iron studies through routine anaemia review)</a></li>
     <li><a href="DTx OM - Anatomical.html" style="color:#5E35B2;font-weight:600;text-decoration:none;"><strong>Service Wrapper</strong> touchpoints adapted to GP-init: Referral by GP, in-life support, data return to GP record</a></li>
   </ul>
 
   <div class="pair-callout">
-   <strong>The cast around Layla.</strong> <a href="DTx OM - Persona Hannah.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">Hannah</a> is her GP — the clinician who initiates HbA1c orders during her diabetes review consultations and acts on the results when they return to the GP record. <a href="DTx OM - Persona Anita.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">Anita</a> is the ICB / GP commissioner who holds the budget for Layla's pathway. Same configuration, three roles.
+   <strong>The cast around Layla.</strong> <a href="DTx OM - Persona Hannah.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">Hannah</a> is her GP — the clinician who initiates FBC and ferritin orders during her routine review consultations and acts on the results when they return to the GP record. <a href="DTx OM - Persona Anita.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">Anita</a> is the ICB / GP commissioner who holds the budget for Layla's pathway. Same configuration, three roles.
   </div>
 
   </div>

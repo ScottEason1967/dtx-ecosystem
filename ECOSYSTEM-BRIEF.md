@@ -2,7 +2,24 @@
 
 **Owner:** Scott Eason
 **Date issued:** 28 May 2026
-**Last updated:** 29 May 2026 (Paper 1 tightenings mirrored: PA23 dynamic market named as the specific candidate vehicle; April 2027 standup retired as unachievable in the current planning horizon)
+**Last updated:** 9 June 2026 (state-change pass — see "State changes since 28 May 2026" section below)
+
+### State changes since 28 May 2026
+
+- **8 June 2026 — MHRA ruling.** MHRA confirmed the HomeTest platform is not a Software as a Medical Device. The regulatory perimeter on the platform layer is now clear; supplier kits and lab side remain in scope of medical device regulation.
+- **9 June 2026 — HomeTest stays in DPSP.** The expected transfer to "At Home and Community" has been cancelled. HomeTest remains within the Digital Prevention Services Portfolio.
+- **9 June 2026 — IAO appointed.** The Information Asset Owner role (permanent NHSE employee, per PTT requirement) is now filled. The earlier critical-blocker status on IG sign-off for live patient data is closed.
+- **9 June 2026 — Cardiac Rehab formally endorsed as HealthStore Use Case 2.** Three suppliers engaged (KiActiv, my mhealth myHeart, I-impact). MSK is candidate UC3, going to July Programme Board.
+- **14 May 2026 — RDUH selected as Acute Use Case Partner** (scored 92.75/100). Mobilisation kicked off 15 June; gate 13 July. Cambridge and Somerset are reserves.
+- **27 May 2026 — Hill Dickinson instructed** for the PA23 dynamic-markets workshop. Their advice note feeds the 22 June SLT playback.
+- **26 May 2026 — NHSE Legal verbal (Hazel Randall)** confirmed both PSR and PA23 are defensible routes; dynamic markets are PA23-only. Settled posture is "PSR interim / PA23 destination".
+- **2 June 2026 — Health Economist onboarded** (Simon Lee, Elfe Economics).
+- **22 June 2026 — SLT playback in Leeds** (Platform venue, 2:30-5pm Wednesday). Earlier 16 June date has moved.
+- **Plan A April 2027 procure-ready under pressure.** Plan C (commissioner-led direct purchase) is now the named fallback if Plan A cannot stand up in time.
+
+### Earlier change log
+
+(Originally 29 May 2026: Paper 1 tightenings mirrored — PA23 dynamic market named as the specific candidate vehicle; April 2027 standup retired as unachievable in the current planning horizon.)
 **Status:** Live. Any work on Map, DTx OM, Commercial Playbook, Position Papers or sales artefacts must read this first and align against it.
 **Location:** `NHS/dtx-ecosystem/ECOSYSTEM-BRIEF.md`
 
