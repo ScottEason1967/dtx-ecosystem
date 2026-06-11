@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sean's Journey: Digital Therapeutics Operating Model</title>
+<style>
+  :root {
+    --nhs-dark:#003087; --nhs-blue:#005EB8; --nhs-green:#006747; --nhs-pink:#AE2573;
+    --amber:#FFB91D; --amber-deep:#C9A227; --warm-cream:#FFF9EC;
+    --accent:#C9A227;
+    --text:#212B32; --text-sec:#4C6272; --text-muted:#7E8B97;
+    --border-lt:#ebeef1; --card:#ffffff; --bg:#f8fafc;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Segoe UI', system-ui, -apple-system, sans-serif; background:var(--bg); color:var(--text); }
+
+  .topnav{background:#fff;border-bottom:1px solid var(--border-lt);padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;box-shadow:0 2px 14px rgba(0,48,135,0.10);}
+  .nav-back{font-size:13px;font-weight:700;color:var(--nhs-dark);text-decoration:none;display:inline-flex;align-items:center;gap:6px;}
+  .nav-back:hover{color:var(--nhs-blue);}
+  .nav-siblings{display:flex;gap:4px;flex-wrap:wrap;}
+  .nav-siblings a{font-size:12.5px;font-weight:600;color:var(--text-sec);text-decoration:none;padding:7px 14px;border-radius:6px;letter-spacing:0.2px;}
+  .nav-siblings a:hover{background:#f0f4f8;color:var(--text);}
+  .nav-siblings a.active{background:var(--accent);color:#fff;}
+
+  .page{max-width:1060px;margin:0 auto;padding:0 28px 60px;}
+
+  .hero{display:flex;gap:36px;align-items:center;padding:48px 0 36px;border-bottom:1px solid var(--border-lt);flex-wrap:wrap;}
+  .hero-portrait{width:150px;height:150px;border-radius:50%;overflow:hidden;flex-shrink:0;border:4px solid var(--nhs-blue);box-shadow:0 8px 24px rgba(0,48,135,0.18);background:#fff;}
+  .hero-portrait img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;}
+  .hero-text{flex:1;min-width:300px;}
+  .hero-eyebrow{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--amber-deep);margin-bottom:10px;}
+  .hero-title{font-size:36px;font-weight:900;color:var(--nhs-dark);letter-spacing:-0.8px;line-height:1.08;margin-bottom:12px;}
+  .hero-sub{font-size:14.5px;color:var(--text-sec);line-height:1.6;max-width:680px;}
+  .hero-source{margin-top:12px;font-size:12px;color:var(--text-muted);font-style:italic;}
+
+  .ribbon{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:30px 0 8px;}
+  .ribbon a{display:block;background:var(--card);border:1px solid var(--border-lt);border-radius:10px;padding:14px 16px;text-decoration:none;color:inherit;transition:transform .15s ease, box-shadow .15s ease;}
+  .ribbon a:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,32,64,0.12);}
+  .ribbon-num{font-size:22px;font-weight:900;color:var(--nhs-blue);line-height:1;}
+  .ribbon-label{font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--text-sec);margin-top:6px;}
+
+  .stage{display:flex;gap:28px;margin-top:44px;}
+  .stage-side{flex-shrink:0;width:64px;display:flex;flex-direction:column;align-items:center;}
+  .stage-number{width:54px;height:54px;border-radius:50%;background:var(--nhs-dark);color:#fff;font-size:24px;font-weight:900;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(0,48,135,0.22);}
+  .stage-bar{flex:1;width:3px;background:linear-gradient(180deg,var(--nhs-blue),transparent);margin-top:10px;border-radius:2px;}
+  .stage-main{flex:1;min-width:0;}
+  .stage-eyebrow{font-size:10.5px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:var(--amber-deep);}
+  .stage-title{font-size:24px;font-weight:900;color:var(--nhs-dark);letter-spacing:-0.4px;margin:4px 0 14px;}
+  .stage-body{font-size:14px;color:var(--text-sec);line-height:1.65;margin-bottom:14px;max-width:760px;}
+  .stage-body strong{color:var(--text);}
+
+  .pull-quote{border-left:4px solid var(--amber);background:var(--warm-cream);border-radius:0 10px 10px 0;padding:16px 20px;margin:16px 0;max-width:680px;}
+  .pull-quote-text{font-size:15.5px;font-weight:600;color:var(--text);line-height:1.5;font-style:italic;}
+  .pull-quote-attribution{font-size:12px;color:var(--text-muted);margin-top:6px;}
+
+  .callout{display:flex;gap:14px;background:var(--card);border:1px solid var(--border-lt);border-left:4px solid var(--nhs-blue);border-radius:0 10px 10px 0;padding:14px 18px;margin:14px 0;max-width:720px;}
+  .callout.amber{border-left-color:var(--amber);}
+  .callout-label{font-size:10px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--nhs-blue);white-space:nowrap;padding-top:2px;}
+  .callout.amber .callout-label{color:var(--amber-deep);}
+  .callout-text{font-size:13px;color:var(--text-sec);line-height:1.55;}
+  .callout-text a{color:var(--nhs-blue);font-weight:700;text-decoration:none;}
+
+  .chips{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 0;}
+  .chip{font-size:11px;font-weight:800;letter-spacing:0.6px;padding:5px 12px;border-radius:99px;background:#eef4fa;color:var(--nhs-dark);}
+  .chip.saved{background:#E7F4EC;color:var(--nhs-green);}
+  .chip.kit{background:var(--warm-cream);color:var(--amber-deep);border:1px solid var(--amber);}
+
+  .interlude{background:linear-gradient(135deg,var(--nhs-dark),var(--nhs-blue));border-radius:14px;padding:30px 34px;margin:48px 0;color:#fff;}
+  .interlude-eyebrow{font-size:10.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:10px;}
+  .interlude-title{font-size:21px;font-weight:900;letter-spacing:-0.3px;margin-bottom:10px;}
+  .interlude-body{font-size:14px;line-height:1.65;color:rgba(255,255,255,0.92);max-width:760px;}
+  .interlude-body a{color:var(--amber);font-weight:700;text-decoration:none;}
+
+  .outcomes{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:48px 0 0;}
+  .outcome{background:var(--card);border:1px solid var(--border-lt);border-top:4px solid var(--nhs-blue);border-radius:12px;padding:22px;}
+  .outcome:nth-child(2){border-top-color:var(--nhs-green);}
+  .outcome:nth-child(3){border-top-color:var(--amber);}
+  .outcome-h{font-size:10.5px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;}
+  .outcome-title{font-size:16px;font-weight:900;color:var(--nhs-dark);margin-bottom:8px;letter-spacing:-0.2px;}
+  .outcome-body{font-size:12.5px;color:var(--text-sec);line-height:1.6;}
+  .outcome-body strong{color:var(--text);}
+
+  .casting{background:var(--card);border:1.5px solid var(--nhs-dark);border-radius:14px;padding:26px 30px;margin:48px 0 0;}
+  .casting-eyebrow{font-size:10.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--amber-deep);margin-bottom:8px;}
+  .casting-title{font-size:19px;font-weight:900;color:var(--nhs-dark);margin-bottom:10px;letter-spacing:-0.3px;}
+  .casting-body{font-size:13.5px;color:var(--text-sec);line-height:1.65;}
+  .casting-body strong{color:var(--text);}
+  .casting-body a{color:var(--nhs-blue);font-weight:700;text-decoration:none;}
+
+  .foot{margin-top:52px;padding-top:18px;border-top:1px solid var(--border-lt);font-size:11.5px;color:var(--text-muted);line-height:1.6;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+
+  @media (max-width:760px){
+    .ribbon{grid-template-columns:repeat(2,1fr);}
+    .outcomes{grid-template-columns:1fr;}
+    .stage{flex-direction:column;gap:12px;}
+    .stage-side{flex-direction:row;width:auto;}
+    .stage-bar{display:none;}
+    .hero{flex-direction:column;text-align:center;}
+  }
+  .stage-image{margin:4px 0 16px;max-width:620px;}
+  .stage-image img{width:100%;height:auto;display:block;border-radius:12px;box-shadow:0 8px 22px rgba(0,32,64,0.14);}
+  .interlude-image{max-width:440px;margin:0 0 16px;}
+  .interlude-image img{width:100%;height:auto;display:block;border-radius:12px;border:3px solid rgba(255,255,255,0.25);}
+</style>
+<style>
+  .ecosystem-nav{background:#0b1c33;padding:10px 28px;display:flex;align-items:center;gap:14px;font-size:12.5px;}
+  .ecosystem-nav a{color:#9fc3ee;text-decoration:none;font-weight:700;}
+  .ecosystem-nav .nav-context{color:rgba(255,255,255,0.75);font-weight:600;}
+  .ecosystem-nav .nav-product{margin-left:auto;background:#005EB8;color:#fff;font-weight:800;font-size:10.5px;letter-spacing:1px;padding:4px 10px;border-radius:99px;}
+</style>
+</head>
+<body>
+<div class="ecosystem-nav">
+  <a href="../index.html">&larr; DTx Ecosystem</a>
+  <span class="nav-context">Sean&apos;s Journey</span>
+  <span class="nav-product dtx">DTx</span>
+</div>
+
+<nav class="topnav">
+  <a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+  <div class="nav-siblings">
+    <a href="DTx OM - Why.html">Why</a>
+    <a href="DTx OM - What.html">What</a>
+    <a href="DTx OM - Lifecycle.html">When</a>
+    <a href="DTx OM - HomeTest Operational.html">How</a>
+    <a href="DTx OM - Governance.html">Who</a>
+    <a href="DTx OM - Hearts and Minds.html" class="active">Hearts and Minds</a>
+    <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>
+    <a href="DTx OM - Status.html">Status</a>
+  </div>
+</nav>
+
+<div class="page">
+  <div class="hero">
+    <div class="hero-portrait" style="border-color:#6A4DBF;"><img src="../assets/personas/sean.png" alt="Sean"></div>
+    <div class="hero-text">
+      <div class="hero-eyebrow" style="color:#6A4DBF;">Hearts and Minds &middot; the access story &middot; a real journey</div>
+      <h1 class="hero-title">Sean&apos;s journey.<br>His home. His pace. His people.</h1>
+      <p class="hero-sub">Sean is 46. He has had his learning disability all his life; he is autistic and lives with OCD. He is not an archetype &mdash; he is a real man, and his story is here with his family&apos;s blessing. He is fantastic, and his family would not change him. The system is what has to change. For Sean, the test was never the hard part. Everything before the test was. This is the journey as it has been, and the journey as this model means it to be.</p>
+      <p class="hero-source">Source: his family. The design hooks his story points to are marked <span style="color:var(--amber-deep);font-weight:800;font-style:normal;">&#9873;</span> where they are still being documented.</p>
+    </div>
+  </div>
+
+  <div class="ribbon">
+    <a href="#act1"><div class="ribbon-num">1</div><div class="ribbon-label">Attending</div></a>
+    <a href="#act2"><div class="ribbon-num">2</div><div class="ribbon-label">Understanding</div></a>
+    <a href="#act3"><div class="ribbon-num">3</div><div class="ribbon-label">Committing</div></a>
+    <a href="#act4"><div class="ribbon-num">4</div><div class="ribbon-label">The journey, redesigned</div></a>
+  </div>
+
+  <div class="stage" id="act1">
+    <div class="stage-side"><div class="stage-number" style="background:#4527A0;">1</div><div class="stage-bar" style="background:linear-gradient(180deg,#6A4DBF,transparent);"></div></div>
+    <div class="stage-main">
+      <div class="stage-eyebrow" style="color:#6A4DBF;">His own front door &middot; attending</div>
+      <h2 class="stage-title">Sean&apos;s day works because Sean built it.</h2>
+      <div class="stage-image"><img src="../assets/sean story/sean-stage1.png" alt="Sean in his own living room, mid-morning routine" onerror="this.parentElement.style.display='none'"></div>
+      <p class="stage-body">Morning in Sean&apos;s house runs to an order he made himself. With OCD, routine is not a preference &mdash; it is the structure that holds a day together, and Sean is good at it: his own tenancy, his own keys, a care team around him, an independence his family fought for and still guards. The support is inconsistent and the family fills the gaps &mdash; but the home, the order, the day itself: <strong>those are his.</strong></p>
+      <p class="stage-body">Then a letter arrives. An appointment &mdash; a date, a time, a building he doesn&apos;t know &mdash; and the structure of the day now has a hole in it. The journey to an unfamiliar place. A waiting room full of strangers and noise and unexplained delays. An interaction that begins on the clock&apos;s terms, not his. Each is a wall on its own; together they can end the journey before it starts. People with learning disabilities are offered an annual health check that routinely includes bloods &mdash; and <strong>it is exactly at the venepuncture step that the journey most often stalls.</strong></p>
+      <p class="stage-body">When it stalls, the system writes &ldquo;did not attend&rdquo;. A DNA code does not distinguish <em>would not</em> from <em>could not</em>. People like Sean accumulate them &mdash; and then the system, reading non-attendance as non-engagement, quietly deprioritises exactly the people who needed the most help to attend.</p>
+      <div class="pull-quote" style="border-left-color:#6A4DBF;background:var(--warm-cream);">
+        <div class="pull-quote-text">&ldquo;He has had genuine real-world problems with attending medical appointments, understanding the advice, committing to the tests. HomeTest would have been a godsend.&rdquo;</div>
+        <div class="pull-quote-attribution">His brother &mdash; who works on this programme</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stage" id="act2">
+    <div class="stage-side"><div class="stage-number" style="background:#4527A0;">2</div><div class="stage-bar" style="background:linear-gradient(180deg,#6A4DBF,transparent);"></div></div>
+    <div class="stage-main">
+      <div class="stage-eyebrow" style="color:#6A4DBF;">Words that work &middot; understanding</div>
+      <h2 class="stage-title">Sean understands plenty &mdash; when it&apos;s said so he can.</h2>
+      <div class="stage-image"><img src="../assets/sean story/sean-stage2.png" alt="Sean following an easy-read picture guide at his kitchen counter" onerror="this.parentElement.style.display='none'"></div>
+      <p class="stage-body">Give Sean instructions built for him &mdash; plain words, pictures, time, the chance to ask twice &mdash; and he can hold them. What he was given instead: clinical language at speed, no time to process, nothing to take home in a form that works for him. Agreement gets mistaken for understanding, and the moment the door closes, the advice starts to dissolve. <strong>The system measured whether he was told &mdash; never whether he understood.</strong></p>
+      <p class="stage-body">And it is not just blood tests. Before a colonoscopy comes the preparation: the clear-out drinks, on a precise schedule, with instructions that assume you can read them, follow them alone, and hold on to the why. For Sean that journey failed long before any procedure room &mdash; it failed at the kitchen counter, on the instructions. <strong>Any test with a preparation step has a second front door, and it is usually the one that&apos;s locked.</strong></p>
+      <p class="stage-body">What the redesigned journey gives him: instructions in easy-read formats, pictures and plain words &mdash; and the chance to do it again tomorrow if today went wrong. <span style="color:var(--amber-deep);font-weight:800;">&#9873;</span> the programme&apos;s easy-read and accessible-format approach is to be documented.</p>
+    </div>
+  </div>
+
+  <div class="stage" id="act3">
+    <div class="stage-side"><div class="stage-number" style="background:#4527A0;">3</div><div class="stage-bar" style="background:linear-gradient(180deg,#6A4DBF,transparent);"></div></div>
+    <div class="stage-main">
+      <div class="stage-eyebrow" style="color:#6A4DBF;">People he trusts &middot; committing</div>
+      <h2 class="stage-title">With the right person beside him, Sean finishes what he starts.</h2>
+      <div class="stage-image"><img src="../assets/sean story/sean-stage3.png" alt="Sean doing a home test with someone he trusts beside him" onerror="this.parentElement.style.display='none'"></div>
+      <p class="stage-body">Sean does best with someone he trusts alongside &mdash; not doing it for him, doing it with him. What the system offered instead was a gap: saying yes to a test in the room is one thing; the test actually happening &mdash; weeks later, in another unfamiliar place, on another fixed schedule &mdash; is another. That gap is where Sean&apos;s journeys ended, and <strong>the system recorded the gap as his failure</strong> rather than its own.</p>
+      <p class="stage-body">The redesigned journey closes the gap instead of measuring it: a supported, carer- or family-assisted flow where ordering, doing and understanding the test can involve the person who helps him &mdash; without taking the test away from him. <span style="color:var(--amber-deep);font-weight:800;">&#9873;</span> design approach to be documented. And the NHS reasonable-adjustment flag travels with him, so his needs are known at the ordering step wherever he turns up. <span style="color:var(--amber-deep);font-weight:800;">&#9873;</span></p>
+      <p class="stage-body">One more wall, quieter than the others: when the care team did accompany him, what was said in the room never made it back to his family. No feedback, no shared picture, no way to pick up what was agreed &mdash; so now it has to be one of them, every time. <strong>A digital journey changes that</strong>: results and instructions that can be seen, with Sean&apos;s consent, by the people who help him hold the thread. <span style="color:var(--amber-deep);font-weight:800;">&#9873;</span> consented family and carer visibility &mdash; design hook to be documented.</p>
+    </div>
+  </div>
+
+  <div class="interlude" style="background:linear-gradient(135deg,#2E1A5E,#4527A0 60%,#6A4DBF);border-bottom:5px solid var(--amber);">
+    <div class="interlude-eyebrow">What changes</div>
+    <div class="interlude-title">The test comes to him.</div>
+    <div class="interlude-image"><img src="../assets/sean story/sean-interlude.png" alt="Sean and his parents at the kitchen table" onerror="this.parentElement.style.display='none'"></div>
+    <div class="interlude-body">Home, with someone he trusts, at his own pace. No journey, no waiting room, no stranger with a needle on a schedule that isn&apos;t his. The same kit that saves Layla a half-day and saves Mark a hospital trip is, for Sean, the difference between a test happening and a test never happening. And it answers the question his parents &mdash; now in their mid-seventies &mdash; carry every day: <strong>who holds the thread when the people who hold it now no longer can?</strong> A test that comes to the house, instructions he can follow, a result the people who support him can see with his consent &mdash; that is what &ldquo;godsend&rdquo; means. Independence that survives the handover from one generation of family to the next. The walls don&apos;t get lower for Sean alone &mdash; they come down for everyone: clearer instructions, calmer steps, fewer assumptions. <strong>A journey designed so Sean can complete it is a better journey for Abdul, Mark and Layla too.</strong></div>
+  </div>
+
+  <div class="stage" id="act4">
+    <div class="stage-side"><div class="stage-number" style="background:#4527A0;">4</div><div class="stage-bar" style="background:linear-gradient(180deg,#6A4DBF,transparent);"></div></div>
+    <div class="stage-main">
+      <div class="stage-eyebrow" style="color:#6A4DBF;">Every pathway at once</div>
+      <h2 class="stage-title">Sean is not a fourth pathway. He is inside the other three.</h2>
+      <div class="stage-image"><img src="../assets/sean story/sean-stage4.png" alt="Sean at his front door receiving a testing kit" onerror="this.parentElement.style.display='none'"></div>
+      <p class="stage-body">Picture the version that works: the kit at his door, the pictures that explain it, the person he trusts at the table, the result his family can see with his consent. Every piece of that journey already exists somewhere in the system. Sean is not a CVKM story or a PSA story or an anaemia story &mdash; he is all of them, because the barrier stack is the same inside every pathway this model will ever run. Wherever a test can come to the house, there is a Sean whose journey becomes possible. And he stands for more than one cohort: <strong>learning disability, serious mental illness, needle-phobic patients, children and young people</strong> &mdash; the people for whom every pathway&apos;s hardest step is the same step.</p>
+      <p class="stage-body">And the stakes rise from here. As Sean moves through middle age his healthcare needs will grow &mdash; more tests, more preparation steps, more appointments &mdash; which means more walls, unless the walls come down. Much of the good practice already exists in the system. The work is championing it, not inventing it. <span style="color:var(--amber-deep);font-weight:800;">&#9873;</span> approach being documented.</p>
+    </div>
+  </div>
+
+  <div class="outcomes">
+    <div class="outcome" style="border-top-color:#6A4DBF;">
+      <div class="outcome-h">For Sean</div>
+      <div class="outcome-title">A journey that can actually finish.</div>
+      <div class="outcome-body">The test happens &mdash; at home, supported, understood, at his pace. The annual health check stops stalling at the needle, and the record finally shows what his health is doing rather than how many appointments he missed.</div>
+    </div>
+    <div class="outcome">
+      <div class="outcome-h">For the care team</div>
+      <div class="outcome-title">The could-nots become visible.</div>
+      <div class="outcome-body">Reasonable adjustments surface at the ordering step, not after the third DNA. Carers are part of the flow instead of outside it. The patients the system used to deprioritise become the patients it can finally see.</div>
+    </div>
+    <div class="outcome">
+      <div class="outcome-h">For the system</div>
+      <div class="outcome-title">Fairer outcomes, by design.</div>
+      <div class="outcome-body">The cohorts the current system quietly fails &mdash; across every condition, every pathway &mdash; get a journey built for the hardest case first. That is what &ldquo;better access, earlier detection, fairer outcomes&rdquo; costs, and what it buys.</div>
+    </div>
+  </div>
+
+  <div class="casting" style="border-color:#2E1A5E;">
+    <div class="casting-eyebrow" style="color:#6A4DBF;">Where this journey sits in the model</div>
+    <div class="casting-title">The human anchor of the horizontal cohorts lane.</div>
+    <div class="casting-body"><a href="DTx OM - Errol Journey.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">Errol&apos;s journey</a> shows the portfolio working across three products; Sean&apos;s journey shows who the portfolio must work <em>for</em> &mdash; and why no single product is the whole answer. HomeTest takes the testing wall down. HealthStore puts support and behaviour tools in his hand in a form built for him. HealthSync lets the people around him see what matters, with his consent, between appointments. The cohorts he stands for &mdash; learning disability, serious mental illness, needle phobia, children and young people &mdash; are the second scaling axis, cutting across every vertical pathway. Much of the good practice already exists in the system; the work is championing it, not inventing it. See the <a href="DTx OM - Horizontal Cohorts.html">Horizontal Cohorts lane</a> and <a href="DTx OM - Persona Sean.html">Sean&apos;s page</a>.</div>
+  </div>
+
+  <div class="foot">
+    <span>Digital Therapeutics Operating Model &middot; Hearts and Minds &middot; Sean&apos;s journey &middot; source: his family, with their blessing</span>
+    <a href="DTx OM - Hearts and Minds.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">&larr; Back to Hearts and Minds</a>
+  </div>
+
+</div>
+
+</body>
+</html>
