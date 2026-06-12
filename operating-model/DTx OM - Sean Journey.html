@@ -102,6 +102,19 @@
   .stage-image img{width:100%;height:auto;display:block;border-radius:12px;box-shadow:0 8px 22px rgba(0,32,64,0.14);}
   .interlude-image{max-width:440px;margin:0 0 16px;}
   .interlude-image img{width:100%;height:auto;display:block;border-radius:12px;border:3px solid rgba(255,255,255,0.25);}
+  .benefits{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:18px 0 6px;max-width:760px;}
+  .benefit{background:linear-gradient(160deg,#E7F4EC,#fff);border:1.5px solid var(--nhs-green);border-radius:12px;padding:16px 18px;}
+  .benefit .b-num{font-size:34px;font-weight:900;color:var(--nhs-green);letter-spacing:-1.5px;line-height:1;}
+  .benefit .b-label{font-size:11px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--nhs-green);margin-top:8px;}
+  .benefit .b-desc{font-size:12px;color:var(--text-sec);line-height:1.5;margin-top:5px;}
+  .benefit.choice{border-color:var(--nhs-blue);background:linear-gradient(160deg,#EAF2FB,#fff);}
+  .benefit.choice .b-num,.benefit.choice .b-label{color:var(--nhs-blue);}
+  .benefit-banner{display:flex;align-items:center;gap:30px;background:linear-gradient(135deg,var(--nhs-green),#0a8f5b);border-radius:14px;padding:26px 32px;margin:48px 0 0;color:#fff;flex-wrap:wrap;box-shadow:0 12px 30px rgba(0,103,71,0.25);}
+  .benefit-banner .bb-num{font-size:52px;font-weight:900;letter-spacing:-2.5px;line-height:1;white-space:nowrap;}
+  .benefit-banner .bb-text{flex:1;min-width:260px;}
+  .benefit-banner .bb-title{font-size:17px;font-weight:900;margin-bottom:5px;letter-spacing:-0.2px;}
+  .benefit-banner .bb-desc{font-size:13px;color:rgba(255,255,255,0.92);line-height:1.55;}
+  .benefit-banner .bb-desc strong{color:#fff;}
 </style>
 <style>
   .ecosystem-nav{background:#0b1c33;padding:10px 28px;display:flex;align-items:center;gap:14px;font-size:12.5px;}
@@ -204,6 +217,14 @@
       <div class="stage-image"><img src="../assets/sean story/sean-stage4.png" alt="Sean at his front door receiving a testing kit" onerror="this.parentElement.style.display='none'"></div>
       <p class="stage-body">Picture the version that works: the kit at his door, the pictures that explain it, the person he trusts at the table, the result his family can see with his consent. Every piece of that journey already exists somewhere in the system. Sean is not a CVKM story or a PSA story or an anaemia story &mdash; he is all of them, because the barrier stack is the same inside every pathway this model will ever run. Wherever a test can come to the house, there is a Sean whose journey becomes possible. And he stands for more than one cohort: <strong>learning disability, serious mental illness, needle-phobic patients, children and young people</strong> &mdash; the people for whom every pathway&apos;s hardest step is the same step.</p>
       <p class="stage-body">And the stakes rise from here. As Sean moves through middle age his healthcare needs will grow &mdash; more tests, more preparation steps, more appointments &mdash; which means more walls, unless the walls come down. Much of the good practice already exists in the system. The work is championing it, not inventing it. <span style="color:var(--amber-deep);font-weight:800;">&#9873;</span> approach being documented.</p>
+    </div>
+  </div>
+
+  <div class="benefit-banner" style="background:linear-gradient(135deg,#2E1A5E,#4527A0 60%,#6A4DBF);box-shadow:0 12px 30px rgba(46,26,94,0.30);">
+    <div class="bb-num">Done</div>
+    <div class="bb-text">
+      <div class="bb-title">The benefit that doesn&apos;t fit on a dashboard: the test happens.</div>
+      <div class="bb-desc">Every &ldquo;did not attend&rdquo; that becomes a completed test at home is a person the system stopped failing &mdash; and a calmer, clearer journey for everyone else too.</div>
     </div>
   </div>
 
