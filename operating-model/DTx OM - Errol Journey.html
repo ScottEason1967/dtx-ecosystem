@@ -251,6 +251,13 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
   .ecosystem-nav .nav-product.hometest { background: #003087; }
   .ecosystem-nav .nav-product.healthstore { background: #00A9CE; }
   .ecosystem-nav .nav-product.healthsync { background: #00A499; }
+
+  @media print {
+    .topnav, .ecosystem-nav, nav { display:none !important; }
+    .hm-witness .hmw-card { display:block !important; position:static; transform:none; width:auto; max-width:none; margin:8px 0; box-shadow:none; border:1px solid #ccc; }
+    .hmw-chip { display:none; }
+    .hmw-card, .pull-quote, .benefit, .callout { page-break-inside: avoid; }
+  }
 </style>
 </head>
 <body>
@@ -403,7 +410,7 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
       </div>
       <div class="stage-main">
         <div class="stage-eyebrow">Baseline &middot; ordinary life</div>
-        <h2 class="stage-title">Errol takes his BP once a week. His smartwatch hums along in the background. Nothing is happening, and that is the point.</h2>
+        <h2 class="stage-title">Errol takes his BP once a week. His smartwatch hums along in the background. Nothing is happening, and that is the point. <span class="hm-witness" data-moment="errol-s1"></span></h2>
 
         <div class="stage-image">
           <img src="img/errol-stage1.png" alt="Errol teaching at the community college" style="border-radius:12px;" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;stage-image-icon&quot;>&#x1F3A8;</div><div>Stage 1 illustration</div><div class=&quot;stage-image-caption&quot;>Errol going about an ordinary day &middot; smartwatch incidental on his wrist &middot; competent man living his life</div>';">
@@ -452,7 +459,7 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
       </div>
       <div class="stage-main">
         <div class="stage-eyebrow">The catch &middot; the watch sees what he can&apos;t</div>
-        <h2 class="stage-title">Errol feels fine. The smartwatch sees three weeks of climbing resting heart rate and a couple of unusual overnight rhythms. The system spots a pattern he didn&apos;t know to look for.</h2>
+        <h2 class="stage-title">Errol feels fine. The smartwatch sees three weeks of climbing resting heart rate and a couple of unusual overnight rhythms. The system spots a pattern he didn&apos;t know to look for. <span class="hm-witness" data-moment="errol-s2"></span></h2>
 
         <div class="stage-image">
           <img src="img/errol-stage2.png" alt="The catch: Errol unaware, system aware" style="border-radius:12px;" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;stage-image-icon&quot;>&#x1F3A8;</div><div>Stage 2 illustration &middot; two-pane composition</div><div class=&quot;stage-image-caption&quot;>LEFT: Errol completely unaware (mowing the lawn, walking the dog) &middot; smartwatch on his wrist &middot; RIGHT: clinician&apos;s screen showing his trend chart with anomaly highlighted &middot; alert without alarm</div>';">
@@ -500,7 +507,7 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
       </div>
       <div class="stage-main">
         <div class="stage-eyebrow">Diagnostic &middot; the test that confirms what the data suggested</div>
-        <h2 class="stage-title">A blood test kit arrives on the doorstep two days later. Kidney function, lipids, HbA1c: the things you check when you&apos;re asking whether a hypertensive patient is heading somewhere worse.</h2>
+        <h2 class="stage-title">A blood test kit arrives on the doorstep two days later. Kidney function, lipids, HbA1c: the things you check when you&apos;re asking whether a hypertensive patient is heading somewhere worse. <span class="hm-witness" data-moment="errol-s3"></span></h2>
 
         <div class="stage-image">
           <img src="img/errol-stage3.png" alt="The blood-test kit arrives" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;stage-image-icon&quot;>&#x1F3A8;</div><div>Stage 3 illustration</div><div class=&quot;stage-image-caption&quot;>Errol&apos;s kitchen counter &middot; at-home blood test kit opened &middot; lancet and return envelope &middot; same kitchen as the hero shot &middot; calm and ordinary</div>';">
@@ -552,7 +559,7 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
       </div>
       <div class="stage-main">
         <div class="stage-eyebrow">Prescription &middot; the medication, and the support to stick with it</div>
-        <h2 class="stage-title">The GP adjusts the medication and prescribes a digital therapeutic to help with adherence and lifestyle. By the time Errol is home it&apos;s sitting in his NHS App waiting to be activated.</h2>
+        <h2 class="stage-title">The GP adjusts the medication and prescribes a digital therapeutic to help with adherence and lifestyle. By the time Errol is home it&apos;s sitting in his NHS App waiting to be activated. <span class="hm-witness" data-moment="errol-s4"></span></h2>
 
         <div class="stage-image">
           <img src="img/errol-stage4.png" alt="The conversation and the prescription" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;stage-image-icon&quot;>&#x1F3A8;</div><div>Stage 4 illustration</div><div class=&quot;stage-image-caption&quot;>Errol on a video call with his GP &middot; mug of tea &middot; warm, collaborative tone &middot; OR Errol just after the call looking at the new app tile in his NHS App</div>';">
@@ -607,7 +614,7 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
       </div>
       <div class="stage-main">
         <div class="stage-eyebrow">Concurrent care &middot; all three workstreams, one patient, one view</div>
-        <h2 class="stage-title">Three months in. Three signals, one record, one care team holding it all together.</h2>
+        <h2 class="stage-title">Three months in. Three signals, one record, one care team holding it all together. <span class="hm-witness" data-moment="errol-s5"></span></h2>
 
         <div class="stage-image">
           <img src="img/errol-stage5.png" alt="Concurrent care" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;stage-image-icon&quot;>&#x1F3A8;</div><div>Stage 5 illustration</div><div class=&quot;stage-image-caption&quot;>Errol settled at home &middot; smartwatch on wrist &middot; cuff visible but not centre-stage &middot; phone showing the DTx tile &middot; autumn light &middot; some time has passed</div>';">
@@ -741,7 +748,7 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
       </div>
       <div class="stage-main">
         <div class="stage-eyebrow">Outcome &middot; life, kept on track</div>
-        <h2 class="stage-title">Eighteen months on. No crisis. No admission. Errol&apos;s life back to what his life is.</h2>
+        <h2 class="stage-title">Eighteen months on. No crisis. No admission. Errol&apos;s life back to what his life is. <span class="hm-witness" data-moment="errol-s6"></span></h2>
 
         <div class="stage-image">
           <img src="img/errol-stage6.png" alt="Outcome" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;stage-image-icon&quot;>&#x1F3A8;</div><div>Stage 6 illustration</div><div class=&quot;stage-image-caption&quot;>Errol with his wife at the kitchen table, or out walking, or with his grandchildren &middot; smartwatch the only visible tech &middot; tech receded into the background of his life &middot; the life the model protected';">
@@ -802,9 +809,12 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
 
     <div class="conclusion-line">One person. Three signal streams. One record. <span style="color:var(--amber-deep);">Intervention before the crisis, not after it.</span></div>
 
+    <div style="text-align:center;margin-top:16px;font-size:12px;"><a href="../hearts-and-minds/evidence.html" style="color:#005EB8;font-weight:700;text-decoration:none;">Evidence register &rarr;</a></div>
+
 </div>
 </div>
 </div>
 
+<script src="../hearts-and-minds/hm-witness.js"></script>
 </body>
 </html>

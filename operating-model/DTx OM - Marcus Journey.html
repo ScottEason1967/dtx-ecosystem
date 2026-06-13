@@ -236,6 +236,13 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
   .ecosystem-nav .nav-product.hometest { background: #003087; }
   .ecosystem-nav .nav-product.healthstore { background: #00A9CE; }
   .ecosystem-nav .nav-product.healthsync { background: #00A499; }
+
+  @media print {
+    .topnav, .ecosystem-nav, nav { display:none !important; }
+    .hm-witness .hmw-card { display:block !important; position:static; transform:none; width:auto; max-width:none; margin:8px 0; box-shadow:none; border:1px solid #ccc; }
+    .hmw-chip { display:none; }
+    .hmw-card, .pull-quote, .benefit, .callout { page-break-inside: avoid; }
+  }
 </style>
 </head>
 <body>
@@ -380,7 +387,7 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
       </div>
       <div class="stage-main">
         <div class="stage-eyebrow">Four years in &middot; the product is ready, the market isn&apos;t</div>
-        <h2 class="stage-title">Marcus has a clinical-grade digital therapeutic for COPD. Regulatory clean. Real-world evidence on adherence and admission reduction. What he doesn&apos;t have is a way in that scales.</h2>
+        <h2 class="stage-title">Marcus has a clinical-grade digital therapeutic for COPD. Regulatory clean. Real-world evidence on adherence and admission reduction. What he doesn&apos;t have is a way in that scales. <span class="hm-witness" data-moment="marcus-s1"></span></h2>
 
         <div class="stage-image">
           <img src="img/Final%20images/Marcus%201.png" alt="Marcus reviewing four years of clinical evidence" style="border-radius:12px;" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;stage-image-icon&quot;>&#x1F4DA;</div><div>Stage 1 illustration</div><div class=&quot;stage-image-caption&quot;>Marcus at his desk &middot; published evidence pinned to the wall &middot; pilot site map with too many flags and not enough scale &middot; quiet frustration';">
@@ -433,7 +440,7 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
       </div>
       <div class="stage-main">
         <div class="stage-eyebrow">The framework appears &middot; the door he didn&apos;t know was coming</div>
-        <h2 class="stage-title">A national framework for digital therapeutics. Three product overlays. One assurance bar. One contract architecture. One MI feed. Marcus reads the spec twice to make sure he&apos;s reading it right.</h2>
+        <h2 class="stage-title">A national framework for digital therapeutics. Three product overlays. One assurance bar. One contract architecture. One MI feed. Marcus reads the spec twice to make sure he&apos;s reading it right. <span class="hm-witness" data-moment="marcus-s2"></span></h2>
 
         <div class="stage-image">
           <img src="img/Final%20images/Marcus%202.png" alt="Marcus reading the framework specification" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;stage-image-icon&quot;>&#x1F4D6;</div><div>Stage 2 illustration</div><div class=&quot;stage-image-caption&quot;>Marcus reading the framework specification on screen &middot; the three product overlays visible &middot; pen marking the HealthStore admission route &middot; cautious optimism';">
@@ -598,7 +605,7 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
       </div>
       <div class="stage-main">
         <div class="stage-eyebrow">First live patient &middot; the call-off, the prescription, the day it gets real</div>
-        <h2 class="stage-title">An ICB calls off against the framework. The first prescription lands. A patient downloads the app, logs in with NHS Login, completes the onboarding flow. The integration was done before Marcus got here.</h2>
+        <h2 class="stage-title">An ICB calls off against the framework. The first prescription lands. A patient downloads the app, logs in with NHS Login, completes the onboarding flow. The integration was done before Marcus got here. <span class="hm-witness" data-moment="marcus-s5"></span></h2>
 
         <div class="stage-image">
           <img src="img/Final%20images/Marcus%205.png" alt="Marcus watching the first live patient activate" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;stage-image-icon&quot;>&#x1F4F1;</div><div>Stage 5 illustration</div><div class=&quot;stage-image-caption&quot;>Marcus watching the operations dashboard &middot; first patient activation event landing live &middot; quiet team moment &middot; the abstract finally becoming a real person on the other end&apos;';">
@@ -653,7 +660,7 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
       </div>
       <div class="stage-main">
         <div class="stage-eyebrow">The market that scaled &middot; out of pilot purgatory and into a national catalogue</div>
-        <h2 class="stage-title">Eighteen months on. Multiple ICBs called off. National adoption curve replacing the per-trust pilot map. Evidence generation continuing as part of the admission contract. The market that wasn&apos;t deal-by-deal.</h2>
+        <h2 class="stage-title">Eighteen months on. Multiple ICBs called off. National adoption curve replacing the per-trust pilot map. Evidence generation continuing as part of the admission contract. The market that wasn&apos;t deal-by-deal. <span class="hm-witness" data-moment="marcus-s6"></span></h2>
 
         <div class="stage-image">
           <img src="img/Final%20images/Marcus%206.png" alt="Marcus reviewing the national adoption map" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;stage-image-icon&quot;>&#x1F5FA;&#xFE0F;</div><div>Stage 6 illustration</div><div class=&quot;stage-image-caption&quot;>Marcus and his team at a board review &middot; national adoption map on screen &middot; multiple ICBs lit up &middot; the quiet confidence of a company that has crossed from pilot to scale';">
@@ -781,6 +788,6 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
 
 </div>
 
+<script src="../hearts-and-minds/hm-witness.js"></script>
 </body>
 </html>
-   

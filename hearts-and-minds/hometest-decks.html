@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HomeTest audience decks</title>
+<style>
+  :root {
+    --nhs-dark:#003087; --nhs-blue:#005EB8; --nhs-green:#006747;
+    --amber:#FFB91D; --amber-deep:#9A6700;
+    --text:#212B32; --text-sec:#4C6272; --text-muted:#7E8B97;
+    --border:#d9dee3; --border-lt:#ebeef1; --card:#ffffff; --bg:#f8fafc;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;}
+  .ecosystem-nav{background:#fff;border-bottom:1px solid var(--border-lt);padding:12px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:48px;position:sticky;top:0;z-index:200;}
+  .ecosystem-nav a{font-size:13px;font-weight:700;color:var(--nhs-dark);text-decoration:none;display:inline-flex;align-items:center;gap:6px;}
+  .ecosystem-nav a:hover{color:var(--nhs-blue);}
+  .ecosystem-nav .nav-context{font-size:11px;font-weight:800;letter-spacing:1.5px;color:var(--text-muted);text-transform:uppercase;}
+  .page{max-width:1080px;margin:0 auto;padding:46px 40px 70px;}
+  .amber-rule{width:72px;height:4px;background:var(--amber);border-radius:2px;margin-bottom:18px;}
+  .h-eyebrow{display:inline-block;background:var(--nhs-dark);color:#fff;font-size:10.5px;font-weight:800;letter-spacing:1.8px;padding:7px 16px;border-radius:4px;text-transform:uppercase;margin-bottom:16px;}
+  .h-title{font-size:38px;font-weight:900;color:var(--nhs-dark);letter-spacing:-1px;line-height:1.1;margin-bottom:12px;}
+  .h-sub{max-width:760px;font-size:15px;color:var(--text-sec);line-height:1.7;margin-bottom:34px;}
+  .h-sub strong{color:var(--text);}
+  .chip{display:inline-block;font-size:9.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:3px 9px;border-radius:999px;}
+  .chip-live{color:#fff;background:var(--nhs-green);}
+  .chip-prep{color:var(--amber-deep);background:#FFF4D6;}
+  .foot{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;margin-top:44px;padding-top:16px;border-top:1px solid var(--border);font-size:12px;color:var(--text-muted);}
+  .foot a{color:var(--nhs-blue);font-weight:700;text-decoration:none;}
+  @media print {
+    .topnav, .ecosystem-nav, nav { display:none !important; }
+    .hm-witness .hmw-card { display:block !important; position:static; transform:none; width:auto; max-width:none; margin:8px 0; box-shadow:none; border:1px solid #ccc; }
+    .hmw-chip { display:none; }
+    .hmw-card, .pull-quote, .benefit, .callout { page-break-inside: avoid; }
+  }
+  .hero-deck{background:var(--card);border:2px solid var(--amber);border-radius:16px;padding:30px 32px;box-shadow:0 8px 24px rgba(0,32,64,0.08);margin-bottom:22px;}
+  .aud-label{font-size:11px;font-weight:800;letter-spacing:2px;color:var(--amber-deep);text-transform:uppercase;margin-bottom:8px;}
+  .deck-title{font-size:26px;font-weight:900;color:var(--nhs-dark);letter-spacing:-0.6px;line-height:1.15;margin-bottom:10px;}
+  .deck-desc{font-size:14px;color:var(--text-sec);line-height:1.7;max-width:740px;margin-bottom:18px;}
+  .btn{display:inline-block;background:var(--nhs-blue);color:#fff;font-size:13.5px;font-weight:800;padding:12px 22px;border-radius:8px;text-decoration:none;letter-spacing:0.2px;}
+  .btn:hover{background:var(--nhs-dark);}
+  .deck-meta{font-size:11.5px;font-weight:700;color:var(--text-muted);letter-spacing:0.5px;margin-top:12px;}
+  .blocks{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .block{background:#fbfcfe;border:1px solid var(--border-lt);border-radius:13px;padding:22px 24px;display:flex;flex-direction:column;gap:8px;border-top:5px solid var(--border);}
+  .block .aud-label{color:var(--text-muted);margin-bottom:2px;}
+  .block-sub{font-size:16px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.3px;}
+  .block-desc{font-size:12.5px;color:var(--text-sec);line-height:1.6;flex:1;}
+  @media(max-width:760px){.blocks{grid-template-columns:1fr;}.page{padding:30px 18px 60px;}.h-title{font-size:28px;}}
+</style>
+</head>
+<body>
+<div class="ecosystem-nav">
+  <a href="index.html">&larr; Materials hub</a>
+  <span class="nav-context">Hearts and Minds &middot; HomeTest</span>
+  <a href="../index.html">Front door</a>
+</div>
+
+<div class="page">
+  <div class="amber-rule"></div>
+  <div class="h-eyebrow">HomeTest &middot; audience decks</div>
+  <h1 class="h-title">HomeTest: audience decks</h1>
+  <p class="h-sub">One pitch per audience, every deck built from the same stories and the same evidence.</p>
+
+  <div class="hero-deck">
+    <div class="aud-label">Commissioners &middot; <span class="chip chip-live">Live</span></div>
+    <div class="deck-title">Testing that finds the people your clinics can&rsquo;t</div>
+    <p class="deck-desc">Sarah&rsquo;s deck: the commissioner pitch, weaving Sarah, Sean and Errol into one story. The economics, the evidence, fifteen slides with speaker notes.</p>
+    <a class="btn" href="hm-deck-01-commissioner-sarah-v3.pptx" download>Download the deck (.pptx)</a>
+    <div class="deck-meta">Deck No.1 &middot; v3 &middot; June 2026</div>
+  </div>
+
+  <div class="blocks">
+    <div class="block">
+      <div class="aud-label">Clinicians</div>
+      <div class="block-sub">The prescriber&rsquo;s pitch</div>
+      <p class="block-desc">What ordering looks like from the clinic, what the silence of a normal result gives back to a list, and the assurance that stands behind every kit.</p>
+      <div><span class="chip chip-prep">In preparation</span></div>
+    </div>
+    <div class="block">
+      <div class="aud-label">Acute trust partners</div>
+      <div class="block-sub">NHS-to-NHS: the surveillance and follow-up case</div>
+      <p class="block-desc">The follow-up burden in numbers, and what a surveillance cohort looks like when routine bloods no longer need the building.</p>
+      <div><span class="chip chip-prep">In preparation</span></div>
+    </div>
+    <div class="block">
+      <div class="aud-label">National platform partners</div>
+      <div class="block-sub">One front door at national scale</div>
+      <p class="block-desc">How HomeTest rides the NHS App, Login and Notify rails, and what the national platform gains in return.</p>
+      <div><span class="chip chip-prep">In preparation</span></div>
+    </div>
+    <div class="block">
+      <div class="aud-label">Suppliers</div>
+      <div class="block-sub">The market worth joining</div>
+      <p class="block-desc">The framework, the admission route and the demand signal, for the suppliers the market most needs.</p>
+      <div><span class="chip chip-prep">In preparation</span></div>
+    </div>
+    <div class="block">
+      <div class="aud-label">Patient and public voice</div>
+      <div class="block-sub">The story in the patient&rsquo;s own terms</div>
+      <p class="block-desc">Abdul, Mark, Layla and Sean, told plainly: what actually changes for the person the kit reaches.</p>
+      <div><span class="chip chip-prep">In preparation</span></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>Hearts and Minds &middot; HomeTest audience decks &middot; one pitch per audience.</span>
+    <span><a href="index.html">&larr; Materials hub</a> &nbsp;&middot;&nbsp; <a href="../index.html">Front door</a></span>
+  </div>
+</div>
+</body>
+</html>

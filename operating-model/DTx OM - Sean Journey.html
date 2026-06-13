@@ -121,6 +121,13 @@
   .ecosystem-nav a{color:#9fc3ee;text-decoration:none;font-weight:700;}
   .ecosystem-nav .nav-context{color:rgba(255,255,255,0.75);font-weight:600;}
   .ecosystem-nav .nav-product{margin-left:auto;background:#005EB8;color:#fff;font-weight:800;font-size:10.5px;letter-spacing:1px;padding:4px 10px;border-radius:99px;}
+
+  @media print {
+    .topnav, .ecosystem-nav, nav { display:none !important; }
+    .hm-witness .hmw-card { display:block !important; position:static; transform:none; width:auto; max-width:none; margin:8px 0; box-shadow:none; border:1px solid #ccc; }
+    .hmw-chip { display:none; }
+    .hmw-card, .pull-quote, .benefit, .callout { page-break-inside: avoid; }
+  }
 </style>
 </head>
 <body>
@@ -253,7 +260,7 @@
   </div>
 
   <div class="foot">
-    <span>Digital Therapeutics Operating Model &middot; Hearts and Minds &middot; Sean&apos;s journey &middot; source: his family, with their blessing</span>
+    <span>Digital Therapeutics Operating Model &middot; Hearts and Minds &middot; Sean&apos;s journey &middot; source: his family, with their blessing &middot; <a href="../hearts-and-minds/evidence.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">evidence register</a></span>
     <a href="DTx OM - Hearts and Minds.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">&larr; Back to Hearts and Minds</a>
   </div>
 

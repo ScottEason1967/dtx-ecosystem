@@ -247,6 +247,13 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
   .ecosystem-nav .nav-product.hometest { background: #003087; }
   .ecosystem-nav .nav-product.healthstore { background: #00A9CE; }
   .ecosystem-nav .nav-product.healthsync { background: #00A499; }
+
+  @media print {
+    .topnav, .ecosystem-nav, nav { display:none !important; }
+    .hm-witness .hmw-card { display:block !important; position:static; transform:none; width:auto; max-width:none; margin:8px 0; box-shadow:none; border:1px solid #ccc; }
+    .hmw-chip { display:none; }
+    .hmw-card, .pull-quote, .benefit, .callout { page-break-inside: avoid; }
+  }
 </style>
 </head>
 <body>
@@ -399,7 +406,7 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
       </div>
       <div class="stage-main">
         <div class="stage-eyebrow">The brief &middot; a population, a gap, a year to close it</div>
-        <h2 class="stage-title">Sarah has a cardiovascular detection gap and a director asking what digital can do about it. She has budget and a timeline. She does not have eighteen months for three procurements.</h2>
+        <h2 class="stage-title">Sarah has a cardiovascular detection gap and a director asking what digital can do about it. She has budget and a timeline. She does not have eighteen months for three procurements. <span class="hm-witness" data-moment="sarah-s1"></span></h2>
 
         <div class="stage-image">
           <img src="img/Sarah%201.png" alt="Sarah reviewing her population health brief" style="border-radius:12px;" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;stage-image-icon&quot;>&#x1F4CA;</div><div>Stage 1 illustration</div><div class=&quot;stage-image-caption&quot;>Sarah at her desk &middot; population brief open on screen &middot; detection-gap chart visible &middot; stickies and budget figures &middot; clear-eyed, work-mode';">
@@ -506,7 +513,7 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
       </div>
       <div class="stage-main">
         <div class="stage-eyebrow">The fit assessment &middot; whether each configuration actually works for her ICB</div>
-        <h2 class="stage-title">The Self-Assessment Toolkit asks four questions of each configuration. Pathway fit. IG fit. Prescribing alignment. DCB0160 readiness. Sarah and her team work through them inside a fortnight.</h2>
+        <h2 class="stage-title">The Self-Assessment Toolkit asks four questions of each configuration. Pathway fit. IG fit. Prescribing alignment. DCB0160 readiness. Sarah and her team work through them inside a fortnight. <span class="hm-witness" data-moment="sarah-s3"></span></h2>
 
         <div class="stage-image">
           <img src="img/Sarah%203.png" alt="Sarah working through the fit assessment" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;stage-image-icon&quot;>&#x1F50D;</div><div>Stage 3 illustration</div><div class=&quot;stage-image-caption&quot;>Sarah with her clinical safety officer and her IG lead &middot; whiteboard with the four-question filter &middot; tick / partial / open per configuration &middot; collaborative working session';">
@@ -622,7 +629,7 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
       </div>
       <div class="stage-main">
         <div class="stage-eyebrow">Live operation &middot; mobilisation, MI, supplier performance, payment</div>
-        <h2 class="stage-title">Six months in. Three workstreams in flight, one MI feed, one supplier-performance view, one set of payment milestones. The integration was done before she got here.</h2>
+        <h2 class="stage-title">Six months in. Three workstreams in flight, one MI feed, one supplier-performance view, one set of payment milestones. The integration was done before she got here. <span class="hm-witness" data-moment="sarah-s5"></span></h2>
 
         <div class="stage-image">
           <img src="img/Sarah%205.png" alt="Sarah at her desk with the population dashboard live" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;stage-image-icon&quot;>&#x1F4C8;</div><div>Stage 5 illustration</div><div class=&quot;stage-image-caption&quot;>Sarah&apos;s screen showing the population dashboard live &middot; three workstreams threaded into one view &middot; supplier-performance and cohort metrics &middot; calm, in-control';">
@@ -763,7 +770,7 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
       </div>
       <div class="stage-main">
         <div class="stage-eyebrow">The board paper &middot; the case made</div>
-        <h2 class="stage-title">Twelve months on. Detection up. Admissions down. Cohort engagement holding. One narrative, one set of numbers, three workstreams pulling in the same direction.</h2>
+        <h2 class="stage-title">Twelve months on. Detection up. Admissions down. Cohort engagement holding. One narrative, one set of numbers, three workstreams pulling in the same direction. <span class="hm-witness" data-moment="sarah-s6"></span></h2>
 
         <div class="stage-image">
           <img src="img/Sarah%206.png" alt="Sarah presenting at the board" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;stage-image-icon&quot;>&#x1F4DD;</div><div>Stage 6 illustration</div><div class=&quot;stage-image-caption&quot;>Sarah presenting at the ICB board &middot; population outcomes slide on screen &middot; calm, prepared &middot; question time looking like a victory lap, not a defence';">
@@ -836,5 +843,6 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
 
 </div>
 
+<script src="../hearts-and-minds/hm-witness.js"></script>
 </body>
 </html>
