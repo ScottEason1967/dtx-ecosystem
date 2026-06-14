@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Prioritisation Framework: Digital Therapeutics Operating Model</title>
+<style>
+ .topnav{background:#fff;border-bottom:1px solid #ebeef1;padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:nowrap;min-height:54px;box-sizing:border-box;width:100%;max-width:100%;margin:0;position:sticky;top:0;z-index:200;}
+ .topnav .nav-back{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-back:hover{color:#005EB8;}
+ .topnav .nav-siblings{display:flex;gap:4px;flex-wrap:nowrap;overflow-x:auto;align-items:center;}
+ .topnav .nav-siblings a{font-size:12px;font-weight:600;color:#4C6272;text-decoration:none;padding:6px 12px;border-radius:6px;letter-spacing:0.2px;white-space:nowrap;flex-shrink:0;}
+ .topnav .nav-siblings a:hover{background:#f0f4f8;color:#212B32;}
+ .topnav .nav-siblings a.active{background:#003087;color:#fff;}
+
+ :root {
+   --nhs-dark:#003087; --nhs-blue:#005EB8; --nhs-green:#006747; --nhs-pink:#AE2573;
+   --amber:#FFB91D; --amber-deep:#C9A227; --warm-cream:#FFF9EC;
+   --text:#212B32; --text-sec:#4C6272; --text-muted:#7E8B97;
+   --border-lt:#ebeef1; --card:#ffffff; --bg:#f8fafc;
+ }
+ *{box-sizing:border-box;margin:0;padding:0;}
+ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;}
+ .page{max-width:1200px;margin:0 auto;padding:50px 40px 80px;}
+
+ .amber-rule{width:72px;height:4px;background:var(--amber);border-radius:2px;margin-bottom:18px;}
+ .h-eyebrow{font-size:11px;font-weight:700;letter-spacing:2.2px;color:var(--text-sec);text-transform:uppercase;margin-bottom:18px;}
+ .h-title{font-size:54px;font-weight:900;color:var(--nhs-dark);letter-spacing:-1.6px;line-height:1.0;margin-bottom:18px;}
+ .h-sub{font-size:18px;color:var(--text-sec);line-height:1.65;max-width:760px;margin-bottom:14px;}
+ .h-sub strong{color:var(--text);font-weight:700;}
+
+ .provenance{display:inline-flex;align-items:center;gap:10px;background:#E8F1F6;border:1px solid #B5D4E5;border-radius:99px;padding:8px 18px;margin-top:8px;font-size:12px;font-weight:700;color:var(--nhs-dark);letter-spacing:0.3px;}
+ .provenance-dot{width:8px;height:8px;border-radius:50%;background:var(--nhs-green);}
+
+ .intro{margin:48px 0 12px;background:#fff;border:1px solid var(--border-lt);border-radius:14px;padding:28px 32px;border-left:5px solid var(--amber);}
+ .intro p{font-size:14.5px;color:var(--text-sec);line-height:1.7;margin-bottom:14px;}
+ .intro p:last-child{margin-bottom:0;}
+ .intro p strong{color:var(--text);font-weight:700;}
+
+ .level{margin:64px 0 24px;}
+ .level-num{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:1.8px;color:var(--amber-deep);text-transform:uppercase;margin-bottom:10px;}
+ .level-num span.pill{background:var(--amber-deep);color:#fff;border-radius:99px;padding:2px 10px;font-size:10.5px;letter-spacing:0.5px;}
+ .level-h{font-size:32px;font-weight:900;color:var(--nhs-dark);letter-spacing:-0.8px;line-height:1.1;margin-bottom:10px;}
+ .level-q{font-size:13.5px;color:var(--text-sec);line-height:1.6;font-style:italic;margin-bottom:8px;}
+ .level-intro{font-size:14px;color:var(--text-sec);line-height:1.7;max-width:840px;margin-bottom:28px;}
+ .level-intro strong{color:var(--text);font-weight:700;}
+
+ .pattern-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;}
+ .pattern-card{background:var(--card);border:1px solid var(--border-lt);border-radius:14px;padding:22px 18px 20px;display:flex;flex-direction:column;}
+ .pattern-card-num{font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:var(--amber-deep);text-transform:uppercase;margin-bottom:8px;}
+ .pattern-card-h{font-size:16.5px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.3px;line-height:1.15;margin-bottom:14px;}
+ .pattern-card-row{font-size:11.5px;color:var(--text-sec);line-height:1.55;margin-bottom:10px;}
+ .pattern-card-row strong{display:block;font-size:9.5px;font-weight:800;letter-spacing:1.2px;color:var(--text-muted);text-transform:uppercase;margin-bottom:3px;}
+ .pattern-card.p1{border-top:4px solid #009688;}
+ .pattern-card.p2{border-top:4px solid #E91E63;}
+ .pattern-card.p3{border-top:4px solid #FB8C00;}
+ .pattern-card.p4{border-top:4px solid #7E57C2;}
+ .pattern-card.p5{border-top:4px solid #00A9CE;}
+ @media (max-width:900px){.pattern-grid{grid-template-columns:repeat(2,1fr);}}
+ @media (max-width:520px){.pattern-grid{grid-template-columns:1fr;}}
+
+ .tier-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+ .tier-card{background:var(--card);border:1px solid var(--border-lt);border-radius:14px;padding:22px 18px 20px;display:flex;flex-direction:column;}
+ .tier-card-num{font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:var(--amber-deep);text-transform:uppercase;margin-bottom:8px;}
+ .tier-card-h{font-size:18px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.3px;line-height:1.15;margin-bottom:14px;}
+ .tier-card-row{font-size:12px;color:var(--text-sec);line-height:1.55;margin-bottom:10px;}
+ .tier-card-row strong{display:block;font-size:9.5px;font-weight:800;letter-spacing:1.2px;color:var(--text-muted);text-transform:uppercase;margin-bottom:3px;}
+ .tier-card.t1{border-top:4px solid #006747;}
+ .tier-card.t2{border-top:4px solid #005EB8;}
+ .tier-card.t3{border-top:4px solid #C9A227;}
+ .tier-card.t4{border-top:4px solid #C73C3C;}
+ @media (max-width:900px){.tier-grid{grid-template-columns:repeat(2,1fr);}}
+ @media (max-width:520px){.tier-grid{grid-template-columns:1fr;}}
+
+ .construct-wrap{background:#fff;border:1px solid var(--border-lt);border-radius:16px;padding:30px 32px;}
+ .construct-block{margin-bottom:30px;}
+ .construct-block:last-child{margin-bottom:0;}
+ .construct-block-num{font-size:10.5px;font-weight:800;letter-spacing:1.6px;color:var(--amber-deep);text-transform:uppercase;margin-bottom:6px;}
+ .construct-block-h{font-size:20px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.3px;margin-bottom:8px;}
+ .construct-block-body{font-size:13.5px;color:var(--text-sec);line-height:1.7;margin-bottom:12px;}
+ .construct-block-body strong{color:var(--text);font-weight:700;}
+ .construct-axes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px;}
+ .construct-axis{background:#F4F8FC;border:1px solid #d6e2ef;border-radius:10px;padding:14px 16px;font-size:12px;color:var(--text-sec);line-height:1.55;}
+ .construct-axis-h{font-size:11.5px;font-weight:800;color:var(--nhs-dark);margin-bottom:6px;letter-spacing:0.2px;}
+ .construct-gateway{background:#FFF9EC;border:1px solid #F0DCA0;border-radius:10px;padding:14px 18px;font-size:13px;color:var(--text-sec);line-height:1.65;}
+ .construct-gateway strong{color:#9A6700;font-weight:800;}
+ .construct-overlay-list{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
+ .construct-overlay-list .ol-pill{background:#F4F2F8;border:1px solid #D9D2E5;color:#5E35B2;font-size:11.5px;font-weight:700;padding:5px 12px;border-radius:99px;letter-spacing:0.2px;}
+ @media (max-width:780px){.construct-axes{grid-template-columns:1fr;}}
+
+ .connection{margin:64px 0 32px;background:linear-gradient(135deg,#003087,#005EB8);color:#fff;border-radius:18px;padding:36px 32px;}
+ .connection h2{font-size:26px;font-weight:900;letter-spacing:-0.6px;margin-bottom:10px;}
+ .connection p{font-size:14px;line-height:1.7;color:rgba(255,255,255,0.92);max-width:820px;margin-bottom:18px;}
+ .connection p strong{color:#fff;font-weight:700;}
+
+ .picks{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+ .pick-card{background:rgba(255,255,255,0.10);border:1px solid rgba(255,255,255,0.18);border-radius:12px;padding:16px 18px;}
+ .pick-card-h{font-size:13px;font-weight:800;color:#fff;letter-spacing:-0.1px;margin-bottom:6px;}
+ .pick-card-body{font-size:11.5px;color:rgba(255,255,255,0.85);line-height:1.55;}
+ .pick-card-body strong{color:#FFB91D;font-weight:700;}
+ @media (max-width:680px){.picks{grid-template-columns:1fr;}}
+
+ .deprioritised{margin-top:48px;background:#fff;border:1px solid var(--border-lt);border-radius:14px;padding:24px 28px;}
+ .deprioritised h3{font-size:16px;font-weight:800;color:var(--nhs-dark);margin-bottom:10px;}
+ .deprioritised p{font-size:13px;color:var(--text-sec);line-height:1.7;margin-bottom:10px;}
+ .deprioritised p strong{color:var(--text);font-weight:700;}
+
+ .foot{margin-top:64px;padding-top:24px;border-top:1px solid var(--border-lt);font-size:11.5px;color:var(--text-muted);}
+
+ body{background:linear-gradient(180deg,var(--nhs-blue) 0%,#003087 100%);background-attachment:fixed;}
+ .page{background:#fff;border-radius:18px;box-shadow:0 14px 40px rgba(0,48,135,0.20);margin-top:30px;margin-bottom:50px;}
+ @media(max-width:720px){.page{border-radius:12px;margin-top:18px;padding:30px 22px 60px;}.h-title{font-size:36px;}.level-h{font-size:24px;}}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+<a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+<div class="nav-siblings">
+ <a href="DTx OM - Why.html">Why</a>
+ <a href="DTx OM - What.html">What</a>
+ <a href="DTx OM - Lifecycle.html">When</a>
+ <a href="DTx OM - HomeTest Operational.html">How</a>
+ <a href="DTx OM - Governance.html">Who</a>
+ <a href="DTx OM - Hearts and Minds.html">Hearts and Minds</a>
+ <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>
+ <a href="DTx OM - Status.html">Status</a>
+</div>
+</nav>
+
+<div class="page">
+
+  <div class="amber-rule"></div>
+  <div class="h-eyebrow">Prioritisation lens &middot; HomeTest decision tool</div>
+
+  <h1 class="h-title">How we choose what's next.</h1>
+
+  <p class="h-sub">The <strong>HomeTest Prioritisation Framework</strong> is the lens we use to decide which test pathways move forward, and in what order. It sits alongside the operating model. The OM describes <strong>what the system is</strong>; this framework describes <strong>which parts we build first</strong>. Three levels: <strong>5 Patterns</strong>, <strong>4 Tiers</strong>, and a <strong>Prioritisation Construct</strong> for ranking specific use cases.</p>
+
+  <span class="provenance"><span class="provenance-dot"></span>Endorsed by the HomeTest Programme Board, 9 June 2026</span>
+
+  <div class="intro">
+    <p><strong>Why a separate lens.</strong> The operating model answers architectural questions: where do things sit, how do they connect, who is accountable. The Prioritisation Framework answers governance questions: what do we take forward, what do we delay, what do we deprioritise, and on what evidence. The two need to be readable separately because they get used by different people, in different rooms, against different questions.</p>
+    <p><strong>What it gets used for.</strong> Pattern selection at the architectural level, configuration sequencing inside HomeTest's roadmap, use-case scoring at the Programme Board, and a defensible record of why one condition is in scope this year and another is held back. The framework does not make the decision. It structures the evidence so the decision can be made on the same axes every time.</p>
+  </div>
+
+  <div class="level">
+    <div class="level-num"><span class="pill">Level 1</span> 5 Patterns</div>
+    <h2 class="level-h">What type of pathway are we dealing with?</h2>
+    <p class="level-q">Five named access patterns. Each one is a distinct shape of pathway, distinguished by who initiates the test, where the clinical ownership sits, what the pathway shape looks like, and the strategic role the pattern plays for the platform.</p>
+    <p class="level-intro">A test pathway has to fit one of these five patterns before any other prioritisation question is worth asking. The pattern determines who orders, who reads, who acts, and how the result returns to the record. The five patterns are not in priority order. They are five different shapes the platform has to be able to serve.</p>
+
+    <div class="pattern-grid">
+
+      <div class="pattern-card p1">
+        <div class="pattern-card-num">Pattern 1</div>
+        <div class="pattern-card-h">Self-initiated</div>
+        <div class="pattern-card-row"><strong>Entry point</strong>Citizen via NHS App</div>
+        <div class="pattern-card-row"><strong>Ownership</strong>Minimal upfront clinical ownership; service supports if needed</div>
+        <div class="pattern-card-row"><strong>Pathway shape</strong>Screening / reactive follow-up</div>
+        <div class="pattern-card-row"><strong>Strategic role</strong>Scales public-health access; reduces detection gap; reaches people who do not engage with traditional clinic routes</div>
+      </div>
+
+      <div class="pattern-card p2">
+        <div class="pattern-card-num">Pattern 2</div>
+        <div class="pattern-card-h">Secondary care initiated</div>
+        <div class="pattern-card-row"><strong>Entry point</strong>Specialist clinician, team or MDT</div>
+        <div class="pattern-card-row"><strong>Ownership</strong>Strong clinical ownership; clear accountable signatory</div>
+        <div class="pattern-card-row"><strong>Pathway shape</strong>Closed-loop pathway, follow-up monitoring, surveillance</div>
+        <div class="pattern-card-row"><strong>Strategic role</strong>Proves the platform clinical model; releases outpatient capacity; demonstrates result-trust at acute level</div>
+      </div>
+
+      <div class="pattern-card p3">
+        <div class="pattern-card-num">Pattern 3</div>
+        <div class="pattern-card-h">Primary care initiated</div>
+        <div class="pattern-card-row"><strong>Entry point</strong>GP or general practice</div>
+        <div class="pattern-card-row"><strong>Ownership</strong>Longitudinal ownership; recurring review cycle</div>
+        <div class="pattern-card-row"><strong>Pathway shape</strong>Ongoing condition management; routine monitoring against a register</div>
+        <div class="pattern-card-row"><strong>Strategic role</strong>High-volume system integration; eases GP appointment pressure; protects the long-term-condition register at scale</div>
+      </div>
+
+      <div class="pattern-card p4">
+        <div class="pattern-card-num">Pattern 4</div>
+        <div class="pattern-card-h">Community / Pharmacy</div>
+        <div class="pattern-card-row"><strong>Entry point</strong>Community pharmacy or community service</div>
+        <div class="pattern-card-row"><strong>Ownership</strong>Shared or fragmented; varies by community context</div>
+        <div class="pattern-card-row"><strong>Pathway shape</strong>Transactional or episodic; tied to a specific medicine-management or screening moment</div>
+        <div class="pattern-card-row"><strong>Strategic role</strong>Expands reach and accessibility into community settings; supports medication-management workflows</div>
+      </div>
+
+      <div class="pattern-card p5">
+        <div class="pattern-card-num">Pattern 5</div>
+        <div class="pattern-card-h">Programme / System</div>
+        <div class="pattern-card-row"><strong>Entry point</strong>National programme, Genomics, research cohort</div>
+        <div class="pattern-card-row"><strong>Ownership</strong>System-led; cohort owned at programme level</div>
+        <div class="pattern-card-row"><strong>Pathway shape</strong>Population or cohort-based; invitation-driven</div>
+        <div class="pattern-card-row"><strong>Strategic role</strong>Connects HomeTest into national prevention and research infrastructure; population-scale reach</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="level">
+    <div class="level-num"><span class="pill">Level 2</span> 4 Tiers</div>
+    <h2 class="level-h">How suitable is this pathway for delivery now?</h2>
+    <p class="level-q">Four tiers classify a pathway on the clarity of clinical ownership, the complexity and variation in delivery, and the strength of the test-to-decision-to-action loop. Tier 1 pathways are closed-loop and ready; Tier 4 are too variable to take on in the near term.</p>
+    <p class="level-intro">Tier is not about importance. It is about delivery-readiness. A Tier 4 condition can be the right next target once the pathway clarity comes; today it would simply break the model. The four tiers are an honest filter that stops the platform spending design effort on configurations whose underlying pathway is not yet stable.</p>
+
+    <div class="tier-grid">
+
+      <div class="tier-card t1">
+        <div class="tier-card-num">Tier 1</div>
+        <div class="tier-card-h">Clean</div>
+        <div class="tier-card-row"><strong>What it is</strong>Closed-loop, fully owned pathways. Fast-follow candidates.</div>
+        <div class="tier-card-row"><strong>Operational shape</strong>Predictable and repeatable. Clear test-to-decision-to-action chain.</div>
+        <div class="tier-card-row"><strong>Why it matters</strong>Best candidates for proving the model fast. Lowest risk of pathway-side surprises during build.</div>
+      </div>
+
+      <div class="tier-card t2">
+        <div class="tier-card-num">Tier 2</div>
+        <div class="tier-card-h">Strong</div>
+        <div class="tier-card-row"><strong>What it is</strong>Same model as Tier 1 with some complexity layered on.</div>
+        <div class="tier-card-row"><strong>Operational shape</strong>Shared care, complex result panels, or clinical interpretation steps in the loop.</div>
+        <div class="tier-card-row"><strong>Why it matters</strong>Real-world applicability. Demonstrates the model can serve the pathway shape most of the NHS actually runs.</div>
+      </div>
+
+      <div class="tier-card t3">
+        <div class="tier-card-num">Tier 3</div>
+        <div class="tier-card-h">Valid</div>
+        <div class="tier-card-row"><strong>What it is</strong>The model works but the shape is different from the proving cases.</div>
+        <div class="tier-card-row"><strong>Operational shape</strong>Episodic, operational, or lower addressable market.</div>
+        <div class="tier-card-row"><strong>Why it matters</strong>Worth supporting but does not prove the model cleanly. Reach matters more than rigour here.</div>
+      </div>
+
+      <div class="tier-card t4">
+        <div class="tier-card-num">Tier 4</div>
+        <div class="tier-card-h">Complex</div>
+        <div class="tier-card-row"><strong>What it is</strong>High variation, unclear ownership, multi-step pathway.</div>
+        <div class="tier-card-row"><strong>Operational shape</strong>Hard to standardise. Pathway clarity not yet there.</div>
+        <div class="tier-card-row"><strong>Why it matters</strong>Not suitable for early delivery. Worth tracking but should not enter the roadmap until the pathway settles.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="level">
+    <div class="level-num"><span class="pill">Level 3</span> Prioritisation Construct</div>
+    <h2 class="level-h">Which specific use cases do we take forward?</h2>
+    <p class="level-q">Within a chosen pattern and tier, the Prioritisation Construct scores specific candidate use cases. One Gateway plus three scored Dimensions plus risk overlays.</p>
+    <p class="level-intro">Each candidate use case is first put through the Gateway. If the Gateway is failed, the use case stops there. Use cases that pass are scored on three Dimensions (Strategic, Pathway, Economic) at 1, 3 or 5. Non-scored overlays are reviewed separately and can override scoring on a case-by-case basis.</p>
+
+    <div class="construct-wrap">
+
+      <div class="construct-block">
+        <div class="construct-block-num">Gateway 1 &middot; pass / fail</div>
+        <div class="construct-block-h">Clinical, technical and platform effort</div>
+        <div class="construct-block-body">Before scoring starts, the use case has to pass a viability check. Is home sampling clinically appropriate. Is the lab processing scalable. Is the clinical safety case credible. Is the acceptability of an at-home pathway plausible for the cohort. A use case that fails the Gateway is not scored; it leaves the construct here.</div>
+        <div class="construct-gateway"><strong>Decision shape:</strong> pass / fail. No partial credit. A use case that fails on any limb of the Gateway is held until the limb can be answered.</div>
+      </div>
+
+      <div class="construct-block">
+        <div class="construct-block-num">Dimension A &middot; scored 1 / 3 / 5</div>
+        <div class="construct-block-h">Strategic and Policy Alignment</div>
+        <div class="construct-block-body">Scored on three sub-axes. <strong>A1</strong>: explicit national policy linkage. <strong>A2</strong>: programme ownership and commitment from a system actor. <strong>A3</strong>: criticality to policy delivery (is this load-bearing for a published priority).</div>
+        <div class="construct-axes">
+          <div class="construct-axis"><div class="construct-axis-h">A1 &middot; Policy linkage</div>Explicit named link to NHS or DHSC policy.</div>
+          <div class="construct-axis"><div class="construct-axis-h">A2 &middot; Programme ownership</div>A national programme has named this in their commitments.</div>
+          <div class="construct-axis"><div class="construct-axis-h">A3 &middot; Criticality</div>Other priorities lean on this being delivered.</div>
+        </div>
+      </div>
+
+      <div class="construct-block">
+        <div class="construct-block-num">Dimension B &middot; scored 1 / 3 / 5</div>
+        <div class="construct-block-h">Pathway Maturity and Readiness</div>
+        <div class="construct-block-body">Scored on three sub-axes. <strong>B1</strong>: pathway is defined and there is clinical consensus. <strong>B2</strong>: initiation pattern is mature (the Level 1 pattern this use case sits inside is well-understood at scale). <strong>B3</strong>: implementation capability exists (GIRFT, NHSO, Cancer Alliances or equivalent).</div>
+        <div class="construct-axes">
+          <div class="construct-axis"><div class="construct-axis-h">B1 &middot; Pathway definition</div>Clinical pathway is defined with consensus.</div>
+          <div class="construct-axis"><div class="construct-axis-h">B2 &middot; Pattern maturity</div>The initiation pattern is operationally mature.</div>
+          <div class="construct-axis"><div class="construct-axis-h">B3 &middot; Implementation capability</div>A delivery vehicle exists to land this at scale.</div>
+        </div>
+      </div>
+
+      <div class="construct-block">
+        <div class="construct-block-num">Dimension C &middot; scored 1 / 3 / 5</div>
+        <div class="construct-block-h">Economic and System Impact</div>
+        <div class="construct-block-body">Scored on three sub-axes. <strong>C1</strong>: Total Addressable Market for the test. <strong>C2</strong>: volume and demand signal today. <strong>C3</strong>: pathway impact share and strategic alignment to wider system efficiency.</div>
+        <div class="construct-axes">
+          <div class="construct-axis"><div class="construct-axis-h">C1 &middot; TAM</div>Size of the addressable population.</div>
+          <div class="construct-axis"><div class="construct-axis-h">C2 &middot; Volume and demand</div>Current activity level and projected growth.</div>
+          <div class="construct-axis"><div class="construct-axis-h">C3 &middot; Pathway impact</div>Strategic alignment to the wider system efficiency case.</div>
+        </div>
+      </div>
+
+      <div class="construct-block">
+        <div class="construct-block-num">Risk overlays &middot; not scored</div>
+        <div class="construct-block-h">Reviewed separately</div>
+        <div class="construct-block-body">Sit alongside the scored Dimensions and can override the score. Reviewed at the Programme Board on a case-by-case basis.</div>
+        <div class="construct-overlay-list">
+          <span class="ol-pill">Portfolio concentration</span>
+          <span class="ol-pill">Political / programme sensitivity</span>
+          <span class="ol-pill">Pre-mortem risk</span>
+          <span class="ol-pill">Out-of-control dependencies</span>
+          <span class="ol-pill">Supplier risk</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="connection">
+    <h2>How this connects to the operating model</h2>
+    <p>The five patterns map to the Level 3 Initiation row on the <strong>Anatomical</strong> page. The four tiers and the Prioritisation Construct score sit alongside each Level 4 configuration. The framework is the reason we are building the configurations we are building, in the order we are building them. The OM is the architecture. This is the prioritisation logic that drives which architectural slots get filled, and when.</p>
+
+    <div class="picks">
+
+      <div class="pick-card">
+        <div class="pick-card-h">HIV &middot; HomeTest</div>
+        <div class="pick-card-body"><strong>Pattern 1 Self-initiated &middot; Tier 1 Clean.</strong> Citizen orders via NHS App. Closed-loop sexual-health configuration with strong policy alignment (HIV transmission target 2030) and a defined LA-commissioned pathway. Live Beta.</div>
+      </div>
+
+      <div class="pick-card">
+        <div class="pick-card-h">PSA-AS &middot; HomeTest</div>
+        <div class="pick-card-body"><strong>Pattern 2 Secondary care initiated &middot; Tier 1 Clean.</strong> Consultant urologist orders the test from the active-surveillance list. NICE NG131 defines the cohort. Closed-loop acute pathway. In design.</div>
+      </div>
+
+      <div class="pick-card">
+        <div class="pick-card-h">Iron deficiency anaemia &middot; HomeTest</div>
+        <div class="pick-card-body"><strong>Pattern 3 Primary care initiated &middot; Tier 2 Strong.</strong> GP arranges as part of the routine anaemia review cycle. Longitudinal primary-care ownership. High-volume, equity-relevant. In design.</div>
+      </div>
+
+      <div class="pick-card">
+        <div class="pick-card-h">Pharmacy-initiated &middot; HomeTest</div>
+        <div class="pick-card-body"><strong>Pattern 4 Community / Pharmacy &middot; Tier 3 Valid (working sketch).</strong> Community pharmacist initiates testing in medication-management contexts (HRT, GLP-1, DMARDs). Different shape, lower TAM today. Working sketch.</div>
+      </div>
+
+      <div class="pick-card">
+        <div class="pick-card-h">Programme / System &middot; HomeTest</div>
+        <div class="pick-card-body"><strong>Pattern 5 Programme / System &middot; Tier to be determined.</strong> No live configuration yet. National programmes (NHS DSP cohort invites, Genomics-led cohorts) are the natural candidates. The pattern is on the catalogue; a configuration is not.</div>
+      </div>
+
+      <div class="pick-card">
+        <div class="pick-card-h">HealthStore &middot; COPD UC1</div>
+        <div class="pick-card-body"><strong>Clinician-prescribed.</strong> Sits within the HealthStore product but uses the same kind of prioritisation logic. COPD as UC1, Cardiac Rehab as UC2, both in design.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="deprioritised">
+    <h3>What the framework has been used to deprioritise</h3>
+    <p>The framework is most useful as a forcing function for honest no's. Use cases that score low on Dimensions A or B (no clear policy linkage, no defined pathway, no named delivery vehicle) get shown to be deprioritisation candidates on the same axes that promote others. The construct is symmetrical: the same score that elevates one use case is the score that delays another.</p>
+    <p><strong>Examples held against the construct:</strong> use cases where the Gateway has not yet been cleared (clinical safety case incomplete, lab processing not scalable), use cases where Dimension B is too thin (pathway not yet defined at consensus level), and use cases where the risk overlays carry political or programme sensitivity that requires a separate Programme Board decision.</p>
+  </div>
+
+  <div class="foot">
+    DTx Operating Model &middot; Prioritisation lens &middot; HomeTest Prioritisation Framework (endorsed 9 June 2026).<br>
+    The framework sits alongside the architecture. Configurations across HomeTest, HealthStore and HealthSync are picked using this lens but the lens itself is HomeTest-originated. HealthStore and HealthSync use cases run through equivalent logic adapted to their product.
+  </div>
+
+</div>
+
+</body>
+</html>
