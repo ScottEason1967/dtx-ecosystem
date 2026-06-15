@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to read this model — Digital Therapeutics Operating Model</title>
+<style>
+:root {
+  --nhs-dark:#003087; --nhs-blue:#005EB8; --nhs-green:#006747; --nhs-pink:#AE2573;
+  --amber:#FFB91D; --amber-deep:#C9A227; --warm-cream:#FFF9EC;
+  --text:#212B32; --text-sec:#4C6272; --text-muted:#7E8B97;
+  --border-lt:#ebeef1; --card:#ffffff; --bg:#f8fafc; --pale-blue:#E8F1F6; --pale-blue-bd:#B5D4E5;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;
+     background:linear-gradient(180deg,var(--nhs-blue) 0%,#003087 100%);background-attachment:fixed;
+     color:var(--text);line-height:1.55;-webkit-font-smoothing:antialiased;min-height:100vh;}
+.page{max-width:1180px;margin:0 auto;padding:36px 28px 56px;}
+.card{background:#fff;border-radius:18px;box-shadow:0 14px 40px rgba(0,48,135,0.22);padding:48px 52px 44px;}
+
+.eyebrow{font-size:11px;font-weight:800;letter-spacing:2.4px;color:var(--amber-deep);text-transform:uppercase;margin-bottom:14px;}
+.h-title{font-size:54px;font-weight:900;color:var(--nhs-dark);letter-spacing:-1.6px;line-height:1.0;margin-bottom:18px;}
+.h-sub{font-size:18px;color:var(--text-sec);line-height:1.65;max-width:780px;margin-bottom:20px;}
+.h-sub strong{color:var(--text);font-weight:700;}
+
+.amber-rule{width:72px;height:4px;background:var(--amber);border-radius:2px;margin-bottom:18px;}
+
+.section{margin-top:48px;}
+.section-eyebrow{font-size:10.5px;font-weight:800;letter-spacing:1.8px;color:var(--amber-deep);text-transform:uppercase;margin-bottom:8px;}
+.section-h{font-size:28px;font-weight:900;color:var(--nhs-dark);letter-spacing:-0.6px;line-height:1.1;margin-bottom:12px;}
+.section-intro{font-size:14.5px;color:var(--text-sec);line-height:1.7;max-width:840px;margin-bottom:22px;}
+.section-intro strong{color:var(--text);font-weight:700;}
+
+/* 30-second answer grid */
+.three-up{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px;}
+.what-tile{background:#F4F8FC;border:1px solid #d6e2ef;border-radius:12px;padding:18px 20px;}
+.what-tile-h{font-size:11px;font-weight:800;letter-spacing:1.4px;color:var(--nhs-blue);text-transform:uppercase;margin-bottom:8px;}
+.what-tile-body{font-size:13px;color:var(--text-sec);line-height:1.6;}
+.what-tile-body strong{color:var(--text);font-weight:700;}
+@media(max-width:780px){.three-up{grid-template-columns:1fr;}}
+
+/* Five questions diagram */
+.shape-wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:30px;align-items:center;margin-top:4px;}
+.shape-circle{position:relative;width:340px;height:340px;margin:0 auto;}
+.shape-centre{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+              width:140px;height:140px;border-radius:50%;background:var(--nhs-dark);color:#fff;
+              display:flex;flex-direction:column;align-items:center;justify-content:center;
+              box-shadow:0 8px 20px rgba(0,48,135,0.28);}
+.shape-centre-q{font-size:36px;font-weight:900;letter-spacing:-1px;}
+.shape-centre-cap{font-size:10px;font-weight:800;letter-spacing:1.5px;margin-top:2px;opacity:0.88;}
+.shape-pet{position:absolute;width:110px;height:110px;border-radius:50%;background:#fff;
+           border:2px solid var(--nhs-blue);display:flex;flex-direction:column;align-items:center;
+           justify-content:center;box-shadow:0 4px 12px rgba(0,48,135,0.16);}
+.shape-pet-q{font-size:24px;font-weight:900;color:var(--nhs-blue);letter-spacing:-0.6px;line-height:1;}
+.shape-pet-cap{font-size:9.5px;font-weight:800;letter-spacing:1.2px;color:var(--text-sec);text-transform:uppercase;margin-top:3px;}
+.shape-pet.p-top{top:0;left:50%;transform:translateX(-50%);}
+.shape-pet.p-right{top:50%;right:0;transform:translateY(-50%);}
+.shape-pet.p-bottom{bottom:0;left:50%;transform:translateX(-50%);}
+.shape-pet.p-left{top:50%;left:0;transform:translateY(-50%);}
+.shape-list{font-size:14px;color:var(--text-sec);line-height:1.75;}
+.shape-list strong{color:var(--nhs-dark);font-weight:800;}
+.shape-list .item{margin-bottom:10px;}
+.shape-list .item .icon{display:inline-block;width:24px;height:24px;border-radius:50%;
+                        background:var(--nhs-blue);color:#fff;font-size:11px;font-weight:800;
+                        text-align:center;line-height:24px;margin-right:10px;vertical-align:middle;}
+.shape-list .item .icon.dark{background:var(--nhs-dark);}
+.shape-list .item .icon.amber{background:var(--amber-deep);}
+.shape-list .item .icon.green{background:var(--nhs-green);}
+.shape-list .item .icon.pink{background:var(--nhs-pink);}
+@media(max-width:880px){.shape-wrap{grid-template-columns:1fr;}.shape-circle{width:280px;height:280px;}.shape-pet{width:90px;height:90px;}}
+
+/* Where to start tiles */
+.start-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+.start-tile{background:#fff;border:1px solid var(--border-lt);border-radius:14px;padding:22px 24px 20px;
+            text-decoration:none;color:inherit;display:flex;gap:16px;align-items:flex-start;
+            transition:transform 0.18s ease,box-shadow 0.22s ease,border-color 0.18s ease;
+            border-left:5px solid var(--amber);}
+.start-tile:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(0,32,64,0.12);border-left-color:var(--amber-deep);}
+.start-num{flex-shrink:0;width:40px;height:40px;border-radius:50%;background:var(--nhs-dark);color:#fff;
+           font-size:18px;font-weight:900;display:flex;align-items:center;justify-content:center;margin-top:2px;}
+.start-body{flex:1;}
+.start-head{font-size:16px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.2px;margin-bottom:4px;}
+.start-mins{font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:var(--amber-deep);text-transform:uppercase;margin-bottom:8px;}
+.start-desc{font-size:13px;color:var(--text-sec);line-height:1.6;}
+.start-desc strong{color:var(--text);font-weight:700;}
+@media(max-width:780px){.start-grid{grid-template-columns:1fr;}}
+
+/* Audience cards */
+.aud-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+.aud-card{background:var(--pale-blue);border:1px solid var(--pale-blue-bd);border-radius:12px;padding:18px 18px 16px;}
+.aud-card-h{font-size:13px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.1px;margin-bottom:8px;}
+.aud-card-body{font-size:12px;color:var(--text-sec);line-height:1.6;}
+.aud-card-body strong{color:var(--text);font-weight:700;}
+.aud-card-body a{color:var(--nhs-blue);font-weight:700;text-decoration:none;}
+.aud-card-body a:hover{text-decoration:underline;}
+@media(max-width:1000px){.aud-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:540px){.aud-grid{grid-template-columns:1fr;}}
+
+/* Honest expectations */
+.honest{background:var(--warm-cream);border:1px solid #F0DCA0;border-radius:14px;padding:24px 28px;margin-top:8px;}
+.honest p{font-size:13.5px;color:var(--text-sec);line-height:1.7;margin-bottom:12px;}
+.honest p:last-child{margin-bottom:0;}
+.honest p strong{color:var(--amber-deep);font-weight:800;}
+
+/* CTA strip */
+.cta{margin-top:48px;background:linear-gradient(135deg,var(--nhs-dark),var(--nhs-blue));color:#fff;border-radius:18px;
+     padding:36px 40px;display:grid;grid-template-columns:1.4fr 1fr;gap:24px;align-items:center;}
+.cta-text-h{font-size:24px;font-weight:900;letter-spacing:-0.5px;margin-bottom:8px;}
+.cta-text-body{font-size:13.5px;color:rgba(255,255,255,0.88);line-height:1.6;}
+.cta-btns{display:flex;flex-direction:column;gap:10px;}
+.cta-btn-main{background:var(--amber);color:var(--nhs-dark);font-size:14.5px;font-weight:800;letter-spacing:0.3px;
+              padding:14px 22px;border-radius:99px;text-decoration:none;text-align:center;
+              transition:transform 0.15s,box-shadow 0.2s;}
+.cta-btn-main:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(0,0,0,0.18);}
+.cta-btn-sec{background:transparent;color:#fff;font-size:12.5px;font-weight:700;letter-spacing:0.3px;
+             padding:10px 22px;border:1.5px solid rgba(255,255,255,0.45);border-radius:99px;
+             text-decoration:none;text-align:center;}
+.cta-btn-sec:hover{background:rgba(255,255,255,0.10);}
+@media(max-width:780px){.cta{grid-template-columns:1fr;}}
+
+.foot{margin-top:36px;padding-top:22px;border-top:1px solid var(--border-lt);font-size:11.5px;color:var(--text-muted);text-align:center;}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="card">
+
+    <div class="eyebrow">Start here</div>
+    <div class="amber-rule"></div>
+    <h1 class="h-title">How to read this operating model.</h1>
+    <p class="h-sub">This model is <strong>intentionally information-rich</strong>. It is built to be clicked around, not read top-to-bottom. This page tells you where to start, what to expect and which parts will be most useful to you. The model spans the <strong>Self Health Services</strong> portfolio: HomeTest, HealthStore and HealthSync.</p>
+
+    <!-- 30-second answer -->
+    <div class="section">
+      <div class="section-eyebrow">In 30 seconds</div>
+      <h2 class="section-h">What this is and what it isn't.</h2>
+      <p class="section-intro">An operating model for the future-state Digital Therapeutics portfolio. Built to answer the question: <strong>how does this run at scale by 2030?</strong> It holds the architecture, the cast and the open questions across HomeTest, HealthStore and HealthSync. The delivery plan and the answers live on the Status and Teamwork pages.</p>
+
+      <div class="three-up">
+        <div class="what-tile">
+          <div class="what-tile-h">What this is</div>
+          <div class="what-tile-body">The navigable reference for Martin&apos;s future-state portfolio vision. A set of interconnected pages organised around five questions, with the people who run the portfolio threaded through every one. Architecture reused across HomeTest, HealthStore and HealthSync. Built to be explored, not read.</div>
+        </div>
+        <div class="what-tile">
+          <div class="what-tile-h">What this isn't</div>
+          <div class="what-tile-body">Not a static document, not a deck, not a delivery plan. It feeds them — the Hearts and Minds decks, the playbooks, the position papers and the prioritised delivery items all derive from it. A traditional operating model is a point-in-time snapshot. The snapshot is one of the outputs this produces.</div>
+        </div>
+        <div class="what-tile">
+          <div class="what-tile-h">Who it's for</div>
+          <div class="what-tile-body">NHSE colleagues, sponsors, commissioners, suppliers and clinicians. Anyone who needs to understand what the home-testing service has to be in order to work.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Shape -->
+    <div class="section">
+      <div class="section-eyebrow">The shape</div>
+      <h2 class="section-h">Every operating model answers five questions.</h2>
+      <p class="section-intro">This one is organised around them explicitly, with <strong>Why at the centre</strong>. The other four sit around it. Three further layers (Hearts and Minds, Status, Teamwork) wrap the five.</p>
+
+      <div class="shape-wrap">
+        <div class="shape-circle">
+          <div class="shape-centre">
+            <div class="shape-centre-q">Why</div>
+            <div class="shape-centre-cap">PURPOSE</div>
+          </div>
+          <div class="shape-pet p-top">
+            <div class="shape-pet-q">What</div>
+            <div class="shape-pet-cap">ARCHITECTURE</div>
+          </div>
+          <div class="shape-pet p-right">
+            <div class="shape-pet-q">When</div>
+            <div class="shape-pet-cap">LIFECYCLE</div>
+          </div>
+          <div class="shape-pet p-bottom">
+            <div class="shape-pet-q">How</div>
+            <div class="shape-pet-cap">OPERATIONS</div>
+          </div>
+          <div class="shape-pet p-left">
+            <div class="shape-pet-q">Who</div>
+            <div class="shape-pet-cap">GOVERNANCE</div>
+          </div>
+        </div>
+
+        <div class="shape-list">
+          <div class="item"><span class="icon dark">W</span><strong>Why</strong> — the case for change. Four north stars that hold simultaneously.</div>
+          <div class="item"><span class="icon">W</span><strong>What</strong> — the architecture. Foundation, overlays, patterns, configurations.</div>
+          <div class="item"><span class="icon">W</span><strong>When</strong> — the lifecycle. Five stages, with a continuous-improvement loop.</div>
+          <div class="item"><span class="icon">H</span><strong>How</strong> — the operational pattern. Day-to-day swim lanes for each actor.</div>
+          <div class="item"><span class="icon">W</span><strong>Who</strong> — governance and accountability. RACI threaded through the cast.</div>
+          <div class="item" style="margin-top:18px;padding-top:14px;border-top:1px dashed var(--border-lt);"><span class="icon pink">+</span><strong>Hearts and Minds</strong> — the human stories. How this walks into a room.</div>
+          <div class="item"><span class="icon amber">+</span><strong>Status</strong> — what is decided, what is in flight, what is open.</div>
+          <div class="item"><span class="icon green">+</span><strong>Teamwork</strong> — the capability map. What it takes to run in BAU.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Where to start -->
+    <div class="section">
+      <div class="section-eyebrow">Where to start</div>
+      <h2 class="section-h">Recommended reading order.</h2>
+      <p class="section-intro">If you have 40 minutes and want the model end to end, walk these five tiles in order. If you have 5 minutes, open the second one (Sean's Journey) and stop there. The model is built to be re-entered.</p>
+
+      <div class="start-grid">
+
+        <a href="DTx OM - Why.html" class="start-tile">
+          <div class="start-num">1</div>
+          <div class="start-body">
+            <div class="start-mins">5 minutes</div>
+            <div class="start-head">Open with Why.</div>
+            <div class="start-desc">The case for change. The four north stars that have to hold simultaneously. Read this first. Everything else makes more sense afterwards.</div>
+          </div>
+        </a>
+
+        <a href="DTx OM - Errol Journey.html" class="start-tile">
+          <div class="start-num">2</div>
+          <div class="start-body">
+            <div class="start-mins">5 minutes</div>
+            <div class="start-head">Read Errol's journey.</div>
+            <div class="start-desc">The cross-product story. Errol&apos;s hypertension arc weaves HealthSync (the wearable), HomeTest (the diagnostic test) and HealthStore (the digital therapeutic) into one continuous journey. The single best demonstration of how the three products work together. For the <strong>cross-cohort access story</strong> &mdash; the horizontal cohort that cuts across all three products &mdash; <a href="DTx OM - Sean Journey.html" style="color:var(--nhs-blue);font-weight:700;">open Sean&apos;s Journey alongside</a>.</div>
+          </div>
+        </a>
+
+        <a href="DTx OM - Anatomical.html" class="start-tile">
+          <div class="start-num">3</div>
+          <div class="start-body">
+            <div class="start-mins">10 minutes</div>
+            <div class="start-head">Walk the architecture on What.</div>
+            <div class="start-desc">Foundation, overlays, patterns, configurations. Four levels showing how the model is reusable across products. Click any pill to drill into the overlay detail.</div>
+          </div>
+        </a>
+
+        <a href="DTx OM - Index.html" class="start-tile">
+          <div class="start-num">4</div>
+          <div class="start-body">
+            <div class="start-mins">10 minutes</div>
+            <div class="start-head">Click through the cast.</div>
+            <div class="start-desc">Every person on the model has their own page with their pitch, what matters to them and where they sit. Skim the personas to see how the architecture lands on real roles.</div>
+          </div>
+        </a>
+
+        <a href="DTx OM - Status.html" class="start-tile">
+          <div class="start-num">5</div>
+          <div class="start-body">
+            <div class="start-mins">10 minutes</div>
+            <div class="start-head">Open Status and Teamwork.</div>
+            <div class="start-desc">Status is the honest list of what is open. Teamwork is the capability map and BAU sizing. The list is not the failure. The list is the structure that makes the questions answerable.</div>
+          </div>
+        </a>
+
+        <a href="DTx OM - Prioritisation Framework.html" class="start-tile">
+          <div class="start-num">6</div>
+          <div class="start-body">
+            <div class="start-mins">Optional &middot; 5 minutes</div>
+            <div class="start-head">The Prioritisation Framework.</div>
+            <div class="start-desc">The lens we use to choose what we build next. Five patterns, four tiers, a scoring construct. Endorsed by the Programme Board on 9 June 2026. Optional read; explains the logic behind the configurations.</div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- Audiences -->
+    <div class="section">
+      <div class="section-eyebrow">Different readers find different things</div>
+      <h2 class="section-h">If you have a specific question.</h2>
+      <p class="section-intro">The model is built to serve more than one audience. Pick the entry point closest to your role.</p>
+
+      <div class="aud-grid">
+        <div class="aud-card">
+          <div class="aud-card-h">Sponsor / SLT</div>
+          <div class="aud-card-body">Case for change, what is open, and BAU shape. Start with <a href="DTx OM - Why.html">Why</a>, then <a href="DTx OM - Errol Journey.html">Errol's Journey</a>, then <a href="DTx OM - Status.html">Status</a> and <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>.</div>
+        </div>
+        <div class="aud-card">
+          <div class="aud-card-h">Commissioner</div>
+          <div class="aud-card-body">The recipe per configuration. Start with <a href="DTx OM - Persona Sarah.html">Sarah's persona</a>, then the <a href="DTx OM - Pattern Overlay Detail.html">Pattern Overlay Detail</a>. The Commissioning overlay is where the funding question sits.</div>
+        </div>
+        <div class="aud-card">
+          <div class="aud-card-h">Clinician</div>
+          <div class="aud-card-body">The operational shape and how the model fits the clinical pathway. Start with <a href="DTx OM - Persona Adam.html">Adam</a> (consultant) or <a href="DTx OM - Persona Hannah.html">Hannah</a> (GP), then <a href="DTx OM - HomeTest Operational.html">How</a>.</div>
+        </div>
+        <div class="aud-card">
+          <div class="aud-card-h">Supplier</div>
+          <div class="aud-card-body">Where suppliers plug in. Start with <a href="DTx OM - Persona Joe.html">Joe's persona</a>, then the foundation and overlays on <a href="DTx OM - Anatomical.html">What</a>. The platform-as-matchmaker frame matters here.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Honest expectations -->
+    <div class="section">
+      <div class="section-eyebrow">What to expect</div>
+      <h2 class="section-h">Three honest notes before you click in.</h2>
+
+      <div class="honest">
+        <p><strong>The model is information-rich on purpose.</strong> You are not meant to read it linearly. Click around. Open something. Follow the cross-links. Come back to this page if you get lost.</p>
+        <p><strong>Status and Teamwork are honest about what is not yet known.</strong> The list of open decisions is long because the work is mid-flight. The list is not the failure. It is the structure that makes the open questions answerable.</p>
+        <p><strong>Hearts and Minds is the human layer.</strong> Five journeys in total. If you want a five-minute version of the whole portfolio, open Errol&apos;s Journey — the cross-product story that walks HealthSync, HomeTest and HealthStore in one arc. If you want the access story, open Sean&apos;s.</p>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta">
+      <div class="cta-text">
+        <div class="cta-text-h">Ready?</div>
+        <div class="cta-text-body">The Index page is the doors-and-cast view across HomeTest, HealthStore and HealthSync. Bookmark it if you want to come back. This reading guide stays here as a refresher.</div>
+      </div>
+      <div class="cta-btns">
+        <a href="DTx OM - Index.html" class="cta-btn-main">Take me into the model &rarr;</a>
+        <a href="DTx OM - Why.html" class="cta-btn-sec">Or open Why first &rarr;</a>
+      </div>
+    </div>
+
+    <div class="foot">
+      Digital Therapeutics Operating Model &middot; Reading guide &middot; The model is the centre of the work. This page is the on-ramp.
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
