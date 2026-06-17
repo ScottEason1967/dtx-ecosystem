@@ -204,6 +204,11 @@
   /* Sticky top nav */
   .navbar{position:sticky;top:115px;z-index:198;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:10px 14px;margin-bottom:24px;display:flex;flex-direction:column;gap:8px;box-shadow:0 4px 12px rgba(0,32,64,0.04);}
   .nav-row-caps{display:flex;flex-wrap:wrap;gap:5px;align-items:center;}
+.nav-caps-label{font-size:10.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);text-align:center;margin:2px 0 10px;}
+.nav-caps-grid{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:6px 8px;justify-items:stretch;}
+.nav-caps-grid .nav-chip{justify-content:center;}
+@media (max-width: 980px){.nav-caps-grid{grid-template-columns:repeat(4,minmax(0,1fr));}}
+
   .nav-row-links{display:flex;justify-content:center;gap:10px;padding-top:8px;border-top:1px solid var(--border);}
   .nav-label{font-size:9.5px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-right:6px;}
   .nav-chip{font-size:11px;font-weight:700;padding:4px 9px;border-radius:14px;background:#FAFBFC;color:var(--text);border:1px solid var(--border);text-decoration:none;display:inline-flex;gap:5px;align-items:center;transition:transform 0.15s,box-shadow 0.15s,background 0.15s,color 0.15s,border-color 0.15s;line-height:1.3;}
@@ -342,8 +347,8 @@
 
 
   <nav class="navbar" aria-label="Capability quick-jump">
-    <div class="nav-row-caps">
-      <span class="nav-label">Capabilities</span>
+    <div class="nav-caps-label">Capabilities</div>
+    <div class="nav-caps-grid">
       <a href="#cap-1" class="nav-chip" style="--chip-c:#003087"><span class="nav-chip-num">1</span>Stewardship</a>
       <a href="#cap-2" class="nav-chip" style="--chip-c:#AE2573"><span class="nav-chip-num">2</span>Safety</a>
       <a href="#cap-3" class="nav-chip" style="--chip-c:#7C2855"><span class="nav-chip-num">3</span>IG</a>
@@ -1236,6 +1241,7 @@
             <li>Sales narrative at trust and regional level</li>
             <li>Early-adopter advocacy mechanism designed</li>
             <li>Prospective Trust engagement programme (beyond the confirmed preferred partner)</li>
+            <li>Inside-the-tent advocate programme &mdash; candidate exemplar Trusts being scoped (GSTT identified as a near-term candidate)</li>
             <li>Segmented strategic messaging per audience</li>
             <li>National rollout discipline defined</li>
             <li>Partnerships function resourced for steady-state load</li>
