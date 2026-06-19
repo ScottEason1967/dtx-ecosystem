@@ -151,7 +151,7 @@ The seven views called out in the brief are Why, What/Anatomy, What/Ecosystem, W
 
 ### View 5. What / Ecosystem
 
-**Current shape.** Hub-and-spoke. HomeTest at the centre as Category 1 ("Built and run"). Four cardinals around it: Consumed (6 services: NHS Login, NHS Notify, NHS App, FHIR, FDP, SPR), Regulated by (8 bodies: PTT, CSG, EScAL, Caldicott, NHS Legal, NHS Commercial, ICO, CQC), Contracted (5 categories: Framework suppliers, Acute trust partnership, Royal Mail, Pathology labs, Advisory & capacity), Served (3 audiences: Commissioners, Patients, Initiating clinicians). Each cardinal has its own sub-page.
+**Current shape.** Hub-and-spoke. HomeTest at the centre as Category 1 ("Built and run"). Four cardinals around it: Consumed (6 services: NHS Login, NHS Notify, NHS App, FHIR, FDP, SPR), Regulated by (7 bodies: PTT, CSG, Caldicott, NHS Legal, NHS Commercial, ICO, CQC), Contracted (5 categories: Framework suppliers, Acute trust partnership, Royal Mail, Pathology labs, Advisory & capacity), Served (3 audiences: Commissioners, Patients, Initiating clinicians). Each cardinal has its own sub-page.
 
 **Holds at portfolio level.** The five-category structure. The hub-and-spoke pattern. The "intelligent client" framing (the BAU team is small because most operating mass sits outside it).
 

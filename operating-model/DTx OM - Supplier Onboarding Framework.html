@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Supplier Onboarding Framework: DTx OM</title>
+<style>
+  :root{--nhs-dark:#003087;--nhs-blue:#005EB8;--nhs-green:#006747;--nhs-pink:#AE2573;--amber:#FFB91D;--amber-deep:#C9A227;--warm-cream:#FFF9EC;--accent:#1B3A6B;--text:#212B32;--text-sec:#4C6272;--text-muted:#7E8B97;--border-lt:#ebeef1;--bg:#f8fafc;--card:#fff;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,var(--nhs-blue) 0%,var(--nhs-dark) 100%);background-attachment:fixed;color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100vh;}
+  .topnav{background:#fff;border-bottom:1px solid var(--border-lt);padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;box-shadow:0 2px 14px rgba(0,48,135,0.18);}
+  .nav-back{font-size:13px;font-weight:700;color:var(--nhs-dark);text-decoration:none;display:inline-flex;align-items:center;gap:6px;}
+  .nav-back:hover{color:var(--nhs-blue);}
+  .nav-siblings{display:flex;gap:4px;flex-wrap:wrap;}
+  .nav-siblings a{font-size:12.5px;font-weight:600;color:var(--text-sec);text-decoration:none;padding:7px 14px;border-radius:6px;letter-spacing:0.2px;}
+  .nav-siblings a:hover{background:#f0f4f8;color:var(--text);}
+  .nav-siblings a.active{background:var(--nhs-blue);color:#fff;}
+  .nav-siblings .nav-sep{width:1px;height:18px;background:var(--border-lt);margin:0 6px;}
+  .page{max-width:1180px;margin:30px auto 50px;padding:50px 40px 80px;background:#fff;border-radius:18px;box-shadow:0 14px 40px rgba(0,48,135,0.20);}
+  .amber-rule{width:72px;height:4px;background:var(--amber);border-radius:2px;margin-bottom:18px;}
+  .h-eyebrow{font-size:11px;font-weight:700;letter-spacing:2.2px;color:var(--text-sec);text-transform:uppercase;margin-bottom:14px;}
+  .h-title{font-size:54px;font-weight:800;color:var(--nhs-dark);letter-spacing:-1.2px;line-height:1.05;margin-bottom:16px;}
+  .h-sub{font-size:17px;color:var(--text-sec);line-height:1.65;max-width:840px;margin-bottom:18px;}
+
+  /* North star banner */
+  .northstar{margin:34px 0 12px;background:linear-gradient(135deg,var(--nhs-dark),var(--nhs-blue));border:2px solid var(--amber);border-radius:14px;padding:28px 32px;color:#fff;box-shadow:0 12px 32px rgba(0,48,135,0.20);}
+  .northstar-eyebrow{font-size:11px;font-weight:800;letter-spacing:1.8px;color:#FFD66B;text-transform:uppercase;margin-bottom:10px;}
+  .northstar-title{font-size:36px;font-weight:900;color:#fff;letter-spacing:-0.7px;line-height:1.1;margin-bottom:14px;}
+  .northstar-body{font-size:15.5px;line-height:1.65;color:rgba(255,255,255,0.94);max-width:880px;}
+
+  /* Section headings */
+  .section{margin-top:50px;}
+  .section-eyebrow{font-size:11px;font-weight:800;letter-spacing:2px;color:var(--nhs-blue);text-transform:uppercase;margin-bottom:8px;}
+  .section-h{font-size:28px;font-weight:900;color:var(--nhs-dark);letter-spacing:-0.6px;line-height:1.15;margin-bottom:12px;}
+  .section-intro{font-size:14.5px;color:var(--text-sec);line-height:1.7;max-width:880px;margin-bottom:26px;}
+
+  /* Principles grid */
+  .principles{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;}
+  .principle{background:#fff;border:1px solid var(--border-lt);border-left:5px solid var(--nhs-blue);border-radius:10px;padding:18px 20px;}
+  .principle-num{font-size:10.5px;font-weight:800;letter-spacing:1.8px;color:var(--nhs-blue);text-transform:uppercase;margin-bottom:6px;}
+  .principle-title{font-size:16px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.2px;line-height:1.25;margin-bottom:8px;}
+  .principle-body{font-size:13px;color:var(--text-sec);line-height:1.6;}
+
+  /* Criteria table */
+  .crit-table{border:1px solid var(--border-lt);border-radius:12px;overflow:hidden;}
+  .crit-header{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;background:var(--nhs-dark);color:#fff;}
+  .crit-header > div{padding:14px 18px;font-size:11px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;}
+  .crit-row{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;border-top:1px solid var(--border-lt);}
+  .crit-row > div{padding:18px 18px;font-size:13px;line-height:1.55;color:var(--text);}
+  .crit-row .crit-dim{font-weight:800;color:var(--nhs-dark);font-size:14px;background:#F4F8FC;border-right:1px solid var(--border-lt);}
+  .crit-row .crit-core{border-right:1px solid var(--border-lt);background:#fff;}
+  .crit-row .crit-scaled{border-right:1px solid var(--border-lt);background:#FAFCFE;}
+  .crit-row .crit-asp{background:#fff;color:var(--text-sec);font-style:italic;}
+
+  /* Routes */
+  .routes{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .route{background:#fff;border:1px solid var(--border-lt);border-top:4px solid;border-radius:10px;padding:20px 22px;}
+  .route.r-a{border-top-color:var(--nhs-dark);}
+  .route.r-b{border-top-color:var(--amber-deep);}
+  .route.r-c{border-top-color:var(--nhs-green);}
+  .route-label{font-size:10.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;margin-bottom:8px;}
+  .route.r-a .route-label{color:var(--nhs-dark);}
+  .route.r-b .route-label{color:var(--amber-deep);}
+  .route.r-c .route-label{color:var(--nhs-green);}
+  .route-title{font-size:18px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.2px;margin-bottom:10px;}
+  .route-body{font-size:13px;color:var(--text-sec);line-height:1.6;}
+
+  /* Apply journey */
+  .apply-journey{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;}
+  .apply-stage{background:#fff;border:1px solid var(--border-lt);border-radius:10px;padding:16px 16px;position:relative;}
+  .apply-stage::before{content:'';position:absolute;top:-8px;left:16px;width:24px;height:24px;border-radius:50%;background:var(--nhs-blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;}
+  .apply-num{position:absolute;top:-8px;left:16px;width:24px;height:24px;border-radius:50%;background:var(--nhs-blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;z-index:1;}
+  .apply-stage::before{display:none;}
+  .apply-title{font-size:13.5px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.2px;margin:14px 0 8px;line-height:1.25;}
+  .apply-body{font-size:11.5px;color:var(--text-sec);line-height:1.55;}
+  .apply-stage.nhse-touch{border:2px solid var(--amber);}
+  .apply-tag{display:inline-block;font-size:9.5px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--amber-deep);background:var(--warm-cream);padding:3px 8px;border-radius:4px;margin-top:8px;}
+
+  /* Open decisions */
+  .decisions{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;}
+  .decision{background:#FFF9EC;border:1px solid #F0DCA0;border-left:5px solid var(--amber-deep);border-radius:10px;padding:18px 20px;}
+  .decision-num{font-size:10.5px;font-weight:800;letter-spacing:1.6px;color:var(--amber-deep);text-transform:uppercase;margin-bottom:8px;}
+  .decision-title{font-size:15px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.2px;line-height:1.25;margin-bottom:8px;}
+  .decision-body{font-size:12.5px;color:var(--text-sec);line-height:1.6;}
+  .decision-assumption{font-size:12px;color:var(--text);background:rgba(255,255,255,0.6);border-radius:6px;padding:8px 10px;margin-top:8px;border-left:3px solid var(--nhs-blue);}
+  .decision-assumption strong{color:var(--nhs-blue);font-weight:800;}
+
+  /* Cross-references */
+  .crosslinks{margin-top:48px;background:#F4F8FC;border:1px solid #D5E8F0;border-radius:12px;padding:24px 28px;}
+  .crosslinks-label{font-size:11px;font-weight:800;letter-spacing:1.8px;color:var(--nhs-blue);text-transform:uppercase;margin-bottom:14px;}
+  .crosslinks-grid{display:flex;flex-wrap:wrap;gap:10px;}
+  .crosslink{background:#fff;border:1px solid #B5D4E5;color:var(--nhs-dark);font-size:12.5px;font-weight:700;text-decoration:none;padding:9px 16px;border-radius:999px;}
+  .crosslink:hover{background:var(--nhs-blue);color:#fff;border-color:var(--nhs-blue);}
+
+  .foot{margin-top:50px;padding-top:24px;border-top:1px solid var(--border-lt);text-align:center;font-size:11.5px;color:var(--text-muted);line-height:1.6;}
+
+  @media(max-width:980px){.crit-header,.crit-row{grid-template-columns:1fr;}.crit-header > div, .crit-row > div{border-right:none;border-bottom:1px solid var(--border-lt);}.routes{grid-template-columns:1fr;}}
+  @media(max-width:760px){.h-title{font-size:36px;}.northstar-title{font-size:26px;}.section-h{font-size:22px;}.page{padding:36px 22px 60px;}}
+</style>
+</head>
+<body>
+<script>
+(function(){
+  if (sessionStorage.getItem('dtx-auth') !== 'ok') {
+    var next = encodeURIComponent(location.pathname.split('/').pop() || 'DTx OM - Index.html');
+    location.href = 'index.html?next=' + next;
+  }
+})();
+</script>
+
+<nav class="topnav">
+  <a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+  <div class="nav-siblings">
+    <a href="DTx OM - Why.html">Why</a>
+    <a href="DTx OM - Anatomical.html">What</a>
+    <a href="DTx OM - Lifecycle.html">When</a>
+    <a href="DTx OM - HomeTest Operational.html">How</a>
+    <a href="DTx OM - Governance.html">Who</a>
+    <a href="DTx OM - Hearts and Minds.html">Hearts and Minds</a>
+    <a href="DTx OM - HomeTest Teamwork.html">HomeTest teamwork</a>
+    <span class="nav-sep"></span>
+    <a href="DTx OM - Status.html">Status</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <div class="amber-rule"></div>
+  <div class="h-eyebrow">The supplier-side mechanic that makes the model scale</div>
+  <h1 class="h-title">Supplier Onboarding Framework.</h1>
+  <p class="h-sub">A supplier is admitted to the framework once. The conformance certificate is portable across every commissioner who calls them off, across HomeTest, HealthStore and HealthSync. The local body acts as the deployment authority, not as a re-assurer. The framework is what turns the portfolio&apos;s north star into a working onboarding mechanism.</p>
+
+  <div class="northstar">
+    <div class="northstar-eyebrow">The north star this delivers</div>
+    <h2 class="northstar-title">Assure once. Reuse nationally.</h2>
+    <p class="northstar-body">A supplier evidences core compliance once per API they connect to. Adding a new test under an onboarded API is a lightweight check, not a full repeat. A clinical safety case, IG package and lab assurance are portable across every commissioner who calls them off. The published artefact stack carries the assurance; the local body administers the deployment, not the reassurance.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-eyebrow">Why this exists</div>
+    <h2 class="section-h">Four suppliers a year is not sustainable.</h2>
+    <p class="section-intro">Supplier onboarding is a critical consideration in the commercial model. The current per-supplier assessment cannot scale to the number of conditions, configurations and call-offs the platform will need to absorb. The framework proposes onboard-once-per-API with published criteria across commercial, clinical, IG, technical and operational dimensions, tiered thresholds to keep smaller suppliers in scope, and a self-assessment-first apply journey that exposes the design to supplier challenge before NHSE engagement is required.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-eyebrow">Seven design principles</div>
+    <h2 class="section-h">What the framework holds itself to.</h2>
+    <p class="section-intro">Each principle is load-bearing. The whole framework collapses if any one of them is dropped in the build.</p>
+    <div class="principles">
+      <div class="principle">
+        <div class="principle-num">Principle 01</div>
+        <div class="principle-title">Onboard once per API.</div>
+        <div class="principle-body">A supplier evidences core compliance once per API they connect to. Adding a new test under an onboarded API is a lightweight check, not a full repeat. Multiple APIs means one evidence pass per API, not per test.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">Principle 02</div>
+        <div class="principle-title">Publish the criteria. Do not gate them.</div>
+        <div class="principle-body">Criteria live in the public domain. A supplier reads the pack, self-assesses, and decides whether to proceed before any NHSE engagement. The publication exposes the design to challenge, which improves it.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">Principle 03</div>
+        <div class="principle-title">Self-assessment first, human review second.</div>
+        <div class="principle-body">Self-declared evidence against published criteria is the first step. Automated triage handles completeness. Human judgement is reserved for the grey-area calls with a specific escalation path for IG and clinical safety.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">Principle 04</div>
+        <div class="principle-title">Tiered thresholds so the floor doesn&apos;t exclude.</div>
+        <div class="principle-body">A two-person biotech and an established lab both need to pass the patient-safety and data-protection floor. Other dimensions scale to volume, scope and risk. Smaller suppliers are not priced out by balance-sheet alone.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">Principle 05</div>
+        <div class="principle-title">No defensive filtering.</div>
+        <div class="principle-body">Criteria exist to assess fitness, not to ration throughput. Where capacity is the real constraint, the answer is automation or tiering, not arbitrary barriers.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">Principle 06</div>
+        <div class="principle-title">Every artefact exists once.</div>
+        <div class="principle-body">DPIA template, DSA template, privacy notice boilerplate, clinical safety starter, technical integration guide. One version of each, versioned centrally, reused across pathways.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">Principle 07</div>
+        <div class="principle-title">Supplier experience is a design input.</div>
+        <div class="principle-body">The apply journey is designed from the supplier&apos;s perspective first; NHSE operational requirements are layered on afterwards. If a supplier cannot find the pack, cannot self-assess, or cannot apply without an NHSE-specific conversation, the design has failed.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-eyebrow">Five criteria dimensions</div>
+    <h2 class="section-h">What suppliers evidence against.</h2>
+    <p class="section-intro">Five dimensions, each with three tiers. <strong>Core</strong> is the non-negotiable floor regardless of supplier size. <strong>Scaled</strong> is proportionate to volume, scope and risk. <strong>Aspirational</strong> earns expanded eligibility but is not an entry condition.</p>
+    <div class="crit-table">
+      <div class="crit-header">
+        <div>Dimension</div>
+        <div>Core</div>
+        <div>Scaled</div>
+        <div>Aspirational</div>
+      </div>
+      <div class="crit-row">
+        <div class="crit-dim">Commercial</div>
+        <div class="crit-core">Legal entity in good standing. No sanctions or exclusions. Solvent trading history of at least 12 months. Insurance cover appropriate to scope (public liability, professional indemnity, product liability, cyber). Declared ownership and conflicts of interest.</div>
+        <div class="crit-scaled">Financial standing proportionate to pathway volume. Audited accounts for established suppliers; alternative financial evidence acceptable for early-stage suppliers on the light-touch route. Documented business continuity and exit arrangements.</div>
+        <div class="crit-asp">NHS or public-sector delivery track record. Demonstrable growth trajectory and diversified customer base.</div>
+      </div>
+      <div class="crit-row">
+        <div class="crit-dim">Clinical</div>
+        <div class="crit-core">UKCA or CE marking for medical devices where the scope requires. MHRA notification or registration where applicable. Documented clinical governance with named clinical lead. Incident reporting and regulator notification routes in place.</div>
+        <div class="crit-scaled">Clinical safety officer in post or contracted. DCB0129 evidence for suppliers interfacing with the platform; DCB0160 readiness for deployment into LA or provider environments. Published evidence base for claimed clinical benefit, proportionate to novelty.</div>
+        <div class="crit-asp">Peer-reviewed evidence and outcome data. NICE engagement where relevant.</div>
+      </div>
+      <div class="crit-row">
+        <div class="crit-dim">Information governance</div>
+        <div class="crit-core">UK GDPR compliance. Data Security and Protection Toolkit completion or equivalent for non-NHS entities. Cyber Essentials Plus certification. Lawful basis documented and defensible. DPIA readiness at the level expected for their role in the data flow.</div>
+        <div class="crit-scaled">DSA template acceptance with commissioner or NHSE as appropriate. Transparency and privacy notice alignment with the NHSE position. Data minimisation design posture evidenced. International data transfer controls where applicable.</div>
+        <div class="crit-asp">ISO 27001 certification. Privacy-by-design evidence. Innovator Passport alignment.</div>
+      </div>
+      <div class="crit-row">
+        <div class="crit-dim">Technical</div>
+        <div class="crit-core">API conformance with published NHS standards for the API(s) the supplier wants to onboard to. FHIR UK Core compliance. SNOMED CT for clinical coding. NHS Login integration for patient-facing flows.</div>
+        <div class="crit-scaled">API performance and availability SLAs proportionate to pathway volume. Security testing record and vulnerability management process. Interoperability evidence including sample successful integrations.</div>
+        <div class="crit-asp">Open API contribution. Multi-pathway integration experience. Patient app integration track record.</div>
+      </div>
+      <div class="crit-row">
+        <div class="crit-dim">Operational</div>
+        <div class="crit-core">Fulfilment capacity evidence proportionate to expected demand. Supply chain transparency including sourcing of consumables and kit components. Incident response arrangement with committed response time. Named contract management contact and commercial escalation route.</div>
+        <div class="crit-scaled">Kit and test inventory management. Logistics partner arrangements demonstrably fit for scope. Customer support model appropriate to patient-facing volume. SLA commitments.</div>
+        <div class="crit-asp">Multi-region fulfilment and redundancy. 24/7 support. Equity data capability (reporting on access and outcomes by protected characteristics).</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-eyebrow">Three access routes</div>
+    <h2 class="section-h">Tiering reflects scope, not preference.</h2>
+    <p class="section-intro">A supplier&apos;s tier reflects the scope they are asking to deliver, not a preference about who gets in. A Route B supplier can progress to Route A by demonstrating scaled-tier evidence through live operation. The bar isn&apos;t lowered; the access route is differentiated.</p>
+    <div class="routes">
+      <div class="route r-a">
+        <div class="route-label">Route A &middot; Standard</div>
+        <div class="route-title">The full bar across all five dimensions.</div>
+        <div class="route-body">Suppliers delivering end-to-end capability against an API must meet the scaled tier on every dimension. The route for established suppliers with end-to-end delivery capacity already at scale.</div>
+      </div>
+      <div class="route r-b">
+        <div class="route-label">Route B &middot; Light-touch</div>
+        <div class="route-title">Constrained scope, core tier plus scope-relevant scaled.</div>
+        <div class="route-body">For suppliers delivering a constrained scope: a single test under an existing API, a single LA pilot, a proof-of-concept integration. Core tier across all dimensions, scaled tier where material to scope. Lets smaller suppliers demonstrate fitness in practice rather than being excluded by balance-sheet alone.</div>
+      </div>
+      <div class="route r-c">
+        <div class="route-label">Route C &middot; Partnership</div>
+        <div class="route-title">Design-and-validation partnership criteria.</div>
+        <div class="route-body">For NHS provider partners and acute use case partners, where the arrangement is a design-and-validation partnership rather than a commercial supplier contract. Distinct criteria reflecting the partnership archetype. IP vests in NHSE.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-eyebrow">Seven-stage apply journey</div>
+    <h2 class="section-h">Stages 1 to 3 happen without NHSE engagement.</h2>
+    <p class="section-intro">A supplier can decide not to proceed without ever entering the system. NHSE engagement begins at stage 4. The orange-bordered stages are the first NHSE touch points.</p>
+    <div class="apply-journey">
+      <div class="apply-stage"><span class="apply-num">1</span>
+        <div class="apply-title">Discovery</div>
+        <div class="apply-body">Supplier finds the criteria pack via Future NHS, public HomeTest and HealthStore pages, Find a Tender or partnerships outreach.</div>
+      </div>
+      <div class="apply-stage"><span class="apply-num">2</span>
+        <div class="apply-title">Self-assessment</div>
+        <div class="apply-body">Supplier works through the published checklist using the boilerplate artefacts. Self-declared position against each criterion.</div>
+      </div>
+      <div class="apply-stage"><span class="apply-num">3</span>
+        <div class="apply-title">Expression of interest</div>
+        <div class="apply-body">Supplier submits a structured EOI declaring the API(s), the scope, the self-assessment result by criterion and the evidence references.</div>
+      </div>
+      <div class="apply-stage nhse-touch"><span class="apply-num">4</span>
+        <div class="apply-title">Automated triage</div>
+        <div class="apply-body">System checks completeness, valid evidence references, declared passes at core tier. Specific feedback on bounce-backs.<span class="apply-tag">NHSE engages here</span></div>
+      </div>
+      <div class="apply-stage nhse-touch"><span class="apply-num">5</span>
+        <div class="apply-title">Human review</div>
+        <div class="apply-body">Workstream leads review by dimension. Commercial, IG, clinical safety, technical. Time-boxed with a committed SLA. Grey-area judgements escalate.<span class="apply-tag">NHSE review</span></div>
+      </div>
+      <div class="apply-stage nhse-touch"><span class="apply-num">6</span>
+        <div class="apply-title">Onboarding proper</div>
+        <div class="apply-body">API integration, test-suite conformance, live-like testing, go-live sign-off. The heavy lift. Triage upstream ensures effort here is spent on integration not vetting.<span class="apply-tag">NHSE delivery</span></div>
+      </div>
+      <div class="apply-stage"><span class="apply-num">7</span>
+        <div class="apply-title">Per-test and per-scope additions</div>
+        <div class="apply-body">Once a supplier is onboarded to an API, adding a new test or expanding into a new LA scope is a lightweight check plus a configuration change. Annual refresh default; earlier on material change, incident or regulatory shift.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-eyebrow">Four open decisions for SLT</div>
+    <h2 class="section-h">Decisions that are load-bearing for the commercial model.</h2>
+    <p class="section-intro">Each carries a working assumption to flush out direction. None of them are optional detail.</p>
+    <div class="decisions">
+      <div class="decision">
+        <div class="decision-num">Decision 01</div>
+        <div class="decision-title">Framework ownership and assurance-running.</div>
+        <div class="decision-body">Who owns the framework and who runs the operational assurance. Options: NHSE direct, Shared Business Services, Crown Commercial Service, third-party delivery partner. Each carries different cost, control and accountability profiles.</div>
+        <div class="decision-assumption"><strong>Working assumption.</strong> NHSE direct for the framework itself to keep strategic control at the centre; a delivery partner (SBS-shaped, not necessarily SBS) for operational assurance to scale capacity without internal headcount.</div>
+      </div>
+      <div class="decision">
+        <div class="decision-num">Decision 02</div>
+        <div class="decision-title">Commercial criteria owner.</div>
+        <div class="decision-body">The commercial dimension is the most under-developed of the five. It needs a named owner to produce a first draft for internal review.</div>
+        <div class="decision-assumption"><strong>Working assumption.</strong> Future-state workstream picks this up post initial discovery, with SLT direction.</div>
+      </div>
+      <div class="decision">
+        <div class="decision-num">Decision 03</div>
+        <div class="decision-title">Tiered threshold position from Year 1.</div>
+        <div class="decision-body">Whether the light-touch route (Route B) operates from Year 1 or is added later once the standard route is running.</div>
+        <div class="decision-assumption"><strong>Working assumption.</strong> From day one. Without it, Year 1 signals the framework is incumbent-only, which contradicts the equity framing and loses a market of smaller labs and innovators at the exact point we need them engaged.</div>
+      </div>
+      <div class="decision">
+        <div class="decision-num">Decision 04</div>
+        <div class="decision-title">Apply journey mechanism.</div>
+        <div class="decision-body">Atamis handles formal procurement cleanly. It is less comfortable as the home for EOI-stage partnership routes which are lighter-touch and not bound to a procurement timeline.</div>
+        <div class="decision-assumption"><strong>Working assumption.</strong> Atamis for formal procurement; a dedicated EOI form for partnership routes in Year 1; migrate to an integrated portal when pathway-level self-service goes live October 2026.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="crosslinks">
+    <div class="crosslinks-label">Where the framework connects in the model</div>
+    <div class="crosslinks-grid">
+      <a class="crosslink" href="DTx OM - Persona Joe.html">Joe (HomeTest supplier persona) &rarr;</a>
+      <a class="crosslink" href="DTx OM - Persona HealthStore supplier.html">Marcus (HealthStore supplier) &rarr;</a>
+      <a class="crosslink" href="DTx OM - Persona Tariq.html">Tariq (HealthSync supplier) &rarr;</a>
+      <a class="crosslink" href="DTx OM - Anatomical.html">Anatomical &middot; foundation layer &rarr;</a>
+      <a class="crosslink" href="DTx OM - Ecosystem.html">Ecosystem &middot; regulated bodies &rarr;</a>
+      <a class="crosslink" href="DTx OM - HomeTest Teamwork.html#cap-3">HomeTest Teamwork &middot; Cap-3 IG &rarr;</a>
+      <a class="crosslink" href="DTx OM - HomeTest Teamwork.html#cap-4">HomeTest Teamwork &middot; Cap-4 Commercial &rarr;</a>
+      <a class="crosslink" href="DTx OM - HealthStore Teamwork.html">HealthStore Teamwork &rarr;</a>
+      <a class="crosslink" href="DTx OM - HomeTest ASSURE v4.html">ASSURE stage &rarr;</a>
+      <a class="crosslink" href="DTx OM - Status.html#unresolved">Status &middot; in-flight items &rarr;</a>
+    </div>
+  </div>
+
+  <div class="foot">
+    Supplier Onboarding Framework &middot; the portfolio-level mechanic that turns &ldquo;Assure once. Reuse nationally.&rdquo; into a working route to admission across HomeTest, HealthStore and HealthSync.
+  </div>
+
+</div>
+</body>
+</html>
