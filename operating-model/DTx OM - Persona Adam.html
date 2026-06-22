@@ -14,6 +14,31 @@
  .topnav .nav-siblings a{font-size:12px;font-weight:600;color:#4C6272;text-decoration:none;padding:6px 12px;border-radius:6px;letter-spacing:0.2px;white-space:nowrap;flex-shrink:0;}
  .topnav .nav-siblings a:hover{background:#f0f4f8;color:#212B32;}
  .topnav .nav-siblings a.active{background:#003087;color:#fff;}
+ .cast-group{display:inline-flex;gap:3px;align-items:center;flex-wrap:wrap;padding:3px 6px;border-radius:6px;}
+ .cast-group.cast-group-patients{border:2px dotted #C9A227;padding:3px 6px;}
+ .cast-group + .cast-group{margin-left:6px;padding-left:10px;border-left:1px solid #d8dde0;}
+ .nav-siblings a.cast-abdul.active{background:#FFB91D;color:#231F20;}
+ .nav-siblings a.cast-mark.active{background:#FFB91D;color:#231F20;}
+ .nav-siblings a.cast-layla.active{background:#FFB91D;color:#231F20;}
+ .nav-siblings a.cast-pauline.active{background:#FFB91D;color:#231F20;}
+ .nav-siblings a.cast-mei.active{background:#FFB91D;color:#231F20;}
+ .nav-siblings a.cast-errol.active{background:#4527A0;color:#ffffff;}
+ .nav-siblings a.cast-sean.active{background:#4527A0;color:#ffffff;}
+ .nav-siblings a.cast-sarah.active{background:#FFD66B;color:#231F20;}
+ .nav-siblings a.cast-catherine.active{background:#FFD66B;color:#231F20;}
+ .nav-siblings a.cast-anita.active{background:#FFD66B;color:#231F20;}
+ .nav-siblings a.cast-ruth.active{background:#FFD66B;color:#231F20;}
+ .nav-siblings a.cast-daniel.active{background:#FFD66B;color:#231F20;}
+ .nav-siblings a.cast-adam.active{background:#C9A0E3;color:#231F20;}
+ .nav-siblings a.cast-hannah.active{background:#C9A0E3;color:#231F20;}
+ .nav-siblings a.cast-ravi.active{background:#C9A0E3;color:#231F20;}
+ .nav-siblings a.cast-aisha.active{background:#E8857A;color:#ffffff;}
+ .nav-siblings a.cast-ngozi.active{background:#4A7B82;color:#ffffff;}
+ .nav-siblings a.cast-joe.active{background:#5BC093;color:#ffffff;}
+ .nav-siblings a.cast-marcus.active{background:#5BC093;color:#ffffff;}
+ .nav-siblings a.cast-tariq.active{background:#5BC093;color:#ffffff;}
+ .nav-siblings a.cast-priya.active{background:#005EB8;color:#ffffff;}
+ .nav-siblings a.cast-david.active{background:#5B3A8C;color:#ffffff;}
  .topnav.topnav-secondary .nav-siblings a{font-size:11.5px;padding:5px 10px;}
  .topnav.topnav-secondary .nav-siblings a.active{background:#005EB8;color:#fff;}
  .topnav .nav-secondary-label{font-size:10px;font-weight:800;letter-spacing:1.5px;color:#7E8B97;text-transform:uppercase;flex-shrink:0;}
@@ -100,33 +125,39 @@
 <nav class="topnav topnav-secondary">
 <div class="nav-secondary-label">Cast</div>
 <div class="nav-siblings">
- <a href="DTx OM - Persona Sarah.html">Sarah</a>
- <a href="DTx OM - Persona Catherine.html">Catherine</a>
- <a href="DTx OM - Persona Anita.html">Anita</a>
- <a href="DTx OM - Persona Daniel.html">Daniel</a>
- <a href="DTx OM - Persona Ruth.html">Ruth</a>
- <span style="width:1px;height:18px;background:var(--border-lt);margin:0 4px;display:inline-block;"></span>
- <a href="DTx OM - Persona Aisha.html">Aisha</a>
- <a href="DTx OM - Persona Priya.html">Priya</a>
- <a href="DTx OM - Persona David.html">David</a>
- <a href="DTx OM - Persona Ngozi.html">Ngozi</a>
- <span style="width:1px;height:18px;background:var(--border-lt);margin:0 4px;display:inline-block;"></span>
- <a href="DTx OM - Persona Abdul.html">Abdul</a>
- <a href="DTx OM - Persona Adam.html" class="active">Adam</a>
- <a href="DTx OM - Persona Hannah.html">Hannah</a>
- <a href="DTx OM - Persona HealthStore prescribing clinician.html">Ravi</a>
- <span style="width:1px;height:18px;background:var(--border-lt);margin:0 4px;display:inline-block;"></span>
- <a href="DTx OM - Persona Mark.html">Mark</a>
- <a href="DTx OM - Persona Layla.html">Layla</a>
- <a href="DTx OM - Persona HealthStore COPD patient.html">Pauline</a>
- <a href="DTx OM - Persona HealthSync diabetes patient.html">Mei</a>
- <a href="DTx OM - Persona HealthSync patient.html">Errol</a>
- <a href="DTx OM - Persona Sean.html">Sean</a>
- <span style="width:1px;height:18px;background:var(--border-lt);margin:0 4px;display:inline-block;"></span>
- <a href="DTx OM - Persona Joe.html">Joe</a>
- <a href="DTx OM - Persona HealthStore supplier.html">Marcus</a>
- <a href="DTx OM - Persona Tariq.html">Tariq</a>
-</div>
+ <div class="cast-group cast-group-patients">
+  <a href="DTx OM - Persona Abdul.html" class="cast-abdul">Abdul</a>
+  <a href="DTx OM - Persona Mark.html" class="cast-mark">Mark</a>
+  <a href="DTx OM - Persona Layla.html" class="cast-layla">Layla</a>
+  <a href="DTx OM - Persona HealthStore COPD patient.html" class="cast-pauline">Pauline</a>
+  <a href="DTx OM - Persona HealthSync diabetes patient.html" class="cast-mei">Mei</a>
+  <a href="DTx OM - Persona HealthSync patient.html" class="cast-errol">Errol</a>
+  <a href="DTx OM - Persona Sean.html" class="cast-sean">Sean</a>
+ </div>
+ <div class="cast-group cast-group-commissioners">
+  <a href="DTx OM - Persona Sarah.html" class="cast-sarah">Sarah</a>
+  <a href="DTx OM - Persona Catherine.html" class="cast-catherine">Catherine</a>
+  <a href="DTx OM - Persona Anita.html" class="cast-anita">Anita</a>
+  <a href="DTx OM - Persona Ruth.html" class="cast-ruth">Ruth</a>
+  <a href="DTx OM - Persona Daniel.html" class="cast-daniel">Daniel</a>
+ </div>
+ <div class="cast-group cast-group-clinicians">
+  <a href="DTx OM - Persona Adam.html" class="cast-adam active">Adam</a>
+  <a href="DTx OM - Persona Hannah.html" class="cast-hannah">Hannah</a>
+  <a href="DTx OM - Persona HealthStore prescribing clinician.html" class="cast-ravi">Ravi</a>
+ </div>
+ <div class="cast-group cast-group-assurance">
+  <a href="DTx OM - Persona Aisha.html" class="cast-aisha">Aisha</a>
+  <a href="DTx OM - Persona Ngozi.html" class="cast-ngozi">Ngozi</a>
+ </div>
+ <div class="cast-group cast-group-marketplace">
+  <a href="DTx OM - Persona Joe.html" class="cast-joe">Joe</a>
+  <a href="DTx OM - Persona HealthStore supplier.html" class="cast-marcus">Marcus</a>
+  <a href="DTx OM - Persona Tariq.html" class="cast-tariq">Tariq</a>
+  <a href="DTx OM - Persona Priya.html" class="cast-priya">Priya</a>
+  <a href="DTx OM - Persona David.html" class="cast-david">David</a>
+ </div>
+ </div>
 </nav>
 
 <div class="page">
