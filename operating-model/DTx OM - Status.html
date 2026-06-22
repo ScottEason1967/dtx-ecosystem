@@ -94,6 +94,7 @@
  details.cat-stage{border-left:4px solid var(--nhs-blue);}
  details.cat-op{border-left:4px solid var(--nhs-green);}
  details.cat-risk{border-left:4px solid var(--status-open);background:#fffafa;}
+ details.cat-behav{border-left:4px solid var(--accent);background:#fbf7fa;}
  /* In-progress stage variants */
  details.stage-shape{border-left:4px solid #005EB8;}
  details.stage-assure{border-left:4px solid #41B6E6;}
@@ -177,13 +178,39 @@
  <span style="flex:1;min-width:240px;">Status here reflects decisions taken under the <a href="DTx OM - Prioritisation Framework.html" style="color:#005EB8;font-weight:800;text-decoration:underline;">HomeTest Prioritisation Framework</a> (endorsed 9 June 2026). Open the framework to see how patterns, tiers and the Prioritisation Construct drive what's on this page.</span>
 </div>
  <p class="h-subtitle">Everything across the operating model that is either unresolved or in flight, in one place. Each item links back to where it lives in detail.</p>
- <p class="h-intro">The model has many moving parts. This page does not replace the per-page detail, it aggregates it. <strong>Unresolved</strong> items are awaiting a decision, a position, or an owner. <strong>In progress</strong> items are work in flight that does not need a fresh decision, only execution. Items are tagged by product. <strong>HomeTest</strong> items are populated today (operationally mature). <strong>HealthStore</strong> items are added as primaries land (in design). <strong>HealthSync</strong> items reflect the current structural shape; operational depth lands as the programme matures. <strong>Cross-product foundation</strong> items cover Foundation-level functions that hold across all three products.</p><div class="product-breakdown" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0 8px;"><div style="background:linear-gradient(135deg,#003087,#005EB8);color:#fff;border-radius:12px;padding:18px 22px;"><div style="font-size:10px;font-weight:800;letter-spacing:1.4px;opacity:0.85;text-transform:uppercase;margin-bottom:6px;">HomeTest</div><div style="font-size:30px;font-weight:900;letter-spacing:-1px;line-height:1;margin-bottom:6px;">116</div><div style="font-size:11.5px;opacity:0.92;line-height:1.5;">items tracked today (80 unresolved + 36 in flight)</div></div><div style="background:linear-gradient(135deg,#00A9CE,#5EBCDB);color:#fff;border-radius:12px;padding:18px 22px;"><div style="font-size:10px;font-weight:800;letter-spacing:1.4px;opacity:0.85;text-transform:uppercase;margin-bottom:6px;">HealthStore</div><div style="font-size:30px;font-weight:900;letter-spacing:-1px;line-height:1;margin-bottom:6px;">7</div><div style="font-size:11.5px;opacity:0.92;line-height:1.5;">items in the working position today; expected to grow as Alpha matures</div></div><div style="background:linear-gradient(135deg,#00A499,#5BC9B8);color:#fff;border-radius:12px;padding:18px 22px;"><div style="font-size:10px;font-weight:800;letter-spacing:1.4px;opacity:0.85;text-transform:uppercase;margin-bottom:6px;">HealthSync</div><div style="font-size:30px;font-weight:900;letter-spacing:-1px;line-height:1;margin-bottom:6px;">5</div><div style="font-size:11.5px;opacity:0.92;line-height:1.5;">structural items today; operational depth lands as the programme matures</div></div></div>
+ <p class="h-intro">The model has many moving parts. This page does not replace the per-page detail, it aggregates it. <strong>Unresolved</strong> items are awaiting a decision, a position, or an owner. <strong>In progress</strong> items are work in flight that does not need a fresh decision, only execution. Items are tagged by product. <strong>HomeTest</strong> items are populated today (operationally mature). <strong>HealthStore</strong> items are added as primaries land (in design). <strong>HealthSync</strong> items reflect the current structural shape; operational depth lands as the programme matures. <strong>Cross-product foundation</strong> items cover Foundation-level functions that hold across all three products.</p><div class="product-breakdown" style="display:grid;grid-template-columns:1fr;gap:12px;margin:20px 0 8px;">
+  <button data-scope="cross" class="scope-toggle" onclick="filterScope('cross')" style="background:linear-gradient(90deg,#003087 0%,#005EB8 33%,#00A9CE 66%,#00A499 100%);color:#fff;border:none;border-radius:12px;padding:14px 22px;cursor:pointer;text-align:left;display:flex;align-items:center;justify-content:space-between;gap:14px;font:inherit;">
+    <div>
+      <div style="font-size:10px;font-weight:800;letter-spacing:1.4px;opacity:0.9;text-transform:uppercase;margin-bottom:4px;">Cross-product foundation</div>
+      <div style="font-size:13px;opacity:0.94;line-height:1.5;max-width:680px;">Foundation-level functions and SLT-level decisions that hold across all three products.</div>
+    </div>
+    <div style="font-size:24px;font-weight:900;letter-spacing:-0.5px;line-height:1;flex-shrink:0;">29</div>
+  </button>
+</div>
+<div class="product-breakdown" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:8px 0;">
+  <button data-scope="hometest" class="scope-toggle" onclick="filterScope('hometest')" style="background:linear-gradient(135deg,#003087,#005EB8);color:#fff;border:none;border-radius:12px;padding:18px 22px;cursor:pointer;text-align:left;font:inherit;">
+    <div style="font-size:10px;font-weight:800;letter-spacing:1.4px;opacity:0.85;text-transform:uppercase;margin-bottom:6px;">HomeTest</div>
+    <div style="font-size:30px;font-weight:900;letter-spacing:-1px;line-height:1;margin-bottom:6px;">121</div>
+    <div style="font-size:11.5px;opacity:0.92;line-height:1.5;">items tracked today (80 unresolved + 36 in flight)</div>
+  </button>
+  <button data-scope="healthstore" class="scope-toggle" onclick="filterScope('healthstore')" style="background:linear-gradient(135deg,#00A9CE,#5EBCDB);color:#fff;border:none;border-radius:12px;padding:18px 22px;cursor:pointer;text-align:left;font:inherit;">
+    <div style="font-size:10px;font-weight:800;letter-spacing:1.4px;opacity:0.85;text-transform:uppercase;margin-bottom:6px;">HealthStore</div>
+    <div style="font-size:30px;font-weight:900;letter-spacing:-1px;line-height:1;margin-bottom:6px;">7</div>
+    <div style="font-size:11.5px;opacity:0.92;line-height:1.5;">items in the working position today; expected to grow as Alpha matures</div>
+  </button>
+  <button data-scope="healthsync" class="scope-toggle" onclick="filterScope('healthsync')" style="background:linear-gradient(135deg,#00A499,#5BC9B8);color:#fff;border:none;border-radius:12px;padding:18px 22px;cursor:pointer;text-align:left;font:inherit;">
+    <div style="font-size:10px;font-weight:800;letter-spacing:1.4px;opacity:0.85;text-transform:uppercase;margin-bottom:6px;">HealthSync</div>
+    <div style="font-size:30px;font-weight:900;letter-spacing:-1px;line-height:1;margin-bottom:6px;">5</div>
+    <div style="font-size:11.5px;opacity:0.92;line-height:1.5;">structural items today; operational depth lands as the programme matures</div>
+  </button>
+</div>
+<div style="text-align:center;margin:8px 0 18px;"><button onclick="filterScope('all')" class="scope-toggle" data-scope="all" style="background:#fff;border:1px solid #D5E0EB;border-radius:8px;padding:8px 18px;cursor:pointer;font-size:12px;font-weight:700;color:#003087;letter-spacing:0.4px;text-transform:uppercase;font:inherit;">Show all products</button></div>
 
  <!-- Two summary click-through cards -->
- <div class="summary">
+ <div class="summary scope-section" data-scope="hometest">
  <a href="#hometest-unresolved" class="sum-card sum-card-open">
  <div class="sum-eyebrow open">HomeTest &middot; Awaiting decision</div>
- <div class="sum-count">80</div>
+ <div class="sum-count">85</div>
  <div class="sum-label">Unresolved items</div>
  <div class="sum-desc">Governance accountability, architectural positioning, operational mechanism, stage decisions, Open Qs for SLT.</div>
  <div class="sum-cta">See the full list <span class="sum-cta-arrow">&darr;</span></div>
@@ -199,13 +226,13 @@
 
  <!-- UNRESOLVED -->
  <!-- HOMETEST -->
- <div class="section" id="cross-product-foundation" style="margin-top:36px;">
+ <div class="section scope-section" data-scope="cross" id="cross-product-foundation" style="margin-top:36px;">
   <div class="cat-h" style="font-size:24px;font-weight:800;color:#003087;letter-spacing:-0.4px;margin-bottom:18px;">Cross-product foundation</div>
   <div class="cat-body">
     <div class="item">
       <div class="item-body">
         <div class="item-title">Post-market surveillance framework</div>
-        <div class="item-desc">Cross-product regulatory function for ongoing safety surveillance of admitted DTx products and HomeTest kits after go-live. MHRA reporting interface, adverse event collection routes, periodic safety update schedule, lab non-conformance tracking under UKAS. <strong>Foundation-level capability surfaced in the Teamwork view as Cap-12.</strong> <strong>MHRA confirmed 8 June 2026 that the HomeTest platform itself is not a Software as a Medical Device</strong> — the regulatory PMS scope is the supplier kits and lab side, not the platform layer. A platform-level PMS framework still needs to stand up before any HomeTest configuration goes live.</div>
+        <div class="item-desc">Cross-product regulatory function for ongoing safety surveillance of admitted DTx products and HomeTest kits after go-live. MHRA reporting interface, adverse event collection routes, periodic safety update schedule, lab non-conformance tracking under UKAS. <strong>Foundation-level capability surfaced in the Teamwork view as Cap-12.</strong> <strong>MHRA confirmed 8 June 2026 that the HomeTest platform itself is not a Software as a Medical Device</strong>,  the regulatory PMS scope is the supplier kits and lab side, not the platform layer. A platform-level PMS framework still needs to stand up before any HomeTest configuration goes live.</div>
         <div class="item-owner"><strong>Owner:</strong> PMS Lead (post to be created). SRO accountable.</div>
       </div>
       <a class="item-link" href="DTx OM - HealthStore Teamwork.html#cap-12">Open Teamwork &rarr;</a>
@@ -237,7 +264,7 @@
     <div class="item">
       <div class="item-body">
         <div class="item-title">Ongoing Evidence Generation framework</div>
-        <div class="item-desc">Continuous evidence accrual across admitted products — real-world data, outcome attribution, NICE re-evaluation evidence package, best-practice tariff evidence pipeline. <strong>Foundation-level capability surfaced in Teamwork as Cap-16.</strong> Distinct from Outcomes &amp; Measurement (operational MI) and Post-market surveillance (regulatory); this is value-evidence feeding the Assurance Model.</div>
+        <div class="item-desc">Continuous evidence accrual across admitted products,  real-world data, outcome attribution, NICE re-evaluation evidence package, best-practice tariff evidence pipeline. <strong>Foundation-level capability surfaced in Teamwork as Cap-16.</strong> Distinct from Outcomes &amp; Measurement (operational MI) and Post-market surveillance (regulatory); this is value-evidence feeding the Assurance Model.</div>
         <div class="item-owner"><strong>Owner:</strong> Evidence Generation Lead (post to be created). SRO accountable.</div>
       </div>
       <a class="item-link" href="DTx OM - HealthStore Teamwork.html#cap-16">Open Teamwork &rarr;</a>
@@ -261,7 +288,7 @@
     <div class="item">
       <div class="item-body">
         <div class="item-title">Service Wrapper anatomy &middot; six-touchpoint chain and four local-pathway items</div>
-        <div class="item-desc">The Service Wrapper Foundation item decomposes into the canonical six-touchpoint patient chain (Referral / Invite, Login &amp; onboard, In-life Help &amp; Support, Use &amp; Motivation, Signposting / Offboarding, Data return) plus four local-pathway items (Local use support, Remote / Passive monitoring, PI/CI escalation, Neighbourhood Health team integration). All ten elements are now visible on Anatomy as a dedicated panel. <strong>Vocabulary watch:</strong> a reframing from &ldquo;Service Wrapper&rdquo; to &ldquo;Human Wrapper&rdquo; is in flight — model carries Service Wrapper until reframing lands authoritatively.</div>
+        <div class="item-desc">The Service Wrapper Foundation item decomposes into the canonical six-touchpoint patient chain (Referral / Invite, Login &amp; onboard, In-life Help &amp; Support, Use &amp; Motivation, Signposting / Offboarding, Data return) plus four local-pathway items (Local use support, Remote / Passive monitoring, PI/CI escalation, Neighbourhood Health team integration). All ten elements are now visible on Anatomy as a dedicated panel. <strong>Vocabulary watch:</strong> a reframing from &ldquo;Service Wrapper&rdquo; to &ldquo;Human Wrapper&rdquo; is in flight,  model carries Service Wrapper until reframing lands authoritatively.</div>
         <div class="item-owner"><strong>Owner:</strong> Service Design Lead with Clinical leads and Patient advocates.</div>
       </div>
       <a class="item-link" href="DTx OM - Anatomical.html">Open Anatomy &rarr;</a>
@@ -306,16 +333,54 @@
       </div>
       <a class="item-link" href="DTx OM - Ecosystem.html#panel-regulated">Open Ecosystem &rarr;</a>
     </div>
+
+    <div style="margin:30px 0 16px;padding-top:18px;border-top:1px dashed #C5D2E0;">
+      <h3 style="font-size:18px;font-weight:800;color:#003087;letter-spacing:-0.3px;margin:0 0 12px;">Open Qs for SLT &middot; cross-product cardinal positions</h3>
+      <p style="font-size:13px;color:#4C6272;line-height:1.6;margin-bottom:14px;">Sixteen SLT-level decisions and endorsements that apply across the portfolio, not just one product.</p>
+    </div>
+
+    <div class="item"><div class="item-body"><div class="item-title">Endorse operating in interim commercial shape</div><div class="item-desc">The April 2027 framework standup target has been retired as a current planning commitment. The matchmaker-with-assurance model is the live operating shape. SLT endorsement of the interim posture and the named reopen triggers (portfolio scale, transacted volume, supplier demand, NHSE Legal repositioning, FY27 planning round).</div><div class="item-owner"><strong>Decision:</strong> SLT.</div></div><a class="item-link" href="DTx OM - Why.html">Open on WHY &rarr;</a></div>
+
+    <div class="item"><div class="item-body"><div class="item-title">Endorse the integrated engagement and pre-sales cell</div><div class="item-desc">Engagement runs through one cell under sponsor leadership, not a separate sales team. Senior sponsor endorsement has not formally landed. Without it the cell cannot be presented forward as a settled element of the operating model.</div><div class="item-owner"><strong>Decision:</strong> SLT with sponsor.</div><div class="item-xref"><strong>Related:</strong> Adoption as a named function in the model (below),  the engagement cell is one delivery mechanism within the broader adoption question.</div></div><a class="item-link" href="DTx OM - Why.html">Open on WHY &rarr;</a></div>
+
+    <div class="item"><div class="item-body"><div class="item-title">Endorse assurance-primary, commercial-secondary investment sequence</div><div class="item-desc">Independent assurance, the NICE EVA conditional interface, assurance portability and the supplier IG envelope form the layer NHSE earns its place through. Commercial machinery sits on top of this. Investment sequence and resource allocation reflect the priority.</div><div class="item-owner"><strong>Decision:</strong> SLT.</div></div><a class="item-link" href="DTx OM - Why.html">Open on WHY &rarr;</a></div>
+
+    <div class="item"><div class="item-body"><div class="item-title">Endorse the compelled-removal protocol</div><div class="item-desc">Removal from the approved list is the only enforcement leverage NHSE holds in the interim model. No framework call-off and therefore no termination clause. The protocol must be defensible the first time it bites: clear failure thresholds, proportional escalation, evidence-led decision-making, named removal authority, supplier right of appeal, commissioner notification, full audit trail.</div><div class="item-owner"><strong>Decision:</strong> SLT with Commercial Lead and NHS Legal.</div></div><a class="item-link" href="DTx OM - Supplier Onboarding Framework.html">Open on SOF &rarr;</a></div>
+
+    <div class="item"><div class="item-body"><div class="item-title">Cost-benefit dislocation at local system level</div><div class="item-desc">Cost and benefit sit on different budget lines at local system level. Without best-practice tariffs at pathway level, commissioners see new services as a cost pressure rather than a value case. The economic case is the unlock for adoption across all three products.</div><div class="item-owner"><strong>Decision:</strong> SLT with NHSE strategic finance. Health Economist input required.</div></div><a class="item-link" href="DTx OM - Governance.html#open-q">Open on WHO &rarr;</a></div>
+
+    <div class="item"><div class="item-body"><div class="item-title">Permanent platform hosting post-Beta</div><div class="item-desc">When the portfolio exits discovery, where does the cross-product platform live permanently: inside NHSE, an ALB, or a new entity?</div><div class="item-owner"><strong>Decision:</strong> SLT. Owner: SRO with Commercial Lead.</div></div><a class="item-link" href="DTx OM - Governance.html#open-q">Open on WHO &rarr;</a></div>
+
+    <div class="item"><div class="item-body"><div class="item-title">Adoption as a named function in the model</div><div class="item-desc">Adoption activity is being delivered through the Partnerships workstream. The unresolved question is whether adoption should be surfaced structurally in the operating model itself (an overlay, a foundation capability, a row in the RACI) or stay implicit inside Partnerships.</div><div class="item-owner"><strong>Decision:</strong> SLT to confirm.</div><div class="item-xref"><strong>Related:</strong> Endorse the integrated engagement and pre-sales cell (above),  that cell is one delivery mechanism within this broader question.</div></div><a class="item-link" href="DTx OM - Governance.html#open-q">Open on WHO &rarr;</a></div>
+
+    <div class="item"><div class="item-body"><div class="item-title">National rollout without local fragmentation</div><div class="item-desc">The architecture answers what the model is composed of. It does not yet answer how the model gets rolled out at national scale so LAs, ICBs and Trusts adopt it consistently. Execution discipline, not architecture.</div><div class="item-owner"><strong>Decision:</strong> SLT. Owner: SRO with Commercial Lead.</div></div><a class="item-link" href="DTx OM - Governance.html#open-q">Open on WHO &rarr;</a></div>
+
+    <div class="item"><div class="item-body"><div class="item-title">National orchestration BAU funding</div><div class="item-desc">Who funds the routing, DevOps, interoperability, assurance management, supplier onboarding, analytics and standards updates at steady state across the portfolio?</div><div class="item-owner"><strong>Decision:</strong> SLT. Owner: Commercial Lead with Health Economist input.</div></div><a class="item-link" href="DTx OM - Governance.html#open-q">Open on WHO &rarr;</a></div>
+
+    <div class="item"><div class="item-body"><div class="item-title">Mobilisation and Hearts and Minds as named function</div><div class="item-desc">Transformation requires people to change: workflows, clinical assumptions, operating patterns, commissioning behaviours, patient interaction models, risk tolerance, even professional identity. Currently flagged but not owned in the model.</div><div class="item-owner"><strong>Decision:</strong> SLT to confirm whether to surface as a named function.</div></div><a class="item-link" href="DTx OM - Anatomical.html#not-positioned">Open on WHAT &rarr;</a></div>
+
+    <div class="item"><div class="item-body"><div class="item-title">NHSE role: orchestrator, not party</div><div class="item-desc">NHSE convenes, assures and introduces. The contract sits between supplier and customer. NHSE takes no percentage of the bilateral. Confirms the position of principle on the commercial posture across the portfolio.</div><div class="item-owner"><strong>Decision:</strong> SLT.</div></div><a class="item-link" href="DTx OM - HomeTest Operational.html">Open on HOW &rarr;</a></div>
+
+    <div class="item"><div class="item-body"><div class="item-title">MoU scope: Alpha and Beta only, not BAU</div><div class="item-desc">Memoranda of Understanding served the Alpha and Beta phases. Not the BAU contracting instrument. Wave entrants sign the standard call-off.</div><div class="item-owner"><strong>Decision:</strong> SLT.</div></div><a class="item-link" href="DTx OM - HomeTest CONTRACT v4.html">Open on CONTRACT &rarr;</a></div>
+
+    <div class="item"><div class="item-body"><div class="item-title">5/4/4 prioritisation framework adoption</div><div class="item-desc">Formal adoption of the 5/4/4 prioritisation framework as the sequencing logic for conditions across the portfolio.</div><div class="item-owner"><strong>Decision:</strong> SLT.</div></div><a class="item-link" href="DTx OM - Prioritisation Framework.html">Open on Prioritisation Framework &rarr;</a></div>
+
+    <div class="item"><div class="item-body"><div class="item-title">Self Health Services umbrella brand adoption</div><div class="item-desc">Formal adoption of Self Health Services as the umbrella brand across HomeTest, HealthStore and HealthSync.</div><div class="item-owner"><strong>Decision:</strong> SLT.</div></div><a class="item-link" href="DTx OM - Why.html">Open on WHY &rarr;</a></div>
+
+    <div class="item"><div class="item-body"><div class="item-title">Profit-centre, cost-recovery or revenue posture at BAU</div><div class="item-desc">Day 1 position: direct supplier-commissioner payment flows with NHSE not touching the money. Year 2/3 destination: framework management fee on supplier call-off, NHS Supply Chain 1% mechanism as the precedent. SLT endorsement of the BAU funding mechanism and the trigger conditions for moving from Day 1 to Year 2/3 model.</div><div class="item-owner"><strong>Decision:</strong> SLT with NHSE strategic finance.</div></div><a class="item-link" href="DTx OM - HomeTest Operational.html">Open on HOW &rarr;</a></div>
+
+    <div class="item"><div class="item-body"><div class="item-title">Build vs buy decisions per overlay</div><div class="item-desc">Each of the eight overlays needs to resolve into either a platform-build capability, a buy-from-market capability or a local-system responsibility. The build-buy-borrow decision has not been formally taken for every overlay. Required before platform requirements stabilise.</div><div class="item-owner"><strong>Decision:</strong> SLT. Owner: SRO with Platform Lead and Commercial Lead.</div></div><a class="item-link" href="DTx OM - Anatomical.html">Open on WHAT &rarr;</a></div>
+
   </div>
 </div>
 
-<div class="section" id="hometest" style="margin-top:36px;">
- <h2 class="section-h" style="border-top:4px solid #003087;padding-top:18px;">HomeTest <span class="count">116 items &middot; HIV live in Beta; PSA-AS and iron deficiency anaemia configurations in design</span></h2>
+<div class="section scope-section" data-scope="hometest" id="hometest" style="margin-top:36px;">
+ <h2 class="section-h" style="border-top:4px solid #003087;padding-top:18px;">HomeTest <span class="count">122 items &middot; HIV live in Beta; PSA-AS and iron deficiency anaemia configurations in design</span></h2>
  <p class="section-intro">HomeTest is the operationally mature product in the portfolio. The items below are grouped into <strong>Unresolved</strong> (awaiting decision, position or owner) and <strong>In progress</strong> (work in flight across the lifecycle stages).</p>
  </div>
 
- <div class="section" id="hometest-unresolved" style="margin-left:18px;border-left:3px solid #003087;padding-left:22px;">
- <h2 class="section-h" style="font-size:20px;">HomeTest unresolved <span class="count">80 items, awaiting decision or mitigation</span></h2>
+ <div class="section scope-section" data-scope="hometest" id="hometest-unresolved" style="margin-left:18px;border-left:3px solid #003087;padding-left:22px;">
+ <h2 class="section-h" style="font-size:20px;">HomeTest unresolved <span class="count">91 items, awaiting decision or mitigation; some SLT and behavioural items appear in their source category</span></h2>
  <p class="section-intro">Grouped by type. SLT-relevant categories lead and are expanded by default. Operational and stage-level decisions are collapsed; click to expand.</p>
 
  <!-- Governance -->
@@ -344,7 +409,7 @@
  <div class="item">
  <div class="item-body">
  <div class="item-title">Procurement vehicle: three-step decision shape</div>
- <div class="item-desc">Three-step working position. <strong>Step 1 (interim route to market):</strong> six-month SBS PSR bridge for the HIV use case only; Alpha/Beta MOUs continue to cover live deployments. <strong>Step 2 (steady-state procurement vehicle):</strong> PA23 vs PSR is <strong>not settled in law</strong>. NHS Legal advice is that a case can be made for either; recommended approach is to start from the desired solution and work backwards. Provisional dual-route in the draft Recommendation paper: Plan A &mdash; PA23 Option B framework or Dynamic Market; Plan B &mdash; Digital Primary Care framework leverage; Plan C &mdash; commissioner-led direct purchase. External procurement legal counsel formally instructed to run a scoping workshop on Plan A. <strong>Step 3 (framework administration route):</strong> NHSE direct, SBS, CCS or third-party. Coupled to Step 2 and cannot land until Step 2 is settled. April 2027 framework standup target retired. SLT alignment at the 22 June Leeds playback.</div>
+ <div class="item-desc">Three-step working position. <strong>Step 1 (interim route to market):</strong> six-month SBS PSR bridge for the HIV use case only; Alpha/Beta MOUs continue to cover live deployments. <strong>Step 2 (steady-state procurement vehicle):</strong> PA23 is the <strong>recommended procurement regime</strong> per the Recommendation paper, supported by NHS Legal (formal advice note will follow the recommendation rather than gate it). External procurement legal counsel workshop on Plan A held 18 June. Working position is Dynamic Market under PA23. Open Framework remains on the table for further discussion in the Recommendation paper. Dual-route under PA23: Plan A,  HomeTest-specific Dynamic Market or Open Framework; Plan B,  Digital Primary Care framework leverage; Plan C,  commissioner-led direct purchase. <strong>Step 3 (framework administration route):</strong> NHSE direct, SBS, CCS or third-party. Coupled to Step 2 and cannot land until Step 2 is settled. April 2027 framework standup target retired. SLT alignment at the 22 June Leeds playback.</div>
  <div class="item-owner"><strong>Owner:</strong> Commercial Lead with NHS Legal.</div>
  </div>
  <a class="item-link" href="DTx OM - Governance.html#open-q">Open on WHO &rarr;</a>
@@ -392,7 +457,7 @@
  <div class="item">
  <div class="item-body">
  <div class="item-title">Data controller framework</div>
- <div class="item-desc">Federated multi-controller model: NHSE controller for the foundation, commissioner controller for the testing purpose, supplier as processor. Joint-controller ruled out. Exact controller designation per configuration still being scoped. <strong>Lawful basis position landed (PTT, 20 May 2026):</strong> Private Beta is system delivery (data moved to enable care, no NHSE-side analysis of patient data for its own purposes) &mdash; no legal Direction required for Private Beta. <strong>Public Beta likely needs a Direction</strong> if NHSE begins to analyse data for its own purposes (e.g. cohort MI). Direction request would need to land before January 2027 or after March 2027 to avoid the DHSC/NHSE legal-merger transition window. Affects every DPIA, every DSA, every supplier contract.</div>
+ <div class="item-desc">Federated multi-controller model: NHSE controller for the foundation, commissioner controller for the testing purpose, supplier as processor. Joint-controller ruled out. Exact controller designation per configuration still being scoped. <strong>Lawful basis position landed (PTT, 20 May 2026):</strong> Private Beta is system delivery (data moved to enable care, no NHSE-side analysis of patient data for its own purposes),  no legal Direction required for Private Beta. <strong>Public Beta likely needs a Direction</strong> if NHSE begins to analyse data for its own purposes (e.g. cohort MI). Direction request would need to land before January 2027 or after March 2027 to avoid the DHSC/NHSE legal-merger transition window. Affects every DPIA, every DSA, every supplier contract.</div>
  <div class="item-owner"><strong>Decision:</strong> SLT with NHS Legal and Caldicott Guardian.</div>
  </div>
  <a class="item-link" href="DTx OM - Governance.html#open-q">Open on WHO &rarr;</a>
@@ -400,7 +465,7 @@
  <div class="item">
  <div class="item-body">
  <div class="item-title">IAO appointment (in place, 9 June 2026)</div>
- <div class="item-desc">NHSE policy requires the Information Asset Owner to be a permanent NHSE employee. IAO confirmed in place at the HomeTest Delivery Board on 9 June 2026. The earlier dependency on a HomeTest transition out of DPSP no longer applies &mdash; the programme remains in DPSP (transfer to At Home and Community cancelled, 9 June 2026).</div>
+ <div class="item-desc">NHSE policy requires the Information Asset Owner to be a permanent NHSE employee. IAO confirmed in place at the HomeTest Delivery Board on 9 June 2026. The earlier dependency on a HomeTest transition out of DPSP no longer applies,  the programme remains in DPSP (transfer to At Home and Community cancelled, 9 June 2026).</div>
  <div class="item-owner"><strong>Owner:</strong> SRO.</div>
  </div>
  <a class="item-link" href="DTx OM - Governance.html#open-q">Open on WHO &rarr;</a>
@@ -411,7 +476,7 @@
  <!-- Architecture -->
  <details class="cat cat-arch">
  <summary>
- <span class="cat-h">Architectural positioning <span class="cat-count">7</span></span>
+ <span class="cat-h">Architectural positioning <span class="cat-count">9</span></span>
  <span class="cat-desc">Where things sit in the model. From WHAT page.</span>
  </summary>
  <div class="items">
@@ -458,7 +523,7 @@
   <div class="item">
  <div class="item-body">
  <div class="item-title">Trust integration architecture decision</div>
- <div class="item-desc">Active design decision on how HomeTest integrates with acute Trust systems. Four options on the table: reuse an existing genomics-programme integration platform (effectively ruled out — wrong shape for HomeTest patterns), collaborate with the genomics programme on a common component (build once across both programmes, share the burden), build a tightly-scoped HomeTest-specific integration with a small number of Trusts (faster, narrower), or buy. Affects build cost, mobilisation timeline and the wider DDTx portfolio integration story. Lock target before the PSA acute mobilisation phase moves into delivery.</div>
+ <div class="item-desc">Active design decision on how HomeTest integrates with acute Trust systems. Four options on the table: reuse an existing genomics-programme integration platform (effectively ruled out,  wrong shape for HomeTest patterns), collaborate with the genomics programme on a common component (build once across both programmes, share the burden), build a tightly-scoped HomeTest-specific integration with a small number of Trusts (faster, narrower), or buy. Affects build cost, mobilisation timeline and the wider DDTx portfolio integration story. Lock target before the PSA acute mobilisation phase moves into delivery.</div>
  <div class="item-owner"><strong>Owner:</strong> Product Lead with Commercial Lead. Cross-programme coordination with genomics programme integration lead.</div>
  </div>
  <a class="item-link" href="DTx OM - Anatomical.html">Open on WHAT &rarr;</a>
@@ -466,45 +531,87 @@
  <div class="item">
  <div class="item-body">
  <div class="item-title">PSA Active Surveillance cohort definition refinement</div>
- <div class="item-desc">The PSA configuration's cohort definition has refined under clinical input. <strong>Radiotherapy cohort is now the primary fit</strong> — PSA increments post-radiotherapy are clinically meaningful for monitoring. <strong>Post-surgical cohort de-prioritised</strong> — PSA increments are too small to be diagnostically useful in surveillance. <strong>Third cohort identified</strong>: men referred to urology with raised PSA but no cancer diagnosis, currently returning to primary care without a structured monitoring obligation. This third cohort is a pathway-gap question rather than a configuration refinement, and may warrant its own configuration treatment. Anatomy L4 to update.</div>
+ <div class="item-desc">The PSA configuration's cohort definition has refined under clinical input. <strong>Radiotherapy cohort is now the primary fit</strong>,  PSA increments post-radiotherapy are clinically meaningful for monitoring. <strong>Post-surgical cohort de-prioritised</strong>,  PSA increments are too small to be diagnostically useful in surveillance. <strong>Third cohort identified</strong>: men referred to urology with raised PSA but no cancer diagnosis, currently returning to primary care without a structured monitoring obligation. This third cohort is a pathway-gap question rather than a configuration refinement, and may warrant its own configuration treatment. Anatomy L4 to update.</div>
  <div class="item-owner"><strong>Owner:</strong> Clinical Safety Group with cross-programme Urology working group.</div>
  </div>
  <a class="item-link" href="DTx OM - Anatomical.html">Open on WHAT &rarr;</a>
  </div>
+ <div class="item"><div class="item-body"><div class="item-title">Citizen-facing curation surface for the portfolio</div><div class="item-desc">How a citizen finds each product (HomeTest, HealthStore, HealthSync) and how the three sit alongside each other and alongside other prevention and self-care services on NHS App and NHS Online. Not burning for Private Beta. Becomes material as Public Beta opens to ~1,000+ self-initiating citizens and load-bearing at MVP launch and Wave 1 when self-initiation is the dominant pattern across multiple conditions. The architectural question: is the citizen-facing surface a product-owned front door, an NHS App native feature with each product as one curated tile, or an NHS Online category page that funnels into product deeper journeys. Each option carries different ownership, content discipline and onward navigation responsibilities, and different implications for cross-product citizen experience.</div><div class="item-owner"><strong>Owner:</strong> Service Designer with NHS App and NHS Online product owners. SLT direction needed on the curation pattern.</div></div><a class="item-link" href="DTx OM - Ecosystem.html">Open on WHAT &rarr;</a></div>
+
+ <div class="item"><div class="item-body"><div class="item-title">Professional community for cross-programme capability reuse</div><div class="item-desc">The capabilities the model sizes (assurance discipline, market-shaping, post-market surveillance, evidence generation, EHIA, pathway integration) are held inside the HomeTest, HealthStore and HealthSync workstreams today. As the portfolio matures and other DPSP and DDTx programmes adopt the same patterns, those capabilities need a cross-programme professional home rather than living in each programme separately. Without it the disciplines drift, lessons stop crossing between programmes, and each new programme rebuilds from scratch. The architectural question is whether the NHSE cross-product roles already named in Teamwork carry this responsibility, whether a separate professional community (modelled on how GDS Local supports digital teams across local government) is stood up, or whether a hybrid sits between the two.</div><div class="item-owner"><strong>Owner:</strong> SRO with SLT and incoming cross-product role holders. Material when the second adopting programme onboards; load-bearing by Wave 1.</div></div><a class="item-link" href="DTx OM - Teamwork.html">Open on HOW &rarr;</a></div>
+
  </div>
  </details>
 
- <!-- Open Qs for SLT -->
- <details class="cat cat-slt">
+ <!-- Open Qs for SLT (HomeTest-specific) -->
+ <details class="cat cat-slt" open>
  <summary>
- <span class="cat-h">Open Qs for SLT <span class="cat-count">3</span></span>
- <span class="cat-desc">Specific escalations sitting on stage pages.</span>
+ <span class="cat-h">Open Qs for SLT (HomeTest-specific) <span class="cat-count">8</span></span>
+ <span class="cat-desc">HomeTest-specific SLT decisions. Cross-product SLT items sit under the cross-product foundation tile above.</span>
  </summary>
  <div class="items">
+
+ <div class="item"><div class="item-body"><div class="item-title">Pathology lab dual position</div><div class="item-desc">Pathology labs sit in two places at once: clinical infrastructure under the Clinical Safety Lead&apos;s safety governance AND suppliers under the NHS Commercial Lead&apos;s contract framework. The model has not yet resolved which territory holds the contract.</div><div class="item-owner"><strong>Decision:</strong> SLT. Affects procurement vehicle, tariff treatment, and the assurance bar applied.</div></div><a class="item-link" href="DTx OM - HomeTest ASSURE v4.html">Open on ASSURE &rarr;</a></div>
+
+ <div class="item"><div class="item-body"><div class="item-title">Pharmacy-led prescribing</div><div class="item-desc">Whether pharmacy-initiated testing belongs in scope as a fourth initiation pattern. Affects supply chain, accreditation, sign-off and result handling design.</div><div class="item-owner"><strong>Decision:</strong> SLT.</div></div><a class="item-link" href="DTx OM - HomeTest CONTRACT v4.html">Open on CONTRACT &rarr;</a></div>
+
+ <div class="item"><div class="item-body"><div class="item-title">Pathology supplier-mix architecture</div><div class="item-desc">Whether the framework runs NHS-pathology-first with private backstop, or a parallel mixed-economy model where private and NHS labs compete. Affects should-cost modelling, EOI partner selection, and supplier-cap design.</div><div class="item-owner"><strong>Decision:</strong> SLT. Owner: Partnerships Lead with Commercial Lead.</div></div><a class="item-link" href="DTx OM - Governance.html#open-q">Open on WHO &rarr;</a></div>
+
+ <div class="item"><div class="item-body"><div class="item-title">Data controller framework and Public Beta Direction</div><div class="item-desc">Federated multi-controller model: NHSE controller for the foundation, commissioner controller for the testing purpose, supplier as processor. Lawful basis position landed (PTT, 20 May 2026): Private Beta is system delivery, no legal Direction required. Public Beta likely needs a Direction if NHSE begins to analyse data for its own purposes. Direction request would need to land before January 2027 or after March 2027 to avoid the DHSC/NHSE legal-merger transition window.</div><div class="item-owner"><strong>Decision:</strong> SLT with NHS Legal and Caldicott Guardian.</div></div><a class="item-link" href="DTx OM - Governance.html#open-q">Open on WHO &rarr;</a></div>
+
+ <div class="item"><div class="item-body"><div class="item-title">Neighbourhood Health Centres role</div><div class="item-desc">Could be a delivery channel (kit distribution / sample collection), a referral source (clinicians there initiate testing), or both.</div><div class="item-owner"><strong>Decision:</strong> SLT to confirm.</div></div><a class="item-link" href="DTx OM - Anatomical.html#not-positioned">Open on WHAT &rarr;</a></div>
+
+ <div class="item"><div class="item-body"><div class="item-title">Trust integration architecture (build vs buy vs collaborate)</div><div class="item-desc">Four options on the table for how HomeTest integrates with acute trust systems. Reuse Genomics InterSystems (essentially ruled out on fit and ownership). Collaborate with Genomics on a common component. Build a tightly-scoped HomeTest integration. Buy a third-party integration capability.</div><div class="item-owner"><strong>Decision:</strong> SLT. Owner: Platform Lead with Commercial Lead.</div></div><a class="item-link" href="DTx OM - Anatomical.html">Open on WHAT &rarr;</a></div>
+
+ <div class="item"><div class="item-body"><div class="item-title">Interim legal architecture: PSR plus standard call-off plus approved list</div><div class="item-desc">The legal architecture under which the interim HomeTest commercial machinery operates. Pending written NHSE Legal view of PSR applicability. SLT confirmation of approach before Legal opinion lands.</div><div class="item-owner"><strong>Decision:</strong> SLT with NHS Legal.</div></div><a class="item-link" href="DTx OM - HomeTest CONTRACT v4.html">Open on CONTRACT &rarr;</a></div>
+
+ <div class="item"><div class="item-body"><div class="item-title">MHRA non-SaMD ruling: downstream implications</div><div class="item-desc">8 June 2026 ruling settled the regulatory classification of the HomeTest platform as non-SaMD. SLT confirmation needed on what changes in the operating model now the classification is settled, particularly on assurance scope and supplier onboarding criteria.</div><div class="item-owner"><strong>Decision:</strong> SLT with Clinical Safety Lead and Commercial Lead.</div></div><a class="item-link" href="DTx OM - HomeTest ASSURE v4.html">Open on ASSURE &rarr;</a></div>
+
+ </div>
+ </details>
+
+ <!-- Behavioural and relational dependencies -->
+ <details class="cat cat-behav">
+ <summary>
+ <span class="cat-h">Behavioural and relational dependencies <span class="cat-count">4</span></span>
+ <span class="cat-desc">The people-side of the future-state shape. Architecture, contracts and procurement vehicles do not deliver outcomes on their own; sustained behaviour change among commissioners, clinicians, suppliers and NHSE is what makes them work in practice. Listed here so the behavioural dependencies sit at programme altitude alongside the structural ones.</span>
+      </summary>
+ <div class="items">
+
  <div class="item">
- <div class="item-body">
- <div class="item-title">Pathology lab dual position</div>
- <div class="item-desc">Pathology labs sit in two places at once: clinical infrastructure under the Clinical Safety Lead's safety governance AND suppliers under the NHS Commercial Lead's contract framework. The model has not yet resolved which territory holds the contract.</div>
- <div class="item-owner"><strong>Decision:</strong> SLT. Affects procurement vehicle, tariff treatment, and the assurance bar applied.</div>
- </div>
- <a class="item-link" href="DTx OM - HomeTest ASSURE v4.html">Open on ASSURE &rarr;</a>
- </div>
+   <div class="item-body">
+     <div class="item-title">Commissioner adoption of approved-list discipline</div>
+     <div class="item-desc">The architecture lives or dies on commissioners contracting through the approved list rather than reverting to "buy from the supplier we have used before". Adoption depends on commissioners changing established procurement habits. Without that behaviour change the list stays a register, not a working market. The matchmaker engagement model is the lever that converts the structural option into actual procurement behaviour.</div>
+     <div class="item-owner"><strong>Owners:</strong> NHSE pre-sales and engagement cell with commissioners.</div>
+     <div class="item-xref"><strong>Related:</strong> Engagement cell endorsement (SLT category).</div>
+     </div>
+   </div>
+
  <div class="item">
- <div class="item-body">
- <div class="item-title">Pharmacy-led prescribing</div>
- <div class="item-desc">Whether pharmacy-initiated testing belongs in scope as a fourth initiation pattern. Affects supply chain, accreditation, sign-off and result handling design.</div>
- <div class="item-owner"><strong>Decision:</strong> SLT.</div>
- </div>
- <a class="item-link" href="DTx OM - HomeTest CONTRACT v4.html">Open on CONTRACT &rarr;</a>
- </div>
+   <div class="item-body">
+     <div class="item-title">Clinician trust at portfolio scale</div>
+     <div class="item-desc">Beta volumes prove the operating shape technically and the safety record at limited scale. Clinician trust in remote testing across pathways and regions has to be earned, not assumed, especially as the portfolio extends beyond HIV into PSA Active Surveillance, iron deficiency anaemia and Wave 1/2/3 tests. Sustained workforce engagement, peer advocacy from clinician partners and an observable safety record at MVP and beyond are what carry the operating model from defensible to adopted.</div>
+     <div class="item-owner"><strong>Owners:</strong> Clinical Safety Lead with workforce engagement and clinician peer network.</div>
+     </div>
+   </div>
+
  <div class="item">
- <div class="item-body">
- <div class="item-title">Cost-benefit dislocation at local system level</div>
- <div class="item-desc">Costs and benefits of home testing sit in different parts of the local budget. Pathology networks don't run phlebotomy: that sits under clinical services or the ICB. When home testing replaces venepuncture, the saving lands in one budget line and the new spend lands in another. Without best-practice tariffs at pathway level, ICBs see home testing as a cost pressure rather than a value case. The economic case is the unlock for adoption.</div>
- <div class="item-owner"><strong>Decision:</strong> SLT with NHSE strategic finance. Health Economist input required.</div>
- </div>
- <a class="item-link" href="DTx OM - Governance.html#open-q">Open on WHO &rarr;</a>
- </div>
+   <div class="item-body">
+     <div class="item-title">Supplier conformance behaviour beyond Beta</div>
+     <div class="item-desc">Suppliers conform to the published standard at Private Beta volumes because their NHSE relationship is dense and the assurance gaze is immediate. Sustaining standard-conforming behaviour at Public Beta volumes and into MVP and Wave 1 depends on the published standard, the assurance discipline and the removal protocol being credible enough to police drift without NHSE micromanaging each supplier. The supplier forum is one mechanism; the published standard plus the compelled-removal protocol is the other.</div>
+     <div class="item-owner"><strong>Owners:</strong> Independent Assurance Lead with supplier forum convenor.</div>
+     <div class="item-xref"><strong>Related:</strong> Compelled-removal protocol (Operational mechanism category).</div>
+     </div>
+   </div>
+
+ <div class="item">
+   <div class="item-body">
+     <div class="item-title">NHSE convening discipline sustained across cycles</div>
+     <div class="item-desc">The model assumes NHSE convenes the system, sets standards and holds the assurance authority without becoming a commercial counterparty. The convening discipline has to survive SLT changes, funding cycles and political pressure to behave commercially. The future-state shape only holds if convening is treated as a sustained capability with named ownership and operating cadence, not a posture that depends on who is in the room at any given time.</div>
+     <div class="item-owner"><strong>Owners:</strong> Programme leadership with SLT.</div>
+     </div>
+   </div>
+
  </div>
  </details>
 
@@ -542,7 +649,7 @@
  <div class="item">
  <div class="item-body">
  <div class="item-title">Tracked action: directions decision on private beta</div>
- <div class="item-desc">A precise exam question was issued to PTT on 1 May 2026 asking for a definitive yes/no on whether a legal direction is required for private beta. <strong>Answered 20 May 2026:</strong> no Direction required for Private Beta because data movement is system delivery (not NHSE analysis for its own purposes). The constraint moves to Public Beta &mdash; a Direction will be needed if NHSE-side analysis (e.g. cohort MI) begins. This row is now closed for Private Beta; Public Beta direction sequencing is tracked separately.</div>
+ <div class="item-desc">A precise exam question was issued to PTT on 1 May 2026 asking for a definitive yes/no on whether a legal direction is required for private beta. <strong>Answered 20 May 2026:</strong> no Direction required for Private Beta because data movement is system delivery (not NHSE analysis for its own purposes). The constraint moves to Public Beta,  a Direction will be needed if NHSE-side analysis (e.g. cohort MI) begins. This row is now closed for Private Beta; Public Beta direction sequencing is tracked separately.</div>
  <div class="item-owner"><strong>Owner:</strong> IG Lead (follow-up). Escalation route via PTT senior leadership.</div>
  </div>
  <a class="item-link" href="DTx OM - HomeTest Operational.html#lane-5">Open on HOW &rarr;</a>
@@ -606,7 +713,7 @@
  <div class="item">
  <div class="item-body">
  <div class="item-title">NHS Online integration dependency (Sep 2027, national from day one)</div>
- <div class="item-desc">NHS Online is targeting a September 2027 go-live and wants to be national from day one rather than phasing by region. This shape makes CDC integration and pharmacy pickup an all-or-nothing dependency for that date — the integration either lands nationally on time or doesn't. No partial rollout is available as a fall-back. The dependency lives upstream of the HomeTest framework, so the framework has to track NHS Online's milestone position rather than steer it. Mitigation is early integration design lock and explicit dependency tracking in the joint plan.</div>
+ <div class="item-desc">NHS Online is targeting a September 2027 go-live and wants to be national from day one rather than phasing by region. This shape makes CDC integration and pharmacy pickup an all-or-nothing dependency for that date,  the integration either lands nationally on time or doesn't. No partial rollout is available as a fall-back. The dependency lives upstream of the HomeTest framework, so the framework has to track NHS Online's milestone position rather than steer it. Mitigation is early integration design lock and explicit dependency tracking in the joint plan.</div>
  <div class="item-owner"><strong>Owner:</strong> SRO with NHS Online integration lead. Standing item for joint planning.</div>
  </div>
  <a class="item-link" href="DTx OM - HomeTest Operational.html">Open on HOW &rarr;</a>
@@ -640,7 +747,7 @@
  <div class="item"><div class="item-body"><div class="item-title">ASSURE: minimum supplier standards</div><div class="item-desc">Not yet codified. Direction agreed that these should include accreditation, clinical safety, IG and commercial entry criteria.</div></div><a class="item-link" href="DTx OM - HomeTest ASSURE v4.html">Open on ASSURE &rarr;</a></div>
  <div class="item"><div class="item-body"><div class="item-title">ASSURE: clinical accountability model per touch point</div><div class="item-desc">Where does clinical accountability sit at each touch point in the patient journey?</div></div><a class="item-link" href="DTx OM - HomeTest ASSURE v4.html">Open on ASSURE &rarr;</a></div>
  <div class="item"><div class="item-body"><div class="item-title">ASSURE: offboarding trigger criteria and process</div><div class="item-desc">What happens when a supplier fails to meet standards?</div></div><a class="item-link" href="DTx OM - HomeTest ASSURE v4.html">Open on ASSURE &rarr;</a></div>
- <div class="item"><div class="item-body"><div class="item-title">ASSURE: IAO appointment</div><div class="item-desc">IAO in place (Delivery Board, 9 June 2026). PTT requirement for permanent NHSE employee satisfied. HomeTest remains in DPSP &mdash; transfer to At Home and Community cancelled.</div></div><a class="item-link" href="DTx OM - HomeTest ASSURE v4.html">Open on ASSURE &rarr;</a></div>
+ <div class="item"><div class="item-body"><div class="item-title">ASSURE: IAO appointment</div><div class="item-desc">IAO in place (Delivery Board, 9 June 2026). PTT requirement for permanent NHSE employee satisfied. HomeTest remains in DPSP,  transfer to At Home and Community cancelled.</div></div><a class="item-link" href="DTx OM - HomeTest ASSURE v4.html">Open on ASSURE &rarr;</a></div>
  <div class="item"><div class="item-body"><div class="item-title">ASSURE: Supplier Onboarding Framework</div><div class="item-desc">Strawman v0.1 drafted 24 April 2026. Seven design principles, five criteria dimensions (commercial, clinical, IG, technical, operational) each tiered. Apply journey and assurance-gate mechanism still to integrate into operational onboarding.</div></div><a class="item-link" href="DTx OM - HomeTest ASSURE v4.html">Open on ASSURE &rarr;</a></div>
  <div class="item"><div class="item-body"><div class="item-title">CONTRACT: delivery model assessment</div><div class="item-desc">Should suppliers deliver directly to patients or through NHS infrastructure? Determines the supply chain shape.</div></div><a class="item-link" href="DTx OM - HomeTest CONTRACT v4.html">Open on CONTRACT &rarr;</a></div>
  <div class="item"><div class="item-body"><div class="item-title">CONTRACT: framework purpose-built vs hosted</div><div class="item-desc">Whether the framework is purpose-built or hosted on an existing vehicle (SBS being explored as one possibility).</div></div><a class="item-link" href="DTx OM - HomeTest CONTRACT v4.html">Open on CONTRACT &rarr;</a></div>
@@ -654,7 +761,7 @@
  <div class="item"><div class="item-body"><div class="item-title">FULFIL: cold chain logistics</div><div class="item-desc">For temperature-sensitive tests (e.g. capillary blood for PSA).</div></div><a class="item-link" href="DTx OM - HomeTest FULFIL v4.html">Open on FULFIL &rarr;</a></div>
  <div class="item"><div class="item-body"><div class="item-title">FULFIL: Royal Mail engagement and route alignment</div><div class="item-desc">Commercial Briefing Paper exists framing BAU optimisation (Tracked 24 pricing and reliability at NHS scale) and Blue Sky design (new health-logistics product category between Large Letter and Small Parcel). First scaled use targeted from April 2027. Engagement ongoing with no settled outcome surfaced in primary sources. Notify route (Royal Mail Health) and the MarketReach engagement still to be reconciled.</div></div><a class="item-link" href="DTx OM - HomeTest FULFIL v4.html">Open on FULFIL &rarr;</a></div>
  <div class="item"><div class="item-body"><div class="item-title">FULFIL: centralised kit procurement viability</div><div class="item-desc">Whether centralised procurement (NHS taking on stock holding and management) is viable or contradicts the platform-orchestrator model.</div></div><a class="item-link" href="DTx OM - HomeTest FULFIL v4.html">Open on FULFIL &rarr;</a></div>
- <div class="item"><div class="item-body"><div class="item-title">FULFIL: collection-first vs delivery-first as emerging supply chain pattern</div><div class="item-desc">Today HomeTest assumes <strong>delivery-first</strong> (kit posted to patient, patient returns by post). An alternative <strong>collection-first</strong> pattern (pharmacy or community-hub pickup) removes the 5-7 day delivery wait, addresses unsafe-address barriers, and reduces motivation decay between order and action. External signal: NHS Online has independently inserted &ldquo;collect from pharmacy&rdquo; into journeys lifted from HomeTest screens — the pattern is already arriving from outside. Open question is whether to formalise collection-first as a named supply-chain pattern in the Anatomy L3 catalogue, and whether the framework supports both as alternative patterns selectable per configuration.</div></div><a class="item-link" href="DTx OM - HomeTest FULFIL v4.html">Open on FULFIL &rarr;</a></div>
+ <div class="item"><div class="item-body"><div class="item-title">FULFIL: collection-first vs delivery-first as emerging supply chain pattern</div><div class="item-desc">Today HomeTest assumes <strong>delivery-first</strong> (kit posted to patient, patient returns by post). An alternative <strong>collection-first</strong> pattern (pharmacy or community-hub pickup) removes the 5-7 day delivery wait, addresses unsafe-address barriers, and reduces motivation decay between order and action. External signal: NHS Online has independently inserted &ldquo;collect from pharmacy&rdquo; into journeys lifted from HomeTest screens,  the pattern is already arriving from outside. Open question is whether to formalise collection-first as a named supply-chain pattern in the Anatomy L3 catalogue, and whether the framework supports both as alternative patterns selectable per configuration.</div></div><a class="item-link" href="DTx OM - HomeTest FULFIL v4.html">Open on FULFIL &rarr;</a></div>
  <div class="item"><div class="item-body"><div class="item-title">MEASURE: KPI framework</div><div class="item-desc">Not yet designed. Prior DTx experience showed licence-based KPIs failed because they didn't track outcomes.</div></div><a class="item-link" href="DTx OM - HomeTest MEASURE v4.html">Open on MEASURE &rarr;</a></div>
  <div class="item"><div class="item-body"><div class="item-title">MEASURE: attribution methodology</div><div class="item-desc">Undefined. Linking a home test kit to a downstream clinical outcome requires methodology not yet agreed.</div></div><a class="item-link" href="DTx OM - HomeTest MEASURE v4.html">Open on MEASURE &rarr;</a></div>
  <div class="item"><div class="item-body"><div class="item-title">MEASURE: feedback loop to SHAPE</div><div class="item-desc">Not yet designed. The mechanism (what data, in what format, at what frequency) is undefined.</div></div><a class="item-link" href="DTx OM - HomeTest MEASURE v4.html">Open on MEASURE &rarr;</a></div>
@@ -697,7 +804,7 @@
  </div>
 
  <!-- IN PROGRESS -->
- <div class="section" id="hometest-in-progress" style="margin-left:18px;border-left:3px solid #003087;padding-left:22px;margin-top:36px;">
+ <div class="section scope-section" data-scope="hometest" id="hometest-in-progress" style="margin-left:18px;border-left:3px solid #003087;padding-left:22px;margin-top:36px;">
  <h2 class="section-h" style="font-size:20px;">HomeTest in progress <span class="count">36 items, work in flight across the five lifecycle stages</span></h2>
  <p class="section-intro">Activity already underway. Not awaiting a decision, only execution. Grouped by lifecycle stage.</p>
 
@@ -744,7 +851,7 @@
  <span class="cat-desc">Framework, procurement vehicle, pricing, supply chain.</span>
  </summary>
  <div class="items">
- <div class="item"><div class="item-body"><div class="item-title">External legal scoping workshop on Plan A in flight</div><div class="item-desc">External procurement legal counsel formally instructed to run a scoping workshop on Plan A (PA23 Option B framework or Dynamic Market) for HomeTest. First formal external legal step on the steady-state vehicle route. Output feeds the June Recommendation paper and the SLT alignment at the 22 June Leeds playback.</div></div><a class="item-link" href="DTx OM - HomeTest CONTRACT v4.html">Open on CONTRACT &rarr;</a></div>
+ <div class="item"><div class="item-body"><div class="item-title">External procurement legal counsel workshop on Plan A: advice received</div><div class="item-desc">Workshop held 18 June with external procurement legal counsel. Advice note received. Working position under PA23 is Dynamic Market; Open Framework remains on the table for further discussion in the Recommendation paper. Output feeds the Recommendation paper and the SLT alignment at the 22 June Leeds playback.</div></div><a class="item-link" href="DTx OM - HomeTest CONTRACT v4.html">Open on CONTRACT &rarr;</a></div>
  <div class="item"><div class="item-body"><div class="item-title">PSA Active Surveillance Monitoring Episode tariff design</div><div class="item-desc">NHSE Strategic Finance has drafted a Patient-Not-Present tariff for PSA active surveillance. Glide-path: shadow 26/27, dual-run at 50% in 27/28, live at 100% in 28/29. Five reconciliation mechanisms: bundled episode, efficiency-factor offset, glide-path, capacity-release credits, ICB-level capitated AS top-up.</div></div><a class="item-link" href="DTx OM - HomeTest CONTRACT v4.html">Open on CONTRACT &rarr;</a></div>
  <div class="item"><div class="item-body"><div class="item-title">Step 1 interim route to market (SBS PSR bridge)</div><div class="item-desc">Six-month SBS PSR bridge for the HIV use case only is the working interim route, with Alpha/Beta MOUs continuing to cover live deployments. SBS provides the purchasing instrument; NHSE matchmakes between approved suppliers and commissioners. The bridge is interim only and retires once Step 2 lands. Provisional in the draft Recommendation paper, pending SLT alignment at the 22 June Leeds playback.</div></div><a class="item-link" href="DTx OM - HomeTest CONTRACT v4.html">Open on CONTRACT &rarr;</a></div>
  <div class="item"><div class="item-body"><div class="item-title">All-inclusive supplier model is working default (not locked)</div><div class="item-desc">Internal challenge on whether it holds when suppliers only cover a subset of test cases.</div></div><a class="item-link" href="DTx OM - HomeTest CONTRACT v4.html">Open on CONTRACT &rarr;</a></div>
@@ -789,7 +896,7 @@
  </div>
 
  <!-- HEALTHSTORE -->
- <div class="section" id="healthstore" style="margin-top:48px;">
+ <div class="section scope-section" data-scope="healthstore" id="healthstore" style="margin-top:48px;">
  <h2 class="section-h" style="border-top:4px solid #00A9CE;padding-top:18px;">HealthStore <span class="count">7 items &middot; In design phase</span></h2>
  <p class="section-intro">HealthStore items reflect the current working position. Grows as Alpha matures and HealthStore-side validation completes.</p>
 
@@ -823,13 +930,13 @@
  </div>
 
  <!-- HEALTHSYNC PLACEHOLDER -->
- <div class="section" id="healthsync" style="margin-top:36px;">
+ <div class="section scope-section" data-scope="healthsync" id="healthsync" style="margin-top:36px;">
  <h2 class="section-h" style="border-top:4px solid #00A499;padding-top:18px;">HealthSync <span class="count">5 items &middot; in design</span></h2>
  <p class="section-intro">HealthSync TOM components identified at structural level. Operational shape on per-product pages remains reserved pending programme detail and HealthSync-side validator engagement.</p>
  <div class="cat-body">
     <div class="item">
       <div class="item-body">
-        <div class="item-title">PHR aggregation layer &mdash; design state</div>
+        <div class="item-title">PHR aggregation layer,  design state</div>
         <div class="item-desc">Personal Health Record aggregation layer inside the NHS App. Ingests consumer-platform data (Apple HealthKit, Google Health Connect), routes to FHIR / Single Patient Record, surfaces in patient view. <strong>In design.</strong> Reserved structurally on Anatomy; build details land as the HealthSync programme progresses.</div>
         <div class="item-owner"><strong>Owner:</strong> NHSE Platform with PHR Lead.</div>
       </div>
@@ -862,7 +969,7 @@
     <div class="item">
       <div class="item-body">
         <div class="item-title">Patient permission and consent model for consumer-platform data</div>
-        <div class="item-desc">Patient controls data sharing at the consumer-platform layer (Apple HealthKit / Google Health Connect permission UI) and at the NHS App layer (which data types to surface, which to share with care team). Revocation immediate and granular. <strong>Lawful basis</strong> needs explicit confirmation per data type &mdash; consent for some, public task for others depending on how the data is used downstream.</div>
+        <div class="item-desc">Patient controls data sharing at the consumer-platform layer (Apple HealthKit / Google Health Connect permission UI) and at the NHS App layer (which data types to surface, which to share with care team). Revocation immediate and granular. <strong>Lawful basis</strong> needs explicit confirmation per data type,  consent for some, public task for others depending on how the data is used downstream.</div>
         <div class="item-owner"><strong>Owner:</strong> IG Lead with Legal.</div>
       </div>
       <a class="item-link" href="DTx OM - Governance.html#raci-healthsync">Open Governance &rarr;</a>
@@ -877,5 +984,36 @@
 </div>
 
 <script src="_om-status-counts.js"></script>
+
+<script>
+function filterScope(scope) {
+  document.querySelectorAll('.scope-section').forEach(function(s) {
+    if (scope === 'all') {
+      s.style.display = '';
+    } else {
+      var ds = s.getAttribute('data-scope');
+      s.style.display = (ds === scope) ? '' : 'none';
+    }
+  });
+  // Update toggle button active state
+  document.querySelectorAll('.scope-toggle').forEach(function(b) {
+    var bs = b.getAttribute('data-scope');
+    if (bs === scope) {
+      b.style.outline = '3px solid #FFB91D';
+      b.style.outlineOffset = '2px';
+    } else {
+      b.style.outline = 'none';
+    }
+  });
+  // Scroll to the section the user toggled to
+  if (scope !== 'all') {
+    var targetSection = document.querySelector('.scope-section[data-scope="' + scope + '"]');
+    if (targetSection) {
+      window.scrollTo({top: targetSection.offsetTop - 24, behavior: 'smooth'});
+    }
+  }
+}
+</script>
+
 </body>
 </html>

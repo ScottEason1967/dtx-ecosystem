@@ -97,6 +97,7 @@
   .pill{display:inline-block;font-size:9.5px;font-weight:800;letter-spacing:0.6px;padding:3px 8px;border-radius:10px;text-transform:uppercase;white-space:nowrap;}
   .pill-live{background:var(--status-live-bg);color:var(--status-live);}
   .pill-flight{background:var(--status-flight-bg);color:var(--status-flight);}
+  .pill-agreed{background:#E8F4EA;color:#1F6F36;}
   .pill-open{background:var(--status-open-bg);color:var(--status-open);}
   .pill-blocked{background:var(--status-blocked-bg);color:var(--status-blocked);}
   .pill-risk{background:var(--status-risk-bg);color:var(--status-risk);}
@@ -256,16 +257,16 @@
     .legend-item:first-of-type{border-top:none;}
   }
   .legend-icon{display:flex;align-items:center;justify-content:center;}
-  /* Demo "1 of 11" badge — mirrors .cap-num at scaled-down size */
+  /* Demo "1 of 11" badge,  mirrors .cap-num at scaled-down size */
   .legend-num{background:#003087;color:#fff;border-radius:6px;padding:5px 7px;text-align:center;width:62px;display:flex;flex-direction:column;justify-content:center;align-items:center;height:44px;}
   .legend-num .cap-num-big{font-size:18px;font-weight:900;letter-spacing:-0.5px;line-height:1;}
   .legend-num .cap-num-of{font-size:8.5px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;opacity:0.85;margin-top:2px;}
-  /* Demo sizing box — mirrors .cap-sizing */
+  /* Demo sizing box,  mirrors .cap-sizing */
   .legend-sizing{background:#F4F8FC;border:1px solid #DCE6EE;border-radius:8px;padding:6px 10px;min-width:62px;text-align:center;}
   .legend-sizing-label{font-size:8.5px;font-weight:800;letter-spacing:0.9px;color:var(--text-muted);text-transform:uppercase;margin-bottom:1px;}
   .legend-sizing-fte{font-size:15px;font-weight:900;color:var(--nhs-dark);line-height:1;letter-spacing:-0.4px;}
   .legend-sizing-unit{font-size:8.5px;font-weight:700;color:var(--text-muted);margin-top:2px;letter-spacing:0.5px;text-transform:uppercase;}
-  /* Demo portraits — mirrors .persona-portrait sized smaller */
+  /* Demo portraits,  mirrors .persona-portrait sized smaller */
   .legend-portraits{display:flex;gap:0;align-items:center;}
   .legend-portraits img{width:28px;height:28px;border-radius:50%;object-fit:cover;object-position:top center;border:2px solid #fff;box-shadow:0 0 0 1px var(--border);background:#fff;margin-left:-6px;}
   .legend-portraits img:first-child{margin-left:0;}
@@ -379,11 +380,21 @@
     
     <h1 class="h-title">The <span style="display:inline-block;background:#003087;color:#fff;padding:4px 14px 6px;border-radius:10px;line-height:1;letter-spacing:-0.4px;">HomeTest</span> operating model in BAU. <span style="font-size:14px; font-weight:400; opacity:0.7; letter-spacing:0;">(HomeTest overlay within the Digital Therapeutics Operating Model)</span></h1>
     <p class="h-sub">Sixteen capabilities. For each one, <strong>what has to land to stand it up</strong> and <strong>what it does once running.</strong> Click any capability to drill into the detail.</p>
-    <p class="h-sub" style="margin-top:10px;font-size:13.5px;border-left:3px solid var(--nhs-blue);padding-left:12px;background:#F4F8FC;padding-top:8px;padding-bottom:8px;border-radius:0 6px 6px 0;"><strong>Operating principle.</strong> NHSE acts as a coordinating function and collective bargaining entity, not a buyer. The BAU team orchestrates; suppliers, labs, carriers and commissioners do the work. Sizing and shape follow from that. <strong>This is the Day 1 stance and it holds through launch.</strong> The Year 2/3 transition to a platform-fee model changes how the operating envelope is funded, not the orchestrator role &mdash; see the <a href="DTx OM - Why.html" style="color:#005EB8;font-weight:700;">Why page Direction of Travel</a>.</p>
+    <p class="h-sub" style="margin-top:10px;font-size:13.5px;border-left:3px solid var(--nhs-blue);padding-left:12px;background:#F4F8FC;padding-top:8px;padding-bottom:8px;border-radius:0 6px 6px 0;"><strong>Operating principle.</strong> NHSE acts as a coordinating function and collective bargaining entity, not a buyer. The BAU team orchestrates; suppliers, labs, carriers and commissioners do the work. Sizing and shape follow from that. <strong>This is the Day 1 stance and it holds through launch.</strong> The Year 2/3 transition to a platform-fee model changes how the operating envelope is funded, not the orchestrator role,  see the <a href="DTx OM - Why.html" style="color:#005EB8;font-weight:700;">Why page Direction of Travel</a>.</p>
     <div class="health-warning" style="background:#FFF3CD;border:2px solid #FFB91D;border-radius:12px;padding:18px 22px;margin:20px 0 24px;box-shadow:0 4px 14px rgba(255,185,29,0.18);">
       <div style="font-size:11.5px;font-weight:800;letter-spacing:1.8px;color:#9A6700;text-transform:uppercase;margin-bottom:8px;">A health warning</div>
       <div style="font-size:13.5px;color:#212B32;line-height:1.65;">The FTE numbers on this page are <strong>working sizing positions, not validated headcount commitments</strong>. They are starting points for the team to interrogate, not endpoints. Each capability needs to be analysed against confirmed activity volumes, the chosen architectural shape (in-house vs shared NHSE central capacity vs outsourced), and the configuration count in scope. <strong>This page exists to drive the conversation, not to produce the answer.</strong></div>
     </div>
+  </div>
+
+  <div id="status-legend" style="background:#FAFBFC;border:1px solid var(--border);border-radius:8px;padding:14px 18px;margin:18px 0 24px;font-size:12.5px;color:var(--text-sec);line-height:1.65;">
+    <p style="margin:0 0 8px;"><strong style="color:var(--text);font-size:13px;">Status legend &middot; how to read the pill on each row.</strong></p>
+    <p style="margin:0 0 4px;"><span class="pill pill-live" style="margin-right:8px;">Live</span> Capability is operating today,  integrations running, suppliers contracted, configuration in use.</p>
+    <p style="margin:0 0 4px;"><span class="pill pill-flight" style="margin-right:8px;">In flight</span> Active work in progress with primary-source evidence in DPSP. Workstream is moving toward a defined output.</p>
+    <p style="margin:0 0 4px;"><span class="pill pill-agreed" style="margin-right:8px;">Now landed</span> Settled in principle. The work has produced its output or the position is agreed; no further active design needed at this level.</p>
+    <p style="margin:0 0 4px;"><span class="pill pill-design" style="margin-right:8px;">In design</span> Architectural or design work happening; output not yet defined.</p>
+    <p style="margin:0 0 4px;"><span class="pill pill-open" style="margin-right:8px;">Open</span> Awaiting decision, owner, evidence, or workstream initiation.</p>
+    <p style="margin:0;"><span class="pill pill-risk" style="margin-right:8px;">Risk</span> Delivery dependency to mitigate, not a decision to take.</p>
   </div>
 
   <aside class="legend" aria-label="How to read each capability card">
@@ -455,7 +466,7 @@
     </summary>
     <div class="cap-detail">
       <div class="detail-section">
-        <div class="detail-h detail-h-stand">Stand it up &mdash; detail</div>
+        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
         <div class="stand-detail">
           <div class="stand-row"><div class="stand-row-text"><strong>Build vs buy vs borrow decisions for each part of the pathway</strong>For each pathway component (initiation, fulfilment, result handling, billing, management information) a decision per condition on whether NHSE builds it, buys it from the market, or borrows from existing NHS infrastructure. Required to stabilise platform requirements. Not yet done.</div><span class="pill pill-open">Open</span><span class="size-pill size-xl">XL</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Post-PSA condition prioritisation</strong>Year 1 list confirmed (HIV, PSA-AS). Five pathway patterns identified but selection of next condition undecided.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
@@ -543,9 +554,9 @@
     </summary>
     <div class="cap-detail">
       <div class="detail-section">
-        <div class="detail-h detail-h-stand">Stand it up &mdash; detail</div>
+        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
         <div class="stand-detail">
-          <div class="stand-row"><div class="stand-row-text"><strong>Clinical safety framework (DCB0129 / DCB0160 / hazard log)</strong>The mandatory clinical safety wrap: DCB0129 (manufacturer safety case), DCB0160 (deploying-organisation safety case) and a maintained hazard log. Framework is in place with 8 hazards identified across 4 groupings. SLSP (Service Level Safety Position) is in progress. GDS Alpha Assessment complete.</div><span class="pill pill-flight">In flight</span><span class="size-pill size-xl">XL</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Clinical safety framework (DCB0129 / DCB0160 / hazard log)</strong>The mandatory clinical safety wrap: DCB0129 (manufacturer safety case), DCB0160 (deploying-organisation safety case) and a maintained hazard log. Framework is in place with 15 hazards identified across multiple groupings (System Access, User Training, Data Migration/Integration, Business Process). SLSP (Service Level Safety Position) is in progress. GDS Alpha Assessment complete.</div><span class="pill pill-flight">In flight</span><span class="size-pill size-xl">XL</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Clinical Safety Case (per configuration)</strong>A documented assessment of clinical hazards and mitigations for each pathway-supplier-condition combination, signed off by a clinical accountable signatory. HIV Clinical Safety Case submitted; PSA-AS in design. The authoring pattern has to scale as new configurations multiply.</div><span class="pill pill-flight">In flight</span><span class="size-pill size-l">L</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>CATR mechanics</strong>CATR (Clinical Assurance Triage) is the per-configuration clinical safety review that determines what level of DCB0160 deployment safety case is needed. The operational definition is undefined: who issues a CATR, how it links to DCB0160 sign-off, how it scales as configurations multiply.</div><span class="pill pill-open">Open</span><span class="size-pill size-l">L</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Clinical Safety Lead accountability split across initiation patterns</strong>Two configuration RACIs split clinical accountability differently. Overarching accountability needs a single explicit statement.</div><span class="pill pill-open">Open</span><span class="size-pill size-xs">XS</span></div>
@@ -630,11 +641,11 @@
     </summary>
     <div class="cap-detail">
       <div class="detail-section">
-        <div class="detail-h detail-h-stand">Stand it up &mdash; detail</div>
+        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
         <div class="stand-detail">
-          <div class="stand-row"><div class="stand-row-text"><strong>IG framework (federated controller + lawful basis)</strong>Federated multi-controller model designed: NHSE foundation controller, commissioner for purpose, supplier as processor. Joint-controller ruled out. <strong style="display:inline">Lawful basis position landed (PTT, 20 May 2026):</strong> Private Beta is system delivery (data moved to enable care, not NHSE-side analysis for its own purposes) &mdash; no legal Direction required for Private Beta. Public Beta likely needs a Direction if NHSE begins to analyse data for its own purposes. Affects every DPIA, every DSA, every supplier contract.</div><span class="pill pill-flight">In flight</span><span class="size-pill size-xl">XL</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>IG framework (federated controller + lawful basis)</strong>Federated multi-controller model designed: NHSE foundation controller, commissioner for purpose, supplier as processor. Joint-controller ruled out. <strong style="display:inline">Lawful basis position landed (PTT, 20 May 2026):</strong> Private Beta is system delivery (data moved to enable care, not NHSE-side analysis for its own purposes),  no legal Direction required for Private Beta. Public Beta likely needs a Direction if NHSE begins to analyse data for its own purposes. Affects every DPIA, every DSA, every supplier contract.</div><span class="pill pill-flight">In flight</span><span class="size-pill size-xl">XL</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Multi-controller scope as pathways scale</strong>Data controllers grow with the configuration set: Acute Trusts become controllers under Pathway 2, GP practices under Pathway 3. Wayfinder precedent is to ask for the full data-controller scope upfront rather than incremental directions. Framework needs to handle a growing controller list per configuration, not a fixed set.</div><span class="pill pill-open">Open</span><span class="size-pill size-l">L</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>IAO appointment</strong>NHSE policy requires the Information Asset Owner to be a permanent NHSE employee. <strong style="display:inline">IAO confirmed in place at the HomeTest Delivery Board on 9 June 2026.</strong> Earlier dependency on a HomeTest transition out of DPSP no longer applies &mdash; the programme remains in DPSP (transfer to At Home and Community cancelled, 9 June 2026).</div><span class="pill pill-live">Live</span><span class="size-pill size-xs">XS</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>IAO appointment</strong>NHSE policy requires the Information Asset Owner to be a permanent NHSE employee. <strong style="display:inline">IAO confirmed in place at the HomeTest Delivery Board on 9 June 2026.</strong> Earlier dependency on a HomeTest transition out of DPSP no longer applies,  the programme remains in DPSP (transfer to At Home and Community cancelled, 9 June 2026).</div><span class="pill pill-live">Live</span><span class="size-pill size-xs">XS</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>IAA governance</strong>IAA (Information Asset Administrator) supports the IAO in day-to-day asset management and access decisions. Unresolved alongside the IAO; same eligibility constraint applies (must be a permanent NHSE employee).</div><span class="pill pill-open">Open</span><span class="size-pill size-xs">XS</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>PTT handover pattern across clinical areas</strong>PTT teams are organised by clinical area. The screening PTT covers HIV only; PSA moves to a different PTT team as the second clinical area enters scope. A portable handover pattern is needed before that handover happens.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Supplier Onboarding Framework</strong>Strawman v0.1 drafted 24 April 2026 (author Scott Eason). Seven design principles, five criteria dimensions tiered core/scaled/aspirational, published self-assess pack, single combined assurance gate, apply journey. Four open decisions called out for SLT challenge. Operational integration in flight. Retroactive assurance check needed for Alpha suppliers admitted under earlier route.</div><span class="pill pill-flight">In flight</span><span class="size-pill size-l">L</span></div>
@@ -692,9 +703,9 @@
         <div>
           <div class="stream-h stream-h-stand">Stand it up</div>
           <ul class="stream-list">
-            <li>Step 1 &mdash; Interim route to market for the current window (six-month SBS PSR bridge for HIV; Alpha/Beta MOUs continue to cover live deployments)</li>
-            <li>Step 2 &mdash; Procurement vehicle decision for steady state (PA23 vs PSR not settled; provisional dual-route Plan A / Plan B / Plan C; SLT alignment 22 June Leeds)</li>
-            <li>Step 3 &mdash; Framework administration route confirmed (NHSE direct, SBS, CCS, third-party)</li>
+            <li>Step 1,  Interim route to market for the current window (six-month SBS PSR bridge for HIV; Alpha/Beta MOUs continue to cover live deployments)</li>
+            <li>Step 2,  Procurement vehicle decision for steady state (PA23 vs PSR not settled; provisional dual-route Plan A / Plan B / Plan C; SLT alignment 22 June Leeds)</li>
+            <li>Step 3,  Framework administration route confirmed (NHSE direct, SBS, CCS, third-party)</li>
             <li>Pathology supplier-mix model decision (NHS-first with private backstop vs parallel mixed-economy)</li>
             <li>Supplier framework structure for steady state (admission, call-off, exit)</li>
             <li>Pricing approach: ceiling-price model for the framework or dynamic market</li>
@@ -729,11 +740,11 @@
     <div class="cap-detail">
       <div style="margin:0 0 14px;padding:11px 14px;background:#F4F6F8;border-left:3px solid #005EB8;border-radius:0 4px 4px 0;font-size:12.5px;line-height:1.5;color:#3C4856;">Live tracker of the open inputs and dependencies this capability is waiting on the wider programme to land: <a href="DTx OM - Decision Inputs Roadmap.html" style="color:#005EB8;font-weight:700;text-decoration:none;">Decision Inputs Roadmap &rarr;</a></div>
       <div class="detail-section">
-        <div class="detail-h detail-h-stand">Stand it up &mdash; detail</div>
+        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
         <div class="stand-detail">
-          <div class="stand-row"><div class="stand-row-text"><strong>Step 1 &mdash; Interim route to market for HomeTest (current window)</strong>Working position: a six-month SBS PSR bridge for the HIV use case only. Alpha/Beta MOUs continue to cover live deployments. The SBS bridge is interim; once Step 2 lands, NHSE is the home for all HomeTest requirements via the chosen steady-state vehicle. Pending SLT alignment at the 22 June Leeds playback.</div><span class="pill pill-flight">In flight</span><span class="size-pill size-m">M</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Step 2 &mdash; Procurement vehicle decision for steady state</strong>PA23 vs PSR is not settled in law. NHS Legal advice is that a case can be made for either, with the recommended approach being to start from the desired solution and work backwards. Provisional dual-route recommendation in the draft Recommendation paper: <strong>Plan A</strong> &mdash; PA23 Option B framework or Dynamic Market (the ideal); <strong>Plan B</strong> &mdash; Digital Primary Care framework leverage; <strong>Plan C</strong> &mdash; commissioner-led direct purchase. External procurement legal counsel formally instructed to run a scoping workshop on Plan A. SLT alignment at the 22 June Leeds playback. Both routes remain defensible.</div><span class="pill pill-open">Open</span><span class="size-pill size-l">L</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Step 3 &mdash; Framework administration route</strong>NHSE direct, SBS, CCS or third-party. NHS Commercial preference is to outsource. SBS exploration in early stages. Coupled to the Step 2 vehicle choice; cannot land until Step 2 is settled.</div><span class="pill pill-flight">In flight</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Step 1,  Interim route to market for HomeTest (current window)</strong>Working position: a six-month SBS PSR bridge for the HIV use case only. Alpha/Beta MOUs continue to cover live deployments. The SBS bridge is interim; once Step 2 lands, NHSE is the home for all HomeTest requirements via the chosen steady-state vehicle. Pending SLT alignment at the 22 June Leeds playback.</div><span class="pill pill-flight">In flight</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Step 2,  Procurement vehicle decision for steady state</strong>PA23 is the recommended procurement regime per the Recommendation paper, supported by NHS Legal (formal advice note will follow the recommendation rather than gate it). External procurement legal counsel workshop held 18 June. Working position is Dynamic Market under PA23. Open Framework remains on the table for further discussion in the Recommendation paper. Dual-route under PA23: <strong>Plan A</strong>,  HomeTest-specific Dynamic Market or Open Framework; <strong>Plan B</strong>,  Digital Primary Care framework leverage; <strong>Plan C</strong>,  commissioner-led direct purchase. SLT alignment at the 22 June Leeds playback.</div><span class="pill pill-open">Open</span><span class="size-pill size-l">L</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Step 3,  Framework administration route</strong>NHSE direct, SBS, CCS or third-party. NHS Commercial preference is to outsource. SBS exploration in early stages. Coupled to the Step 2 vehicle choice; cannot land until Step 2 is settled.</div><span class="pill pill-flight">In flight</span><span class="size-pill size-m">M</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Pathology supplier-mix model decision</strong>NHS-pathology-first with private backstop versus parallel mixed-economy. Affects should-cost, EOI partner selection, framework structure and tariff modelling. A live commercial-workstream decision.</div><span class="pill pill-open">Open</span><span class="size-pill size-l">L</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Supplier framework structure (admission, call-off, exit)</strong>Alpha route in place; steady-state design in flight. GPIT three-layer construct under consideration.</div><span class="pill pill-flight">In flight</span><span class="size-pill size-l">L</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Pricing structure (A9)</strong>Working structure is three-tier: mobilisation fee plus activity plus volume floor, with cost per valid result on the activity tier. <strong>Ceiling-price model</strong> is the drafted commercial approach for the framework or dynamic market: maximum prices set nationally, individual commissioners run their own competitions and price down based on volume. Surfaced as supplier-preferred through the RFI and supplier forums. Flat per-kit was rejected; subscription rejected at strategic level. Final activity-unit position is A9 in the recommendation paper. Substantiation depends on health economist input (currently blocked, see Capability 9). PSA Active Surveillance Monitoring Episode is a separate model.</div><span class="pill pill-flight">In flight</span><span class="size-pill size-l">L</span></div>
@@ -742,11 +753,11 @@
           <div class="stand-row"><div class="stand-row-text"><strong>PME publication and response management</strong>PMEs (Preliminary Market Engagement notices) test the supplier market for interest before formal procurement. Two PMEs are live and 32 organisations of mixed type and size have registered interest. Responses are being collated to inform framework design.</div><span class="pill pill-live">Live</span><span class="size-pill size-m">M</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Single payment platform</strong>Intent: lower entry barriers for smaller suppliers. Working position: direct flows. Centralised invoicing as longer-term option.</div><span class="pill pill-open">Open</span><span class="size-pill size-l">L</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Compelled removal process</strong>How a supplier is removed from the approved list when standards aren&rsquo;t met: notice periods, evidence thresholds, appeals route, transition support for patients with kits or samples in flight at the time of removal. Compelled removal is the enforcement mechanism in the interim shape (see Compelled removal position paper). Operational process not yet defined.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Minimum supplier count</strong>Per region? Per pathway? Coupled to the Step 2 vehicle choice &mdash; a hard supplier cap would rule out a Dynamic Market as the Plan A route.</div><span class="pill pill-open">Open</span><span class="size-pill size-xs">XS</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Minimum supplier count</strong>Per region? Per pathway? Coupled to the Step 2 vehicle choice,  a hard supplier cap would rule out a Dynamic Market as the Plan A route.</div><span class="pill pill-open">Open</span><span class="size-pill size-xs">XS</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Future-condition accommodation</strong>How the framework admits new conditions (beyond HIV, PSA-AS, iron deficiency anaemia) without requiring a fresh procurement each time. Affects supplier admission criteria, framework call-off shape, capability requirements and pricing mechanics.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Critical Path - Future State options paper</strong>Consolidated paper for SLT setting out the procurement vehicle recommendation, framework structure, supplier admission approach, pricing and timeline implications. Target early June 2026 for SLT decision. One-off delivery item from the commercial workstream.</div><span class="pill pill-flight">In flight</span><span class="size-pill size-l">L</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Supplier engagement track during discovery</strong>Supplier Forum 3 ownership now sits with the acute initiative team for the HIV / acute-use-case strand. Commercial workstream remains involved for visibility. Allows a separate market-engagement track to run alongside, focused on the framework as a whole.</div><span class="pill pill-flight">In flight</span><span class="size-pill size-s">S</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Sourcing strategy timeline</strong>Document that locks the procurement route and framework administration decisions, and sets out the activity timeline to April 2027. Draft by mid-June 2026, final by end June. Gating document &mdash; everything downstream of the procurement decision waits on it.</div><span class="pill pill-flight">In flight</span><span class="size-pill size-s">S</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Sourcing strategy timeline</strong>Document that locks the procurement route and framework administration decisions, and sets out the activity timeline to April 2027. Draft by mid-June 2026, final by end June. Gating document,  everything downstream of the procurement decision waits on it.</div><span class="pill pill-flight">In flight</span><span class="size-pill size-s">S</span></div>
         </div>
       </div>
       <div class="detail-section">
@@ -827,19 +838,20 @@
     </summary>
     <div class="cap-detail">
       <div class="detail-section">
-        <div class="detail-h detail-h-stand">Stand it up &mdash; detail</div>
+        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
         <div class="stand-detail">
           <div class="stand-row"><div class="stand-row-text"><strong>Royal Mail / logistics contract</strong>NHSE acts as collective bargaining entity, not a buyer. Fast-lane SLA design needed to guarantee 24-hour service against Tracked 24 failure rates of up to 25%. New 'Health Samples' package category being explored for blood collection devices. Volume discounts apply per shipper, not aggregated. Briefing pack in flight.</div><span class="pill pill-flight">In flight</span><span class="size-pill size-l">L</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Transdermal device postal constraint</strong>New transdermal sample-collection devices (Tasso+, Tap, Impress) do not fit Large Letter internal depth dimensions. Postal return is constrained on any pathway that uses a transdermal device. Affects build-vs-buy decisions on the sample-collection element and the Royal Mail SLA design.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Cold chain logistics</strong>Temperature-controlled handling for tests that require it (capillary blood for PSA, for example): carrier capability, storage at supplier and lab ends, and proof the temperature chain hasn&rsquo;t been broken in transit. Not yet designed.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Kit logistics and supply chain</strong>Physical movement of test kits from supplier to patient, and samples from patient back to the lab. Live for HIV via current suppliers and Royal Mail carriers. Has to extend cleanly to PSA-AS and onward configurations.</div><span class="pill pill-live">Live</span><span class="size-pill size-m">M</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Centralised kit procurement viability</strong>Whether centralised procurement (NHS taking on stock holding and management) is viable or contradicts the platform-orchestrator model.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Acute partner selection for PSA</strong>Preferred PSA acute partner confirmed via EOI assessment (highest scoring respondent, 92.75/100; two further trusts held as reserves at 88.0 and 77.0). MOU drafted with sign-off meeting 8 June 2026; mobilisation from 1 June 2026 under MOU as Alpha/Beta interim contracting; transitions into the formal framework instrument at BAU. <strong style="display:inline">MoU Clause 7</strong> binds a commercial-arm carve-out: the partner&apos;s direct-to-consumer commercial testing service is out of scope of the Project, operational/financial/governance separation maintained, written conflict-of-interest declaration required at mobilisation. The preferred partner has acute self-sample pathways, high-sensitivity PSA analysers and an NIHR centre.</div><span class="pill pill-flight">In flight</span><span class="size-pill size-m">M</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Four pathology supplier phenotypes</strong>NHS pathology networks (14), NHS commercial partnerships (51/49 ventures), specialist non-NHS labs, and all-inclusive commercial suppliers. Positioning per framework in progress.</div><span class="pill pill-flight">In flight</span><span class="size-pill size-s">S</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Efficio Consulting engagement</strong>External supply chain advisory engaged 20 April 2026 to support the supply chain architecture design. Working group established. Time-bounded engagement &mdash; not a permanent supplier of the BAU team.</div><span class="pill pill-flight">In flight</span><span class="size-pill size-s">S</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Acute partner selection for PSA</strong>Preferred PSA acute partner confirmed via EOI assessment (highest scoring respondent, 92.75/100; two further trusts held as reserves at 88.0 and 77.0). Selection endorsed by Programme Board 9 June 2026.</div><span class="pill pill-agreed">Now landed</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Acute partner mobilisation for PSA</strong>MOU drafted with sign-off meeting 8 June 2026; mobilisation from 1 June 2026 under MOU as Alpha/Beta interim contracting; transitions into the formal framework instrument at BAU. <strong style="display:inline">MoU Clause 7</strong> binds a commercial-arm carve-out: the partner&apos;s direct-to-consumer commercial testing service is out of scope of the Project, operational/financial/governance separation maintained, written conflict-of-interest declaration required at mobilisation. The preferred partner has acute self-sample pathways, high-sensitivity PSA analysers and an NIHR centre.</div><span class="pill pill-flight">In flight</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Four pathology supplier phenotypes</strong>NHS pathology networks (14), NHS commercial partnerships (51/49 ventures), specialist non-NHS labs, and all-inclusive commercial suppliers. Positioning per framework in progress.</div><span class="pill pill-agreed">Now landed</span><span class="size-pill size-s">S</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Efficio Consulting engagement</strong>External supply chain advisory previously engaged to support the supply chain architecture design. <strong>Current status TBC</strong>,  no primary-source trace in the HomeTest DPSP folders confirms the engagement is active. Time-bounded if continuing; not a permanent supplier of the BAU team.</div><span class="pill pill-open">Open</span><span class="size-pill size-s">S</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Supply chain architecture</strong>Notify capability assessment complete 29 April 2026. Likely direction: Notify in for comms, parked for fulfilment and labs. Cost-profile analysis across the different routes depends on health economist input (currently blocked, see Capability 9).</div><span class="pill pill-flight">In flight</span><span class="size-pill size-l">L</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Notify scope clarification</strong>Notify Capability Strawman v2 issued 14 May 2026. Response sought on whether Notify plays in physical fulfilment, kit dispatch, return logistics and sample handling. Mid-June reply targeted. Notify scope under live review until reply.</div><span class="pill pill-flight">In flight</span><span class="size-pill size-m">M</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Capacity ceilings and overflow</strong>Local commissioning budgets cap volumes. No overflow mechanism. Working position: paying for excess is cheaper than engineering caps.</div><span class="pill pill-flight">In flight</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Capacity ceilings and overflow</strong>Local commissioning budgets cap volumes. No overflow mechanism. Working position: paying for excess is cheaper than engineering caps. Central backstop not yet designed.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Parallel supply-chain framework</strong>Standing risk. NHS Supply Chain POCT framework adding home testing. Parallel framework fragments supplier market. Mitigation: positioning, joint communications, aligned commercial story.</div><span class="pill pill-risk">Risk</span><span class="size-pill size-l">L</span></div>
         </div>
       </div>
@@ -919,13 +931,13 @@
     </summary>
     <div class="cap-detail">
       <div class="detail-section">
-        <div class="detail-h detail-h-stand">Stand it up &mdash; detail</div>
+        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
         <div class="stand-detail">
           <div class="stand-row"><div class="stand-row-text"><strong>Integration spine operation (NHS App, NHS Login, Notify, FHIR routing)</strong>The integration backbone that connects HomeTest to national NHS services: NHS App (patient surface), NHS Login (identity), NHS Notify (comms), FHIR (clinical data routing to commissioners and labs). Live for HIV; has to be maintained and extended for every new configuration.</div><span class="pill pill-live">Live</span><span class="size-pill size-l">L</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>FHIR API specification and supplier integration</strong>FHIR is the healthcare data interoperability standard suppliers use to integrate with the platform spine. The specification is being developed in the open with suppliers contributing, so they can build to it as it evolves.</div><span class="pill pill-flight">In flight</span><span class="size-pill size-m">M</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Live HIV configuration operation</strong>The first live configuration of HomeTest: HIV self-testing kits ordered via NHS App, fulfilled by partner suppliers, with results returning into NHS records. Currently in Private Beta. Has to be sustained as new configurations come on alongside.</div><span class="pill pill-live">Live</span><span class="size-pill size-m">M</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>PSA-AS configuration go-live</strong>The PSA Active Surveillance configuration (Pathway 2, clinician-initiated, for low-grade prostate cancer monitoring). Pre-go-live. Discovery output has to hand over cleanly into live service operations at go-live, with the platform extended and the acute-trust partner integrated.</div><span class="pill pill-flight">In flight</span><span class="size-pill size-l">L</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Pathology LIMS integration</strong>LIMS (Laboratory Information Management System) is the software pathology labs use to manage samples and results. Integrating HomeTest with each lab&rsquo;s LIMS so results flow directly into NHS systems without manual rekeying. Identified gap; engagement approach being worked.</div><span class="pill pill-flight">In flight</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>PSA-AS configuration design (Alpha)</strong>The PSA Active Surveillance configuration (Pathway 2, clinician-initiated) is at Alpha discovery stage. Pre-treatment Active Surveillance cohort per NICE NG131 is the in-scope cohort. Configuration design has to land before build / go-live. Discovery output has to hand over cleanly into live service operations at go-live.</div><span class="pill pill-design">In design</span><span class="size-pill size-l">L</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Lab result integration via the supplier</strong>Lab results flow into NHS systems through the framework supplier&rsquo;s integration (FHIR API), not via a direct platform-to-LIMS integration. The LIMS that pathology labs use to manage samples and results sits behind the supplier interface. Direct platform-to-LIMS integration is not part of the current architecture.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>NHS Notify integration for patient notifications</strong>Notify (the national NHS messaging service) handles all patient digital communications for HomeTest: booking confirmations, dispatch notifications, result-ready prompts. Integration in flight; the wider scope question (whether Notify also plays in physical fulfilment) is under live review.</div><span class="pill pill-flight">In flight</span><span class="size-pill size-m">M</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>SLSP and cyber security</strong>SLSP (Service Level Safety Position) is part of the clinical safety case suite. Together with cyber security sign-off, both have to be in place before live deployment. Sign-off pending on both; both cross-reference the DPIA.</div><span class="pill pill-flight">In flight</span><span class="size-pill size-m">M</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Result routing and clinical handover</strong>Varies by pathway (patient-direct, clinician-first, or hybrid). Pattern has to scale across configurations.</div><span class="pill pill-flight">In flight</span><span class="size-pill size-m">M</span></div>
@@ -1008,7 +1020,7 @@
     </summary>
     <div class="cap-detail">
       <div class="detail-section">
-        <div class="detail-h detail-h-stand">Stand it up &mdash; detail</div>
+        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
         <div class="stand-detail">
           <div class="stand-row"><div class="stand-row-text"><strong>DevOps capability (ongoing iteration)</strong>The function that keeps the platform changing safely: deploys new features and configurations into live, manages releases, runs the observability stack, handles technical incidents. Framework route (in-house, contracted, hybrid) and lead both undecided.</div><span class="pill pill-open">Open</span><span class="size-pill size-xl">XL</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Permanent DevOps function defined</strong>Currently held inside the programme delivery team. Has to be defined as a standing function with its own sizing and supplier model.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
@@ -1090,7 +1102,7 @@
     </summary>
     <div class="cap-detail">
       <div class="detail-section">
-        <div class="detail-h detail-h-stand">Stand it up &mdash; detail</div>
+        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
         <div class="stand-detail">
           <div class="stand-row"><div class="stand-row-text"><strong>BAU operations team (sizing, building, running)</strong>The standing team that runs the live service every day once the platform is in steady state. Has to be sized, scoped (shifts, supplier liaison shape, capacity, escalation routes) and stood up before Year 2 with a five-month lead time.</div><span class="pill pill-open">Open</span><span class="size-pill size-xl">XL</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Incident management and cross-platform support</strong>How operational incidents are triaged, who owns resolution, how clinical and IG incidents escalate, how cross-supplier issues are coordinated when multiple suppliers and labs are in the same incident chain. Steady-state mechanics not defined.</div><span class="pill pill-open">Open</span><span class="size-pill size-s">S</span></div>
@@ -1180,9 +1192,9 @@
     </summary>
     <div class="cap-detail">
       <div class="detail-section">
-        <div class="detail-h detail-h-stand">Stand it up &mdash; detail</div>
+        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
         <div class="stand-detail">
-          <div class="stand-row"><div class="stand-row-text"><strong>Health economist onboarding</strong>Simon onboarded 2 June 2026 per the State of Play. Plan and capacity split pending. First task is as-is vs to-be economics (venous vs capillary). Role is two days a week. WP3 deliverables still blocked pending the plan landing &mdash; pathway economics, unit economics, scenarios and market sizing all wait. Sections of the commercial recommendation report carry the caveat in the meantime. Constraint has shifted from approval governance to engagement and plan delivery.</div><span class="pill pill-flight">In flight</span><span class="size-pill size-s">S</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Health economist onboarding</strong>Simon onboarded 2 June 2026 per the State of Play. Plan and capacity split pending. First task is as-is vs to-be economics (venous vs capillary). Role is two days a week. WP3 deliverables still blocked pending the plan landing,  pathway economics, unit economics, scenarios and market sizing all wait. Sections of the commercial recommendation report carry the caveat in the meantime. Constraint has shifted from approval governance to engagement and plan delivery.</div><span class="pill pill-flight">In flight</span><span class="size-pill size-s">S</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>KPI framework definition</strong>Not yet designed. Prior DTx experience showed licence-based KPIs failed because they didn't track outcomes. KPI framework has to be outcome-led.</div><span class="pill pill-open">Open</span><span class="size-pill size-l">L</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>MI / data flow integrity (spine-level reporting)</strong>Operational data flowing reliably from the platform spine into reporting and analytics: volumes, exceptions, performance against configuration KPIs, supplier performance. Underpins every reporting commitment to commissioners and SLT. Not yet sized or owned.</div><span class="pill pill-open">Open</span><span class="size-pill size-xl">XL</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Outcome data capture and pathway-level economic evaluation</strong>Capturing clinical and pathway-level outcomes downstream of testing so the economic case for HomeTest can be evidenced. Health economist contract active from 2 June 2026; plan landing is now the constraint. Without the plan and the as-is vs to-be analysis, the value case for adoption can&rsquo;t yet be substantiated.</div><span class="pill pill-flight">In flight</span><span class="size-pill size-l">L</span></div>
@@ -1241,7 +1253,7 @@
             <li>Sales narrative at trust and regional level</li>
             <li>Early-adopter advocacy mechanism designed</li>
             <li>Prospective Trust engagement programme (beyond the confirmed preferred partner)</li>
-            <li>Inside-the-tent advocate programme &mdash; candidate exemplar Trusts being scoped (GSTT identified as a near-term candidate)</li>
+            <li>Inside-the-tent advocate programme,  candidate exemplar Trusts being scoped (GSTT identified as a near-term candidate)</li>
             <li>Segmented strategic messaging per audience</li>
             <li>National rollout discipline defined</li>
             <li>Partnerships function resourced for steady-state load</li>
@@ -1272,7 +1284,7 @@
     </summary>
     <div class="cap-detail">
       <div class="detail-section">
-        <div class="detail-h detail-h-stand">Stand it up &mdash; detail</div>
+        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
         <div class="stand-detail">
           <div class="stand-row"><div class="stand-row-text"><strong>Commissioner pitch / brochure</strong>The authored artefact commissioners use to understand HomeTest and decide to commission. Carries the sales narrative, commercial mechanics, clinical safety position, IG position and evidence base in a single document. Highest-priority delivery item in the partnerships workstream.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Hearts and minds / sales narrative at trust and regional level</strong>Below-the-headline sales work. The conversation that has to happen at every trust and ICB. A strawman Stakeholder Engagement Plan has been authored but has not yet been discussed or interrogated. The intention is that this plan becomes a major part of how the hearts-and-minds work is shaped.</div><span class="pill pill-open">Open</span><span class="size-pill size-xl">XL</span></div>
@@ -1281,7 +1293,7 @@
           <div class="stand-row"><div class="stand-row-text"><strong>Partnerships workstream resourcing</strong>The Partnerships workstream currently carries hearts-and-minds work, the early-adopter programme, regional engagement, commissioner-pitch authoring and the Stakeholder Engagement Plan. Under-resourced relative to load; needs uplift.</div><span class="pill pill-open">Open</span><span class="size-pill size-xs">XS</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>National rollout discipline</strong>Architecture answers what the model is composed of. It does not yet answer how the model gets rolled out so LAs, ICBs and Trusts adopt it consistently.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Segmented strategic messaging</strong>Different value proposition per audience (clinicians, commissioners, suppliers, patients, national programmes). Not yet developed.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Commissioner engagement plan</strong>Discovery priorities confirmed: commissioner first. Plan being prioritised. Product team to be added to stakeholder engagement scope.</div><span class="pill pill-flight">In flight</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Commissioner engagement plan</strong>Alpha LA commissioner engagement is settled (4 LAs selected Dec 2025). Beta and beyond commissioner plan exists as a strawman within the operating-model engagement plan; no current standalone Commissioner Engagement Plan artefact in primary sources post-March 2026. Product team to be added to stakeholder engagement scope.</div><span class="pill pill-design">In design</span><span class="size-pill size-m">M</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Plymouth/Devon NHS partnership visit completed</strong>On-site visit at the preferred acute partner confirming they have acute self-sample pathways, high-sensitivity PSA analysers, and an NIHR (National Institute for Health Research) centre. Now confirmed as preferred PSA acute partner.</div><span class="pill pill-live">Live</span><span class="size-pill size-s">S</span></div>
         </div>
       </div>
@@ -1358,7 +1370,7 @@
     </summary>
     <div class="cap-detail">
       <div class="detail-section">
-        <div class="detail-h detail-h-stand">Stand it up &mdash; detail</div>
+        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
         <div class="stand-detail">
           <div class="stand-row"><div class="stand-row-text"><strong>SRO accountability</strong>SRO (Senior Responsible Officer) is the senior accountable owner for the HomeTest programme. Per the 9 June 2026 Programme Board, Rachel returns from maternity leave mid-August 2026. Interim director-level oversight is being provided by Polly Bishop in the meantime. Transition planning to the post-maternity arrangements is in flight.</div><span class="pill pill-live">Live</span><span class="size-pill size-xs">XS</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>National Assurance Board composition and authority</strong>Currently a name in the architecture, not a constituted body. Who sits on it, who owns final authority, how disputes are arbitrated, appeals process.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
@@ -1434,7 +1446,7 @@
     </summary>
     <div class="cap-detail">
       <div class="detail-section">
-        <div class="detail-h detail-h-stand">Stand it up &mdash; detail</div>
+        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
         <div class="stand-detail">
           <div class="stand-row"><div class="stand-row-text"><strong>PMS plan per kit type and configuration</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-s">S</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Adverse event reporting routes</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-s">S</span></div>
@@ -1444,7 +1456,7 @@
         </div>
       </div>
       <div class="detail-section">
-        <div class="detail-h detail-h-bau">In BAU &mdash; detail</div>
+        <div class="detail-h detail-h-bau">In BAU,  detail</div>
         <div class="bau-detail">
           <p>Post-market surveillance runs for the life of every HomeTest configuration. It is distinct from the internal Clinical Safety capability (Cap-2) which manages the hazard log and CATR. PMS is outward-facing: regulatory signal detection on the device side (MHRA reporting via Yellow Card for adverse events on kits), lab quality monitoring (UKAS non-conformance tracking), and ongoing data feedback into configuration design. Without a named PMS function the platform cannot honestly claim compliance with medical device obligations beyond go-live.</p>
         </div>
@@ -1492,7 +1504,7 @@
     </summary>
     <div class="cap-detail">
       <div class="detail-section">
-        <div class="detail-h detail-h-stand">Stand it up &mdash; detail</div>
+        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
         <div class="stand-detail">
           <div class="stand-row"><div class="stand-row-text"><strong>Pathway mapping per configuration</strong></div><span class="pill pill-flight">In flight</span><span class="size-pill size-m">M</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Initiation workflow design with clinical leads</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-l">L</span></div>
@@ -1502,7 +1514,7 @@
         </div>
       </div>
       <div class="detail-section">
-        <div class="detail-h detail-h-bau">In BAU &mdash; detail</div>
+        <div class="detail-h detail-h-bau">In BAU,  detail</div>
         <div class="bau-detail">
           <p>Pathway integration is where a HomeTest configuration earns its place in an actual care pathway. Without it, the platform could be technically present but pathway-orphaned: the test runs but nobody owns how it fits into the surrounding clinical journey. The function sits between national admission (foundation, overlay design) and local activation (commissioner buying, clinical adoption). For HIV the work runs with the national sexual health programme. For PSA-AS it runs with acute trust pathway teams. For iron deficiency anaemia it runs with primary-care anaemia pathway leads. The capability also maintains the integration playbook so each new ICB or trust doesn&apos;t reinvent the wheel.</p>
         </div>
@@ -1550,17 +1562,17 @@
     </summary>
     <div class="cap-detail">
       <div class="detail-section">
-        <div class="detail-h detail-h-stand">Stand it up &mdash; detail</div>
+        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
         <div class="stand-detail">
           <div class="stand-row"><div class="stand-row-text"><strong>Regulatory-standards mapping per kit class</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-m">M</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Clinical efficacy assessment criteria</strong></div><span class="pill pill-flight">In flight</span><span class="size-pill size-l">L</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Clinical efficacy assessment criteria</strong>A 3-stage Test Prioritisation Framework (clinical, feasibility, value) is in design as the closest evidenced artefact. No standalone clinical-efficacy criteria document exists in primary sources.</div><span class="pill pill-design">In design</span><span class="size-pill size-l">L</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Independent assurance review cadence</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-s">S</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Assurance portability evidence package</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-m">M</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>UKAS interface</strong></div><span class="pill pill-flight">In flight</span><span class="size-pill size-s">S</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>UKAS interface</strong>No primary-source evidence of UKAS-facing work in the DPSP HomeTest folders. <strong>SLT to confirm position</strong> on whether UKAS accreditation forms part of the assurance envelope.</div><span class="pill pill-open">Open</span><span class="size-pill size-s">S</span></div>
         </div>
       </div>
       <div class="detail-section">
-        <div class="detail-h detail-h-bau">In BAU &mdash; detail</div>
+        <div class="detail-h detail-h-bau">In BAU,  detail</div>
         <div class="bau-detail">
           <p>For HomeTest, Independent Assurance covers the device side (kit regulatory compliance under MHRA medical device regulation), the lab side (UKAS / ISO 15189 compliance), and the configuration as a whole. Separate from Clinical Safety (Cap-2, internal hazard log) and PMS (Cap-12, regulatory signal surveillance). This function is upstream: the evidence package that proves assurance is portable across configurations and across ICBs without reassuring each time.</p>
         </div>
@@ -1609,17 +1621,17 @@
     </summary>
     <div class="cap-detail">
       <div class="detail-section">
-        <div class="detail-h detail-h-stand">Stand it up &mdash; detail</div>
+        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
         <div class="stand-detail">
           <div class="stand-row"><div class="stand-row-text"><strong>Contract management playbook</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-m">M</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Variation control process</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-s">S</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Pricing review and renewal triggers</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-s">S</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Per-completed evidence audit routine</strong></div><span class="pill pill-flight">In flight</span><span class="size-pill size-m">M</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Supplier performance monitoring</strong></div><span class="pill pill-flight">In flight</span><span class="size-pill size-s">S</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Per-completed evidence audit routine</strong>No primary-source artefact for a per-completed-test evidence audit routine. The existing Beta Contracting Checklist references data transparency but no per-completed audit mechanism is in train.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Supplier performance monitoring</strong>KPI design articulated in the operating model thinking pack but live performance monitoring not yet evidenced in primary sources.</div><span class="pill pill-open">Open</span><span class="size-pill size-s">S</span></div>
         </div>
       </div>
       <div class="detail-section">
-        <div class="detail-h detail-h-bau">In BAU &mdash; detail</div>
+        <div class="detail-h detail-h-bau">In BAU,  detail</div>
         <div class="bau-detail">
           <p>For HomeTest the Contract Management function lives every framework call-off across its lifecycle. Variations (kit re-specification, volume increases, configuration changes), pricing reviews against framework rate cards, per-completed evidence audit per payment cycle, and supplier performance against contract metrics. Sits downstream of the Commercial / Framework function (Cap-4) which is about the architecture; this is about each individual agreement in life.</p>
         </div>
@@ -1645,7 +1657,6 @@
             <li>Real-world data capture standards across kit + lab + result-handling</li>
             <li>Outcome attribution methodology at pathway level</li>
             <li>Best-practice tariff evidence pipeline for HM Treasury / NHSE</li>
-            <li>Coordination with Cap-9 Measure</li>
           </ul>
         </div>
         <div>
@@ -1667,17 +1678,16 @@
     </summary>
     <div class="cap-detail">
       <div class="detail-section">
-        <div class="detail-h detail-h-stand">Stand it up &mdash; detail</div>
+        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
         <div class="stand-detail">
           <div class="stand-row"><div class="stand-row-text"><strong>Evidence generation framework per condition</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-l">L</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Real-world data capture standards</strong></div><span class="pill pill-flight">In flight</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Real-world data capture standards</strong>No active standards-setting workstream found in primary sources. Outcome-metrics work is at co-design stage and dated.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Outcome attribution methodology</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-l">L</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Best-practice tariff evidence pipeline</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-m">M</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Coordination with Cap-9 Measure</strong></div><span class="pill pill-flight">In flight</span><span class="size-pill size-s">S</span></div>
         </div>
       </div>
       <div class="detail-section">
-        <div class="detail-h detail-h-bau">In BAU &mdash; detail</div>
+        <div class="detail-h detail-h-bau">In BAU,  detail</div>
         <div class="bau-detail">
           <p>For HomeTest, Ongoing Evidence Generation is the upstream pipeline that feeds the case for each configuration's continued admission. Test-pattern outcomes (HIV linkage to care, PSA active surveillance benefits, iron deficiency anaemia trajectory at GP-init), real-world data quality monitoring, and the evidence pipeline for best-practice tariff conversations. This function is distinct from Measure (Cap-9) which is operational MI, from PMS (Cap-12) which is regulatory safety signal, and from Independent Assurance (Cap-14) which is the assurance review. This is the evidence pipeline that feeds all three.</p>
         </div>
@@ -1838,7 +1848,7 @@
 
   <div class="foot">
     Working strawman. Sizing bands are order-of-magnitude only, designed to be challenged.<br/>
-    Working order-of-magnitude range: approximately 28&ndash;46 FTE for steady-state BAU at two to five configurations, depending on architectural choices and the insourced versus outsourced operating shape. These remain working assumptions, not committed headcount &mdash; see the health warning at the top of this page.
+    Working order-of-magnitude range: approximately 28&ndash;46 FTE for steady-state BAU at two to five configurations, depending on architectural choices and the insourced versus outsourced operating shape. These remain working assumptions, not committed headcount,  see the health warning at the top of this page.
   </div>
 
 </div>

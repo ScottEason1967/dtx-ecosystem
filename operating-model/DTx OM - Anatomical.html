@@ -608,7 +608,7 @@
      <span style="font-size:11px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:#fff;">HealthSync-specific</span>
      <img src="../assets/nhs-healthsync.svg" alt="NHS HealthSync" style="height:14px;width:auto;background:#fff;padding:3px 6px;border-radius:4px;">
     </div>
-    <div style="font-size:11.5px;color:rgba(255,255,255,0.92);line-height:1.55;">The consumer-platform interfaces and PHR aggregation layer that let smartwatch and consumer-device data flow into the NHS App as a clinical signal &mdash; the architecture-side counterpart to Errol&apos;s watch.</div>
+    <div style="font-size:11.5px;color:rgba(255,255,255,0.92);line-height:1.55;">The consumer-platform interfaces and PHR aggregation layer that let smartwatch and consumer-device data flow into the NHS App as a clinical signal,  the architecture-side counterpart to Errol&apos;s watch.</div>
     <div style="display:flex;flex-wrap:wrap;gap:6px;">
      <span style="display:inline-block;font-size:11.5px;font-weight:700;color:#0a3850;background:rgba(255,255,255,0.95);border:1px solid rgba(255,255,255,0.95);padding:6px 11px;border-radius:6px;line-height:1.3;letter-spacing:0.1px;">PHR aggregation layer</span>
      <span style="display:inline-block;font-size:11.5px;font-weight:700;color:#0a3850;background:rgba(255,255,255,0.95);border:1px solid rgba(255,255,255,0.95);padding:6px 11px;border-radius:6px;line-height:1.3;letter-spacing:0.1px;">Apple HealthKit interface</span>
@@ -677,7 +677,7 @@
  @media (max-width:640px){ .sw-chain { grid-template-columns:1fr; } }
 </style>
 
-<!-- Service Wrapper anatomy panel — decomposition of the Foundation Service Wrapper item -->
+<!-- Service Wrapper anatomy panel,  decomposition of the Foundation Service Wrapper item -->
 <div class="sw-anatomy">
   <div class="sw-header">
     <span class="sw-eyebrow">Service Wrapper anatomy</span>
@@ -705,7 +705,7 @@
           <span class="sw-card-text"><span class="sw-card-title">Login &amp; onboard</span><span class="sw-card-strap">Identity verification, consent, eligibility check.</span></span>
           <span class="sw-card-toggle"></span>
         </summary>
-        <div class="sw-card-body">NHS Login carries identity. Consent is captured once per patient per product. Eligibility check against the configuration&apos;s clinical criteria. A patient who has logged in once for HomeTest doesn&apos;t re-onboard for HealthStore or HealthSync &mdash; the &ldquo;onboard once&rdquo; claim of the operating model depends on this layer holding.</div>
+        <div class="sw-card-body">NHS Login carries identity. Consent is captured once per patient per product. Eligibility check against the configuration&apos;s clinical criteria. A patient who has logged in once for HomeTest doesn&apos;t re-onboard for HealthStore or HealthSync,  the &ldquo;onboard once&rdquo; claim of the operating model depends on this layer holding.</div>
       </details>
       <details class="sw-card">
         <summary>
@@ -713,7 +713,7 @@
           <span class="sw-card-text"><span class="sw-card-title">In-life Help &amp; Support</span><span class="sw-card-strap">What happens when the patient needs help mid-journey.</span></span>
           <span class="sw-card-toggle"></span>
         </summary>
-        <div class="sw-card-body">Kit not arrived. Result confusing. App not working. Prescription unclear. Multi-modal &mdash; phone, NHS App chat, signposting to local pathway, escalation routes. The wrapper carries this so the patient doesn&apos;t bounce between supplier helplines and NHS routes depending on which product they&apos;re using. Critical equity-of-access function.</div>
+        <div class="sw-card-body">Kit not arrived. Result confusing. App not working. Prescription unclear. Multi-modal,  phone, NHS App chat, signposting to local pathway, escalation routes. The wrapper carries this so the patient doesn&apos;t bounce between supplier helplines and NHS routes depending on which product they&apos;re using. Critical equity-of-access function.</div>
       </details>
       <details class="sw-card">
         <summary>
@@ -729,7 +729,7 @@
           <span class="sw-card-text"><span class="sw-card-title">Signposting / Offboarding</span><span class="sw-card-strap">Onward routing and clean exit.</span></span>
           <span class="sw-card-toggle"></span>
         </summary>
-        <div class="sw-card-body">When the journey reaches a natural end (test complete, course finished, condition resolved) or when the patient needs to be pointed elsewhere (onward referral, return to GP, escalation to urgent care). Defined exit pathways and onward routing into the rest of the NHS &mdash; not a dead end at the edge of the digital service.</div>
+        <div class="sw-card-body">When the journey reaches a natural end (test complete, course finished, condition resolved) or when the patient needs to be pointed elsewhere (onward referral, return to GP, escalation to urgent care). Defined exit pathways and onward routing into the rest of the NHS,  not a dead end at the edge of the digital service.</div>
       </details>
       <details class="sw-card">
         <summary>
@@ -754,7 +754,7 @@
           <span class="sw-card-text"><span class="sw-card-title">Local use support</span><span class="sw-card-strap">Face-to-face support for patients who can&apos;t or won&apos;t self-serve digitally.</span></span>
           <span class="sw-card-toggle"></span>
         </summary>
-        <div class="sw-card-body">Community health workers, pharmacy support, NHS Online phone help. Critical for equity-of-access &mdash; the wrapper assumes not every patient is digital-first. Particularly load-bearing for HomeTest where unsafe-address, digital-exclusion and motivation patterns are explicit operating constraints.</div>
+        <div class="sw-card-body">Community health workers, pharmacy support, NHS Online phone help. Critical for equity-of-access,  the wrapper assumes not every patient is digital-first. Particularly load-bearing for HomeTest where unsafe-address, digital-exclusion and motivation patterns are explicit operating constraints.</div>
       </details>
       <details class="sw-card">
         <summary>
@@ -770,7 +770,7 @@
           <span class="sw-card-text"><span class="sw-card-title">PI / CI escalation model</span><span class="sw-card-strap">Patient-initiated and clinician-initiated escalation paths.</span></span>
           <span class="sw-card-toggle"></span>
         </summary>
-        <div class="sw-card-body">The patient says &ldquo;something&apos;s wrong&rdquo; (PI) or the clinician says &ldquo;this needs attention now&rdquo; (CI). Defined routing from either side into the clinical pathway, with clear handover protocols. A safety-critical construct &mdash; without it, signals get lost between the digital service and the clinical responders.</div>
+        <div class="sw-card-body">The patient says &ldquo;something&apos;s wrong&rdquo; (PI) or the clinician says &ldquo;this needs attention now&rdquo; (CI). Defined routing from either side into the clinical pathway, with clear handover protocols. A safety-critical construct,  without it, signals get lost between the digital service and the clinical responders.</div>
       </details>
       <details class="sw-card">
         <summary>
@@ -885,6 +885,19 @@
   <span style="display:inline-block;margin-left:10px;"><strong>Collection-first as alternative to delivery-first.</strong> Today HomeTest assumes delivery-first (kit posted to patient, patient returns by post). A collection-first pattern (pharmacy or community-hub pickup) removes the 5-7 day delivery wait, addresses unsafe-address barriers and reduces motivation decay between order and action. Signal that this pattern is arriving from outside the framework: another NHS programme has independently inserted &ldquo;collect from pharmacy&rdquo; into journeys lifted from HomeTest screens. Open question is whether to formalise collection-first as a named Supply chain pattern alongside All-inclusive at L3, selectable per configuration.</span>
  </div>
 
+
+ <div style="margin:18px 14px 8px;padding:10px 14px;background:#F8FAFC;border:1px solid #E5E9F0;border-radius:6px;font-size:11px;color:#4C6272;line-height:1.5;">
+  <strong style="color:#212B32;letter-spacing:0.3px;text-transform:uppercase;font-size:10px;">How to read the colour code on this page</strong><br>
+  <span style="display:inline-block;width:10px;height:10px;background:#FBEAF2;border:1px solid #E8D2DC;vertical-align:middle;margin-right:5px;"></span>Pink / red,  <strong>open decision awaiting resolution</strong>.
+  <span style="display:inline-block;width:10px;height:10px;background:#FFF8E6;border-left:3px solid #C9A227;vertical-align:middle;margin:0 5px 0 14px;"></span>Amber,  <strong>physical constraint / fixed reality</strong> that shapes design.
+  <span style="display:inline-block;width:10px;height:10px;background:#F4F8FC;border-left:3px solid #005EB8;vertical-align:middle;margin:0 5px 0 14px;"></span>Blue,  <strong>settled framing</strong> or strategic observation.
+  <span style="display:inline-block;width:10px;height:10px;background:#fff;border:1px solid #E5E9F0;vertical-align:middle;margin:0 5px 0 14px;"></span>Grey,  <strong>clarifying note</strong>.
+ </div>
+
+ <div style="margin:20px 0;padding:16px 20px;background:#FBEAF2;border:1px solid #E8D2DC;border-radius:8px;font-size:13px;color:#4C6272;line-height:1.6;">
+  <div style="font-size:10.5px;font-weight:800;letter-spacing:1.2px;color:#212B32;text-transform:uppercase;margin-bottom:6px;">Open Q for SLT</div>
+  <strong>MHRA non-SaMD ruling: downstream implications.</strong> 8 June 2026 ruling settled the regulatory classification as non-SaMD. SLT confirmation needed on what changes in the operating model now the classification is settled, particularly on assurance scope and supplier onboarding criteria. <em>Decision sits with SLT with Clinical Safety Lead and Commercial Lead.</em> <a href="DTx OM - Status.html" style="color:#005EB8;font-weight:700;text-decoration:none;">See on Status &rarr;</a>
+ </div>
  <div style="margin:14px 14px 0;padding:12px 16px;background:#FBEAF2;border:1px solid #E8D2DC;border-radius:8px;font-size:11.5px;color:#4C6272;line-height:1.55;">
  <strong id="not-positioned" style="color:#212B32;display:block;margin-bottom:4px;font-size:11px;letter-spacing:0.5px;text-transform:uppercase;">What&apos;s not yet positioned</strong>
  Scope items that have surfaced through review but haven&apos;t been placed in the model yet. Each needs an SLT or sponsor decision before it gets a home in the foundation, overlays, or patterns.
@@ -894,6 +907,7 @@
  <li><strong>Mobilisation and &ldquo;hearts and minds&rdquo;.</strong> Transformation requires people to change all of these: workflows, clinical assumptions, operating patterns, commissioning behaviours, patient interaction models, risk tolerance, even professional identity. Not soft work; core strategic infrastructure. The platform succeeds only if clinicians trust it, pathology networks back it, commissioners see value, suppliers believe the market is viable, patients feel safe, national programmes advocate for it, and Trusts see measurable operational benefit. <em>Currently flagged but not owned in the model.</em></li>
  <li><strong>Clinician workflow integration.</strong> Acute-initiated and GP-initiated patterns require ordering and result handling inside the clinician&apos;s existing EPR or clinical system, not a second screen. The genomics service learned this the hard way: a separate ordering UI added integration complexity and was unpopular with clinicians. Single integration into the clinical workflow is a hard design constraint for acute-init (Mark&apos;s PSA-AS journey) and GP-init (Layla&apos;s iron deficiency anaemia journey). The model accommodates it through the result-handling overlay, but the integration burden on the supplier and the platform is real and not yet sized.</li>
  <li><strong>Segmented strategic messaging.</strong> Different value proposition per audience (clinicians, commissioners, suppliers, patients, national programmes), not a single narrative for all. The model has not yet developed audience-specific articulation. <em>Owner: TBC.</em></li>
+ <li><strong>Build vs buy decisions per overlay.</strong> Each of the eight overlays needs to resolve into platform-build (centre builds once, every commissioner inherits), buy-from-market (suppliers compete to deliver) or local-system responsibility (commissioner or Trust owns). Initiation pattern, result handling and IG lean platform-build. Supply chain, commercial structure and tariff treatment lean buy-from-market. Sign-off route and accreditation bar sit with local systems or accrediting bodies. The build-buy-borrow decision has not been formally taken for every overlay. Required before platform requirements stabilise. <em>Decision: SLT. Owner: SRO with Platform Lead and Commercial Lead.</em></li>
  </ul>
  <div style="margin-top:14px;padding-top:12px;border-top:1px solid rgba(0,0,0,0.08);font-size:12px;"><a href="DTx OM - Status.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;letter-spacing:0.3px;">See all open items across the model &rarr;</a></div>
  </div>
@@ -981,14 +995,14 @@
  </div>
  <div style="margin-top:14px;padding:12px 14px;background:#FFF9EC;border:1px solid #F0DCA0;border-left:4px solid #C9A227;border-radius:0 6px 6px 0;font-size:11.5px;color:#4C6272;line-height:1.6;">
   <strong style="color:#9A6700;text-transform:uppercase;letter-spacing:1.2px;font-size:10.5px;">PSA cohort refinement</strong>
-  <span style="display:inline-block;margin-left:10px;">The PSA Active Surveillance configuration is refining under clinical input. <strong>Radiotherapy cohort</strong> is the primary fit &mdash; PSA increments post-radiotherapy carry the diagnostic resolution needed for surveillance. <strong>Post-surgical cohort de-prioritised</strong> &mdash; increments too small to be diagnostically useful. <strong>Third cohort identified</strong>: men referred to urology with elevated PSA but no cancer diagnosis, currently returning to primary care without a structured monitoring obligation. This third cohort is a pathway-gap question and may warrant a separate configuration column when scoped.</span>
+  <span style="display:inline-block;margin-left:10px;">The PSA Active Surveillance configuration is refining under clinical input. <strong>Radiotherapy cohort</strong> is the primary fit,  PSA increments post-radiotherapy carry the diagnostic resolution needed for surveillance. <strong>Post-surgical cohort de-prioritised</strong>,  increments too small to be diagnostically useful. <strong>Third cohort identified</strong>: men referred to urology with elevated PSA but no cancer diagnosis, currently returning to primary care without a structured monitoring obligation. This third cohort is a pathway-gap question and may warrant a separate configuration column when scoped.</span>
  </div>
 </div>
 
  <div style="margin-top:18px;padding:14px 12px 14px;border-top:3px solid #00A9CE;background:#fbfdff;border-radius:0 0 8px 8px;">
  <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;flex-wrap:wrap;">
   <span class="fls-product-label fls-product-label-healthstore" style="font-size:12px;">HealthStore</span>
-  <span style="font-size:11px;font-weight:700;color:#00A9CE;text-transform:uppercase;letter-spacing:1.4px;">Lead configuration plus UC2 (Cardiac Rehab) in design &middot; two further slots reserved</span>
+  <span style="font-size:11px;font-weight:700;color:#00A9CE;text-transform:uppercase;letter-spacing:1.4px;">Lead configuration plus UC2 (Cardiac Rehab) and UC3 (MSK) in design &middot; one further slot reserved</span>
  </div>
  <div class="l4-grid">
   <div class="l4-cell-empty"></div>
@@ -1001,8 +1015,8 @@
   <div class="l4-col-head-status"><span class="fls-config-status fls-config-status-design">In design</span></div>
  </div>
   <div class="l4-col-head l4-col-head-healthstore">
-  <div class="l4-col-head-name">Config &middot; reserved</div>
-  <div class="l4-col-head-status"><span class="fls-config-status fls-config-status-reserved">Reserved</span></div>
+  <div class="l4-col-head-name">MSK</div>
+  <div class="l4-col-head-status"><span class="fls-config-status fls-config-status-design">In design</span></div>
  </div>
   <div class="l4-col-head l4-col-head-healthstore">
   <div class="l4-col-head-name">Config &middot; reserved</div>
@@ -1134,15 +1148,9 @@
 </div>
 
 <div class="fls-foot">
- <strong>What the stack shows.</strong> Top down: Foundation (Level 1) and Overlays (Level 2) are shared across every Digital Therapeutics product. That is why those bands run full width. Pattern picks (Level 3) split into three product columns: HomeTest, HealthStore, HealthSync &mdash; each showing its lead configuration&apos;s picks. Configurations (Level 4) sit under each product as colour-coded columns, one column per real-world deployment. HomeTest carries four (HIV live, PSA and iron deficiency anaemia in design, Pharmacy-init as a working sketch). HealthStore carries COPD Alpha as UC1 and Cardiac Rehab as UC2, both in design, with two further slots reserved. HealthSync configurations land as the programme progresses. Adding a new configuration adds a column under its parent product at L4; adding a new product adds a column at L3 and a new section at L4. Levels 1 and 2 do not change.
+ <strong>What the stack shows.</strong> Top down: Foundation (Level 1) and Overlays (Level 2) are shared across every Digital Therapeutics product. That is why those bands run full width. Pattern picks (Level 3) split into three product columns: HomeTest, HealthStore, HealthSync,  each showing its lead configuration&apos;s picks. Configurations (Level 4) sit under each product as colour-coded columns, one column per real-world deployment. HomeTest carries four (HIV live, PSA and iron deficiency anaemia in design, Pharmacy-init as a working sketch). HealthStore carries COPD Alpha as UC1, Cardiac Rehab as UC2 and MSK as UC3, all in design, with one further slot reserved. HealthSync configurations land as the programme progresses. Adding a new configuration adds a column under its parent product at L4; adding a new product adds a column at L3 and a new section at L4. Levels 1 and 2 do not change.
  </div>
 
- <div class="fls-note" style="background:#F4F8FC;border-left:4px solid var(--nhs-blue);">
- <div class="fls-note-tag" style="color:var(--nhs-blue);">Build vs buy</div>
- <div class="fls-note-body">
- <strong>The overlays are also where build vs buy gets decided.</strong> Each of the eight dimensions resolves into either a platform-build capability (the centre builds it once and every commissioner inherits it), a buy-from-market capability (suppliers compete to deliver it within the framework), or a local-system responsibility (the commissioner or Trust owns it). Initiation pattern, result handling and information governance lean toward platform-build (universal mechanics). Supply chain, commercial structure and tariff treatment lean toward buy-from-market. Sign-off route and accreditation bar sit with local systems or accrediting bodies. This is the level at which the BA + product owner work plays out: each overlay needs a build-buy-borrow decision before the platform requirements are stable. <em>That decision has not yet been made for every overlay.</em>
- </div>
- </div>
 
  <div class="fls-note" style="background:#FFF9EC;border-left:4px solid #C9A227;">
  <div class="fls-note-tag" style="color:#9A6700;">Open architectural decision &middot; DCB0160 LA assurance scale-mode</div>

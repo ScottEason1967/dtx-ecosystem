@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>DTx OM — Decision Inputs Roadmap</title>
+<title>DTx OM,  Decision Inputs Roadmap</title>
 <style>
   * { box-sizing: border-box; }
   body {
@@ -157,7 +157,7 @@
     padding: 2px 6px; border-radius: 3px;
   }
 
-  /* Strip dots — clickable. Each dot links to its card below. */
+  /* Strip dots,  clickable. Each dot links to its card below. */
   .strip-dot {
     position: absolute;
     transform: translateX(-50%);
@@ -451,24 +451,27 @@
     <div class="scen-foot">
       <strong>The consequence read.</strong> The fastest route (under £50m) saves four months of governance over the over-£150m route. The SBS route adds twelve months over the under-£50m route. If Project Initiation slips past 1 July 2026 on the NHSE routes, the under-£50m option falls away and the SBS route becomes the only viable path. Framework lands mid-2028 instead of mid-2027.
     </div>
+    <div class="scen-foot" style="margin-top:18px;">
+      <strong>Approval hurdles by procurement value.</strong> Under £50m sits with NHSE and DHSC. £50m and above adds HM Treasury approval. £150m and above adds Cabinet Office approval on top. Each step adds review cycles into the OBC and FBC windows, which is why the scenario timelines stretch as the value tier rises.
+    </div>
   </div>
 
   <!-- Cardinal callout -->
   <div class="cardinal-call">
-    <div class="cc-mark">The cardinal four</div>
-    <div class="cc-body">Four inputs identified by SLT. Each one has to land in some form before Project Initiation can begin on 1 July. <strong>Volumes, lotting, commissioning model, clinical &gt;50% determination.</strong> Each can be split: a working position by end June; the detail by mid-September when Requirements Creation closes. Cards C1 to C4 below.</div>
+    <div class="cc-mark">The cardinal five</div>
+    <div class="cc-body">Four inputs identified by SLT plus the meta-input the SRO has surfaced. Each one has to land in some form before Project Initiation can begin on 1 July. <strong>Volumes, lotting, commissioning model, clinical &gt;50% determination, and programme positioning of the future-state workstream.</strong> The first four can be split: a working position by end June; the detail by mid-September when Requirements Creation closes. The fifth is the meta-input that holds the others up. Cards C1 to C5 below.</div>
   </div>
 
   <!-- Compact timeline strip (visual orientation) -->
   <div class="strip-wrap">
     <div class="strip-eyebrow">Timeline · visual orientation</div>
     <h3 class="strip-title">Where each input sits in time.</h3>
-    <p class="strip-intro">Each dot below marks an input at the date it is needed by. Cardinal four are larger amber dots. The vertical red line marks today. The strip is for orientation only; click the cards underneath to read the detail.</p>
+    <p class="strip-intro">Each dot below marks an input at the date it is needed by. Cardinal five are larger amber dots. The vertical red line marks today. The strip is for orientation only; click the cards underneath to read the detail.</p>
     <div class="strip" id="strip">
       <div class="strip-axis"></div>
     </div>
     <div class="legend">
-      <span class="legend-item"><span class="legend-swatch cardinal"></span><strong>Cardinal four</strong> · the four named inputs needed before Project Initiation</span>
+      <span class="legend-item"><span class="legend-swatch cardinal"></span><strong>Cardinal five</strong> · the five named inputs needed before Project Initiation</span>
       <span class="legend-item"><span class="legend-swatch burning"></span><strong>Burning</strong> · we need an answer now, the deadline is here or has already passed</span>
       <span class="legend-item"><span class="legend-swatch tracked"></span><strong>Tracked</strong> · working date set, work is in flight</span>
       <span class="legend-item"><span class="legend-swatch future"></span><strong>Future</strong> · further out, on the radar</span>
@@ -500,10 +503,10 @@
 
 <script>
 // ==========================================================================
-// Decision Inputs Roadmap v0.3 — list-with-strip layout
+// Decision Inputs Roadmap v0.3,  list-with-strip layout
 // ==========================================================================
 
-// Timeline span (used only for the visual strip — items are listed by cluster)
+// Timeline span (used only for the visual strip,  items are listed by cluster)
 var TL_START = new Date('2026-06-01');
 var TL_END   = new Date('2029-03-31');
 
@@ -535,7 +538,7 @@ var CLUSTERS = [
   { id: 'fy27',    label: 'FY27/28 and beyond', anchor: 'Framework operational and reopen evaluation', status: 'future' }
 ];
 
-// Items — pre-categorised by cluster so the renderer is dumb
+// Items,  pre-categorised by cluster so the renderer is dumb
 var ITEMS = [
 
   // ---- End June 2026 ----
@@ -564,7 +567,7 @@ var ITEMS = [
       'All-inclusive supplier model viability when suppliers cover a subset of test cases',
       'Collection-first vs delivery-first supply chain pattern',
       'Centralised kit procurement viability (NHS stock holding)',
-      'Panel-of-tests sequencing — order in which panels enter the catalogue'
+      'Panel-of-tests sequencing,  order in which panels enter the catalogue'
     ]
   },
   { id: 'C3', cluster: 'end-jun', status: 'cardinal', statusLabel: 'Cardinal',
@@ -649,7 +652,7 @@ var ITEMS = [
       'DPIA wording tightened by IG / DPO and product lead to sit inside the system delivery scenario',
       'MI and analytics epic scoped against the system delivery boundary, with IG / DPO continuously in the loop',
       'Digital Health Checks DPIA reviewed as a self-selecting precedent for analytics scope in private beta',
-      'Pseudo-anonymisation risk scoped where data links across services (Notify, App, order table) — moderate risk to track',
+      'Pseudo-anonymisation risk scoped where data links across services (Notify, App, order table),  moderate risk to track',
       'Public beta direction question opened with PTT once analytics scope for public beta is defined',
       'Standing joint forum between IG / DPO, Commercial, Clinical Safety',
       'Standing template library (DPIA, DSA, supplier IG criteria)',
@@ -766,6 +769,19 @@ var ITEMS = [
   },
 
   // ---- End Q3 2026 ----
+  { id: 'MHRA', cluster: 'end-q3', status: 'tracked', statusLabel: 'Tracked',
+    title: 'MHRA non-SaMD determination for future configs',
+    date: '2026-09-15', dateLabel: 'Working position by mid-September; reviewed per new config',
+    owner: 'Clinical Safety lead with MHRA',
+    consequence: 'Without a settled position on which configs sit inside the medical device regulatory perimeter, every new config carries an open regulatory question that can stall admission and slow commissioner engagement.',
+    body: 'HomeTest UC1 (HIV) has the non-SaMD determination from the MHRA. The discipline now is to apply the same logic to each new config (PSA-AS, iron deficiency anaemia, HealthStore use cases, HealthSync) before admission. Where a config sits inside the SaMD perimeter, the assurance wrapper carries different obligations and the call-off schedule changes. The position is a standing input rather than a one-off.',
+    rollup: [
+      'Decision rule for SaMD versus non-SaMD applied to each new config',
+      'Documentation pack consistent with the HomeTest UC1 precedent',
+      'Hand-off to Clinical Safety for any config that lands inside the SaMD perimeter',
+      'Standing MHRA relationship managed by Post-market surveillance lead (see C5 / item 13)'
+    ]
+  },
   { id: '11', cluster: 'end-q3', status: 'tracked', statusLabel: 'Tracked',
     title: 'Supplier admission and removal machinery',
     date: '2026-09-30', dateLabel: 'Both halves by end Q3 2026 (admission journey and removal protocol)',
@@ -854,6 +870,20 @@ var ITEMS = [
       'Interim bridge mechanisms between the per-test position and the longer-term picture'
     ]
   },
+  { id: 'CUR', cluster: 'end-q4', status: 'tracked', statusLabel: 'Tracked',
+    title: 'Citizen-facing curation surface',
+    date: '2026-12-15', dateLabel: 'Position by end Q4 2026, ahead of Public Beta opening',
+    owner: 'Service Designer with NHS App and NHS Online product owners',
+    consequence: 'Without a settled curation pattern, each product builds its own front door, citizens face inconsistent entry points across HomeTest, HealthStore and HealthSync, and the portfolio looks like three programmes instead of one prevention offer. Adoption at Public Beta scale is harder than it needs to be.',
+    body: 'How a citizen finds each product, and how the three sit alongside each other and alongside other prevention and self-care services on NHS App and NHS Online. Not material at Private Beta but load-bearing as Public Beta opens to ~1,000+ self-initiating citizens, and beyond that for MVP launch and Wave 1 where self-initiation is the dominant pattern. Three candidate patterns. (1) Product-owned front doors with cross-links between them. (2) NHS App native feature with each product as one curated tile alongside others. (3) NHS Online category page that funnels into product deeper journeys. Each option carries different ownership, content discipline and onward navigation responsibilities.',
+    rollup: [
+      'Which curation pattern is adopted for the portfolio at Public Beta opening',
+      'Ownership boundary between NHSE product team and NHS App / NHS Online product owners',
+      'Content discipline rules for product tiles or category pages',
+      'Onward navigation pattern from citizen-facing surface into deeper product journeys',
+      'Equality and health-inequality assessment of citizen-facing surface choices'
+    ]
+  },
   { id: '13', cluster: 'end-q4', status: 'tracked', statusLabel: 'Tracked',
     title: 'Cross-product roles to define and fill',
     date: '2026-12-15', dateLabel: 'End Q4 2026',
@@ -869,7 +899,7 @@ var ITEMS = [
     ]
   },
 
-  // ---- FY27/28 and beyond — map gates only ----
+  // ---- FY27/28 and beyond,  map gates only ----
   { id: 'G3a', cluster: 'fy27', status: 'gate', statusLabel: 'Map Gate',
     title: 'Gate 3 · Scenario A · NHSE under £50m',
     date: '2027-07-01', dateLabel: '01 / 07 / 2027',
@@ -932,11 +962,11 @@ function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').re
     strip.appendChild(lab);
   });
 
-  // Dots — one per ITEM. Stagger vertically when items share (or nearly share)
+  // Dots,  one per ITEM. Stagger vertically when items share (or nearly share)
   // a date so they don't sit on top of each other. The earliest item in a
   // cluster sits closest to the axis; later ones rise above it.
   var CLUSTER_TOL = 0.6; // % of timeline span; ~6 days at this scale
-  var STACK_STEP = 17;   // px between stacked dots — enough that 14px cardinal dots clear the 10px burning dots above them
+  var STACK_STEP = 17;   // px between stacked dots,  enough that 14px cardinal dots clear the 10px burning dots above them
   var stackTracker = []; // { p: percent, count: int }
 
   ITEMS.forEach(function(item) {

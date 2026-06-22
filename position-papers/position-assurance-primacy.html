@@ -28,7 +28,7 @@
       <div class="pp-status-item"><span class="pp-status-label">Review cadence</span><span class="pp-status-value">Quarterly portfolio review</span></div>
     </div>
 
-        <p><strong>State update (8 June 2026).</strong> MHRA confirmed the HomeTest platform is not a Software as a Medical Device. This clarifies the assurance perimeter on the regulatory side: platform-layer assurance does not require MHRA SaMD treatment; supplier kits and lab side remain in scope of medical device regulation. The assurance primacy position is unchanged &mdash; the assurance wrapper still sits ahead of the commercial wrapper &mdash; but one regulatory route has been removed from the platform layer.</p>
+        <p><strong>State update (8 June 2026).</strong> MHRA confirmed the HomeTest platform is not a Software as a Medical Device. This clarifies the assurance perimeter on the regulatory side: platform-layer assurance does not require MHRA SaMD treatment; supplier kits and lab side remain in scope of medical device regulation. The assurance primacy position is unchanged,  the assurance wrapper still sits ahead of the commercial wrapper,  but one regulatory route has been removed from the platform layer.</p>
 <h2 class="pp-section-h">Position</h2>
     <div class="pp-position">
       <p><strong>NHSE's value-add to the DTx commercial ecosystem is in the assurance layer.</strong> The four components are independent assurance, the NICE EVA evidence interface, assurance portability, and the supplier IG envelope. The commercial machinery (approved list governance, standard call-off, matchmaker mechanics) is built on top of the assurance layer and only works because the assurance layer is credible. Investment sequence reflects this: assurance gets resourced first, commercial follows.</p>
@@ -45,6 +45,15 @@
       <li><strong>NICE EVA interface.</strong> NICE conditional engagement and evaluation route, already used to select HealthStore COPD Alpha suppliers. Provides the evidence-based admission gate that sits in front of the approved list.</li>
       <li><strong>Assurance portability.</strong> "Assure once, deploy many." A supplier admitted via the published standard carries that assurance across ICBs and configurations, coupled tight to the NICE EVA conditional evaluation interface. Removes the per-ICB re-assurance burden that would otherwise kill scale.</li>
       <li><strong>Supplier IG envelope.</strong> The IG side of the standard the suppliers apply against. Templates, criteria, controllership rules, sub-processor permissions. Boundary with NHSE IG/DPO authority is the load-bearing internal split (see Position · Assurance envelope boundary).</li>
+    </ul>
+
+    <h2 class="pp-section-h">Design principles the assurance primacy enacts</h2>
+    <p>Four design principles sit underneath the assurance-first sequence. The architecture takes the shape it does because these principles are what give the model legitimacy with commissioners, patients and the procurement professionals who buy from it.</p>
+    <ul>
+      <li><strong>Commissioning for outcomes, not outputs.</strong> Suppliers compete against a published outcome standard rather than against a pre-specified output specification. The standard sets what good looks like (regulatory compliance, clinical efficacy, IG controls, performance thresholds); how the supplier delivers against it is theirs to shape. This is the lens procurement professionals across the system are being asked to adopt, and the assurance layer is what makes it possible at portfolio scale.</li>
+      <li><strong>Standards-enforced market entry.</strong> The published standard is the admission gate. Suppliers that do not meet it cannot sell into the ecosystem. The gate sits upstream of the marketplace, not downstream of an award decision, which is what prevents non-compliant suppliers competing on price into commissioners who have no shared baseline to assess them against.</li>
+      <li><strong>Assure once, deploy many.</strong> Once a supplier has cleared the published standard they carry that assurance across ICBs and configurations. The portability discipline removes the per-ICB re-assurance burden that would otherwise multiply the cost and timing of scale by the number of commissioners. The reduction in re-work is the operational manifestation of the assurance-primary disposition.</li>
+      <li><strong>Independence of the gate.</strong> Third-party independent assurance separates the admission gate from the commercial pressure to admit. The party deciding what good looks like is not the party with revenue exposure to who sells. That separation is what makes the published standard credible to commissioners, patients and the regulatory community.</li>
     </ul>
 
     <h2 class="pp-section-h">Reopen triggers</h2>
@@ -86,4 +95,3 @@
 </div>
 </body>
 </html>
-      
