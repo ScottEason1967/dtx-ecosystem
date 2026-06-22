@@ -217,7 +217,7 @@
  .cfg-mark { border-radius: 3px; transition: background 0.18s, font-weight 0.18s, padding 0.18s; }
  body.cfg-hiv .cfg-mark[data-config="hiv"] { padding: 1px 4px; background: rgba(0, 150, 136, 0.22); font-weight: 700; color: #00574F; white-space: nowrap; }
  body.cfg-psa-as .cfg-mark[data-config="psa-as"] { padding: 1px 4px; background: rgba(233, 30, 99, 0.22); font-weight: 700; color: #93143F; white-space: nowrap; }
- body.cfg-hba1c .cfg-mark[data-config="ida"] { padding: 1px 4px; background: rgba(251, 140, 0, 0.24); font-weight: 700; color: #B85800; white-space: nowrap; }
+ body.cfg-ida .cfg-mark[data-config="ida"] { padding: 1px 4px; background: rgba(251, 140, 0, 0.24); font-weight: 700; color: #B85800; white-space: nowrap; }
  body.cfg-pharmacy-init .cfg-mark[data-config="pharmacy-init"] { padding: 1px 4px; background: rgba(126, 87, 194, 0.22); font-weight: 700; color: #3E1F8A; white-space: nowrap; }
  /* Defensive overrides: ensure inline content flows correctly inside swim-lane cells */
  .sl-cell { display: block !important; }
@@ -972,7 +972,7 @@ function showLane(n){
 (function(){
   const buttons = document.querySelectorAll('.config-filter button');
   function apply(cfg){
-    document.body.classList.remove('cfg-hiv','cfg-psa-as','cfg-hba1c','cfg-pharmacy-init');
+    document.body.classList.remove('cfg-hiv','cfg-psa-as','cfg-ida','cfg-pharmacy-init');
     if (cfg && cfg !== 'all') document.body.classList.add('cfg-' + cfg);
     buttons.forEach(b => b.classList.toggle('active', b.dataset.config === cfg));
   }
