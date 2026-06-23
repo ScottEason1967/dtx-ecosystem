@@ -14,9 +14,13 @@
  .topnav .nav-siblings a{font-size:12px;font-weight:600;color:#4C6272;text-decoration:none;padding:6px 12px;border-radius:6px;letter-spacing:0.2px;white-space:nowrap;flex-shrink:0;}
  .topnav .nav-siblings a:hover{background:#f0f4f8;color:#212B32;}
  .topnav .nav-siblings a.active{background:#003087;color:#fff;}
- .cast-group{display:inline-flex;gap:3px;align-items:center;flex-wrap:wrap;padding:3px 6px;border-radius:6px;}
- .cast-group.cast-group-patients{border:2px dotted #C9A227;padding:3px 6px;}
- .cast-group + .cast-group{margin-left:6px;padding-left:10px;border-left:1px solid #d8dde0;}
+ .cast-group{display:inline-flex;gap:3px;align-items:center;flex-wrap:wrap;padding:3px 8px;border-radius:6px;border:2px dotted #d8dde0;}
+ .cast-group + .cast-group{margin-left:6px;}
+ .cast-group.cast-group-patients{border-color:#C9A227;}
+ .cast-group.cast-group-commissioners{border-color:#C9A100;}
+ .cast-group.cast-group-clinicians{border-color:#9B7CC4;}
+ .cast-group.cast-group-assurance{border-color:#A85048;}
+ .cast-group.cast-group-marketplace{border-color:#388C5D;}
  .nav-siblings a.cast-abdul.active{background:#FFB91D;color:#231F20;}
  .nav-siblings a.cast-mark.active{background:#FFB91D;color:#231F20;}
  .nav-siblings a.cast-layla.active{background:#FFB91D;color:#231F20;}
@@ -152,36 +156,36 @@
 <div class="nav-secondary-label">Cast</div>
 <div class="nav-siblings">
  <div class="cast-group cast-group-patients">
-  <a href="DTx OM - Persona Abdul.html" class="cast-abdul">Abdul</a>
-  <a href="DTx OM - Persona Mark.html" class="cast-mark">Mark</a>
-  <a href="DTx OM - Persona Layla.html" class="cast-layla">Layla</a>
-  <a href="DTx OM - Persona HealthStore COPD patient.html" class="cast-pauline">Pauline</a>
-  <a href="DTx OM - Persona HealthSync diabetes patient.html" class="cast-mei">Mei</a>
-  <a href="DTx OM - Persona HealthSync patient.html" class="cast-errol">Errol</a>
-  <a href="DTx OM - Persona Sean.html" class="cast-sean">Sean</a>
+  <a href="DTx OM - Persona Abdul.html" class="cast-abdul" title="Patients">Abdul</a>
+  <a href="DTx OM - Persona Mark.html" class="cast-mark" title="Patients">Mark</a>
+  <a href="DTx OM - Persona Layla.html" class="cast-layla" title="Patients">Layla</a>
+  <a href="DTx OM - Persona HealthStore COPD patient.html" class="cast-pauline" title="Patients">Pauline</a>
+  <a href="DTx OM - Persona HealthSync diabetes patient.html" class="cast-mei" title="Patients">Mei</a>
+  <a href="DTx OM - Persona HealthSync patient.html" class="cast-errol" title="Patients">Errol</a>
+  <a href="DTx OM - Persona Sean.html" class="cast-sean" title="Patients">Sean</a>
  </div>
  <div class="cast-group cast-group-commissioners">
-  <a href="DTx OM - Persona Sarah.html" class="cast-sarah">Sarah</a>
-  <a href="DTx OM - Persona Catherine.html" class="cast-catherine">Catherine</a>
-  <a href="DTx OM - Persona Anita.html" class="cast-anita">Anita</a>
-  <a href="DTx OM - Persona Ruth.html" class="cast-ruth">Ruth</a>
-  <a href="DTx OM - Persona Daniel.html" class="cast-daniel">Daniel</a>
+  <a href="DTx OM - Persona Sarah.html" class="cast-sarah" title="Commissioners">Sarah</a>
+  <a href="DTx OM - Persona Catherine.html" class="cast-catherine" title="Commissioners">Catherine</a>
+  <a href="DTx OM - Persona Anita.html" class="cast-anita" title="Commissioners">Anita</a>
+  <a href="DTx OM - Persona Ruth.html" class="cast-ruth" title="Commissioners">Ruth</a>
+  <a href="DTx OM - Persona Daniel.html" class="cast-daniel" title="Commissioners">Daniel</a>
  </div>
  <div class="cast-group cast-group-clinicians">
-  <a href="DTx OM - Persona Adam.html" class="cast-adam">Adam</a>
-  <a href="DTx OM - Persona Hannah.html" class="cast-hannah">Hannah</a>
-  <a href="DTx OM - Persona HealthStore prescribing clinician.html" class="cast-ravi">Ravi</a>
+  <a href="DTx OM - Persona Adam.html" class="cast-adam" title="Clinicians">Adam</a>
+  <a href="DTx OM - Persona Hannah.html" class="cast-hannah" title="Clinicians">Hannah</a>
+  <a href="DTx OM - Persona HealthStore prescribing clinician.html" class="cast-ravi" title="Clinicians">Ravi</a>
  </div>
  <div class="cast-group cast-group-assurance">
-  <a href="DTx OM - Persona Aisha.html" class="cast-aisha">Aisha</a>
-  <a href="DTx OM - Persona Ngozi.html" class="cast-ngozi">Ngozi</a>
+  <a href="DTx OM - Persona Aisha.html" class="cast-aisha" title="Assurance">Aisha</a>
+  <a href="DTx OM - Persona Ngozi.html" class="cast-ngozi" title="Assurance">Ngozi</a>
  </div>
  <div class="cast-group cast-group-marketplace">
-  <a href="DTx OM - Persona Joe.html" class="cast-joe">Joe</a>
-  <a href="DTx OM - Persona HealthStore supplier.html" class="cast-marcus">Marcus</a>
-  <a href="DTx OM - Persona Tariq.html" class="cast-tariq">Tariq</a>
-  <a href="DTx OM - Persona Priya.html" class="cast-priya active">Priya</a>
-  <a href="DTx OM - Persona David.html" class="cast-david">David</a>
+  <a href="DTx OM - Persona Joe.html" class="cast-joe" title="Marketplace">Joe</a>
+  <a href="DTx OM - Persona HealthStore supplier.html" class="cast-marcus" title="Marketplace">Marcus</a>
+  <a href="DTx OM - Persona Tariq.html" class="cast-tariq" title="Marketplace">Tariq</a>
+  <a href="DTx OM - Persona Priya.html" class="cast-priya active" title="Marketplace">Priya</a>
+  <a href="DTx OM - Persona David.html" class="cast-david" title="Marketplace">David</a>
  </div>
  </div>
 </nav>
