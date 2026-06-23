@@ -13,7 +13,7 @@
 - **14 May 2026 — RDUH selected as Acute Use Case Partner** (scored 92.75/100). Mobilisation kicked off 15 June; gate 13 July. Cambridge and Somerset are reserves.
 - **27 May 2026 — Hill Dickinson instructed** for the PA23 dynamic-markets workshop. Their advice note feeds the 22 June SLT playback.
 - **26 May 2026 — NHSE Legal verbal (Hazel Randall)** confirmed both PSR and PA23 are defensible routes; dynamic markets are PA23-only. Settled posture is "PSR interim / PA23 destination".
-- **2 June 2026 — Health Economist onboarded** (Simon Lee, Elfe Economics).
+- **9 June 2026 — Health Economist engaged.** 2.5 days a week. Priority sequence set by Deputy Director DTx: HomeTest PSA pathway first, then HealthStore COPD, then a standard cost / benefits model across both products.
 - **22 June 2026 — SLT playback in Leeds** (Platform venue, 2:30-5pm Wednesday). Earlier 16 June date has moved.
 - **Plan A April 2027 procure-ready under pressure.** Plan C (commissioner-led direct purchase) is now the named fallback if Plan A cannot stand up in time.
 

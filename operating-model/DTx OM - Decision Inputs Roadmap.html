@@ -563,7 +563,7 @@ var ITEMS = [
     body: 'Articulation of what is being bought: kits, services, diagnostic tests, pathology lab access, end-to-end providers. Drives the £30m vs £250m sizing on the NHSE routes.',
     rollup: [
       'Pathology supplier-mix architecture (NHS-pathology-first vs parallel mixed-economy)',
-      'Pathology labs: clinical infrastructure under CSO vs supplier under Commercial Lead',
+      'Pathology labs: clinical infrastructure under CSO vs supplier under Commercial Operations with NHSE Commercial',
       'All-inclusive supplier model viability when suppliers cover a subset of test cases',
       'Collection-first vs delivery-first supply chain pattern',
       'Centralised kit procurement viability (NHS stock holding)',
@@ -592,7 +592,7 @@ var ITEMS = [
     body: 'Is the service we are buying more than half clinical service, rather than goods, kits or technology? Our working assumption is yes, it is mostly clinical. NHSE Legal’s current verbal view is that a case can be made for either PA23 or PSR and the challenge risk is low under either route, because both invite suppliers to join. A written advice note is being drafted to support whichever direction is chosen. An external procurement counsel workshop on dynamic market viability is scheduled to inform the Plan A versus alternative call. Plan A would land as a PA23 Option B framework or a Dynamic Market; Plan B would land as Digital Primary Care framework leverage; Plan C would land as commissioner-led direct purchase. A recent challenge case (imaging services) where the wrong regime was used was upheld; NHSE Legal is reviewing.',
     rollup: [
       'Working assumption logged in writing on whether the service is mostly clinical.',
-      'Confirmation that the Step 1 SBS PSR bridge for HIV sits comfortably alongside the assumption while the Step 2 decision is in flight.',
+      'Confirmation that the Plan C interim (NHS SBS Sexual Health Framework SBS10255 for HIV) sits comfortably alongside the assumption while the Step 2 decision is in flight.',
       'Confirmation that the SBS Sexual Health framework remains usable as a parallel route while the interim runs.'
     ]
   },
@@ -615,22 +615,22 @@ var ITEMS = [
     date: '2026-06-30', dateLabel: 'Verbal position by end June, written sign-off by 15 September',
     owner: 'NHSE Legal',
     consequence: 'Without a verbal position, the Step 1 interim route cannot be defended at SLT playback. Without a written sign-off by Requirements Creation, the OBC carries a load-bearing assumption that can be challenged.',
-    body: 'The Step 1 interim route is a six-month SBS PSR bridge for the HIV use case only, with Alpha/Beta MOUs continuing to cover live deployments. NHSE Legal advice is that a case can be made for either PA23 or PSR overall and an advice note is being drafted to support the chosen direction. The bridge runs while the Step 2 vehicle decision is in flight. We need NHSE Legal’s view in writing on the Step 1 shape so the architecture rests on more than a conversation.',
+    body: 'The Step 1 interim route is a NHS SBS Sexual Health Framework (SBS10255) as the Plan C interim vehicle for HIV, with Alpha/Beta MOUs continuing to cover live deployments. NHSE Legal advice is that a case can be made for either PA23 or PSR overall and an advice note is being drafted to support the chosen direction. The bridge runs while the Plan A vehicle decision is in flight. We need NHSE Legal’s view in writing on the Step 1 shape so the architecture rests on more than a conversation.',
     rollup: [
-      'Step 3 framework administration route (NHSE direct, SBS, CCS, third-party)',
+      'Framework administration route (NHSE direct, SBS, CCS, third-party)',
       'Standard call-off template authored and signed off',
       'Approved supplier list register format and governance',
       'Public Beta commercial route for HIV',
       'Permanent platform hosting (NHSE, ALB, new entity)',
       'CONTRACT exit terms inside the contractual instrument',
-      'How the Step 2 vehicle accommodates future conditions beyond HIV',
+      'How the Plan A vehicle accommodates future conditions beyond HIV',
       'NHS Supply Chain POCT framework interface'
     ]
   },
   { id: '05b', cluster: 'end-jun', status: 'burning', statusLabel: 'Burning',
     title: 'Step 3 framework administration partner',
     date: '2026-06-30', dateLabel: 'Working position by end June, decision by Requirements Creation',
-    owner: 'NHSE Commercial (Senior Commercial Lead) with delivery partners',
+    owner: 'NHSE Commercial (Commercial Operations with NHSE Commercial) with delivery partners',
     consequence: 'Without a working partner position, the procurement strategy paper cannot be finalised. The partner choice changes the timetable (estimated six-month spread between NHSE-run and SBS-run scenarios) and the governance route to award.',
     body: 'Who actually administers the framework once it lands. The choice sits between NHSE running it directly, partnering with SBS, partnering with CCS, or commissioning a third-party. The current working position is partnership with SBS over NHS Supply Chain on the basis of engagement-to-date. The internal NHSE position is unsettled and being worked through. A regroup with SBS on refined timeline assumptions sits in the diary for next week, with the procurement strategy paper landing end of next week or early the week after.',
     rollup: [
@@ -678,12 +678,12 @@ var ITEMS = [
     ]
   },
 
-  { id: '08', cluster: 'end-jun', status: 'burning', statusLabel: 'Overdue',
-    title: 'Health Economist onboarded',
-    date: '2026-06-15', dateLabel: 'Overdue, should already have happened',
-    owner: 'SRO with Commercial Lead escalation',
-    consequence: 'The recommendation paper itself can still land without this in place. The work behind it cannot. Pricing model, supply-chain cost analysis, financial impairment and volumes substantiation all stall. The longer this slips, the thinner the substantiation behind anything we recommend.',
-    body: 'Two days a week, MVP requirement. Stuck in the approval chain since late April. Was meant to be in seat weeks ago. Onboarding needs to happen as soon as the approval chain releases, not at end June. Onboarding is the prerequisite; the deliverables (benefits articulation, as-is to to-be cost modelling, savings narrative, OBC substantiation) are the actual workstream ask.',
+  { id: '08', cluster: 'end-jun', status: 'tracked', statusLabel: 'In flight',
+    title: 'Health Economist engaged',
+    date: '2026-06-09', dateLabel: 'In flight from 9 June 2026',
+    owner: 'Deputy Director DTx',
+    consequence: 'PSA pathway costs and ROI is the lead workstream. Cost analysis, pricing model substantiation, supply-chain cost profile, market sizing and SBS volumes queue against the Deputy Director DTx priority sequence. Sections that need input out of sequence remain caveated until the relevant priority lands.',
+    body: 'Engaged at 2.5 days a week from 9 June 2026. Priority sequence set by Deputy Director DTx: PSA pathway (lead), then HealthStore COPD, then standard cost / benefits model across both products, then HomeTest 12-test shortlist, HIV ROI sense check, HealthStore CR / Heart Failure ROI, MSK vs Mental Health for 3rd HealthStore category.',
     rollup: [
       'Benefits articulation: as-is versus to-be model, where the cost savings come from, how the change drives operational efficiency',
       'Cost-per-test baseline established (MEASURE)',
@@ -785,7 +785,7 @@ var ITEMS = [
   { id: '11', cluster: 'end-q3', status: 'tracked', statusLabel: 'Tracked',
     title: 'Supplier admission and removal machinery',
     date: '2026-09-30', dateLabel: 'Both halves by end Q3 2026 (admission journey and removal protocol)',
-    owner: 'Commercial Lead with NHSE Legal',
+    owner: 'Commercial Operations with NHSE Commercial and NHSE Legal',
     consequence: 'Without a tested admission journey, suppliers cannot join the approved list with confidence. Without a defensible removal protocol the first time it bites, the approved list locks in to first-mover suppliers by default. Public Beta cannot scale without both.',
     body: 'The machinery by which suppliers get onto the approved list and the machinery by which they come off it. Admission criteria, application route, assessment, contract sign, go-live on one side. Triggers, thresholds, evidence, appeals and patient continuity on the removal side. Real-world example needed before the first wave of admissions in private beta scales out.',
     rollup: [
@@ -917,11 +917,11 @@ var ITEMS = [
     rollup: ['Scenario B Framework Start.']
   },
   { id: 'G5', cluster: 'fy27', status: 'gate', statusLabel: 'Map Gate',
-    title: 'Map Gate 5 · Step 2 vehicle evaluation',
+    title: 'Map Gate 5 · Plan A vehicle evaluation',
     date: '2027-11-15', dateLabel: 'FY28/29 planning round',
     owner: 'SLT with NHSE Legal',
-    consequence: 'Step 2 vehicle settled. Plan A (PA23 Option B framework or Dynamic Market), Plan B (Digital Primary Care framework leverage) or Plan C (commissioner-led direct purchase) confirmed.',
-    body: 'Step 2 procurement vehicle evaluated against the named conditions: portfolio scale (around ten live tests), aggregate transacted volume, supplier asks, NHSE Legal position on the dual-route recommendation. Evaluation at FY28/29 planning round.',
+    consequence: 'Plan A vehicle settled. Plan A (PA23 Option B framework or Dynamic Market), Plan B (Digital Primary Care Framework leverage) discounted at the 22 June 2026 SLT playback or Plan C (commissioner-led direct purchase) confirmed.',
+    body: 'Step 2 procurement vehicle evaluated against the named conditions: portfolio scale (around ten live tests), aggregate transacted volume, supplier asks, NHSE Legal position on the two-track recommendation. Evaluation at FY28/29 planning round.',
     rollup: ['Map Gate 5 anchor.']
   },
   { id: 'G3c', cluster: 'fy27', status: 'gate', statusLabel: 'Map Gate',

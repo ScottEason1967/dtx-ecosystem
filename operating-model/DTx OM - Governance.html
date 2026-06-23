@@ -308,7 +308,7 @@
     <p class="h-intro">The other three frames describe what the operating model is, when it runs and how it operates. This frame is what makes it a thing people own rather than a thing people describe. Names against each part of the operating model. Decision rights for changes. Escalation routes when configurations or products conflict. Without this layer the operating model is a beautiful piece of architecture nobody is responsible for. Governance described here holds at portfolio level (NHSE accountability shared across HomeTest, HealthStore and HealthSync). Per-product supplier admission and clinical safety governance vary inside this frame.</p>
 
   <div style="background:#E8F1F6;border:1px solid #B5D4E5;border-left:4px solid #005EB8;border-radius:0 10px 10px 0;padding:14px 20px;margin:18px 0;font-size:13px;color:#1A4570;line-height:1.65;">
-    <strong style="color:#003087;">Portfolio scope.</strong> NHSE accountability and the contracting instruments hold across HomeTest, HealthStore and HealthSync (HomeTest: Step 1 interim is a six-month SBS PSR bridge for HIV with Alpha/Beta MOUs continuing; Step 2 steady-state vehicle is provisional dual-route Plan A / B / C with PA23 vs PSR not yet settled in law; HealthStore: ACE plus NHS Standard Contract; HealthSync: instrument pending). Per-product supplier admission and clinical safety governance vary inside this frame. The operational sections below carry the configuration RACI for each product: HomeTest configurations (HIV and PSA), the HealthStore lead configuration (COPD Alpha), and the HealthSync reserved configuration slot.
+    <strong style="color:#003087;">Portfolio scope.</strong> NHSE accountability and the contracting instruments hold across HomeTest, HealthStore and HealthSync (HomeTest: Step 1 interim is a NHS SBS Sexual Health Framework (SBS10255) as the Plan C interim vehicle for HIV with Alpha/Beta MOUs continuing; Step 2 steady-state vehicle is provisional Plan A and Plan C in parallel with PA23 vs PSR not yet settled in law; HealthStore: ACE plus NHS Standard Contract; HealthSync: instrument pending). Per-product supplier admission and clinical safety governance vary inside this frame. The operational sections below carry the configuration RACI for each product: HomeTest configurations (HIV and PSA), the HealthStore lead configuration (COPD Alpha), and the HealthSync reserved configuration slot.
   </div>
   </div>
 
@@ -324,13 +324,13 @@
     <div class="gov-q-body">
       Ten things SLT needs to land before this skeleton becomes named accountability. The <em>Open at SRO level</em> cells across the architectural RACI and the configuration-specific tables are pointing at these: making them explicit here.
       <ul style="margin:10px 0 0 22px; padding:0; font-size:12.5px; line-height:1.6;">
-        <li><strong>Permanent platform hosting post-Beta.</strong> Architectural RACI for the Foundation is open at SRO level. When HomeTest exits discovery, where does the platform live permanently: inside NHSE, an ALB, or a new entity? <em>Owner: SRO with Commercial Lead.</em></li>
-        <li><strong>Procurement vehicle: three-step decision shape.</strong> Three steps land in sequence. <strong>Step 1 (interim route to market)</strong>: six-month SBS PSR bridge for the HIV use case only; Alpha/Beta MOUs continue to cover live deployments. <strong>Step 2 (steady-state procurement vehicle)</strong>: PA23 vs PSR is not settled in law. NHS Legal advice is that a case can be made for either, with the recommended approach being to start from the desired solution and work backwards. Provisional dual-route in the draft Recommendation paper: Plan A,  PA23 Option B framework or Dynamic Market; Plan B,  Digital Primary Care framework leverage; Plan C,  commissioner-led direct purchase. External procurement legal counsel formally instructed to run a Plan A scoping workshop. <strong>Step 3 (framework administration route)</strong>: NHSE direct, SBS, CCS or third-party; coupled to Step 2. The four-option matrix from earlier discovery is now historical context. SLT alignment at the 22 June Leeds playback. <em>Owner: Commercial Lead with NHSE Legal.</em></li>
+        <li><strong>Permanent platform hosting post-Beta.</strong> Architectural RACI for the Foundation is open at SRO level. When HomeTest exits discovery, where does the platform live permanently: inside NHSE, an ALB, or a new entity? <em>Owner: SRO with Commercial Operations and NHSE Commercial.</em></li>
+        <li><strong>Procurement vehicle: two-track recommendation.</strong> Two tracks progressed in parallel. <strong>Plan C (interim)</strong>: NHS SBS Sexual Health Framework (SBS10255) as the Plan C interim vehicle for HIV; Alpha/Beta MOUs continue to cover live deployments. <strong>Plan A (long-term)</strong>: PA23 vs PSR is not settled in law. NHS Legal advice is that a case can be made for either, with the recommended approach being to start from the desired solution and work backwards. Provisional two-track in the draft Recommendation paper: Plan A,  PA23 Option B framework or Dynamic Market; Plan B,  Digital Primary Care framework leverage; Plan C,  commissioner-led direct purchase. External procurement legal counsel formally instructed to run a Plan A scoping workshop. <strong>Framework administration route</strong>: NHSE direct, SBS, CCS or third-party; sits inside Plan A. The four-option matrix from earlier discovery is now historical context. Confirmed at the 22 June 2026 SLT Leeds playback. <em>Owner: Commercial Operations with NHSE Commercial and NHSE Legal.</em></li>
         <li><strong>Aisha's accountability split across initiation patterns.</strong> The two configuration RACIs below split clinical accountability differently: Sex Health Service Clinical Lead in HIV, Acute Trust Consultant and Clinical Safety Officer in PSA. Aisha's overarching accountability across both pathways needs an explicit single statement. <em>Owner: Clinical Safety Group.</em></li>
         <li><strong>National Assurance Board composition and constitutional layer.</strong> Who sits on it? Who owns final authority? How are disputes arbitrated? What is the appeals process? How are standards updated? How are suppliers challenged? Currently a name in the architecture, not a constituted body. <em>Owner: SRO with NHSE, Clinical Safety Group input.</em></li>
-        <li><strong>National orchestration BAU funding.</strong> Who funds the routing, DevOps, interoperability, assurance management, Blue Book maintenance, supplier onboarding, analytics and standards updates at steady state? The percent-fee-per-transaction model covers the platform foundation but the BAU team and its likely cost have not been sized. <em>Owner: Commercial Lead with Health Economist input.</em></li>
+        <li><strong>National orchestration BAU funding.</strong> Who funds the routing, DevOps, interoperability, assurance management, Blue Book maintenance, supplier onboarding, analytics and standards updates at steady state? The percent-fee-per-transaction model covers the platform foundation but the BAU team and its likely cost have not been sized. <em>Owner: Commercial Operations with NHSE Commercial and Health Economist.</em></li>
         <li><strong>Adoption as a named function in the model.</strong> Adoption activity is being delivered through the Partnerships workstream. The unresolved question is whether adoption should be surfaced structurally in the operating model itself (an overlay, a foundation capability, a row in the RACI) or stay implicit inside Partnerships. <em>Decision: SLT to confirm.</em></li>
-        <li><strong>National rollout without local fragmentation.</strong> The architecture answers what the model is composed of. It does not yet answer how the model gets rolled out at national scale so that LAs, ICBs and Trusts adopt it consistently rather than each diverging from the agreed pattern. This is execution discipline (sequencing, priorities, governance of variation), not architecture. <em>Owner: SRO with Commercial Lead.</em></li>
+        <li><strong>National rollout without local fragmentation.</strong> The architecture answers what the model is composed of. It does not yet answer how the model gets rolled out at national scale so that LAs, ICBs and Trusts adopt it consistently rather than each diverging from the agreed pattern. This is execution discipline (sequencing, priorities, governance of variation), not architecture. <em>Owner: SRO with Commercial Operations and NHSE Commercial.</em></li>
         <li><strong>Data controller framework.</strong> The federated multi-controller model has NHSE as controller for the foundation, commissioner as controller for the testing purpose, and supplier as processor. Joint-controller arrangements have been ruled out. The exact controller designation per configuration is still being scoped, and the lawful basis position (direct consent vs legal directions) is unresolved at SLT level. Affects every DPIA, every DSA and every supplier contract. <em>Decision: SLT with NHS Legal and Caldicott Guardian.</em></li>
         <li><strong>IAO appointment.</strong> NHSE policy requires the Information Asset Owner to be a permanent NHSE employee. <strong>IAO now in place (Delivery Board, 9 June 2026).</strong> The earlier expectation that finalisation would follow a HomeTest transition out of DPSP no longer applies,  the programme remains in the Digital Prevention Services Portfolio (transfer to At Home and Community cancelled, 9 June 2026). <em>Owner: SRO.</em></li>
         <li><strong>Cost-benefit dislocation at local system level.</strong> Home testing replaces venepuncture, but the saving and the new spend land in different parts of the local budget. Pathology networks don't run phlebotomy; phlebotomy sits in clinical services or under the ICB. Without best-practice tariffs at pathway level, ICBs see home testing as a cost pressure rather than a value case, even when the whole-pathway economics are positive. The economic case is the unlock for adoption. <em>Decision: SLT with NHSE strategic finance and Health Economist input.</em></li>
@@ -557,15 +557,15 @@
         <tr>
           <td class="label">Platform integration uptime<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">NHS App, NHS Login, NHS Notify, supplier APIs.</span></td>
           <td class="col-r">NHSE Platform Operations</td>
-          <td class="col-a">NHSE Platform Lead</td>
+          <td class="col-a">NHSE Platform</td>
           <td class="col-c">Suppliers</td>
           <td class="col-i">All Commissioners</td>
         </tr>
         <tr>
           <td class="label">Supplier onboarding gateway<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Seven-stage onboarding journey for new suppliers joining the platform.</span></td>
           <td class="col-r">Supplier Onboarding Team</td>
-          <td class="col-a">Commercial Lead</td>
-          <td class="col-c">Clinical Safety Officer, IG Lead, Procurement Lead</td>
+          <td class="col-a">Commercial Operations with NHSE Commercial</td>
+          <td class="col-c">Clinical Safety Officer, IG & Assurance SME, Head of Operations</td>
           <td class="col-i">All Commissioners</td>
         </tr>
         <tr>
@@ -577,63 +577,63 @@
         </tr>
         <tr>
           <td class="label">IG framework maintenance<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">The federated multi-controller framework all deployments inherit.</span></td>
-          <td class="col-r">NHSE IG Lead</td>
+          <td class="col-r">IG & Assurance SME</td>
           <td class="col-a">National Assurance Board</td>
-          <td class="col-c">DPO at each deploying organisation, Configuration IG Leads</td>
+          <td class="col-c">DPO at each deploying organisation, Configuration IG & Assurance SMEs</td>
           <td class="col-i">All Configurations</td>
         </tr>
         <tr>
           <td class="label">Pattern catalogue maintenance<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">The library of pattern options inside each overlay.</span></td>
-          <td class="col-r">Commercial Lead</td>
+          <td class="col-r">Commercial Operations with NHSE Commercial</td>
           <td class="col-a">SRO</td>
-          <td class="col-c">Clinical Safety Officer, IG Lead, Procurement Lead</td>
+          <td class="col-c">Clinical Safety Officer, IG & Assurance SME, Head of Operations</td>
           <td class="col-i">All Configurations</td>
         </tr>
         <tr>
           <td class="label">Cross-platform incident triage<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Incidents affecting multiple configurations or the foundation itself.</span></td>
           <td class="col-r">NHSE Platform Operations</td>
-          <td class="col-a">NHSE Programme Lead</td>
+          <td class="col-a">NHSE Commercial</td>
           <td class="col-c">Affected Configuration Leads</td>
           <td class="col-i">All Configurations</td>
         </tr>
         <tr>
           <td class="label">MI and data flow integrity<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Foundation-level reporting and analytics across configurations.</span></td>
           <td class="col-r">NHSE Data Team</td>
-          <td class="col-a">NHSE Platform Lead</td>
+          <td class="col-a">NHSE Platform</td>
           <td class="col-c">Suppliers</td>
           <td class="col-i">All Commissioners</td>
         </tr>
               <tr>
           <td class="label">Post-market surveillance<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Cross-product regulatory PMS function. Adverse event collection, MHRA reporting, periodic safety updates and post-market data feedback into configuration design.</span></td>
-          <td class="col-r">PMS Lead</td>
+          <td class="col-r">PMS Lead<span class="role-proposed" style="display:inline-block;background:#E5E9ED;color:#5C6770;padding:1px 6px;border-radius:8px;font-size:9px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;margin-left:5px;vertical-align:1px;">Proposed</span></td>
           <td class="col-a">SRO</td>
           <td class="col-c">Clinical Safety Officer, Suppliers, MHRA</td>
           <td class="col-i">All Configurations</td>
         </tr>
         <tr>
           <td class="label">Pathway integration discipline<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Cross-product pathway integration function. Pathway mapping per configuration, EPR / prescribing-system integration patterns, integration playbook maintenance.</span></td>
-          <td class="col-r">Pathway Integration Lead</td>
+          <td class="col-r">Pathway Integration Lead<span class="role-proposed" style="display:inline-block;background:#E5E9ED;color:#5C6770;padding:1px 6px;border-radius:8px;font-size:9px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;margin-left:5px;vertical-align:1px;">Proposed</span></td>
           <td class="col-a">SRO</td>
           <td class="col-c">Clinical Leads, National pathway programmes, ICB pathway teams</td>
           <td class="col-i">All Configurations</td>
         </tr>
         <tr>
           <td class="label">Independent assurance<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Third-party assurance discipline separate from internal Clinical Safety. Regulatory standards, clinical and financial efficacy, independent review of admitted products, assurance portability across configurations.</span></td>
-          <td class="col-r">Independent Assurance Lead</td>
+          <td class="col-r">Independent Assurance Lead<span class="role-proposed" style="display:inline-block;background:#E5E9ED;color:#5C6770;padding:1px 6px;border-radius:8px;font-size:9px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;margin-left:5px;vertical-align:1px;">Proposed</span></td>
           <td class="col-a">SRO</td>
           <td class="col-c">NICE, MHRA, UKAS, CSG, Suppliers</td>
           <td class="col-i">All Configurations</td>
         </tr>
         <tr>
           <td class="label">Contract Management<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Post-execution lifecycle for each call-off agreement. Variations, pricing reviews, term renewals, milestone evidence audit, supplier performance against contract. Distinct from Framework administration.</span></td>
-          <td class="col-r">Contract Management Lead</td>
+          <td class="col-r">Contract Management Lead<span class="role-proposed" style="display:inline-block;background:#E5E9ED;color:#5C6770;padding:1px 6px;border-radius:8px;font-size:9px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;margin-left:5px;vertical-align:1px;">Proposed</span></td>
           <td class="col-a">SRO</td>
           <td class="col-c">NHS Commercial, NHS Legal, Commissioners, Suppliers</td>
           <td class="col-i">All Configurations</td>
         </tr>
         <tr>
           <td class="label">Ongoing Evidence Generation<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Continuous evidence accrual across admitted products. Outcome data, real-world evidence, NICE re-evaluation inputs, best-practice tariff evidence pipeline. Feeds Assurance and Independent Assurance.</span></td>
-          <td class="col-r">Evidence Generation Lead</td>
+          <td class="col-r">Evidence Generation Lead<span class="role-proposed" style="display:inline-block;background:#E5E9ED;color:#5C6770;padding:1px 6px;border-radius:8px;font-size:9px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;margin-left:5px;vertical-align:1px;">Proposed</span></td>
           <td class="col-a">SRO</td>
           <td class="col-c">NICE, Outcomes &amp; Measurement, Suppliers, Academic partners</td>
           <td class="col-i">All Configurations</td>
@@ -647,58 +647,58 @@
         </tr>
         <tr>
           <td class="label">Assurance Model<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">The overall assurance discipline coordinating Independent Assurance, NICE EVA, DTAC, DCB0129 (manufacturer) and DCB0160 (deployer) across configurations.</span></td>
-          <td class="col-r">Clinical Safety Officer with Independent Assurance Lead</td>
+          <td class="col-r">Clinical Safety Officer with Independent Assurance Lead<span class="role-proposed" style="display:inline-block;background:#E5E9ED;color:#5C6770;padding:1px 6px;border-radius:8px;font-size:9px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;margin-left:5px;vertical-align:1px;">Proposed</span></td>
           <td class="col-a">SRO</td>
           <td class="col-c">NICE, MHRA, NHS Legal</td>
           <td class="col-i">All Configurations</td>
         </tr>
         <tr>
           <td class="label">Assurance portability<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Cross-configuration reuse of assurance evidence so suppliers don&apos;t reassure for each ICB. Coupled to the contracting instrument and the Assurance Model.</span></td>
-          <td class="col-r">Independent Assurance Lead</td>
+          <td class="col-r">Independent Assurance Lead<span class="role-proposed" style="display:inline-block;background:#E5E9ED;color:#5C6770;padding:1px 6px;border-radius:8px;font-size:9px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;margin-left:5px;vertical-align:1px;">Proposed</span></td>
           <td class="col-a">SRO</td>
           <td class="col-c">NICE, NHS Commercial, Suppliers</td>
           <td class="col-i">All Configurations</td>
         </tr>
         <tr>
           <td class="label">Eligibility Filters<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Commissioner-side filters and self-assessment toolkit for which configurations apply to which ICBs. Pathway fit, IG fit, prescribing alignment, DCB0160 deployer readiness.</span></td>
-          <td class="col-r">NHSE Platform with Independent Assurance Lead</td>
+          <td class="col-r">NHSE Platform with Independent Assurance Lead<span class="role-proposed" style="display:inline-block;background:#E5E9ED;color:#5C6770;padding:1px 6px;border-radius:8px;font-size:9px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;margin-left:5px;vertical-align:1px;">Proposed</span></td>
           <td class="col-a">SRO</td>
-          <td class="col-c">Commissioners, Clinical Safety Officer, IG Lead</td>
+          <td class="col-c">Commissioners, Clinical Safety Officer, IG & Assurance SME</td>
           <td class="col-i">All Configurations</td>
         </tr>
         <tr>
           <td class="label">Service Wrapper anatomy<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Decomposition of the Service Wrapper Foundation item into the six-touchpoint patient chain (Referral, Login &amp; onboard, In-life Help &amp; Support, Use &amp; Motivation, Signposting / Offboarding, Data return) plus four local-pathway items (Local use support, Remote / Passive monitoring, PI/CI escalation, NH team integration).</span></td>
-          <td class="col-r">Service Design Lead</td>
+          <td class="col-r">Service Design Lead<span class="role-proposed" style="display:inline-block;background:#E5E9ED;color:#5C6770;padding:1px 6px;border-radius:8px;font-size:9px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;margin-left:5px;vertical-align:1px;">Proposed</span></td>
           <td class="col-a">SRO</td>
           <td class="col-c">Clinical leads, Patient advocates, NH teams</td>
           <td class="col-i">All Configurations</td>
         </tr>
         <tr>
           <td class="label">EHIA discipline<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Equality and Health Inequalities Assessment. Cross-product discipline ensuring every configuration is assessed for equity-of-access and health-inequalities impact. Particularly load-bearing for HomeTest (telephony non-digital channel, handed-out kit patterns, digital exclusion).</span></td>
-          <td class="col-r">EHIA Lead</td>
+          <td class="col-r">EHIA Lead<span class="role-proposed" style="display:inline-block;background:#E5E9ED;color:#5C6770;padding:1px 6px;border-radius:8px;font-size:9px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;margin-left:5px;vertical-align:1px;">Proposed</span></td>
           <td class="col-a">SRO</td>
-          <td class="col-c">Patient advocates, NH teams, IG Lead, Clinical leads</td>
+          <td class="col-c">Patient advocates, NH teams, IG & Assurance SME, Clinical leads</td>
           <td class="col-i">All Configurations</td>
         </tr>
         <tr>
           <td class="label">UK NSC interface<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">UK National Screening Committee. Recommendation pathway for screening-adjacent configurations. Active for HIV testing-and-treat where screening framing matters; relevant to future configurations that touch formal screening.</span></td>
-          <td class="col-r">Clinical Lead with Independent Assurance Lead</td>
+          <td class="col-r">Clinical Lead with Independent Assurance Lead<span class="role-proposed" style="display:inline-block;background:#E5E9ED;color:#5C6770;padding:1px 6px;border-radius:8px;font-size:9px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;margin-left:5px;vertical-align:1px;">Proposed</span></td>
           <td class="col-a">SRO</td>
           <td class="col-c">UK NSC, NHSE Screening, Clinical Safety Officer</td>
           <td class="col-i">HomeTest configurations primarily</td>
         </tr>
         <tr>
           <td class="label">DSPT alignment<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Data Security and Protection Toolkit. National IG compliance baseline for admitted suppliers and the platform. Coordinated with DPIA and federated controller arrangements.</span></td>
-          <td class="col-r">IG Lead</td>
+          <td class="col-r">IG & Assurance SME</td>
           <td class="col-a">SRO</td>
           <td class="col-c">NHSE Cyber, Suppliers, NHS Legal</td>
           <td class="col-i">All Configurations</td>
         </tr>
         <tr>
           <td class="label">PIDS framing<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Patient Initiated Diagnostic Service. Programme-level framing for the patient-initiated diagnostic pattern. HIV self-testing sits inside PIDS. Influences pathway-level economics and equity-of-access positioning.</span></td>
-          <td class="col-r">NHSE Policy with Programme Lead</td>
+          <td class="col-r">NHSE Policy with HomeTest Principal Delivery Manager</td>
           <td class="col-a">SRO</td>
-          <td class="col-c">Clinical leads, Commissioners, EHIA Lead</td>
+          <td class="col-c">Clinical leads, Commissioners, EHIA Lead<span class="role-proposed" style="display:inline-block;background:#E5E9ED;color:#5C6770;padding:1px 6px;border-radius:8px;font-size:9px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;margin-left:5px;vertical-align:1px;">Proposed</span></td>
           <td class="col-i">Patient-init configurations</td>
         </tr>
 </tbody>
@@ -751,7 +751,7 @@
         </tr>
         <tr class="raci-level-row"><td colspan="6">Working<span class="level-strap">roles named at working level, formal sign-off pending</span></td></tr>
         <tr>
-          <td class="label">Commercial<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Framework instrument, supplier admission, call-off mechanics, pricing cap administration. Step 1 SBS PSR bridge through Step 2 dual-route vehicle decision.</span></td>
+          <td class="label">Commercial<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Framework instrument, supplier admission, call-off mechanics, pricing cap administration. Plan C interim (NHS SBS Sexual Health Framework SBS10255 for HIV) through Step 2 two-track vehicle decision.</span></td>
           <td class="col-r">NHS Commercial</td>
           <td class="col-a">SRO</td>
           <td class="col-c">NHS Legal, NHS Supply Chain, Commissioners, Suppliers</td>
@@ -911,7 +911,7 @@
           <td class="label">IG breach in HIV pathway<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Personal data exposed, lost, or shared without lawful basis.</span></td>
           <td class="col-r">LA DPO</td>
           <td class="col-a">LA Sex Health Service Commissioner</td>
-          <td class="col-c">NHSE IG Lead, NHSE DPO</td>
+          <td class="col-c">IG & Assurance SME, NHSE DPO</td>
           <td class="col-i">Patient (per ICO guidance), CQC</td>
         </tr>
         <tr>
@@ -919,7 +919,7 @@
           <td class="col-r">LA Sex Health Service Commissioner</td>
           <td class="col-a">LA Sex Health Service Commissioner</td>
           <td class="col-c">NHSE Platform Performance, Test Supplier</td>
-          <td class="col-i">Commercial Lead</td>
+          <td class="col-i">Commercial Operations with NHSE Commercial</td>
         </tr>
         <tr>
           <td class="label">Patient complaint or feedback<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Triage and resolution of patient-raised concerns.</span></td>
@@ -972,14 +972,14 @@
         <tr>
           <td class="label">Patient identification and selection<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">From the active surveillance list.</span></td>
           <td class="col-r">Acute Trust Consultant</td>
-          <td class="col-a">Acute Trust Specialist Service Lead</td>
+          <td class="col-a">Acute Trust Specialist Service Lead<span class="role-proposed" style="display:inline-block;background:#E5E9ED;color:#5C6770;padding:1px 6px;border-radius:8px;font-size:9px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;margin-left:5px;vertical-align:1px;">Proposed</span></td>
           <td class="col-c">Patient, GP</td>
           <td class="col-i">NHSE Platform</td>
         </tr>
         <tr>
           <td class="label">Test request<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Clinician-initiated request to despatch a kit to the patient.</span></td>
           <td class="col-r">Acute Trust Consultant</td>
-          <td class="col-a">Acute Trust Specialist Service Lead</td>
+          <td class="col-a">Acute Trust Specialist Service Lead<span class="role-proposed" style="display:inline-block;background:#E5E9ED;color:#5C6770;padding:1px 6px;border-radius:8px;font-size:9px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;margin-left:5px;vertical-align:1px;">Proposed</span></td>
           <td class="col-c">Patient</td>
           <td class="col-i">Logistics Supplier, Specialist Pathology Lab</td>
         </tr>
@@ -1043,7 +1043,7 @@
           <td class="label">IG breach in PSA pathway<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Personal data exposed, lost, or shared without lawful basis.</span></td>
           <td class="col-r">Acute Trust DPO</td>
           <td class="col-a">Acute Trust Commissioner</td>
-          <td class="col-c">NHSE IG Lead, NHSE DPO</td>
+          <td class="col-c">IG & Assurance SME, NHSE DPO</td>
           <td class="col-i">Patient (per ICO guidance), CQC</td>
         </tr>
         <tr>
@@ -1051,7 +1051,7 @@
           <td class="col-r">Acute Trust Commissioner</td>
           <td class="col-a">Acute Trust Commissioner</td>
           <td class="col-c">NHSE Platform Performance, Specialist Lab, Logistics Supplier</td>
-          <td class="col-i">Commercial Lead</td>
+          <td class="col-i">Commercial Operations with NHSE Commercial</td>
         </tr>
       </tbody>
     </table>
@@ -1197,7 +1197,7 @@
           <td class="label">IG breach in HealthStore pathway<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Personal data exposed, lost, or shared without lawful basis.</span></td>
           <td class="col-r">DTx Supplier DPO</td>
           <td class="col-a">ICB Commissioner (controller for the prescribing population)</td>
-          <td class="col-c">NHSE IG Lead, NHSE DPO</td>
+          <td class="col-c">IG & Assurance SME, NHSE DPO</td>
           <td class="col-i">Patient (per ICO guidance), CQC</td>
         </tr>
         <tr>
@@ -1205,7 +1205,7 @@
           <td class="col-r">ICB Commissioner</td>
           <td class="col-a">ICB Commissioner</td>
           <td class="col-c">NHSE Platform Performance, DTx Supplier</td>
-          <td class="col-i">Commercial Lead</td>
+          <td class="col-i">Commercial Operations with NHSE Commercial</td>
         </tr>
         <tr>
           <td class="label">Patient complaint or feedback<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Triage and resolution of patient-raised concerns through the app or the clinician.</span></td>
@@ -1265,7 +1265,7 @@
           <td class="label">Patient enables data sharing<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Patient authenticates via NHS Login and connects a consumer health platform (Apple HealthKit on iOS, Google Health Connect on Android) to the NHS App. Consent captured.</span></td>
           <td class="col-r"><span class="tbc">Open at SRO level</span></td>
           <td class="col-a"><span class="tbc">Open at SRO level</span></td>
-          <td class="col-c">NHSE IG Lead, NHSE DPO</td>
+          <td class="col-c">IG & Assurance SME, NHSE DPO</td>
           <td class="col-i">Patient</td>
         </tr>
         <tr>
@@ -1279,14 +1279,14 @@
           <td class="label">Data flow from consumer device to NHS App<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Patient-supplied data syncs from the consumer platform to the NHS App. Routing under the data schedule. Patient remains in control of what is shared.</span></td>
           <td class="col-r">NHSE Platform Operations</td>
           <td class="col-a"><span class="tbc">Open at SRO level</span></td>
-          <td class="col-c">NHSE IG Lead</td>
+          <td class="col-c">IG & Assurance SME</td>
           <td class="col-i">Patient</td>
         </tr>
         <tr>
           <td class="label">Routing to patient record<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Patient-supplied data routed via FHIR into the patient record where configuration requires. NHS as custodian of the record.</span></td>
           <td class="col-r">NHSE Data Team</td>
           <td class="col-a"><span class="tbc">Open at SRO level</span></td>
-          <td class="col-c">NHSE IG Lead, Single Patient Record team</td>
+          <td class="col-c">IG & Assurance SME, Single Patient Record team</td>
           <td class="col-i">Patient, Care team</td>
         </tr>
         <tr>
@@ -1307,14 +1307,14 @@
           <td class="label">Patient data review and permission change<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Patient can review what is shared and update permissions at any time through the NHS App.</span></td>
           <td class="col-r">Patient (assisted by NHS App)</td>
           <td class="col-a"><span class="tbc">Open at SRO level</span></td>
-          <td class="col-c">NHSE IG Lead</td>
+          <td class="col-c">IG & Assurance SME</td>
           <td class="col-i">Care team (where permissions change affects clinical flow)</td>
         </tr>
         <tr>
           <td class="label">Patient revokes data sharing<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Patient can revoke the consumer-platform connection. Data retention and disposal handled per the data schedule.</span></td>
           <td class="col-r">Patient (assisted by NHS App)</td>
           <td class="col-a"><span class="tbc">Open at SRO level</span></td>
-          <td class="col-c">NHSE IG Lead, NHSE DPO</td>
+          <td class="col-c">IG & Assurance SME, NHSE DPO</td>
           <td class="col-i">Care team</td>
         </tr>
         <tr>
@@ -1326,7 +1326,7 @@
         </tr>
         <tr>
           <td class="label">IG concern in patient-supplied data flow<br><span style="font-weight:400;font-size:11.5px;color:var(--text-sec);">Novel data controllership questions for consumer-platform data entering NHS records. Lawful basis, retention, breach handling.</span></td>
-          <td class="col-r">NHSE IG Lead</td>
+          <td class="col-r">IG & Assurance SME</td>
           <td class="col-a"><span class="tbc">Open at SRO level</span></td>
           <td class="col-c">NHSE DPO, Caldicott Guardian</td>
           <td class="col-i">Patient (per ICO guidance), ICO</td>
@@ -1334,7 +1334,7 @@
       </tbody>
     </table>
     <div class="pair-callout" style="background:#F4F8FC;border:1px solid #d6e2ef;margin-top:18px;padding:14px 18px;border-radius:10px;color:#4C6272;">
-      <strong style="color:#003087;">Honest framing.</strong> The activity list above reflects the actual Wearables operational shape. The R/A/C/I cells marked <em>Open at SRO level</em> are decisions the SRO needs to take to land the configuration; the model surfaces the shape and the dependencies but does not invent ownership. Clinical and IG dependencies named where the framework already runs through them (NHSE Clinical Safety Officer, Clinical Safety Group, NHSE IG Lead, NHSE DPO).
+      <strong style="color:#003087;">Honest framing.</strong> The activity list above reflects the actual Wearables operational shape. The R/A/C/I cells marked <em>Open at SRO level</em> are decisions the SRO needs to take to land the configuration; the model surfaces the shape and the dependencies but does not invent ownership. Clinical and IG dependencies named where the framework already runs through them (NHSE Clinical Safety Officer, Clinical Safety Group, IG & Assurance SME, NHSE DPO).
     </div>
   </div>
 
@@ -1359,22 +1359,22 @@
         <div class="decision">
           <div class="decision-q">Add a new condition or product to the portfolio</div>
           <div class="decision-d"><strong>Decision:</strong> whether to add the condition or product; which patterns to pick from each overlay; whether any new patterns are needed; whether existing portfolio capacity can absorb the addition.</div>
-          <div class="decision-owner"><span class="decision-owner-tag">Roles</span>Product Lead recommends. SRO / SLT approves. Configuration Clinical Leads consulted. Other product workstreams (HomeTest, HealthStore, HealthSync) informed.</div>
+          <div class="decision-owner"><span class="decision-owner-tag">Roles</span>Product Manager recommends. Deputy Director DTx accountable, with SLT. Configuration Clinical Leads consulted. Other product workstreams (HomeTest, HealthStore, HealthSync) informed.</div>
         </div>
         <div class="decision">
           <div class="decision-q">Add a new pattern to an existing overlay</div>
           <div class="decision-d"><strong>Decision:</strong> whether the pattern is sufficiently distinct to warrant a new entry; whether it conflicts with existing patterns; what the assurance bar is for the new pattern; whether the pattern is product-specific or applies across the portfolio.</div>
-          <div class="decision-owner"><span class="decision-owner-tag">Roles</span>Commercial Lead decides. SRO accountable. Clinical Safety Officer and IG Lead consulted. All Configurations informed.</div>
+          <div class="decision-owner"><span class="decision-owner-tag">Roles</span>Deputy Director DTx decides. Head of Technology & Product recommends. Commercial Operations with NHSE Commercial, Clinical Safety Officer and IG & Assurance SME consulted. All Configurations informed.</div>
         </div>
         <div class="decision">
           <div class="decision-q">Change or refresh an existing pattern</div>
           <div class="decision-d"><strong>Decision:</strong> whether the change is material enough to require re-assurance; whether the change affects existing live deployments; what the transition path is for existing users; whether the change ripples across all products in the portfolio or only one.</div>
-          <div class="decision-owner"><span class="decision-owner-tag">Roles</span>Commercial Lead decides. SRO accountable. Clinical Safety Officer and IG Lead consulted. All Configurations informed.</div>
+          <div class="decision-owner"><span class="decision-owner-tag">Roles</span>Deputy Director DTx decides. Head of Technology & Product recommends. Commercial Operations with NHSE Commercial, Clinical Safety Officer and IG & Assurance SME consulted. All Configurations informed.</div>
         </div>
         <div class="decision">
-          <div class="decision-q">Approve the operating model itself for SLT sign-off</div>
-          <div class="decision-d"><strong>Decision:</strong> whether the operating model is fit to recommend to SLT, whether to publish externally, whether to anchor the Recommendation paper on it, whether the portfolio-level shape is settled enough for the live products to align to it.</div>
-          <div class="decision-owner"><span class="decision-owner-tag">Roles</span>Commercial Lead recommends. Senior Responsible Owner and Head of Product and Technology approve.</div>
+          <div class="decision-q">Approve the operating model itself</div>
+          <div class="decision-d"><strong>Decision:</strong> whether the operating model is fit, whether to publish externally, whether to anchor the Recommendation paper on it, whether the portfolio-level shape is settled enough for the live products to align to it.</div>
+          <div class="decision-owner"><span class="decision-owner-tag">Roles</span>Deputy Director DTx owns and decides. Head of Technology & Product, Head of Operations and Commercial Operations recommend, with NHSE Commercial.</div>
         </div>
       </div>
     </div>
