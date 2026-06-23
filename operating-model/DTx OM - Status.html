@@ -190,8 +190,8 @@
 <div class="product-breakdown" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:8px 0;">
   <button data-scope="hometest" class="scope-toggle" onclick="filterScope('hometest')" style="background:linear-gradient(135deg,#003087,#005EB8);color:#fff;border:none;border-radius:12px;padding:18px 22px;cursor:pointer;text-align:left;font:inherit;">
     <div style="font-size:10px;font-weight:800;letter-spacing:1.4px;opacity:0.85;text-transform:uppercase;margin-bottom:6px;">HomeTest</div>
-    <div style="font-size:30px;font-weight:900;letter-spacing:-1px;line-height:1;margin-bottom:6px;">121</div>
-    <div style="font-size:11.5px;opacity:0.92;line-height:1.5;">items tracked today (80 unresolved + 36 in flight)</div>
+    <div style="font-size:30px;font-weight:900;letter-spacing:-1px;line-height:1;margin-bottom:6px;">127</div>
+    <div style="font-size:11.5px;opacity:0.92;line-height:1.5;">items tracked today (91 unresolved + 36 in flight)</div>
   </button>
   <button data-scope="healthstore" class="scope-toggle" onclick="filterScope('healthstore')" style="background:linear-gradient(135deg,#00A9CE,#5EBCDB);color:#fff;border:none;border-radius:12px;padding:18px 22px;cursor:pointer;text-align:left;font:inherit;">
     <div style="font-size:10px;font-weight:800;letter-spacing:1.4px;opacity:0.85;text-transform:uppercase;margin-bottom:6px;">HealthStore</div>
@@ -204,13 +204,13 @@
     <div style="font-size:11.5px;opacity:0.92;line-height:1.5;">structural items today; operational depth lands as the programme matures</div>
   </button>
 </div>
-<div style="text-align:center;margin:8px 0 18px;"><button onclick="filterScope('all')" class="scope-toggle" data-scope="all" style="background:#fff;border:1px solid #D5E0EB;border-radius:8px;padding:8px 18px;cursor:pointer;font-size:12px;font-weight:700;color:#003087;letter-spacing:0.4px;text-transform:uppercase;font:inherit;">Show all products</button></div>
+<div style="text-align:center;margin:8px 0 18px;"><button onclick="filterScope('all')" class="scope-toggle" data-scope="all" style="font-family:inherit;background:#fff;border:1px solid #D5E0EB;border-radius:8px;padding:8px 18px;cursor:pointer;font-size:12px;font-weight:700;color:#003087;letter-spacing:0.4px;text-transform:uppercase;">Show all products</button></div>
 
  <!-- Two summary click-through cards -->
  <div class="summary scope-section" data-scope="hometest">
  <a href="#hometest-unresolved" class="sum-card sum-card-open">
  <div class="sum-eyebrow open">HomeTest &middot; Awaiting decision</div>
- <div class="sum-count">85</div>
+ <div class="sum-count">91</div>
  <div class="sum-label">Unresolved items</div>
  <div class="sum-desc">Governance accountability, architectural positioning, operational mechanism, stage decisions, Open Qs for SLT.</div>
  <div class="sum-cta">See the full list <span class="sum-cta-arrow">&darr;</span></div>
@@ -375,7 +375,7 @@
 </div>
 
 <div class="section scope-section" data-scope="hometest" id="hometest" style="margin-top:36px;">
- <h2 class="section-h" style="border-top:4px solid #003087;padding-top:18px;">HomeTest <span class="count">122 items &middot; HIV live in Beta; PSA-AS and iron deficiency anaemia configurations in design</span></h2>
+ <h2 class="section-h" style="border-top:4px solid #003087;padding-top:18px;">HomeTest <span class="count">127 items &middot; HIV live in Beta; PSA-AS and iron deficiency anaemia configurations in design</span></h2>
  <p class="section-intro">HomeTest is the operationally mature product in the portfolio. The items below are grouped into <strong>Unresolved</strong> (awaiting decision, position or owner) and <strong>In progress</strong> (work in flight across the lifecycle stages).</p>
  </div>
 
@@ -1005,8 +1005,13 @@ function filterScope(scope) {
       b.style.outline = 'none';
     }
   });
-  // Scroll to the section the user toggled to
-  if (scope !== 'all') {
+  // Scroll: 'all' returns to the top of the scope cards; otherwise scroll to the target section
+  if (scope === 'all') {
+    var topAnchor = document.querySelector('.scope-section, .summary');
+    if (topAnchor) {
+      window.scrollTo({top: Math.max(0, topAnchor.offsetTop - 120), behavior: 'smooth'});
+    }
+  } else {
     var targetSection = document.querySelector('.scope-section[data-scope="' + scope + '"]');
     if (targetSection) {
       window.scrollTo({top: targetSection.offsetTop - 24, behavior: 'smooth'});
