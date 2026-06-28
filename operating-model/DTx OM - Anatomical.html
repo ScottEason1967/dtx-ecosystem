@@ -1258,6 +1258,46 @@
  <div class="foot"><strong>Working anatomy.</strong> Foundation rows are shared infrastructure across the three products; overlay rows vary by product and firm up at different rates. HealthSync cells populate as the first configuration is designed.</div>
 
 </div>
+
+  <style>
+  .ps-wrap{background:#fff;border:1px solid #ebeef1;border-radius:14px;padding:24px 28px;margin:18px 0 28px;}
+  .ps-intro{margin-bottom:18px;}
+  .ps-intro p{font-size:13.5px;color:#4C6272;line-height:1.65;margin-bottom:10px;}
+  .ps-intro p:last-child{margin-bottom:0;}
+  .ps-intro strong{color:#212B32;}
+  .ps-caveat{background:#FFF9EC;border-left:3px solid #C9A227;padding:10px 14px;border-radius:6px;font-size:12.5px;}
+  .ps-link{color:#005EB8;font-weight:700;text-decoration:none;}
+  .ps-link:hover{text-decoration:underline;}
+  .ps-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+  @media(max-width:880px){.ps-grid{grid-template-columns:1fr;}}
+  .ps-card{background:#F4F8FC;border:1px solid #d6e2ef;border-radius:10px;padding:16px 18px;}
+  .ps-card-h{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid #d6e2ef;}
+  .ps-name{font-size:14.5px;font-weight:800;color:#003087;letter-spacing:-0.2px;}
+  .ps-priority{font-size:10px;font-weight:800;letter-spacing:0.6px;text-transform:uppercase;padding:3px 9px;border-radius:99px;}
+  .ps-priority.ps-p1{background:#006747;color:#fff;}
+  .ps-priority.ps-p2{background:#C9A227;color:#212B32;}
+  .ps-priority.ps-p3{background:#7E8B97;color:#fff;}
+  .ps-priority.ps-hold{background:#AE2573;color:#fff;}
+  .ps-card-body{display:flex;flex-direction:column;gap:6px;}
+  .ps-row{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#4C6272;}
+  .ps-row-total{border-top:1px dashed #B5D4E5;padding-top:6px;margin-top:4px;font-weight:700;color:#212B32;}
+  .ps-label{font-weight:600;}
+  .ps-score{font-weight:600;color:#212B32;}
+  .ps-rating{display:inline-block;font-size:9.5px;font-weight:800;letter-spacing:0.4px;text-transform:uppercase;padding:1px 6px;border-radius:99px;margin-left:6px;vertical-align:middle;}
+  .ps-rating.ps-strong{background:#D7EBE2;color:#006747;}
+  .ps-rating.ps-partial{background:#FFF3CD;color:#8A6D00;}
+  .ps-rating.ps-low{background:#F4D2D2;color:#8B2222;}
+  .ps-anchor{font-size:13px;color:#4C6272;text-align:center;margin-top:18px;}
+  </style>
+
+  <!-- ===== Prioritisation scores per HomeTest configuration ===== -->
+  <div class="section-h"><span class="num">04</span>Prioritisation scores (HomeTest configurations)</div>
+  <div class="ps-wrap">
+    <div class="ps-intro"><p>Each HomeTest configuration is scored against the <a href="DTx OM - Prioritisation Framework.html" class="ps-link">Prioritisation Framework</a>: a Clinical Gateway (pass / fail viability) plus three scored dimensions (A Strategic and Policy Alignment, B Pathway Maturity and Readiness, C Economic and System Impact), each scored on three sub-axes at 1, 3 or 5. Scores below come from the Pathway 2 Discovery scoring matrix and were endorsed in principle at the HomeTest Programme Board on 9 June 2026.</p><p class="ps-caveat"><strong>Scope.</strong> The Prioritisation Framework is HomeTest-specific. HealthStore and HealthSync use different prioritisation lenses. Scores below apply only to HomeTest configurations.</p></div>
+    <div class="ps-grid"><div class="ps-card"><div class="ps-card-h"><span class="ps-name">HIV</span><span class="ps-priority ps-p1">Priority 1, near term</span></div><div class="ps-card-body"><div class="ps-row"><span class="ps-label">Clinical Gateway</span><span class="ps-score">5/5</span></div><div class="ps-row"><span class="ps-label">A &middot; Strategic</span><span class="ps-score">15/15 <span class="ps-rating ps-strong">Strong/full</span></span></div><div class="ps-row"><span class="ps-label">B &middot; Pathway maturity</span><span class="ps-score">15/15 <span class="ps-rating ps-strong">Strong/full</span></span></div><div class="ps-row"><span class="ps-label">C &middot; Economic</span><span class="ps-score">13/15 <span class="ps-rating ps-strong">Strong/full</span></span></div><div class="ps-row ps-row-total"><span class="ps-label">ABC Total</span><span class="ps-score"><strong>43/45</strong> &middot; 96%</span></div><div class="ps-row"><span class="ps-label">Evidence confidence</span><span class="ps-score">High</span></div></div></div><div class="ps-card"><div class="ps-card-h"><span class="ps-name">PSA Active Surveillance</span><span class="ps-priority ps-p2">Priority 2, next wave</span></div><div class="ps-card-body"><div class="ps-row"><span class="ps-label">Clinical Gateway</span><span class="ps-score">3/5</span></div><div class="ps-row"><span class="ps-label">A &middot; Strategic</span><span class="ps-score">11/15 <span class="ps-rating ps-partial">Partial</span></span></div><div class="ps-row"><span class="ps-label">B &middot; Pathway maturity</span><span class="ps-score">13/15 <span class="ps-rating ps-strong">Strong/full</span></span></div><div class="ps-row"><span class="ps-label">C &middot; Economic</span><span class="ps-score">11/15 <span class="ps-rating ps-partial">Partial</span></span></div><div class="ps-row ps-row-total"><span class="ps-label">ABC Total</span><span class="ps-score"><strong>35/45</strong> &middot; 78%</span></div><div class="ps-row"><span class="ps-label">Evidence confidence</span><span class="ps-score">Medium-High</span></div></div></div><div class="ps-card"><div class="ps-card-h"><span class="ps-name">MRSA Hip & Knee</span><span class="ps-priority ps-p1">Priority 1, near term</span></div><div class="ps-card-body"><div class="ps-row"><span class="ps-label">Clinical Gateway</span><span class="ps-score">5/5</span></div><div class="ps-row"><span class="ps-label">A &middot; Strategic</span><span class="ps-score">15/15 <span class="ps-rating ps-strong">Strong/full</span></span></div><div class="ps-row"><span class="ps-label">B &middot; Pathway maturity</span><span class="ps-score">15/15 <span class="ps-rating ps-strong">Strong/full</span></span></div><div class="ps-row"><span class="ps-label">C &middot; Economic</span><span class="ps-score">15/15 <span class="ps-rating ps-strong">Strong/full</span></span></div><div class="ps-row ps-row-total"><span class="ps-label">ABC Total</span><span class="ps-score"><strong>45/45</strong> &middot; 100%</span></div><div class="ps-row"><span class="ps-label">Evidence confidence</span><span class="ps-score">High</span></div></div></div><div class="ps-card"><div class="ps-card-h"><span class="ps-name">Iron deficiency anaemia (GP-init)</span><span class="ps-priority ps-hold">Hold, low priority</span></div><div class="ps-card-body"><div class="ps-row"><span class="ps-label">Clinical Gateway</span><span class="ps-score">3/5</span></div><div class="ps-row"><span class="ps-label">A &middot; Strategic</span><span class="ps-score">3/15 <span class="ps-rating ps-low">Low</span></span></div><div class="ps-row"><span class="ps-label">B &middot; Pathway maturity</span><span class="ps-score">7/15 <span class="ps-rating ps-partial">Partial</span></span></div><div class="ps-row"><span class="ps-label">C &middot; Economic</span><span class="ps-score">9/15 <span class="ps-rating ps-partial">Partial</span></span></div><div class="ps-row ps-row-total"><span class="ps-label">ABC Total</span><span class="ps-score"><strong>19/45</strong> &middot; 42%</span></div><div class="ps-row"><span class="ps-label">Evidence confidence</span><span class="ps-score">Medium</span></div></div></div></div>
+    <p class="ps-anchor"><a href="DTx OM - Prioritisation Framework.html" class="ps-link">Open the full Prioritisation Framework &rarr;</a></p>
+  </div>
+
 </div>
 
 

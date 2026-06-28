@@ -3,13 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>How to read this model,  Digital Therapeutics Operating Model</title>
+<title>How to read this model, Digital Therapeutics Operating Model</title>
 <style>
 :root {
   --nhs-dark:#003087; --nhs-blue:#005EB8; --nhs-green:#006747; --nhs-pink:#AE2573;
   --amber:#FFB91D; --amber-deep:#C9A227; --warm-cream:#FFF9EC;
   --text:#212B32; --text-sec:#4C6272; --text-muted:#7E8B97;
   --border-lt:#ebeef1; --card:#ffffff; --bg:#f8fafc; --pale-blue:#E8F1F6; --pale-blue-bd:#B5D4E5;
+  --ht:#005EB8; --hs:#AE2573; --hsy:#006747;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;
@@ -20,7 +21,7 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
 
 .eyebrow{font-size:11px;font-weight:800;letter-spacing:2.4px;color:var(--amber-deep);text-transform:uppercase;margin-bottom:14px;}
 .h-title{font-size:54px;font-weight:900;color:var(--nhs-dark);letter-spacing:-1.6px;line-height:1.0;margin-bottom:18px;}
-.h-sub{font-size:18px;color:var(--text-sec);line-height:1.65;max-width:780px;margin-bottom:20px;}
+.h-sub{font-size:18px;color:var(--text-sec);line-height:1.65;max-width:820px;margin-bottom:20px;}
 .h-sub strong{color:var(--text);font-weight:700;}
 
 .amber-rule{width:72px;height:4px;background:var(--amber);border-radius:2px;margin-bottom:18px;}
@@ -31,7 +32,92 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
 .section-intro{font-size:14.5px;color:var(--text-sec);line-height:1.7;max-width:840px;margin-bottom:22px;}
 .section-intro strong{color:var(--text);font-weight:700;}
 
-/* 30-second answer grid */
+/* ===== Top-of-page Home shortcut ===== */
+.rg-top-strip{display:flex;justify-content:space-between;align-items:center;gap:14px;padding-bottom:14px;margin-bottom:14px;border-bottom:1px solid var(--border-lt);font-size:12px;}
+.rg-top-strip-back{color:var(--nhs-blue);font-weight:700;text-decoration:none;letter-spacing:0.3px;}
+.rg-top-strip-back:hover{color:var(--nhs-dark);}
+.rg-top-strip-cta{display:inline-flex;align-items:center;gap:6px;background:var(--amber);color:var(--nhs-dark);font-weight:800;padding:7px 14px;border-radius:99px;text-decoration:none;letter-spacing:0.3px;font-size:11.5px;}
+.rg-top-strip-cta:hover{background:#FFD45A;}
+
+/* ===== Honest scope box ===== */
+.honest-scope{background:var(--warm-cream);border:1px solid #F0DCA0;border-radius:14px;padding:24px 28px;margin-top:8px;}
+.honest-scope p{font-size:13.5px;color:var(--text-sec);line-height:1.7;margin-bottom:12px;}
+.honest-scope p:last-child{margin-bottom:0;}
+.honest-scope p strong{color:var(--text);font-weight:700;}
+
+/* ===== Future State Blueprint three-tile block ===== */
+.cfc-block{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px;}
+.cfc-tile{background:#F4F8FC;border:1px solid #d6e2ef;border-radius:12px;padding:20px 22px;display:flex;flex-direction:column;}
+.cfc-tile.cfc-is{background:#EAF1F8;border-color:var(--pale-blue-bd);}
+.cfc-tile.cfc-why{background:#FFF9EC;border-color:#F0DCA0;}
+.cfc-tile-num{font-size:11px;font-weight:800;letter-spacing:1.6px;color:var(--text-muted);text-transform:uppercase;margin-bottom:10px;}
+.cfc-tile.cfc-is .cfc-tile-num{color:var(--nhs-blue);}
+.cfc-tile.cfc-why .cfc-tile-num{color:var(--amber-deep);}
+.cfc-tile-h{font-size:15.5px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.3px;margin-bottom:8px;line-height:1.25;}
+.cfc-tile-body{font-size:13px;color:var(--text-sec);line-height:1.6;}
+.cfc-tile-body strong{color:var(--text);font-weight:700;}
+@media(max-width:880px){.cfc-block{grid-template-columns:1fr;}}
+
+/* ===== Ecosystem central insight callout ===== */
+.ecosystem-callout{background:linear-gradient(135deg,var(--nhs-dark),var(--nhs-blue));color:#fff;border-radius:14px;padding:24px 28px;margin:14px 0 30px;border-left:6px solid var(--amber);}
+.ecosystem-callout-eyebrow{font-size:10.5px;font-weight:800;letter-spacing:1.8px;color:var(--amber);text-transform:uppercase;margin-bottom:8px;}
+.ecosystem-callout-line{font-size:22px;font-weight:900;color:#fff;letter-spacing:-0.5px;margin-bottom:10px;line-height:1.25;}
+.ecosystem-callout-body{font-size:13px;color:rgba(255,255,255,0.90);line-height:1.65;}
+.ecosystem-callout-body strong{color:#fff;font-weight:700;}
+
+/* ===== Three layers, Input, Bridge, Output ===== */
+.layers-wrap{margin-top:14px;}
+.layers-grid{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:10px;align-items:stretch;}
+.layer-card{background:#fff;border:1.5px solid var(--border-lt);border-radius:14px;padding:22px 22px 20px;display:flex;flex-direction:column;}
+.layer-card.layer-input{border-color:var(--pale-blue-bd);background:#F4F8FC;}
+.layer-card.layer-bridge{border-color:var(--amber);background:var(--warm-cream);box-shadow:0 8px 24px rgba(255,185,29,0.18);}
+.layer-card.layer-output{border-color:#cfe1d8;background:#F4FAF7;}
+.layer-eyebrow{font-size:10.5px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;margin-bottom:8px;}
+.layer-card.layer-input .layer-eyebrow{color:var(--nhs-blue);}
+.layer-card.layer-bridge .layer-eyebrow{color:var(--amber-deep);}
+.layer-card.layer-output .layer-eyebrow{color:var(--nhs-green);}
+.layer-h{font-size:18px;font-weight:900;color:var(--nhs-dark);letter-spacing:-0.4px;margin-bottom:8px;line-height:1.2;}
+.layer-strap{font-size:11.5px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;}
+.layer-body{font-size:13px;color:var(--text-sec);line-height:1.6;margin-bottom:14px;}
+.layer-body strong{color:var(--text);font-weight:700;}
+.layer-list{font-size:12px;color:var(--text-sec);line-height:1.55;padding-left:0;list-style:none;margin-top:6px;}
+.layer-list li{margin-bottom:4px;padding-left:14px;position:relative;}
+.layer-list li::before{content:"";position:absolute;left:0;top:7px;width:7px;height:7px;border-radius:50%;background:var(--text-muted);}
+.layer-card.layer-input .layer-list li::before{background:var(--nhs-blue);}
+.layer-card.layer-bridge .layer-list li::before{background:var(--amber-deep);}
+.layer-card.layer-output .layer-list li::before{background:var(--nhs-green);}
+.layer-arrow{display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:300;color:var(--text-muted);padding:0 4px;}
+@media(max-width:980px){.layers-grid{grid-template-columns:1fr;}.layer-arrow{transform:rotate(90deg);padding:8px 0;}}
+
+/* ===== Three product service shapes ===== */
+.prods-wrap{margin-top:14px;}
+.prods-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;align-items:stretch;}
+.prod-col{background:#fff;border:1.5px solid var(--border-lt);border-radius:14px;padding:22px 22px 20px;display:flex;flex-direction:column;}
+.prod-col.prod-ht{border-top:6px solid var(--ht);}
+.prod-col.prod-hs{border-top:6px solid var(--hs);}
+.prod-col.prod-hsy{border-top:6px solid var(--hsy);}
+.prod-eyebrow{font-size:10.5px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;margin-bottom:6px;}
+.prod-col.prod-ht .prod-eyebrow{color:var(--ht);}
+.prod-col.prod-hs .prod-eyebrow{color:var(--hs);}
+.prod-col.prod-hsy .prod-eyebrow{color:var(--hsy);}
+.prod-name{font-size:20px;font-weight:900;color:var(--nhs-dark);letter-spacing:-0.4px;margin-bottom:6px;line-height:1.2;}
+.prod-strap{font-size:11.5px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;}
+.prod-steps{display:flex;flex-direction:column;gap:8px;margin-top:4px;}
+.prod-step{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:flex-start;}
+.prod-step-num{flex-shrink:0;width:24px;height:24px;border-radius:50%;color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.prod-col.prod-ht .prod-step-num{background:var(--ht);}
+.prod-col.prod-hs .prod-step-num{background:var(--hs);}
+.prod-col.prod-hsy .prod-step-num{background:var(--hsy);}
+.prod-step-text{font-size:13px;color:var(--text-sec);line-height:1.55;padding-top:2px;}
+.prod-step-text strong{color:var(--text);font-weight:700;}
+.prod-foot{font-size:11.5px;color:var(--text-muted);line-height:1.55;margin-top:14px;padding-top:12px;border-top:1px dashed var(--border-lt);font-style:italic;}
+.prod-tbc{font-size:13px;color:var(--text-muted);line-height:1.6;font-style:italic;}
+@media(max-width:980px){.prods-grid{grid-template-columns:1fr;}}
+
+.prods-anchor{font-size:13px;color:var(--text-sec);line-height:1.6;font-style:italic;margin-top:18px;text-align:center;}
+.prods-anchor strong{color:var(--text);font-weight:700;font-style:normal;}
+
+/* 30-second answer grid (kept) */
 .three-up{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px;}
 .what-tile{background:#F4F8FC;border:1px solid #d6e2ef;border-radius:12px;padding:18px 20px;}
 .what-tile-h{font-size:11px;font-weight:800;letter-spacing:1.4px;color:var(--nhs-blue);text-transform:uppercase;margin-bottom:8px;}
@@ -39,7 +125,7 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
 .what-tile-body strong{color:var(--text);font-weight:700;}
 @media(max-width:780px){.three-up{grid-template-columns:1fr;}}
 
-/* Five questions diagram */
+/* Five questions diagram (kept) */
 .shape-wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:30px;align-items:center;margin-top:4px;}
 .shape-circle{position:relative;width:340px;height:340px;margin:0 auto;}
 .shape-centre{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
@@ -125,38 +211,191 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
 <div class="page">
   <div class="card">
 
+    <!-- Top-of-page Home shortcut -->
+    <div class="rg-top-strip">
+      <a href="DTx OM - Index.html" class="rg-top-strip-back">&larr; Digital Therapeutics Operating Model home</a>
+      <a href="DTx OM - Index.html" class="rg-top-strip-cta">Skip to the home page &rarr;</a>
+    </div>
+
     <div class="eyebrow">Start here</div>
     <div class="amber-rule"></div>
     <h1 class="h-title">How to read this operating model.</h1>
-    <p class="h-sub">This model is <strong>intentionally information-rich</strong>. It is built to be clicked around, not read top-to-bottom. This page tells you where to start, what to expect and which parts will be most useful to you. The model spans the <strong>Self Health Services</strong> portfolio: HomeTest, HealthStore and HealthSync.</p>
+    <p class="h-sub">An <strong>interactive Future State Blueprint</strong> for the Self Health Services portfolio: HomeTest, HealthStore and HealthSync. Built so every key player can see themselves in the future world and work with us on how to move there, across every discipline of BAU.</p>
 
-    <!-- 30-second answer -->
+    <!-- ===== ABOUT THE SCOPE: HomeTest learnings into the wider portfolio ===== -->
     <div class="section">
-      <div class="section-eyebrow">In 30 seconds</div>
-      <h2 class="section-h">What this is and what it isn't.</h2>
-      <p class="section-intro">An operating model for the future-state Digital Therapeutics portfolio. Built to answer the question: <strong>how does this run at scale by 2030?</strong> It holds the architecture, the cast and the open questions across HomeTest, HealthStore and HealthSync. The delivery plan and the answers live on the Status and Teamwork pages.</p>
+      <div class="section-eyebrow">About the scope</div>
+      <h2 class="section-h">From HomeTest discovery into the wider portfolio.</h2>
+      <div class="honest-scope">
+        <p>The brief that opened this work was a <strong>commercial Target Operating Model for HomeTest</strong>. As that work moved, it became clear the commercial question (what vehicle delivers this, and how) couldn&apos;t be answered properly without showing the operating reality the vehicle has to support. The discovery forced the architecture, the cast, the lifecycle and the open questions into the open. Those learnings now carry across the wider Self Health Services portfolio.</p>
+        <p>The HomeTest commercial work is still here. <strong>It is the proving ground and it informs every layer.</strong> But it sits inside a broader portfolio frame, alongside HealthStore and HealthSync. That broader frame is a <strong>Future State Blueprint for the portfolio</strong>: the bridge between where each product is today and the future operating model the sponsor&apos;s direction and the wider portfolio thinking already point at.</p>
+      </div>
+    </div>
 
-      <div class="three-up">
-        <div class="what-tile">
-          <div class="what-tile-h">What this is</div>
-          <div class="what-tile-body">The navigable reference for the sponsor&apos;s future-state portfolio vision. A set of interconnected pages organised around five questions, with the people who run the portfolio threaded through every one. Architecture reused across HomeTest, HealthStore and HealthSync. Built to be explored, not read.</div>
+    <!-- ===== FIRST, THE FRAMING ===== -->
+    <div class="section">
+      <div class="section-eyebrow">First, the framing</div>
+      <h2 class="section-h">This isn&apos;t a frozen operating model. It&apos;s an interactive Future State Blueprint.</h2>
+      <p class="section-intro">A target operating model, in the traditional sense, is a snapshot, what &lsquo;good&rsquo; looks like at a point in time. Useful, but static. This is more than that. It carries the snapshot inside it, alongside the present-day reality across all three products and the moves between them. And it stays live as the work moves.</p>
+
+      <div class="ecosystem-callout">
+        <div class="ecosystem-callout-eyebrow">The central insight this is built around</div>
+        <div class="ecosystem-callout-line">The service only works if the ecosystem works.</div>
+        <div class="ecosystem-callout-body">Not technology. Not procurement. Not policy. Not the platform. <strong>The ecosystem.</strong> That is why the architecture has to hold patients, clinicians, commissioners and suppliers in the same frame across HomeTest, HealthStore and HealthSync, and why <strong>adoption is the first-order design requirement, not a downstream consideration.</strong> Every layer of this blueprint is built around the question: how do we build a portfolio all of these players choose to use?</div>
+      </div>
+
+      <div class="cfc-block">
+        <div class="cfc-tile">
+          <div class="cfc-tile-num">01 &middot; The traditional view</div>
+          <div class="cfc-tile-h">A target operating model is a frozen snapshot.</div>
+          <div class="cfc-tile-body">It describes how a service ought to run, at one moment in time. Useful for sign-off. Useful for a board. But it doesn&apos;t hold the path from where you are now to where you need to be. And once it&apos;s signed, it ages.</div>
         </div>
-        <div class="what-tile">
-          <div class="what-tile-h">What this isn't</div>
-          <div class="what-tile-body">Not a static document, not a deck, not a delivery plan. It feeds them,  the Hearts and Minds decks, the playbooks, the position papers and the prioritised delivery items all derive from it. A traditional operating model is a point-in-time snapshot. The snapshot is one of the outputs this produces.</div>
+        <div class="cfc-tile cfc-is">
+          <div class="cfc-tile-num">02 &middot; What this is</div>
+          <div class="cfc-tile-h">A Future State Blueprint for the portfolio.</div>
+          <div class="cfc-tile-body">It shows where each of the three products is today, where the portfolio needs to get to, and the moves between. The static TOM is one of the things it produces, not the thing itself. The same is true for the playbooks across disciplines (commercial, IG and beyond), the position papers and the Hearts and Minds decks. The model stays live; the artefacts get reissued as the work moves.</div>
         </div>
-        <div class="what-tile">
-          <div class="what-tile-h">Who it's for</div>
-          <div class="what-tile-body">NHSE colleagues, sponsors, commissioners, suppliers and clinicians. Anyone who needs to understand what the home-testing service has to be in order to work.</div>
+        <div class="cfc-tile cfc-why">
+          <div class="cfc-tile-num">03 &middot; Why this matters</div>
+          <div class="cfc-tile-h">The 10 Year Plan set a destination. It didn&apos;t set out the HOW.</div>
+          <div class="cfc-tile-body">This is the HOW for HomeTest, HealthStore and HealthSync together. The architecture, the cast, the lifecycle, the open questions, the human stories. Built so every key player can see themselves in the future and contribute to the path between now and then.</div>
         </div>
+      </div>
+    </div>
+
+    <!-- ===== THREE LAYERS ===== -->
+    <div class="section">
+      <div class="section-eyebrow">Three layers in one artefact</div>
+      <h2 class="section-h">Input. Bridge. Output.</h2>
+      <p class="section-intro">The artefact bundles three things that traditional operating model documents keep apart. <strong>An input</strong>, where the portfolio is today across the three products. <strong>A bridge</strong>, the interactive model you&apos;re navigating, holding what has to change and who has to do it. <strong>Outputs</strong>, the static TOM, the playbooks, the decks, the position papers. Each output is reissued as the bridge updates. <strong>This document is the bridge itself. A portfolio TOM sits at the far end of it.</strong></p>
+
+      <div class="layers-wrap">
+        <div class="layers-grid">
+          <div class="layer-card layer-input">
+            <div class="layer-eyebrow">Input</div>
+            <div class="layer-h">Where the portfolio is today</div>
+            <div class="layer-strap">Current state</div>
+            <div class="layer-body">The reality the three programmes are working from. HomeTest&apos;s live HIV service and PSA discovery. HealthStore&apos;s COPD alpha. HealthSync&apos;s emerging BP use case. The existing pathways, the constraints, the dependencies.</div>
+            <ul class="layer-list">
+              <li>Live services and pilots</li>
+              <li>Existing pathways and constraints</li>
+              <li>What suppliers and partners already do</li>
+            </ul>
+          </div>
+          <div class="layer-arrow">&rarr;</div>
+          <div class="layer-card layer-bridge">
+            <div class="layer-eyebrow">Bridge</div>
+            <div class="layer-h">The interactive blueprint</div>
+            <div class="layer-strap">This document</div>
+            <div class="layer-body">The architecture, the cast, the lifecycle, the governance, the open questions, anchored by Why and wrapped with Hearts and Minds, Status and Teamwork. <strong>This is the working model.</strong> It updates as the portfolio thinks.</div>
+            <ul class="layer-list">
+              <li>Five questions, Why at the centre</li>
+              <li>Patterns reused across the three products</li>
+              <li>Status and Teamwork keep it honest</li>
+            </ul>
+          </div>
+          <div class="layer-arrow">&rarr;</div>
+          <div class="layer-card layer-output">
+            <div class="layer-eyebrow">Outputs</div>
+            <div class="layer-h">What the bridge produces</div>
+            <div class="layer-strap">Reissued as the bridge updates</div>
+            <div class="layer-body">The static TOM at the far end. The playbooks (commercial, IG and beyond). The position papers. The Hearts and Minds decks. The prioritised delivery items. Each one falls out of the bridge as the work matures.</div>
+            <ul class="layer-list">
+              <li>Static portfolio TOM</li>
+              <li>Discipline playbooks</li>
+              <li>Position papers and decks</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== THREE PRODUCT-SPECIFIC SERVICE SHAPES ===== -->
+    <div class="section">
+      <div class="section-eyebrow">The service itself</div>
+      <h2 class="section-h">Three products, three service shapes.</h2>
+      <p class="section-intro">Each product in the portfolio runs on a different shape on the ground. The architecture, cast and lifecycle that wrap them are common; the service flow inside each is product-specific. <strong>Every page of this blueprint expands one or more of these shapes.</strong></p>
+
+      <div class="prods-wrap">
+        <div class="prods-grid">
+
+          <div class="prod-col prod-ht">
+            <div class="prod-eyebrow">HomeTest</div>
+            <div class="prod-name">Three steps.</div>
+            <div class="prod-strap">Diagnostic episode</div>
+            <div class="prod-steps">
+              <div class="prod-step">
+                <div class="prod-step-num">1</div>
+                <div class="prod-step-text"><strong>Referral.</strong> Demand finds the platform. Client-neutral, receives orders from clinicians, citizens or screening services.</div>
+              </div>
+              <div class="prod-step">
+                <div class="prod-step-num">2</div>
+                <div class="prod-step-text"><strong>Fulfilment.</strong> The kit goes out, the sample comes back. Ordering, dispatch, sample collection, lab processing.</div>
+              </div>
+              <div class="prod-step">
+                <div class="prod-step-num">3</div>
+                <div class="prod-step-text"><strong>Result.</strong> The result reaches the right place. Back to the patient, the GP record, the clinician. Reactive support sits underneath.</div>
+              </div>
+            </div>
+            <div class="prod-foot">The HomeTest &lsquo;Black Box&rsquo; shape. HIV today, PSA next, the wider test catalogue from there.</div>
+          </div>
+
+          <div class="prod-col prod-hs">
+            <div class="prod-eyebrow">HealthStore</div>
+            <div class="prod-name">Four steps.</div>
+            <div class="prod-strap">Therapeutic intervention</div>
+            <div class="prod-steps">
+              <div class="prod-step">
+                <div class="prod-step-num">1</div>
+                <div class="prod-step-text"><strong>Catalogue listing.</strong> A digital therapeutic is admitted to the platform via the supplier onboarding process.</div>
+              </div>
+              <div class="prod-step">
+                <div class="prod-step-num">2</div>
+                <div class="prod-step-text"><strong>Commissioner adoption.</strong> Commissioners pick from the listed therapeutics and route them into their local pathway design.</div>
+              </div>
+              <div class="prod-step">
+                <div class="prod-step-num">3</div>
+                <div class="prod-step-text"><strong>Provider onboarding.</strong> Local providers wrap the therapeutic into prescribing flows, NHS App entry and clinical wrap.</div>
+              </div>
+              <div class="prod-step">
+                <div class="prod-step-num">4</div>
+                <div class="prod-step-text"><strong>Renewal and evaluation.</strong> Performance data feeds re-evaluation; catalogue listing renews, refreshes or expires.</div>
+              </div>
+            </div>
+            <div class="prod-foot">COPD alpha first. Cardiac rehab as UC2. MSK third. Each new use case follows the same four-step shape.</div>
+          </div>
+
+          <div class="prod-col prod-hsy">
+            <div class="prod-eyebrow">HealthSync</div>
+            <div class="prod-name">Shape forming.</div>
+            <div class="prod-strap">Continuous monitoring</div>
+            <div class="prod-steps">
+              <div class="prod-step">
+                <div class="prod-step-num">1</div>
+                <div class="prod-step-text"><strong>Device pairing.</strong> A wearable or consumer health device is paired to the NHS App via Apple HealthKit or Google Health Connect.</div>
+              </div>
+              <div class="prod-step">
+                <div class="prod-step-num">2</div>
+                <div class="prod-step-text"><strong>Continuous stream.</strong> Readings flow back continuously rather than as a discrete test. The shape is monitoring, not episode.</div>
+              </div>
+              <div class="prod-step">
+                <div class="prod-step-num">3</div>
+                <div class="prod-step-text"><strong>Clinical interpretation.</strong> Data lands where the clinical conversation happens, not as a one-off result.</div>
+              </div>
+            </div>
+            <div class="prod-foot">BP is the lead configuration. The full operating shape is forming as the Business Case lands and HealthSync stands up its delivery team.</div>
+          </div>
+
+        </div>
+        <p class="prods-anchor">Three different shapes describe what each product <strong>does</strong>. <strong>The five questions below describe how the model is organised to support them, common architecture across all three.</strong></p>
       </div>
     </div>
 
     <!-- Shape -->
     <div class="section">
-      <div class="section-eyebrow">The shape</div>
-      <h2 class="section-h">Every operating model answers five questions.</h2>
-      <p class="section-intro">This one is organised around them explicitly, with <strong>Why at the centre</strong>. The other four sit around it. Three further layers (Hearts and Minds, Status, Teamwork) wrap the five.</p>
+      <div class="section-eyebrow">The shape of the bridge</div>
+      <h2 class="section-h">Five questions, with Why at the centre.</h2>
+      <p class="section-intro">The interactive model is organised around the five questions every operating model has to answer. <strong>Why</strong> sits in the centre. The other four sit around it. Three further layers (Hearts and Minds, Status, Teamwork) wrap the five.</p>
 
       <div class="shape-wrap">
         <div class="shape-circle">
@@ -183,14 +422,14 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
         </div>
 
         <div class="shape-list">
-          <div class="item"><span class="icon dark">W</span><strong>Why</strong>,  the case for change. Four north stars that hold simultaneously.</div>
-          <div class="item"><span class="icon">W</span><strong>What</strong>,  the architecture. Foundation, overlays, patterns, configurations.</div>
-          <div class="item"><span class="icon">W</span><strong>When</strong>,  the lifecycle. Five stages, with a continuous-improvement loop.</div>
-          <div class="item"><span class="icon">H</span><strong>How</strong>,  the operational pattern. Day-to-day swim lanes for each actor.</div>
-          <div class="item"><span class="icon">W</span><strong>Who</strong>,  governance and accountability. RACI threaded through the cast.</div>
-          <div class="item" style="margin-top:18px;padding-top:14px;border-top:1px dashed var(--border-lt);"><span class="icon pink">+</span><strong>Hearts and Minds</strong>,  the human stories. How this walks into a room.</div>
-          <div class="item"><span class="icon amber">+</span><strong>Status</strong>,  what is decided, what is in flight, what is open.</div>
-          <div class="item"><span class="icon green">+</span><strong>Teamwork</strong>,  the capability map. What it takes to run in BAU.</div>
+          <div class="item"><span class="icon dark">W</span><strong>Why</strong>, the case for change. Four north stars that hold simultaneously.</div>
+          <div class="item"><span class="icon">W</span><strong>What</strong>, the architecture. Foundation, overlays, patterns, configurations.</div>
+          <div class="item"><span class="icon">W</span><strong>When</strong>, the lifecycle. Five stages, with a continuous-improvement loop.</div>
+          <div class="item"><span class="icon">H</span><strong>How</strong>, the operational pattern. Day-to-day swim lanes for each actor.</div>
+          <div class="item"><span class="icon">W</span><strong>Who</strong>, governance and accountability. RACI threaded through the cast.</div>
+          <div class="item" style="margin-top:18px;padding-top:14px;border-top:1px dashed var(--border-lt);"><span class="icon pink">+</span><strong>Hearts and Minds</strong>, the human stories. How this walks into a room.</div>
+          <div class="item"><span class="icon amber">+</span><strong>Status</strong>, what is decided, what is in flight, what is open.</div>
+          <div class="item"><span class="icon green">+</span><strong>Teamwork</strong>, the capability map. What it takes to run in BAU.</div>
         </div>
       </div>
     </div>
@@ -199,7 +438,7 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
     <div class="section">
       <div class="section-eyebrow">Where to start</div>
       <h2 class="section-h">Recommended reading order.</h2>
-      <p class="section-intro">If you have 40 minutes and want the model end to end, walk these six tiles in order. If you have 5 minutes, open the second one (Errol's Journey) and stop there. The model is built to be re-entered.</p>
+      <p class="section-intro">If you have 40 minutes and want the model end to end, walk these six tiles in order. If you have 5 minutes, open the second one (Errol&apos;s Journey) and stop there. The model is built to be re-entered.</p>
 
       <div class="start-grid">
 
@@ -216,8 +455,8 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
           <div class="start-num">2</div>
           <div class="start-body">
             <div class="start-mins">5 minutes</div>
-            <div class="start-head">Read Errol's journey.</div>
-            <div class="start-desc">The cross-product story. Errol&apos;s hypertension arc weaves HealthSync (the wearable), HomeTest (the diagnostic test) and HealthStore (the digital therapeutic) into one continuous journey. The single best demonstration of how the three products work together. For the <strong>cross-cohort access story</strong>,  the horizontal cohort that cuts across all three products,  <strong style="color:var(--nhs-blue);">open Sean&apos;s Journey alongside</strong> from the cast.</div>
+            <div class="start-head">Read Errol&apos;s journey.</div>
+            <div class="start-desc">The cross-product story. Errol&apos;s hypertension arc weaves HealthSync (the wearable), HomeTest (the diagnostic test) and HealthStore (the digital therapeutic) into one continuous journey. The single best demonstration of how the three products work together. For the <strong>cross-cohort access story</strong>, the horizontal cohort that cuts across all three products, <strong style="color:var(--nhs-blue);">open Sean&apos;s Journey alongside</strong> from the cast.</div>
           </div>
         </a>
 
@@ -252,8 +491,8 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
           <div class="start-num">6</div>
           <div class="start-body">
             <div class="start-mins">Optional &middot; 5 minutes</div>
-            <div class="start-head">The Prioritisation Framework.</div>
-            <div class="start-desc">The lens we use to choose what we build next. Five patterns, four tiers, a scoring construct. Endorsed by the Programme Board on 9 June 2026. Optional read; explains the logic behind the configurations.</div>
+            <div class="start-head">The HomeTest Prioritisation Framework.</div>
+            <div class="start-desc">The HomeTest-specific lens used to choose which tests come next. Five patterns, four tiers, a scoring construct. Endorsed by the HomeTest Programme Board on 9 June 2026. Sits inside the HomeTest section of the portfolio; HealthStore and HealthSync use different lenses.</div>
           </div>
         </a>
 
@@ -269,11 +508,11 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
       <div class="aud-grid">
         <div class="aud-card">
           <div class="aud-card-h">Sponsor / SLT</div>
-          <div class="aud-card-body">Case for change, what is open, and BAU shape. Start with <a href="DTx OM - Why.html">Why</a>, then <a href="DTx OM - Errol Journey.html">Errol's Journey</a>, then <a href="DTx OM - Status.html">Status</a> and <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>.</div>
+          <div class="aud-card-body">Case for change, what is open, and BAU shape. Start with <a href="DTx OM - Why.html">Why</a>, then <a href="DTx OM - Errol Journey.html">Errol&apos;s Journey</a>, then <a href="DTx OM - Status.html">Status</a> and <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>.</div>
         </div>
         <div class="aud-card">
           <div class="aud-card-h">Commissioner</div>
-          <div class="aud-card-body">The recipe per configuration. Start with <a href="DTx OM - Persona Sarah.html">Sarah's persona</a>, then the <a href="DTx OM - Pattern Overlay Detail.html">Pattern Overlay Detail</a>. The Commissioning overlay is where the funding question sits.</div>
+          <div class="aud-card-body">The recipe per configuration. Start with <a href="DTx OM - Persona Sarah.html">Sarah&apos;s persona</a>, then the <a href="DTx OM - Pattern Overlay Detail.html">Pattern Overlay Detail</a>. The Commissioning overlay is where the funding question sits.</div>
         </div>
         <div class="aud-card">
           <div class="aud-card-h">Clinician</div>
@@ -281,7 +520,7 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
         </div>
         <div class="aud-card">
           <div class="aud-card-h">Supplier</div>
-          <div class="aud-card-body">Where suppliers plug in. Start with <a href="DTx OM - Persona Joe.html">Joe's persona</a>, then the foundation and overlays on <a href="DTx OM - Anatomical.html">What</a>. The platform-as-matchmaker frame matters here.</div>
+          <div class="aud-card-body">Where suppliers plug in. Start with <a href="DTx OM - Persona Joe.html">Joe&apos;s persona</a>, then the foundation and overlays on <a href="DTx OM - Anatomical.html">What</a>. The platform-as-matchmaker frame matters here.</div>
         </div>
       </div>
     </div>
@@ -294,7 +533,7 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
       <div class="honest">
         <p><strong>The model is information-rich on purpose.</strong> You are not meant to read it linearly. Click around. Open something. Follow the cross-links. Come back to this page if you get lost.</p>
         <p><strong>Status and Teamwork are honest about what is not yet known.</strong> The list of open decisions is long because the work is mid-flight. The list is not the failure. It is the structure that makes the open questions answerable.</p>
-        <p><strong>Hearts and Minds is the human layer.</strong> Five journeys in total. If you want a five-minute version of the whole portfolio, open Errol&apos;s Journey,  the cross-product story that walks HealthSync, HomeTest and HealthStore in one arc. If you want the access story, open Sean&apos;s.</p>
+        <p><strong>Hearts and Minds is the human layer.</strong> Five journeys in total. If you want a five-minute version of the whole portfolio, open Errol&apos;s Journey, the cross-product story that walks HealthSync, HomeTest and HealthStore in one arc. If you want the access story, open Sean&apos;s.</p>
       </div>
     </div>
 

@@ -512,6 +512,10 @@
     .year-header, .lane-row { grid-template-columns: 90px repeat(4, 1fr) 0.55fr; }
     .test-chip, .milestone .m-body, .audience .a-body { font-size: 10px; }
   }
+
+  .chip-prio { display:inline-block; margin-top:4px; padding:2px 8px; border-radius:99px; font-size:9.5px; font-weight:800; letter-spacing:0.5px; text-decoration:none; color:#fff; line-height:1.4; }
+  .chip-prio:hover { opacity:0.92; }
+  .chip-prio .prio-sep { opacity:0.7; margin:0 4px; }
 </style>
 <style>
   .ecosystem-nav {
@@ -631,16 +635,16 @@
       </div>
       <div class="year-col">
         <div class="scale-stack">
-          <div class="test-chip proven"><span class="chip-id">HIV · Live</span><span class="chip-name">HomeTest UC1,  Private Beta then Scaled Beta</span><span class="chip-vol">800k people enabled · target 10k kits ordered</span></div>
+          <div class="test-chip proven"><span class="chip-id">HIV · Live</span><span class="chip-name">HomeTest UC1,  Private Beta then Scaled Beta</span><span class="chip-vol">800k people enabled · target 10k kits ordered</span><a href="DTx OM - Prioritisation Framework.html" class="chip-prio" style="background:#006747;" title="Priority 1, near term &middot; 96% &middot; Endorsed by HomeTest Programme Board, 9 June 2026. Click to open the Prioritisation Framework.">Prio 43/45<span class="prio-sep">&middot;</span>P1</a></div>
           <div class="test-chip proven"><span class="chip-id">COPD · Live</span><span class="chip-name">HealthStore UC1,  Private Beta then MVP launch</span><span class="chip-vol">500 new patients via NHS App + 6k existing supported</span></div>
-          <div class="test-chip proven"><span class="chip-id">UC2 · Pilot</span><span class="chip-name">HomeTest UC2,  Iron deficiency anaemia (GP-initiated)</span><span class="chip-vol">Pilot scale via primary care</span></div>
+          <div class="test-chip proven"><span class="chip-id">UC2 · Pilot</span><span class="chip-name">HomeTest UC2,  Iron deficiency anaemia (GP-initiated)</span><span class="chip-vol">Pilot scale via primary care</span><a href="DTx OM - Prioritisation Framework.html" class="chip-prio" style="background:#AE2573;" title="Hold, low priority &middot; 42% &middot; Endorsed by HomeTest Programme Board, 9 June 2026. Click to open the Prioritisation Framework.">Prio 19/45<span class="prio-sep">&middot;</span>Hold</a></div>
         </div>
         <div class="volume-band proven">FY 26/27 · current proving year<div class="vb-sub">HIV + COPD live · no Wave 1 tests yet</div></div>
       </div>
       <div class="year-col">
         <div class="scale-stack">
-          <div class="test-chip"><span class="chip-id">T01 · Wave 1</span><span class="chip-name">TPSA,  Prostate Ca Active Surveillance</span><span class="chip-vol">15,000 tests (5% ramp) · £30/test</span><span class="chip-vol" style="color:#2A6A2A;font-weight:700;">Aligned with NHS Online &middot; National Cancer Plan</span></div>
-          <div class="test-chip"><span class="chip-id">T04 · Wave 1</span><span class="chip-name">MRSA,  Hip &amp; Knee surgery</span><span class="chip-vol">12,577 tests (5% ramp) · £20/test</span></div>
+          <div class="test-chip"><span class="chip-id">T01 · Wave 1</span><span class="chip-name">TPSA,  Prostate Ca Active Surveillance</span><span class="chip-vol">15,000 tests (5% ramp) · £30/test</span><span class="chip-vol" style="color:#2A6A2A;font-weight:700;">Aligned with NHS Online &middot; National Cancer Plan</span><a href="DTx OM - Prioritisation Framework.html" class="chip-prio" style="background:#C9A227;" title="Priority 2, next wave &middot; 78% &middot; Endorsed by HomeTest Programme Board, 9 June 2026. Click to open the Prioritisation Framework.">Prio 35/45<span class="prio-sep">&middot;</span>P2</a></div>
+          <div class="test-chip"><span class="chip-id">T04 · Wave 1</span><span class="chip-name">MRSA,  Hip &amp; Knee surgery</span><span class="chip-vol">12,577 tests (5% ramp) · £20/test</span><a href="DTx OM - Prioritisation Framework.html" class="chip-prio" style="background:#006747;" title="Priority 1, near term &middot; 100% &middot; Endorsed by HomeTest Programme Board, 9 June 2026. Click to open the Prioritisation Framework.">Prio 45/45<span class="prio-sep">&middot;</span>P1</a></div>
           <div class="test-chip hs"><span class="chip-id">HS · COPD<span class="tbc">TBC</span></span><span class="chip-name">COPD MVP scaling beyond beta sites</span><span class="chip-vol">Volume / pace TBC</span></div>
           <div class="test-chip hs"><span class="chip-id">HS · UC2 / UC3<span class="tbc">TBC</span></span><span class="chip-name">Cardiac Rehab + MSK MVP live</span><span class="chip-vol">Use cases agreed FY 26/27 · volumes TBC</span></div>
           <div class="test-chip hsy"><span class="chip-id">HSy<span class="tbc">TBC</span></span><span class="chip-name">First HealthSync use case scoping</span><span class="chip-vol">Workstream behind HT and HS</span></div>
@@ -650,9 +654,9 @@
       <div class="year-col">
         <div class="scale-stack">
           <div class="test-chip"><span class="chip-id">W1 · ramping</span><span class="chip-name">T01 + T04 (Wave 1 to 10%)</span><span class="chip-vol">55,153 tests</span></div>
-          <div class="test-chip"><span class="chip-id">T05 · Wave 2</span><span class="chip-name">Raised PSA</span><span class="chip-vol">10,375 tests (5%) · £30</span></div>
-          <div class="test-chip"><span class="chip-id">T06 · Wave 2</span><span class="chip-name">ACL,  MRSA</span><span class="chip-vol">1,500 tests (5%) · £20</span></div>
-          <div class="test-chip"><span class="chip-id">T07 · Wave 2</span><span class="chip-name">IBD,  FCP</span><span class="chip-vol">25,000 tests (5%) · £35</span></div>
+          <div class="test-chip"><span class="chip-id">T05 · Wave 2</span><span class="chip-name">Raised PSA</span><span class="chip-vol">10,375 tests (5%) · £30</span><a href="DTx OM - Prioritisation Framework.html" class="chip-prio" style="background:#C9A227;" title="Priority 2, next wave &middot; 69% &middot; Endorsed by HomeTest Programme Board, 9 June 2026. Click to open the Prioritisation Framework.">Prio 31/45<span class="prio-sep">&middot;</span>P2</a></div>
+          <div class="test-chip"><span class="chip-id">T06 · Wave 2</span><span class="chip-name">ACL,  MRSA</span><span class="chip-vol">1,500 tests (5%) · £20</span><a href="DTx OM - Prioritisation Framework.html" class="chip-prio" style="background:#7E8B97;" title="Priority 3, discovery / validate &middot; 56% &middot; Endorsed by HomeTest Programme Board, 9 June 2026. Click to open the Prioritisation Framework.">Prio 25/45<span class="prio-sep">&middot;</span>P3</a></div>
+          <div class="test-chip"><span class="chip-id">T07 · Wave 2</span><span class="chip-name">IBD,  FCP</span><span class="chip-vol">25,000 tests (5%) · £35</span><a href="DTx OM - Prioritisation Framework.html" class="chip-prio" style="background:#C9A227;" title="Priority 2, next wave &middot; 69% &middot; Endorsed by HomeTest Programme Board, 9 June 2026. Click to open the Prioritisation Framework.">Prio 31/45<span class="prio-sep">&middot;</span>P2</a></div>
           <div class="test-chip hs"><span class="chip-id">HS portfolio<span class="tbc">TBC</span></span><span class="chip-name">3+ use cases at scale across multiple ICBs</span><span class="chip-vol">New conditions onboarded · volumes TBC</span></div>
           <div class="test-chip hsy"><span class="chip-id">HSy<span class="tbc">TBC</span></span><span class="chip-name">First HealthSync use case private beta</span><span class="chip-vol">Volume TBC · workstream catching up</span></div>
         </div>
