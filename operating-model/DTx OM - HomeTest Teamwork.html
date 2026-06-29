@@ -204,7 +204,7 @@
   .cap[class*="cap-c"] .detail-h-stand{color:var(--accent-c);}
 
   /* Sticky top nav */
-  .navbar{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:10px 14px;margin-bottom:24px;display:flex;flex-direction:column;gap:8px;box-shadow:0 4px 12px rgba(0,32,64,0.04);}
+  .navbar{position:sticky;top:104px;z-index:199;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:10px 14px;margin-bottom:24px;display:flex;flex-direction:column;gap:8px;box-shadow:0 4px 12px rgba(0,32,64,0.04);}
   .nav-row-caps{display:flex;flex-wrap:wrap;gap:5px;align-items:center;}
 .nav-caps-label{font-size:10.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);text-align:center;margin:2px 0 10px;}
 .nav-caps-grid{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:6px 8px;justify-items:stretch;}
@@ -327,6 +327,21 @@
   .band-team:hover{border-color:#7C2855;background:#F7EEF3;}
   .band-team:hover .band-label{border-color:#7C2855;color:#7C2855;}
   .band-intro{font-size:13px;margin:4px 12px 18px 12px;}
+
+  /* Teamwork snags v3 29 Jun 2026 — strong nav-band labels + centring fix */
+  .nav-row-caps{justify-content:center;flex-wrap:wrap;}
+  .nav-row-caps .nav-label{display:none;}  /* hide redundant 'Capabilities' label; tier-heads carry it */
+  .nav-chips-tiered{width:100%;text-align:center;}
+  .nav-tier-head{font-size:10px;font-weight:800;letter-spacing:1.4px;color:var(--nhs-blue);margin:8px 0 6px 0;text-align:center;text-transform:uppercase;}
+  .nav-band-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:flex-start;margin:4px 0;}
+  .nav-band{display:inline-flex;flex-wrap:wrap;gap:5px;padding:6px 10px 6px 7px;border:1.5px solid #C5CDD5;border-radius:8px;background:#F7F9FC;align-items:center;position:relative;margin:3px;transition:border-color 0.15s,background 0.15s;}
+  .nav-band:hover{border-color:var(--nhs-blue);background:#EFF4FA;}
+  .nav-band-label{font-size:11px;font-weight:800;letter-spacing:0.7px;text-transform:uppercase;color:#003087;background:#fff;padding:4px 10px;border-radius:5px;border:1.5px solid #B5C3D4;margin-right:6px;align-self:center;line-height:1.2;}
+  .nav-band:hover .nav-band-label{color:var(--nhs-blue);border-color:var(--nhs-blue);}
+  .nav-band-team{background:#FCF8FB;border-color:#7C2855;}
+  .nav-band-team .nav-band-label{color:#7C2855;border-color:#7C2855;background:#fff;}
+  .nav-band-team:hover{border-color:#7C2855;background:#F7EEF3;}
+  .nav-band-team:hover .nav-band-label{color:#7C2855;border-color:#7C2855;}
 </style>
 <style>
   .ecosystem-nav {
@@ -382,7 +397,7 @@
 
 <div class="page">
 
-  <div style="background:#f4f8fc;border:1px solid #c4d3e6;border-radius:10px;padding:10px 16px;margin:0 0 20px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:center;box-shadow:0 4px 10px rgba(0,48,135,0.06);" class="product-selector">
+  <div style="background:#f4f8fc;border:1px solid #c4d3e6;border-radius:10px;padding:10px 16px;margin:0 0 20px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:center;position:sticky;top:54px;z-index:198;box-shadow:0 4px 10px rgba(0,48,135,0.06);" class="product-selector">
     <span style="font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:#003087;text-transform:uppercase;margin-right:6px;">Product overlay:</span>
     <a href="DTx OM - HomeTest Teamwork.html" style="font-size:12.5px;font-weight:700;color:#fff;background:#003087;text-decoration:none;padding:7px 16px;border-radius:6px;">HomeTest</a>
     <a href="DTx OM - HealthStore Teamwork.html" style="font-size:12.5px;font-weight:700;color:#003087;text-decoration:none;padding:7px 16px;border-radius:6px;border:1px solid #c4d3e6;background:#fff;">HealthStore</a>
