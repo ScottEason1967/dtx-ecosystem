@@ -204,7 +204,7 @@
   .cap[class*="cap-c"] .detail-h-stand{color:var(--accent-c);}
 
   /* Sticky top nav */
-  .navbar{position:sticky;top:115px;z-index:198;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:10px 14px;margin-bottom:24px;display:flex;flex-direction:column;gap:8px;box-shadow:0 4px 12px rgba(0,32,64,0.04);}
+  .navbar{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:10px 14px;margin-bottom:24px;display:flex;flex-direction:column;gap:8px;box-shadow:0 4px 12px rgba(0,32,64,0.04);}
   .nav-row-caps{display:flex;flex-wrap:wrap;gap:5px;align-items:center;}
 .nav-caps-label{font-size:10.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);text-align:center;margin:2px 0 10px;}
 .nav-caps-grid{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:6px 8px;justify-items:stretch;}
@@ -307,6 +307,26 @@
   .nav-band:hover{border-color:var(--nhs-blue);}
   .nav-band-label{font-size:9px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;color:var(--text-mute);margin-right:4px;padding-right:4px;border-right:1px dotted #D0D8E0;align-self:center;}
   .nav-band:hover .nav-band-label{color:var(--nhs-blue);}
+
+  /* Centre alignment + tier1 SLOM band (snag fix 28 Jun 2026) */
+  .tier-header{justify-content:center;}
+  .tier-strap{text-align:center;margin-left:auto;margin-right:auto;}
+  .band-label{left:50%;transform:translateX(-50%);}
+  .band-intro{text-align:center;}
+  .nav-band-row{justify-content:center;}
+  .nav-tier-head{text-align:center;}
+  .nav-chips-tiered{text-align:center;}
+
+  /* Snag B 29 Jun 2026 — strengthen band visual */
+  .band{border:2.5px dashed #8C9AAB;background:#FCFDFE;padding:32px 20px 14px 20px;margin:32px 0;}
+  .band:hover{border-color:var(--nhs-blue);background:#F7FAFD;}
+  .band-label{font-size:13px;padding:4px 14px;background:#fff;border:1px solid #D5DEE6;border-radius:14px;color:#003087;letter-spacing:0.8px;font-weight:800;top:-14px;}
+  .band:hover .band-label{border-color:var(--nhs-blue);color:var(--nhs-blue);background:#fff;}
+  .band-team{border-color:#7C2855;background:#FCF8FB;}
+  .band-team .band-label{color:#7C2855;border-color:#7C2855;}
+  .band-team:hover{border-color:#7C2855;background:#F7EEF3;}
+  .band-team:hover .band-label{border-color:#7C2855;color:#7C2855;}
+  .band-intro{font-size:13px;margin:4px 12px 18px 12px;}
 </style>
 <style>
   .ecosystem-nav {
@@ -318,9 +338,6 @@
     justify-content: space-between;
     gap: 24px;
     min-height: 48px;
-    position: sticky;
-    top: 0;
-    z-index: 9999;
     font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
   }
   .ecosystem-nav a {
@@ -365,7 +382,7 @@
 
 <div class="page">
 
-  <div style="background:#f4f8fc;border:1px solid #c4d3e6;border-radius:10px;padding:10px 16px;margin:0 0 20px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:center;position:sticky;top:55px;z-index:199;box-shadow:0 4px 10px rgba(0,48,135,0.06);" class="product-selector">
+  <div style="background:#f4f8fc;border:1px solid #c4d3e6;border-radius:10px;padding:10px 16px;margin:0 0 20px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:center;box-shadow:0 4px 10px rgba(0,48,135,0.06);" class="product-selector">
     <span style="font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:#003087;text-transform:uppercase;margin-right:6px;">Product overlay:</span>
     <a href="DTx OM - HomeTest Teamwork.html" style="font-size:12.5px;font-weight:700;color:#fff;background:#003087;text-decoration:none;padding:7px 16px;border-radius:6px;">HomeTest</a>
     <a href="DTx OM - HealthStore Teamwork.html" style="font-size:12.5px;font-weight:700;color:#003087;text-decoration:none;padding:7px 16px;border-radius:6px;border:1px solid #c4d3e6;background:#fff;">HealthStore</a>
@@ -477,6 +494,8 @@
       <span class="tier-title">Strategic & Governance</span>
     </div>
     <p class="tier-strap">The meta-layer that holds the model accountable. Sets direction, makes decisions, and provides outside-view oversight.</p>
+    <div class="band band-team">
+      <span class="band-label">SLOM</span>
 <details class="cap cap-c1" id="cap-1">
     <summary>
 
@@ -706,6 +725,7 @@
       </div>
     </div>
   </details>
+    </div>
   </section>
 
   <section class="tier tier-2">
