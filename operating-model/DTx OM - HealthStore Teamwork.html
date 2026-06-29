@@ -208,7 +208,10 @@
   .nav-row-caps{display:flex;flex-wrap:wrap;gap:5px;align-items:center;}
   .nav-row-links{display:flex;justify-content:center;gap:10px;padding-top:8px;border-top:1px solid var(--border);}
   .nav-label{font-size:9.5px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-right:6px;}
-  .nav-chip{font-size:11px;font-weight:700;padding:4px 9px;border-radius:14px;background:#FAFBFC;color:var(--text);border:1px solid var(--border);text-decoration:none;display:inline-flex;gap:5px;align-items:center;transition:transform 0.15s,box-shadow 0.15s,background 0.15s,color 0.15s,border-color 0.15s;line-height:1.3;}
+.nav-caps-grid{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:6px 8px;justify-items:stretch;}
+.nav-caps-grid .nav-chip{justify-content:center;}
+@media (max-width: 980px){.nav-caps-grid{grid-template-columns:repeat(4,minmax(0,1fr));}}
+    .nav-chip{font-size:11px;font-weight:700;padding:4px 9px;border-radius:14px;background:#FAFBFC;color:var(--text);border:1px solid var(--border);text-decoration:none;display:inline-flex;gap:5px;align-items:center;transition:transform 0.15s,box-shadow 0.15s,background 0.15s,color 0.15s,border-color 0.15s;line-height:1.3;}
   .nav-chip:hover{transform:translateY(-1px);box-shadow:0 3px 8px rgba(0,32,64,0.08);}
   .nav-chip-num{font-size:10px;font-weight:900;color:var(--chip-c);min-width:13px;text-align:right;}
   .nav-chip:hover{background:var(--chip-c);color:#fff;border-color:var(--chip-c);}
@@ -277,6 +280,44 @@
  body { background: linear-gradient(180deg, var(--nhs-blue) 0%, var(--nhs-blue-deep) 100%) !important; background-attachment: fixed !important; }
  .page { background:#ffffff; border-radius:18px; box-shadow:0 14px 40px rgba(0,48,135,0.20); margin-top:30px !important; margin-bottom:50px !important; }
  @media (max-width:760px){ .page { border-radius:12px; margin-top:18px !important; } }
+
+  /* Tier and band structure -- 28 Jun 2026 (Option C HealthStore) */
+  .tier{margin:36px 0 24px 0;}
+  .tier-header{display:flex;align-items:baseline;gap:14px;margin:0 0 8px 0;padding:0 0 10px 0;border-bottom:2px solid var(--border);}
+  .tier-label{font-size:11px;font-weight:800;letter-spacing:1.5px;color:var(--nhs-blue);background:#E6EFF8;padding:5px 11px;border-radius:4px;}
+  .tier-title{font-size:18px;font-weight:700;color:var(--text);}
+  .tier-strap{font-size:13px;color:var(--text-mute);margin:0 0 18px 0;max-width:78ch;line-height:1.55;}
+  .band{position:relative;border:1.5px dashed #C5CDD5;border-radius:10px;padding:24px 16px 10px 16px;margin:24px 0;transition:border-color 0.15s;}
+  .band:hover{border-color:var(--nhs-blue);}
+  .band-label{position:absolute;top:-11px;left:18px;background:#fff;padding:1px 10px;font-size:11px;font-weight:700;letter-spacing:0.6px;color:var(--text-mute);text-transform:uppercase;transition:color 0.15s;}
+  .band:hover .band-label{color:var(--nhs-blue);}
+  .band-intro{font-size:12.5px;color:var(--text-mute);margin:2px 4px 14px 4px;line-height:1.55;font-style:italic;}
+  .band > .cap{margin-top:14px;}
+  .band > .cap:first-of-type{margin-top:4px;}
+  .band-team{border-color:#7C2855;}
+  .band-team .band-label{color:#7C2855;}
+  .band-team:hover{border-color:var(--nhs-blue);}
+  .band-team:hover .band-label{color:var(--nhs-blue);}
+  .tier-3-panel{background:#F7F9FB;border:1px solid var(--border);border-radius:10px;padding:20px 24px;margin:14px 0;}
+  .tier-3-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px 22px;}
+  .tier-3-grid > div{font-size:12.5px;color:var(--text);line-height:1.55;}
+  .tier-3-grid > div strong{display:block;margin-bottom:3px;color:var(--nhs-blue);font-size:12px;letter-spacing:0.2px;}
+  /* Nav-chip tier/band grouping */
+  .nav-tier{margin:0 0 10px 0;}
+  .nav-tier-head{font-size:9.5px;font-weight:800;letter-spacing:1.2px;color:var(--nhs-blue);margin:0 0 4px 0;text-transform:uppercase;}
+  .nav-band-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:4px 0;}
+  .nav-band{display:inline-flex;flex-wrap:wrap;gap:5px;padding:4px 8px 4px 6px;border:1px dashed #D0D8E0;border-radius:6px;align-items:center;position:relative;}
+  .nav-band:hover{border-color:var(--nhs-blue);}
+  .nav-band-label{font-size:9px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;color:var(--text-mute);margin-right:4px;padding-right:4px;border-right:1px dotted #D0D8E0;align-self:center;}
+  .nav-band:hover .nav-band-label{color:var(--nhs-blue);}
+  .nav-band-team{border-color:#7C2855;}
+  .nav-band-team .nav-band-label{color:#7C2855;}
+
+  /* Cross-cutting cap team-affinity tags */
+  .team-tag{display:inline-block;font-size:9.5px;font-weight:800;letter-spacing:0.4px;padding:1px 6px;border-radius:3px;margin-left:6px;text-transform:uppercase;line-height:1.4;}
+  .team-tag-pipeline{background:#F4E1EC;color:#7C2855;}
+  .team-tag-launch{background:#E0F0E6;color:#006747;}
+  .team-tag-both{background:#EFF4F9;color:#005EB8;}
 </style>
 <style>
   .ecosystem-nav {
@@ -345,22 +386,54 @@
   <nav class="navbar" aria-label="Capability quick-jump">
     <div class="nav-row-caps">
       <span class="nav-label">Capabilities</span>
-      <a href="#cap-1" class="nav-chip" style="--chip-c:#003087"><span class="nav-chip-num">1</span>Framework</a>
-      <a href="#cap-2" class="nav-chip" style="--chip-c:#AE2573"><span class="nav-chip-num">2</span>Suppliers</a>
-      <a href="#cap-3" class="nav-chip" style="--chip-c:#7C2855"><span class="nav-chip-num">3</span>Safety</a>
-      <a href="#cap-4" class="nav-chip" style="--chip-c:#005EB8"><span class="nav-chip-num">4</span>IG</a>
-      <a href="#cap-5" class="nav-chip" style="--chip-c:#9A6700"><span class="nav-chip-num">5</span>Platform</a>
-      <a href="#cap-6" class="nav-chip" style="--chip-c:#00819B"><span class="nav-chip-num">6</span>Commissioners</a>
-      <a href="#cap-7" class="nav-chip" style="--chip-c:#4C6272"><span class="nav-chip-num">7</span>Measure</a>
-      <a href="#cap-8" class="nav-chip" style="--chip-c:#006747"><span class="nav-chip-num">8</span>Engagement</a>
-      <a href="#cap-9" class="nav-chip" style="--chip-c:#C9A227"><span class="nav-chip-num">9</span>Payments</a>
+      <div class="nav-chips-tiered">
+  <div class="nav-tier">
+    <div class="nav-tier-head">Tier 1 &mdash; SLOM</div>
+    <div class="nav-band-row">
       <a href="#cap-10" class="nav-chip" style="--chip-c:#DA291C"><span class="nav-chip-num">10</span>Governance</a>
       <a href="#cap-11" class="nav-chip" style="--chip-c:#5A1D3E"><span class="nav-chip-num">11</span>Stewardship</a>
-      <a href="#cap-12" class="nav-chip" style="--chip-c:#ED8B00"><span class="nav-chip-num">12</span>PMS</a>
-      <a href="#cap-13" class="nav-chip" style="--chip-c:#768692"><span class="nav-chip-num">13</span>Pathway</a>
-      <a href="#cap-14" class="nav-chip" style="--chip-c:#41B6E6"><span class="nav-chip-num">14</span>Independent assurance</a>
-      <a href="#cap-15" class="nav-chip" style="--chip-c:#8A1538"><span class="nav-chip-num">15</span>Contract mgmt</a>
-      <a href="#cap-16" class="nav-chip" style="--chip-c:#3D2C8D"><span class="nav-chip-num">16</span>Evidence</a>
+      <a href="#cap-14" class="nav-chip" style="--chip-c:#6F2D7A"><span class="nav-chip-num">14</span>Assurance</a>
+    </div>
+  </div>
+  <div class="nav-tier">
+    <div class="nav-tier-head">Tier 2 &mdash; Operational</div>
+    <div class="nav-band-row">
+      <span class="nav-band nav-band-team">
+        <span class="nav-band-label">DTx / NICE Pipeline team</span>
+        <a href="#cap-1" class="nav-chip" style="--chip-c:#003087"><span class="nav-chip-num">1</span>Framework</a>
+        <a href="#cap-2" class="nav-chip" style="--chip-c:#AE2573"><span class="nav-chip-num">2</span>Suppliers</a>
+      </span>
+      <span class="nav-band nav-band-team">
+        <span class="nav-band-label">Conditions Launch team</span>
+        <a href="#cap-6" class="nav-chip" style="--chip-c:#00819B"><span class="nav-chip-num">6</span>Commissioners</a>
+        <a href="#cap-8" class="nav-chip" style="--chip-c:#006747"><span class="nav-chip-num">8</span>Engagement</a>
+        <a href="#cap-13" class="nav-chip" style="--chip-c:#007487"><span class="nav-chip-num">13</span>Pathway</a>
+      </span>
+      <span class="nav-band">
+        <span class="nav-band-label">Controls (cross-cutting)</span>
+        <a href="#cap-3" class="nav-chip" style="--chip-c:#7C2855"><span class="nav-chip-num">3</span>Safety</a>
+        <a href="#cap-4" class="nav-chip" style="--chip-c:#005EB8"><span class="nav-chip-num">4</span>IG</a>
+        <a href="#cap-12" class="nav-chip" style="--chip-c:#ED8B00"><span class="nav-chip-num">12</span>PMS</a>
+      </span>
+      <span class="nav-band">
+        <span class="nav-band-label">Commercial (cross-cutting)</span>
+        <a href="#cap-9" class="nav-chip" style="--chip-c:#C9A227"><span class="nav-chip-num">9</span>Payments</a>
+        <a href="#cap-15" class="nav-chip" style="--chip-c:#2F5A3F"><span class="nav-chip-num">15</span>Contracts</a>
+      </span>
+      <span class="nav-band">
+        <span class="nav-band-label">Measure & Evidence (cross-cutting)</span>
+        <a href="#cap-7" class="nav-chip" style="--chip-c:#4C6272"><span class="nav-chip-num">7</span>Measure</a>
+        <a href="#cap-16" class="nav-chip" style="--chip-c:#8C5500"><span class="nav-chip-num">16</span>Evidence</a>
+      </span>
+    </div>
+  </div>
+  <div class="nav-tier">
+    <div class="nav-tier-head">Tier 3 &mdash; Supporting infrastructure</div>
+    <div class="nav-band-row">
+      <a href="#cap-5" class="nav-chip" style="--chip-c:#9A6700"><span class="nav-chip-num">5</span>Platform</a>
+    </div>
+  </div>
+</div>
     </div>
     <div class="nav-row-links">
       <a href="#interfaces" class="nav-link">Interfaces</a>
@@ -373,6 +446,12 @@
     <div class="h-eyebrow">Teamwork &middot; HealthStore overlay &middot; Delivery accountabilities</div>
     <h1 class="h-title"><span style="display:inline-block;background:#00A9CE;color:#fff;padding:4px 14px 6px;border-radius:10px;line-height:1;letter-spacing:-0.4px;">HealthStore</span> operating model in BAU. <span style="font-size:14px; font-weight:400; opacity:0.7; letter-spacing:0;">(HealthStore overlay within the Digital Therapeutics Operating Model)</span></h1>
     <p class="h-sub">Sixteen capabilities. For each one, <strong>what has to land to stand it up</strong> and <strong>what it does once running.</strong> Click any capability to drill into the detail.</p>
+    <p class="h-sub" style="margin-top:10px;font-size:13.5px;border-left:3px solid var(--nhs-blue);padding-left:12px;background:#F4F8FC;padding-top:8px;padding-bottom:8px;border-radius:0 6px 6px 0;"><strong>Operating principle.</strong> HealthStore is a <em>curator, convener and enabler</em> &mdash; not a producer of clinical pathways, an assurance body, or a parallel clinical leadership function. Authoritative work is done by authoritative partners (NICE for evidence appraisal, MHRA for device assurance, GIRFT and National Clinical Directors for pathway design, NIHR for research infrastructure, ICBs for commissioning decisions). HealthStore convenes, curates and references rather than duplicating.</p>
+    <div class="health-warning" style="background:#FFF3CD;border:2px solid #FFB91D;border-radius:12px;padding:18px 22px;margin:20px 0 24px;box-shadow:0 4px 14px rgba(255,185,29,0.18);">
+      <div style="font-size:11.5px;font-weight:800;letter-spacing:1.8px;color:#9A6700;text-transform:uppercase;margin-bottom:8px;">A health warning</div>
+      <div style="font-size:13.5px;color:#212B32;line-height:1.65;">The FTE numbers on this page are <strong>working sizing positions, not validated headcount commitments</strong>. They are starting points for the team to interrogate, not endpoints. Each capability needs to be analysed against confirmed activity volumes, the chosen architectural shape (in-house vs shared NHSE central capacity vs outsourced), the admitted-supplier count, and the condition-area coverage. The HealthStore operating model is at an earlier maturity than HomeTest's; primary source assumptions on resourcing are explicitly listed as &ldquo;to validate&rdquo; in Rich Story's draft. <strong>This page exists to drive the conversation, not to produce the answer.</strong></div>
+    </div>
+
     <p class="h-sub" style="margin-top:10px;font-size:13.5px;border-left:3px solid var(--nhs-blue);padding-left:12px;background:#F4F8FC;padding-top:8px;padding-bottom:8px;border-radius:0 6px 6px 0;"><strong>Operating principle.</strong> NHSE acts as a coordinating function and collective bargaining entity, not a buyer. The BAU team orchestrates; suppliers, ICBs and clinical teams do the work. Sizing and shape follow from that.</p>
     <p class="h-sub" style="margin-top:10px;font-size:13.5px;border-left:3px solid #C9A227;padding-left:12px;background:#FFF9EC;padding-top:8px;padding-bottom:8px;border-radius:0 6px 6px 0;"><strong>On FTE sizing.</strong> The lead HealthStore configuration is in design. There isn&apos;t yet enough operational shape to support defensible FTE bands per capability without inventing numbers. Sizing boxes are held at TBC and land once the lead configuration locks. The HomeTest Teamwork page carries FTE bands today because HomeTest is operationally mature; HealthStore inherits the same sizing pattern when ready.</p>
   </div>
@@ -399,38 +478,228 @@
     </div>
   </aside>
 
-  <details class="cap cap-c1" id="cap-1">
+    <section class="tier tier-1">
+    <div class="tier-header">
+      <span class="tier-label">TIER 1</span>
+      <span class="tier-title">Strategic &amp; Governance &mdash; SLOM</span>
+    </div>
+    <p class="tier-strap">The Senior Leadership and Operational Management (SLOM) function. Sets strategic direction, owns the market-shaping agenda, and is accountable upward to NHSE and DHSC Exec. SLOM convenes, directs and assures; it does not deliver operationally.</p>
+<details class="cap cap-c10" id="cap-10">
+    <summary>
+      <div class="cap-top">
+        <div class="cap-num"><span class="cap-num-big">10</span><span class="cap-num-of">of 16</span></div>
+        <div class="cap-titleblock">
+          <div class="cap-title">Governance and SRO accountability</div>
+          <div class="cap-strap">Programme-level governance. SRO accountability. Decision rights for changes to the HealthStore overlay.</div>
+        </div>
+        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">1&ndash;2</div><div class="cap-sizing-unit">FTE</div></div>
+      </div>
+      <div class="cap-streams">
+        <div>
+          <div class="stream-h stream-h-stand">Stand it up</div>
+          <ul class="stream-list">
+            <li>SRO accountability arrangements</li>
+            <li>Programme board cadence</li>
+            <li>Decision rights for overlay changes</li>
+          </ul>
+        </div>
+        <div>
+          <div class="stream-h stream-h-bau">In BAU</div>
+          <ul class="stream-list">
+            <li>Quarterly reporting to SLT</li>
+            <li>Risk register maintenance</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cap-talks">
+        <span class="talks-label">Talks to</span>
+        <span class="talks-pill">SRO</span><span class="talks-pill">SLT</span><span class="talks-pill">Programme governance</span>
+      </div>
+      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
+    </summary>
+    <div class="cap-detail">
+      <div class="detail-section">
+        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
+        <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>SRO accountability arrangements</strong></div><span class="pill pill-flight">In flight</span><span class="size-pill size-xs">XS</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Programme board cadence</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-s">S</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Decision rights for overlay changes</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-h detail-h-bau">In BAU,  detail</div>
+        <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>Quarterly reporting to SLT</strong></div><span class="pill pill-tbc">TBC</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Risk register maintenance</strong></div><span class="pill pill-tbc">TBC</span></div>
+        </div>
+      </div>
+    </div>
+  </details>
+<details class="cap cap-c11" id="cap-11">
+    <summary>
+      <div class="cap-top">
+        <div class="cap-num"><span class="cap-num-big">11</span><span class="cap-num-of">of 16</span></div>
+        <div class="cap-titleblock">
+          <div class="cap-title">Operating model stewardship</div>
+          <div class="cap-strap">Stewardship of the HealthStore overlay inside the Digital Therapeutics Operating Model. Cross-capability ownership. Change management for overlay design. Holds the <strong>market shaping agenda</strong>: pipeline ambition, priority condition area selection, stance on SME and international engagement, supply-side market shape.</div>
+        </div>
+        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">2&ndash;3</div><div class="cap-sizing-unit">FTE</div></div>
+      </div>
+      <div class="cap-streams">
+        <div>
+          <div class="stream-h stream-h-stand">Stand it up</div>
+          <ul class="stream-list">
+            <li>SLOM constituted and resourced; accountability route to NHSE and DHSC Exec confirmed</li>
+            <li>Pipeline ambition set: priority condition areas, supply-side targets, timeline</li>
+            <li>Market shaping stance agreed: SME and international engagement posture, ecosystem-fairness operating posture</li>
+            <li>National clinical programme relationships established at strategic level (RTP, MSF, GIRFT, Electives, Cancer, MH, UEC)</li>
+            <li>HealthStore overlay design ownership and operating-model change control</li>
+            <li>Cross-product alignment with HomeTest and HealthSync</li>
+          </ul>
+        </div>
+        <div>
+          <div class="stream-h stream-h-bau">In BAU</div>
+          <ul class="stream-list">
+            <li>Quarterly strategic direction review; pipeline priorities reset against demand signals</li>
+            <li>Market shaping agenda actioned via the Pipeline team</li>
+            <li>Operational assurance against SLOM-set priorities for both BAU teams</li>
+            <li>Upward reporting to NHSE and DHSC Exec</li>
+            <li>Cross-capability dependency tracking</li>
+            <li>Portfolio alignment forum participation</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cap-talks">
+        <span class="talks-label">Talks to</span>
+        <span class="talks-pill">NHSE Exec</span><span class="talks-pill">DHSC Exec</span><span class="talks-pill">National clinical programmes (RTP / MSF / GIRFT / Electives / Cancer / MH / UEC)</span><span class="talks-pill">Both BAU teams (Pipeline + Conditions Launch)</span><span class="talks-pill">HomeTest stewardship</span><span class="talks-pill">HealthSync stewardship</span><span class="talks-pill">Portfolio governance</span>
+      </div>
+      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
+    </summary>
+    <div class="cap-detail">
+      <div class="detail-section">
+        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
+        <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>SLOM constituted and resourced</strong>Senior Leadership and Operational Management function. Membership, governance and meeting rhythm. Accountability route to NHSE and DHSC Exec confirmed.</div><span class="pill pill-open">Open</span><span class="size-pill size-l">L</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Pipeline ambition set</strong>Priority condition areas, supply-side targets, timeline for the managed pipeline. Drives Pipeline team operational priorities.</div><span class="pill pill-open">Open</span><span class="size-pill size-l">L</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Market shaping stance agreed</strong>SME and international engagement posture; ecosystem-fairness operating posture; HealthStore's contribution to evidence generation. Load-bearing strategic choices.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>National clinical programme relationships at strategic level</strong>RTP, MSF, GIRFT, Electives, Cancer, MH, UEC. Programmes are the demand definers for the managed pipeline.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>HealthStore overlay design ownership</strong></div><span class="pill pill-flight">In flight</span><span class="size-pill size-s">S</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>RACI maintenance across operational capabilities</strong></div><span class="pill pill-flight">In flight</span><span class="size-pill size-xs">XS</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Operating-model change control</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-s">S</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Cross-product alignment with HomeTest and HealthSync</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-s">S</span></div>
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-h detail-h-bau">In BAU,  detail</div>
+        <div class="bau-detail">
+          <p>SLOM is the enduring strategic home of the managed pipeline. Quarterly strategic direction review: pipeline priorities reset against demand signals from national clinical programmes. Market shaping agenda actioned through the Pipeline team. Operational assurance against SLOM-set priorities for both BAU teams. Upward reporting to NHSE and DHSC Exec on portfolio health, supply-side risk, strategic direction of travel. Cross-capability dependency tracking; portfolio alignment forum participation. The capability is small, senior and well-connected: its value sits in convening power, partner relationships, demand alignment and operational craft, not in scale.</p>
+        </div>
+      </div>
+    </div>
+  </details>
+<details class="cap cap-c14" id="cap-14">
+    <summary>
+      <div class="cap-top">
+        <div class="cap-num"><span class="cap-num-big">14</span><span class="cap-num-of">of 16</span></div>
+        <div class="cap-titleblock">
+          <div class="cap-title">Independent assurance</div>
+          <div class="cap-strap">Third-party assurance discipline separate from internal Clinical Safety. Covers regulatory standards, clinical and financial efficacy, and independent review of admitted products. Sits inside the Assurance Model and is the assurance-portability backbone.</div>
+        </div>
+        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">1</div><div class="cap-sizing-unit">FTE</div></div>
+      </div>
+      <div class="cap-streams">
+        <div>
+          <div class="stream-h stream-h-stand">Stand it up</div>
+          <ul class="stream-list">
+            <li>Regulatory-standards mapping per admitted product class</li>
+            <li>Clinical and financial efficacy assessment criteria</li>
+            <li>Independent assurance review cadence</li>
+            <li>Assurance portability evidence package per supplier</li>
+            <li>Interface with NICE EVA conditional evaluation</li>
+          </ul>
+        </div>
+        <div>
+          <div class="stream-h stream-h-bau">In BAU</div>
+          <ul class="stream-list">
+            <li>Independent review cycle per admitted product</li>
+            <li>Regulatory-standards compliance monitoring</li>
+            <li>Cross-configuration evidence portability administration</li>
+            <li>Independent assurance reports into the Assurance Model</li>
+            <li>Coordination with NICE EVA re-evaluation</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cap-talks">
+        <span class="talks-label">Talks to</span>
+        <span class="talks-pill">NICE</span><span class="talks-pill">MHRA</span><span class="talks-pill">Suppliers</span><span class="talks-pill">CSG</span><span class="talks-pill">Cap-3 Safety</span><span class="talks-pill">Cap-12 PMS</span>
+      </div>
+      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
+    </summary>
+    <div class="cap-detail">
+      <div class="detail-section">
+        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
+        <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>Regulatory-standards mapping</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Clinical and financial efficacy assessment</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-l">L</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Independent assurance review cadence</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-s">S</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Assurance portability evidence package</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>NICE EVA conditional evaluation interface</strong></div><span class="pill pill-flight">In flight</span><span class="size-pill size-s">S</span></div>
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-h detail-h-bau">In BAU,  detail</div>
+        <div class="bau-detail">
+          <p>Independent Assurance is the function that ensures HealthStore can stand behind every admitted product without conflating internal Clinical Safety oversight with third-party assurance. The function owns the evidence package that makes assurance portable across configurations,  the &ldquo;assure once, deploy many&rdquo; discipline,  and the interface into NICE EVA conditional re-evaluation as products mature.</p>
+        </div>
+      </div>
+    </div>
+  </details>
+  </section>
+
+  <section class="tier tier-2">
+    <div class="tier-header">
+      <span class="tier-label">TIER 2</span>
+      <span class="tier-title">Operational</span>
+    </div>
+    <p class="tier-strap">Two BAU teams operate the managed pipeline under SLOM direction. The DTx / NICE Pipeline team works the upstream supply side; the Conditions Launch team works the downstream pathway side. A set of cross-cutting capabilities serve both teams: controls, commercial, and measurement.</p>
+    <div class="band band-team">
+      <span class="band-label">DTx / NICE Pipeline team</span>
+      <p class="band-intro">Upstream supply side. Actively shapes the market, accelerates the route to NICE appraisal, maintains the pipeline horizon view, supports SME and earlier-stage vendors, and convenes the Supplier Community Forum. Operates the system of record for the managed pipeline.</p>
+<details class="cap cap-c1" id="cap-1">
     <summary>
       <div class="cap-top">
         <div class="cap-num"><span class="cap-num-big">1</span><span class="cap-num-of">of 16</span></div>
         <div class="cap-titleblock">
           <div class="cap-title">Framework administration</div>
-          <div class="cap-strap">Operating the NHS Standard Contract with SaaS and data schedules. Coordinates with NICE EVA for conditionally-recommended supplier admission. Provides ICB call-off route. HealthStore does not duplicate assurance. <strong>Holds the contracting instrument (ACE plus NHS Standard Contract) across HealthStore configurations.</strong> NHSE orchestrates the market; it does not act as a central assurance body.</div>
+          <div class="cap-strap">Operating the NHS Standard Contract with SaaS and data schedules. Coordinates with NICE EVA for conditionally-recommended supplier admission. Operates the <strong>managed pipeline view</strong>: Product and Indication records for digital therapeutics in HealthStore and on the horizon. Provides ICB call-off route. HealthStore does not duplicate assurance. <strong>Holds the contracting instrument (ACE plus NHS Standard Contract) across HealthStore configurations.</strong> NHSE orchestrates the market; it does not act as a central assurance body.</div>
         </div>
-        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">TBC</div><div class="cap-sizing-unit">FTE</div></div>
+        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">3&ndash;4</div><div class="cap-sizing-unit">FTE</div></div>
       </div>
       <div class="cap-streams">
         <div>
           <div class="stream-h stream-h-stand">Stand it up</div>
           <ul class="stream-list">
             <li>NHS Standard Contract templates with SaaS and data schedules</li>
-            <li>Payments mechanism design</li>
+            <li>Managed pipeline data model stood up: Product, Indication, Evidence Milestone, Stakeholder, Intelligence Item, Commissioning Record</li>
             <li>NICE EVA conditionally-recommended admission process</li>
-            <li>Framework launch communications to ICBs</li>
+            <li>ICB call-off route designed and communicated</li>
+            <li>Horizon view across products approaching the NICE pipeline (not just admitted ones)</li>
+            <li>Payments mechanism design</li>
           </ul>
         </div>
         <div>
           <div class="stream-h stream-h-bau">In BAU</div>
           <ul class="stream-list">
-            <li>Variations, renewals, reviews</li>
-            <li>Steady-state supplier admission throughput</li>
-            <li>Framework usage MI</li>
+            <li>Pipeline horizon maintained: Product and Indication records for everything in HealthStore and on the way</li>
+            <li>Steady-state supplier admission throughput against the managed-pipeline view</li>
+            <li>Variations, renewals, reviews to existing framework instruments</li>
+            <li>Framework usage MI and Commissioner Store usage signals</li>
           </ul>
         </div>
       </div>
       <div class="cap-talks">
         <span class="talks-label">Talks to</span>
-        <span class="talks-pill">NHS Commercial</span><span class="talks-pill">NICE EVA suppliers</span><span class="talks-pill">ICB commissioners</span>
+        <span class="talks-pill">NHS Commercial</span><span class="talks-pill">NICE EVA team</span><span class="talks-pill">ICB commissioners</span><span class="talks-pill">NHSE Platform team</span><span class="talks-pill">Tier 3 (ServiceNow data model)</span>
       </div>
       <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
     </summary>
@@ -440,53 +709,59 @@
         <div class="detail-h detail-h-stand">Stand it up,  detail</div>
         <div class="stand-detail">
           <div class="stand-row"><div class="stand-row-text"><strong>NHS Standard Contract templates with SaaS and data schedules</strong>Templates work is scoped. EPIC 4 (commercial & legal frameworks for onboarding) sits with the external delivery partner. No drafted NHS Standard Contract template with SaaS / data schedules is visible in primary sources yet.</div><span class="pill pill-design">In design</span><span class="size-pill size-l">L</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Payments mechanism design</strong></div><span class="pill pill-flight">In flight</span><span class="size-pill size-l">L</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Managed pipeline data model designed and built</strong>Product and Indication as first-class entities, plus Evidence Milestone, Stakeholder, Intelligence Item, Commissioning Record. Sits in the Tier 3 ServiceNow scoped application. Spec is in the primary-source operating model proposal.</div><span class="pill pill-open">Open</span><span class="size-pill size-xl">XL</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>NICE EVA conditionally-recommended admission process</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>ICB call-off route designed</strong>How an ICB lights up a HealthStore configuration against the framework instrument.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Horizon view across pipeline products</strong>Records for digital therapeutics approaching NICE pipeline, not yet admitted. Most valuable for market shaping decisions and NICE evidence-support prioritisation.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Framework launch communications to ICBs</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Payments mechanism design</strong></div><span class="pill pill-flight">In flight</span><span class="size-pill size-l">L</span></div>
         </div>
       </div>
       <div class="detail-section">
         <div class="detail-h detail-h-bau">In BAU,  detail</div>
-        <div class="stand-detail">
-          <div class="stand-row"><div class="stand-row-text"><strong>Variations, renewals, reviews</strong></div><span class="pill pill-tbc">TBC</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Steady-state supplier admission throughput</strong></div><span class="pill pill-tbc">TBC</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Framework usage MI</strong></div><span class="pill pill-tbc">TBC</span></div>
+        <div class="bau-detail">
+          <p>Cap 1 carries the framework-and-pipeline core of the Pipeline team. The managed pipeline view is the operational system of record: who is admitted, who is on the horizon, what evidence milestones are due. ICB call-off route runs as the standing route to market once a product is admitted. Variations, renewals and reviews to existing framework instruments. Framework usage MI and Commissioner Store usage signals feed back to SLOM and out to NICE through the Pipeline team's report packs.</p>
         </div>
       </div>
     </div>
   </details>
-
-  <details class="cap cap-c2" id="cap-2">
+<details class="cap cap-c2" id="cap-2">
     <summary>
       <div class="cap-top">
         <div class="cap-num"><span class="cap-num-big">2</span><span class="cap-num-of">of 16</span></div>
         <div class="cap-titleblock">
           <div class="cap-title">Supplier management</div>
-          <div class="cap-strap">Onboarding, performance, SLA holding, contract variations for NICE EVA conditionally-recommended suppliers. <strong>Multiple suppliers admitted today for COPD Alpha.</strong></div>
+          <div class="cap-strap">Onboarding, performance, SLA holding, contract variations for NICE EVA conditionally-recommended suppliers. Standing engagement via a <strong>Supplier Community Forum</strong> (structured information sharing, non-evaluative). Supports <strong>SMEs and earlier-stage vendors</strong> to navigate the route to NICE appraisal (evidence requirements visible earlier, partner support signposted). Captures <strong>intelligence items</strong> from NICE, MHRA and HIN sources into the managed pipeline view. <strong>Multiple suppliers admitted today for COPD Alpha.</strong></div>
         </div>
-        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">TBC</div><div class="cap-sizing-unit">FTE</div></div>
+        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">3&ndash;5</div><div class="cap-sizing-unit">FTE</div></div>
       </div>
       <div class="cap-streams">
         <div>
           <div class="stream-h stream-h-stand">Stand it up</div>
           <ul class="stream-list">
-            <li>NICE EVA conditionally-recommended admission of five suppliers</li>
-            <li>Supplier agreements per supplier</li>
-            <li>Supplier-side data schedule onboarding</li>
+            <li>NICE EVA conditionally-recommended admission of admitted suppliers (COPD Alpha cohort live)</li>
+            <li>Supplier Community Forum stood up (monthly cadence, structured information sharing, non-evaluative)</li>
+            <li>SME and earlier-stage vendor support route designed (evidence requirements visible earlier, partner signposting)</li>
+            <li>Market shaping channels stood up across NICE, HINs, NIHR, DHSC / Office for Life Sciences, NHSE Innovation portfolio</li>
+            <li>Intelligence Item capture mechanism stood up against the managed-pipeline view</li>
+            <li>Supplier agreements and data schedules executed per admitted supplier</li>
           </ul>
         </div>
         <div>
           <div class="stream-h stream-h-bau">In BAU</div>
           <ul class="stream-list">
+            <li>Monthly Supplier Community Forum running</li>
             <li>Supplier SLA monitoring (platform availability, API health, marketplace evidence)</li>
             <li>Performance review cadence (milestone hit rates, outcome capture rates)</li>
+            <li>Ongoing market scouting including overseas; supply-gap analysis against priority condition areas</li>
+            <li>Standard report packs (NICE, MHRA, HIN, NHSE Exec) produced and circulated</li>
             <li>Supplier exit and migration</li>
           </ul>
         </div>
       </div>
       <div class="cap-talks">
         <span class="talks-label">Talks to</span>
-        <span class="talks-pill">DTx suppliers</span><span class="talks-pill">NHS Commercial</span><span class="talks-pill">Aisha</span>
+        <span class="talks-pill">DTx suppliers (UK and overseas)</span><span class="talks-pill">NICE</span><span class="talks-pill">MHRA</span><span class="talks-pill">Health Innovation Networks</span><span class="talks-pill">NIHR</span><span class="talks-pill">DHSC / Office for Life Sciences</span><span class="talks-pill">NHS Commercial</span><span class="talks-pill">Aisha</span>
       </div>
       <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
     </summary>
@@ -494,49 +769,231 @@
       <div class="detail-section">
         <div class="detail-h detail-h-stand">Stand it up,  detail</div>
         <div class="stand-detail">
-          <div class="stand-row"><div class="stand-row-text"><strong>NICE EVA conditionally-recommended admission of five suppliers</strong></div><span class="pill pill-live">Live</span><span class="size-pill size-l">L</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Ways-of-working agreements with Alpha suppliers</strong>Procurement cycle for COPD Alpha concluded around April 2026 followed by collaborative ways-of-working signed off in May 2026. Central NHS Standard Contract agreements with EVA suppliers are not yet evidenced; Alpha-stage ways-of-working agreements are.</div><span class="pill pill-flight">In flight</span><span class="size-pill size-l">L</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>NICE EVA conditionally-recommended admission of admitted suppliers (COPD Alpha cohort live)</strong></div><span class="pill pill-live">Live</span><span class="size-pill size-l">L</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Ways-of-working agreements with Alpha suppliers</strong>Procurement cycle for COPD Alpha concluded around April 2026; collaborative ways-of-working signed off May 2026. Central NHS Standard Contract agreements with EVA suppliers not yet evidenced; Alpha-stage ways-of-working agreements are.</div><span class="pill pill-flight">In flight</span><span class="size-pill size-l">L</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Supplier Community Forum stood up</strong>Standing engagement channel — monthly cadence, structured information sharing, non-evaluative, non-decision-making. Operates alongside any procurement process; explicitly not a substitute.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>SME and earlier-stage vendor support route designed</strong>Making evidence requirements visible earlier in the journey to NICE appraisal; signposting partner support (HINs, NIHR). Does not lower the evidence bar; makes the route to the bar more predictable for smaller vendors.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Market shaping channels stood up</strong>Standing engagement rhythms with NICE, HINs, NIHR, DHSC / Office for Life Sciences and the wider NHSE Innovation portfolio, under SLOM-set priority condition areas.</div><span class="pill pill-open">Open</span><span class="size-pill size-l">L</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Intelligence Item capture mechanism stood up</strong>Lightweight capture of MHRA notices, HIN horizon-scan signals, supplier intelligence — into the managed pipeline view in Tier 3 ServiceNow. Categorised, dated, sourced, tagged.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Supplier-side data schedule onboarding</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
         </div>
       </div>
       <div class="detail-section">
         <div class="detail-h detail-h-bau">In BAU,  detail</div>
-        <div class="stand-detail">
-          <div class="stand-row"><div class="stand-row-text"><strong>Supplier SLA monitoring (platform availability, API health, marketplace evidence)</strong></div><span class="pill pill-tbc">TBC</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Performance review cadence (milestone hit rates, outcome capture rates)</strong></div><span class="pill pill-tbc">TBC</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Supplier exit and migration</strong></div><span class="pill pill-open">Open</span></div>
+        <div class="bau-detail">
+          <p>Cap 2 is the supplier-facing core of the Pipeline team. The monthly Supplier Community Forum runs as the standing engagement route. SLA monitoring across admitted suppliers (platform availability, API health, marketplace evidence). Performance review cadence: milestone hit rates, outcome capture rates. Ongoing market scouting under SLOM-set priority condition areas, including overseas markets. Supply-gap analysis surfacing where pipeline thinness needs attention. Standard report packs (NICE, MHRA, HIN national coordination, NHSE Exec) produced and circulated to a defined rhythm. Intelligence Items captured continuously against the pipeline view. Supplier exit and migration handled when needed.</p>
         </div>
       </div>
     </div>
   </details>
-
-  <details class="cap cap-c3" id="cap-3">
+    </div>
+    <div class="band band-team">
+      <span class="band-label">Conditions Launch team</span>
+      <p class="band-intro">Downstream pathway side. Turns NICE-appraised products into deployable NHS pathway offers, working through clinical ownership, escalation routes, workforce impact, commissioning incentives and tariff issues. Convenes with GIRFT, National Clinical Directors and condition-specific transformation programmes.</p>
+<details class="cap cap-c6" id="cap-6">
     <summary>
       <div class="cap-top">
-        <div class="cap-num"><span class="cap-num-big">3</span><span class="cap-num-of">of 16</span></div>
+        <div class="cap-num"><span class="cap-num-big">6</span><span class="cap-num-of">of 16</span></div>
         <div class="cap-titleblock">
-          <div class="cap-title">Clinical safety stewardship</div>
-          <div class="cap-strap">DCB0129 / 0160 oversight, hazard log curation, Clinical Safety Case Report management, supplier interface. <strong>Carries HealthStore-specific safety content within the shared DCB framework.</strong></div>
+          <div class="cap-title">Commissioner partnerships</div>
+          <div class="cap-strap">Outbound to ICBs. <strong>ICB-primary commissioning for HealthStore.</strong></div>
         </div>
-        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">TBC</div><div class="cap-sizing-unit">FTE</div></div>
+        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">3&ndash;5</div><div class="cap-sizing-unit">FTE</div></div>
       </div>
       <div class="cap-streams">
         <div>
           <div class="stream-h stream-h-stand">Stand it up</div>
           <ul class="stream-list">
-            <li>hazard log maintained (deployer side under DCB0160)</li>
-            <li>clinical safety case maintained</li>
-            <li>CSO route established per ICB for DCB0160</li>
-            <li>CATR mechanics for digital therapeutics</li>
-            <li>Cohort safety signal monitoring and deterioration alerting designed</li>
+            <li>Commissioner Store curated product information designed per condition area</li>
+            <li>ICB pitch / brochure for HealthStore</li>
+            <li>Early-adopter ICB programme designed</li>
+            <li>Workforce impact, commissioning incentive and tariff barrier assessment per condition area</li>
+            <li>Regional and place-based commissioning partnership model</li>
+            <li>NICE EVA supplier joint-pitch model</li>
           </ul>
         </div>
         <div>
           <div class="stream-h stream-h-bau">In BAU</div>
           <ul class="stream-list">
-            <li>Active hazard monitoring per cohort</li>
-            <li>Annual safety case refresh per DCB0129</li>
-            <li>Outcome distribution review against safety case</li>
+            <li>Commissioner Store curation as new products and indications come through</li>
+            <li>ICB-by-ICB adoption support, working with regional and place-based partners</li>
+            <li>Real-world adoption signal capture, fed back to the Pipeline team</li>
+            <li>ICB relationship management</li>
+            <li>Annual pricing review</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cap-talks">
+        <span class="talks-label">Talks to</span>
+        <span class="talks-pill">ICB commissioning leads</span><span class="talks-pill">National clinical programmes</span><span class="talks-pill">Regional / place-based partners</span><span class="talks-pill">DTx suppliers</span><span class="talks-pill">Sarah</span>
+      </div>
+      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
+    </summary>
+    <div class="cap-detail">
+      <div class="detail-section">
+        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
+        <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>Commissioner Store curated product information designed per condition area</strong>What buyers and commissioners see for each admitted product. Product-specific evidence, pathway-fit signals, real-world usage trends.</div><span class="pill pill-open">Open</span><span class="size-pill size-l">L</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>ICB pitch / brochure for HealthStore</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Early-adopter ICB programme</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-l">L</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Workforce impact, commissioning incentive and tariff barrier assessment per condition area</strong>The practical adoption work: where the system isn't yet set up to absorb a new product without active intervention.</div><span class="pill pill-open">Open</span><span class="size-pill size-l">L</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Regional and place-based commissioning partnership model</strong>Where ICB-by-ICB engagement is unrealistic at scale, regional partners step in.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>NICE EVA supplier joint-pitch model</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-h detail-h-bau">In BAU,  detail</div>
+        <div class="bau-detail">
+          <p>Cap 6 is the channel through which HealthStore lands in actual commissioning decisions. Commissioner Store curation runs as new products and indications come through the pipeline. ICB-by-ICB adoption support, working with regional and place-based partners where direct engagement isn't viable at scale. Real-world adoption signals captured and fed back to the Pipeline team for inclusion in MI to NICE. ICB relationship management as a standing cadence. Annual pricing review. Conditions Launch team operates this alongside the supply-side Pipeline team; signals flow in both directions.</p>
+        </div>
+      </div>
+    </div>
+  </details>
+<details class="cap cap-c8" id="cap-8">
+    <summary>
+      <div class="cap-top">
+        <div class="cap-num"><span class="cap-num-big">8</span><span class="cap-num-of">of 16</span></div>
+        <div class="cap-titleblock">
+          <div class="cap-title">In-app engagement oversight</div>
+          <div class="cap-strap"><strong>HealthStore-specific capability.</strong> Monitoring meaningful engagement and outcome capture across suppliers and configurations.</div>
+        </div>
+        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">1&ndash;2</div><div class="cap-sizing-unit">FTE</div></div>
+      </div>
+      <div class="cap-streams">
+        <div>
+          <div class="stream-h stream-h-stand">Stand it up</div>
+          <ul class="stream-list">
+            <li>Meaningful engagement criteria framework agreed per supplier</li>
+            <li>Engagement signal-vs-safety dashboard stood up</li>
+            <li>Patient engagement comms designed for the in-app experience</li>
+            <li>Clinician-facing engagement signal pack</li>
+          </ul>
+        </div>
+        <div>
+          <div class="stream-h stream-h-bau">In BAU</div>
+          <ul class="stream-list">
+            <li>Engagement monitoring across cohorts</li>
+            <li>Outcome capture rate steering</li>
+            <li>Engagement signals fed back to the Pipeline team for inclusion in MI to NICE</li>
+            <li>Clinical pathway adjustment triggers raised on engagement deterioration</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cap-talks">
+        <span class="talks-label">Talks to</span>
+        <span class="talks-pill">DTx suppliers</span><span class="talks-pill">Prescribing clinicians</span><span class="talks-pill">Pipeline team (MI to NICE)</span><span class="talks-pill">Cap-7 Outcomes</span><span class="talks-pill">Aisha</span>
+      </div>
+      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
+    </summary>
+    <div class="cap-detail">
+      <div class="detail-section">
+        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
+        <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>Meaningful engagement criteria framework agreed per supplier</strong>What counts as "engaged" for each admitted product. Drives outcome attribution and value-evidence into NICE.</div><span class="pill pill-open">Open</span><span class="size-pill size-l">L</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Engagement signal-vs-safety dashboard stood up</strong>Real-time view of who is meaningfully engaged, who is at risk of disengaging, and what safety signals correlate with engagement patterns.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Patient engagement comms designed for in-app experience</strong>Nudges, reminders, encouragement framing — supplier-implemented but Conditions Launch team specifies the standard.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Clinician-facing engagement signal pack</strong>What prescribing clinicians see about their patients' engagement after the script is issued.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-h detail-h-bau">In BAU,  detail</div>
+        <div class="bau-detail">
+          <p>In-app engagement oversight monitors whether prescribed products are actually being used meaningfully. Engagement monitoring runs across cohorts; outcome capture rate steering keeps the evidence pipeline healthy. Engagement signals feed back to the Pipeline team for inclusion in MI to NICE — this is material for the real-world evidence contribution HealthStore promises. Clinical pathway adjustment triggers raised on engagement deterioration, with feed-forward to the Conditions Launch team for pathway adjustment. Distinct from Cap-3 Clinical safety (which handles hazards) and Cap-7 Outcomes (which handles formal endpoint measurement).</p>
+        </div>
+      </div>
+    </div>
+  </details>
+<details class="cap cap-c13" id="cap-13">
+    <summary>
+      <div class="cap-top">
+        <div class="cap-num"><span class="cap-num-big">13</span><span class="cap-num-of">of 16</span></div>
+        <div class="cap-titleblock">
+          <div class="cap-title">Pathway integration</div>
+          <div class="cap-strap">Integration of admitted DTx products into local NHS clinical pathways. The work between national catalogue and local pathway team. Where the digital therapeutic earns its place in an existing care pathway.</div>
+        </div>
+        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">3&ndash;4</div><div class="cap-sizing-unit">FTE</div></div>
+      </div>
+      <div class="cap-streams">
+        <div>
+          <div class="stream-h stream-h-stand">Stand it up</div>
+          <ul class="stream-list">
+            <li>Pathway mapping per therapeutic area (COPD first)</li>
+            <li>Human wrapper designed per product: clinical ownership, escalation routes, support services</li>
+            <li>Prescribing workflow design with GIRFT, National Clinical Directors and condition-specific transformation programmes</li>
+            <li>EPR / prescribing-system integration patterns</li>
+            <li>Pathway-fit assessment toolkit for ICBs</li>
+            <li>Reference pathways co-designed with transformation programmes (RTP, MSF, GIRFT, Electives, Cancer, MH, UEC)</li>
+          </ul>
+        </div>
+        <div>
+          <div class="stream-h stream-h-bau">In BAU</div>
+          <ul class="stream-list">
+            <li>Pathway mapping for each newly admitted therapeutic area</li>
+            <li>Human wrapper maintenance and refresh as products evolve</li>
+            <li>Local ICB pathway team support during onboarding</li>
+            <li>Workforce impact, commissioning incentive and tariff barrier resolution per pathway</li>
+            <li>Integration playbook maintenance and revision</li>
+            <li>Coordination with NHSE transformation programmes</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cap-talks">
+        <span class="talks-label">Talks to</span>
+        <span class="talks-pill">Respiratory Transformation Programme</span><span class="talks-pill">GIRFT</span><span class="talks-pill">National Clinical Directors</span><span class="talks-pill">Condition-specific transformation programmes</span><span class="talks-pill">ICB pathway teams</span><span class="talks-pill">Suppliers</span><span class="talks-pill">Tier 3 supporting infrastructure</span>
+      </div>
+      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
+    </summary>
+    <div class="cap-detail">
+      <div class="detail-section">
+        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
+        <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>Pathway mapping per therapeutic area (COPD first)</strong></div><span class="pill pill-flight">In flight</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Human wrapper designed per product</strong>Clinical ownership, escalation routes, the practical support services needed to embed a product in a pathway. Conditions Launch team owns this design alongside the clinical partners.</div><span class="pill pill-open">Open</span><span class="size-pill size-l">L</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Prescribing workflow design with GIRFT, National Clinical Directors and condition-specific transformation programmes</strong>Clinical authority sits with partners; Conditions Launch team brings the product, the evidence base, the operational scaffolding and adoption focus.</div><span class="pill pill-design">In design</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>EPR / prescribing-system integration patterns</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-l">L</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Pathway-fit assessment toolkit for ICBs</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-s">S</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Reference pathways co-designed with transformation programmes</strong>RTP, MSF, GIRFT, Electives, Cancer, MH, UEC.</div><span class="pill pill-flight">In flight</span><span class="size-pill size-m">M</span></div>
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-h detail-h-bau">In BAU,  detail</div>
+        <div class="bau-detail">
+          <p>Pathway integration is where a HealthStore product earns its place in an actual care pathway. Without it, the catalogue could be technically present but clinically dormant. The function sits between national admission (catalogue, supplier onboarding) and local activation (commissioner buying, prescriber adoption). For COPD Alpha the Conditions Launch team works with the Respiratory Transformation Programme to align the DTx with the OPTIMISE pathway. Human wrapper maintenance and refresh as products evolve. Workforce impact, commissioning incentive and tariff barrier resolution per pathway. Local ICB pathway team support during onboarding. Integration playbook maintenance and revision. As further therapeutic areas come on (MSK, cardiac rehab, CBTi), the same work is repeated with their parent transformation programmes; the playbook ensures each new ICB doesn&apos;t reinvent the wheel.</p>
+        </div>
+      </div>
+    </div>
+  </details>
+    </div>
+    <div class="band">
+      <span class="band-label">Controls (cross-cutting)</span>
+<details class="cap cap-c3" id="cap-3">
+    <summary>
+      <div class="cap-top">
+        <div class="cap-num"><span class="cap-num-big">3</span><span class="cap-num-of">of 16</span></div>
+        <div class="cap-titleblock">
+          <div class="cap-title">Clinical safety stewardship</div>
+          <div class="cap-strap">DCB0129 / 0160 oversight, hazard log curation, Clinical Safety Case Report management, supplier interface. <strong>Carries HealthStore-specific safety content within the shared DCB framework.</strong> <em>Serves both BAU teams: Pipeline team operates supplier-side safety case (DCB0129) at admission; Conditions Launch team operates deployer-side hazard monitoring (DCB0160) in pathway.</em></div>
+        </div>
+        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">2&ndash;3</div><div class="cap-sizing-unit">FTE</div></div>
+      </div>
+      <div class="cap-streams">
+        <div>
+          <div class="stream-h stream-h-stand">Stand it up</div>
+          <ul class="stream-list">
+            <li>Clinical safety case maintained per admitted supplier <span class="team-tag team-tag-pipeline">Pipeline</span></li>
+            <li>Hazard log maintained (deployer side under DCB0160) <span class="team-tag team-tag-launch">Cond. Launch</span></li>
+            <li>CSO route established per ICB for DCB0160 <span class="team-tag team-tag-launch">Cond. Launch</span></li>
+            <li>CATR mechanics for digital therapeutics <span class="team-tag team-tag-both">Both</span></li>
+            <li>Cohort safety signal monitoring and deterioration alerting designed <span class="team-tag team-tag-launch">Cond. Launch</span></li>
+          </ul>
+        </div>
+        <div>
+          <div class="stream-h stream-h-bau">In BAU</div>
+          <ul class="stream-list">
+            <li>Active hazard monitoring per cohort <span class="team-tag team-tag-launch">Cond. Launch</span></li>
+            <li>Annual safety case refresh per DCB0129 <span class="team-tag team-tag-pipeline">Pipeline</span></li>
+            <li>Outcome distribution review against safety case <span class="team-tag team-tag-both">Both</span></li>
+            <li>Cross-team coordination on safety case lifecycle (admission to in-pathway)</li>
           </ul>
         </div>
       </div>
@@ -567,33 +1024,34 @@
       </div>
     </div>
   </details>
-
-  <details class="cap cap-c4" id="cap-4">
+<details class="cap cap-c4" id="cap-4">
     <summary>
       <div class="cap-top">
         <div class="cap-num"><span class="cap-num-big">4</span><span class="cap-num-of">of 16</span></div>
         <div class="cap-titleblock">
           <div class="cap-title">Information governance operations</div>
-          <div class="cap-strap">DPIA, DSA, controller designation, lawful basis. <strong>Per-product controllers vary inside the shared framework. HealthStore adds SaaS-side controller positions.</strong></div>
+          <div class="cap-strap">DPIA, DSA, controller designation, lawful basis. <strong>Per-product controllers vary inside the shared framework. HealthStore adds SaaS-side controller positions.</strong> <em>Serves both BAU teams: Pipeline team operates supplier-side IG at admission (DPIA, data schedules); Conditions Launch team operates deployment-side IG (ICB-level DPIA inputs, prescribing flow lawful basis).</em></div>
         </div>
-        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">TBC</div><div class="cap-sizing-unit">FTE</div></div>
+        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">2&ndash;3</div><div class="cap-sizing-unit">FTE</div></div>
       </div>
       <div class="cap-streams">
         <div>
           <div class="stream-h stream-h-stand">Stand it up</div>
           <ul class="stream-list">
-            <li>DPIA template adapted for HealthStore configurations</li>
-            <li>Data schedule executed with each NICE EVA supplier</li>
-            <li>Controller positions for SaaS data flows</li>
-            <li>Lawful basis position for prescribing flow</li>
+            <li>DPIA template adapted for HealthStore configurations <span class="team-tag team-tag-both">Both</span></li>
+            <li>Data schedule executed with each NICE EVA supplier <span class="team-tag team-tag-pipeline">Pipeline</span></li>
+            <li>Supplier-side controller positions for SaaS data flows <span class="team-tag team-tag-pipeline">Pipeline</span></li>
+            <li>Deployment-side controller positions per ICB / pathway <span class="team-tag team-tag-launch">Cond. Launch</span></li>
+            <li>Lawful basis position for prescribing flow <span class="team-tag team-tag-launch">Cond. Launch</span></li>
           </ul>
         </div>
         <div>
           <div class="stream-h stream-h-bau">In BAU</div>
           <ul class="stream-list">
-            <li>Subject access route</li>
-            <li>Supplier breach handling chain</li>
-            <li>Annual DPIA review</li>
+            <li>Subject access route <span class="team-tag team-tag-both">Both</span></li>
+            <li>Supplier breach handling chain <span class="team-tag team-tag-pipeline">Pipeline</span></li>
+            <li>Annual DPIA review <span class="team-tag team-tag-both">Both</span></li>
+            <li>Cross-team coordination on controller positions: who controls which data type at each pathway stage</li>
           </ul>
         </div>
       </div>
@@ -623,8 +1081,310 @@
       </div>
     </div>
   </details>
+<details class="cap cap-c12" id="cap-12">
+    <summary>
+      <div class="cap-top">
+        <div class="cap-num"><span class="cap-num-big">12</span><span class="cap-num-of">of 16</span></div>
+        <div class="cap-titleblock">
+          <div class="cap-title">Post-market surveillance</div>
+          <div class="cap-strap">Ongoing safety and performance surveillance of admitted DTx products after they go live. HealthStore digital therapeutics are not SaMD per the 8 June 2026 MHRA ruling, so MHRA&apos;s role is Yellow Card adverse-event reporting and platform-level safety signal detection rather than SaMD pre-market compliance. Distinct from internal clinical safety oversight. <em>Serves both BAU teams: Pipeline team operates the upstream MHRA Yellow Card interface and signal-detection oversight; Conditions Launch team feeds in-pathway adverse events from prescribing clinicians and patient channels.</em></div>
+        </div>
+        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">1&ndash;2</div><div class="cap-sizing-unit">FTE</div></div>
+      </div>
+      <div class="cap-streams">
+        <div>
+          <div class="stream-h stream-h-stand">Stand it up</div>
+          <ul class="stream-list">
+            <li>PMS plan per admitted supplier <span class="team-tag team-tag-pipeline">Pipeline</span></li>
+            <li>MHRA Yellow Card reporting interface designed <span class="team-tag team-tag-pipeline">Pipeline</span></li>
+            <li>Signal-detection thresholds and cadence <span class="team-tag team-tag-pipeline">Pipeline</span></li>
+            <li>In-pathway adverse event capture from prescribers and patients <span class="team-tag team-tag-launch">Cond. Launch</span></li>
+            <li>Periodic safety update schedule <span class="team-tag team-tag-both">Both</span></li>
+          </ul>
+        </div>
+        <div>
+          <div class="stream-h stream-h-bau">In BAU</div>
+          <ul class="stream-list">
+            <li>Continuous signal monitoring across admitted products <span class="team-tag team-tag-pipeline">Pipeline</span></li>
+            <li>Adverse event collection and classification <span class="team-tag team-tag-launch">Cond. Launch</span></li>
+            <li>Periodic safety updates submitted on schedule <span class="team-tag team-tag-pipeline">Pipeline</span></li>
+            <li>Regulatory reporting to MHRA <span class="team-tag team-tag-pipeline">Pipeline</span></li>
+            <li>Post-market data review feeding NICE re-evaluation <span class="team-tag team-tag-pipeline">Pipeline</span></li>
+            <li>Cross-team adverse event coordination: Conditions Launch team feeds events into Pipeline team's MHRA interface</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cap-talks">
+        <span class="talks-label">Talks to</span>
+        <span class="talks-pill">MHRA</span><span class="talks-pill">NICE</span><span class="talks-pill">Suppliers</span><span class="talks-pill">CSG</span><span class="talks-pill">Cap-3 Safety</span>
+      </div>
+      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
+    </summary>
+    <div class="cap-detail">
+      <div class="detail-section">
+        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
+        <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>PMS plan per admitted supplier</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-s">S</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Adverse event reporting routes</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-s">S</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Signal-detection thresholds and cadence</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Periodic safety update schedule</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-xs">XS</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>MHRA reporting interface</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-s">S</span></div>
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-h detail-h-bau">In BAU,  detail</div>
+        <div class="bau-detail">
+          <p>Post-market surveillance runs for the life of every admitted DTx product. Distinct from the internal Clinical Safety capability (Cap-3) which manages the hazard log and CATR. PMS is outward-facing: signal detection against real-world use, adverse event collection, periodic safety updates to MHRA via Yellow Card, and feedback into NICE re-evaluation. HealthStore digital therapeutics are not SaMD per the 8 June 2026 MHRA ruling, so the obligation is post-market signal detection rather than SaMD pre-market compliance. The function sits at the platform level so the burden is shared across suppliers rather than left on each one in isolation. Without it, the HealthStore catalogue cannot honestly claim end-to-end post-go-live safety oversight.</p>
+        </div>
+      </div>
+    </div>
+  </details>
+    </div>
+    <div class="band">
+      <span class="band-label">Commercial (cross-cutting)</span>
+<details class="cap cap-c9" id="cap-9">
+    <summary>
+      <div class="cap-top">
+        <div class="cap-num"><span class="cap-num-big">9</span><span class="cap-num-of">of 16</span></div>
+        <div class="cap-titleblock">
+          <div class="cap-title">Marketplace payment operations</div>
+          <div class="cap-strap">Settlement against four milestones (start, meaningful engagement, completion, outcome capture). <strong>HealthStore-specific because the commercial model is.</strong> <em>Operated by the Conditions Launch team because the four milestones are downstream activity events. Pipeline team uses payment performance as a supplier-health signal.</em></div>
+        </div>
+        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">2&ndash;3</div><div class="cap-sizing-unit">FTE</div></div>
+      </div>
+      <div class="cap-streams">
+        <div>
+          <div class="stream-h stream-h-stand">Stand it up</div>
+          <ul class="stream-list">
+            <li>Four-milestone settlement model designed <span class="team-tag team-tag-launch">Cond. Launch</span></li>
+            <li>Milestone evidence audit framework <span class="team-tag team-tag-launch">Cond. Launch</span></li>
+            <li>Payment cycle setup <span class="team-tag team-tag-launch">Cond. Launch</span></li>
+            <li>Supplier-health flag route from payment performance back to Pipeline team <span class="team-tag team-tag-both">Both</span></li>
+          </ul>
+        </div>
+        <div>
+          <div class="stream-h stream-h-bau">In BAU</div>
+          <ul class="stream-list">
+            <li>Monthly settlement runs <span class="team-tag team-tag-launch">Cond. Launch</span></li>
+            <li>Periodic milestone evidence audit <span class="team-tag team-tag-launch">Cond. Launch</span></li>
+            <li>Payment performance flagged to Pipeline team where it indicates supplier-health risk</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cap-talks">
+        <span class="talks-label">Talks to</span>
+        <span class="talks-pill">David</span><span class="talks-pill">NHS Commercial</span><span class="talks-pill">DTx suppliers</span><span class="talks-pill">ICB finance</span>
+      </div>
+      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
+    </summary>
+    <div class="cap-detail">
+      <div class="detail-section">
+        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
+        <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>Milestone evidence audit framework</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Payment cycle setup</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-h detail-h-bau">In BAU,  detail</div>
+        <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>Monthly settlement runs</strong></div><span class="pill pill-tbc">TBC</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Periodic milestone evidence audit</strong></div><span class="pill pill-tbc">TBC</span></div>
+        </div>
+      </div>
+    </div>
+  </details>
+<details class="cap cap-c15" id="cap-15">
+    <summary>
+      <div class="cap-top">
+        <div class="cap-num"><span class="cap-num-big">15</span><span class="cap-num-of">of 16</span></div>
+        <div class="cap-titleblock">
+          <div class="cap-title">Contract Management</div>
+          <div class="cap-strap">Post-execution lifecycle for each call-off agreement. Distinct from Framework administration (Cap-1) which sets the contracting architecture; this function manages each agreement after signature: variations, pricing reviews, renewals, milestone audit. <em>Operated by the Pipeline team since the supplier relationship is upstream. Conditions Launch team triggers variations based on adoption needs (new ICBs, pathway changes, condition area expansion).</em></div>
+        </div>
+        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">2&ndash;3</div><div class="cap-sizing-unit">FTE</div></div>
+      </div>
+      <div class="cap-streams">
+        <div>
+          <div class="stream-h stream-h-stand">Stand it up</div>
+          <ul class="stream-list">
+            <li>Contract management playbook per call-off pattern <span class="team-tag team-tag-pipeline">Pipeline</span></li>
+            <li>Variation control process <span class="team-tag team-tag-pipeline">Pipeline</span></li>
+            <li>Pricing review and renewal triggers <span class="team-tag team-tag-pipeline">Pipeline</span></li>
+            <li>Variation trigger model: Conditions Launch team raises, Pipeline team handles <span class="team-tag team-tag-both">Both</span></li>
+            <li>Marketplace milestone evidence audit routine <span class="team-tag team-tag-pipeline">Pipeline</span></li>
+            <li>Supplier performance monitoring against contract <span class="team-tag team-tag-pipeline">Pipeline</span></li>
+          </ul>
+        </div>
+        <div>
+          <div class="stream-h stream-h-bau">In BAU</div>
+          <ul class="stream-list">
+            <li>Active management of each ICB call-off across its lifecycle <span class="team-tag team-tag-pipeline">Pipeline</span></li>
+            <li>Variation processing and approval <span class="team-tag team-tag-pipeline">Pipeline</span></li>
+            <li>Pricing reviews on schedule <span class="team-tag team-tag-pipeline">Pipeline</span></li>
+            <li>Milestone evidence audit per payment trigger <span class="team-tag team-tag-pipeline">Pipeline</span></li>
+            <li>Supplier performance against contract metrics <span class="team-tag team-tag-pipeline">Pipeline</span></li>
+            <li>Renewal and exit management <span class="team-tag team-tag-pipeline">Pipeline</span></li>
+            <li>Variation requests raised by Conditions Launch team handled within the same cycle</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cap-talks">
+        <span class="talks-label">Talks to</span>
+        <span class="talks-pill">ICB commissioners</span><span class="talks-pill">Suppliers</span><span class="talks-pill">NHS Commercial</span><span class="talks-pill">NHS Legal</span><span class="talks-pill">Cap-1 Framework</span>
+      </div>
+      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
+    </summary>
+    <div class="cap-detail">
+      <div class="detail-section">
+        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
+        <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>Contract management playbook</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Variation control process</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-s">S</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Pricing review and renewal triggers</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-s">S</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Marketplace milestone evidence audit</strong></div><span class="pill pill-flight">In flight</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Supplier performance monitoring</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-s">S</span></div>
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-h detail-h-bau">In BAU,  detail</div>
+        <div class="bau-detail">
+          <p>Contract Management is the function that lives every call-off across its lifecycle. The current artefact had folded it into Framework administration (Cap-1) but the source separates contracting architecture from in-life contract management. Stand-it-up work focuses on the playbook and milestone audit routine; BAU work is each ICB call-off actively managed from go-live through renewal or exit.</p>
+        </div>
+      </div>
+    </div>
+  </details>
+    </div>
+    <div class="band">
+      <span class="band-label">Measure & Evidence (cross-cutting)</span>
+      <p class="band-intro">Evidence (Cap 16) is operated by the Pipeline team; it sits here for navigation.</p>
+<details class="cap cap-c7" id="cap-7">
+    <summary>
+      <div class="cap-top">
+        <div class="cap-num"><span class="cap-num-big">7</span><span class="cap-num-of">of 16</span></div>
+        <div class="cap-titleblock">
+          <div class="cap-title">Outcomes and measurement</div>
+          <div class="cap-strap">Episode outcome evaluation. <strong>Episode-based outcomes are a different unit of measurement from test results.</strong> <em>Serves both BAU teams: Pipeline team uses outcomes as evidence MI back to NICE (Cap 16); Conditions Launch team uses outcomes for pathway adjustment and ICB performance reporting.</em></div>
+        </div>
+        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">2&ndash;3</div><div class="cap-sizing-unit">FTE</div></div>
+      </div>
+      <div class="cap-streams">
+        <div>
+          <div class="stream-h stream-h-stand">Stand it up</div>
+          <ul class="stream-list">
+            <li>Episode outcome measurement instruments (PROMs) <span class="team-tag team-tag-both">Both</span></li>
+            <li>Meaningful engagement definition per service <span class="team-tag team-tag-launch">Cond. Launch</span></li>
+            <li>Cost-per-episode baseline <span class="team-tag team-tag-both">Both</span></li>
+            <li>Outcome MI pipeline to NICE designed <span class="team-tag team-tag-pipeline">Pipeline</span></li>
+            <li>Outcome reporting to ICBs and clinical pathway leads <span class="team-tag team-tag-launch">Cond. Launch</span></li>
+            <li>Health economist input (shared dependency)</li>
+          </ul>
+        </div>
+        <div>
+          <div class="stream-h stream-h-bau">In BAU</div>
+          <ul class="stream-list">
+            <li>Episode-level outcome reporting <span class="team-tag team-tag-both">Both</span></li>
+            <li>Equity analysis on engagement and outcome <span class="team-tag team-tag-both">Both</span></li>
+            <li>Pathway-level economic evaluation <span class="team-tag team-tag-launch">Cond. Launch</span></li>
+            <li>Outcome signals routed: Pipeline team for evidence flow to NICE; Conditions Launch team for pathway feedback</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cap-talks">
+        <span class="talks-label">Talks to</span>
+        <span class="talks-pill">Health Economist</span><span class="talks-pill">Clinical leads</span><span class="talks-pill">ICB analytics</span>
+      </div>
+      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
+    </summary>
+    <div class="cap-detail">
+      <div class="detail-section">
+        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
+        <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>Episode outcome measurement instruments (PROMs)</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-l">L</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Meaningful engagement definition per service</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Cost-per-episode baseline</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-l">L</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Health economist input (shared dependency)</strong></div><span class="pill pill-blocked">Blocked</span><span class="size-pill size-l">L</span></div>
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-h detail-h-bau">In BAU,  detail</div>
+        <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>Episode-level outcome reporting</strong></div><span class="pill pill-tbc">TBC</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Equity analysis on engagement and outcome</strong></div><span class="pill pill-tbc">TBC</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Pathway-level economic evaluation</strong></div><span class="pill pill-tbc">TBC</span></div>
+        </div>
+      </div>
+    </div>
+  </details>
+<details class="cap cap-c16" id="cap-16">
+    <summary>
+      <div class="cap-top">
+        <div class="cap-num"><span class="cap-num-big">16</span><span class="cap-num-of">of 16</span></div>
+        <div class="cap-titleblock">
+          <div class="cap-title">Ongoing Evidence Generation</div>
+          <div class="cap-strap">Continuous evidence accrual across admitted products. Outcome data, real-world evidence, NICE re-evaluation inputs. Distinct from Post-market surveillance (Cap-12) which is regulatory; this is value-evidence into the Assurance Model and Independent Assurance. <em>Operated by the Pipeline team — this is the upstream pipeline that feeds the case for each configuration's continued admission. Conditions Launch team feeds in-pathway real-world signals and adoption outcomes.</em></div>
+        </div>
+        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">2&ndash;3</div><div class="cap-sizing-unit">FTE</div></div>
+      </div>
+      <div class="cap-streams">
+        <div>
+          <div class="stream-h stream-h-stand">Stand it up</div>
+          <ul class="stream-list">
+            <li>Evidence generation framework per therapeutic area <span class="team-tag team-tag-pipeline">Pipeline</span></li>
+            <li>Real-world data capture standards <span class="team-tag team-tag-pipeline">Pipeline</span></li>
+            <li>Outcome attribution methodology <span class="team-tag team-tag-pipeline">Pipeline</span></li>
+            <li>Adoption signal capture by Conditions Launch team integrated into evidence pipeline <span class="team-tag team-tag-both">Both</span></li>
+            <li>NICE re-evaluation evidence package design <span class="team-tag team-tag-pipeline">Pipeline</span></li>
+            <li>Coordination with Outcomes and measurement (Cap-7)</li>
+          </ul>
+        </div>
+        <div>
+          <div class="stream-h stream-h-bau">In BAU</div>
+          <ul class="stream-list">
+            <li>Continuous real-world evidence collection <span class="team-tag team-tag-pipeline">Pipeline</span></li>
+            <li>Outcome attribution analysis per configuration <span class="team-tag team-tag-pipeline">Pipeline</span></li>
+            <li>NICE re-evaluation submission preparation <span class="team-tag team-tag-pipeline">Pipeline</span></li>
+            <li>Evidence reporting into the Assurance Model <span class="team-tag team-tag-pipeline">Pipeline</span></li>
+            <li>Real-world evidence feed into supplier admission decisions <span class="team-tag team-tag-pipeline">Pipeline</span></li>
+            <li>Conditions Launch team feeds adoption + outcome signals continuously</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cap-talks">
+        <span class="talks-label">Talks to</span>
+        <span class="talks-pill">NICE</span><span class="talks-pill">Cap-7 Measure</span><span class="talks-pill">Cap-12 PMS</span><span class="talks-pill">Cap-14 Independent assurance</span><span class="talks-pill">Suppliers</span><span class="talks-pill">Academic partners</span>
+      </div>
+      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
+    </summary>
+    <div class="cap-detail">
+      <div class="detail-section">
+        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
+        <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>Evidence generation framework per TA</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-l">L</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Real-world data capture standards</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Outcome attribution methodology</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-l">L</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>NICE re-evaluation evidence package</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Coordination with Outcomes and measurement</strong></div><span class="pill pill-flight">In flight</span><span class="size-pill size-s">S</span></div>
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-h detail-h-bau">In BAU,  detail</div>
+        <div class="bau-detail">
+          <p>Ongoing Evidence Generation is the discipline that keeps the value case for each admitted DTx product alive after go-live. This is different from internal Outcomes and measurement (Cap-7) which is operational MI; different from PMS (Cap-12) which is regulatory safety surveillance; different from Independent Assurance (Cap-14) which is the assurance review itself. This function is the upstream evidence pipeline that feeds all three.</p>
+        </div>
+      </div>
+    </div>
+  </details>
+    </div>
+  </section>
 
-  <details class="cap cap-c5" id="cap-5">
+  <section class="tier tier-3">
+    <div class="tier-header">
+      <span class="tier-label">TIER 3</span>
+      <span class="tier-title">Supporting infrastructure</span>
+    </div>
+    <p class="tier-strap">Systems the operating model depends on but does not own. Two layers: the cross-portfolio platform integration HealthStore consumes (NHS App, NHS Login, NHS Notify, FHIR, FDP, SPR — the capability formerly numbered Cap 5, kept here for traceability) and the HealthStore-specific system of record (a scoped ServiceNow application on the national NHSE instance, with reporting layered via the HealthStore Reporting Service into Power BI).</p>
+<details class="cap cap-c5" id="cap-5">
     <summary>
       <div class="cap-top">
         <div class="cap-num"><span class="cap-num-big">5</span><span class="cap-num-of">of 16</span></div>
@@ -679,612 +1439,15 @@
       </div>
     </div>
   </details>
-
-  <details class="cap cap-c6" id="cap-6">
-    <summary>
-      <div class="cap-top">
-        <div class="cap-num"><span class="cap-num-big">6</span><span class="cap-num-of">of 16</span></div>
-        <div class="cap-titleblock">
-          <div class="cap-title">Commissioner partnerships</div>
-          <div class="cap-strap">Outbound to ICBs. <strong>ICB-primary commissioning for HealthStore.</strong></div>
-        </div>
-        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">TBC</div><div class="cap-sizing-unit">FTE</div></div>
-      </div>
-      <div class="cap-streams">
-        <div>
-          <div class="stream-h stream-h-stand">Stand it up</div>
-          <ul class="stream-list">
-            <li>ICB pitch / brochure for HealthStore</li>
-            <li>Early-adopter ICB programme</li>
-            <li>NICE EVA supplier joint-pitch model</li>
-          </ul>
-        </div>
-        <div>
-          <div class="stream-h stream-h-bau">In BAU</div>
-          <ul class="stream-list">
-            <li>ICB relationship management</li>
-            <li>Annual pricing review</li>
-          </ul>
-        </div>
-      </div>
-      <div class="cap-talks">
-        <span class="talks-label">Talks to</span>
-        <span class="talks-pill">Sarah</span><span class="talks-pill">ICB leads</span><span class="talks-pill">DTx suppliers</span>
-      </div>
-      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
-    </summary>
-    <div class="cap-detail">
-      <div class="detail-section">
-        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
-        <div class="stand-detail">
-          <div class="stand-row"><div class="stand-row-text"><strong>ICB pitch / brochure for HealthStore</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Early-adopter ICB programme</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-l">L</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>NICE EVA supplier joint-pitch model</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
-        </div>
-      </div>
-      <div class="detail-section">
-        <div class="detail-h detail-h-bau">In BAU,  detail</div>
-        <div class="stand-detail">
-          <div class="stand-row"><div class="stand-row-text"><strong>ICB relationship management</strong></div><span class="pill pill-tbc">TBC</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Annual pricing review</strong></div><span class="pill pill-tbc">TBC</span></div>
-        </div>
+    <div class="tier-3-panel">
+      <div class="tier-3-grid">
+        <div><strong>ServiceNow scoped application</strong>The HealthStore-specific system of record. Holds Product and Indication data, evidence milestones, stakeholder relationships, intelligence items captured from partners, and commissioning records. Built as a scoped custom application on the national NHSE ServiceNow instance.</div>
+        <div><strong>HSRS / Power BI</strong>HealthStore Reporting Service consumes a structured export from ServiceNow and delivers MI to NICE, MHRA, HIN national coordination, and NHSE Exec. Standard report packs per audience.</div>
+        <div><strong>NICE EVA pipeline integration</strong>Level 2 structured intelligence-sharing from launch, progressing to Level 3 shared workspace within twelve months. Level 4 system-to-system integration held as a future option.</div>
       </div>
     </div>
-  </details>
+  </section>
 
-  <details class="cap cap-c7" id="cap-7">
-    <summary>
-      <div class="cap-top">
-        <div class="cap-num"><span class="cap-num-big">7</span><span class="cap-num-of">of 16</span></div>
-        <div class="cap-titleblock">
-          <div class="cap-title">Outcomes and measurement</div>
-          <div class="cap-strap">Episode outcome evaluation. <strong>Episode-based outcomes are a different unit of measurement from test results.</strong></div>
-        </div>
-        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">TBC</div><div class="cap-sizing-unit">FTE</div></div>
-      </div>
-      <div class="cap-streams">
-        <div>
-          <div class="stream-h stream-h-stand">Stand it up</div>
-          <ul class="stream-list">
-            <li>Episode outcome measurement instruments (PROMs)</li>
-            <li>Meaningful engagement definition per service</li>
-            <li>Cost-per-episode baseline</li>
-            <li>Health economist input (shared dependency)</li>
-          </ul>
-        </div>
-        <div>
-          <div class="stream-h stream-h-bau">In BAU</div>
-          <ul class="stream-list">
-            <li>Episode-level outcome reporting</li>
-            <li>Equity analysis on engagement and outcome</li>
-            <li>Pathway-level economic evaluation</li>
-          </ul>
-        </div>
-      </div>
-      <div class="cap-talks">
-        <span class="talks-label">Talks to</span>
-        <span class="talks-pill">Health Economist</span><span class="talks-pill">Clinical leads</span><span class="talks-pill">ICB analytics</span>
-      </div>
-      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
-    </summary>
-    <div class="cap-detail">
-      <div class="detail-section">
-        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
-        <div class="stand-detail">
-          <div class="stand-row"><div class="stand-row-text"><strong>Episode outcome measurement instruments (PROMs)</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-l">L</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Meaningful engagement definition per service</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Cost-per-episode baseline</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-l">L</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Health economist input (shared dependency)</strong></div><span class="pill pill-blocked">Blocked</span><span class="size-pill size-l">L</span></div>
-        </div>
-      </div>
-      <div class="detail-section">
-        <div class="detail-h detail-h-bau">In BAU,  detail</div>
-        <div class="stand-detail">
-          <div class="stand-row"><div class="stand-row-text"><strong>Episode-level outcome reporting</strong></div><span class="pill pill-tbc">TBC</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Equity analysis on engagement and outcome</strong></div><span class="pill pill-tbc">TBC</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Pathway-level economic evaluation</strong></div><span class="pill pill-tbc">TBC</span></div>
-        </div>
-      </div>
-    </div>
-  </details>
-
-  <details class="cap cap-c8" id="cap-8">
-    <summary>
-      <div class="cap-top">
-        <div class="cap-num"><span class="cap-num-big">8</span><span class="cap-num-of">of 16</span></div>
-        <div class="cap-titleblock">
-          <div class="cap-title">In-app engagement oversight</div>
-          <div class="cap-strap"><strong>HealthStore-specific capability.</strong> Monitoring meaningful engagement and outcome capture across suppliers and configurations.</div>
-        </div>
-        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">TBC</div><div class="cap-sizing-unit">FTE</div></div>
-      </div>
-      <div class="cap-streams">
-        <div>
-          <div class="stream-h stream-h-stand">Stand it up</div>
-          <ul class="stream-list">
-            <li>Meaningful engagement criteria framework</li>
-            <li>Engagement signal-vs-safety dashboard</li>
-          </ul>
-        </div>
-        <div>
-          <div class="stream-h stream-h-bau">In BAU</div>
-          <ul class="stream-list">
-            <li>Engagement monitoring across cohorts</li>
-            <li>Outcome capture rate steering</li>
-          </ul>
-        </div>
-      </div>
-      <div class="cap-talks">
-        <span class="talks-label">Talks to</span>
-        <span class="talks-pill">DTx suppliers</span><span class="talks-pill">Aisha</span><span class="talks-pill">Prescribing clinicians</span>
-      </div>
-      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
-    </summary>
-    <div class="cap-detail">
-      <div class="detail-section">
-        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
-        <div class="stand-detail">
-          <div class="stand-row"><div class="stand-row-text"><strong>Meaningful engagement criteria framework</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-l">L</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Engagement signal-vs-safety dashboard</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
-        </div>
-      </div>
-      <div class="detail-section">
-        <div class="detail-h detail-h-bau">In BAU,  detail</div>
-        <div class="stand-detail">
-          <div class="stand-row"><div class="stand-row-text"><strong>Engagement monitoring across cohorts</strong></div><span class="pill pill-tbc">TBC</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Outcome capture rate steering</strong></div><span class="pill pill-tbc">TBC</span></div>
-        </div>
-      </div>
-    </div>
-  </details>
-
-  <details class="cap cap-c9" id="cap-9">
-    <summary>
-      <div class="cap-top">
-        <div class="cap-num"><span class="cap-num-big">9</span><span class="cap-num-of">of 16</span></div>
-        <div class="cap-titleblock">
-          <div class="cap-title">Marketplace payment operations</div>
-          <div class="cap-strap">Settlement against four milestones (start, meaningful engagement, completion, outcome capture). <strong>HealthStore-specific because the commercial model is.</strong></div>
-        </div>
-        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">TBC</div><div class="cap-sizing-unit">FTE</div></div>
-      </div>
-      <div class="cap-streams">
-        <div>
-          <div class="stream-h stream-h-stand">Stand it up</div>
-          <ul class="stream-list">
-            <li>Milestone evidence audit framework</li>
-            <li>Payment cycle setup</li>
-          </ul>
-        </div>
-        <div>
-          <div class="stream-h stream-h-bau">In BAU</div>
-          <ul class="stream-list">
-            <li>Monthly settlement runs</li>
-            <li>Periodic milestone evidence audit</li>
-          </ul>
-        </div>
-      </div>
-      <div class="cap-talks">
-        <span class="talks-label">Talks to</span>
-        <span class="talks-pill">David</span><span class="talks-pill">NHS Commercial</span><span class="talks-pill">DTx suppliers</span><span class="talks-pill">ICB finance</span>
-      </div>
-      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
-    </summary>
-    <div class="cap-detail">
-      <div class="detail-section">
-        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
-        <div class="stand-detail">
-          <div class="stand-row"><div class="stand-row-text"><strong>Milestone evidence audit framework</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Payment cycle setup</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
-        </div>
-      </div>
-      <div class="detail-section">
-        <div class="detail-h detail-h-bau">In BAU,  detail</div>
-        <div class="stand-detail">
-          <div class="stand-row"><div class="stand-row-text"><strong>Monthly settlement runs</strong></div><span class="pill pill-tbc">TBC</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Periodic milestone evidence audit</strong></div><span class="pill pill-tbc">TBC</span></div>
-        </div>
-      </div>
-    </div>
-  </details>
-
-  <details class="cap cap-c10" id="cap-10">
-    <summary>
-      <div class="cap-top">
-        <div class="cap-num"><span class="cap-num-big">10</span><span class="cap-num-of">of 16</span></div>
-        <div class="cap-titleblock">
-          <div class="cap-title">Governance and SRO accountability</div>
-          <div class="cap-strap">Programme-level governance. SRO accountability. Decision rights for changes to the HealthStore overlay.</div>
-        </div>
-        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">TBC</div><div class="cap-sizing-unit">FTE</div></div>
-      </div>
-      <div class="cap-streams">
-        <div>
-          <div class="stream-h stream-h-stand">Stand it up</div>
-          <ul class="stream-list">
-            <li>SRO accountability arrangements</li>
-            <li>Programme board cadence</li>
-            <li>Decision rights for overlay changes</li>
-          </ul>
-        </div>
-        <div>
-          <div class="stream-h stream-h-bau">In BAU</div>
-          <ul class="stream-list">
-            <li>Quarterly reporting to SLT</li>
-            <li>Risk register maintenance</li>
-          </ul>
-        </div>
-      </div>
-      <div class="cap-talks">
-        <span class="talks-label">Talks to</span>
-        <span class="talks-pill">SRO</span><span class="talks-pill">SLT</span><span class="talks-pill">Programme governance</span>
-      </div>
-      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
-    </summary>
-    <div class="cap-detail">
-      <div class="detail-section">
-        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
-        <div class="stand-detail">
-          <div class="stand-row"><div class="stand-row-text"><strong>SRO accountability arrangements</strong></div><span class="pill pill-flight">In flight</span><span class="size-pill size-xs">XS</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Programme board cadence</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-s">S</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Decision rights for overlay changes</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
-        </div>
-      </div>
-      <div class="detail-section">
-        <div class="detail-h detail-h-bau">In BAU,  detail</div>
-        <div class="stand-detail">
-          <div class="stand-row"><div class="stand-row-text"><strong>Quarterly reporting to SLT</strong></div><span class="pill pill-tbc">TBC</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Risk register maintenance</strong></div><span class="pill pill-tbc">TBC</span></div>
-        </div>
-      </div>
-    </div>
-  </details>
-
-  <details class="cap cap-c11" id="cap-11">
-    <summary>
-      <div class="cap-top">
-        <div class="cap-num"><span class="cap-num-big">11</span><span class="cap-num-of">of 16</span></div>
-        <div class="cap-titleblock">
-          <div class="cap-title">Operating model stewardship</div>
-          <div class="cap-strap">Stewardship of the HealthStore overlay inside the Digital Therapeutics Operating Model. Cross-capability ownership. Change management for overlay design.</div>
-        </div>
-        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">TBC</div><div class="cap-sizing-unit">FTE</div></div>
-      </div>
-      <div class="cap-streams">
-        <div>
-          <div class="stream-h stream-h-stand">Stand it up</div>
-          <ul class="stream-list">
-            <li>HealthStore overlay design ownership</li>
-            <li>RACI maintenance across the ten operational capabilities</li>
-            <li>Operating-model change control</li>
-            <li>Cross-product alignment with HomeTest and HealthSync</li>
-          </ul>
-        </div>
-        <div>
-          <div class="stream-h stream-h-bau">In BAU</div>
-          <ul class="stream-list">
-            <li>Quarterly overlay health check</li>
-            <li>Cross-capability dependency tracking</li>
-            <li>Continuous improvement against operating-model KPIs</li>
-            <li>Portfolio alignment forum participation</li>
-          </ul>
-        </div>
-      </div>
-      <div class="cap-talks">
-        <span class="talks-label">Talks to</span>
-        <span class="talks-pill">All HealthStore capability leads</span><span class="talks-pill">HomeTest stewardship</span><span class="talks-pill">HealthSync stewardship</span><span class="talks-pill">Portfolio governance</span>
-      </div>
-      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
-    </summary>
-    <div class="cap-detail">
-      <div class="detail-section">
-        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
-        <div class="stand-detail">
-          <div class="stand-row"><div class="stand-row-text"><strong>HealthStore overlay design ownership</strong></div><span class="pill pill-flight">In flight</span><span class="size-pill size-s">S</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>RACI maintenance across the ten operational capabilities</strong></div><span class="pill pill-flight">In flight</span><span class="size-pill size-xs">XS</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Operating-model change control</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-s">S</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Cross-product alignment with HomeTest and HealthSync</strong></div><span class="pill pill-open">Open</span><span class="size-pill size-s">S</span></div>
-        </div>
-      </div>
-      <div class="detail-section">
-        <div class="detail-h detail-h-bau">In BAU,  detail</div>
-        <div class="bau-detail">
-          <p>The stewardship capability owns the integrity of the HealthStore overlay as a living artefact. It maintains the RACI across the other ten capabilities, runs the change-control process for overlay updates, and represents HealthStore at the portfolio level alongside the HomeTest and HealthSync stewardship leads. Quarterly it runs an overlay health check against operating-model KPIs and surfaces dependencies that span more than one capability.</p>
-        </div>
-      </div>
-    </div>
-  </details>
-
-  <details class="cap cap-c12" id="cap-12">
-    <summary>
-      <div class="cap-top">
-        <div class="cap-num"><span class="cap-num-big">12</span><span class="cap-num-of">of 16</span></div>
-        <div class="cap-titleblock">
-          <div class="cap-title">Post-market surveillance</div>
-          <div class="cap-strap">Ongoing safety and performance surveillance of admitted DTx products after they go live. HealthStore digital therapeutics are not SaMD per the 8 June 2026 MHRA ruling, so MHRA&apos;s role is Yellow Card adverse-event reporting and platform-level safety signal detection rather than SaMD pre-market compliance. Distinct from internal clinical safety oversight.</div>
-        </div>
-        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">TBC</div><div class="cap-sizing-unit">FTE</div></div>
-      </div>
-      <div class="cap-streams">
-        <div>
-          <div class="stream-h stream-h-stand">Stand it up</div>
-          <ul class="stream-list">
-            <li>PMS plan per admitted supplier</li>
-            <li>Adverse event reporting routes</li>
-            <li>Signal-detection thresholds and cadence</li>
-            <li>Periodic safety update schedule</li>
-            <li>MHRA reporting interface</li>
-          </ul>
-        </div>
-        <div>
-          <div class="stream-h stream-h-bau">In BAU</div>
-          <ul class="stream-list">
-            <li>Continuous signal monitoring across admitted products</li>
-            <li>Adverse event collection and classification</li>
-            <li>Periodic safety updates submitted on schedule</li>
-            <li>Regulatory reporting to MHRA</li>
-            <li>Post-market data review feeding NICE re-evaluation</li>
-          </ul>
-        </div>
-      </div>
-      <div class="cap-talks">
-        <span class="talks-label">Talks to</span>
-        <span class="talks-pill">MHRA</span><span class="talks-pill">NICE</span><span class="talks-pill">Suppliers</span><span class="talks-pill">CSG</span><span class="talks-pill">Cap-3 Safety</span>
-      </div>
-      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
-    </summary>
-    <div class="cap-detail">
-      <div class="detail-section">
-        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
-        <div class="stand-detail">
-          <div class="stand-row"><div class="stand-row-text"><strong>PMS plan per admitted supplier</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-s">S</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Adverse event reporting routes</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-s">S</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Signal-detection thresholds and cadence</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-m">M</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Periodic safety update schedule</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-xs">XS</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>MHRA reporting interface</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-s">S</span></div>
-        </div>
-      </div>
-      <div class="detail-section">
-        <div class="detail-h detail-h-bau">In BAU,  detail</div>
-        <div class="bau-detail">
-          <p>Post-market surveillance runs for the life of every admitted DTx product. Distinct from the internal Clinical Safety capability (Cap-3) which manages the hazard log and CATR. PMS is outward-facing: signal detection against real-world use, adverse event collection, periodic safety updates to MHRA via Yellow Card, and feedback into NICE re-evaluation. HealthStore digital therapeutics are not SaMD per the 8 June 2026 MHRA ruling, so the obligation is post-market signal detection rather than SaMD pre-market compliance. The function sits at the platform level so the burden is shared across suppliers rather than left on each one in isolation. Without it, the HealthStore catalogue cannot honestly claim end-to-end post-go-live safety oversight.</p>
-        </div>
-      </div>
-    </div>
-  </details>
-
-  <details class="cap cap-c13" id="cap-13">
-    <summary>
-      <div class="cap-top">
-        <div class="cap-num"><span class="cap-num-big">13</span><span class="cap-num-of">of 16</span></div>
-        <div class="cap-titleblock">
-          <div class="cap-title">Pathway integration</div>
-          <div class="cap-strap">Integration of admitted DTx products into local NHS clinical pathways. The work between national catalogue and local pathway team. Where the digital therapeutic earns its place in an existing care pathway.</div>
-        </div>
-        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">TBC</div><div class="cap-sizing-unit">FTE</div></div>
-      </div>
-      <div class="cap-streams">
-        <div>
-          <div class="stream-h stream-h-stand">Stand it up</div>
-          <ul class="stream-list">
-            <li>Pathway mapping per therapeutic area (COPD first)</li>
-            <li>Prescribing workflow design with national clinical leads</li>
-            <li>EPR / prescribing-system integration patterns</li>
-            <li>Pathway-fit assessment toolkit for ICBs</li>
-            <li>Reference pathways co-designed with transformation programmes</li>
-          </ul>
-        </div>
-        <div>
-          <div class="stream-h stream-h-bau">In BAU</div>
-          <ul class="stream-list">
-            <li>Pathway mapping for each newly admitted therapeutic area</li>
-            <li>Local ICB pathway team support during onboarding</li>
-            <li>Integration playbook maintenance and revision</li>
-            <li>Clinical workflow change-management support</li>
-            <li>Coordination with NHSE transformation programmes (RTP, MSK, etc.)</li>
-          </ul>
-        </div>
-      </div>
-      <div class="cap-talks">
-        <span class="talks-label">Talks to</span>
-        <span class="talks-pill">Respiratory Transformation Programme</span><span class="talks-pill">ICB pathway teams</span><span class="talks-pill">Suppliers</span><span class="talks-pill">National clinical leads</span><span class="talks-pill">Cap-5 Platform</span>
-      </div>
-      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
-    </summary>
-    <div class="cap-detail">
-      <div class="detail-section">
-        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
-        <div class="stand-detail">
-          <div class="stand-row"><div class="stand-row-text"><strong>Pathway mapping per therapeutic area (COPD first)</strong></div><span class="pill pill-flight">In flight</span><span class="size-pill size-m">M</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Prescribing workflow design with national clinical leads</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-m">M</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>EPR / prescribing-system integration patterns</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-l">L</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Pathway-fit assessment toolkit for ICBs</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-s">S</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Reference pathways co-designed with transformation programmes</strong></div><span class="pill pill-flight">In flight</span><span class="size-pill size-m">M</span></div>
-        </div>
-      </div>
-      <div class="detail-section">
-        <div class="detail-h detail-h-bau">In BAU,  detail</div>
-        <div class="bau-detail">
-          <p>Pathway integration is where a HealthStore product earns its place in an actual care pathway. Without it, the catalogue could be technically present but clinically dormant. The function sits between national admission (catalogue, supplier onboarding) and local activation (commissioner buying, prescriber adoption). For COPD Alpha it works with the Respiratory Transformation Programme to align the DTx with the OPTIMISE pathway. As further therapeutic areas come on, the same work is repeated with their parent transformation programmes (MSK, cardiac rehab, CBTi etc). The capability also maintains the integration playbook so each new ICB doesn&apos;t reinvent the wheel.</p>
-        </div>
-      </div>
-    </div>
-  </details>
-
-  <details class="cap cap-c14" id="cap-14">
-    <summary>
-      <div class="cap-top">
-        <div class="cap-num"><span class="cap-num-big">14</span><span class="cap-num-of">of 16</span></div>
-        <div class="cap-titleblock">
-          <div class="cap-title">Independent assurance</div>
-          <div class="cap-strap">Third-party assurance discipline separate from internal Clinical Safety. Covers regulatory standards, clinical and financial efficacy, and independent review of admitted products. Sits inside the Assurance Model and is the assurance-portability backbone.</div>
-        </div>
-        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">TBC</div><div class="cap-sizing-unit">FTE</div></div>
-      </div>
-      <div class="cap-streams">
-        <div>
-          <div class="stream-h stream-h-stand">Stand it up</div>
-          <ul class="stream-list">
-            <li>Regulatory-standards mapping per admitted product class</li>
-            <li>Clinical and financial efficacy assessment criteria</li>
-            <li>Independent assurance review cadence</li>
-            <li>Assurance portability evidence package per supplier</li>
-            <li>Interface with NICE EVA conditional evaluation</li>
-          </ul>
-        </div>
-        <div>
-          <div class="stream-h stream-h-bau">In BAU</div>
-          <ul class="stream-list">
-            <li>Independent review cycle per admitted product</li>
-            <li>Regulatory-standards compliance monitoring</li>
-            <li>Cross-configuration evidence portability administration</li>
-            <li>Independent assurance reports into the Assurance Model</li>
-            <li>Coordination with NICE EVA re-evaluation</li>
-          </ul>
-        </div>
-      </div>
-      <div class="cap-talks">
-        <span class="talks-label">Talks to</span>
-        <span class="talks-pill">NICE</span><span class="talks-pill">MHRA</span><span class="talks-pill">Suppliers</span><span class="talks-pill">CSG</span><span class="talks-pill">Cap-3 Safety</span><span class="talks-pill">Cap-12 PMS</span>
-      </div>
-      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
-    </summary>
-    <div class="cap-detail">
-      <div class="detail-section">
-        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
-        <div class="stand-detail">
-          <div class="stand-row"><div class="stand-row-text"><strong>Regulatory-standards mapping</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-m">M</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Clinical and financial efficacy assessment</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-l">L</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Independent assurance review cadence</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-s">S</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Assurance portability evidence package</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-m">M</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>NICE EVA conditional evaluation interface</strong></div><span class="pill pill-flight">In flight</span><span class="size-pill size-s">S</span></div>
-        </div>
-      </div>
-      <div class="detail-section">
-        <div class="detail-h detail-h-bau">In BAU,  detail</div>
-        <div class="bau-detail">
-          <p>Independent Assurance is the function that ensures HealthStore can stand behind every admitted product without conflating internal Clinical Safety oversight with third-party assurance. The function owns the evidence package that makes assurance portable across configurations,  the &ldquo;assure once, deploy many&rdquo; discipline,  and the interface into NICE EVA conditional re-evaluation as products mature.</p>
-        </div>
-      </div>
-    </div>
-  </details>
-
-  <details class="cap cap-c15" id="cap-15">
-    <summary>
-      <div class="cap-top">
-        <div class="cap-num"><span class="cap-num-big">15</span><span class="cap-num-of">of 16</span></div>
-        <div class="cap-titleblock">
-          <div class="cap-title">Contract Management</div>
-          <div class="cap-strap">Post-execution lifecycle for each call-off agreement. Distinct from Framework administration (Cap-1) which sets the contracting architecture; this function manages each agreement after signature: variations, pricing reviews, renewals, milestone audit.</div>
-        </div>
-        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">TBC</div><div class="cap-sizing-unit">FTE</div></div>
-      </div>
-      <div class="cap-streams">
-        <div>
-          <div class="stream-h stream-h-stand">Stand it up</div>
-          <ul class="stream-list">
-            <li>Contract management playbook per call-off pattern</li>
-            <li>Variation control process</li>
-            <li>Pricing review and renewal triggers</li>
-            <li>Marketplace milestone evidence audit routine</li>
-            <li>Supplier performance monitoring against contract</li>
-          </ul>
-        </div>
-        <div>
-          <div class="stream-h stream-h-bau">In BAU</div>
-          <ul class="stream-list">
-            <li>Active management of each ICB call-off across its lifecycle</li>
-            <li>Variation processing and approval</li>
-            <li>Pricing reviews on schedule</li>
-            <li>Milestone evidence audit per payment trigger</li>
-            <li>Supplier performance against contract metrics</li>
-            <li>Renewal and exit management</li>
-          </ul>
-        </div>
-      </div>
-      <div class="cap-talks">
-        <span class="talks-label">Talks to</span>
-        <span class="talks-pill">ICB commissioners</span><span class="talks-pill">Suppliers</span><span class="talks-pill">NHS Commercial</span><span class="talks-pill">NHS Legal</span><span class="talks-pill">Cap-1 Framework</span>
-      </div>
-      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
-    </summary>
-    <div class="cap-detail">
-      <div class="detail-section">
-        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
-        <div class="stand-detail">
-          <div class="stand-row"><div class="stand-row-text"><strong>Contract management playbook</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-m">M</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Variation control process</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-s">S</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Pricing review and renewal triggers</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-s">S</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Marketplace milestone evidence audit</strong></div><span class="pill pill-flight">In flight</span><span class="size-pill size-m">M</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Supplier performance monitoring</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-s">S</span></div>
-        </div>
-      </div>
-      <div class="detail-section">
-        <div class="detail-h detail-h-bau">In BAU,  detail</div>
-        <div class="bau-detail">
-          <p>Contract Management is the function that lives every call-off across its lifecycle. The current artefact had folded it into Framework administration (Cap-1) but the source separates contracting architecture from in-life contract management. Stand-it-up work focuses on the playbook and milestone audit routine; BAU work is each ICB call-off actively managed from go-live through renewal or exit.</p>
-        </div>
-      </div>
-    </div>
-  </details>
-
-  <details class="cap cap-c16" id="cap-16">
-    <summary>
-      <div class="cap-top">
-        <div class="cap-num"><span class="cap-num-big">16</span><span class="cap-num-of">of 16</span></div>
-        <div class="cap-titleblock">
-          <div class="cap-title">Ongoing Evidence Generation</div>
-          <div class="cap-strap">Continuous evidence accrual across admitted products. Outcome data, real-world evidence, NICE re-evaluation inputs. Distinct from Post-market surveillance (Cap-12) which is regulatory; this is value-evidence into the Assurance Model and Independent Assurance.</div>
-        </div>
-        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">TBC</div><div class="cap-sizing-unit">FTE</div></div>
-      </div>
-      <div class="cap-streams">
-        <div>
-          <div class="stream-h stream-h-stand">Stand it up</div>
-          <ul class="stream-list">
-            <li>Evidence generation framework per therapeutic area</li>
-            <li>Real-world data capture standards</li>
-            <li>Outcome attribution methodology</li>
-            <li>NICE re-evaluation evidence package design</li>
-            <li>Coordination with Outcomes and measurement (Cap-7)</li>
-          </ul>
-        </div>
-        <div>
-          <div class="stream-h stream-h-bau">In BAU</div>
-          <ul class="stream-list">
-            <li>Continuous real-world evidence collection</li>
-            <li>Outcome attribution analysis per configuration</li>
-            <li>NICE re-evaluation submission preparation</li>
-            <li>Evidence reporting into the Assurance Model</li>
-            <li>Real-world evidence feed into supplier admission decisions</li>
-          </ul>
-        </div>
-      </div>
-      <div class="cap-talks">
-        <span class="talks-label">Talks to</span>
-        <span class="talks-pill">NICE</span><span class="talks-pill">Cap-7 Measure</span><span class="talks-pill">Cap-12 PMS</span><span class="talks-pill">Cap-14 Independent assurance</span><span class="talks-pill">Suppliers</span><span class="talks-pill">Academic partners</span>
-      </div>
-      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
-    </summary>
-    <div class="cap-detail">
-      <div class="detail-section">
-        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
-        <div class="stand-detail">
-          <div class="stand-row"><div class="stand-row-text"><strong>Evidence generation framework per TA</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-l">L</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Real-world data capture standards</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-m">M</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Outcome attribution methodology</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-l">L</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>NICE re-evaluation evidence package</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-m">M</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Coordination with Outcomes and measurement</strong></div><span class="pill pill-flight">In flight</span><span class="size-pill size-s">S</span></div>
-        </div>
-      </div>
-      <div class="detail-section">
-        <div class="detail-h detail-h-bau">In BAU,  detail</div>
-        <div class="bau-detail">
-          <p>Ongoing Evidence Generation is the discipline that keeps the value case for each admitted DTx product alive after go-live. This is different from internal Outcomes and measurement (Cap-7) which is operational MI; different from PMS (Cap-12) which is regulatory safety surveillance; different from Independent Assurance (Cap-14) which is the assurance review itself. This function is the upstream evidence pipeline that feeds all three.</p>
-        </div>
-      </div>
-    </div>
-  </details>
 
 
 
@@ -1428,5 +1591,9 @@
 
 </div>
 
+    <div class="foot" style="margin-top:40px;padding-top:24px;border-top:1px solid var(--border-lt);font-size:12.5px;color:var(--text-muted);line-height:1.65;">
+      Working strawman. Sizing bands are order-of-magnitude only, designed to be challenged.<br/>
+      Working order-of-magnitude range: approximately <strong>30&ndash;46 FTE for steady-state BAU at COPD Alpha + Cardiac Rehab UC2 scale</strong> (around three admitted suppliers, ICB-driven adoption). Cap 5 Platform engineering sits in Tier 3 as shared cross-portfolio infrastructure and is not counted in the per-cap totals. These remain working assumptions, not committed headcount. See the health warning at the top of this page.
+    </div>
 </body>
 </html>

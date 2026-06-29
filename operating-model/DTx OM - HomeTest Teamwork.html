@@ -282,6 +282,31 @@
  body { background: linear-gradient(180deg, var(--nhs-blue) 0%, var(--nhs-blue-deep) 100%) !important; background-attachment: fixed !important; }
  .page { background:#ffffff; border-radius:18px; box-shadow:0 14px 40px rgba(0,48,135,0.20); margin-top:30px !important; margin-bottom:50px !important; }
  @media (max-width:760px){ .page { border-radius:12px; margin-top:18px !important; } }
+
+  /* Tier and band structure -- 28 Jun 2026 */
+  .tier{margin:36px 0 24px 0;}
+  .tier-header{display:flex;align-items:baseline;gap:14px;margin:0 0 8px 0;padding:0 0 10px 0;border-bottom:2px solid var(--border);}
+  .tier-label{font-size:11px;font-weight:800;letter-spacing:1.5px;color:var(--nhs-blue);background:#E6EFF8;padding:5px 11px;border-radius:4px;}
+  .tier-title{font-size:18px;font-weight:700;color:var(--text);}
+  .tier-strap{font-size:13px;color:var(--text-mute);margin:0 0 18px 0;max-width:78ch;line-height:1.55;}
+  .band{position:relative;border:1.5px dashed #C5CDD5;border-radius:10px;padding:24px 16px 10px 16px;margin:24px 0;transition:border-color 0.15s;}
+  .band:hover{border-color:var(--nhs-blue);}
+  .band-label{position:absolute;top:-11px;left:18px;background:#fff;padding:1px 10px;font-size:11px;font-weight:700;letter-spacing:0.6px;color:var(--text-mute);text-transform:uppercase;transition:color 0.15s;}
+  .band:hover .band-label{color:var(--nhs-blue);}
+  .band > .cap{margin-top:14px;}
+  .band > .cap:first-of-type{margin-top:4px;}
+  .tier-3-panel{background:#F7F9FB;border:1px solid var(--border);border-radius:10px;padding:20px 24px;margin:14px 0;}
+  .tier-3-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px 22px;}
+  .tier-3-grid > div{font-size:12.5px;color:var(--text);line-height:1.55;}
+  .tier-3-grid > div strong{display:block;margin-bottom:3px;color:var(--nhs-blue);font-size:12px;letter-spacing:0.2px;}
+  /* Nav-chip tier/band grouping at top of page */
+  .nav-tier{margin:0 0 10px 0;}
+  .nav-tier-head{font-size:9.5px;font-weight:800;letter-spacing:1.2px;color:var(--nhs-blue);margin:0 0 4px 0;text-transform:uppercase;}
+  .nav-band-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:4px 0;}
+  .nav-band{display:inline-flex;flex-wrap:wrap;gap:5px;padding:4px 8px 4px 6px;border:1px dashed #D0D8E0;border-radius:6px;align-items:center;position:relative;}
+  .nav-band:hover{border-color:var(--nhs-blue);}
+  .nav-band-label{font-size:9px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;color:var(--text-mute);margin-right:4px;padding-right:4px;border-right:1px dotted #D0D8E0;align-self:center;}
+  .nav-band:hover .nav-band-label{color:var(--nhs-blue);}
 </style>
 <style>
   .ecosystem-nav {
@@ -350,24 +375,49 @@
 
   <nav class="navbar" aria-label="Capability quick-jump">
     <div class="nav-caps-label">Capabilities</div>
-    <div class="nav-caps-grid">
+    <div class="nav-chips-tiered">
+  <div class="nav-tier">
+    <div class="nav-tier-head">Tier 1 — Strategic &amp; Governance</div>
+    <div class="nav-band-row">
       <a href="#cap-1" class="nav-chip" style="--chip-c:#003087"><span class="nav-chip-num">1</span>Stewardship</a>
-      <a href="#cap-2" class="nav-chip" style="--chip-c:#AE2573"><span class="nav-chip-num">2</span>Safety</a>
-      <a href="#cap-3" class="nav-chip" style="--chip-c:#7C2855"><span class="nav-chip-num">3</span>IG</a>
-      <a href="#cap-4" class="nav-chip" style="--chip-c:#005EB8"><span class="nav-chip-num">4</span>Commercial</a>
-      <a href="#cap-5" class="nav-chip" style="--chip-c:#9A6700"><span class="nav-chip-num">5</span>Supply</a>
-      <a href="#cap-6" class="nav-chip" style="--chip-c:#00819B"><span class="nav-chip-num">6</span>Platform</a>
-      <a href="#cap-7" class="nav-chip" style="--chip-c:#4C6272"><span class="nav-chip-num">7</span>DevOps</a>
-      <a href="#cap-8" class="nav-chip" style="--chip-c:#006747"><span class="nav-chip-num">8</span>Service</a>
-      <a href="#cap-9" class="nav-chip" style="--chip-c:#C9A227"><span class="nav-chip-num">9</span>Measure</a>
-      <a href="#cap-10" class="nav-chip" style="--chip-c:#DA291C"><span class="nav-chip-num">10</span>Adoption</a>
       <a href="#cap-11" class="nav-chip" style="--chip-c:#5A1D3E"><span class="nav-chip-num">11</span>Governance</a>
-      <a href="#cap-12" class="nav-chip" style="--chip-c:#ED8B00"><span class="nav-chip-num">12</span>PMS</a>
-      <a href="#cap-13" class="nav-chip" style="--chip-c:#768692"><span class="nav-chip-num">13</span>Pathway</a>
-      <a href="#cap-14" class="nav-chip" style="--chip-c:#41B6E6"><span class="nav-chip-num">14</span>Independent assurance</a>
-      <a href="#cap-15" class="nav-chip" style="--chip-c:#8A1538"><span class="nav-chip-num">15</span>Contract mgmt</a>
-      <a href="#cap-16" class="nav-chip" style="--chip-c:#3D2C8D"><span class="nav-chip-num">16</span>Evidence</a>
+      <a href="#cap-14" class="nav-chip" style="--chip-c:#6F2D7A"><span class="nav-chip-num">14</span>Assurance</a>
     </div>
+  </div>
+  <div class="nav-tier">
+    <div class="nav-tier-head">Tier 2 — Operational</div>
+    <div class="nav-band-row">
+      <span class="nav-band">
+        <span class="nav-band-label">Controls</span>
+        <a href="#cap-2" class="nav-chip" style="--chip-c:#AE2573"><span class="nav-chip-num">2</span>Safety</a>
+        <a href="#cap-3" class="nav-chip" style="--chip-c:#7C2855"><span class="nav-chip-num">3</span>IG</a>
+        <a href="#cap-12" class="nav-chip" style="--chip-c:#ED8B00"><span class="nav-chip-num">12</span>PMS</a>
+      </span>
+      <span class="nav-band">
+        <span class="nav-band-label">Commercial</span>
+        <a href="#cap-4" class="nav-chip" style="--chip-c:#005EB8"><span class="nav-chip-num">4</span>Commercial</a>
+        <a href="#cap-15" class="nav-chip" style="--chip-c:#2F5A3F"><span class="nav-chip-num">15</span>Contracts</a>
+      </span>
+      <span class="nav-band">
+        <span class="nav-band-label">Operating</span>
+        <a href="#cap-5" class="nav-chip" style="--chip-c:#9A6700"><span class="nav-chip-num">5</span>Supply</a>
+        <a href="#cap-6" class="nav-chip" style="--chip-c:#00819B"><span class="nav-chip-num">6</span>Platform</a>
+        <a href="#cap-7" class="nav-chip" style="--chip-c:#4C6272"><span class="nav-chip-num">7</span>DevOps</a>
+        <a href="#cap-8" class="nav-chip" style="--chip-c:#006747"><span class="nav-chip-num">8</span>Service</a>
+      </span>
+      <span class="nav-band">
+        <span class="nav-band-label">Pathway & Adoption</span>
+        <a href="#cap-10" class="nav-chip" style="--chip-c:#DA291C"><span class="nav-chip-num">10</span>Adoption</a>
+        <a href="#cap-13" class="nav-chip" style="--chip-c:#007487"><span class="nav-chip-num">13</span>Pathway</a>
+      </span>
+      <span class="nav-band">
+        <span class="nav-band-label">Measure & Evidence</span>
+        <a href="#cap-9" class="nav-chip" style="--chip-c:#C9A227"><span class="nav-chip-num">9</span>Measure</a>
+        <a href="#cap-16" class="nav-chip" style="--chip-c:#8C5500"><span class="nav-chip-num">16</span>Evidence</a>
+      </span>
+    </div>
+  </div>
+</div>
     <div class="nav-row-links">
       <a href="#interfaces" class="nav-link">Interfaces</a>
       <a href="#glossary" class="nav-link">Glossary</a>
@@ -421,7 +471,13 @@
     </div>
   </aside>
   
-  <details class="cap cap-c1" id="cap-1">
+    <section class="tier tier-1">
+    <div class="tier-header">
+      <span class="tier-label">TIER 1</span>
+      <span class="tier-title">Strategic & Governance</span>
+    </div>
+    <p class="tier-strap">The meta-layer that holds the model accountable. Sets direction, makes decisions, and provides outside-view oversight.</p>
+<details class="cap cap-c1" id="cap-1">
     <summary>
 
 
@@ -429,7 +485,7 @@
         <div class="cap-num"><span class="cap-num-big">1</span><span class="cap-num-of">of 16</span></div>
         <div class="cap-titleblock">
           <div class="cap-title">Operating model stewardship</div>
-          <div class="cap-strap">Keeps the model alive. Curates the pathway pattern catalogue, prioritises new conditions, calls build vs buy decisions per pathway component, owns how the model evolves. <strong>Senior judgement, low headcount.</strong></div>
+          <div class="cap-strap">Keeps the model alive. Owns <strong>market shaping</strong> (demand signalling, pipeline ambition, condition prioritisation) and the <strong>pipeline horizon scan</strong> via the <a href="DTx OM - Prioritisation Framework.html">5/4/4 Prioritisation Framework</a>. Curates the pathway pattern catalogue, calls build vs buy decisions per pathway component, owns how the model evolves. <strong>Senior judgement, low headcount.</strong></div>
         </div>
         <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">2&ndash;3</div><div class="cap-sizing-unit">FTE</div></div>
       </div>
@@ -437,6 +493,8 @@
         <div>
           <div class="stream-h stream-h-stand">Stand it up</div>
           <ul class="stream-list">
+            <li>Pipeline horizon scan formalised as a standing function (5/4/4 framework, annual plus ad-hoc cadence)</li>
+            <li>Market shaping with NHSE Innovation, NICE pipeline contacts and the supplier market</li>
             <li>Build vs buy vs borrow decisions for each part of the pathway</li>
             <li>Post-PSA condition prioritisation</li>
             <li>Pharmacy-led prescribing scope decision</li>
@@ -448,6 +506,7 @@
         <div>
           <div class="stream-h stream-h-bau">In BAU</div>
           <ul class="stream-list">
+            <li>Runs the rolling pipeline horizon scan against the 5/4/4 Prioritisation Framework; surfaces market-shaping opportunities to SLT</li>
             <li>Curates the pathway pattern catalogue as new conditions enter scope</li>
             <li>Owns the condition prioritisation cadence (annual horizon plus pipeline)</li>
             <li>Makes the build vs buy vs borrow call for each part of the pathway</li>
@@ -510,8 +569,154 @@
       </div>
     </div>
   </details>
+<details class="cap cap-c11" id="cap-11">
+    <summary>
+      <div class="cap-top">
+        <div class="cap-num"><span class="cap-num-big">11</span><span class="cap-num-of">of 16</span></div>
+        <div class="cap-titleblock">
+          <div class="cap-title">Governance secretariat</div>
+          <div class="cap-strap">Runs the governance bodies. National Assurance Board secretariat, Blue Book assurance board secretariat, Clinical Safety Group liaison, Commercial Committee secretariat. <strong>Low headcount, high cadence.</strong></div>
+        </div>
+        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">1&ndash;2</div><div class="cap-sizing-unit">FTE</div></div>
+      </div>
+      <div class="cap-streams">
+        <div>
+          <div class="stream-h stream-h-stand">Stand it up</div>
+          <ul class="stream-list">
+            <li>National Assurance Board constituted with composition and authority</li>
+            <li>Blue Book assurance board constituted</li>
+            <li>Permanent SRO arrangements post-maternity</li>
+            <li>Permanent platform hosting decision post-Beta</li>
+            <li>National orchestration BAU funding source confirmed</li>
+          </ul>
+        </div>
+        <div>
+          <div class="stream-h stream-h-bau">In BAU</div>
+          <ul class="stream-list">
+            <li>Secretariat for National Assurance Board</li>
+            <li>Secretariat for Blue Book assurance board</li>
+            <li>BAU-side liaison into Clinical Safety Group</li>
+            <li>Secretariat for Commercial Committee</li>
+            <li>Drives reporting cadence and decision logging</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cap-talks">
+        <span class="talks-label">Talks to</span>
+        <span class="talks-pill">National Assurance Board</span>
+        <span class="talks-pill">Blue Book assurance board</span>
+        <span class="talks-pill">Clinical Safety Group</span>
+        <span class="talks-pill">Commercial Committee</span>
+        <span class="talks-pill">Every BAU capability</span>
+      <span class="cap-personas"><span class="personas-label">Affects</span><a href="DTx OM - Persona David.html" title="Open David's persona page" style="text-decoration:none;line-height:0;"><img class="persona-portrait" src="../assets/personas/david.png" alt="David" title="David"></a><a href="DTx OM - Persona Aisha.html" title="Open Aisha's persona page" style="text-decoration:none;line-height:0;"><img class="persona-portrait" src="../assets/personas/aisha.png" alt="Aisha" title="Aisha"></a><a href="DTx OM - Persona Ngozi.html" title="Open Ngozi's persona page" style="text-decoration:none;line-height:0;"><img class="persona-portrait" src="../assets/personas/ngozi.png" alt="Ngozi" title="Ngozi"></a></span>
+      </div>
+      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
+    </summary>
+    <div class="cap-detail">
+      <div class="detail-section">
+        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
+        <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>SRO accountability</strong>SRO (Senior Responsible Officer) is the senior accountable owner for the HomeTest programme. Per the 9 June 2026 Programme Board, Rachel returns from maternity leave mid-August 2026. Interim director-level oversight is being provided by Polly Bishop in the meantime. Transition planning to the post-maternity arrangements is in flight.</div><span class="pill pill-live">Live</span><span class="size-pill size-xs">XS</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>National Assurance Board composition and authority</strong>Currently a name in the architecture, not a constituted body. Who sits on it, who owns final authority, how disputes are arbitrated, appeals process.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Blue Book assurance board</strong>Senior cross-cast assurance body covering clinical safety, IG and commercial integrity together (the &lsquo;Blue Book&rsquo; being the common reference document). Composition and authority not yet constituted.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Permanent platform hosting post-Beta</strong>Immediate transition question closed: HomeTest remains in DPSP, transfer to At Home and Community cancelled at the 9 June 2026 Delivery Board. Long-term post-Beta home (NHSE direct, an ALB, or a new entity) remains a separate open question.</div><span class="pill pill-open">Open</span><span class="size-pill size-xs">XS</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Commissioner roles</strong>Commissioners buy and run configurations of HomeTest for their populations. Live for HIV with Local Authority commissioners; Acute Trust commissioning planned for PSA-AS pre-go-live.</div><span class="pill pill-live">Live</span><span class="size-pill size-xs">XS</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Supplier roles</strong>Suppliers admitted under the existing Alpha-Beta routes are live and running HIV configurations today. Their accountabilities have to be carried forward consistently as the framework moves into steady state.</div><span class="pill pill-live">Live</span><span class="size-pill size-xs">XS</span></div>
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-h">Disciplines inside</div>
+        <div class="disc-list">
+          <span class="disc-pill">Programme management</span>
+          <span class="disc-pill">Governance secretariat</span>
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-h">Standing interfaces</div>
+        <table class="intf-table">
+          <tr><td class="intf-ext">National Assurance Board</td><td>Reporting, decision escalation, strategic direction, accountability against the operating model</td><td class="intf-cadence">Standing cadence (monthly or bi-monthly)</td></tr>
+          <tr><td class="intf-ext">Blue Book assurance board</td><td>Cross-cast assurance on clinical safety, IG, commercial integrity</td><td class="intf-cadence">Standing cadence</td></tr>
+          <tr><td class="intf-ext">Every BAU capability</td><td>Board input collation, decision logging, action tracking</td><td class="intf-cadence">Continuous</td></tr>
+        </table>
+      </div>
+      <div class="detail-section">
+        <div class="detail-h">Why this sizing</div>
+        <div class="why-box">Standing programme support function. Not a delivery function. Sized to run the meeting cycle, capture decisions, track actions and feed the next round. Could shrink to 1 FTE if board cadence is monthly and not bi-monthly.</div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-h">Governance</div>
+        <div class="gov-box">Reports into SRO. Cross-cutting function touching every BAU capability and every governance body.</div>
+      </div>
+    </div>
+  </details>
+<details class="cap cap-c14" id="cap-14">
+    <summary>
+      <div class="cap-top">
+        <div class="cap-num"><span class="cap-num-big">14</span><span class="cap-num-of">of 16</span></div>
+        <div class="cap-titleblock">
+          <div class="cap-title">Independent assurance</div>
+          <div class="cap-strap">Third-party assurance discipline separate from internal Clinical Safety. Covers regulatory standards for kit and lab, clinical efficacy of the test pattern, and independent review of admitted suppliers. The assurance-portability backbone for HomeTest configurations.</div>
+        </div>
+        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">1</div><div class="cap-sizing-unit">FTE</div></div>
+      </div>
+      <div class="cap-streams">
+        <div>
+          <div class="stream-h stream-h-stand">Stand it up</div>
+          <ul class="stream-list">
+            <li>Regulatory-standards mapping per kit class and lab category</li>
+            <li>Clinical efficacy assessment criteria per configuration</li>
+            <li>Independent assurance review cadence (kit + lab + pathway)</li>
+            <li>Assurance portability evidence package per supplier</li>
+            <li>Interface with UKAS lab accreditation reviews</li>
+          </ul>
+        </div>
+        <div>
+          <div class="stream-h stream-h-bau">In BAU</div>
+          <ul class="stream-list">
+            <li>Independent review cycle per admitted supplier</li>
+            <li>Regulatory-standards compliance monitoring across configurations</li>
+            <li>Cross-configuration evidence portability administration</li>
+            <li>Independent assurance reports into the platform Assurance discipline</li>
+            <li>Coordination with UKAS / MHRA reviews</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cap-talks">
+        <span class="talks-label">Talks to</span>
+        <span class="talks-pill">UKAS</span><span class="talks-pill">MHRA</span><span class="talks-pill">Suppliers</span><span class="talks-pill">CSG</span><span class="talks-pill">Cap-2 Safety</span><span class="talks-pill">Cap-12 PMS</span>
+      </div>
+      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
+    </summary>
+    <div class="cap-detail">
+      <div class="detail-section">
+        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
+        <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>Regulatory-standards mapping per kit class</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Clinical efficacy assessment criteria</strong>A 3-stage Test Prioritisation Framework (clinical, feasibility, value) is in design as the closest evidenced artefact. No standalone clinical-efficacy criteria document exists in primary sources.</div><span class="pill pill-design">In design</span><span class="size-pill size-l">L</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Independent assurance review cadence</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-s">S</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Assurance portability evidence package</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>UKAS interface</strong>No primary-source evidence of UKAS-facing work in the DPSP HomeTest folders. <strong>SLT to confirm position</strong> on whether UKAS accreditation forms part of the assurance envelope.</div><span class="pill pill-open">Open</span><span class="size-pill size-s">S</span></div>
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-h detail-h-bau">In BAU,  detail</div>
+        <div class="bau-detail">
+          <p>For HomeTest, Independent Assurance covers the device side (kit regulatory compliance under MHRA medical device regulation), the lab side (UKAS / ISO 15189 compliance), and the configuration as a whole. Separate from Clinical Safety (Cap-2, internal hazard log) and PMS (Cap-12, regulatory signal surveillance). This function is upstream: the evidence package that proves assurance is portable across configurations and across ICBs without reassuring each time.</p>
+        </div>
+      </div>
+    </div>
+  </details>
+  </section>
 
-  <details class="cap cap-c2" id="cap-2">
+  <section class="tier tier-2">
+    <div class="tier-header">
+      <span class="tier-label">TIER 2</span>
+      <span class="tier-title">Operational</span>
+    </div>
+    <p class="tier-strap">The work that delivers the model, grouped into five operational bands. Each band clusters capabilities that share a common purpose; capabilities inside a band typically work in close cadence.</p>
+    <div class="band">
+      <span class="band-label">Controls</span>
+<details class="cap cap-c2" id="cap-2">
     <summary>
       <div class="cap-top">
         <div class="cap-num"><span class="cap-num-big">2</span><span class="cap-num-of">of 16</span></div>
@@ -594,8 +799,7 @@
       </div>
     </div>
   </details>
-
-  <details class="cap cap-c3" id="cap-3">
+<details class="cap cap-c3" id="cap-3">
     <summary>
       <div class="cap-top">
         <div class="cap-num"><span class="cap-num-big">3</span><span class="cap-num-of">of 16</span></div>
@@ -690,8 +894,67 @@
       </div>
     </div>
   </details>
-
-  <details class="cap cap-c4" id="cap-4">
+<details class="cap cap-c12" id="cap-12">
+    <summary>
+      <div class="cap-top">
+        <div class="cap-num"><span class="cap-num-big">12</span><span class="cap-num-of">of 16</span></div>
+        <div class="cap-titleblock">
+          <div class="cap-title">Post-market surveillance</div>
+          <div class="cap-strap">Ongoing safety and performance surveillance of HomeTest kits and the lab side of the service after go-live. Regulatory obligation under medical device regulation for the device, and under UKAS conditions for the labs. Distinct from internal clinical safety oversight.</div>
+        </div>
+        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">1&ndash;2</div><div class="cap-sizing-unit">FTE</div></div>
+      </div>
+      <div class="cap-streams">
+        <div>
+          <div class="stream-h stream-h-stand">Stand it up</div>
+          <ul class="stream-list">
+            <li>PMS plan per kit type and configuration</li>
+            <li>Adverse event reporting routes (kit failure, sample integrity, false result)</li>
+            <li>Lab quality signal-detection thresholds</li>
+            <li>MHRA reporting interface and Yellow Card scheme integration</li>
+            <li>Periodic safety update schedule per configuration</li>
+          </ul>
+        </div>
+        <div>
+          <div class="stream-h stream-h-bau">In BAU</div>
+          <ul class="stream-list">
+            <li>Continuous signal monitoring across kits and labs</li>
+            <li>Adverse event collection, triage and classification</li>
+            <li>Regulatory reporting to MHRA on schedule</li>
+            <li>Lab non-conformance tracking under UKAS</li>
+            <li>Post-market data feeding into configuration design and pattern review</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cap-talks">
+        <span class="talks-label">Talks to</span>
+        <span class="talks-pill">MHRA</span><span class="talks-pill">UKAS</span><span class="talks-pill">Suppliers</span><span class="talks-pill">CSG</span><span class="talks-pill">Cap-2 Safety</span>
+      </div>
+      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
+    </summary>
+    <div class="cap-detail">
+      <div class="detail-section">
+        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
+        <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>PMS plan per kit type and configuration</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-s">S</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Adverse event reporting routes</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-s">S</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Lab quality signal-detection thresholds</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>MHRA reporting interface</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-s">S</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Periodic safety update schedule</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-xs">XS</span></div>
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-h detail-h-bau">In BAU,  detail</div>
+        <div class="bau-detail">
+          <p>Post-market surveillance runs for the life of every HomeTest configuration. It is distinct from the internal Clinical Safety capability (Cap-2) which manages the hazard log and CATR. PMS is outward-facing: regulatory signal detection on the device side (MHRA reporting via Yellow Card for adverse events on kits), lab quality monitoring (UKAS non-conformance tracking), and ongoing data feedback into configuration design. Without a named PMS function the platform cannot honestly claim compliance with medical device obligations beyond go-live.</p>
+        </div>
+      </div>
+    </div>
+  </details>
+    </div>
+    <div class="band">
+      <span class="band-label">Commercial</span>
+<details class="cap cap-c4" id="cap-4">
     <summary>
       <div class="cap-top">
         <div class="cap-num"><span class="cap-num-big">4</span><span class="cap-num-of">of 16</span></div>
@@ -791,14 +1054,74 @@
       </div>
     </div>
   </details>
-
-  <details class="cap cap-c5" id="cap-5">
+<details class="cap cap-c15" id="cap-15">
+    <summary>
+      <div class="cap-top">
+        <div class="cap-num"><span class="cap-num-big">15</span><span class="cap-num-of">of 16</span></div>
+        <div class="cap-titleblock">
+          <div class="cap-title">Contract Management</div>
+          <div class="cap-strap">Post-execution lifecycle for each call-off agreement with admitted HomeTest suppliers. Distinct from Commercial / Framework administration (Cap-4) which sets the contracting architecture; this function manages each agreement after signature.</div>
+        </div>
+        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">1&ndash;2</div><div class="cap-sizing-unit">FTE</div></div>
+      </div>
+      <div class="cap-streams">
+        <div>
+          <div class="stream-h stream-h-stand">Stand it up</div>
+          <ul class="stream-list">
+            <li>Contract management playbook per call-off pattern</li>
+            <li>Variation control process for kit volume / lab capacity changes</li>
+            <li>Pricing review and renewal triggers</li>
+            <li>Volume / completion evidence audit routine</li>
+            <li>Supplier performance monitoring against framework terms</li>
+          </ul>
+        </div>
+        <div>
+          <div class="stream-h stream-h-bau">In BAU</div>
+          <ul class="stream-list">
+            <li>Active management of each LA / Trust / ICB call-off</li>
+            <li>Variation processing (kit re-spec, volume changes)</li>
+            <li>Pricing reviews on schedule</li>
+            <li>Evidence audit per per-completed payment cycle</li>
+            <li>Supplier performance against contract metrics</li>
+            <li>Renewal and exit management</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cap-talks">
+        <span class="talks-label">Talks to</span>
+        <span class="talks-pill">Commissioners (LA / Trust / ICB)</span><span class="talks-pill">Suppliers</span><span class="talks-pill">NHS Commercial</span><span class="talks-pill">NHS Legal</span><span class="talks-pill">Cap-4 Commercial</span>
+      </div>
+      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
+    </summary>
+    <div class="cap-detail">
+      <div class="detail-section">
+        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
+        <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>Contract management playbook</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Variation control process</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-s">S</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Pricing review and renewal triggers</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-s">S</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Per-completed evidence audit routine</strong>No primary-source artefact for a per-completed-test evidence audit routine. The existing Beta Contracting Checklist references data transparency but no per-completed audit mechanism is in train.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Supplier performance monitoring</strong>KPI design articulated in the operating model thinking pack but live performance monitoring not yet evidenced in primary sources.</div><span class="pill pill-open">Open</span><span class="size-pill size-s">S</span></div>
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-h detail-h-bau">In BAU,  detail</div>
+        <div class="bau-detail">
+          <p>For HomeTest the Contract Management function lives every framework call-off across its lifecycle. Variations (kit re-specification, volume increases, configuration changes), pricing reviews against framework rate cards, per-completed evidence audit per payment cycle, and supplier performance against contract metrics. Sits downstream of the Commercial / Framework function (Cap-4) which is about the architecture; this is about each individual agreement in life.</p>
+        </div>
+      </div>
+    </div>
+  </details>
+    </div>
+    <div class="band">
+      <span class="band-label">Operating</span>
+<details class="cap cap-c5" id="cap-5">
     <summary>
       <div class="cap-top">
         <div class="cap-num"><span class="cap-num-big">5</span><span class="cap-num-of">of 16</span></div>
         <div class="cap-titleblock">
           <div class="cap-title">Supply chain operations</div>
-          <div class="cap-strap">Demand forecasting, inventory, carrier relationships, cold chain audit, returns logistics, pathology lab operational liaison, supply continuity. <strong>Distinct discipline from service operations.</strong></div>
+          <div class="cap-strap">Demand forecasting, inventory, carrier relationships, cold chain audit, returns logistics, pathology lab operational liaison, supply continuity. Standing engagement with the supplier market via the <strong>Supplier Forum</strong> (monthly cadence, structured information sharing, non-evaluative). <strong>Distinct discipline from service operations.</strong></div>
         </div>
         <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">2&ndash;3</div><div class="cap-sizing-unit">FTE</div></div>
       </div>
@@ -806,6 +1129,7 @@
         <div>
           <div class="stream-h stream-h-stand">Stand it up</div>
           <ul class="stream-list">
+            <li>Supplier Forum stood up (monthly cadence, briefing pack standardised, non-evaluative, non-decision-making)</li>
             <li>Royal Mail fast-lane SLA design (NHSE as collective bargainer)</li>
             <li>Acute partner selection for PSA (preferred partner selected)</li>
             <li>Notify scope clarification (response due mid-June)</li>
@@ -817,6 +1141,7 @@
         <div>
           <div class="stream-h stream-h-bau">In BAU</div>
           <ul class="stream-list">
+            <li>Runs the monthly Supplier Forum as the standing engagement route for the supplier market</li>
             <li>Forecasts demand and positions inventory</li>
             <li>Manages carrier relationships (Royal Mail, alternates)</li>
             <li>Audits cold chain compliance</li>
@@ -842,6 +1167,7 @@
       <div class="detail-section">
         <div class="detail-h detail-h-stand">Stand it up,  detail</div>
         <div class="stand-detail">
+          <div class="stand-row"><div class="stand-row-text"><strong>Supplier Forum stand-up</strong>Established January 2026 per Internal Briefing Note. Monthly cadence, structured information sharing, non-evaluative, non-decision-making. Operates alongside ACE and any procurement communications; explicitly not a substitute for either.</div><span class="pill pill-live">Live</span><span class="size-pill size-s">S</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Royal Mail / logistics contract</strong>NHSE acts as collective bargaining entity, not a buyer. Fast-lane SLA design needed to guarantee 24-hour service against Tracked 24 failure rates of up to 25%. New 'Health Samples' package category being explored for blood collection devices. Volume discounts apply per shipper, not aggregated. Briefing pack in flight.</div><span class="pill pill-flight">In flight</span><span class="size-pill size-l">L</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Transdermal device postal constraint</strong>New transdermal sample-collection devices (Tasso+, Tap, Impress) do not fit Large Letter internal depth dimensions. Postal return is constrained on any pathway that uses a transdermal device. Affects build-vs-buy decisions on the sample-collection element and the Royal Mail SLA design.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
           <div class="stand-row"><div class="stand-row-text"><strong>Cold chain logistics</strong>Temperature-controlled handling for tests that require it (capillary blood for PSA, for example): carrier capability, storage at supplier and lab ends, and proof the temperature chain hasn&rsquo;t been broken in transit. Not yet designed.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
@@ -885,8 +1211,7 @@
       </div>
     </div>
   </details>
-
-  <details class="cap cap-c6" id="cap-6">
+<details class="cap cap-c6" id="cap-6">
     <summary>
       <div class="cap-top">
         <div class="cap-num"><span class="cap-num-big">6</span><span class="cap-num-of">of 16</span></div>
@@ -978,8 +1303,7 @@
       </div>
     </div>
   </details>
-
-  <details class="cap cap-c7" id="cap-7">
+<details class="cap cap-c7" id="cap-7">
     <summary>
       <div class="cap-top">
         <div class="cap-num"><span class="cap-num-big">7</span><span class="cap-num-of">of 16</span></div>
@@ -1054,8 +1378,7 @@
       </div>
     </div>
   </details>
-
-  <details class="cap cap-c8" id="cap-8">
+<details class="cap cap-c8" id="cap-8">
     <summary>
       <div class="cap-top">
         <div class="cap-num"><span class="cap-num-big">8</span><span class="cap-num-of">of 16</span></div>
@@ -1146,98 +1469,10 @@
       </div>
     </div>
   </details>
-
-  <details class="cap cap-c9" id="cap-9">
-    <summary>
-      <div class="cap-top">
-        <div class="cap-num"><span class="cap-num-big">9</span><span class="cap-num-of">of 16</span></div>
-        <div class="cap-titleblock">
-          <div class="cap-title">Measurement, analytics and feedback</div>
-          <div class="cap-strap">KPI framework, MI, outcome data, pathway-level economic evaluation, attribution, marketplace metrics, feedback into the next round of design and prioritisation. <strong>The function that closes the cycle.</strong></div>
-        </div>
-        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">2&ndash;3</div><div class="cap-sizing-unit">FTE + econ</div></div>
-      </div>
-      <div class="cap-streams">
-        <div>
-          <div class="stream-h stream-h-stand">Stand it up</div>
-          <ul class="stream-list">
-            <li>Health economist onboarded (blocked, cross-workstream dependency)</li>
-            <li>KPI framework designed (outcome-led, not licence-based)</li>
-            <li>MI and data flow integrity at spine level</li>
-            <li>Attribution methodology defined</li>
-            <li>Cost-per-test baseline established</li>
-            <li>Feedback loop into design and prioritisation designed</li>
-            <li>Pathway-level economic evaluation activated</li>
-          </ul>
-        </div>
-        <div>
-          <div class="stream-h stream-h-bau">In BAU</div>
-          <ul class="stream-list">
-            <li>Operates the KPI framework</li>
-            <li>Produces MI for SRO, NAB and commissioners</li>
-            <li>Captures outcome data at pathway level</li>
-            <li>Manages attribution methodology</li>
-            <li>Tracks marketplace health metrics</li>
-            <li>Feeds findings into design and prioritisation on a defined cadence</li>
-          </ul>
-        </div>
-      </div>
-      <div class="cap-talks">
-        <span class="talks-label">Talks to</span>
-        <span class="talks-pill">Platform engineering (data flow)</span>
-        <span class="talks-pill">NHSE strategic finance</span>
-        <span class="talks-pill">Commissioners (data sharing)</span>
-        <span class="talks-pill">Clinical Safety Group</span>
-      <span class="cap-personas"><span class="personas-label">Affects</span><a href="DTx OM - Persona Abdul.html" title="Open Abdul's persona page" style="text-decoration:none;line-height:0;"><img class="persona-portrait" src="../assets/personas/abdul.png" alt="Abdul" title="Abdul"></a><a href="DTx OM - Persona Mark.html" title="Open Mark's persona page" style="text-decoration:none;line-height:0;"><img class="persona-portrait" src="../assets/personas/mark.png" alt="Mark" title="Mark"></a><a href="DTx OM - Persona Layla.html" title="Open Layla's persona page" style="text-decoration:none;line-height:0;"><img class="persona-portrait" src="../assets/personas/layla.png" alt="Layla" title="Layla"></a></span>
-      </div>
-      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
-    </summary>
-    <div class="cap-detail">
-      <div class="detail-section">
-        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
-        <div class="stand-detail">
-          <div class="stand-row"><div class="stand-row-text"><strong>Health Economist engaged</strong>Health Economist engaged at 2.5 days a week from 9 June 2026. PSA pathway costs and ROI is the lead workstream per the Deputy Director DTx priority sequence. Standard costing / benefits model, unit economics, scenarios and market sizing queued behind. Sections of the commercial recommendation paper that depend on HE input remain caveated until the relevant priority lands.</div><span class="pill pill-flight">In flight</span><span class="size-pill size-s">S</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>KPI framework definition</strong>Not yet designed. Prior DTx experience showed licence-based KPIs failed because they didn't track outcomes. KPI framework has to be outcome-led.</div><span class="pill pill-open">Open</span><span class="size-pill size-l">L</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>MI / data flow integrity (spine-level reporting)</strong>Operational data flowing reliably from the platform spine into reporting and analytics: volumes, exceptions, performance against configuration KPIs, supplier performance. Underpins every reporting commitment to commissioners and SLT. Not yet sized or owned.</div><span class="pill pill-open">Open</span><span class="size-pill size-xl">XL</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Outcome data capture and pathway-level economic evaluation</strong>Capturing clinical and pathway-level outcomes downstream of testing so the economic case for HomeTest can be evidenced. Health economist contract active from 2 June 2026; plan landing is now the constraint. Without the plan and the as-is vs to-be analysis, the value case for adoption can&rsquo;t yet be substantiated.</div><span class="pill pill-flight">In flight</span><span class="size-pill size-l">L</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Cost-benefit dislocation tracking (pathology vs phlebotomy)</strong>Costs and benefits sit in different parts of local budget. Without best-practice tariffs at pathway level, ICBs see home testing as a cost pressure. The economic case is the unlock for adoption.</div><span class="pill pill-open">Open</span><span class="size-pill size-l">L</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Feedback loop from measurement into design and prioritisation</strong>Mechanism undefined: what data, in what format, at what frequency. Closes the cycle that feeds the next round of decisions on conditions, patterns and configurations.</div><span class="pill pill-open">Open</span><span class="size-pill size-l">L</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Attribution methodology</strong>Undefined. Linking a home test kit to a downstream clinical outcome requires methodology not yet agreed.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Cost-per-test baseline</strong>An agreed baseline cost-per-test that value comparisons can be made against (HomeTest vs in-clinic testing). Underpins pricing decisions, tariff design and the commissioner pitch. Not established; without it, value comparisons are unreliable.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Reporting cadence (Delivery Board / Programme Board)</strong>Standing reports into the Delivery Board (operational decisions) and the Programme Board (strategic decisions): volumes, exceptions, risks, decisions needed, milestones. Cadence in place; content evolves as the model matures and configurations scale.</div><span class="pill pill-live">Live</span><span class="size-pill size-s">S</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>National orchestration BAU funding</strong>Who funds routing, DevOps, interoperability, assurance management, supplier onboarding, analytics and standards updates at steady state.</div><span class="pill pill-open">Open</span><span class="size-pill size-xs">XS</span></div>
-        </div>
-      </div>
-      <div class="detail-section">
-        <div class="detail-h">Disciplines inside</div>
-        <div class="disc-list">
-          <span class="disc-pill">Data engineering</span>
-          <span class="disc-pill">Analytics</span>
-          <span class="disc-pill">Health Economist (contracted)</span>
-          <span class="disc-pill">Evaluation specialists</span>
-        </div>
-      </div>
-      <div class="detail-section">
-        <div class="detail-h">Standing interfaces</div>
-        <table class="intf-table">
-          <tr><td class="intf-ext">Platform engineering</td><td>Data flow from spine into measurement infrastructure</td><td class="intf-cadence">Continuous</td></tr>
-          <tr><td class="intf-ext">NHSE strategic finance</td><td>Pathway-level economic evaluation, cost-benefit dislocation, tariff inputs</td><td class="intf-cadence">Quarterly + ad-hoc on tariff cycles</td></tr>
-          <tr><td class="intf-ext">Commissioners</td><td>Outcome data sharing, configuration performance reporting</td><td class="intf-cadence">Monthly per commissioner</td></tr>
-          <tr><td class="intf-ext">Clinical Safety Group</td><td>Outcome data with safety implications, hazard signal monitoring</td><td class="intf-cadence">Quarterly + per-signal</td></tr>
-        </table>
-      </div>
-      <div class="detail-section">
-        <div class="detail-h">Why this sizing</div>
-        <div class="why-box">Small core team plus contracted health economics capacity. Sized to operate the KPI framework, not to redesign it. Health economics work is workload-spiked so contracted capacity scales with demand. Could sit at 3 FTE in steady state; spikes to 5 FTE during evaluation cycles.</div>
-      </div>
-      <div class="detail-section">
-        <div class="detail-h">Governance</div>
-        <div class="gov-box">Reports into SRO. Standing slot at the National Assurance Board. Feeds the design and prioritisation function via the feedback loop.</div>
-      </div>
     </div>
-  </details>
-
-  <details class="cap cap-c10" id="cap-10">
+    <div class="band">
+      <span class="band-label">Pathway & Adoption</span>
+<details class="cap cap-c10" id="cap-10">
     <summary>
       <div class="cap-top">
         <div class="cap-num"><span class="cap-num-big">10</span><span class="cap-num-of">of 16</span></div>
@@ -1326,147 +1561,7 @@
       </div>
     </div>
   </details>
-
-  <details class="cap cap-c11" id="cap-11">
-    <summary>
-      <div class="cap-top">
-        <div class="cap-num"><span class="cap-num-big">11</span><span class="cap-num-of">of 16</span></div>
-        <div class="cap-titleblock">
-          <div class="cap-title">Governance secretariat</div>
-          <div class="cap-strap">Runs the governance bodies. National Assurance Board secretariat, Blue Book assurance board secretariat, Clinical Safety Group liaison, Commercial Committee secretariat. <strong>Low headcount, high cadence.</strong></div>
-        </div>
-        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">1&ndash;2</div><div class="cap-sizing-unit">FTE</div></div>
-      </div>
-      <div class="cap-streams">
-        <div>
-          <div class="stream-h stream-h-stand">Stand it up</div>
-          <ul class="stream-list">
-            <li>National Assurance Board constituted with composition and authority</li>
-            <li>Blue Book assurance board constituted</li>
-            <li>Permanent SRO arrangements post-maternity</li>
-            <li>Permanent platform hosting decision post-Beta</li>
-            <li>National orchestration BAU funding source confirmed</li>
-          </ul>
-        </div>
-        <div>
-          <div class="stream-h stream-h-bau">In BAU</div>
-          <ul class="stream-list">
-            <li>Secretariat for National Assurance Board</li>
-            <li>Secretariat for Blue Book assurance board</li>
-            <li>BAU-side liaison into Clinical Safety Group</li>
-            <li>Secretariat for Commercial Committee</li>
-            <li>Drives reporting cadence and decision logging</li>
-          </ul>
-        </div>
-      </div>
-      <div class="cap-talks">
-        <span class="talks-label">Talks to</span>
-        <span class="talks-pill">National Assurance Board</span>
-        <span class="talks-pill">Blue Book assurance board</span>
-        <span class="talks-pill">Clinical Safety Group</span>
-        <span class="talks-pill">Commercial Committee</span>
-        <span class="talks-pill">Every BAU capability</span>
-      <span class="cap-personas"><span class="personas-label">Affects</span><a href="DTx OM - Persona David.html" title="Open David's persona page" style="text-decoration:none;line-height:0;"><img class="persona-portrait" src="../assets/personas/david.png" alt="David" title="David"></a><a href="DTx OM - Persona Aisha.html" title="Open Aisha's persona page" style="text-decoration:none;line-height:0;"><img class="persona-portrait" src="../assets/personas/aisha.png" alt="Aisha" title="Aisha"></a><a href="DTx OM - Persona Ngozi.html" title="Open Ngozi's persona page" style="text-decoration:none;line-height:0;"><img class="persona-portrait" src="../assets/personas/ngozi.png" alt="Ngozi" title="Ngozi"></a></span>
-      </div>
-      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
-    </summary>
-    <div class="cap-detail">
-      <div class="detail-section">
-        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
-        <div class="stand-detail">
-          <div class="stand-row"><div class="stand-row-text"><strong>SRO accountability</strong>SRO (Senior Responsible Officer) is the senior accountable owner for the HomeTest programme. Per the 9 June 2026 Programme Board, Rachel returns from maternity leave mid-August 2026. Interim director-level oversight is being provided by Polly Bishop in the meantime. Transition planning to the post-maternity arrangements is in flight.</div><span class="pill pill-live">Live</span><span class="size-pill size-xs">XS</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>National Assurance Board composition and authority</strong>Currently a name in the architecture, not a constituted body. Who sits on it, who owns final authority, how disputes are arbitrated, appeals process.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Blue Book assurance board</strong>Senior cross-cast assurance body covering clinical safety, IG and commercial integrity together (the &lsquo;Blue Book&rsquo; being the common reference document). Composition and authority not yet constituted.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Permanent platform hosting post-Beta</strong>Immediate transition question closed: HomeTest remains in DPSP, transfer to At Home and Community cancelled at the 9 June 2026 Delivery Board. Long-term post-Beta home (NHSE direct, an ALB, or a new entity) remains a separate open question.</div><span class="pill pill-open">Open</span><span class="size-pill size-xs">XS</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Commissioner roles</strong>Commissioners buy and run configurations of HomeTest for their populations. Live for HIV with Local Authority commissioners; Acute Trust commissioning planned for PSA-AS pre-go-live.</div><span class="pill pill-live">Live</span><span class="size-pill size-xs">XS</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Supplier roles</strong>Suppliers admitted under the existing Alpha-Beta routes are live and running HIV configurations today. Their accountabilities have to be carried forward consistently as the framework moves into steady state.</div><span class="pill pill-live">Live</span><span class="size-pill size-xs">XS</span></div>
-        </div>
-      </div>
-      <div class="detail-section">
-        <div class="detail-h">Disciplines inside</div>
-        <div class="disc-list">
-          <span class="disc-pill">Programme management</span>
-          <span class="disc-pill">Governance secretariat</span>
-        </div>
-      </div>
-      <div class="detail-section">
-        <div class="detail-h">Standing interfaces</div>
-        <table class="intf-table">
-          <tr><td class="intf-ext">National Assurance Board</td><td>Reporting, decision escalation, strategic direction, accountability against the operating model</td><td class="intf-cadence">Standing cadence (monthly or bi-monthly)</td></tr>
-          <tr><td class="intf-ext">Blue Book assurance board</td><td>Cross-cast assurance on clinical safety, IG, commercial integrity</td><td class="intf-cadence">Standing cadence</td></tr>
-          <tr><td class="intf-ext">Every BAU capability</td><td>Board input collation, decision logging, action tracking</td><td class="intf-cadence">Continuous</td></tr>
-        </table>
-      </div>
-      <div class="detail-section">
-        <div class="detail-h">Why this sizing</div>
-        <div class="why-box">Standing programme support function. Not a delivery function. Sized to run the meeting cycle, capture decisions, track actions and feed the next round. Could shrink to 1 FTE if board cadence is monthly and not bi-monthly.</div>
-      </div>
-      <div class="detail-section">
-        <div class="detail-h">Governance</div>
-        <div class="gov-box">Reports into SRO. Cross-cutting function touching every BAU capability and every governance body.</div>
-      </div>
-    </div>
-  </details>
-
-  <details class="cap cap-c12" id="cap-12">
-    <summary>
-      <div class="cap-top">
-        <div class="cap-num"><span class="cap-num-big">12</span><span class="cap-num-of">of 16</span></div>
-        <div class="cap-titleblock">
-          <div class="cap-title">Post-market surveillance</div>
-          <div class="cap-strap">Ongoing safety and performance surveillance of HomeTest kits and the lab side of the service after go-live. Regulatory obligation under medical device regulation for the device, and under UKAS conditions for the labs. Distinct from internal clinical safety oversight.</div>
-        </div>
-        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">1&ndash;2</div><div class="cap-sizing-unit">FTE</div></div>
-      </div>
-      <div class="cap-streams">
-        <div>
-          <div class="stream-h stream-h-stand">Stand it up</div>
-          <ul class="stream-list">
-            <li>PMS plan per kit type and configuration</li>
-            <li>Adverse event reporting routes (kit failure, sample integrity, false result)</li>
-            <li>Lab quality signal-detection thresholds</li>
-            <li>MHRA reporting interface and Yellow Card scheme integration</li>
-            <li>Periodic safety update schedule per configuration</li>
-          </ul>
-        </div>
-        <div>
-          <div class="stream-h stream-h-bau">In BAU</div>
-          <ul class="stream-list">
-            <li>Continuous signal monitoring across kits and labs</li>
-            <li>Adverse event collection, triage and classification</li>
-            <li>Regulatory reporting to MHRA on schedule</li>
-            <li>Lab non-conformance tracking under UKAS</li>
-            <li>Post-market data feeding into configuration design and pattern review</li>
-          </ul>
-        </div>
-      </div>
-      <div class="cap-talks">
-        <span class="talks-label">Talks to</span>
-        <span class="talks-pill">MHRA</span><span class="talks-pill">UKAS</span><span class="talks-pill">Suppliers</span><span class="talks-pill">CSG</span><span class="talks-pill">Cap-2 Safety</span>
-      </div>
-      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
-    </summary>
-    <div class="cap-detail">
-      <div class="detail-section">
-        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
-        <div class="stand-detail">
-          <div class="stand-row"><div class="stand-row-text"><strong>PMS plan per kit type and configuration</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-s">S</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Adverse event reporting routes</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-s">S</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Lab quality signal-detection thresholds</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-m">M</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>MHRA reporting interface</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-s">S</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Periodic safety update schedule</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-xs">XS</span></div>
-        </div>
-      </div>
-      <div class="detail-section">
-        <div class="detail-h detail-h-bau">In BAU,  detail</div>
-        <div class="bau-detail">
-          <p>Post-market surveillance runs for the life of every HomeTest configuration. It is distinct from the internal Clinical Safety capability (Cap-2) which manages the hazard log and CATR. PMS is outward-facing: regulatory signal detection on the device side (MHRA reporting via Yellow Card for adverse events on kits), lab quality monitoring (UKAS non-conformance tracking), and ongoing data feedback into configuration design. Without a named PMS function the platform cannot honestly claim compliance with medical device obligations beyond go-live.</p>
-        </div>
-      </div>
-    </div>
-  </details>
-
-  <details class="cap cap-c13" id="cap-13">
+<details class="cap cap-c13" id="cap-13">
     <summary>
       <div class="cap-top">
         <div class="cap-num"><span class="cap-num-big">13</span><span class="cap-num-of">of 16</span></div>
@@ -1523,42 +1618,51 @@
       </div>
     </div>
   </details>
-
-  <details class="cap cap-c14" id="cap-14">
+    </div>
+    <div class="band">
+      <span class="band-label">Measure & Evidence</span>
+<details class="cap cap-c9" id="cap-9">
     <summary>
       <div class="cap-top">
-        <div class="cap-num"><span class="cap-num-big">14</span><span class="cap-num-of">of 16</span></div>
+        <div class="cap-num"><span class="cap-num-big">9</span><span class="cap-num-of">of 16</span></div>
         <div class="cap-titleblock">
-          <div class="cap-title">Independent assurance</div>
-          <div class="cap-strap">Third-party assurance discipline separate from internal Clinical Safety. Covers regulatory standards for kit and lab, clinical efficacy of the test pattern, and independent review of admitted suppliers. The assurance-portability backbone for HomeTest configurations.</div>
+          <div class="cap-title">Measurement, analytics and feedback</div>
+          <div class="cap-strap">KPI framework, MI, outcome data, pathway-level economic evaluation, attribution, marketplace metrics, feedback into the next round of design and prioritisation. <strong>The function that closes the cycle.</strong></div>
         </div>
-        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">1</div><div class="cap-sizing-unit">FTE</div></div>
+        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">2&ndash;3</div><div class="cap-sizing-unit">FTE + econ</div></div>
       </div>
       <div class="cap-streams">
         <div>
           <div class="stream-h stream-h-stand">Stand it up</div>
           <ul class="stream-list">
-            <li>Regulatory-standards mapping per kit class and lab category</li>
-            <li>Clinical efficacy assessment criteria per configuration</li>
-            <li>Independent assurance review cadence (kit + lab + pathway)</li>
-            <li>Assurance portability evidence package per supplier</li>
-            <li>Interface with UKAS lab accreditation reviews</li>
+            <li>Health economist onboarded (blocked, cross-workstream dependency)</li>
+            <li>KPI framework designed (outcome-led, not licence-based)</li>
+            <li>MI and data flow integrity at spine level</li>
+            <li>Attribution methodology defined</li>
+            <li>Cost-per-test baseline established</li>
+            <li>Feedback loop into design and prioritisation designed</li>
+            <li>Pathway-level economic evaluation activated</li>
           </ul>
         </div>
         <div>
           <div class="stream-h stream-h-bau">In BAU</div>
           <ul class="stream-list">
-            <li>Independent review cycle per admitted supplier</li>
-            <li>Regulatory-standards compliance monitoring across configurations</li>
-            <li>Cross-configuration evidence portability administration</li>
-            <li>Independent assurance reports into the platform Assurance discipline</li>
-            <li>Coordination with UKAS / MHRA reviews</li>
+            <li>Operates the KPI framework</li>
+            <li>Produces MI for SRO, NAB and commissioners</li>
+            <li>Captures outcome data at pathway level</li>
+            <li>Manages attribution methodology</li>
+            <li>Tracks marketplace health metrics</li>
+            <li>Feeds findings into design and prioritisation on a defined cadence</li>
           </ul>
         </div>
       </div>
       <div class="cap-talks">
         <span class="talks-label">Talks to</span>
-        <span class="talks-pill">UKAS</span><span class="talks-pill">MHRA</span><span class="talks-pill">Suppliers</span><span class="talks-pill">CSG</span><span class="talks-pill">Cap-2 Safety</span><span class="talks-pill">Cap-12 PMS</span>
+        <span class="talks-pill">Platform engineering (data flow)</span>
+        <span class="talks-pill">NHSE strategic finance</span>
+        <span class="talks-pill">Commissioners (data sharing)</span>
+        <span class="talks-pill">Clinical Safety Group</span>
+      <span class="cap-personas"><span class="personas-label">Affects</span><a href="DTx OM - Persona Abdul.html" title="Open Abdul's persona page" style="text-decoration:none;line-height:0;"><img class="persona-portrait" src="../assets/personas/abdul.png" alt="Abdul" title="Abdul"></a><a href="DTx OM - Persona Mark.html" title="Open Mark's persona page" style="text-decoration:none;line-height:0;"><img class="persona-portrait" src="../assets/personas/mark.png" alt="Mark" title="Mark"></a><a href="DTx OM - Persona Layla.html" title="Open Layla's persona page" style="text-decoration:none;line-height:0;"><img class="persona-portrait" src="../assets/personas/layla.png" alt="Layla" title="Layla"></a></span>
       </div>
       <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
     </summary>
@@ -1566,82 +1670,47 @@
       <div class="detail-section">
         <div class="detail-h detail-h-stand">Stand it up,  detail</div>
         <div class="stand-detail">
-          <div class="stand-row"><div class="stand-row-text"><strong>Regulatory-standards mapping per kit class</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-m">M</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Clinical efficacy assessment criteria</strong>A 3-stage Test Prioritisation Framework (clinical, feasibility, value) is in design as the closest evidenced artefact. No standalone clinical-efficacy criteria document exists in primary sources.</div><span class="pill pill-design">In design</span><span class="size-pill size-l">L</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Independent assurance review cadence</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-s">S</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Assurance portability evidence package</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-m">M</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>UKAS interface</strong>No primary-source evidence of UKAS-facing work in the DPSP HomeTest folders. <strong>SLT to confirm position</strong> on whether UKAS accreditation forms part of the assurance envelope.</div><span class="pill pill-open">Open</span><span class="size-pill size-s">S</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Health Economist engaged</strong>Health Economist engaged at 2.5 days a week from 9 June 2026. PSA pathway costs and ROI is the lead workstream per the Deputy Director DTx priority sequence. Standard costing / benefits model, unit economics, scenarios and market sizing queued behind. Sections of the commercial recommendation paper that depend on HE input remain caveated until the relevant priority lands.</div><span class="pill pill-flight">In flight</span><span class="size-pill size-s">S</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>KPI framework definition</strong>Not yet designed. Prior DTx experience showed licence-based KPIs failed because they didn't track outcomes. KPI framework has to be outcome-led.</div><span class="pill pill-open">Open</span><span class="size-pill size-l">L</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>MI / data flow integrity (spine-level reporting)</strong>Operational data flowing reliably from the platform spine into reporting and analytics: volumes, exceptions, performance against configuration KPIs, supplier performance. Underpins every reporting commitment to commissioners and SLT. Not yet sized or owned.</div><span class="pill pill-open">Open</span><span class="size-pill size-xl">XL</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Outcome data capture and pathway-level economic evaluation</strong>Capturing clinical and pathway-level outcomes downstream of testing so the economic case for HomeTest can be evidenced. Health economist contract active from 2 June 2026; plan landing is now the constraint. Without the plan and the as-is vs to-be analysis, the value case for adoption can&rsquo;t yet be substantiated.</div><span class="pill pill-flight">In flight</span><span class="size-pill size-l">L</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Cost-benefit dislocation tracking (pathology vs phlebotomy)</strong>Costs and benefits sit in different parts of local budget. Without best-practice tariffs at pathway level, ICBs see home testing as a cost pressure. The economic case is the unlock for adoption.</div><span class="pill pill-open">Open</span><span class="size-pill size-l">L</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Feedback loop from measurement into design and prioritisation</strong>Mechanism undefined: what data, in what format, at what frequency. Closes the cycle that feeds the next round of decisions on conditions, patterns and configurations.</div><span class="pill pill-open">Open</span><span class="size-pill size-l">L</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Attribution methodology</strong>Undefined. Linking a home test kit to a downstream clinical outcome requires methodology not yet agreed.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Cost-per-test baseline</strong>An agreed baseline cost-per-test that value comparisons can be made against (HomeTest vs in-clinic testing). Underpins pricing decisions, tariff design and the commissioner pitch. Not established; without it, value comparisons are unreliable.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>Reporting cadence (Delivery Board / Programme Board)</strong>Standing reports into the Delivery Board (operational decisions) and the Programme Board (strategic decisions): volumes, exceptions, risks, decisions needed, milestones. Cadence in place; content evolves as the model matures and configurations scale.</div><span class="pill pill-live">Live</span><span class="size-pill size-s">S</span></div>
+          <div class="stand-row"><div class="stand-row-text"><strong>National orchestration BAU funding</strong>Who funds routing, DevOps, interoperability, assurance management, supplier onboarding, analytics and standards updates at steady state.</div><span class="pill pill-open">Open</span><span class="size-pill size-xs">XS</span></div>
         </div>
       </div>
       <div class="detail-section">
-        <div class="detail-h detail-h-bau">In BAU,  detail</div>
-        <div class="bau-detail">
-          <p>For HomeTest, Independent Assurance covers the device side (kit regulatory compliance under MHRA medical device regulation), the lab side (UKAS / ISO 15189 compliance), and the configuration as a whole. Separate from Clinical Safety (Cap-2, internal hazard log) and PMS (Cap-12, regulatory signal surveillance). This function is upstream: the evidence package that proves assurance is portable across configurations and across ICBs without reassuring each time.</p>
+        <div class="detail-h">Disciplines inside</div>
+        <div class="disc-list">
+          <span class="disc-pill">Data engineering</span>
+          <span class="disc-pill">Analytics</span>
+          <span class="disc-pill">Health Economist (contracted)</span>
+          <span class="disc-pill">Evaluation specialists</span>
         </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-h">Standing interfaces</div>
+        <table class="intf-table">
+          <tr><td class="intf-ext">Platform engineering</td><td>Data flow from spine into measurement infrastructure</td><td class="intf-cadence">Continuous</td></tr>
+          <tr><td class="intf-ext">NHSE strategic finance</td><td>Pathway-level economic evaluation, cost-benefit dislocation, tariff inputs</td><td class="intf-cadence">Quarterly + ad-hoc on tariff cycles</td></tr>
+          <tr><td class="intf-ext">Commissioners</td><td>Outcome data sharing, configuration performance reporting</td><td class="intf-cadence">Monthly per commissioner</td></tr>
+          <tr><td class="intf-ext">Clinical Safety Group</td><td>Outcome data with safety implications, hazard signal monitoring</td><td class="intf-cadence">Quarterly + per-signal</td></tr>
+        </table>
+      </div>
+      <div class="detail-section">
+        <div class="detail-h">Why this sizing</div>
+        <div class="why-box">Small core team plus contracted health economics capacity. Sized to operate the KPI framework, not to redesign it. Health economics work is workload-spiked so contracted capacity scales with demand. Could sit at 3 FTE in steady state; spikes to 5 FTE during evaluation cycles.</div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-h">Governance</div>
+        <div class="gov-box">Reports into SRO. Standing slot at the National Assurance Board. Feeds the design and prioritisation function via the feedback loop.</div>
       </div>
     </div>
   </details>
-
-  <details class="cap cap-c15" id="cap-15">
-    <summary>
-      <div class="cap-top">
-        <div class="cap-num"><span class="cap-num-big">15</span><span class="cap-num-of">of 16</span></div>
-        <div class="cap-titleblock">
-          <div class="cap-title">Contract Management</div>
-          <div class="cap-strap">Post-execution lifecycle for each call-off agreement with admitted HomeTest suppliers. Distinct from Commercial / Framework administration (Cap-4) which sets the contracting architecture; this function manages each agreement after signature.</div>
-        </div>
-        <div class="cap-sizing"><div class="cap-sizing-label">Sizing</div><div class="cap-sizing-fte">1&ndash;2</div><div class="cap-sizing-unit">FTE</div></div>
-      </div>
-      <div class="cap-streams">
-        <div>
-          <div class="stream-h stream-h-stand">Stand it up</div>
-          <ul class="stream-list">
-            <li>Contract management playbook per call-off pattern</li>
-            <li>Variation control process for kit volume / lab capacity changes</li>
-            <li>Pricing review and renewal triggers</li>
-            <li>Volume / completion evidence audit routine</li>
-            <li>Supplier performance monitoring against framework terms</li>
-          </ul>
-        </div>
-        <div>
-          <div class="stream-h stream-h-bau">In BAU</div>
-          <ul class="stream-list">
-            <li>Active management of each LA / Trust / ICB call-off</li>
-            <li>Variation processing (kit re-spec, volume changes)</li>
-            <li>Pricing reviews on schedule</li>
-            <li>Evidence audit per per-completed payment cycle</li>
-            <li>Supplier performance against contract metrics</li>
-            <li>Renewal and exit management</li>
-          </ul>
-        </div>
-      </div>
-      <div class="cap-talks">
-        <span class="talks-label">Talks to</span>
-        <span class="talks-pill">Commissioners (LA / Trust / ICB)</span><span class="talks-pill">Suppliers</span><span class="talks-pill">NHS Commercial</span><span class="talks-pill">NHS Legal</span><span class="talks-pill">Cap-4 Commercial</span>
-      </div>
-      <div class="cap-expand-hint"><span class="collapsed-text">Click for detail</span><span class="expanded-text">Click to collapse</span></div>
-    </summary>
-    <div class="cap-detail">
-      <div class="detail-section">
-        <div class="detail-h detail-h-stand">Stand it up,  detail</div>
-        <div class="stand-detail">
-          <div class="stand-row"><div class="stand-row-text"><strong>Contract management playbook</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-m">M</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Variation control process</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-s">S</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Pricing review and renewal triggers</strong></div><span class="pill pill-design">In design</span><span class="size-pill size-s">S</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Per-completed evidence audit routine</strong>No primary-source artefact for a per-completed-test evidence audit routine. The existing Beta Contracting Checklist references data transparency but no per-completed audit mechanism is in train.</div><span class="pill pill-open">Open</span><span class="size-pill size-m">M</span></div>
-          <div class="stand-row"><div class="stand-row-text"><strong>Supplier performance monitoring</strong>KPI design articulated in the operating model thinking pack but live performance monitoring not yet evidenced in primary sources.</div><span class="pill pill-open">Open</span><span class="size-pill size-s">S</span></div>
-        </div>
-      </div>
-      <div class="detail-section">
-        <div class="detail-h detail-h-bau">In BAU,  detail</div>
-        <div class="bau-detail">
-          <p>For HomeTest the Contract Management function lives every framework call-off across its lifecycle. Variations (kit re-specification, volume increases, configuration changes), pricing reviews against framework rate cards, per-completed evidence audit per payment cycle, and supplier performance against contract metrics. Sits downstream of the Commercial / Framework function (Cap-4) which is about the architecture; this is about each individual agreement in life.</p>
-        </div>
-      </div>
-    </div>
-  </details>
-
-  <details class="cap cap-c16" id="cap-16">
+<details class="cap cap-c16" id="cap-16">
     <summary>
       <div class="cap-top">
         <div class="cap-num"><span class="cap-num-big">16</span><span class="cap-num-of">of 16</span></div>
@@ -1696,6 +1765,27 @@
       </div>
     </div>
   </details>
+    </div>
+  </section>
+
+  <section class="tier tier-3">
+    <div class="tier-header">
+      <span class="tier-label">TIER 3</span>
+      <span class="tier-title">Supporting infrastructure</span>
+    </div>
+    <p class="tier-strap">Systems the operating model depends on but does not own. HomeTest's supporting infrastructure is distributed; there is no single system of record equivalent to HealthStore's ServiceNow proposal.</p>
+    <div class="tier-3-panel">
+      <div class="tier-3-grid">
+        <div><strong>Single Patient Record / FDP</strong>Episode-level data, longitudinal patient view, federated analytics.</div>
+        <div><strong>NHS App + NHS Login</strong>Patient activation, identity, in-app journeys.</div>
+        <div><strong>NHS Notify</strong>Transactional messaging to patients (test invitations, results, reminders).</div>
+        <div><strong>FHIR / integration spine</strong>Test-event flow between supplier, lab, primary care and NHSE.</div>
+        <div><strong>Kit logistics platforms</strong>Supplier and Royal Mail systems for kit pack, dispatch, return.</div>
+        <div><strong>Lab interface systems</strong>Lab partner LIMS for sample handling and result generation.</div>
+      </div>
+    </div>
+  </section>
+
 
 
   <div class="interfaces" id="interfaces">
