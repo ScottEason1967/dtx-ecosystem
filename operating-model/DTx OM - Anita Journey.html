@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Anita&apos;s story: Digital Therapeutics Operating Model</title>
+<style>
+ .topnav{background:#fff;border-bottom:1px solid #ebeef1;padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;box-shadow:0 2px 14px rgba(0,48,135,0.10);position:sticky;top:0;z-index:200;}
+ .nav-back{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;}
+ .nav-back:hover{color:#005EB8;}
+ .nav-siblings{display:flex;gap:4px;flex-wrap:wrap;}
+ .nav-siblings a{font-size:12.5px;font-weight:600;color:#4C6272;text-decoration:none;padding:7px 14px;border-radius:6px;letter-spacing:0.2px;}
+ .nav-siblings a:hover{background:#f0f4f8;color:#212B32;}
+ .nav-siblings a.active{background:#003087;color:#fff;}
+
+:root {
+  --nhs-dark:#003087;
+  --nhs-blue:#005EB8;
+  --amber:#FFB91D;
+  --amber-deep:#C9A227;
+  --gold:#FFD66B;
+  --warm-cream:#FFF9EC;
+  --text:#212B32;
+  --text-sec:#4C6272;
+  --text-muted:#7E8B97;
+  --border-lt:#ebeef1;
+  --card:#ffffff;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,var(--nhs-blue) 0%, var(--nhs-dark) 100%);background-attachment:fixed;color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;margin:0;padding:0;width:100%;}
+
+.page{max-width:1180px;margin:30px auto 50px;background:#ffffff;border-radius:18px;box-shadow:0 14px 40px rgba(0,48,135,0.20);overflow:hidden;}
+
+/* HERO */
+.hero{position:relative;padding:70px 60px 60px;background:linear-gradient(135deg,#001a4d 0%,#003087 50%,#005EB8 100%);color:#fff;overflow:hidden;}
+.hero::after{content:'';position:absolute;right:-80px;bottom:-120px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(255,214,107,0.22),transparent 65%);pointer-events:none;}
+.hero-inner{position:relative;display:grid;grid-template-columns:1.5fr 1fr;gap:50px;align-items:center;z-index:1;}
+.hero-rule{width:60px;height:4px;background:var(--gold);border-radius:2px;margin-bottom:22px;}
+.hero-eyebrow{font-size:11px;font-weight:800;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:24px;}
+.hero-title{font-size:64px;font-weight:900;color:#fff;letter-spacing:-2px;line-height:0.98;margin-bottom:28px;}
+.hero-title em{font-style:normal;color:var(--gold);}
+.hero-strap{font-size:17px;color:rgba(255,255,255,0.94);line-height:1.65;max-width:560px;}
+.hero-strap strong{color:var(--gold);font-weight:700;}
+.hero-portrait-box{display:flex;flex-direction:column;align-items:center;gap:14px;}
+.hero-portrait-circ{width:280px;height:280px;border-radius:50%;overflow:hidden;border:6px solid rgba(255,214,107,0.45);box-shadow:0 14px 36px rgba(0,0,0,0.35);background:#fff;}
+.hero-portrait-circ img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;}
+.hero-portrait-name{font-size:18px;font-weight:800;color:#fff;letter-spacing:0.4px;}
+.hero-portrait-role{font-size:11px;color:var(--gold);letter-spacing:1.4px;text-transform:uppercase;font-weight:700;text-align:center;line-height:1.4;}
+
+/* RIBBON */
+.ribbon-wrap{background:#fafbfd;border-bottom:1px solid var(--border-lt);padding:32px 60px 28px;}
+.ribbon-eyebrow{font-size:10.5px;font-weight:800;letter-spacing:2px;color:var(--text-muted);text-transform:uppercase;margin-bottom:14px;text-align:center;}
+.ribbon{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;position:relative;align-items:start;}
+.ribbon-stage{display:flex;flex-direction:column;align-items:center;gap:8px;position:relative;cursor:pointer;text-decoration:none;color:inherit;padding:8px 4px;border-radius:8px;transition:background 0.15s;}
+.ribbon-stage:hover{background:rgba(0,48,135,0.04);}
+.ribbon-num{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#B8860B,#FFD66B);color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;letter-spacing:-0.5px;box-shadow:0 4px 10px rgba(184,134,11,0.22);}
+.ribbon-label{font-size:11.5px;font-weight:800;color:var(--nhs-dark);text-align:center;line-height:1.3;letter-spacing:0.2px;}
+.ribbon-substage{font-size:10px;font-weight:600;color:var(--text-sec);text-align:center;letter-spacing:0.4px;margin-top:2px;}
+
+/* FRAMING */
+.framing{padding:50px 60px 36px;background:#fff;}
+.framing-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.framing-tile{background:linear-gradient(135deg,#F4F8FC,#FFFFFF);border:1px solid #D5E8F0;border-radius:14px;padding:24px 26px;}
+.framing-tile-eyebrow{font-size:10px;font-weight:800;letter-spacing:1.8px;color:#B8860B;text-transform:uppercase;margin-bottom:8px;}
+.framing-tile-h{font-size:16px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.2px;margin-bottom:10px;line-height:1.3;}
+.framing-tile-body{font-size:13px;color:var(--text-sec);line-height:1.65;}
+.framing-tile-body strong{color:var(--text);font-weight:700;}
+
+/* STAGES */
+.stages{padding:24px 60px 60px;background:#fff;}
+.stage{display:grid;grid-template-columns:80px 1fr;gap:36px;padding:48px 0;border-top:1px solid var(--border-lt);}
+.stage:first-child{border-top:none;}
+.stage-side{display:flex;flex-direction:column;align-items:center;gap:14px;}
+.stage-number{font-size:48px;font-weight:900;color:#B8860B;letter-spacing:-2px;opacity:0.22;line-height:1;}
+.stage-main{}
+.stage-eyebrow{font-size:11px;font-weight:800;letter-spacing:1.8px;color:#B8860B;text-transform:uppercase;margin-bottom:10px;}
+.stage-title{font-size:24px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.5px;line-height:1.32;margin-bottom:22px;}
+.stage-image{background:linear-gradient(135deg,#F4F8FC,#E8F1F6);border-radius:12px;padding:32px 24px;text-align:center;color:var(--text-muted);margin-bottom:22px;border:1px dashed #B5D4E5;font-size:12px;font-weight:600;letter-spacing:0.3px;line-height:1.55;}
+.stage-image-icon{font-size:36px;opacity:0.4;margin-bottom:6px;}
+.stage-image-caption{font-size:11px;font-weight:500;opacity:0.85;letter-spacing:0.3px;margin-top:6px;}
+.pull-quote{margin:24px auto 28px;padding:32px 20px 28px;text-align:center;position:relative;max-width:820px;}
+.pull-quote::before{content:'\201C';position:absolute;left:8px;top:-18px;font-size:110px;color:#C9A227;font-family:Georgia,'Times New Roman',serif;line-height:1;opacity:0.65;pointer-events:none;}
+.pull-quote-text{font-size:24px;font-weight:600;color:var(--text,#212B32);line-height:1.45;letter-spacing:-0.3px;max-width:780px;margin:0 auto;font-style:italic;}
+.pull-quote-attribution{font-size:11.5px;font-weight:800;letter-spacing:2px;color:#C9A227;text-transform:uppercase;margin-top:18px;}
+@media(max-width:720px){.pull-quote-text{font-size:20px;}.pull-quote::before{font-size:84px;top:-10px;}}
+.whats-happening{background:#F4F8FC;border:1px solid #d6e2ef;border-radius:12px;padding:18px 22px;margin-bottom:14px;}
+.whats-happening-label{font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:var(--nhs-blue);text-transform:uppercase;margin-bottom:8px;}
+.whats-happening-body{font-size:13px;color:var(--text-sec);line-height:1.7;}
+.whats-happening-body strong{color:var(--text);font-weight:700;}
+.old-way{background:#fbf3ef;border:1px solid #f0d9cd;border-radius:12px;padding:18px 22px;margin-bottom:14px;}
+.old-way-label{font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:#A65A2C;text-transform:uppercase;margin-bottom:8px;}
+.old-way-body{font-size:13px;color:var(--text-sec);line-height:1.7;}
+.careteam{display:flex;align-items:flex-start;gap:14px;background:#F4F8FC;border-radius:12px;padding:16px 20px;margin-bottom:14px;}
+.careteam-icon{font-size:22px;flex-shrink:0;line-height:1.2;}
+.careteam-body{flex:1;}
+.careteam-label{font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:var(--nhs-blue);text-transform:uppercase;margin-bottom:6px;}
+.careteam-text{font-size:13px;color:var(--text-sec);line-height:1.65;}
+.crosslinks{background:#fff;border:1px dashed var(--border-lt);border-radius:10px;padding:14px 18px;}
+.crosslinks-label{font-size:10px;font-weight:800;letter-spacing:1.4px;color:var(--text-muted);text-transform:uppercase;margin-bottom:8px;}
+.crosslinks-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;font-size:12px;}
+.crosslinks-tag{background:var(--nhs-dark);color:#fff;font-size:9.5px;font-weight:800;letter-spacing:1px;padding:3px 8px;border-radius:4px;text-transform:uppercase;}
+.crosslinks a{color:var(--nhs-blue);text-decoration:none;font-weight:700;}
+.crosslinks a:hover{text-decoration:underline;}
+
+/* OUTCOME */
+.outcome{background:linear-gradient(135deg,#B8860B,#FFD66B);color:#fff;padding:50px 60px;text-align:center;}
+.outcome-eyebrow{font-size:11px;font-weight:800;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:16px;}
+.outcome-title{font-size:34px;font-weight:900;color:#fff;letter-spacing:-1px;line-height:1.15;margin-bottom:18px;}
+.outcome-body{font-size:15.5px;color:rgba(255,255,255,0.92);line-height:1.7;max-width:760px;margin:0 auto 22px;}
+.outcome-body strong{color:var(--gold);font-weight:700;}
+.outcome-cta{display:inline-flex;gap:14px;flex-wrap:wrap;justify-content:center;}
+.outcome-btn{background:var(--gold);color:var(--nhs-dark);font-size:13px;font-weight:800;letter-spacing:0.3px;padding:12px 22px;border-radius:99px;text-decoration:none;}
+.outcome-btn:hover{background:#fff;}
+.outcome-btn-sec{background:transparent;color:#fff;font-size:12.5px;font-weight:700;letter-spacing:0.3px;padding:10px 22px;border:1.5px solid rgba(255,255,255,0.45);border-radius:99px;text-decoration:none;}
+.outcome-btn-sec:hover{background:rgba(255,255,255,0.10);}
+
+@media print {
+  .topnav { display: none !important; }
+  .hm-witness .hmw-card { display:block !important; position:static; transform:none; width:auto; max-width:none; margin:8px 0; box-shadow:none; border:1px solid #ccc; }
+}
+
+@media (max-width:880px) {
+  .hero{padding:48px 30px 40px;}
+  .hero-inner{grid-template-columns:1fr;gap:30px;}
+  .hero-title{font-size:46px;}
+  .ribbon-wrap{padding:24px 24px 22px;}
+  .ribbon{grid-template-columns:repeat(3,1fr);gap:12px;}
+  .framing{padding:36px 30px 24px;}
+  .framing-grid{grid-template-columns:1fr;}
+  .stages{padding:14px 30px 40px;}
+  .stage{grid-template-columns:1fr;gap:20px;padding:32px 0;}
+  .stage-side{flex-direction:row;justify-content:flex-start;}
+  .stage-number{font-size:36px;}
+  .outcome{padding:36px 30px;}
+  .outcome-title{font-size:26px;}
+}
+</style>
+</head>
+<body>
+<div class="ecosystem-nav">
+  <a href="../index.html">← DTx Ecosystem</a>
+  <span class="nav-context">Anita Journey</span>
+  <span class="nav-product dtx">DTx</span>
+</div>
+
+<nav class="topnav">
+<a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+<div class="nav-siblings">
+ <a href="DTx OM - Why.html">Why</a>
+ <a href="DTx OM - What.html">What</a>
+ <a href="DTx OM - Lifecycle.html">When</a>
+ <a href="DTx OM - HomeTest Operational.html">How</a>
+ <a href="DTx OM - Governance.html">Who</a>
+ <a href="DTx OM - Hearts and Minds.html" class="active">Hearts and Minds</a>
+ <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>
+ <a href="DTx OM - Status.html">Status</a>
+</div>
+</nav>
+
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-rule"></div>
+        <div class="hero-eyebrow">An ICB/GP commissioner&apos;s story through the operating model</div>
+        <h1 class="hero-title">Anita commissions <em>the register</em>.<br>Not each appointment.</h1>
+        <p class="hero-strap">Anita commissions primary-care diagnostic monitoring for her Integrated Care Board. HbA1c annual reviews for the at-risk register run into tens of thousands annually across her patch. The register is growing as diabetes-prevention referrals build the risk cohort. Practice nurses are scarce. Phlebotomy appointments are the bottleneck. The cohort most likely to miss the appointment is the cohort most in need of the surveillance — shift workers, carers, deprived-ward residents. She has the QOF-adjacent funding architecture, no landed home-testing route, and a growing register. <strong>This is the story of one ICB/GP commissioner, one platform, one register-level arrangement, and an operating model that lets her commission at register scale rather than practice by practice.</strong></p>
+      </div>
+      <div class="hero-portrait-box">
+        <div class="hero-portrait-circ">
+          <img src="img/Anita%20hero.png" alt="Anita">
+        </div>
+        <div class="hero-portrait-name">Anita</div>
+        <div class="hero-portrait-role">ICB / GP commissioner<br>HomeTest HbA1c</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIBBON -->
+  <div class="ribbon-wrap">
+    <div class="ribbon-eyebrow">Anita&apos;s journey at a glance &middot; six stages, one platform</div>
+    <div class="ribbon">
+      <a class="ribbon-stage" href="#stage-1">
+        <div class="ribbon-num">1</div>
+        <div class="ribbon-label">The brief</div>
+        <div class="ribbon-substage">A gap on the dashboard</div>
+      </a>
+      <a class="ribbon-stage" href="#stage-2">
+        <div class="ribbon-num">2</div>
+        <div class="ribbon-label">One front door</div>
+        <div class="ribbon-substage">The framework opens</div>
+      </a>
+      <a class="ribbon-stage" href="#stage-3">
+        <div class="ribbon-num">3</div>
+        <div class="ribbon-label">Fit for HER cohort</div>
+        <div class="ribbon-substage">The questions standard answers don&apos;t solve</div>
+      </a>
+      <a class="ribbon-stage" href="#stage-4">
+        <div class="ribbon-num">4</div>
+        <div class="ribbon-label">One call-off</div>
+        <div class="ribbon-substage">Signing, not procuring</div>
+      </a>
+      <a class="ribbon-stage" href="#stage-5">
+        <div class="ribbon-num">5</div>
+        <div class="ribbon-label">Live operation</div>
+        <div class="ribbon-substage">Kits out, results back</div>
+      </a>
+      <a class="ribbon-stage" href="#stage-6">
+        <div class="ribbon-num">6</div>
+        <div class="ribbon-label">The board paper</div>
+        <div class="ribbon-substage">What the members see</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- FRAMING -->
+  <div class="framing">
+    <div class="framing-grid">
+      <div class="framing-tile">
+        <div class="framing-tile-eyebrow">The North Star</div>
+        <div class="framing-tile-h">Commission at register scale. So the annual HbA1c review cadence holds across the at-risk cohort without pulling clinic slots.</div>
+        <div class="framing-tile-body">ICB/GP commissioners do not want a separate deal per GP practice. They want one register-level arrangement that every at-risk patient across their ICB flows through, regardless of which practice they attend. The operating model exists so the ICB commissions the annual HbA1c review at register level and each practice plugs in against a common national arrangement. <strong>Register-level commissioning is the North Star</strong>, because effort spent stitching practice-by-practice deals is effort not spent holding the cadence.</div>
+      </div>
+      <div class="framing-tile">
+        <div class="framing-tile-eyebrow">Why one platform matters to her</div>
+        <div class="framing-tile-h">One national arrangement. One register-level call-off. One platform every at-risk register patient in her ICB can flow through.</div>
+        <div class="framing-tile-body">A bespoke HbA1c deal with one practice federation would buy one deployment. The next federation (or the next annual-review test the register carries) would mean another arrangement, another assurance set, another contract, another integration. The national arrangement means Anita commissions the register once, every practice in her ICB plugs into the same call-off, the same GP-record write-back answers the same questions, and the next primary-care annual-review test is an extension. <strong>The integration was done before she walked in.</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAGES -->
+  <div class="stages">
+
+    <!-- STAGE 1 -->
+    <div class="stage" id="stage-1">
+      <div class="stage-side">
+        <div class="stage-number">01</div>
+      </div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">The brief &middot; a register, a cadence, a pathway to commission</div>
+        <h2 class="stage-title">Anita has an at-risk register across her ICB running into tens of thousands. Every one of them is due an annual HbA1c under QOF DM006 (for those on the diabetes register) or under the local diabetes-prevention pathway (for those on the pre-diabetes side). Practice nurses are scarce. Phlebotomy is the bottleneck. Register completion for the annual review is running below target across her deprived wards. The Chief Medical Officer wants the cadence to hold without pulling more nursing capacity. She has the QOF-adjacent funding architecture, the pathway design, and no landed home-testing route. <span class="hm-witness" data-moment="anita-s1"></span></h2>
+
+        <div class="stage-image" style="padding:0;border:none;background:none;margin-bottom:22px;"><img src="img/Anita%201.png" alt="Anita Stage 1" style="width:100%;height:auto;border-radius:12px;display:block;box-shadow:0 8px 24px rgba(0,32,64,0.12);"></div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">The register is growing and the appointment barrier is holding it back. If I can move the sample-collection step to the patient&apos;s home, I hold the cadence without pulling more nursing capacity. What I don&apos;t have is a funding route that scales beyond one practice at a time.</p>
+          <div class="pull-quote-attribution">Anita</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">At-risk register data across her ICB. QOF DM006 completion rate by practice and by deprivation quintile. Diabetes Prevention Programme referral pipeline. Practice nurse capacity data. Phlebotomy waiting times across her primary-care footprint. The clinical case sits on capillary HbA1c with declared analytical performance against the DCCT-aligned reference. <strong>What&apos;s in front of Anita is a register-level commissioning arrangement, integration with each practice&apos;s existing review rhythm, and a call-off mechanism that doesn&apos;t require every practice to negotiate separately.</strong></div>
+        </div>
+
+        <div class="old-way">
+          <div class="old-way-label">The old way</div>
+          <div class="old-way-body">A bespoke deal with one practice federation. Bespoke QOF-linkage per federation. Bespoke DSA per federation. Bespoke MI feed per federation. Nine to twelve months from Board paper to first kit at the first practice. By the time the second federation is live, the register has grown again and the first cohort has drifted.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What the care team sees</div>
+            <div class="careteam-text">Her ICB primary-care lead. Her ICB Chief Medical Officer. GP clinical directors across her federations. Her ICB IG lead. The diabetes prevention programme team who hold the pre-diabetes referral pipeline.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 2 -->
+    <div class="stage" id="stage-2">
+      <div class="stage-side">
+        <div class="stage-number">02</div>
+      </div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">One front door &middot; the framework opens</div>
+        <h2 class="stage-title">She opens the framework. The HomeTest platform is admitted. The HbA1c configuration is live under UKAS-accredited capillary HbA1c with DCCT-aligned analytical performance. Suppliers listed against published call-off terms. QOF-linkage templates ready. GP-record integration patterns published. National pricing visible. No pathway to design from scratch. <span class="hm-witness" data-moment="anita-s2"></span></h2>
+
+        <div class="stage-image" style="padding:0;border:none;background:none;margin-bottom:22px;"><img src="img/Anita%202.png" alt="Anita Stage 2" style="width:100%;height:auto;border-radius:12px;display:block;box-shadow:0 8px 24px rgba(0,32,64,0.12);"></div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">I expected to be writing a federation-by-federation deal. I&apos;m looking at a register-level arrangement I can call off at ICB level. The heavy lifting was done before I logged in.</p>
+          <div class="pull-quote-attribution">Anita</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">The framework page. Admitted suppliers with UKAS-accredited capillary HbA1c performance. Standard ICB call-off terms. DSA, DPIA, privacy notice and clinical safety case starter templates pre-built. GP-record write-back documented against every major primary-care system. QOF DM006 linkage documented. Diabetes Prevention Programme referral pattern documented. <strong>The route is published; Anita just has to choose to take it.</strong></div>
+        </div>
+
+        <div class="old-way">
+          <div class="old-way-label">The old way</div>
+          <div class="old-way-body">A clean-sheet negotiation with the first federation to volunteer. Bespoke QOF-linkage. Bespoke IG. Bespoke MI. Three months per federation before the first contract draft. Six federations equals eighteen months of stitching.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What the care team sees</div>
+            <div class="careteam-text">The platform&apos;s commissioner-engagement contact for the HbA1c configuration. Her ICB commercial team, sense-checking the register-level call-off route. GP clinical directors sense-checking how the pathway plugs into the annual review rhythm.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 3 -->
+    <div class="stage" id="stage-3">
+      <div class="stage-side">
+        <div class="stage-number">03</div>
+      </div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">Fit for the at-risk register &middot; the questions the register has to answer</div>
+        <h2 class="stage-title">Anita runs her register-specific questions against the framework. Does the capillary HbA1c analytical performance hold up against DCCT-aligned reference at the pre-diabetes decision points? What happens with the small proportion whose HbA1c trend triggers a diabetes diagnosis? Who holds the pathway-adjustment decision when the trend moves the wrong way? Does the reach work for shift workers, carers, deprived-ward residents — the cohorts most likely to miss the appointment? <span class="hm-witness" data-moment="anita-s3"></span></h2>
+
+        <div class="stage-image" style="padding:0;border:none;background:none;margin-bottom:22px;"><img src="img/Anita%203.png" alt="Anita Stage 3" style="width:100%;height:auto;border-radius:12px;display:block;box-shadow:0 8px 24px rgba(0,32,64,0.12);"></div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">The register has clinical decision points. I need to know that home-collected HbA1c doesn&apos;t soften the trend detection at pre-diabetes threshold. If the analytical performance is fit for the register decision points, the pathway works. If it isn&apos;t, the register is dangerous.</p>
+          <div class="pull-quote-attribution">Anita</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">Her register-cohort questions against the framework&apos;s clinical documentation. UKAS-accredited capillary HbA1c analytical performance sheet with declared CV and MU at 42 mmol/mol and 48 mmol/mol decision points. Trend-detection reliability against DCCT reference. QOF DM006 auto-linkage documented. Diabetes Prevention Programme referral trigger workflow. Low-digital-literacy alternative entry route via practice reception. Unsafe-address pathway. Non-English-language support. <strong>The framework either answers these or it doesn&apos;t. Anita finds out before signing.</strong></div>
+        </div>
+
+        <div class="old-way">
+          <div class="old-way-label">The old way</div>
+          <div class="old-way-body">Six rounds of meetings per supplier to interrogate analytical performance and register mechanics per federation. Bespoke pathway design per federation. Pilot phase running into year two. Or, in the worst case, skip the register-specific interrogation and assume the general framework covers it. The pattern from bespoke deployments: analytical performance not fit for pre-diabetes decision points, register drift, DPP referrals dropped.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What the care team sees</div>
+            <div class="careteam-text">Her ICB clinical lead for diabetes and long-term conditions. GP clinical directors from her federations. The platform&apos;s clinical safety case lead. Her ICB IG lead reviewing the register-level data flow. The Diabetes Prevention Programme lead.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 4 -->
+    <div class="stage" id="stage-4">
+      <div class="stage-side">
+        <div class="stage-number">04</div>
+      </div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">One call-off &middot; commissioning the register</div>
+        <h2 class="stage-title">Anita commissions the register at ICB level. One call-off. Every practice in her ICB plugs in via a common commissioning schedule. Six weeks from brief to first live practice, not eighteen months. Payment via published call-off terms, QOF-linked where applicable. The procurement scar she carried in is not the arrangement she signed. <span class="hm-witness" data-moment="anita-s4"></span></h2>
+
+        <div class="stage-image" style="padding:0;border:none;background:none;margin-bottom:22px;"><img src="img/Anita%204.png" alt="Anita Stage 4" style="width:100%;height:auto;border-radius:12px;display:block;box-shadow:0 8px 24px rgba(0,32,64,0.12);"></div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">I&apos;ve commissioned pathways that took eighteen months of federation-by-federation stitching. The eighteen months I didn&apos;t spend stitching is the eighteen months my register held its cadence.</p>
+          <div class="pull-quote-attribution">Anita</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">The ICB-level call-off itself. Suppliers admitted to the platform under the HbA1c configuration. Each practice brought into the arrangement via a common commissioning schedule. DSAs executed against the framework&apos;s template. Clinical safety case approved by each practice CSO using the framework&apos;s HbA1c-specific starter case as the spine. First batch of kits ordered against the at-risk register at the pilot federation. GP-record write-back switched on. <strong>Every step has a published template. Nothing is being designed in the moment.</strong></div>
+        </div>
+
+        <div class="old-way">
+          <div class="old-way-label">The old way</div>
+          <div class="old-way-body">A multi-year bilateral contract per federation plus per supplier. Bespoke QOF-linkage per federation. Bespoke IG per federation. Bespoke MI per federation. Each adding months to the deployment timeline. Each reducing the budget left for the actual register.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What the care team sees</div>
+            <div class="careteam-text">Her ICB commercial team handling the register-level call-off. GP clinical directors from each federation. The platform&apos;s engagement contact handling the ICB-level call-off. The supplier&apos;s primary-care operations lead.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 5 -->
+    <div class="stage" id="stage-5">
+      <div class="stage-side">
+        <div class="stage-number">05</div>
+      </div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">Live operation &middot; kits out, results back</div>
+        <h2 class="stage-title">First quarter live at the pilot federation. Kits going out to at-risk register patients due their annual HbA1c review. Results returning into the GP record ahead of review consultations. QOF DM006 auto-linkage running. Register completion rate ticking up. The pathway holds. Second and third federations due to activate over the next two quarters against the same call-off. <span class="hm-witness" data-moment="anita-s5"></span></h2>
+
+        <div class="stage-image" style="padding:0;border:none;background:none;margin-bottom:22px;"><img src="img/Anita%205.png" alt="Anita Stage 5" style="width:100%;height:auto;border-radius:12px;display:block;box-shadow:0 8px 24px rgba(0,32,64,0.12);"></div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">Patients don&apos;t see commissioning. They see a kit in the post and their GP opening the annual review with the number already in front of them. The pathway holds.</p>
+          <div class="pull-quote-attribution">Anita</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">The MI dashboard. Kits ordered. Kits delivered. Results returned. Register-completion rate. HbA1c trend movements. Diabetes Prevention Programme referral triggers. Practice nurse minutes released per patient. Federation-level utilisation across her ICB. Equity reach across her deprived wards. Reactive support paths for out-of-range results. <strong>The numbers are visible in real time. Anita doesn&apos;t need to wait for the annual return.</strong></div>
+        </div>
+
+        <div class="old-way">
+          <div class="old-way-label">The old way</div>
+          <div class="old-way-body">Federation-by-federation MI. Manual reconciliation to see the ICB-level picture. Manual chasing of register completion rates. No comparable view across her federations until the annual report. The risk: finding out a year late that the pilot federation&apos;s register drift was masking a system-level issue.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What the care team sees</div>
+            <div class="careteam-text">GPs across her federations running annual reviews. The supplier running the kit logistics. The platform running the data layer with GP-record write-back. Each federation&apos;s clinical governance running local safety oversight. Anita looking at the ICB-level MI feed weekly.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 6 -->
+    <div class="stage" id="stage-6">
+      <div class="stage-side">
+        <div class="stage-number">06</div>
+      </div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">The ICB paper &middot; what the CMO sees</div>
+        <h2 class="stage-title">First-year outcomes across the ICB. Register-completion rate up. QOF DM006 achievement up. Practice nurse minutes released. Diabetes Prevention Programme referral triggers detected earlier. Federation-by-federation adoption curve. The ICB paper writes itself. The next year&apos;s ask is for the next primary-care annual-review test, not the next procurement. <span class="hm-witness" data-moment="anita-s6"></span></h2>
+
+        <div class="stage-image" style="padding:0;border:none;background:none;margin-bottom:22px;"><img src="img/Anita%206.png" alt="Anita Stage 6" style="width:100%;height:auto;border-radius:12px;display:block;box-shadow:0 8px 24px rgba(0,32,64,0.12);"></div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">The Chief Medical Officer wanted to know whether the register held. The numbers do most of the talking. The register-level commissioning behind them is what made the numbers possible.</p>
+          <div class="pull-quote-attribution">Anita</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">Register-completion rate against the ICB baseline. HbA1c trend detection at pre-diabetes threshold. QOF DM006 achievement. Practice nurse minutes released per register patient per year. Diabetes Prevention Programme referral pipeline strength. Patient-reported experience. Reactive-pathway performance for out-of-range results. The recommendation for year two: extend to the next primary-care annual-review test the platform admits. <strong>Same framework. Same call-off shape. Same MI feed.</strong></div>
+        </div>
+
+        <div class="old-way">
+          <div class="old-way-label">The old way</div>
+          <div class="old-way-body">An ICB paper hedged with per-federation data still maturing. Three years before an ICB-level pattern could be evaluated. By which time the pilot federation&apos;s clinical director had rotated, the funding envelope had shifted, and the register had drifted.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What the care team sees</div>
+            <div class="careteam-text">The ICB Chief Medical Officer. The ICB executive committee. GP clinical directors across her federations. The ICB finance team setting the next year&apos;s primary-care envelope.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- OUTCOME -->
+  <div class="outcome">
+    <div class="outcome-eyebrow">Anita&apos;s win</div>
+    <h2 class="outcome-title">Register cadence held across her federations. Practice nurse minutes released. Pre-diabetes triggers detected earlier.</h2>
+    <p class="outcome-body">The at-risk register patients didn&apos;t see commissioning. They saw a kit in the post and their GP opening the annual review with the number already in front of them. <strong>The eighteen months Anita didn&apos;t spend stitching federation deals is the eighteen months her register didn&apos;t drift.</strong> The next primary-care annual-review test is an extension of the same signature, not a new arrangement from a clean sheet.</p>
+    <div class="outcome-cta">
+      <a href="DTx OM - Persona Anita.html" class="outcome-btn">Open Anita&apos;s persona &rarr;</a>
+      <a href="DTx OM - Hearts and Minds.html" class="outcome-btn-sec">Back to Hearts and Minds &rarr;</a>
+    </div>
+  </div>
+
+</div>
+
+<script src="../hearts-and-minds/hm-witness.js"></script>
+
+</body>
+</html>

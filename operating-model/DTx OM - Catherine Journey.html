@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Catherine&apos;s story: Digital Therapeutics Operating Model</title>
+<style>
+ .topnav{background:#fff;border-bottom:1px solid #ebeef1;padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;box-shadow:0 2px 14px rgba(0,48,135,0.10);position:sticky;top:0;z-index:200;}
+ .nav-back{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;}
+ .nav-back:hover{color:#005EB8;}
+ .nav-siblings{display:flex;gap:4px;flex-wrap:wrap;}
+ .nav-siblings a{font-size:12.5px;font-weight:600;color:#4C6272;text-decoration:none;padding:7px 14px;border-radius:6px;letter-spacing:0.2px;}
+ .nav-siblings a:hover{background:#f0f4f8;color:#212B32;}
+ .nav-siblings a.active{background:#003087;color:#fff;}
+
+:root {
+  --nhs-dark:#003087;
+  --nhs-blue:#005EB8;
+  --amber:#FFB91D;
+  --amber-deep:#C9A227;
+  --gold:#FFD66B;
+  --warm-cream:#FFF9EC;
+  --text:#212B32;
+  --text-sec:#4C6272;
+  --text-muted:#7E8B97;
+  --border-lt:#ebeef1;
+  --card:#ffffff;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,var(--nhs-blue) 0%, var(--nhs-dark) 100%);background-attachment:fixed;color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;margin:0;padding:0;width:100%;}
+
+.page{max-width:1180px;margin:30px auto 50px;background:#ffffff;border-radius:18px;box-shadow:0 14px 40px rgba(0,48,135,0.20);overflow:hidden;}
+
+/* HERO */
+.hero{position:relative;padding:70px 60px 60px;background:linear-gradient(135deg,#001a4d 0%,#003087 50%,#005EB8 100%);color:#fff;overflow:hidden;}
+.hero::after{content:'';position:absolute;right:-80px;bottom:-120px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(255,214,107,0.22),transparent 65%);pointer-events:none;}
+.hero-inner{position:relative;display:grid;grid-template-columns:1.5fr 1fr;gap:50px;align-items:center;z-index:1;}
+.hero-rule{width:60px;height:4px;background:var(--gold);border-radius:2px;margin-bottom:22px;}
+.hero-eyebrow{font-size:11px;font-weight:800;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:24px;}
+.hero-title{font-size:64px;font-weight:900;color:#fff;letter-spacing:-2px;line-height:0.98;margin-bottom:28px;}
+.hero-title em{font-style:normal;color:var(--gold);}
+.hero-strap{font-size:17px;color:rgba(255,255,255,0.94);line-height:1.65;max-width:560px;}
+.hero-strap strong{color:var(--gold);font-weight:700;}
+.hero-portrait-box{display:flex;flex-direction:column;align-items:center;gap:14px;}
+.hero-portrait-circ{width:280px;height:280px;border-radius:50%;overflow:hidden;border:6px solid rgba(255,214,107,0.45);box-shadow:0 14px 36px rgba(0,0,0,0.35);background:#fff;}
+.hero-portrait-circ img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;}
+.hero-portrait-name{font-size:18px;font-weight:800;color:#fff;letter-spacing:0.4px;}
+.hero-portrait-role{font-size:11px;color:var(--gold);letter-spacing:1.4px;text-transform:uppercase;font-weight:700;text-align:center;line-height:1.4;}
+
+/* RIBBON */
+.ribbon-wrap{background:#fafbfd;border-bottom:1px solid var(--border-lt);padding:32px 60px 28px;}
+.ribbon-eyebrow{font-size:10.5px;font-weight:800;letter-spacing:2px;color:var(--text-muted);text-transform:uppercase;margin-bottom:14px;text-align:center;}
+.ribbon{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;position:relative;align-items:start;}
+.ribbon-stage{display:flex;flex-direction:column;align-items:center;gap:8px;position:relative;cursor:pointer;text-decoration:none;color:inherit;padding:8px 4px;border-radius:8px;transition:background 0.15s;}
+.ribbon-stage:hover{background:rgba(0,48,135,0.04);}
+.ribbon-num{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#B8860B,#FFD66B);color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;letter-spacing:-0.5px;box-shadow:0 4px 10px rgba(184,134,11,0.22);}
+.ribbon-label{font-size:11.5px;font-weight:800;color:var(--nhs-dark);text-align:center;line-height:1.3;letter-spacing:0.2px;}
+.ribbon-substage{font-size:10px;font-weight:600;color:var(--text-sec);text-align:center;letter-spacing:0.4px;margin-top:2px;}
+
+/* FRAMING */
+.framing{padding:50px 60px 36px;background:#fff;}
+.framing-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.framing-tile{background:linear-gradient(135deg,#F4F8FC,#FFFFFF);border:1px solid #D5E8F0;border-radius:14px;padding:24px 26px;}
+.framing-tile-eyebrow{font-size:10px;font-weight:800;letter-spacing:1.8px;color:#B8860B;text-transform:uppercase;margin-bottom:8px;}
+.framing-tile-h{font-size:16px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.2px;margin-bottom:10px;line-height:1.3;}
+.framing-tile-body{font-size:13px;color:var(--text-sec);line-height:1.65;}
+.framing-tile-body strong{color:var(--text);font-weight:700;}
+
+/* STAGES */
+.stages{padding:24px 60px 60px;background:#fff;}
+.stage{display:grid;grid-template-columns:80px 1fr;gap:36px;padding:48px 0;border-top:1px solid var(--border-lt);}
+.stage:first-child{border-top:none;}
+.stage-side{display:flex;flex-direction:column;align-items:center;gap:14px;}
+.stage-number{font-size:48px;font-weight:900;color:#B8860B;letter-spacing:-2px;opacity:0.22;line-height:1;}
+.stage-main{}
+.stage-eyebrow{font-size:11px;font-weight:800;letter-spacing:1.8px;color:#B8860B;text-transform:uppercase;margin-bottom:10px;}
+.stage-title{font-size:24px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.5px;line-height:1.32;margin-bottom:22px;}
+.stage-image{background:linear-gradient(135deg,#F4F8FC,#E8F1F6);border-radius:12px;padding:32px 24px;text-align:center;color:var(--text-muted);margin-bottom:22px;border:1px dashed #B5D4E5;font-size:12px;font-weight:600;letter-spacing:0.3px;line-height:1.55;}
+.stage-image-icon{font-size:36px;opacity:0.4;margin-bottom:6px;}
+.stage-image-caption{font-size:11px;font-weight:500;opacity:0.85;letter-spacing:0.3px;margin-top:6px;}
+.pull-quote{margin:24px auto 28px;padding:32px 20px 28px;text-align:center;position:relative;max-width:820px;}
+.pull-quote::before{content:'\201C';position:absolute;left:8px;top:-18px;font-size:110px;color:#C9A227;font-family:Georgia,'Times New Roman',serif;line-height:1;opacity:0.65;pointer-events:none;}
+.pull-quote-text{font-size:24px;font-weight:600;color:var(--text,#212B32);line-height:1.45;letter-spacing:-0.3px;max-width:780px;margin:0 auto;font-style:italic;}
+.pull-quote-attribution{font-size:11.5px;font-weight:800;letter-spacing:2px;color:#C9A227;text-transform:uppercase;margin-top:18px;}
+@media(max-width:720px){.pull-quote-text{font-size:20px;}.pull-quote::before{font-size:84px;top:-10px;}}
+.whats-happening{background:#F4F8FC;border:1px solid #d6e2ef;border-radius:12px;padding:18px 22px;margin-bottom:14px;}
+.whats-happening-label{font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:var(--nhs-blue);text-transform:uppercase;margin-bottom:8px;}
+.whats-happening-body{font-size:13px;color:var(--text-sec);line-height:1.7;}
+.whats-happening-body strong{color:var(--text);font-weight:700;}
+.old-way{background:#fbf3ef;border:1px solid #f0d9cd;border-radius:12px;padding:18px 22px;margin-bottom:14px;}
+.old-way-label{font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:#A65A2C;text-transform:uppercase;margin-bottom:8px;}
+.old-way-body{font-size:13px;color:var(--text-sec);line-height:1.7;}
+.careteam{display:flex;align-items:flex-start;gap:14px;background:#F4F8FC;border-radius:12px;padding:16px 20px;margin-bottom:14px;}
+.careteam-icon{font-size:22px;flex-shrink:0;line-height:1.2;}
+.careteam-body{flex:1;}
+.careteam-label{font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:var(--nhs-blue);text-transform:uppercase;margin-bottom:6px;}
+.careteam-text{font-size:13px;color:var(--text-sec);line-height:1.65;}
+.crosslinks{background:#fff;border:1px dashed var(--border-lt);border-radius:10px;padding:14px 18px;}
+.crosslinks-label{font-size:10px;font-weight:800;letter-spacing:1.4px;color:var(--text-muted);text-transform:uppercase;margin-bottom:8px;}
+.crosslinks-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;font-size:12px;}
+.crosslinks-tag{background:var(--nhs-dark);color:#fff;font-size:9.5px;font-weight:800;letter-spacing:1px;padding:3px 8px;border-radius:4px;text-transform:uppercase;}
+.crosslinks a{color:var(--nhs-blue);text-decoration:none;font-weight:700;}
+.crosslinks a:hover{text-decoration:underline;}
+
+/* OUTCOME */
+.outcome{background:linear-gradient(135deg,#B8860B,#FFD66B);color:#fff;padding:50px 60px;text-align:center;}
+.outcome-eyebrow{font-size:11px;font-weight:800;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:16px;}
+.outcome-title{font-size:34px;font-weight:900;color:#fff;letter-spacing:-1px;line-height:1.15;margin-bottom:18px;}
+.outcome-body{font-size:15.5px;color:rgba(255,255,255,0.92);line-height:1.7;max-width:760px;margin:0 auto 22px;}
+.outcome-body strong{color:var(--gold);font-weight:700;}
+.outcome-cta{display:inline-flex;gap:14px;flex-wrap:wrap;justify-content:center;}
+.outcome-btn{background:var(--gold);color:var(--nhs-dark);font-size:13px;font-weight:800;letter-spacing:0.3px;padding:12px 22px;border-radius:99px;text-decoration:none;}
+.outcome-btn:hover{background:#fff;}
+.outcome-btn-sec{background:transparent;color:#fff;font-size:12.5px;font-weight:700;letter-spacing:0.3px;padding:10px 22px;border:1.5px solid rgba(255,255,255,0.45);border-radius:99px;text-decoration:none;}
+.outcome-btn-sec:hover{background:rgba(255,255,255,0.10);}
+
+@media print {
+  .topnav { display: none !important; }
+  .hm-witness .hmw-card { display:block !important; position:static; transform:none; width:auto; max-width:none; margin:8px 0; box-shadow:none; border:1px solid #ccc; }
+}
+
+@media (max-width:880px) {
+  .hero{padding:48px 30px 40px;}
+  .hero-inner{grid-template-columns:1fr;gap:30px;}
+  .hero-title{font-size:46px;}
+  .ribbon-wrap{padding:24px 24px 22px;}
+  .ribbon{grid-template-columns:repeat(3,1fr);gap:12px;}
+  .framing{padding:36px 30px 24px;}
+  .framing-grid{grid-template-columns:1fr;}
+  .stages{padding:14px 30px 40px;}
+  .stage{grid-template-columns:1fr;gap:20px;padding:32px 0;}
+  .stage-side{flex-direction:row;justify-content:flex-start;}
+  .stage-number{font-size:36px;}
+  .outcome{padding:36px 30px;}
+  .outcome-title{font-size:26px;}
+}
+</style>
+</head>
+<body>
+<div class="ecosystem-nav">
+  <a href="../index.html">← DTx Ecosystem</a>
+  <span class="nav-context">Catherine Journey</span>
+  <span class="nav-product dtx">DTx</span>
+</div>
+
+<nav class="topnav">
+<a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+<div class="nav-siblings">
+ <a href="DTx OM - Why.html">Why</a>
+ <a href="DTx OM - What.html">What</a>
+ <a href="DTx OM - Lifecycle.html">When</a>
+ <a href="DTx OM - HomeTest Operational.html">How</a>
+ <a href="DTx OM - Governance.html">Who</a>
+ <a href="DTx OM - Hearts and Minds.html" class="active">Hearts and Minds</a>
+ <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>
+ <a href="DTx OM - Status.html">Status</a>
+</div>
+</nav>
+
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-rule"></div>
+        <div class="hero-eyebrow">An ICB commissioner&apos;s story through the operating model</div>
+        <h1 class="hero-title">Catherine commissions <em>the pathway</em>.<br>Not each patient.</h1>
+        <p class="hero-strap">Catherine commissions the PSA active-surveillance pathway across her Integrated Care Board. Consultant urologists across her acute Trusts follow the NICE NG131 monitoring cadence for men on AS; the patient volume runs into hundreds annually across her ICB. Today the pathway sits on outpatient tariff and phlebotomy access, both of which are pinching against post-pandemic clinic capacity. She has the budget envelope, an NHS-mandate route into her Trust partners, and no existing framework to lean on for home-collected sampling at scale. <strong>This is the story of one ICB commissioner, one platform, one national arrangement, and an operating model that lets her commission the pathway rather than each patient.</strong></p>
+      </div>
+      <div class="hero-portrait-box">
+        <div class="hero-portrait-circ">
+          <img src="img/Catherine%20hero.png" alt="Catherine">
+        </div>
+        <div class="hero-portrait-name">Catherine</div>
+        <div class="hero-portrait-role">ICB commissioner<br>HomeTest PSA active surveillance</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIBBON -->
+  <div class="ribbon-wrap">
+    <div class="ribbon-eyebrow">Catherine&apos;s journey at a glance &middot; six stages, one platform</div>
+    <div class="ribbon">
+      <a class="ribbon-stage" href="#stage-1">
+        <div class="ribbon-num">1</div>
+        <div class="ribbon-label">The brief</div>
+        <div class="ribbon-substage">A gap on the dashboard</div>
+      </a>
+      <a class="ribbon-stage" href="#stage-2">
+        <div class="ribbon-num">2</div>
+        <div class="ribbon-label">One front door</div>
+        <div class="ribbon-substage">The framework opens</div>
+      </a>
+      <a class="ribbon-stage" href="#stage-3">
+        <div class="ribbon-num">3</div>
+        <div class="ribbon-label">Fit for HER cohort</div>
+        <div class="ribbon-substage">The questions standard answers don&apos;t solve</div>
+      </a>
+      <a class="ribbon-stage" href="#stage-4">
+        <div class="ribbon-num">4</div>
+        <div class="ribbon-label">One call-off</div>
+        <div class="ribbon-substage">Signing, not procuring</div>
+      </a>
+      <a class="ribbon-stage" href="#stage-5">
+        <div class="ribbon-num">5</div>
+        <div class="ribbon-label">Live operation</div>
+        <div class="ribbon-substage">Kits out, results back</div>
+      </a>
+      <a class="ribbon-stage" href="#stage-6">
+        <div class="ribbon-num">6</div>
+        <div class="ribbon-label">The board paper</div>
+        <div class="ribbon-substage">What the members see</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- FRAMING -->
+  <div class="framing">
+    <div class="framing-grid">
+      <div class="framing-tile">
+        <div class="framing-tile-eyebrow">The North Star</div>
+        <div class="framing-tile-h">Commission the pathway, not the patient. So the ICB buys once and the AS caseload holds together across Trusts.</div>
+        <div class="framing-tile-body">ICB commissioners do not want a separate contract per Trust. They want one pathway-level arrangement that every AS patient in their system can flow through, regardless of which Trust is doing their monitoring. The operating model exists so the ICB commissions the AS pathway once at pathway level and each Trust plugs in against a common national arrangement. <strong>Pathway-level commissioning is the North Star</strong>, because effort spent stitching Trust-by-Trust deals is effort not spent on the caseload.</div>
+      </div>
+      <div class="framing-tile">
+        <div class="framing-tile-eyebrow">Why one platform matters to her</div>
+        <div class="framing-tile-h">One national arrangement. One pathway. One platform every AS patient in her ICB can flow through.</div>
+        <div class="framing-tile-body">A bespoke PSA-AS deal with one Trust would buy one deployment. The next Trust in her ICB (or the next AS-adjacent pathway) would mean another arrangement, another assurance set, another contract, another integration. The national arrangement means Catherine commissions the pathway once, every Trust in her ICB plugs into the same call-off, the same MI feed answers the same questions, and the next AS-adjacent pathway is an extension. <strong>The integration was done before she walked in.</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAGES -->
+  <div class="stages">
+
+    <!-- STAGE 1 -->
+    <div class="stage" id="stage-1">
+      <div class="stage-side">
+        <div class="stage-number">01</div>
+      </div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">The brief &middot; an AS caseload, a monitoring gap, a pathway to commission</div>
+        <h2 class="stage-title">Catherine has an AS monitoring cohort of several hundred men across her ICB, held on active surveillance under NICE NG131 clinical pathway guidance. The monitoring cadence is quarterly to six-monthly PSA testing for the first two years, then annual. Her acute Trusts run the reviews through consultant urologists; the phlebotomy step is currently in-clinic and eating outpatient capacity. Her Chief Medical Officer wants the monitoring cadence to hold without pulling more urology capacity into the room. She has the budget envelope, the mandate route into her Trust partners, and no existing framework to lean on. <span class="hm-witness" data-moment="catherine-s1"></span></h2>
+
+        <div class="stage-image" style="padding:0;border:none;background:none;margin-bottom:22px;"><img src="img/Catherine%201.png" alt="Catherine Stage 1" style="width:100%;height:auto;border-radius:12px;display:block;box-shadow:0 8px 24px rgba(0,32,64,0.12);"></div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">The AS cohort is holding steady but the phlebotomy step is eating clinic slots. If I don&apos;t solve the sample-collection question, the monitoring cadence slips and the caseload starts falling out of surveillance.</p>
+          <div class="pull-quote-attribution">Catherine</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">NICE NG131 CPG 1-2 monitoring guidance, ICB caseload data across the AS register, outpatient tariff cost per follow-up, phlebotomy waiting times across her Trust footprint. Consultant urologist views on which points in the pathway are safe to shift to home-collected sampling. The clinical case sits on capillary PSA testing accredited to UKAS ISO 15189 with an AS-appropriate CV and MU. <strong>What&apos;s in front of her is a pathway-level commissioning arrangement, integration with each Trust&apos;s pathology workflow, and a call-off mechanism that doesn&apos;t require every Trust to negotiate separately.</strong></div>
+        </div>
+
+        <div class="old-way">
+          <div class="old-way-label">The old way</div>
+          <div class="old-way-body">A bilateral Trust-by-Trust negotiation for each partner in her ICB. Six to nine months per Trust. Clinical safety assurance and IG per Trust variation. Bespoke pathway design per Trust. Twelve to fifteen months from Board paper to first kit at the first Trust, longer to reach caseload coverage across the ICB. By the time the second Trust is live, the first Trust&apos;s pathway has drifted. Fragmentation over speed.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What the care team sees</div>
+            <div class="careteam-text">Her ICB Chief Medical Officer. Consultant urologists from her Trust partners running AS clinics. Her ICB IG lead. The clinical safety lead from her acute Trust pathology network. Her ICB commercial team, looking at NHS-mandate routing rather than external procurement.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 2 -->
+    <div class="stage" id="stage-2">
+      <div class="stage-side">
+        <div class="stage-number">02</div>
+      </div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">One front door &middot; the framework opens</div>
+        <h2 class="stage-title">She opens the framework. The HomeTest platform is admitted. The PSA-AS configuration is live under UKAS ISO 15189:2022 accredited capillary PSA testing. Suppliers listed against published call-off terms. Clinical safety case starter template ready. IG templates ready. National pricing visible. No pathway to design from scratch. <span class="hm-witness" data-moment="catherine-s2"></span></h2>
+
+        <div class="stage-image" style="padding:0;border:none;background:none;margin-bottom:22px;"><img src="img/Catherine%202.png" alt="Catherine Stage 2" style="width:100%;height:auto;border-radius:12px;display:block;box-shadow:0 8px 24px rgba(0,32,64,0.12);"></div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">I expected to be writing a Trust-by-Trust spec. I&apos;m looking at a national arrangement I can call off at ICB level. The heavy lifting was done before I logged in.</p>
+          <div class="pull-quote-attribution">Catherine</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">The framework page. Admitted suppliers with UKAS-accredited capillary PSA analytical performance. Standard ICB call-off terms. DSA, DPIA, privacy notice and clinical safety case starter templates pre-built. GP-record and Trust EPR integration patterns published. NICE NG131 alignment documented. Consultant urologist workflow overlay for the AS pathway. <strong>The route is published; Catherine just has to choose to take it.</strong></div>
+        </div>
+
+        <div class="old-way">
+          <div class="old-way-label">The old way</div>
+          <div class="old-way-body">A clean-sheet negotiation with the first Trust to volunteer. Bespoke clinical safety case per Trust. Bespoke IG per Trust. Bespoke MI per Trust. Three months per Trust before the first contract draft. Six Trusts equals eighteen months of stitching.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What the care team sees</div>
+            <div class="careteam-text">The platform&apos;s commissioner-engagement contact for the PSA-AS configuration. Her ICB commercial team, sense-checking the NHS-mandate call-off route. Her Trust partners&apos; consultant urology leads, sense-checking how the pathway plugs into their AS clinics.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 3 -->
+    <div class="stage" id="stage-3">
+      <div class="stage-side">
+        <div class="stage-number">03</div>
+      </div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">Fit for the AS cohort &middot; the questions the pathway has to answer</div>
+        <h2 class="stage-title">Catherine runs her AS-cohort-specific questions against the framework. Do we have a defensible analytical performance for capillary PSA at the AS clinical decision points? What happens with the small proportion of men whose PSA trend triggers re-biopsy? Who holds the pathway-adjustment decision when the trend moves the wrong way? Does the clinical safety case cover the escalation from AS into active treatment? She runs her list against the framework, expecting friction. <span class="hm-witness" data-moment="catherine-s3"></span></h2>
+
+        <div class="stage-image" style="padding:0;border:none;background:none;margin-bottom:22px;"><img src="img/Catherine%203.png" alt="Catherine Stage 3" style="width:100%;height:auto;border-radius:12px;display:block;box-shadow:0 8px 24px rgba(0,32,64,0.12);"></div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">The AS cohort has clinical trigger points. I need to know that home-collected PSA doesn&apos;t soften the trend detection. If the analytical performance is fit for the AS decision points, the pathway works. If it isn&apos;t, the pathway is dangerous.</p>
+          <div class="pull-quote-attribution">Catherine</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">Her AS-cohort questions against the framework&apos;s clinical documentation. UKAS ISO 15189:2022 accredited capillary PSA analytical performance sheet with declared CV and MU at the clinical decision concentrations. NICE NG131 cadence mapped to the platform&apos;s ordering rhythm. Consultant-urologist-led escalation pathway documented. Re-biopsy trigger workflow with GP-record write-back. Clinical safety case addendum for the AS-specific pathway. <strong>The framework either answers these or it doesn&apos;t. Catherine finds out before signing.</strong></div>
+        </div>
+
+        <div class="old-way">
+          <div class="old-way-label">The old way</div>
+          <div class="old-way-body">Six rounds of meetings with each supplier to interrogate analytical performance and clinical safety per Trust. Bespoke pathway design per Trust. Pilot phase running into year two. Or, in the worst case, skip the AS-specific interrogation and assume the general framework covers it. The pattern from bespoke deployments: analytical performance not fit for the AS decision points, trend detection softens, escalations missed.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What the care team sees</div>
+            <div class="careteam-text">Her ICB clinical lead for cancer pathways. Consultant urologists from her Trust partners running AS clinics. The platform&apos;s clinical safety case lead. Her ICB IG lead reviewing the AS-specific data flow.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 4 -->
+    <div class="stage" id="stage-4">
+      <div class="stage-side">
+        <div class="stage-number">04</div>
+      </div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">The NHS mandate &middot; commissioning the pathway</div>
+        <h2 class="stage-title">Catherine commissions the AS pathway at ICB level via an NHS mandate route. Not an external procurement. Not a bespoke tender. A pathway-level commissioning arrangement under which each Trust in her ICB partners into a common national platform. Six weeks from brief to first live Trust, not eighteen months. Payment via published call-off terms. The procurement scar she carried in is not the arrangement she signed. <span class="hm-witness" data-moment="catherine-s4"></span></h2>
+
+        <div class="stage-image" style="padding:0;border:none;background:none;margin-bottom:22px;"><img src="img/Catherine%204.png" alt="Catherine Stage 4" style="width:100%;height:auto;border-radius:12px;display:block;box-shadow:0 8px 24px rgba(0,32,64,0.12);"></div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">I&apos;ve commissioned pathways that took eighteen months of Trust-by-Trust negotiation. The eighteen months I didn&apos;t spend stitching is the eighteen months my AS cohort didn&apos;t drift.</p>
+          <div class="pull-quote-attribution">Catherine</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">The ICB-level call-off itself. Suppliers admitted to the platform under the PSA-AS configuration. Each Trust partner brought into the arrangement via a common commissioning schedule. DSAs executed against the framework&apos;s template. Clinical safety case approved by each Trust CSO using the framework&apos;s AS-specific starter case as the spine. First batch of kits ordered against the AS caseload at the pilot Trust. GP-record and Trust EPR integration switched on. <strong>Every step has a published template. Nothing is being designed in the moment.</strong></div>
+        </div>
+
+        <div class="old-way">
+          <div class="old-way-label">The old way</div>
+          <div class="old-way-body">A multi-year bilateral contract with each Trust plus each supplier. Bespoke pricing schedule per Trust. Bespoke clinical safety case per Trust. Bespoke IG per Trust. Each adding months to the deployment timeline. Each reducing the budget left for the actual monitoring.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What the care team sees</div>
+            <div class="careteam-text">Her ICB commercial team handling the mandate route. Each Trust partner&apos;s Chief Medical Officer and clinical safety lead. The platform&apos;s engagement contact handling the ICB-level call-off. The supplier&apos;s clinical operations lead.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 5 -->
+    <div class="stage" id="stage-5">
+      <div class="stage-side">
+        <div class="stage-number">05</div>
+      </div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">Live operation &middot; kits out, results back</div>
+        <h2 class="stage-title">First quarter live at the pilot Trust. Kits going out to AS patients on their monitoring cadence. Capillary PSA results returning into consultant urologist review lists ahead of AS clinic follow-ups. Trend analysis running against each patient&apos;s AS baseline. The pathway holds. Second and third Trusts due to activate over the next two quarters against the same call-off. <span class="hm-witness" data-moment="catherine-s5"></span></h2>
+
+        <div class="stage-image" style="padding:0;border:none;background:none;margin-bottom:22px;"><img src="img/Catherine%205.png" alt="Catherine Stage 5" style="width:100%;height:auto;border-radius:12px;display:block;box-shadow:0 8px 24px rgba(0,32,64,0.12);"></div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">Patients don&apos;t see commissioning. They see a kit in the post and their consultant urologist opening the AS review with the number already in front of them. The pathway holds.</p>
+          <div class="pull-quote-attribution">Catherine</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">The MI dashboard. Kits ordered. Kits delivered. Results returned. AS-review-cycle completion rate. Trend movements and re-biopsy triggers. Outpatient clinic minutes released per patient. Trust-level utilisation of the framework across her ICB. Equity reach across her deprived wards. Reactive support paths for out-of-range PSA results. <strong>The numbers are visible in real time. Catherine doesn&apos;t need to wait for the annual return.</strong></div>
+        </div>
+
+        <div class="old-way">
+          <div class="old-way-label">The old way</div>
+          <div class="old-way-body">Trust-by-Trust MI. Manual reconciliation across her partners to see the ICB-level picture. Manual chasing of AS clinic completion rates. No comparable view across her Trusts until the annual report. The risk: finding out a year late that the pilot Trust&apos;s AS drift was masking a system-level issue.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What the care team sees</div>
+            <div class="careteam-text">Trust consultant urologists running AS clinics. The supplier running the kit logistics. The platform running the data layer with GP-record and Trust EPR write-back. Each Trust&apos;s clinical governance running local safety oversight. Catherine looking at the ICB-level MI feed weekly.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 6 -->
+    <div class="stage" id="stage-6">
+      <div class="stage-side">
+        <div class="stage-number">06</div>
+      </div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">The ICB paper &middot; what the CMO sees</div>
+        <h2 class="stage-title">First-year outcomes across the ICB. AS-cohort monitoring cadence hold rate. Re-biopsy trigger detection at the same or better rate than in-clinic phlebotomy. Outpatient clinic minutes released. Trust-by-Trust adoption curve. The ICB paper writes itself. The next year&apos;s ask is for the next AS-adjacent pathway, not the next procurement. <span class="hm-witness" data-moment="catherine-s6"></span></h2>
+
+        <div class="stage-image" style="padding:0;border:none;background:none;margin-bottom:22px;"><img src="img/Catherine%206.png" alt="Catherine Stage 6" style="width:100%;height:auto;border-radius:12px;display:block;box-shadow:0 8px 24px rgba(0,32,64,0.12);"></div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">The Chief Medical Officer wanted to know whether the cadence held. The numbers do most of the talking. The pathway-level commissioning behind them is what made the numbers possible.</p>
+          <div class="pull-quote-attribution">Catherine</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">AS-monitoring cadence hold rate against the ICB baseline. Re-biopsy trigger detection versus the in-clinic comparator. Outpatient minutes released per AS patient per year. Cost per AS patient per year against the pre-framework baseline. Patient-reported experience. Reactive-pathway performance for out-of-range PSA results. The recommendation for year two: extend to the next AS-adjacent pathway the platform admits. <strong>Same framework. Same call-off shape. Same MI feed.</strong></div>
+        </div>
+
+        <div class="old-way">
+          <div class="old-way-label">The old way</div>
+          <div class="old-way-body">A ICB paper hedged with per-Trust data still maturing. Three years before an ICB-level pattern could be evaluated. By which time the pilot Trust&apos;s executive had rotated, the funding envelope had shifted, and the AS cohort had drifted.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What the care team sees</div>
+            <div class="careteam-text">The ICB Chief Medical Officer. The ICB executive committee. Trust chief execs across her partners. The ICB finance team setting the next year&apos;s pathway envelope.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- OUTCOME -->
+  <div class="outcome">
+    <div class="outcome-eyebrow">Catherine&apos;s win</div>
+    <h2 class="outcome-title">AS cadence held across her Trusts. Outpatient minutes released. Re-biopsy triggers detected earlier.</h2>
+    <p class="outcome-body">The AS patients didn&apos;t see commissioning. They saw a kit in the post and their consultant urologist opening the review with the number already in front of them. <strong>The eighteen months Catherine didn&apos;t spend stitching Trust deals is the eighteen months her AS cohort didn&apos;t drift out of surveillance.</strong> The next AS-adjacent pathway is an extension of the same signature, not a new arrangement from a clean sheet.</p>
+    <div class="outcome-cta">
+      <a href="DTx OM - Persona Catherine.html" class="outcome-btn">Open Catherine&apos;s persona &rarr;</a>
+      <a href="DTx OM - Hearts and Minds.html" class="outcome-btn-sec">Back to Hearts and Minds &rarr;</a>
+    </div>
+  </div>
+
+</div>
+
+<script src="../hearts-and-minds/hm-witness.js"></script>
+
+</body>
+</html>
