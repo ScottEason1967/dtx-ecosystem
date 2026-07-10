@@ -98,12 +98,18 @@
   .ngozi-card.open-q { border-left-color:var(--amber); background:var(--warm-cream); }
 
 
+  
+
   /* persona-colour-cascade */
   .amber-rule{background:#7C2855 !important;}
   .h-title{color:#7C2855 !important;}
   .h-role{color:#7C2855 !important;}
   .h-quote{border-left-color:#7C2855 !important;}
   .section-h{color:#7C2855 !important;}
+  .where-panel{background:#F5E8ED !important;border-left-color:#7C2855 !important;}
+  .where-panel .label{color:#7C2855 !important;}
+  .where-list li::before{background:#7C2855 !important;}
+  .open-q-block{border-left-color:#7C2855 !important;}
   /* end persona-colour-cascade */
 </style>
 <style>
@@ -268,7 +274,7 @@
 
     <div class="ngozi-card">
       <div class="ngozi-card-h">The test that decides whether a legal direction is required</div>
-      <div class="ngozi-card-body">Five factors decide it: <strong>what data is being used</strong>, <strong>for what purpose</strong>, <strong>who is the controller</strong>, <strong>whether the data is being matched against other datasets (secondary uses)</strong>, and <strong>whether the data is anonymous or pseudonymised</strong>. Each new configuration runs the test. If a factor moves beyond what an existing direction covers, a new or amended direction is needed. If everything sits within an existing direction, the configuration deploys under it. The framework is built so the test is run early in <a href="DTx OM - Lifecycle.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">SHAPE</a>, not discovered at the end of <a href="DTx OM - Lifecycle.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">CONTRACT</a>. The widest plausible list of data controllers and data flows is asked for upfront, not bolted on later, because revising a direction mid-flight is painful.</div>
+      <div class="ngozi-card-body">Five factors decide it: <strong>what data is being used</strong>, <strong>for what purpose</strong>, <strong>who is the controller</strong>, <strong>whether the data is being matched against other datasets (secondary uses)</strong>, and <strong>whether the data is anonymous or pseudonymised</strong>. Each new configuration runs the test. If a factor moves beyond what an existing direction covers, a new or amended direction is needed. If everything sits within an existing direction, the configuration deploys under it. The framework is built so the test is run early in <a href="DTx OM - Lifecycle.html" style="color:#7C2855;font-weight:700;text-decoration:none;">SHAPE</a>, not discovered at the end of <a href="DTx OM - Lifecycle.html" style="color:#7C2855;font-weight:700;text-decoration:none;">CONTRACT</a>. The widest plausible list of data controllers and data flows is asked for upfront, not bolted on later, because revising a direction mid-flight is painful.</div>
     </div>
 
     <div class="ngozi-card">
@@ -296,11 +302,11 @@
 
   <h2 class="section-h">Where Ngozi appears in the model</h2>
   <ul class="where-list">
-    <li>Information Governance actor row on the <a href="DTx OM - HomeTest Operational.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">How</a> swim lanes</li>
-    <li>IG overlay on the <a href="DTx OM - Anatomical.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">What</a> page (alongside Clinical pathway, Commercial, Supply chain etc.)</li>
-    <li>The ASSURE and CONTRACT stages on the <a href="DTx OM - Lifecycle.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">When</a> page</li>
-    <li>RACI rows for DPIA, DSA, controller designation and IAO on the <a href="DTx OM - Governance.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">Who</a> page</li>
-    <li>The platform envelope on the <a href="DTx OM - Why.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">Why</a> page Venn, alongside Aisha (clinical framework) and David (commercial framework). The IG framework is the third layer the platform holds.</li>
+    <li>Information Governance actor row on the <a href="DTx OM - HomeTest Operational.html" style="color:#7C2855;font-weight:700;text-decoration:none;">How</a> swim lanes</li>
+    <li>IG overlay on the <a href="DTx OM - Anatomical.html" style="color:#7C2855;font-weight:700;text-decoration:none;">What</a> page (alongside Clinical pathway, Commercial, Supply chain etc.)</li>
+    <li>The ASSURE and CONTRACT stages on the <a href="DTx OM - Lifecycle.html" style="color:#7C2855;font-weight:700;text-decoration:none;">When</a> page</li>
+    <li>RACI rows for DPIA, DSA, controller designation and IAO on the <a href="DTx OM - Governance.html" style="color:#7C2855;font-weight:700;text-decoration:none;">Who</a> page</li>
+    <li>The platform envelope on the <a href="DTx OM - Why.html" style="color:#7C2855;font-weight:700;text-decoration:none;">Why</a> page Venn, alongside Aisha (clinical framework) and David (commercial framework). The IG framework is the third layer the platform holds.</li>
   </ul>
 
   <h2 class="section-h" style="margin-top:48px;">TOM components,  what this persona owns or participates in</h2>
