@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hannah&apos;s story: Digital Therapeutics Operating Model</title>
+<style>
+ .topnav{background:#fff;border-bottom:1px solid #ebeef1;padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;box-shadow:0 2px 14px rgba(0,48,135,0.10);position:sticky;top:0;z-index:200;}
+ .nav-back{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;}
+ .nav-back:hover{color:#005EB8;}
+ .nav-siblings{display:flex;gap:4px;flex-wrap:wrap;}
+ .nav-siblings a{font-size:12.5px;font-weight:600;color:#4C6272;text-decoration:none;padding:7px 14px;border-radius:6px;letter-spacing:0.2px;}
+ .nav-siblings a:hover{background:#f0f4f8;color:#212B32;}
+ .nav-siblings a.active{background:#003087;color:#fff;}
+
+:root {
+  --nhs-dark:#003087;
+  --nhs-blue:#005EB8;
+  --amber:#FFB91D;
+  --amber-deep:#C9A227;
+  --gold:#FFD66B;
+  --warm-cream:#FFF9EC;
+  --text:#212B32;
+  --text-sec:#4C6272;
+  --text-muted:#7E8B97;
+  --border-lt:#ebeef1;
+  --card:#ffffff;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,var(--nhs-blue) 0%, var(--nhs-dark) 100%);background-attachment:fixed;color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;margin:0;padding:0;width:100%;}
+
+.page{max-width:1180px;margin:30px auto 50px;background:#ffffff;border-radius:18px;box-shadow:0 14px 40px rgba(0,48,135,0.20);overflow:hidden;}
+
+/* HERO */
+.hero{position:relative;padding:70px 60px 60px;background:linear-gradient(135deg,#001a4d 0%,#003087 50%,#005EB8 100%);color:#fff;overflow:hidden;}
+.hero::after{content:'';position:absolute;right:-80px;bottom:-120px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(201,160,227,0.28),transparent 65%);pointer-events:none;}
+.hero-inner{position:relative;display:grid;grid-template-columns:1.5fr 1fr;gap:50px;align-items:center;z-index:1;}
+.hero-rule{width:60px;height:4px;background:var(--gold);border-radius:2px;margin-bottom:22px;}
+.hero-eyebrow{font-size:11px;font-weight:800;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:24px;}
+.hero-title{font-size:64px;font-weight:900;color:#fff;letter-spacing:-2px;line-height:0.98;margin-bottom:28px;}
+.hero-title em{font-style:normal;color:var(--gold);}
+.hero-strap{font-size:17px;color:rgba(255,255,255,0.94);line-height:1.65;max-width:560px;}
+.hero-strap strong{color:var(--gold);font-weight:700;}
+.hero-portrait-box{display:flex;flex-direction:column;align-items:center;gap:14px;}
+.hero-portrait-circ{width:280px;height:280px;border-radius:50%;overflow:hidden;border:6px solid rgba(201,160,227,0.45);box-shadow:0 14px 36px rgba(0,0,0,0.35);background:#fff;}
+.hero-portrait-circ img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;}
+.hero-portrait-name{font-size:18px;font-weight:800;color:#fff;letter-spacing:0.4px;}
+.hero-portrait-role{font-size:11px;color:var(--gold);letter-spacing:1.4px;text-transform:uppercase;font-weight:700;text-align:center;line-height:1.4;}
+
+/* RIBBON */
+.ribbon-wrap{background:#fafbfd;border-bottom:1px solid var(--border-lt);padding:32px 60px 28px;}
+.ribbon-eyebrow{font-size:10.5px;font-weight:800;letter-spacing:2px;color:var(--text-muted);text-transform:uppercase;margin-bottom:14px;text-align:center;}
+.ribbon{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;position:relative;align-items:start;}
+.ribbon-stage{display:flex;flex-direction:column;align-items:center;gap:8px;position:relative;cursor:pointer;text-decoration:none;color:inherit;padding:8px 4px;border-radius:8px;transition:background 0.15s;}
+.ribbon-stage:hover{background:rgba(0,48,135,0.04);}
+.ribbon-num{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#7E57C2,#C9A0E3);color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;letter-spacing:-0.5px;box-shadow:0 4px 10px rgba(126,87,194,0.22);}
+.ribbon-label{font-size:11.5px;font-weight:800;color:var(--nhs-dark);text-align:center;line-height:1.3;letter-spacing:0.2px;}
+.ribbon-substage{font-size:10px;font-weight:600;color:var(--text-sec);text-align:center;letter-spacing:0.4px;margin-top:2px;}
+
+/* FRAMING */
+.framing{padding:50px 60px 36px;background:#fff;}
+.framing-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.framing-tile{background:linear-gradient(135deg,#F4F8FC,#FFFFFF);border:1px solid #D5E8F0;border-radius:14px;padding:24px 26px;}
+.framing-tile-eyebrow{font-size:10px;font-weight:800;letter-spacing:1.8px;color:#7E57C2;text-transform:uppercase;margin-bottom:8px;}
+.framing-tile-h{font-size:16px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.2px;margin-bottom:10px;line-height:1.3;}
+.framing-tile-body{font-size:13px;color:var(--text-sec);line-height:1.65;}
+.framing-tile-body strong{color:var(--text);font-weight:700;}
+
+/* STAGES */
+.stages{padding:24px 60px 60px;background:#fff;}
+.stage{display:grid;grid-template-columns:80px 1fr;gap:36px;padding:48px 0;border-top:1px solid var(--border-lt);}
+.stage:first-child{border-top:none;}
+.stage-side{display:flex;flex-direction:column;align-items:center;gap:14px;}
+.stage-number{font-size:48px;font-weight:900;color:#7E57C2;letter-spacing:-2px;opacity:0.22;line-height:1;}
+.stage-main{}
+.stage-eyebrow{font-size:11px;font-weight:800;letter-spacing:1.8px;color:#7E57C2;text-transform:uppercase;margin-bottom:10px;}
+.stage-title{font-size:24px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.5px;line-height:1.32;margin-bottom:22px;}
+.stage-image{background:linear-gradient(135deg,#F4F8FC,#E8F1F6);border-radius:12px;padding:32px 24px;text-align:center;color:var(--text-muted);margin-bottom:22px;border:1px dashed #B5D4E5;font-size:12px;font-weight:600;letter-spacing:0.3px;line-height:1.55;}
+.stage-image-icon{font-size:36px;opacity:0.4;margin-bottom:6px;}
+.stage-image-caption{font-size:11px;font-weight:500;opacity:0.85;letter-spacing:0.3px;margin-top:6px;}
+.pull-quote{margin:24px auto 28px;padding:32px 20px 28px;text-align:center;position:relative;max-width:820px;}
+.pull-quote::before{content:'\201C';position:absolute;left:8px;top:-18px;font-size:110px;color:#C9A227;font-family:Georgia,'Times New Roman',serif;line-height:1;opacity:0.65;pointer-events:none;}
+.pull-quote-text{font-size:24px;font-weight:600;color:var(--text,#212B32);line-height:1.45;letter-spacing:-0.3px;max-width:780px;margin:0 auto;font-style:italic;}
+.pull-quote-attribution{font-size:11.5px;font-weight:800;letter-spacing:2px;color:#C9A227;text-transform:uppercase;margin-top:18px;}
+@media(max-width:720px){.pull-quote-text{font-size:20px;}.pull-quote::before{font-size:84px;top:-10px;}}
+.whats-happening{background:#F4F8FC;border:1px solid #d6e2ef;border-radius:12px;padding:18px 22px;margin-bottom:14px;}
+.whats-happening-label{font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:var(--nhs-blue);text-transform:uppercase;margin-bottom:8px;}
+.whats-happening-body{font-size:13px;color:var(--text-sec);line-height:1.7;}
+.whats-happening-body strong{color:var(--text);font-weight:700;}
+.old-way{background:#fbf3ef;border:1px solid #f0d9cd;border-radius:12px;padding:18px 22px;margin-bottom:14px;}
+.old-way-label{font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:#A65A2C;text-transform:uppercase;margin-bottom:8px;}
+.old-way-body{font-size:13px;color:var(--text-sec);line-height:1.7;}
+.careteam{display:flex;align-items:flex-start;gap:14px;background:#F4F8FC;border-radius:12px;padding:16px 20px;margin-bottom:14px;}
+.careteam-icon{font-size:22px;flex-shrink:0;line-height:1.2;}
+.careteam-body{flex:1;}
+.careteam-label{font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:var(--nhs-blue);text-transform:uppercase;margin-bottom:6px;}
+.careteam-text{font-size:13px;color:var(--text-sec);line-height:1.65;}
+.crosslinks{background:#fff;border:1px dashed var(--border-lt);border-radius:10px;padding:14px 18px;}
+.crosslinks-label{font-size:10px;font-weight:800;letter-spacing:1.4px;color:var(--text-muted);text-transform:uppercase;margin-bottom:8px;}
+.crosslinks-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;font-size:12px;}
+.crosslinks-tag{background:var(--nhs-dark);color:#fff;font-size:9.5px;font-weight:800;letter-spacing:1px;padding:3px 8px;border-radius:4px;text-transform:uppercase;}
+.crosslinks a{color:var(--nhs-blue);text-decoration:none;font-weight:700;}
+.crosslinks a:hover{text-decoration:underline;}
+
+/* OUTCOME */
+.outcome{background:linear-gradient(135deg,#7E57C2,#C9A0E3);color:#fff;padding:50px 60px;text-align:center;}
+.outcome-eyebrow{font-size:11px;font-weight:800;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:16px;}
+.outcome-title{font-size:34px;font-weight:900;color:#fff;letter-spacing:-1px;line-height:1.15;margin-bottom:18px;}
+.outcome-body{font-size:15.5px;color:rgba(255,255,255,0.92);line-height:1.7;max-width:760px;margin:0 auto 22px;}
+.outcome-body strong{color:var(--gold);font-weight:700;}
+.outcome-cta{display:inline-flex;gap:14px;flex-wrap:wrap;justify-content:center;}
+.outcome-btn{background:var(--gold);color:var(--nhs-dark);font-size:13px;font-weight:800;letter-spacing:0.3px;padding:12px 22px;border-radius:99px;text-decoration:none;}
+.outcome-btn:hover{background:#fff;}
+.outcome-btn-sec{background:transparent;color:#fff;font-size:12.5px;font-weight:700;letter-spacing:0.3px;padding:10px 22px;border:1.5px solid rgba(255,255,255,0.45);border-radius:99px;text-decoration:none;}
+.outcome-btn-sec:hover{background:rgba(255,255,255,0.10);}
+
+@media print {
+  .topnav { display: none !important; }
+  .hm-witness .hmw-card { display:block !important; position:static; transform:none; width:auto; max-width:none; margin:8px 0; box-shadow:none; border:1px solid #ccc; }
+}
+
+@media (max-width:880px) {
+  .hero{padding:48px 30px 40px;}
+  .hero-inner{grid-template-columns:1fr;gap:30px;}
+  .hero-title{font-size:46px;}
+  .ribbon-wrap{padding:24px 24px 22px;}
+  .ribbon{grid-template-columns:repeat(3,1fr);gap:12px;}
+  .framing{padding:36px 30px 24px;}
+  .framing-grid{grid-template-columns:1fr;}
+  .stages{padding:14px 30px 40px;}
+  .stage{grid-template-columns:1fr;gap:20px;padding:32px 0;}
+  .stage-side{flex-direction:row;justify-content:flex-start;}
+  .stage-number{font-size:36px;}
+  .outcome{padding:36px 30px;}
+  .outcome-title{font-size:26px;}
+}
+</style>
+</head>
+<body>
+<div class="ecosystem-nav">
+  <a href="../index.html">← DTx Ecosystem</a>
+  <span class="nav-context">Hannah Journey</span>
+  <span class="nav-product dtx">DTx</span>
+</div>
+
+<nav class="topnav">
+<a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+<div class="nav-siblings">
+ <a href="DTx OM - Why.html">Why</a>
+ <a href="DTx OM - What.html">What</a>
+ <a href="DTx OM - Lifecycle.html">When</a>
+ <a href="DTx OM - HomeTest Operational.html">How</a>
+ <a href="DTx OM - Governance.html">Who</a>
+ <a href="DTx OM - Hearts and Minds.html" class="active">Hearts and Minds</a>
+ <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>
+ <a href="DTx OM - Status.html">Status</a>
+</div>
+</nav>
+
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-rule"></div>
+        <div class="hero-eyebrow">A clinician&apos;s story through the operating model</div>
+        <h1 class="hero-title">The bloods that<br><em>never needed</em><br>a clinic.</h1>
+        <p class="hero-strap">Hannah is a GP partner. She runs the routine Iron deficiency anaemia review cycle for her practice. Layla is on her list. So are a hundred others. Every quarter she runs the same six-month FBC clinic, and every quarter the same patients miss the appointment, get rebooked, and miss again. The cycle has nothing to do with the bloods themselves. <strong>This is the story of how the model lets her hold the cohort without holding their diaries.</strong></p>
+      </div>
+      <div class="hero-portrait-box">
+        <div class="hero-portrait-circ">
+          <img src="img/Hannah%20hero.png" alt="Hannah">
+        </div>
+        <div class="hero-portrait-name">Hannah</div>
+        <div class="hero-portrait-role">GP partner<br>Primary-care monitoring</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIBBON -->
+  <div class="ribbon-wrap">
+    <div class="ribbon-eyebrow">Hannah&apos;s journey at a glance &middot; six stages, one practice</div>
+    <div class="ribbon">
+      <a class="ribbon-stage" href="#stage-1">
+        <div class="ribbon-num">1</div>
+        <div class="ribbon-label">The list</div>
+        <div class="ribbon-substage">The patients she keeps rebooking</div>
+      </a>
+      <a class="ribbon-stage" href="#stage-2">
+        <div class="ribbon-num">2</div>
+        <div class="ribbon-label">The missed appointment</div>
+        <div class="ribbon-substage">15m a year, £216m, every practice in England</div>
+      </a>
+      <a class="ribbon-stage" href="#stage-3">
+        <div class="ribbon-num">3</div>
+        <div class="ribbon-label">The model&apos;s offer</div>
+        <div class="ribbon-substage">Kit out, result back to her record</div>
+      </a>
+      <a class="ribbon-stage" href="#stage-4">
+        <div class="ribbon-num">4</div>
+        <div class="ribbon-label">First home prescriptions</div>
+        <div class="ribbon-substage">Layla and the early cohort</div>
+      </a>
+      <a class="ribbon-stage" href="#stage-5">
+        <div class="ribbon-num">5</div>
+        <div class="ribbon-label">Routine monitoring in flight</div>
+        <div class="ribbon-substage">FBCs in the record, not in the diary</div>
+      </a>
+      <a class="ribbon-stage" href="#stage-6">
+        <div class="ribbon-num">6</div>
+        <div class="ribbon-label">The practice shape now</div>
+        <div class="ribbon-substage">Slots for the patients who need clinic</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- FRAMING -->
+  <div class="framing">
+    <div class="framing-grid">
+      <div class="framing-tile">
+        <div class="framing-tile-eyebrow">The clinical North Star</div>
+        <div class="framing-tile-h">The clinical accountability does not move. The venue does.</div>
+        <div class="framing-tile-body">Hannah is not interested in a model that bypasses her record or sends raw numbers to a patient. The FBC result lands in her GP system as if it had been drawn at the practice. <strong>The kit changes where the blood is taken. It does not change who reads the trend or who decides what happens next.</strong></div>
+      </div>
+      <div class="framing-tile">
+        <div class="framing-tile-eyebrow">Why this works for her practice</div>
+        <div class="framing-tile-h">Phlebotomy load lifted. DNA cycle broken. Capacity returned to the patients who need clinic.</div>
+        <div class="framing-tile-body"><strong>Practice-nurse phlebotomy</strong> is a scarce resource, and the routine monitoring cycle consumes a lot of it. <strong>DNA-driven rework</strong> compounds the problem: missed appointment, rebook, miss again. <strong>The home-test cycle</strong> removes the venue constraint, returns the practice nurse slot to acute or complex patients, and surfaces the trend on Hannah&apos;s screen on time.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAGES -->
+  <div class="stages">
+
+    <!-- STAGE 1 -->
+    <div class="stage" id="stage-1">
+      <div class="stage-side"><div class="stage-number">01</div></div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">The list &middot; the patients she keeps rebooking</div>
+        <h2 class="stage-title">Hannah&apos;s list shows a hundred-odd patients on the Iron deficiency anaemia review cycle. Several names have a familiar rhythm: booked, missed, rebooked, missed again. Layla is one of them. The clinical risk lives with the patients who fall out of the cycle, not the patients she sees. <span class="hm-witness" data-moment="hannah-s1"></span></h2>
+
+        <div class="stage-image" style="padding:0;border:none;background:none;margin-bottom:22px;"><img src="img/Hannah%201.png" alt="Hannah Stage 1" style="width:100%;height:auto;border-radius:12px;display:block;box-shadow:0 8px 24px rgba(0,32,64,0.12);"></div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">The bloods are not the problem. The clinic was always the wrong venue for routine monitoring. The patients I lose are the patients who were never going to be able to come in at 11am on a Tuesday.</p>
+          <div class="pull-quote-attribution">Hannah</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">A practice list of patients on iron supplementation due 6-month FBC monitoring. A diary that books them in 10-minute slots. A practice-nurse rota that runs full. A familiar cluster of DNA-flagged names. <strong>The clinical question is: how do I hold these patients in the monitoring cycle without my clinic capacity being the bottleneck?</strong></div>
+        </div>
+
+        <div class="old-way">
+          <div class="old-way-label">The old way</div>
+          <div class="old-way-body">Book, miss, rebook, miss again. Or worse, drift out of monitoring entirely and re-present with deficiency anaemia symptoms months later. The cycle treats every patient as if they can come in on a Tuesday morning. Most can. Some can&apos;t. The ones who can&apos;t are the ones the cycle quietly drops.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What the care team sees</div>
+            <div class="careteam-text">Her practice nurse. Her practice manager on diary capacity. Anita on the ICB / GP commissioner side. The patient.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 2 -->
+    <div class="stage" id="stage-2">
+      <div class="stage-side"><div class="stage-number">02</div></div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">The missed appointment &middot; the structural problem</div>
+        <h2 class="stage-title">Fifteen million general-practice appointments are missed in England every year. Two hundred and sixteen million pounds. The routine monitoring slot is precisely the kind of appointment that breaks first. The patient gets blamed for &lsquo;not engaging&rsquo;; the venue takes none of the responsibility. <span class="hm-witness" data-moment="hannah-s2"></span></h2>
+
+        <div class="stage-image" style="padding:0;border:none;background:none;margin-bottom:22px;"><img src="img/Hannah%202.png" alt="Hannah Stage 2" style="width:100%;height:auto;border-radius:12px;display:block;box-shadow:0 8px 24px rgba(0,32,64,0.12);"></div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">Layla wasn&apos;t refusing care. She was keeping her job, getting her kids to school, looking after a parent. The clinic was always the wrong venue. The risk was always in the model, not in her.</p>
+          <div class="pull-quote-attribution">Hannah</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">Around 15 million general-practice appointments are missed each year, costing the NHS ~£216m. Routine monitoring appointments DNA at a higher rate than acute or complex visits. Around 307 million GP sessions are scheduled annually. <strong>The home-test cycle is the way to remove the venue cost from the bloods that never needed clinic in the first place.</strong></div>
+        </div>
+
+        <div class="old-way">
+          <div class="old-way-label">The old way</div>
+          <div class="old-way-body">Patients drop out of monitoring. Deficiency anaemia gets re-detected later, often via A&amp;E or an acute appointment. The cost lands on a different part of the system. The original missed appointment looks &lsquo;just&rsquo; like £30. The downstream cost is much larger.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What the care team sees</div>
+            <div class="careteam-text">Anita, on the ICB / GP commissioner side, paying for the access problem. The other GP partners running the same DNA curve. The practice nurses doing the rebooking work.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 3 -->
+    <div class="stage" id="stage-3">
+      <div class="stage-side"><div class="stage-number">03</div></div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">The model&apos;s offer &middot; kit out, result to her record</div>
+        <h2 class="stage-title">A home FBC kit ordered against Hannah&apos;s prescription. The sample comes back to the lab. The result lands in her GP system before the appointment that did not happen would have happened. The clinical role is preserved. The diary is not. <span class="hm-witness" data-moment="hannah-s3"></span></h2>
+
+        <div class="stage-image" style="padding:0;border:none;background:none;margin-bottom:22px;"><img src="img/Hannah%203.png" alt="Hannah Stage 3" style="width:100%;height:auto;border-radius:12px;display:block;box-shadow:0 8px 24px rgba(0,32,64,0.12);"></div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">If the result lands in the record, with the trend, and the clinical interpretation is still mine, the kit is just a change of venue. The clinical accountability does not move. That is what I needed to know.</p>
+          <div class="pull-quote-attribution">Hannah</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">The result returns to Hannah&apos;s GP system via the framework&apos;s EPR write-back. The trend display is unchanged. The clinical review remains hers. Threshold alerts escalate to her in the same way an in-clinic FBC would. <strong>The patient experiences a kit. Hannah experiences the result on the same screen as always.</strong></div>
+        </div>
+
+        <div class="old-way">
+          <div class="old-way-label">The old way</div>
+          <div class="old-way-body">A model that sends FBC results directly to the patient as raw numbers, or sits the results in a parallel system her practice does not see. Either would have killed adoption. Hannah is not interested in a model that routes around her.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What the care team sees</div>
+            <div class="careteam-text">Aisha, the Clinical Safety Group lead, owning the safety case for primary-care home testing. Ngozi, the Information Governance lead, on the EPR write-back DSA. The kit supplier on lab assurance.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 4 -->
+    <div class="stage" id="stage-4">
+      <div class="stage-side"><div class="stage-number">04</div></div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">First home prescriptions &middot; Layla and the early cohort</div>
+        <h2 class="stage-title">Hannah picks the first patients carefully. Stable iron status, comfortable with the kit, the patients whose missed-appointment record is a logistics problem and not a clinical one. Layla is one of the first. The kit goes home, the result comes back, the diary slot stays free. <span class="hm-witness" data-moment="hannah-s4"></span></h2>
+
+        <div class="stage-image" style="padding:0;border:none;background:none;margin-bottom:22px;"><img src="img/Hannah%204.png" alt="Hannah Stage 4" style="width:100%;height:auto;border-radius:12px;display:block;box-shadow:0 8px 24px rgba(0,32,64,0.12);"></div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">Patients I would already trust to manage their own monitoring if the tooling existed. Stable trend, comfortable with the kit, family at home if needed. The model meets Layla where she already is.</p>
+          <div class="pull-quote-attribution">Hannah</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">A short conversation at the end of the in-clinic appointment: would you be comfortable doing the next FBC at home? Almost every patient says yes. The kit ships via the framework supplier. The patient takes the sample on the date the clinic would have happened. The lab processes it. The result lands in Hannah&apos;s system on time. <strong>The clinic visit that did not happen is one the practice did not have capacity for anyway.</strong></div>
+        </div>
+
+        <div class="old-way">
+          <div class="old-way-label">The old way</div>
+          <div class="old-way-body">Every patient comes in every six months. No tier of patients reading their own monitoring rhythm. No practice-nurse time freed for the patients who clinically need it. The clinic-only model treats every patient as if they need clinic time, regardless of whether they clinically do.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What the care team sees</div>
+            <div class="careteam-text">The practice nurse coordinating onboarding. The supplier shipping the kit. The lab processing the sample. The framework platform writing the result back. The patient.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 5 -->
+    <div class="stage" id="stage-5">
+      <div class="stage-side"><div class="stage-number">05</div></div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">Routine monitoring in flight &middot; FBCs in the record, not in the diary</div>
+        <h2 class="stage-title">The cohort settles. Routine FBCs arrive on time, in trend, in the record. Threshold breaches escalate to her in the same channel she already uses. The practice diary is no longer the limit on how many patients she can hold in the cycle. <span class="hm-witness" data-moment="hannah-s5"></span></h2>
+
+        <div class="stage-image" style="padding:0;border:none;background:none;margin-bottom:22px;"><img src="img/Hannah%205.png" alt="Hannah Stage 5" style="width:100%;height:auto;border-radius:12px;display:block;box-shadow:0 8px 24px rgba(0,32,64,0.12);"></div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">The silence is the result. Most of these results are routine, and routine is the point. When something does change, it changes on my screen with everything else around it, not three months later in a missed-appointment letter.</p>
+          <div class="pull-quote-attribution">Hannah</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">Routine in-range FBCs are reviewed in trend by Hannah in the same rhythm she would use for in-clinic results. Threshold breaches (haemoglobin, ferritin) trigger an alert and a routine review. Patients who would benefit from clinic come in; patients on a stable trend stay home for the next cycle. <strong>The system surfaces clinical signal, not appointment volume.</strong></div>
+        </div>
+
+        <div class="old-way">
+          <div class="old-way-label">The old way</div>
+          <div class="old-way-body">Every six months, every patient, in clinic regardless of trend. Most appointments confirmed stability rather than detecting change. The clinically uneventful patients shared diary space with the patients who needed clinic, and the patients who needed clinic waited longer.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What the care team sees</div>
+            <div class="careteam-text">Hannah, holding the trend review. The practice nurse, coordinating between routine and escalation. Priya on the platform data layer, ensuring the result writes back to the GP system cleanly. The patient.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 6 -->
+    <div class="stage" id="stage-6">
+      <div class="stage-side"><div class="stage-number">06</div></div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">The practice shape now &middot; slots for the patients who need clinic</div>
+        <h2 class="stage-title">More patients in monitoring. Fewer drop-outs. The practice nurse&apos;s diary now holds the appointments that actually need her. Routine FBCs run quietly through the home pathway and the practice access-target line goes the right way for the first time in a long time. <span class="hm-witness" data-moment="hannah-s6"></span></h2>
+
+        <div class="stage-image" style="padding:0;border:none;background:none;margin-bottom:22px;"><img src="img/Hannah%206.png" alt="Hannah Stage 6" style="width:100%;height:auto;border-radius:12px;display:block;box-shadow:0 8px 24px rgba(0,32,64,0.12);"></div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">The patients I worried about are still in the cycle. The practice nurse is doing work she should always have been doing. The bloods are happening on time. That is the version of this that was worth doing.</p>
+          <div class="pull-quote-attribution">Hannah</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">Cohort size on routine monitoring up. DNA rate on the routine-monitoring slot sharply down. Practice-nurse time reallocated from FBC draws to acute and complex appointments. Access-target performance on routine appointments improving. <strong>The same practice team holds more patients in monitoring than the clinic-only model could, with no extra clinic capacity.</strong> The model passes the test that mattered to Hannah: clinical accountability preserved, reach extended, practice nurse capacity returned.</div>
+        </div>
+
+        <div class="old-way">
+          <div class="old-way-label">The old way</div>
+          <div class="old-way-body">Cohort size capped by practice capacity. DNA rates flat or rising. Practice-nurse phlebotomy slots consuming the workforce time the practice most needed for acute care. Routine monitoring patients silently dropping out of the cycle.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What the care team sees</div>
+            <div class="careteam-text">Hannah and the practice nurse, holding a larger cohort with no extra diary cost. Anita, the ICB / GP commissioner, seeing released capacity flow into access metrics. Layla and the other patients on the cohort, getting on with their lives.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- OUTCOME -->
+  <div class="outcome">
+    <div class="outcome-eyebrow">Hannah&apos;s win</div>
+    <h2 class="outcome-title">More patients in monitoring. Practice nurse time returned. Access targets moving in the right direction.</h2>
+    <p class="outcome-body">The patients did not see a model. They saw a kit through the post and a routine cycle that kept them in monitoring without keeping them out of work. <strong>The appointments that did not happen are appointments the practice did not have capacity for anyway.</strong> The patients who needed clinic time now find a slot when they need one.</p>
+    <div class="outcome-cta">
+      <a href="DTx OM - Persona Hannah.html" class="outcome-btn">Open Hannah&apos;s persona &rarr;</a>
+      <a href="DTx OM - Hearts and Minds.html" class="outcome-btn-sec">Back to Hearts and Minds &rarr;</a>
+    </div>
+  </div>
+
+</div>
+
+<script src="../hearts-and-minds/hm-witness.js"></script>
+
+</body>
+</html>

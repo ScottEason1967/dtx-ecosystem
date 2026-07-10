@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Joe&apos;s story: Digital Therapeutics Operating Model</title>
+<style>
+  :root{--nhs-dark:#003087;--nhs-blue:#005EB8;--nhs-green:#006747;--nhs-pink:#AE2573;--amber:#FFB91D;--amber-deep:#C9A227;--warm-cream:#FFF9EC;--accent:#1B3A6B;--gold:#FFD66B;--text:#212B32;--text-sec:#4C6272;--text-muted:#7E8B97;--border-lt:#ebeef1;--card:#fff;--bg:#f8fafc;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,var(--nhs-blue) 0%,var(--nhs-dark) 100%);background-attachment:fixed;color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100vh;}
+  .topnav{background:#fff;border-bottom:1px solid var(--border-lt);padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;box-shadow:0 2px 14px rgba(0,48,135,0.18);}
+  .nav-back{font-size:13px;font-weight:700;color:var(--nhs-dark);text-decoration:none;display:inline-flex;align-items:center;gap:6px;}
+  .nav-back:hover{color:var(--nhs-blue);}
+  .nav-siblings{display:flex;gap:4px;flex-wrap:wrap;}
+  .nav-siblings a{font-size:12.5px;font-weight:600;color:var(--text-sec);text-decoration:none;padding:7px 14px;border-radius:6px;letter-spacing:0.2px;}
+  .nav-siblings a:hover{background:#f0f4f8;color:var(--text);}
+  .nav-siblings a.active{background:var(--nhs-green);color:#fff;}
+  .page{max-width:1180px;margin:30px auto 50px;background:#fff;border-radius:18px;box-shadow:0 14px 40px rgba(0,48,135,0.20);overflow:hidden;}
+  /* HERO */
+  .hero{position:relative;padding:70px 60px 60px;background:linear-gradient(135deg,#001a4d 0%,#003087 50%,#005EB8 100%);color:#fff;overflow:hidden;}
+  .hero::after{content:'';position:absolute;right:-80px;bottom:-120px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(91,192,147,0.22),transparent 65%);pointer-events:none;}
+  .hero-inner{position:relative;display:grid;grid-template-columns:1.5fr 1fr;gap:50px;align-items:center;z-index:1;}
+  .hero-rule{width:60px;height:4px;background:var(--gold);border-radius:2px;margin-bottom:22px;}
+  .hero-eyebrow{font-size:11px;font-weight:800;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:24px;}
+  .hero-title{font-size:60px;font-weight:900;color:#fff;letter-spacing:-1.8px;line-height:1;margin-bottom:28px;}
+  .hero-title em{font-style:normal;color:var(--gold);}
+  .hero-strap{font-size:17px;color:rgba(255,255,255,0.94);line-height:1.65;max-width:560px;}
+  .hero-strap strong{color:var(--gold);font-weight:700;}
+  .hero-portrait-box{display:flex;flex-direction:column;align-items:center;gap:14px;}
+  .hero-portrait-circ{width:280px;height:280px;border-radius:50%;overflow:hidden;border:6px solid rgba(91,192,147,0.40);box-shadow:0 14px 36px rgba(0,0,0,0.35);background:#fff;}
+  .hero-portrait-circ img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;}
+  .hero-portrait-name{font-size:18px;font-weight:800;color:#fff;letter-spacing:0.4px;}
+  .hero-portrait-role{font-size:11px;color:var(--gold);letter-spacing:1.4px;text-transform:uppercase;font-weight:700;text-align:center;line-height:1.4;}
+  /* RIBBON */
+  .ribbon-wrap{background:#fafbfd;border-bottom:1px solid var(--border-lt);padding:32px 60px 28px;}
+  .ribbon-eyebrow{font-size:10.5px;font-weight:800;letter-spacing:2px;color:var(--text-muted);text-transform:uppercase;margin-bottom:14px;text-align:center;}
+  .ribbon{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;position:relative;align-items:start;}
+  .ribbon-stage{display:flex;flex-direction:column;align-items:center;gap:8px;position:relative;cursor:pointer;text-decoration:none;color:inherit;padding:8px 4px;border-radius:8px;transition:background 0.15s;}
+  .ribbon-stage:hover{background:rgba(0,48,135,0.04);}
+  .ribbon-num{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--nhs-green),#5BC093);color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;letter-spacing:-0.5px;box-shadow:0 4px 10px rgba(0,103,71,0.22);}
+  .ribbon-label{font-size:11.5px;font-weight:800;color:var(--nhs-dark);text-align:center;line-height:1.3;letter-spacing:0.2px;}
+  .ribbon-substage{font-size:10px;font-weight:600;color:var(--text-sec);text-align:center;letter-spacing:0.4px;margin-top:2px;}
+  /* FRAMING */
+  .framing{padding:50px 60px 36px;background:#fff;}
+  .framing-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  .framing-tile{background:linear-gradient(135deg,#F4F8FC,#FFFFFF);border:1px solid #D5E8F0;border-radius:14px;padding:24px 26px;}
+  .framing-tile-eyebrow{font-size:10px;font-weight:800;letter-spacing:1.8px;color:var(--nhs-green);text-transform:uppercase;margin-bottom:8px;}
+  .framing-tile-h{font-size:16px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.2px;margin-bottom:10px;line-height:1.3;}
+  .framing-tile-body{font-size:13px;color:var(--text-sec);line-height:1.65;}
+  .framing-tile-body strong{color:var(--text);font-weight:700;}
+  /* STAGES */
+  .stages{padding:24px 60px 60px;background:#fff;}
+  .stage{display:grid;grid-template-columns:80px 1fr;gap:36px;padding:48px 0;border-top:1px solid var(--border-lt);}
+  .stage:first-child{border-top:none;}
+  .stage-side{display:flex;flex-direction:column;align-items:center;gap:14px;}
+  .stage-number{font-size:48px;font-weight:900;color:var(--nhs-green);letter-spacing:-2px;opacity:0.22;line-height:1;}
+  .stage-eyebrow{font-size:11px;font-weight:800;letter-spacing:1.8px;color:var(--nhs-green);text-transform:uppercase;margin-bottom:10px;}
+  .stage-title{font-size:24px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.5px;line-height:1.32;margin-bottom:22px;}
+  .stage-image{background:linear-gradient(135deg,#F4F8FC,#E8F1F6);border-radius:12px;padding:32px 24px;text-align:center;color:var(--text-muted);margin-bottom:22px;border:1px dashed #B5D4E5;font-size:12px;font-weight:600;letter-spacing:0.3px;line-height:1.55;}
+  .stage-image-icon{font-size:36px;opacity:0.4;margin-bottom:6px;}
+  .stage-image-caption{font-size:11px;font-weight:500;opacity:0.85;letter-spacing:0.3px;margin-top:6px;}
+  .pull-quote{margin:24px auto 28px;padding:32px 20px 28px;text-align:center;position:relative;max-width:820px;}
+  .pull-quote::before{content:'\201C';position:absolute;left:8px;top:-18px;font-size:110px;color:#C9A227;font-family:Georgia,'Times New Roman',serif;line-height:1;opacity:0.65;pointer-events:none;}
+  .pull-quote-text{font-size:24px;font-weight:600;color:var(--text);line-height:1.45;letter-spacing:-0.3px;max-width:780px;margin:0 auto;font-style:italic;}
+  .pull-quote-attribution{font-size:11.5px;font-weight:800;letter-spacing:2px;color:#C9A227;text-transform:uppercase;margin-top:18px;}
+  @media(max-width:720px){.pull-quote-text{font-size:20px;}.pull-quote::before{font-size:84px;top:-10px;}}
+  .whats-happening{background:#F4F8FC;border:1px solid #d6e2ef;border-radius:12px;padding:18px 22px;margin-bottom:14px;}
+  .whats-happening-label{font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:var(--nhs-blue);text-transform:uppercase;margin-bottom:8px;}
+  .whats-happening-body{font-size:13px;color:var(--text-sec);line-height:1.7;}
+  .whats-happening-body strong{color:var(--text);font-weight:700;}
+  .old-way{background:#fbf3ef;border:1px solid #f0d9cd;border-radius:12px;padding:18px 22px;margin-bottom:14px;}
+  .old-way-label{font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:#A65A2C;text-transform:uppercase;margin-bottom:8px;}
+  .old-way-body{font-size:13px;color:var(--text-sec);line-height:1.7;}
+  .careteam{display:flex;align-items:flex-start;gap:14px;background:#F4F8FC;border-radius:12px;padding:16px 20px;margin-bottom:14px;}
+  .careteam-icon{font-size:22px;flex-shrink:0;line-height:1.2;}
+  .careteam-body{flex:1;}
+  .careteam-label{font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:var(--nhs-blue);text-transform:uppercase;margin-bottom:6px;}
+  .careteam-text{font-size:13px;color:var(--text-sec);line-height:1.65;}
+  .crosslinks{background:#fff;border:1px dashed var(--border-lt);border-radius:10px;padding:14px 18px;}
+  .crosslinks-label{font-size:10px;font-weight:800;letter-spacing:1.4px;color:var(--text-muted);text-transform:uppercase;margin-bottom:8px;}
+  .crosslinks-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;font-size:12px;}
+  .crosslinks-tag{background:var(--nhs-green);color:#fff;font-size:9.5px;font-weight:800;letter-spacing:1px;padding:3px 8px;border-radius:4px;text-transform:uppercase;}
+  .crosslinks a{color:var(--nhs-blue);text-decoration:none;font-weight:700;}
+  .crosslinks a:hover{text-decoration:underline;}
+  /* OUTCOME */
+  .outcome{background:linear-gradient(135deg,#006747,#5BC093);color:#fff;padding:50px 60px;text-align:center;}
+  .outcome-eyebrow{font-size:11px;font-weight:800;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:16px;}
+  .outcome-title{font-size:34px;font-weight:900;color:#fff;letter-spacing:-1px;line-height:1.15;margin-bottom:18px;}
+  .outcome-body{font-size:15.5px;color:rgba(255,255,255,0.94);line-height:1.7;max-width:760px;margin:0 auto 22px;}
+  .outcome-body strong{color:var(--gold);font-weight:700;}
+  .outcome-cta{display:inline-flex;gap:14px;flex-wrap:wrap;justify-content:center;}
+  .outcome-btn{background:var(--gold);color:var(--nhs-dark);font-size:13px;font-weight:800;letter-spacing:0.3px;padding:12px 22px;border-radius:99px;text-decoration:none;}
+  .outcome-btn:hover{background:#fff;}
+  .outcome-btn-sec{background:transparent;color:#fff;font-size:12.5px;font-weight:700;letter-spacing:0.3px;padding:10px 22px;border:1.5px solid rgba(255,255,255,0.45);border-radius:99px;text-decoration:none;}
+  .outcome-btn-sec:hover{background:rgba(255,255,255,0.10);}
+  @media print {
+    .topnav { display: none !important; }
+    .hm-witness .hmw-card { display:block !important; position:static; transform:none; width:auto; max-width:none; margin:8px 0; box-shadow:none; border:1px solid #ccc; }
+  }
+  @media (max-width:880px) {
+    .hero{padding:48px 30px 40px;}
+    .hero-inner{grid-template-columns:1fr;gap:30px;}
+    .hero-title{font-size:42px;}
+    .ribbon-wrap{padding:24px 24px 22px;}
+    .ribbon{grid-template-columns:repeat(3,1fr);gap:12px;}
+    .framing{padding:36px 30px 24px;}
+    .framing-grid{grid-template-columns:1fr;}
+    .stages{padding:14px 30px 40px;}
+    .stage{grid-template-columns:1fr;gap:20px;padding:32px 0;}
+    .stage-side{flex-direction:row;justify-content:flex-start;}
+    .stage-number{font-size:36px;}
+    .outcome{padding:36px 30px;}
+    .outcome-title{font-size:26px;}
+  }
+</style>
+</head>
+<body>
+<div class="ecosystem-nav">
+  <a href="../index.html">← DTx Ecosystem</a>
+  <span class="nav-context">Joe Journey</span>
+  <span class="nav-product dtx">DTx</span>
+</div>
+
+<nav class="topnav">
+<a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+<div class="nav-siblings">
+ <a href="DTx OM - Why.html">Why</a>
+ <a href="DTx OM - What.html">What</a>
+ <a href="DTx OM - Lifecycle.html">When</a>
+ <a href="DTx OM - HomeTest Operational.html">How</a>
+ <a href="DTx OM - Governance.html">Who</a>
+ <a href="DTx OM - Hearts and Minds.html" class="active">Hearts and Minds</a>
+ <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>
+ <a href="DTx OM - Status.html">Status</a>
+</div>
+</nav>
+
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-rule"></div>
+        <div class="hero-eyebrow">A supplier&apos;s story through the operating model</div>
+        <h1 class="hero-title">Admitted<br><em>once</em>.<br>Reused everywhere.</h1>
+        <p class="hero-strap">Joe runs a self-sample diagnostics business. Twenty staff, two labs, a kit, a clinical safety officer, the regulatory paperwork done. The market is fragmented, every commissioner wants their own DPIA, their own contract, their own assurance pack. <strong>This is the story of how the framework turns one admission into many deployments, without a fresh assurance pass each time.</strong></p>
+      </div>
+      <div class="hero-portrait-box">
+        <div class="hero-portrait-circ">
+          <img src="img/Joe%20hero.png" alt="Joe">
+        </div>
+        <div class="hero-portrait-name">Joe</div>
+        <div class="hero-portrait-role">Self-sample supplier<br>Framework-admitted</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIBBON -->
+  <div class="ribbon-wrap">
+    <div class="ribbon-eyebrow">Joe&apos;s journey at a glance &middot; six stages, one admission</div>
+    <div class="ribbon">
+      <a class="ribbon-stage" href="#stage-1">
+        <div class="ribbon-num">1</div>
+        <div class="ribbon-label">Find the framework</div>
+        <div class="ribbon-substage">Public criteria pack</div>
+      </a>
+      <a class="ribbon-stage" href="#stage-2">
+        <div class="ribbon-num">2</div>
+        <div class="ribbon-label">Self-assess</div>
+        <div class="ribbon-substage">No NHSE meeting needed yet</div>
+      </a>
+      <a class="ribbon-stage" href="#stage-3">
+        <div class="ribbon-num">3</div>
+        <div class="ribbon-label">Submit the EOI</div>
+        <div class="ribbon-substage">Structured, evidenced</div>
+      </a>
+      <a class="ribbon-stage" href="#stage-4">
+        <div class="ribbon-num">4</div>
+        <div class="ribbon-label">Through the gate</div>
+        <div class="ribbon-substage">Triage, review, conformance</div>
+      </a>
+      <a class="ribbon-stage" href="#stage-5">
+        <div class="ribbon-num">5</div>
+        <div class="ribbon-label">First commissioner calls off</div>
+        <div class="ribbon-substage">No re-assurance</div>
+      </a>
+      <a class="ribbon-stage" href="#stage-6">
+        <div class="ribbon-num">6</div>
+        <div class="ribbon-label">Reuse across the cohort</div>
+        <div class="ribbon-substage">One certificate, many deployments</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- FRAMING -->
+  <div class="framing">
+    <div class="framing-grid">
+      <div class="framing-tile">
+        <div class="framing-tile-eyebrow">The supplier-side North Star</div>
+        <div class="framing-tile-h">Assure once. Reuse nationally.</div>
+        <div class="framing-tile-body">A supplier evidences core compliance once per API they connect to. Adding a new test under an onboarded API is a lightweight check, not a full repeat. The clinical safety case, the IG package and the lab assurance are then portable across every commissioner who calls them off. <strong>The local body acts as the deployment authority. Not as a re-assurer.</strong></div>
+      </div>
+      <div class="framing-tile">
+        <div class="framing-tile-eyebrow">Why this works for his business</div>
+        <div class="framing-tile-h">No per-commissioner negotiation. One conformance certificate, fifty deployments.</div>
+        <div class="framing-tile-body"><strong>Bespoke per-LA contracting</strong> historically takes 3-6 months per call-off. <strong>Per-deployment DPIA and DSA</strong> reassessment burns clinical and IG capacity Joe does not have. <strong>The framework</strong> publishes the templates once and admits the supplier once. Every call-off that follows lands on the same artefact stack, the same contract template, the same conformance certificate.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAGES -->
+  <div class="stages">
+
+    <!-- STAGE 1 -->
+    <div class="stage" id="stage-1">
+      <div class="stage-side"><div class="stage-number">01</div></div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">Find the framework &middot; the public criteria pack</div>
+        <h2 class="stage-title">Joe sees the framework on Future NHS. The public criteria pack sits at one URL, linked from the HomeTest and HealthStore public pages and from Find a Tender. He reads it without booking a call, without an NDA, without an NHSE-side gatekeeper. The design point is that he can decide not to proceed before NHSE has heard his name.</h2>
+
+        <div class="stage-image" style="padding:0;border:none;background:none;margin-bottom:22px;"><img src="img/Joe%201.png" alt="Joe Stage 1" style="width:100%;height:auto;border-radius:12px;display:block;box-shadow:0 8px 24px rgba(0,32,64,0.12);"></div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">I have read enough NHS procurement packs to know what a closed door looks like. This one was open. I did not need to ask anyone&apos;s permission to read the criteria. I did not need to be on a list to know what the bar was.</p>
+          <div class="pull-quote-attribution">Joe</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">The framework publishes the criteria pack openly: <strong>five dimensions (commercial, clinical, IG, technical, operational), three tiers (core / scaled / aspirational), three access routes (standard / light-touch / partnership)</strong>. Future NHS hosts the canonical version. The HomeTest and HealthStore public pages link to it. Find a Tender carries it where a formal procurement is live. The pack is the door; reading it is the first step.</div>
+        </div>
+
+        <div class="old-way">
+          <div class="old-way-label">The old way</div>
+          <div class="old-way-body">A supplier discovers a new NHS procurement by tender notice, signs an NDA, joins a closed bidder community, and gets the criteria a fortnight before bid submission. The path is inside the procurement. The criteria are private until the procurement opens. Suppliers who could have self-selected out never had the chance.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What the care team sees</div>
+            <div class="careteam-text">Nobody at NHSE knows Joe exists yet. The Partnerships team maintain the public pages and the Future NHS posting. The framework sits as a self-service artefact.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 2 -->
+    <div class="stage" id="stage-2">
+      <div class="stage-side"><div class="stage-number">02</div></div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">Self-assess &middot; no NHSE meeting needed yet</div>
+        <h2 class="stage-title">Joe works through the published checklist using the boilerplate artefacts: the DPIA template, the DSA template, the privacy notice boilerplate, the clinical safety starter, the technical integration guide. He passes the core tier on all five dimensions. He is scaled-tier on clinical (DCB0129 evidence, clinical safety officer in post) and IG (DSPT done, Cyber Essentials Plus). He is sitting at the aspirational tier on technical (multi-pathway integration experience). He decides he is ready. <span class="hm-witness" data-moment="joe-s2"></span></h2>
+
+        <div class="stage-image" style="padding:0;border:none;background:none;margin-bottom:22px;"><img src="img/Joe%202.png" alt="Joe Stage 2" style="width:100%;height:auto;border-radius:12px;display:block;box-shadow:0 8px 24px rgba(0,32,64,0.12);"></div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">By the end of the self-assessment we knew where we passed, where we needed evidence, and where we were not ready. NHSE did not have to tell us. The pack did.</p>
+          <div class="pull-quote-attribution">Joe</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">The framework principle: <strong>self-declared evidence against published criteria is the first step</strong>. The boilerplate artefacts are versioned centrally and reused across pathways, Joe does not author a DPIA from scratch, he completes the NHSE template. The self-assessment output is a structured position against each criterion with references to the evidence Joe will produce at application stage. <strong>The grey-area calls escalate; the box-ticks run themselves.</strong></div>
+        </div>
+
+        <div class="old-way">
+          <div class="old-way-label">The old way</div>
+          <div class="old-way-body">A bidder produces a unique DPIA, a unique DSA, a unique privacy notice. Each commissioner reviews them locally with no shared baseline. The same supplier ends up with five different DPIAs across five LAs. The IG team review the same patterns five times. The supplier reformats five times.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What the care team sees</div>
+            <div class="careteam-text">Still nobody at NHSE. Joe&apos;s side: his clinical safety officer, his DPO, his commercial lead, his technical lead. They self-assess against the public pack.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 3 -->
+    <div class="stage" id="stage-3">
+      <div class="stage-side"><div class="stage-number">03</div></div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">Submit the EOI &middot; structured, evidenced</div>
+        <h2 class="stage-title">Joe submits the EOI through Atamis. The form is structured: APIs he wants to onboard to, scope (tests, pathways, territory), the self-assessment result by criterion, the evidence references. Nothing free-text. Nothing bespoke. He uploads his DCB0129 evidence pack, his DSPT certificate, his Cyber Essentials Plus letter, his accounts. He picks Route A, the standard route, because he is sitting at the scaled tier across all five dimensions. <span class="hm-witness" data-moment="joe-s3a"></span><span class="hm-witness" data-moment="joe-s3b"></span></h2>
+
+        <div class="stage-image" style="padding:0;border:none;background:none;margin-bottom:22px;"><img src="img/Joe%203.png" alt="Joe Stage 3" style="width:100%;height:auto;border-radius:12px;display:block;box-shadow:0 8px 24px rgba(0,32,64,0.12);"></div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">I did not get on a phone call to find out what they wanted from me. I uploaded what the pack asked for, against the route I had self-selected into. Then I waited.</p>
+          <div class="pull-quote-attribution">Joe</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">Atamis carries the formal procurement EOI. The submission is structured: <strong>API targets, scope declarations, criterion-by-criterion self-assessment results, evidence references</strong>. The platform stores the artefacts in a single tenancy that NHSE workstream leads will read against. A dedicated EOI form picks up the partnership routes for Year 1; both feed the same downstream review.</div>
+        </div>
+
+        <div class="old-way">
+          <div class="old-way-label">The old way</div>
+          <div class="old-way-body">A free-text proposal of 40+ pages addressing imprecise evaluation questions, with the bidder guessing at what each question is testing. The evaluation panel reads the proposal and tries to reconstruct what the supplier is offering. Material gets lost. Equivalent suppliers look different on paper because the structure is bespoke.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What the care team sees</div>
+            <div class="careteam-text">A new EOI lands in the Atamis tenancy. Operations team see a submission against the framework. Commercial Operations, IG team, Clinical Safety team and Head of Technology & Product are notified that a structured EOI is ready for review.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 4 -->
+    <div class="stage" id="stage-4">
+      <div class="stage-side"><div class="stage-number">04</div></div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">Through the gate &middot; triage, review, conformance</div>
+        <h2 class="stage-title">Automated triage checks Joe&apos;s submission for completeness and valid evidence references. It passes. The workstream leads pick it up: Commercial, IG, Clinical Safety, Technical, each reviews the dimension they own against a time-boxed SLA. There are two grey-area calls (one on clinical evidence novelty, one on operational SLA scope) that escalate to senior review. Both clear in a fortnight. Joe receives the conformance certificate. He is now an admitted framework supplier. <span class="hm-witness" data-moment="joe-s4a"></span><span class="hm-witness" data-moment="joe-s4b"></span><span class="hm-witness" data-moment="joe-s4c"></span><span class="hm-witness" data-moment="joe-s4d"></span></h2>
+
+        <div class="stage-image" style="padding:0;border:none;background:none;margin-bottom:22px;"><img src="img/Joe%204.png" alt="Joe Stage 4" style="width:100%;height:auto;border-radius:12px;display:block;box-shadow:0 8px 24px rgba(0,32,64,0.12);"></div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">The conformance certificate is the unlock. It is the same letter every commissioner will see when they call us off. The next ten conversations are about the deployment, not about whether we are good enough to be there.</p>
+          <div class="pull-quote-attribution">Joe</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">Automated triage checks completeness, valid evidence references and declared passes at core tier. Incomplete or non-qualifying submissions bounce back with specific feedback. Submissions that pass triage enter <strong>human review by workstream lead</strong>: commercial lead for commercial and operational, IG team for information governance, clinical safety for clinical, technical/platform team for technical. Review is time-boxed with a committed SLA. Grey-area judgements escalate. The conformance certificate is the output: a portable artefact that every commissioner will read as the once-and-reuse assurance.</div>
+        </div>
+
+        <div class="old-way">
+          <div class="old-way-label">The old way</div>
+          <div class="old-way-body">A bilateral conversation between each commissioner and the supplier, where the same evidence is reviewed five times because no central body has signed it off. The supplier carries the cost of duplicate scrutiny. The commissioner carries the risk of arriving at a different conclusion than the commissioner next door. The patient gets none of the value.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What the care team sees</div>
+            <div class="careteam-text">Commercial Operations (David), IG team (Ngozi), Clinical Safety (Aisha), Head of Technology & Product (Priya). Workstream leads review the dimension they own. Escalation route for grey-area calls. Conformance certificate signed off as a single artefact.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 5 -->
+    <div class="stage" id="stage-5">
+      <div class="stage-side"><div class="stage-number">05</div></div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">First commissioner calls off &middot; no re-assurance</div>
+        <h2 class="stage-title">A Local Authority commissioner calls Joe off the framework for HIV self-testing in her cohort. The DPIA template is already in place; the privacy notice text is already in the artefact stack; the clinical safety case starter is already mapped to the configuration. The LA&apos;s role is to deploy the service, not to reassure that the supplier is safe. From conformance certificate to live deployment takes weeks, not the months a bespoke negotiation would have taken. <span class="hm-witness" data-moment="joe-s5"></span></h2>
+
+        <div class="stage-image" style="padding:0;border:none;background:none;margin-bottom:22px;"><img src="img/Joe%205.png" alt="Joe Stage 5" style="width:100%;height:auto;border-radius:12px;display:block;box-shadow:0 8px 24px rgba(0,32,64,0.12);"></div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">Her first question was when we could go live, not whether we should be allowed to. That was the unlock.</p>
+          <div class="pull-quote-attribution">Joe</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">The commissioner calls Joe off using the framework call-off contract. The DPIA template is signed at the LA&apos;s controller layer; the DSA is the standing inherited template with LA-specific parties; the privacy notice text is already drafted; the clinical safety case starter is mapped to the configuration. <strong>The local body acts as the deployment authority, not as a re-assurer</strong>. The certificate is the trust marker.</div>
+        </div>
+
+        <div class="old-way">
+          <div class="old-way-label">The old way</div>
+          <div class="old-way-body">A 3-6 month bespoke negotiation per LA. The commissioner&apos;s legal team reviews terms from scratch. The IG team reviews the DPIA from scratch. The clinical safety team reviews the safety case from scratch. The supplier prepares a slightly different pack for each commissioner. The clinical service launch is delayed by the assurance cycle.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What the care team sees</div>
+            <div class="careteam-text">Sarah on the LA commissioner side. Joe&apos;s deployment lead. The local IG team confirming the DSA. Patient routing into the LA-commissioned service. The conformance certificate held centrally; the deployment held locally.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 6 -->
+    <div class="stage" id="stage-6">
+      <div class="stage-side"><div class="stage-number">06</div></div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">Reuse across the cohort &middot; one certificate, many deployments</div>
+        <h2 class="stage-title">An Acute Trust commissioner calls Joe off for PSA Active Surveillance. A GP commissioner calls him off for iron deficiency anaemia monitoring. A third commissioner is in conversation about a CVKM screening configuration. Same supplier. Three different conditions. Three different commissioner archetypes. Zero additional assurance burden. Each new test under the same API is a lightweight check; each new LA scope is a configuration change. Joe is in the cohort the framework was built for. <span class="hm-witness" data-moment="joe-s6a"></span><span class="hm-witness" data-moment="joe-s6b"></span></h2>
+
+        <div class="stage-image" style="padding:0;border:none;background:none;margin-bottom:22px;"><img src="img/Joe%206.png" alt="Joe Stage 6" style="width:100%;height:auto;border-radius:12px;display:block;box-shadow:0 8px 24px rgba(0,32,64,0.12);"></div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">I am the same business I was eighteen months ago. The framework changed what I could reach. One conformance certificate, three conditions, six commissioners, and counting.</p>
+          <div class="pull-quote-attribution">Joe</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">The principle of <strong>onboard-once-per-API</strong> doing its work. Joe&apos;s technical integration to the platform was evidenced once. A new test under the same API is a lightweight check against the API&apos;s eligibility rules, it does not repeat the API-level evidence. A new commissioner calling Joe off uses the standing framework call-off contract. The annual refresh is the touchpoint. <strong>The conformance certificate is the durable artefact; the deployments multiply around it.</strong></div>
+        </div>
+
+        <div class="old-way">
+          <div class="old-way-label">The old way</div>
+          <div class="old-way-body">Each new condition required a fresh procurement. Each new commissioner required a fresh contract. Each new LA scope required a fresh assurance pack. The cost of expanding into a new cohort scaled with the number of LAs, not with the value of the cohort. Smaller suppliers couldn&apos;t carry the per-deployment overhead. The market consolidated by accident.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What the care team sees</div>
+            <div class="careteam-text">Joe&apos;s deployment team holding multiple commissioner relationships. NHSE Partnerships team brokering new conversations. The Operations team running the annual refresh. The conformance certificate as the trust marker every commissioner now reads.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- OUTCOME -->
+  <div class="outcome">
+    <div class="outcome-eyebrow">Joe&apos;s win &middot; the model&apos;s commitment</div>
+    <h2 class="outcome-title">One admission. One conformance certificate. As many deployments as the cohort needs.</h2>
+    <p class="outcome-body">Joe is not a special case. He is the design pattern. Every supplier that comes through the framework is admitted once, certified once, and reusable. <strong>The local body becomes the deployment authority, not the re-assurer.</strong> The platform&apos;s commitment to commissioners is that the supplier is safe to call off. The platform&apos;s commitment to suppliers is that the assurance burden is paid once.</p>
+    <div class="outcome-cta">
+      <a href="DTx OM - Supplier Onboarding Framework.html" class="outcome-btn">Open the framework &rarr;</a>
+      <a href="DTx OM - Persona Joe.html" class="outcome-btn-sec">Open Joe&apos;s persona &rarr;</a>
+      <a href="DTx OM - Hearts and Minds.html" class="outcome-btn-sec">Back to Hearts and Minds &rarr;</a>
+    </div>
+  </div>
+
+</div>
+
+<script src="../hearts-and-minds/hm-witness.js"></script>
+
+</body>
+</html>

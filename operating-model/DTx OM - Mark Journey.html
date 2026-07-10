@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mark&apos;s story: Digital Therapeutics Operating Model</title>
+<style>
+ .topnav{background:#fff;border-bottom:1px solid #ebeef1;padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;box-shadow:0 2px 14px rgba(0,48,135,0.10);position:sticky;top:0;z-index:200;}
+ .nav-back{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;}
+ .nav-back:hover{color:#005EB8;}
+ .nav-siblings{display:flex;gap:4px;flex-wrap:wrap;}
+ .nav-siblings a{font-size:12.5px;font-weight:600;color:#4C6272;text-decoration:none;padding:7px 14px;border-radius:6px;letter-spacing:0.2px;}
+ .nav-siblings a:hover{background:#f0f4f8;color:#212B32;}
+ .nav-siblings a.active{background:#003087;color:#fff;}
+
+:root {
+  --nhs-dark:#003087;
+  --nhs-blue:#005EB8;
+  --amber:#FFB91D;
+  --amber-deep:#C9A227;
+  --gold:#FFD66B;
+  --warm-cream:#FFF9EC;
+  --text:#212B32;
+  --text-sec:#4C6272;
+  --text-muted:#7E8B97;
+  --border-lt:#ebeef1;
+  --card:#ffffff;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,var(--nhs-blue) 0%, var(--nhs-dark) 100%);background-attachment:fixed;color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;margin:0;padding:0;width:100%;}
+
+.page{max-width:1180px;margin:30px auto 50px;background:#ffffff;border-radius:18px;box-shadow:0 14px 40px rgba(0,48,135,0.20);overflow:hidden;}
+
+/* HERO */
+.hero{position:relative;padding:70px 60px 60px;background:linear-gradient(135deg,#001a4d 0%,#003087 50%,#005EB8 100%);color:#fff;overflow:hidden;}
+.hero::after{content:'';position:absolute;right:-80px;bottom:-120px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(255,185,29,0.22),transparent 65%);pointer-events:none;}
+.hero-inner{position:relative;display:grid;grid-template-columns:1.5fr 1fr;gap:50px;align-items:center;z-index:1;}
+.hero-rule{width:60px;height:4px;background:var(--gold);border-radius:2px;margin-bottom:22px;}
+.hero-eyebrow{font-size:11px;font-weight:800;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:24px;}
+.hero-title{font-size:64px;font-weight:900;color:#fff;letter-spacing:-2px;line-height:0.98;margin-bottom:28px;}
+.hero-title em{font-style:normal;color:var(--gold);}
+.hero-strap{font-size:17px;color:rgba(255,255,255,0.94);line-height:1.65;max-width:560px;}
+.hero-strap strong{color:var(--gold);font-weight:700;}
+.hero-portrait-box{display:flex;flex-direction:column;align-items:center;gap:14px;}
+.hero-portrait-circ{width:280px;height:280px;border-radius:50%;overflow:hidden;border:6px solid rgba(255,185,29,0.45);box-shadow:0 14px 36px rgba(0,0,0,0.35);background:#fff;}
+.hero-portrait-circ img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;}
+.hero-portrait-name{font-size:18px;font-weight:800;color:#fff;letter-spacing:0.4px;}
+.hero-portrait-role{font-size:11px;color:var(--gold);letter-spacing:1.4px;text-transform:uppercase;font-weight:700;text-align:center;line-height:1.4;}
+
+/* RIBBON */
+.ribbon-wrap{background:#fafbfd;border-bottom:1px solid var(--border-lt);padding:32px 60px 28px;}
+.ribbon-eyebrow{font-size:10.5px;font-weight:800;letter-spacing:2px;color:var(--text-muted);text-transform:uppercase;margin-bottom:14px;text-align:center;}
+.ribbon{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;position:relative;align-items:start;}
+.ribbon-stage{display:flex;flex-direction:column;align-items:center;gap:8px;position:relative;cursor:pointer;text-decoration:none;color:inherit;padding:8px 4px;border-radius:8px;transition:background 0.15s;}
+.ribbon-stage:hover{background:rgba(0,48,135,0.04);}
+.ribbon-num{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#C9A227,#FFB91D);color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;letter-spacing:-0.5px;box-shadow:0 4px 10px rgba(201,162,39,0.22);}
+.ribbon-label{font-size:11.5px;font-weight:800;color:var(--nhs-dark);text-align:center;line-height:1.3;letter-spacing:0.2px;}
+.ribbon-substage{font-size:10px;font-weight:600;color:var(--text-sec);text-align:center;letter-spacing:0.4px;margin-top:2px;}
+
+/* FRAMING */
+.framing{padding:50px 60px 36px;background:#fff;}
+.framing-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.framing-tile{background:linear-gradient(135deg,#F4F8FC,#FFFFFF);border:1px solid #D5E8F0;border-radius:14px;padding:24px 26px;}
+.framing-tile-eyebrow{font-size:10px;font-weight:800;letter-spacing:1.8px;color:#C9A227;text-transform:uppercase;margin-bottom:8px;}
+.framing-tile-h{font-size:16px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.2px;margin-bottom:10px;line-height:1.3;}
+.framing-tile-body{font-size:13px;color:var(--text-sec);line-height:1.65;}
+.framing-tile-body strong{color:var(--text);font-weight:700;}
+
+/* STAGES */
+.stages{padding:24px 60px 60px;background:#fff;}
+.stage{display:grid;grid-template-columns:80px 1fr;gap:36px;padding:48px 0;border-top:1px solid var(--border-lt);}
+.stage:first-child{border-top:none;}
+.stage-side{display:flex;flex-direction:column;align-items:center;gap:14px;}
+.stage-number{font-size:48px;font-weight:900;color:#C9A227;letter-spacing:-2px;opacity:0.22;line-height:1;}
+.stage-main{}
+.stage-eyebrow{font-size:11px;font-weight:800;letter-spacing:1.8px;color:#C9A227;text-transform:uppercase;margin-bottom:10px;}
+.stage-title{font-size:24px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.5px;line-height:1.32;margin-bottom:22px;}
+.stage-image{background:linear-gradient(135deg,#F4F8FC,#E8F1F6);border-radius:12px;padding:32px 24px;text-align:center;color:var(--text-muted);margin-bottom:22px;border:1px dashed #B5D4E5;font-size:12px;font-weight:600;letter-spacing:0.3px;line-height:1.55;}
+.stage-image-icon{font-size:36px;opacity:0.4;margin-bottom:6px;}
+.stage-image-caption{font-size:11px;font-weight:500;opacity:0.85;letter-spacing:0.3px;margin-top:6px;}
+.pull-quote{margin:24px auto 28px;padding:32px 20px 28px;text-align:center;position:relative;max-width:820px;}
+.pull-quote::before{content:'\201C';position:absolute;left:8px;top:-18px;font-size:110px;color:#C9A227;font-family:Georgia,'Times New Roman',serif;line-height:1;opacity:0.65;pointer-events:none;}
+.pull-quote-text{font-size:24px;font-weight:600;color:var(--text,#212B32);line-height:1.45;letter-spacing:-0.3px;max-width:780px;margin:0 auto;font-style:italic;}
+.pull-quote-attribution{font-size:11.5px;font-weight:800;letter-spacing:2px;color:#C9A227;text-transform:uppercase;margin-top:18px;}
+@media(max-width:720px){.pull-quote-text{font-size:20px;}.pull-quote::before{font-size:84px;top:-10px;}}
+.whats-happening{background:#F4F8FC;border:1px solid #d6e2ef;border-radius:12px;padding:18px 22px;margin-bottom:14px;}
+.whats-happening-label{font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:var(--nhs-blue);text-transform:uppercase;margin-bottom:8px;}
+.whats-happening-body{font-size:13px;color:var(--text-sec);line-height:1.7;}
+.whats-happening-body strong{color:var(--text);font-weight:700;}
+.old-way{background:#fbf3ef;border:1px solid #f0d9cd;border-radius:12px;padding:18px 22px;margin-bottom:14px;}
+.old-way-label{font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:#A65A2C;text-transform:uppercase;margin-bottom:8px;}
+.old-way-body{font-size:13px;color:var(--text-sec);line-height:1.7;}
+.careteam{display:flex;align-items:flex-start;gap:14px;background:#F4F8FC;border-radius:12px;padding:16px 20px;margin-bottom:14px;}
+.careteam-icon{font-size:22px;flex-shrink:0;line-height:1.2;}
+.careteam-body{flex:1;}
+.careteam-label{font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:var(--nhs-blue);text-transform:uppercase;margin-bottom:6px;}
+.careteam-text{font-size:13px;color:var(--text-sec);line-height:1.65;}
+.crosslinks{background:#fff;border:1px dashed var(--border-lt);border-radius:10px;padding:14px 18px;}
+.crosslinks-label{font-size:10px;font-weight:800;letter-spacing:1.4px;color:var(--text-muted);text-transform:uppercase;margin-bottom:8px;}
+.crosslinks-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;font-size:12px;}
+.crosslinks-tag{background:var(--nhs-dark);color:#fff;font-size:9.5px;font-weight:800;letter-spacing:1px;padding:3px 8px;border-radius:4px;text-transform:uppercase;}
+.crosslinks a{color:var(--nhs-blue);text-decoration:none;font-weight:700;}
+.crosslinks a:hover{text-decoration:underline;}
+
+/* OUTCOME */
+.outcome{background:linear-gradient(135deg,#C9A227,#FFB91D);color:#fff;padding:50px 60px;text-align:center;}
+.outcome-eyebrow{font-size:11px;font-weight:800;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:16px;}
+.outcome-title{font-size:34px;font-weight:900;color:#fff;letter-spacing:-1px;line-height:1.15;margin-bottom:18px;}
+.outcome-body{font-size:15.5px;color:rgba(255,255,255,0.92);line-height:1.7;max-width:760px;margin:0 auto 22px;}
+.outcome-body strong{color:var(--gold);font-weight:700;}
+.outcome-cta{display:inline-flex;gap:14px;flex-wrap:wrap;justify-content:center;}
+.outcome-btn{background:var(--gold);color:var(--nhs-dark);font-size:13px;font-weight:800;letter-spacing:0.3px;padding:12px 22px;border-radius:99px;text-decoration:none;}
+.outcome-btn:hover{background:#fff;}
+.outcome-btn-sec{background:transparent;color:#fff;font-size:12.5px;font-weight:700;letter-spacing:0.3px;padding:10px 22px;border:1.5px solid rgba(255,255,255,0.45);border-radius:99px;text-decoration:none;}
+.outcome-btn-sec:hover{background:rgba(255,255,255,0.10);}
+
+@media print {
+  .topnav { display: none !important; }
+  .hm-witness .hmw-card { display:block !important; position:static; transform:none; width:auto; max-width:none; margin:8px 0; box-shadow:none; border:1px solid #ccc; }
+}
+
+@media (max-width:880px) {
+  .hero{padding:48px 30px 40px;}
+  .hero-inner{grid-template-columns:1fr;gap:30px;}
+  .hero-title{font-size:46px;}
+  .ribbon-wrap{padding:24px 24px 22px;}
+  .ribbon{grid-template-columns:repeat(3,1fr);gap:12px;}
+  .framing{padding:36px 30px 24px;}
+  .framing-grid{grid-template-columns:1fr;}
+  .stages{padding:14px 30px 40px;}
+  .stage{grid-template-columns:1fr;gap:20px;padding:32px 0;}
+  .stage-side{flex-direction:row;justify-content:flex-start;}
+  .stage-number{font-size:36px;}
+  .outcome{padding:36px 30px;}
+  .outcome-title{font-size:26px;}
+}
+</style>
+</head>
+<body>
+<div class="ecosystem-nav">
+  <a href="../index.html">← DTx Ecosystem</a>
+  <span class="nav-context">Mark Journey</span>
+  <span class="nav-product dtx">DTx</span>
+</div>
+
+<nav class="topnav">
+<a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+<div class="nav-siblings">
+ <a href="DTx OM - Why.html">Why</a>
+ <a href="DTx OM - What.html">What</a>
+ <a href="DTx OM - Lifecycle.html">When</a>
+ <a href="DTx OM - HomeTest Operational.html">How</a>
+ <a href="DTx OM - Governance.html">Who</a>
+ <a href="DTx OM - Hearts and Minds.html" class="active">Hearts and Minds</a>
+ <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>
+ <a href="DTx OM - Status.html">Status</a>
+</div>
+</nav>
+
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-rule"></div>
+        <div class="hero-eyebrow">A patient&apos;s story through the operating model</div>
+        <h1 class="hero-title">His consultant<br><em>still reads</em><br>the trend.</h1>
+        <p class="hero-strap">Mark is 65. Diagnosed with low-risk prostate cancer and placed on active surveillance under Adam at the local trust. The quarterly PSA is supposed to be routine. The clinic trip to get it is anything but. <strong>This is the story of how the surveillance happens at home and the clinical accountability stays in clinic.</strong></p>
+      </div>
+      <div class="hero-portrait-box">
+        <div class="hero-portrait-circ">
+          <img src="img/Mark%20hero.png" alt="Mark">
+        </div>
+        <div class="hero-portrait-name">Mark</div>
+        <div class="hero-portrait-role">Patient on active surveillance<br>PSA-AS cohort</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIBBON -->
+  <div class="ribbon-wrap">
+    <div class="ribbon-eyebrow">Mark&apos;s journey at a glance &middot; five acts, one pathway</div>
+    <div class="ribbon">
+      <a class="ribbon-stage" href="#stage-1">
+        <div class="ribbon-num">1</div>
+        <div class="ribbon-label">Stratification</div>
+        <div class="ribbon-substage">the cohort eligible for active surveillance</div>
+      </a>
+      <a class="ribbon-stage" href="#stage-2">
+        <div class="ribbon-num">2</div>
+        <div class="ribbon-label">Identification</div>
+        <div class="ribbon-substage">Adam&apos;s clinic shortlists him</div>
+      </a>
+      <a class="ribbon-stage" href="#stage-3">
+        <div class="ribbon-num">3</div>
+        <div class="ribbon-label">Diagnosis</div>
+        <div class="ribbon-substage">kit out, sample back, result to the consultant first</div>
+      </a>
+      <a class="ribbon-stage" href="#stage-4">
+        <div class="ribbon-num">4</div>
+        <div class="ribbon-label">Treatment</div>
+        <div class="ribbon-substage">the surveillance itself</div>
+      </a>
+      <a class="ribbon-stage" href="#stage-5">
+        <div class="ribbon-num">5</div>
+        <div class="ribbon-label">Long-term optimisation</div>
+        <div class="ribbon-substage">the surveillance that keeps him in surveillance</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- FRAMING -->
+  <div class="framing">
+    <div class="framing-grid">
+      <div class="framing-tile">
+        <div class="framing-tile-eyebrow">The patient North Star</div>
+        <div class="framing-tile-h">His consultant still holds the cohort. The quarterly visit just does not need to be in clinic.</div>
+        <div class="framing-tile-body">Mark trusts Adam. The active-surveillance cohort works because the clinician is reading the trend. <strong>The home pathway preserves the clinical role and removes the clinic visit that did nothing but draw the blood.</strong></div>
+      </div>
+      <div class="framing-tile">
+        <div class="framing-tile-eyebrow">Why this works for him</div>
+        <div class="framing-tile-h">Travel saved. Half-days saved. The same surveillance, on time.</div>
+        <div class="framing-tile-body">Mark has worked through it, taken his kids to school, looked after a parent. The hospital is an hour&apos;s drive. The clinic visit was always the friction; the blood result was always the point. <strong>The kit moves the friction; the clinical decision-making stays exactly where it was.</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAGES -->
+  <div class="stages">
+
+    <!-- STAGE 1 -->
+    <div class="stage" id="stage-1">
+      <div class="stage-side"><div class="stage-number">01</div></div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">Stratification, the cohort eligible for active surveillance</div>
+        <h2 class="stage-title">More than 64,000 men a year are diagnosed with prostate cancer in the UK. Around 6,500 a year choose active surveillance; up to 5,000 more could. Mark sits in that cohort: low-risk disease, watch-and-wait, quarterly PSA. The surveillance is the treatment. <span class="hm-witness" data-moment="mark-s1"></span></h2>
+
+        <div class="stage-image" style="padding:0;border:none;background:none;margin-bottom:22px;"><img src="img/Mark%201.png" alt="Mark Stage 1" style="width:100%;height:auto;border-radius:12px;display:block;box-shadow:0 8px 24px rgba(0,32,64,0.12);"></div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">I am sixty-five and I have prostate cancer. They told me it is the kind that does not need treating, just watching. That is the bit nobody warns you about, what the watching actually costs.</p>
+          <div class="pull-quote-attribution">Mark</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">NICE NG131 sets the framework for active surveillance in low-risk prostate cancer: regular PSA, MRI at intervals, repeat biopsy as triggered by trend. The cohort is well-defined. The challenge is holding the cohort in surveillance without burning the clinic.</div>
+        </div>
+
+        <div class="old-way">
+          <div class="old-way-label">The old way</div>
+          <div class="old-way-body">An expanding AS cohort funnelled through fixed clinic capacity. Patients drop out, present later, get treated harder.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What the care team sees</div>
+            <div class="careteam-text">Adam, consultant urologist. The MDT. Catherine on the Trust commissioner side. Mark.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 2 -->
+    <div class="stage" id="stage-2">
+      <div class="stage-side"><div class="stage-number">02</div></div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">Identification, Adam&apos;s clinic shortlists him</div>
+        <h2 class="stage-title">Adam reviews the cohort. Mark fits the profile for the first wave of home PSA: stable trend, comfortable with the kit idea, no clinical concerns. The shortlist of first patients is small and chosen carefully. Mark gets the conversation at the next clinic. <span class="hm-witness" data-moment="mark-s2"></span></h2>
+
+        <div class="stage-image" style="padding:0;border:none;background:none;margin-bottom:22px;"><img src="img/Mark%202.png" alt="Mark Stage 2" style="width:100%;height:auto;border-radius:12px;display:block;box-shadow:0 8px 24px rgba(0,32,64,0.12);"></div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">Adam asked me whether I would be comfortable doing the next PSA at home. I said yes before he had finished the sentence.</p>
+          <div class="pull-quote-attribution">Mark</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">The first patients are picked by the consultant, in clinic, with consent and clinical judgement. The cohort is bounded carefully. The conversation is short because the model preserves the clinical role.</div>
+        </div>
+
+        <div class="old-way">
+          <div class="old-way-label">The old way</div>
+          <div class="old-way-body">Bring everyone in for everything, because there is no other model on offer. The cohort is held by clinic capacity, not clinical judgement.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What the care team sees</div>
+            <div class="careteam-text">Adam. Clinical nurse specialist. Mark.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 3 -->
+    <div class="stage" id="stage-3">
+      <div class="stage-side"><div class="stage-number">03</div></div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">Diagnosis, kit out, sample back, result to the consultant first</div>
+        <h2 class="stage-title">The kit arrives. Mark takes the sample at home on the day the clinic would have happened. The lab processes it. The result lands in Adam&apos;s system before the next clinic, in trend, with the threshold-alert logic wired in. Mark sees the result only after Adam has read it. <span class="hm-witness" data-moment="mark-s3"></span></h2>
+
+        <div class="stage-image" style="padding:0;border:none;background:none;margin-bottom:22px;"><img src="img/Mark%203.png" alt="Mark Stage 3" style="width:100%;height:auto;border-radius:12px;display:block;box-shadow:0 8px 24px rgba(0,32,64,0.12);"></div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">The kit came in the post. I did it on the Saturday morning. By the following Tuesday I knew Adam had seen the result. Same answer I would have got at the hospital. None of the driving.</p>
+          <div class="pull-quote-attribution">Mark</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">1.25 billion NHS pathology test requests per year, growing ~5.5% annually. Home capillary PSA is the same biochemical assay run on the same lab platform. The clinical interpretation is preserved.</div>
+        </div>
+
+        <div class="old-way">
+          <div class="old-way-label">The old way</div>
+          <div class="old-way-body">Two trips to the hospital, phlebotomy for the blood, second trip for the result. Or, on a bad cycle, a missed appointment and a quietly delayed surveillance round.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What the care team sees</div>
+            <div class="careteam-text">The supplier shipping the kit. UKAS-accredited lab. Platform writing the result back to the Trust EPR. Adam reading the trend.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 4 -->
+
+  <div class="interlude" style="margin:36px 0;padding:0;border:none;background:none;"><img src="img/Mark%20interlude.png" alt="Mark interlude" style="width:100%;height:auto;border-radius:12px;display:block;box-shadow:0 10px 30px rgba(0,32,64,0.14);"></div>
+
+    <div class="stage" id="stage-4">
+      <div class="stage-side"><div class="stage-number">04</div></div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">Treatment, the surveillance itself</div>
+        <h2 class="stage-title">Active surveillance IS the treatment. The clinical work is the trend interpretation. Adam reads Mark&apos;s PSA in the context of every prior reading and the imaging cycle. Most cycles, nothing changes. The model has not removed the clinical decision; it has removed the unnecessary clinical visit. <span class="hm-witness" data-moment="mark-s4"></span></h2>
+
+        <div class="stage-image" style="padding:0;border:none;background:none;margin-bottom:22px;"><img src="img/Mark%204.png" alt="Mark Stage 4" style="width:100%;height:auto;border-radius:12px;display:block;box-shadow:0 8px 24px rgba(0,32,64,0.12);"></div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">I felt a bit guilty at first that I had not been in to see him. Then I realised the visit was never the bit that mattered. He was always reading the number, not me.</p>
+          <div class="pull-quote-attribution">Mark</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">The surveillance protocol per NICE NG131 is unchanged. Threshold breaches escalate to MDT review and additional imaging. Stable trends roll through routine review without consuming clinic time.</div>
+        </div>
+
+        <div class="old-way">
+          <div class="old-way-label">The old way</div>
+          <div class="old-way-body">Every patient in clinic every quarter, regardless of trend. The signal-to-noise of clinic visits was always poor; routine stability was confirmed in person at the cost of the patients who clinically needed clinic.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What the care team sees</div>
+            <div class="careteam-text">Adam. The MDT. The radiologist on the imaging cycle.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 5 -->
+    <div class="stage" id="stage-5">
+      <div class="stage-side"><div class="stage-number">05</div></div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">Long-term optimisation, the surveillance that keeps him in surveillance</div>
+        <h2 class="stage-title">Mark stays in the cohort. The quarterly PSA happens at home. The annual imaging happens in clinic. The trend stays stable. The cohort grows. Adam holds more patients in surveillance than the clinic-only model could have, and Mark is one of them. <span class="hm-witness" data-moment="mark-s5"></span></h2>
+
+        <div class="stage-image" style="padding:0;border:none;background:none;margin-bottom:22px;"><img src="img/Mark%205.png" alt="Mark Stage 5" style="width:100%;height:auto;border-radius:12px;display:block;box-shadow:0 8px 24px rgba(0,32,64,0.12);"></div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">It is just part of life now. The kit comes when it is supposed to, I do it, I get on with my week. The hospital is for when something actually needs me there.</p>
+          <div class="pull-quote-attribution">Mark</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">Active surveillance retention is the metric that matters: holding patients in the protocol so disease progression is caught early. Home PSA flattens the drop-out curve and keeps the cohort visible to the clinical team.</div>
+        </div>
+
+        <div class="old-way">
+          <div class="old-way-label">The old way</div>
+          <div class="old-way-body">Drop out of surveillance, progress unmonitored, present later with a different staging and a different prognosis. The clinical risk was always in the venue, not the patient.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What the care team sees</div>
+            <div class="careteam-text">Adam. The MDT. Mark.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- OUTCOME -->
+  <div class="outcome">
+    <div class="outcome-eyebrow">Mark&apos;s win</div>
+    <h2 class="outcome-title">The same surveillance, on time, on a Saturday morning. Adam still holding the cohort. The hospital saved for the moment it is actually needed.</h2>
+    <p class="outcome-body">Mark does not see procurement or pathways. He sees a kit through the door and a result his consultant has already read. <strong>The clinic visit that did not happen is the clinic visit Adam did not have capacity for anyway.</strong> Mark stays in surveillance. The cohort grows.</p>
+    <div class="outcome-cta">
+      <a href="DTx OM - Persona Mark.html" class="outcome-btn">Open Mark&apos;s persona &rarr;</a>
+      <a href="DTx OM - Hearts and Minds.html" class="outcome-btn-sec">Back to Hearts and Minds &rarr;</a>
+    </div>
+  </div>
+
+</div>
+
+<script src="../hearts-and-minds/hm-witness.js"></script>
+
+</body>
+</html>
