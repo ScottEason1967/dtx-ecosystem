@@ -71,6 +71,31 @@
  .ecosystem-nav a:hover{color:#005EB8;}
  .ecosystem-nav .nav-context{font-size:11px;font-weight:800;letter-spacing:1.5px;color:#7E8B97;text-transform:uppercase;}
  .ecosystem-nav .nav-product{font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;padding:4px 10px;border-radius:4px;color:#fff;background:#003087;}
+
+  /* topnav-secondary + cast nav */
+  .topnav.topnav-secondary{background:#F4F8FC;border-bottom:1px solid #d6e2ef;padding:9px 36px;min-height:42px;display:flex;align-items:center;gap:16px;}
+  .topnav .nav-back{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0;}
+  .topnav .nav-siblings{display:flex;gap:4px;flex-wrap:nowrap;overflow-x:auto;align-items:center;}
+  .topnav .nav-siblings a{font-size:12px;font-weight:600;color:#4C6272;text-decoration:none;padding:6px 12px;border-radius:6px;letter-spacing:0.2px;white-space:nowrap;flex-shrink:0;}
+  .topnav .nav-siblings a:hover{background:#f0f4f8;color:#212B32;}
+  .cast-group{display:inline-flex;gap:3px;align-items:center;flex-wrap:wrap;padding:3px 8px;border-radius:6px;border:2px dotted #d8dde0;}
+  .cast-group + .cast-group{margin-left:6px;}
+  .cast-group.cast-group-patients{border-color:#C9A227;}
+  .cast-group.cast-group-commissioners{border-color:#003087;}
+  .cast-group.cast-group-clinicians{border-color:#9B7CC4;}
+  .cast-group.cast-group-assurance{border-color:#7C2855;}
+  .cast-group.cast-group-marketplace{border-color:#388C5D;}
+  .nav-siblings a.cast-abdul.active,.nav-siblings a.cast-mark.active,.nav-siblings a.cast-layla.active,.nav-siblings a.cast-devi.active,.nav-siblings a.cast-pauline.active,.nav-siblings a.cast-mei.active{background:#FFB91D;color:#231F20;}
+  .nav-siblings a.cast-errol.active,.nav-siblings a.cast-sean.active{background:#4527A0;color:#ffffff;}
+  .nav-siblings a.cast-sarah.active,.nav-siblings a.cast-catherine.active,.nav-siblings a.cast-anita.active,.nav-siblings a.cast-ruth.active,.nav-siblings a.cast-daniel.active{background:#003087;color:#ffffff;}
+  .nav-siblings a.cast-adam.active,.nav-siblings a.cast-hannah.active,.nav-siblings a.cast-ravi.active{background:#C9A0E3;color:#231F20;}
+  .nav-siblings a.cast-aisha.active,.nav-siblings a.cast-ngozi.active{background:#7C2855;color:#ffffff;}
+  .nav-siblings a.cast-joe.active,.nav-siblings a.cast-marcus.active,.nav-siblings a.cast-tariq.active{background:#5BC093;color:#ffffff;}
+  .nav-siblings a.cast-priya.active{background:#005EB8;color:#ffffff;}
+  .nav-siblings a.cast-david.active{background:#B85728;color:#ffffff;}
+  .topnav.topnav-secondary .nav-siblings a{font-size:11.5px;padding:5px 10px;}
+  .topnav .nav-secondary-label{font-size:10px;font-weight:800;letter-spacing:1.5px;color:#7E8B97;text-transform:uppercase;flex-shrink:0;}
+  /* end topnav-secondary */
 </style>
 </head>
 <body>
@@ -91,6 +116,45 @@
  <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>
  <a href="DTx OM - Status.html">Status</a>
 </div>
+</nav>
+
+<nav class="topnav topnav-secondary">
+<div class="nav-secondary-label">Suppliers · role page</div>
+<div class="nav-siblings">
+ <div class="cast-group cast-group-patients">
+  <a href="DTx OM - Persona Abdul.html" class="cast-abdul" title="Patients">Abdul</a>
+  <a href="DTx OM - Persona Mark.html" class="cast-mark" title="Patients">Mark</a>
+  <a href="DTx OM - Persona Devi.html" class="cast-devi" title="Patients">Devi</a>
+  <a href="DTx OM - Persona Layla.html" class="cast-layla" title="Patients">Layla</a>
+  <a href="DTx OM - Persona HealthStore COPD patient.html" class="cast-pauline" title="Patients">Pauline</a>
+  <a href="DTx OM - Persona HealthSync diabetes patient.html" class="cast-mei" title="Patients">Mei</a>
+  <a href="DTx OM - Persona HealthSync patient.html" class="cast-errol" title="Patients">Errol</a>
+  <a href="DTx OM - Persona Sean.html" class="cast-sean" title="Patients">Sean</a>
+ </div>
+ <div class="cast-group cast-group-commissioners">
+  <a href="DTx OM - Persona Sarah.html" class="cast-sarah" title="Commissioners">Sarah</a>
+  <a href="DTx OM - Persona Catherine.html" class="cast-catherine" title="Commissioners">Catherine</a>
+  <a href="DTx OM - Persona Anita.html" class="cast-anita" title="Commissioners">Anita</a>
+  <a href="DTx OM - Persona Ruth.html" class="cast-ruth" title="Commissioners">Ruth</a>
+  <a href="DTx OM - Persona Daniel.html" class="cast-daniel" title="Commissioners">Daniel</a>
+ </div>
+ <div class="cast-group cast-group-clinicians">
+  <a href="DTx OM - Persona Adam.html" class="cast-adam" title="Clinicians">Adam</a>
+  <a href="DTx OM - Persona Hannah.html" class="cast-hannah" title="Clinicians">Hannah</a>
+  <a href="DTx OM - Persona HealthStore prescribing clinician.html" class="cast-ravi" title="Clinicians">Ravi</a>
+ </div>
+ <div class="cast-group cast-group-assurance">
+  <a href="DTx OM - Persona Aisha.html" class="cast-aisha" title="Assurance">Aisha</a>
+  <a href="DTx OM - Persona Ngozi.html" class="cast-ngozi" title="Assurance">Ngozi</a>
+ </div>
+ <div class="cast-group cast-group-marketplace">
+  <a href="DTx OM - Persona Joe.html" class="cast-joe active" title="Marketplace">Joe</a>
+  <a href="DTx OM - Persona HealthStore supplier.html" class="cast-marcus active" title="Marketplace">Marcus</a>
+  <a href="DTx OM - Persona Tariq.html" class="cast-tariq active" title="Marketplace">Tariq</a>
+  <a href="DTx OM - Persona Priya.html" class="cast-priya" title="Marketplace">Priya</a>
+  <a href="DTx OM - Persona David.html" class="cast-david" title="Marketplace">David</a>
+ </div>
+ </div>
 </nav>
 
 <div class="page">
