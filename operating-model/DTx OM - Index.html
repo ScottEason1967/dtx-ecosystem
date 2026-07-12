@@ -223,14 +223,6 @@
   /* hero-patient-uniform-sizing */
   .hero-patient img{box-sizing:content-box !important;}
   /* end hero-patient-uniform-sizing */
-
-  /* actor-group-outline */
-  .actor[data-group="patient"] .actor-portrait img{border:3px solid #FFB91D;background:#fff;box-shadow:0 2px 6px rgba(201,162,39,0.28);}
-  .actor[data-group="commissioner"] .actor-portrait img{border:3px solid #003087;background:#fff;box-shadow:0 2px 6px rgba(0,48,135,0.28);}
-  .actor[data-group="supplier"] .actor-portrait img{border:3px solid #5BC093;background:#fff;box-shadow:0 2px 6px rgba(91,192,147,0.30);}
-  .actor[data-group="clinician"] .actor-portrait img{border:3px solid #C9A0E3;background:#fff;box-shadow:0 2px 6px rgba(94,53,178,0.28);}
-  .actor[data-group="assurance"] .actor-portrait img{border:3px solid #7C2855;background:#fff;box-shadow:0 2px 6px rgba(124,40,85,0.28);}
-  /* end actor-group-outline */
 </style>
 <style>
   .ecosystem-nav {
@@ -696,7 +688,7 @@
  <div class="cast-rule"></div>
  <div class="cast-eyebrow">The cast</div>
  <h2 class="cast-title">Universal roles at the centre. Product-specific actors around them.</h2>
- <p class="cast-intro">An operating model is a set of relationships between people. <strong>NHSE orchestrates the market; the people do the work.</strong> Seven universal operating roles thread through every Digital Therapeutics product. <strong>Four are platform-level</strong> (Aisha clinical / CSG, Priya NHSE Platform, David NHS Commercial, Ngozi IG): one person each, identical across products. <strong>Three are role archetypes</strong> (Commissioner, Clinician, Supplier): the role threads through every product, but the institution or specialty behind it varies per configuration. Coloured rings on each portrait show which operating role that person plays (commissioner, clinician, supplier, assurance, patient). Product-specific actors sit around the wraparound: HomeTest, HealthStore and HealthSync each have their own patient archetypes.</p>
+ <p class="cast-intro">An operating model is a set of relationships between people. <strong>NHSE orchestrates the market; the people do the work.</strong> Seven universal operating roles thread through every Digital Therapeutics product. <strong>Four are platform-level</strong> (Aisha clinical / CSG, Priya NHSE Platform, David NHS Commercial, Ngozi IG): one person each, identical across products. <strong>Three are role archetypes</strong> (Commissioner, Clinician, Supplier): the role threads through every product, but the institution or specialty behind it varies per configuration. Coloured rings on the role-archetype portraits show which product each persona belongs to. Product-specific actors sit around the wraparound: HomeTest, HealthStore and HealthSync each have their own patient archetypes.</p>
 
  <!-- HUB: universal actors -->
  <div class="hub-centre-panel" style="background:linear-gradient(135deg,rgba(255,255,255,0.98),rgba(255,255,255,0.94));border:1px solid rgba(255,255,255,0.20);border-radius:16px;padding:28px 32px;margin:24px 0 14px;box-shadow:0 14px 40px rgba(0,32,64,0.10);">
@@ -704,8 +696,8 @@
  <div style="width:48px;height:4px;background:var(--amber);border-radius:2px;"></div>
  <div style="font-size:11px;font-weight:800;letter-spacing:1.6px;color:var(--amber-deep);text-transform:uppercase;">Universal &middot; the hub</div>
  </div>
- <h3 style="font-size:20px;font-weight:800;color:var(--nhs-dark);margin-bottom:6px;letter-spacing:-0.3px;">Seven operating roles. Threading through every product.</h3>
- <p style="font-size:13px;color:var(--text-sec);line-height:1.6;margin-bottom:18px;">Four platform-level people plus three role archetypes (Commissioner, Clinician and Supplier) whose specific persona changes per configuration or product. Coloured rings show the operating role each persona plays. Tiles with multiple portraits click through to a role-overview page showing every persona filling that role.</p>
+ <h3 style="font-size:20px;font-weight:800;color:var(--nhs-dark);margin-bottom:6px;letter-spacing:-0.3px;">Six operating roles. Threading through every product.</h3>
+ <p style="font-size:13px;color:var(--text-sec);line-height:1.6;margin-bottom:18px;">Four platform-level people plus three role archetypes (Commissioner, Clinician and Supplier) whose specific persona changes per configuration or product. Coloured rings flag which product each persona belongs to. Tiles with multiple portraits click through to a role-overview page showing every persona filling that role.</p>
  <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:8px;">
  <a href="DTx OM - Role Commissioner.html" class="actor">
  <div class="actor-portrait" style="display:flex;flex-direction:column;justify-content:center;align-items:center;height:110px;gap:4px;">
@@ -716,41 +708,41 @@
  </div>
  <div style="display:flex;flex-direction:row;justify-content:center;align-items:end;">
  <img src="../assets/personas/anita.png" alt="Anita" style="max-width:none;max-height:none;width:42px;height:42px;border-radius:50%;border:3px solid #003087;box-shadow:0 1px 3px rgba(0,0,0,0.25);background:#fff;object-fit:cover;object-position:top center;">
- <img src="../assets/personas/daniel.png" alt="Daniel" style="max-width:none;max-height:none;width:42px;height:42px;border-radius:50%;border:3px solid #003087;box-shadow:0 1px 3px rgba(0,0,0,0.25);background:#fff;object-fit:cover;object-position:top center;margin-left:-8px;">
+ <img src="../assets/personas/daniel.png" alt="Daniel" style="max-width:none;max-height:none;width:42px;height:42px;border-radius:50%;border:3px solid #00A9CE;box-shadow:0 1px 3px rgba(0,0,0,0.25);background:#fff;object-fit:cover;object-position:top center;margin-left:-8px;">
  </div>
  </div>
  <div class="actor-name">Commissioner</div><div class="actor-role">5 named &middot; one per config</div>
  </a>
  <a href="DTx OM - Role Clinician.html" class="actor">
  <div class="actor-portrait" style="display:flex;flex-direction:row;justify-content:center;align-items:end;height:110px;gap:0;">
- <img src="../assets/personas/adam.png" alt="Adam" style="max-width:none;max-height:none;width:50px;height:50px;border-radius:50%;border:3px solid #C9A0E3;box-shadow:0 1px 3px rgba(0,0,0,0.25);background:#fff;object-fit:cover;object-position:top center;">
- <img src="../assets/personas/hannah.png" alt="Hannah" style="max-width:none;max-height:none;width:50px;height:50px;border-radius:50%;border:3px solid #C9A0E3;box-shadow:0 1px 3px rgba(0,0,0,0.25);background:#fff;object-fit:cover;object-position:top center;margin-left:-10px;">
- <img src="img/ravi.png" alt="Ravi" style="max-width:none;max-height:none;width:50px;height:50px;border-radius:50%;border:3px solid #C9A0E3;box-shadow:0 1px 3px rgba(0,0,0,0.25);background:#fff;object-fit:cover;object-position:top center;margin-left:-10px;">
+ <img src="../assets/personas/adam.png" alt="Adam" style="max-width:none;max-height:none;width:50px;height:50px;border-radius:50%;border:3px solid #003087;box-shadow:0 1px 3px rgba(0,0,0,0.25);background:#fff;object-fit:cover;object-position:top center;">
+ <img src="../assets/personas/hannah.png" alt="Hannah" style="max-width:none;max-height:none;width:50px;height:50px;border-radius:50%;border:3px solid #003087;box-shadow:0 1px 3px rgba(0,0,0,0.25);background:#fff;object-fit:cover;object-position:top center;margin-left:-10px;">
+ <img src="img/ravi.png" alt="Ravi" style="max-width:none;max-height:none;width:50px;height:50px;border-radius:50%;border:3px solid #00A9CE;box-shadow:0 1px 3px rgba(0,0,0,0.25);background:#fff;object-fit:cover;object-position:top center;margin-left:-10px;">
  </div>
  <div class="actor-name">Clinician</div><div class="actor-role">Adam &middot; Hannah &middot; Ravi</div>
  </a>
  <a href="DTx OM - Role Supplier.html" class="actor">
  <div class="actor-portrait" style="display:flex;flex-direction:row;justify-content:center;align-items:end;height:110px;gap:0;">
- <img src="../assets/personas/joe.png" alt="Joe" style="max-width:none;max-height:none;width:50px;height:50px;border-radius:50%;border:3px solid #5BC093;box-shadow:0 1px 3px rgba(0,0,0,0.25);background:#fff;object-fit:cover;object-position:top center;">
- <img src="img/marcus-final.png" alt="Marcus" style="max-width:none;max-height:none;width:50px;height:50px;border-radius:50%;border:3px solid #5BC093;box-shadow:0 1px 3px rgba(0,0,0,0.25);background:#fff;object-fit:cover;object-position:top center;margin-left:-10px;">
- <img src="img/tariq.png" alt="Tariq" style="max-width:none;max-height:none;width:50px;height:50px;border-radius:50%;border:3px solid #5BC093;box-shadow:0 1px 3px rgba(0,0,0,0.25);background:#fff;object-fit:cover;object-position:top center;margin-left:-10px;">
+ <img src="../assets/personas/joe.png" alt="Joe" style="max-width:none;max-height:none;width:50px;height:50px;border-radius:50%;border:3px solid #003087;box-shadow:0 1px 3px rgba(0,0,0,0.25);background:#fff;object-fit:cover;object-position:top center;">
+ <img src="img/marcus-final.png" alt="Marcus" style="max-width:none;max-height:none;width:50px;height:50px;border-radius:50%;border:3px solid #00A9CE;box-shadow:0 1px 3px rgba(0,0,0,0.25);background:#fff;object-fit:cover;object-position:top center;margin-left:-10px;">
+ <img src="img/tariq.png" alt="Tariq" style="max-width:none;max-height:none;width:50px;height:50px;border-radius:50%;border:3px solid #00A499;box-shadow:0 1px 3px rgba(0,0,0,0.25);background:#fff;object-fit:cover;object-position:top center;margin-left:-10px;">
  </div>
  <div class="actor-name">Supplier</div><div class="actor-role">Joe &middot; Marcus &middot; Tariq</div>
  </a>
  <a href="DTx OM - Persona Aisha.html" class="actor">
- <div class="actor-portrait"><img src="../assets/personas/aisha.png" alt="Aisha" style="border:3px solid #7C2855;border-radius:50%;background:#fff;width:66px;height:66px;object-fit:cover;object-position:top center;"></div>
+ <div class="actor-portrait"><img src="../assets/personas/aisha.png" alt="Aisha"></div>
  <div class="actor-name">Aisha</div><div class="actor-role">Clinical / CSG</div>
  </a>
  <a href="DTx OM - Persona Priya.html" class="actor">
- <div class="actor-portrait"><img src="../assets/personas/priya.png" alt="Priya" style="border:3px solid #005EB8;border-radius:50%;background:#fff;width:66px;height:66px;object-fit:cover;object-position:top center;"></div>
+ <div class="actor-portrait"><img src="../assets/personas/priya.png" alt="Priya"></div>
  <div class="actor-name">Priya</div><div class="actor-role">NHSE Platform</div>
  </a>
  <a href="DTx OM - Persona David.html" class="actor">
- <div class="actor-portrait"><img src="../assets/personas/david.png" alt="David" style="border:3px solid #B85728;border-radius:50%;background:#fff;width:66px;height:66px;object-fit:cover;object-position:top center;"></div>
+ <div class="actor-portrait"><img src="../assets/personas/david.png" alt="David"></div>
  <div class="actor-name">David</div><div class="actor-role">NHS Commercial</div>
  </a>
  <a href="DTx OM - Persona Ngozi.html" class="actor">
- <div class="actor-portrait"><img src="../assets/personas/ngozi.png" alt="Ngozi" style="border:3px solid #7C2855;border-radius:50%;background:#fff;width:66px;height:66px;object-fit:cover;object-position:top center;"></div>
+ <div class="actor-portrait"><img src="../assets/personas/ngozi.png" alt="Ngozi"></div>
  <div class="actor-name">Ngozi</div><div class="actor-role">Information Governance</div>
  </a>
  </div>
@@ -758,16 +750,15 @@
 
  <!-- SPOKES connector: Errol cross-product bridge -->
  <a href="DTx OM - Errol Journey.html" style="text-decoration:none;color:inherit;display:block;margin:18px 0 6px;">
- <div style="background:linear-gradient(135deg,#FFB91D,#C9A227);border-radius:18px;padding:24px 32px;display:grid;grid-template-columns:104px 1fr auto;gap:24px;align-items:center;color:#231F20;box-shadow:0 10px 32px rgba(0,32,64,0.22);">
- <div style="width:104px;height:104px;border-radius:50%;overflow:hidden;border:3px solid rgba(255,255,255,0.7);flex-shrink:0;box-shadow:0 4px 14px rgba(0,32,64,0.2);">
+ <div style="background:linear-gradient(135deg,#FFB91D,#C9A227);border-radius:14px;padding:14px 18px;display:grid;grid-template-columns:54px 1fr auto;gap:14px;align-items:center;color:#231F20;box-shadow:0 8px 24px rgba(0,32,64,0.18);">
+ <div style="width:54px;height:54px;border-radius:50%;overflow:hidden;border:2px solid rgba(255,255,255,0.55);flex-shrink:0;">
  <img src="img/errol-portrait.png" alt="Errol" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block;">
  </div>
  <div>
- <div style="font-size:10.5px;font-weight:800;letter-spacing:1.9px;color:rgba(35,31,32,0.78);text-transform:uppercase;margin-bottom:6px;">The patient who threads through all three spokes</div>
- <div style="font-size:22px;font-weight:900;letter-spacing:-0.4px;line-height:1.15;color:#231F20;margin-bottom:4px;">Errol &middot; onboarded once &middot; one record</div>
- <div style="font-size:13.5px;font-weight:700;color:rgba(35,31,32,0.82);line-height:1.4;">One patient across HomeTest, HealthStore and HealthSync. The operating model tested end-to-end by a single life.</div>
+ <div style="font-size:9.5px;font-weight:800;letter-spacing:1.6px;color:rgba(35,31,32,0.72);text-transform:uppercase;margin-bottom:2px;">The patient who threads through all three spokes</div>
+ <div style="font-size:17px;font-weight:900;letter-spacing:-0.3px;line-height:1.15;color:#231F20;">Errol &middot; onboarded once &middot; one record across HomeTest, HealthStore and HealthSync</div>
  </div>
- <div style="font-size:12.5px;font-weight:800;color:#231F20;letter-spacing:0.5px;white-space:nowrap;padding:8px 14px;background:rgba(255,255,255,0.48);border-radius:8px;">See journey &rarr;</div>
+ <div style="font-size:11px;font-weight:800;color:#231F20;letter-spacing:0.4px;white-space:nowrap;">See journey &rarr;</div>
  </div>
  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:6px;">
  <div style="height:6px;background:#003087;border-radius:0 0 4px 4px;"></div>
@@ -777,30 +768,30 @@
  </a>
 
  <!-- SPOKES: three product groups -->
- <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;align-items:start;">
+ <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;">
 
  <!-- HomeTest spoke -->
  <div style="background:linear-gradient(135deg,#003087,#005EB8);color:#fff;border-radius:16px;padding:20px 22px;">
  <div style="font-size:9.5px;font-weight:800;letter-spacing:1.6px;opacity:0.85;text-transform:uppercase;margin-bottom:4px;">Product spoke</div>
  <h4 style="font-size:20px;font-weight:900;letter-spacing:-0.4px;margin-bottom:14px;">HomeTest</h4>
  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
- <a href="DTx OM - Persona Abdul.html" class="actor" data-group="patient" style="background:rgba(255,255,255,0.96);">
+ <a href="DTx OM - Persona Abdul.html" class="actor" style="background:rgba(255,255,255,0.96);">
  <div class="actor-portrait"><img src="../assets/personas/abdul.png" alt="Abdul" style="border-radius:50%;width:88px;height:88px;object-fit:cover;object-position:top center;"></div>
  <div class="actor-name">Abdul</div><div class="actor-role">Patient &middot; CVKM</div>
  </a>
- <a href="DTx OM - Persona Mark.html" class="actor" data-group="patient" style="background:rgba(255,255,255,0.96);">
+ <a href="DTx OM - Persona Mark.html" class="actor" style="background:rgba(255,255,255,0.96);">
  <div class="actor-portrait"><img src="../assets/personas/mark.png" alt="Mark" style="border-radius:50%;width:88px;height:88px;object-fit:cover;object-position:top center;"></div>
  <div class="actor-name">Mark</div><div class="actor-role">Patient &middot; PSA-AS</div>
  </a>
- <a href="DTx OM - Persona Devi.html" class="actor" data-group="patient" style="background:rgba(255,255,255,0.96);">
+ <a href="DTx OM - Persona Devi.html" class="actor" style="background:rgba(255,255,255,0.96);">
  <div class="actor-portrait"><img src="../assets/personas/devi.png" alt="Devi" style="border-radius:50%;width:88px;height:88px;object-fit:cover;object-position:top center;"></div>
  <div class="actor-name">Devi</div><div class="actor-role">Patient &middot; HbA1c</div>
  </a>
- <a href="DTx OM - Persona Layla.html" class="actor" data-group="patient" style="background:rgba(255,255,255,0.96);opacity:0.85;">
+ <a href="DTx OM - Persona Layla.html" class="actor" style="background:rgba(255,255,255,0.96);opacity:0.85;">
  <div class="actor-portrait"><img src="../assets/personas/layla.png" alt="Layla" style="border-radius:50%;width:88px;height:88px;object-fit:cover;object-position:top center;opacity:0.72;border:2px dashed #C9A227;background:#fff;"></div>
  <div class="actor-name">Layla <span style="font-size:9px;font-weight:800;color:#8A6D1A;background:#FFF3CD;padding:1px 5px;border-radius:8px;letter-spacing:0.6px;text-transform:uppercase;margin-left:3px;">Held</span></div><div class="actor-role">Patient &middot; iron deficiency anaemia</div>
  </a>
- <a href="DTx OM - Persona Sean.html" class="actor" data-group="patient" style="background:rgba(255,255,255,0.96);grid-column:1 / -1;">
+ <a href="DTx OM - Persona Sean.html" class="actor" style="background:rgba(255,255,255,0.96);grid-column:1 / -1;">
  <div class="actor-portrait"><img src="../assets/personas/sean.png" alt="Sean" style="border-radius:50%;width:88px;height:88px;object-fit:cover;object-position:top center;"></div>
  <div class="actor-name">Sean</div><div class="actor-role">Patient &middot; every pathway ⚑</div>
  </a>
@@ -812,9 +803,9 @@
  <div style="font-size:9.5px;font-weight:800;letter-spacing:1.6px;opacity:0.85;text-transform:uppercase;margin-bottom:4px;">Product spoke</div>
  <h4 style="font-size:20px;font-weight:900;letter-spacing:-0.4px;margin-bottom:14px;">HealthStore</h4>
  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
- <a href="DTx OM - Persona HealthStore COPD patient.html" class="actor actor-solo" data-group="patient" style="background:rgba(255,255,255,0.96);grid-column:1 / -1;display:flex;align-items:center;gap:16px;padding:14px 20px;text-align:left;">
- <div class="actor-portrait" style="height:auto;margin-bottom:0;flex-shrink:0;"><img src="img/pauline-final.png" alt="Pauline" style="border-radius:50%;width:88px;height:88px;object-fit:cover;object-position:top center;border:3px solid #FFB91D;background:#fff;"></div>
- <div style="flex:1;"><div class="actor-name" style="text-align:left;">Pauline</div><div class="actor-role" style="text-align:left;">Patient &middot; COPD</div></div>
+ <a href="DTx OM - Persona HealthStore COPD patient.html" class="actor" style="background:rgba(255,255,255,0.96);grid-column:1 / -1;">
+ <div class="actor-portrait"><img src="img/pauline-final.png" alt="Pauline" style="border-radius:50%;width:88px;height:88px;object-fit:cover;object-position:top center;"></div>
+ <div class="actor-name">Pauline</div><div class="actor-role">Patient &middot; COPD</div>
  </a>
  </div>
  
@@ -825,9 +816,9 @@
  <div style="font-size:9.5px;font-weight:800;letter-spacing:1.6px;opacity:0.85;text-transform:uppercase;margin-bottom:4px;">Product spoke</div>
  <h4 style="font-size:20px;font-weight:900;letter-spacing:-0.4px;margin-bottom:14px;">HealthSync</h4>
  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
- <a href="DTx OM - Persona HealthSync diabetes patient.html" class="actor actor-solo" data-group="patient" style="background:rgba(255,255,255,0.96);grid-column:1 / -1;display:flex;align-items:center;gap:16px;padding:14px 20px;text-align:left;">
- <div class="actor-portrait" style="height:auto;margin-bottom:0;flex-shrink:0;"><img src="img/mei.png" alt="Mei" style="border-radius:50%;width:88px;height:88px;object-fit:cover;object-position:top center;background:#E0E5EB;border:3px solid #FFB91D;"></div>
- <div style="flex:1;"><div class="actor-name" style="text-align:left;">Mei</div><div class="actor-role" style="text-align:left;">Patient &middot; T2 diabetes CGM</div></div>
+ <a href="DTx OM - Persona HealthSync diabetes patient.html" class="actor" style="background:rgba(255,255,255,0.96);grid-column:1 / -1;">
+ <div class="actor-portrait"><img src="img/mei.png" alt="Mei" style="border-radius:50%;width:88px;height:88px;object-fit:cover;object-position:top center;background:#E0E5EB;"></div>
+ <div class="actor-name">Mei</div><div class="actor-role">Patient &middot; T2 diabetes CGM</div>
  </a>
  </div>
  </div>
