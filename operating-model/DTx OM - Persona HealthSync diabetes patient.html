@@ -49,10 +49,10 @@
 
   .where-panel{background:#F4F8FC;border:1px solid #d6e2ef;border-left:4px solid var(--nhs-blue);border-radius:0 12px 12px 0;padding:18px 22px;margin-bottom:32px;font-size:13.5px;color:var(--text-sec);line-height:1.7;}
   .where-panel .label{font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:var(--nhs-blue);text-transform:uppercase;display:block;margin-bottom:6px;}
-
   /* nav-rg-reading-guide */
-  .topnav .nav-rg{background:#FFB91D;color:#003087;font-weight:800;padding:7px 14px;border-radius:6px;text-decoration:none;font-size:12.5px;letter-spacing:0.2px;margin-left:auto;white-space:nowrap;}
+  .topnav .nav-rg{background:#FFB91D;color:#003087;font-weight:800;padding:7px 14px;border-radius:6px;text-decoration:none;font-size:12.5px;letter-spacing:0.2px;margin-left:auto;white-space:nowrap;flex-shrink:0;}
   .topnav .nav-rg:hover{background:#FFD45A;color:#003087;}
+  .topnav.topnav-secondary .nav-siblings{min-width:0;flex:1 1 auto;}
   /* end nav-rg-reading-guide */
 </style>
 <style>
@@ -121,9 +121,10 @@
 </style>
 </head>
 <body>
+<div class="persona-accent-bar" style="height:4px;background:#FFB91D;width:100%;"></div>
 <div class="ecosystem-nav">
   <a href="../index.html">← DTx Ecosystem</a>
-  <span class="nav-product dtx">DTx</span>
+  <span class="nav-product healthsync">HealthSync</span>
 </div>
 <nav class="topnav topnav-secondary">
 <a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
@@ -161,8 +162,9 @@
   <a href="DTx OM - Persona Priya.html" class="cast-priya" title="Marketplace">Priya</a>
   <a href="DTx OM - Persona David.html" class="cast-david" title="Marketplace">David</a>
  </div>
- <a href="DTx OM - Reading Guide.html" class="nav-rg">Reading guide</a>
  </div>
+<a href="DTx OM - Reading Guide.html" class="nav-rg">Reading guide</a>
+
 </nav>
 
 <div class="page">

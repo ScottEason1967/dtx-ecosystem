@@ -89,10 +89,10 @@
  body { background: linear-gradient(180deg, var(--nhs-blue) 0%, var(--nhs-blue-deep) 100%) !important; background-attachment: fixed !important; }
  
  .page { background:#ffffff; border-radius:18px; box-shadow:0 14px 40px rgba(0,48,135,0.20); margin-top:30px !important; margin-bottom:50px !important; }
-
   /* nav-rg-reading-guide */
-  .topnav .nav-rg{background:#FFB91D;color:#003087;font-weight:800;padding:7px 14px;border-radius:6px;text-decoration:none;font-size:12.5px;letter-spacing:0.2px;margin-left:auto;white-space:nowrap;}
+  .topnav .nav-rg{background:#FFB91D;color:#003087;font-weight:800;padding:7px 14px;border-radius:6px;text-decoration:none;font-size:12.5px;letter-spacing:0.2px;margin-left:auto;white-space:nowrap;flex-shrink:0;}
   .topnav .nav-rg:hover{background:#FFD45A;color:#003087;}
+  .topnav.topnav-secondary .nav-siblings{min-width:0;flex:1 1 auto;}
   /* end nav-rg-reading-guide */
 </style>
 <style>
@@ -130,6 +130,7 @@
 </style>
 </head>
 <body>
+<div class="persona-accent-bar" style="height:4px;background:#5BC093;width:100%;"></div>
 <div class="ecosystem-nav">
   <a href="../index.html">← DTx Ecosystem</a>
   <span class="nav-product healthstore">HealthStore</span>
@@ -170,8 +171,9 @@
   <a href="DTx OM - Persona Priya.html" class="cast-priya" title="Marketplace">Priya</a>
   <a href="DTx OM - Persona David.html" class="cast-david" title="Marketplace">David</a>
  </div>
- <a href="DTx OM - Reading Guide.html" class="nav-rg">Reading guide</a>
  </div>
+<a href="DTx OM - Reading Guide.html" class="nav-rg">Reading guide</a>
+
 </nav>
 
 <div class="page">
