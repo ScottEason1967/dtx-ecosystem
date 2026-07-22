@@ -25,14 +25,14 @@
 
   .page{max-width:1060px;margin:0 auto;padding:0 28px 60px;}
 
-  .hero{display:flex;gap:36px;align-items:center;padding:48px 0 36px;border-bottom:1px solid var(--border-lt);flex-wrap:wrap;}
-  .hero-portrait{width:150px;height:150px;border-radius:50%;overflow:hidden;flex-shrink:0;border:4px solid var(--nhs-blue);box-shadow:0 8px 24px rgba(0,48,135,0.18);background:#fff;}
+  .hero{display:flex;gap:36px;align-items:center;padding:56px 48px;background:linear-gradient(135deg,#001a4d 0%,#003087 50%,#005EB8 100%);color:#fff;flex-wrap:wrap;}
+  .hero-portrait{width:150px;height:150px;border-radius:50%;overflow:hidden;flex-shrink:0;border:4px solid #B9A5E8;box-shadow:0 8px 24px rgba(0,0,0,0.30);background:#fff;}
   .hero-portrait img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;}
   .hero-text{flex:1;min-width:300px;}
   .hero-eyebrow{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--amber-deep);margin-bottom:10px;}
-  .hero-title{font-size:36px;font-weight:900;color:var(--nhs-dark);letter-spacing:-0.8px;line-height:1.08;margin-bottom:12px;}
-  .hero-sub{font-size:14.5px;color:var(--text-sec);line-height:1.6;max-width:680px;}
-  .hero-source{margin-top:12px;font-size:12px;color:var(--text-muted);font-style:italic;}
+  .hero-title{font-size:36px;font-weight:900;color:#fff;letter-spacing:-0.8px;line-height:1.08;margin-bottom:12px;}
+  .hero-sub{font-size:14.5px;color:rgba(255,255,255,0.92);line-height:1.6;max-width:680px;}
+  .hero-source{margin-top:12px;font-size:12px;color:rgba(255,255,255,0.75);font-style:italic;}
 
   .ribbon{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:30px 0 8px;}
   .ribbon a{display:block;background:var(--card);border:1px solid var(--border-lt);border-radius:10px;padding:14px 16px;text-decoration:none;color:inherit;transition:transform .15s ease, box-shadow .15s ease;}
@@ -129,11 +129,29 @@
     .hmw-card, .pull-quote, .benefit, .callout { page-break-inside: avoid; }
   }
 </style>
+
+<style id="hm-strip-css">
+  .topnav.hm-strip{background:#F4F8FC;border-bottom:1px solid #d6e2ef;padding:8px 36px;display:flex;align-items:center;gap:14px;flex-wrap:nowrap;overflow-x:auto;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;}
+  .hm-strip-label{font-size:10px;font-weight:800;letter-spacing:1.5px;color:#7E8B97;text-transform:uppercase;flex-shrink:0;}
+  .hm-strip-groups{display:flex;gap:8px;align-items:center;flex-wrap:nowrap;}
+  .hms-group{display:inline-flex;gap:3px;align-items:center;padding:3px 8px;border-radius:6px;border:2px dotted #d8dde0;flex-shrink:0;}
+  .hms-group.hms-patients{border-color:#C9A227;}
+  .hms-group.hms-commissioners{border-color:#003087;}
+  .hms-group.hms-clinicians{border-color:#9B7CC4;}
+  .hms-group.hms-suppliers{border-color:#388C5D;}
+  .hms{font-size:11.5px;font-weight:600;color:#4C6272;text-decoration:none;padding:5px 10px;border-radius:6px;white-space:nowrap;}
+  .hms:hover{background:#e9eff5;color:#212B32;}
+  .hms-abdul.active,.hms-mark.active,.hms-devi.active,.hms-errol.active{background:#FFB91D;color:#231F20;}
+  .hms-sean.active{background:#4527A0;color:#ffffff;}
+  .hms-sarah.active,.hms-catherine.active,.hms-anita.active{background:#003087;color:#ffffff;}
+  .hms-adam.active,.hms-hannah.active,.hms-ravi.active{background:#C9A0E3;color:#231F20;}
+  .hms-joe.active,.hms-marcus.active{background:#5BC093;color:#ffffff;}
+</style>
 </head>
 <body>
 <div class="ecosystem-nav">
-  <a href="../index.html">&larr; DTx Ecosystem</a>
-  <span class="nav-context">Sean&apos;s Journey</span>
+  <a href="../index.html">← DTx Ecosystem</a>
+  <span class="nav-context">Sean Journey</span>
   <span class="nav-product hometest">HomeTest</span>
 </div>
 
@@ -151,11 +169,38 @@
   </div>
 </nav>
 
+<nav class="topnav hm-strip">
+  <div class="hm-strip-label">Hearts &amp; Minds</div>
+  <div class="hm-strip-groups">
+    <div class="hms-group hms-patients">
+      <a href="DTx OM - Abdul Journey.html" class="hms hms-abdul" title="Patient">Abdul</a>
+      <a href="DTx OM - Mark Journey.html" class="hms hms-mark" title="Patient">Mark</a>
+      <a href="DTx OM - Devi Journey.html" class="hms hms-devi" title="Patient">Devi</a>
+      <a href="DTx OM - Sean Journey.html" class="hms hms-sean active" title="Patient">Sean</a>
+      <a href="DTx OM - Errol Journey.html" class="hms hms-errol" title="Patient">Errol</a>
+    </div>
+    <div class="hms-group hms-commissioners">
+      <a href="DTx OM - Sarah Journey.html" class="hms hms-sarah" title="Commissioner">Sarah</a>
+      <a href="DTx OM - Catherine Journey.html" class="hms hms-catherine" title="Commissioner">Catherine</a>
+      <a href="DTx OM - Anita Journey.html" class="hms hms-anita" title="Commissioner">Anita</a>
+    </div>
+    <div class="hms-group hms-clinicians">
+      <a href="DTx OM - Adam Journey.html" class="hms hms-adam" title="Clinician">Adam</a>
+      <a href="DTx OM - Hannah Journey.html" class="hms hms-hannah" title="Clinician">Hannah</a>
+      <a href="DTx OM - Ravi Journey.html" class="hms hms-ravi" title="Clinician">Ravi</a>
+    </div>
+    <div class="hms-group hms-suppliers">
+      <a href="DTx OM - Joe Journey.html" class="hms hms-joe" title="Supplier">Joe</a>
+      <a href="DTx OM - Marcus Journey.html" class="hms hms-marcus" title="Supplier">Marcus</a>
+    </div>
+  </div>
+</nav>
+
 <div class="page">
   <div class="hero">
-    <div class="hero-portrait" style="border-color:#6A4DBF;"><img src="../assets/personas/sean.png" alt="Sean"></div>
+    <div class="hero-portrait" style="border-color:#B9A5E8;"><img src="../assets/personas/sean.png" alt="Sean"></div>
     <div class="hero-text">
-      <div class="hero-eyebrow" style="color:#6A4DBF;">Hearts and Minds &middot; the access story &middot; a real journey</div>
+      <div class="hero-eyebrow" style="color:#C9A0E3;">Hearts and Minds &middot; the access story &middot; a real journey</div>
       <h1 class="hero-title">Sean&apos;s journey.<br>His home. His pace. His people.</h1>
       <p class="hero-sub">Sean is 46. He has had his learning disability all his life; he is autistic and lives with OCD. He is not an archetype,  he is a real man, and his story is here with his family&apos;s blessing. He is fantastic, and his family would not change him. The system is what has to change. For Sean, the test was never the hard part. Everything before the test was. This is the journey as it has been, and the journey as this model means it to be.</p>
       <p class="hero-source">Source: his family. The design hooks his story points to are marked <span style="color:var(--amber-deep);font-weight:800;font-style:normal;">&#9873;</span> where they are still being documented.</p>
