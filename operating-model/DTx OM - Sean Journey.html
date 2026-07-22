@@ -179,15 +179,6 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
 </style>
 </head>
 <body>
-<script>
-(function(){
-  if (sessionStorage.getItem('hometest-auth') !== 'ok') {
-    var next = encodeURIComponent(location.pathname.split('/').pop() || 'home.html');
-    location.href = 'index.html?next=' + next;
-  }
-})();
-</script>
-
 <div class="ecosystem-nav">
   <a href="../index.html">← DTx Ecosystem</a>
   <span class="nav-context">Sean Journey</span>
