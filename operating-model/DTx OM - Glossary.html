@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Glossary, Digital Therapeutics Operating Model</title>
+<style>
+:root {
+  --nhs-dark:#003087; --nhs-blue:#005EB8; --nhs-green:#006747; --nhs-pink:#AE2573;
+  --amber:#FFB91D; --amber-deep:#C9A227; --warm-cream:#FFF9EC;
+  --text:#212B32; --text-sec:#4C6272; --text-muted:#7E8B97;
+  --border-lt:#ebeef1; --card:#ffffff; --bg:#f8fafc; --pale-blue:#E8F1F6; --pale-blue-bd:#B5D4E5;
+  --ht:#005EB8; --hs:#AE2573; --hsy:#006747;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;
+     background:linear-gradient(180deg,var(--nhs-blue) 0%,#003087 100%);background-attachment:fixed;
+     color:var(--text);line-height:1.55;-webkit-font-smoothing:antialiased;min-height:100vh;}
+.page{max-width:1180px;margin:0 auto;padding:36px 28px 56px;}
+.card{background:#fff;border-radius:18px;box-shadow:0 14px 40px rgba(0,48,135,0.22);padding:48px 52px 44px;}
+
+.eyebrow{font-size:11px;font-weight:800;letter-spacing:2.4px;color:var(--amber-deep);text-transform:uppercase;margin-bottom:14px;}
+.h-title{font-size:54px;font-weight:900;color:var(--nhs-dark);letter-spacing:-1.6px;line-height:1.0;margin-bottom:18px;}
+.h-sub{font-size:18px;color:var(--text-sec);line-height:1.65;max-width:820px;margin-bottom:20px;}
+.h-sub strong{color:var(--text);font-weight:700;}
+
+.amber-rule{width:72px;height:4px;background:var(--amber);border-radius:2px;margin-bottom:18px;}
+
+/* ===== Ecosystem nav strip (matches sibling pages) ===== */
+.ecosystem-nav {
+  background:#fff; border-bottom:1px solid #ebeef1; padding:12px 36px;
+  display:flex; align-items:center; justify-content:space-between; gap:24px;
+  min-height:48px; position:sticky; top:0; z-index:9999;
+  font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;
+}
+.ecosystem-nav a { font-size:13px; font-weight:700; color:#003087; text-decoration:none; display:inline-flex; align-items:center; gap:6px; }
+.ecosystem-nav a:hover { color:#005EB8; }
+.ecosystem-nav .nav-context { font-size:11px; font-weight:800; letter-spacing:1.5px; color:#7E8B97; text-transform:uppercase; }
+.ecosystem-nav .nav-product { font-size:10.5px; font-weight:800; letter-spacing:0.8px; text-transform:uppercase; padding:4px 10px; border-radius:4px; color:#fff; }
+.ecosystem-nav .nav-product.dtx { background:#003087; }
+
+/* ===== Top-of-page back strip ===== */
+.rg-top-strip{display:flex;justify-content:space-between;align-items:center;gap:14px;padding-bottom:14px;margin-bottom:14px;border-bottom:1px solid var(--border-lt);font-size:12px;}
+.rg-top-strip-back{color:var(--nhs-blue);font-weight:700;text-decoration:none;letter-spacing:0.3px;}
+.rg-top-strip-back:hover{color:var(--nhs-dark);}
+.rg-top-strip-cta{display:inline-flex;align-items:center;gap:6px;background:var(--amber);color:var(--nhs-dark);font-weight:800;padding:7px 14px;border-radius:99px;text-decoration:none;letter-spacing:0.3px;font-size:11.5px;}
+.rg-top-strip-cta:hover{background:#FFD45A;}
+
+/* ===== Glossary groups and definition list ===== */
+.section{margin-top:44px;}
+.section-eyebrow{font-size:10.5px;font-weight:800;letter-spacing:1.8px;color:var(--amber-deep);text-transform:uppercase;margin-bottom:8px;}
+.section-h{font-size:26px;font-weight:900;color:var(--nhs-dark);letter-spacing:-0.6px;line-height:1.1;margin-bottom:18px;}
+
+.gloss-list{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--border-lt);}
+.gloss-row{display:grid;grid-template-columns:230px 1fr;gap:24px;padding:16px 0;border-bottom:1px solid var(--border-lt);align-items:start;}
+.gloss-term{font-size:15px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.2px;line-height:1.35;}
+.gloss-def{font-size:14px;color:var(--text-sec);line-height:1.65;}
+.gloss-def strong{color:var(--text);font-weight:700;}
+@media(max-width:720px){.gloss-row{grid-template-columns:1fr;gap:6px;}}
+
+.foot{margin-top:44px;padding-top:22px;border-top:1px solid var(--border-lt);font-size:11.5px;color:var(--text-muted);text-align:center;}
+</style>
+</head>
+<body>
+<div class="ecosystem-nav">
+  <a href="../index.html">&larr; DTx Ecosystem</a>
+  <span class="nav-context">Glossary</span>
+  <span class="nav-product dtx">DTx</span>
+</div>
+
+<div class="page">
+  <div class="card">
+
+    <!-- Top-of-page back strip -->
+    <div class="rg-top-strip">
+      <a href="DTx OM - Reading Guide.html" class="rg-top-strip-back">&larr; Reading Guide</a>
+      <a href="DTx OM - Index.html" class="rg-top-strip-cta">Into the model &rarr;</a>
+    </div>
+
+    <div class="eyebrow">Reference</div>
+    <div class="amber-rule"></div>
+    <h1 class="h-title">Glossary.</h1>
+    <p class="h-sub">Plain-English definitions of the terms and acronyms used across the DTx ecosystem.</p>
+
+    <!-- ===== PROCUREMENT AND COMMERCIAL ===== -->
+    <div class="section">
+      <div class="section-eyebrow">Group one</div>
+      <h2 class="section-h">Procurement and commercial.</h2>
+      <div class="gloss-list">
+
+        <div class="gloss-row">
+          <div class="gloss-term">PA23</div>
+          <div class="gloss-def">Procurement Act 2023. The procurement regime chosen for the enduring HomeTest framework.</div>
+        </div>
+        <div class="gloss-row">
+          <div class="gloss-term">PSR</div>
+          <div class="gloss-def">Provider Selection Regime. The alternative regime; used as the legal basis for the interim SBS route, but not for the enduring framework.</div>
+        </div>
+        <div class="gloss-row">
+          <div class="gloss-term">Open Framework</div>
+          <div class="gloss-def">The NHSE-administered market form chosen under PA23 at the 22 June 2026 SLT playback.</div>
+        </div>
+        <div class="gloss-row">
+          <div class="gloss-term">Dynamic Market</div>
+          <div class="gloss-def">The PA23 alternative market form, considered and rejected.</div>
+        </div>
+        <div class="gloss-row">
+          <div class="gloss-term">Plan A</div>
+          <div class="gloss-def">The long-term destination, an NHSE-administered Open Framework under PA23. Earliest go-live around August 2027.</div>
+        </div>
+        <div class="gloss-row">
+          <div class="gloss-term">Plan B</div>
+          <div class="gloss-def">A Digital Primary Care (DPC) Framework fallback, set aside because it could not bridge the near-term gap.</div>
+        </div>
+        <div class="gloss-row">
+          <div class="gloss-term">Plan C</div>
+          <div class="gloss-def">The commissioner-led interim route to market via existing frameworks, live now through the NHS Online iron deficiency anaemia (IDA) commission, with SBS10255 for HIV.</div>
+        </div>
+        <div class="gloss-row">
+          <div class="gloss-term">SBS10255</div>
+          <div class="gloss-def">The NHS SBS Sexual Health Framework, the interim route for the HIV use case.</div>
+        </div>
+        <div class="gloss-row">
+          <div class="gloss-term">ACE</div>
+          <div class="gloss-def">The framework used for the current Beta procurement arrangement; not the enduring route.</div>
+        </div>
+        <div class="gloss-row">
+          <div class="gloss-term">MOU</div>
+          <div class="gloss-def">Memorandum of Understanding. Used only in HomeTest Alpha and Beta, not as a BAU contracting instrument.</div>
+        </div>
+        <div class="gloss-row">
+          <div class="gloss-term">PIN and ITT</div>
+          <div class="gloss-def">Planned Procurement Notice and Invitation to Tender.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ===== ASSURANCE AND REGULATION ===== -->
+    <div class="section">
+      <div class="section-eyebrow">Group two</div>
+      <h2 class="section-h">Assurance and regulation.</h2>
+      <div class="gloss-list">
+
+        <div class="gloss-row">
+          <div class="gloss-term">DTAC</div>
+          <div class="gloss-def">Digital Technology Assessment Criteria.</div>
+        </div>
+        <div class="gloss-row">
+          <div class="gloss-term">DCB0129</div>
+          <div class="gloss-def">The clinical safety standard for manufacturers of health IT.</div>
+        </div>
+        <div class="gloss-row">
+          <div class="gloss-term">DCB0160</div>
+          <div class="gloss-def">The clinical safety standard for health organisations deploying health IT.</div>
+        </div>
+        <div class="gloss-row">
+          <div class="gloss-term">NICE EVA</div>
+          <div class="gloss-def">NICE Early Value Assessment.</div>
+        </div>
+        <div class="gloss-row">
+          <div class="gloss-term">Innovator Passport</div>
+          <div class="gloss-def">A reusable assurance route that lets one assurance package be recognised across organisations.</div>
+        </div>
+        <div class="gloss-row">
+          <div class="gloss-term">SaMD and non-SaMD</div>
+          <div class="gloss-def">Software as a Medical Device, and the MHRA determination that a configuration is not a medical device.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ===== GOVERNANCE AND APPROVALS ===== -->
+    <div class="section">
+      <div class="section-eyebrow">Group three</div>
+      <h2 class="section-h">Governance and approvals.</h2>
+      <div class="gloss-list">
+
+        <div class="gloss-row">
+          <div class="gloss-term">IAO</div>
+          <div class="gloss-def">Information Asset Owner.</div>
+        </div>
+        <div class="gloss-row">
+          <div class="gloss-term">OBC and FBC</div>
+          <div class="gloss-def">Outline Business Case and Full Business Case.</div>
+        </div>
+        <div class="gloss-row">
+          <div class="gloss-term">Approval gates (GAS/GAtS, CEG, DHSC CAB, NHSE Atamis)</div>
+          <div class="gloss-def">The NHS and DHSC governance checkpoints a business case passes through.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ===== PROGRAMME AND PRODUCTS ===== -->
+    <div class="section">
+      <div class="section-eyebrow">Group four</div>
+      <h2 class="section-h">Programme and products.</h2>
+      <div class="gloss-list">
+
+        <div class="gloss-row">
+          <div class="gloss-term">Six Cornerstones</div>
+          <div class="gloss-def">The six questions that drive the sourcing strategy: ITT specification, volume and value, commercial models, interim route to market (Plan C), lotting strategy, go-live date.</div>
+        </div>
+        <div class="gloss-row">
+          <div class="gloss-term">Self Health Services</div>
+          <div class="gloss-def">The portfolio brand adopted for the DTx programmes in May 2026.</div>
+        </div>
+        <div class="gloss-row">
+          <div class="gloss-term">HomeTest, HealthStore, HealthSync</div>
+          <div class="gloss-def">The three DTx products in scope.</div>
+        </div>
+        <div class="gloss-row">
+          <div class="gloss-term">ICB</div>
+          <div class="gloss-def">Integrated Care Board.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="foot">
+      Digital Therapeutics Operating Model &middot; Glossary &middot; Plain-English reference for terms used across the DTx ecosystem.
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
