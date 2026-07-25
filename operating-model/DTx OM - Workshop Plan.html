@@ -80,7 +80,7 @@ a:hover{text-decoration:underline}
 .ws-list li{font-size:13px;line-height:1.55;margin:3px 0}
 .ws-list-tight li{margin:2px 0;font-size:12.5px}
 .ws-att-wrap{display:grid;grid-template-columns:1.4fr 1fr;gap:20px}
-.ws-att-core,.ws-att-extras{background:#F7FAFC;border-radius:6px;padding:12px 14px}
+.ws-att-fs,.ws-att-extras,.ws-att-contrib{border-radius:6px;padding:12px 14px}
 .ws-att-extras{background:#FDF6E9;border:1px solid #F4E1BA}
 .ws-att-caption{font-size:10px;font-weight:800;letter-spacing:0.6px;text-transform:uppercase;color:#5A6B76;margin-bottom:6px}
 .ws-att-extras .ws-att-caption{color:#8A6A1D}
@@ -105,6 +105,43 @@ a:hover{text-decoration:underline}
 .topnav .nav-siblings .nav-sep{display:inline-block;width:1px;height:18px;background:#D6DEE5;margin:0 6px;}
 .topnav .nav-rg{background:#FFB91D;color:#003087;font-weight:800;padding:7px 14px;border-radius:6px;text-decoration:none;font-size:12.5px;letter-spacing:0.2px;margin-left:auto;white-space:nowrap;}
 .topnav .nav-rg:hover{background:#FFD45A;color:#003087;}
+
+/* workshop -> milestone back-link */
+.ws-decides{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 14px;padding:8px 12px;background:#F4F8FB;border:1px solid #d7e6f1;border-radius:8px;}
+.ws-decides-label{font-size:10px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;color:#4C6272;}
+.ws-decides-link{font-size:12.5px;font-weight:700;color:#005EB8;text-decoration:none;}
+.ws-decides-link:hover{text-decoration:underline;}
+
+.cnav{position:sticky;top:0;z-index:200;background:#003087;display:flex;align-items:center;justify-content:space-between;padding:0 22px;flex-wrap:wrap;box-shadow:0 2px 8px rgba(0,0,0,0.14);} .cnav-brand{color:#fff;font-weight:700;font-size:12.5px;letter-spacing:0.3px;padding:12px 0;} .cnav-tabs{display:flex;gap:2px;flex-wrap:wrap;} .cnav-tab{color:#cfe0f0;text-decoration:none;font-size:13px;font-weight:600;padding:13px 15px;border-bottom:3px solid transparent;transition:all .15s;} .cnav-tab:hover{color:#fff;background:rgba(255,255,255,0.09);} .cnav-tab.active{color:#fff;border-bottom-color:#00A9CE;background:rgba(255,255,255,0.12);}
+
+/* standalone nav full-bleed fix (centred body) */
+body{padding-top:0;}
+html{overflow-x:hidden;}
+.cnav{width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);margin-bottom:26px;box-sizing:border-box;}
+
+/* three-tier attendees */
+.ws-att-wrap{grid-template-columns:1fr 1fr 1fr;gap:16px}
+.ws-att-fs{background:#EEF4FA;border:1px solid #cfe0ef;border-radius:6px;padding:12px 14px}
+.ws-att-fs .ws-att-caption{color:#2C5C8A}
+.ws-att-contrib{background:#F5F7F9;border:1px solid #e4e9ee;border-radius:6px;padding:12px 14px}
+.ws-att-contrib .ws-att-caption{color:#5A6B76}
+.core-tiers{display:grid;grid-template-columns:0.85fr 1fr 1.35fr;gap:16px;margin-top:12px}
+.core-tier-fs{background:#EEF4FA;border:1px solid #cfe0ef;border-radius:6px;padding:12px 14px}
+.core-tier-contrib{background:#F5F7F9;border:1px solid #e4e9ee;border-radius:6px;padding:12px 14px}
+@media(max-width:900px){.ws-att-wrap{grid-template-columns:1fr}.core-tiers{grid-template-columns:1fr}}
+
+/* red programme-lead placeholder */
+.ws-att-lead{margin:14px 0 16px;background:#FDECEC;border:1px solid #E7B0B0;border-radius:6px;padding:11px 14px;font-size:13px;color:#9F2D2D;font-weight:600}
+.ws-att-lead-cap{display:inline-block;font-size:10px;font-weight:800;letter-spacing:0.6px;text-transform:uppercase;color:#B23A3A;margin-right:10px}
+
+/* contributors as two even columns */
+.ws-att-contrib .ws-list{columns:2;column-gap:16px}
+.ws-att-contrib .ws-list li{break-inside:avoid}
+
+/* panel session-lead placeholder (dotted red) */
+.core-tier-lead{background:#FDECEC;border:2px dotted #CE7A7A;border-radius:6px;padding:12px 14px;display:flex;flex-direction:column;justify-content:center}
+.core-tier-lead .ws-att-caption{color:#B23A3A;margin-bottom:8px}
+.core-lead-text{font-size:14px;font-weight:700;color:#9F2D2D;line-height:1.4}
 </style>
 <style>
   .ecosystem-nav {
@@ -167,16 +204,19 @@ a:hover{text-decoration:underline}
   <a class="back-link" href="DTx OM - Milestone Plan.html">← Back to Milestone Plan</a>
   <div class="subtitle">HOMETEST OPERATING MODEL</div>
   <h1>Workshop programme</h1>
+<div class="ws-purpose" style="background:#F4F8FB;border:1px solid #d7e6f1;border-radius:10px;padding:16px 20px;margin:0 0 22px;font-size:14px;line-height:1.7;color:#20364B;max-width:900px;">This is the workshop programme that settles the six cornerstones the sourcing strategy depends on. It runs from the foundation session on 13 August through to go-live, one workshop per decision, each feeding the plan. The subject matter and the outputs sit on the programme side, and the sessions are where the programme takes ownership of the answers. This is one way to settle the cornerstones in the time available, not the only way; if the programme would rather run it differently, that is theirs to decide. The dates are not arbitrary, because those are the dates the sourcing strategy, and the framework behind it, run to.</div>
   <div class="lede">Structured working sessions distributed across the five procurement stages, each anchored to a specific decision or output that needs to land in that stage. Ownership of each session and its outputs sits on the programme side; the commercial team attends and consumes the outputs into the sourcing strategy. Every workshop is a click-through with a full agenda: attendees, prep required, objectives, decisions to land and outputs.</div>
 </div>
 
 
 <div class="core-panel">
-  <h3>Core group · attends every workshop</h3>
-  <p>Each workshop’s subject matter and outputs are owned on the programme side; owners are being confirmed ahead of the 13 August foundation workshop and every session below is flagged in red until its owner is named. The anchor group attends every session for continuity, because the sourcing strategy consumes the outputs to fixed dates. Additional specialists are pulled in only where the session content calls for it. Whether the full anchor group attends every 2-hour session is for the SLT to confirm.</p>
-  <ul class="core-list">
-    <li>Martin O'Neill</li><li>Rachel Flower</li><li>Chris Leary</li><li>Richard Samuel</li><li>Shirley Gaynor-Ward</li><li>James Cowley</li><li>Simone Bilton</li><li>Scott Eason</li><li>Matt Thomas</li><li>Matt Visser</li><li>Will Twells</li>
-  </ul>
+  <h3>How each session is staffed</h3>
+  <p>Every workshop is Programme-led. The lead is a programme team member, still to be identified, which is what the sessions between now and 13 August confirm. Three groups sit in each session, and none of them lead it. The Future State team support and facilitate. Session experts are pulled in for the specific subject. The wider contributors from the core group and the SLT attend where the session needs them, which is for the SLT to confirm for the 2-hour sessions.</p>
+  <div class="core-tiers">
+    <div class="core-tier core-tier-lead"><div class="ws-att-caption">Session lead</div><div class="core-lead-text">Programme team member(s) to be identified</div></div>
+    <div class="core-tier core-tier-fs"><div class="ws-att-caption">Future State team &middot; support and facilitate</div><ul class="core-list"><li>James Cowley</li><li>Rachel Flower</li><li>Scott Eason</li><li>Hannah Brian</li></ul></div>
+    <div class="core-tier core-tier-contrib"><div class="ws-att-caption">Contributors &middot; core group, SLT and others as needed</div><ul class="core-list"><li>Martin O'Neill</li><li>Chris Leary</li><li>Richard Samuel</li><li>Shirley Gaynor-Ward</li><li>Simone Bilton</li><li>Matt Thomas</li><li>Matt Visser</li><li>Will Twells</li></ul></div>
+  </div>
 </div>
 
 
@@ -195,7 +235,7 @@ a:hover{text-decoration:underline}
   </div>
 </div>
 
-<div class="timeline"><a class="tl" href="#stage-S1"><div class="tl-label">STAGE 1</div><div class="tl-name">Procurement Planning</div><div class="tl-dates">Jul to Oct 26</div><div class="tl-count">7 workshops <span class="tl-arrow">→</span></div></a><a class="tl" href="#stage-S2"><div class="tl-label">STAGE 2</div><div class="tl-name">Pre-Procurement Governance</div><div class="tl-dates">Nov to Dec 26</div><div class="tl-count">3 workshops <span class="tl-arrow">→</span></div></a><a class="tl" href="#stage-S3"><div class="tl-label">STAGE 3</div><div class="tl-name">Tender and Bid</div><div class="tl-dates">Jan to Feb 27</div><div class="tl-count">3 workshops <span class="tl-arrow">→</span></div></a><a class="tl" href="#stage-S4"><div class="tl-label">STAGE 4</div><div class="tl-name">Evaluation and Award</div><div class="tl-dates">Mar to Jun 27</div><div class="tl-count">2 workshops <span class="tl-arrow">→</span></div></a><a class="tl" href="#stage-S5"><div class="tl-label">STAGE 5</div><div class="tl-name">Contract and Mobilisation</div><div class="tl-dates">Jul to Aug 27</div><div class="tl-count">2 workshops <span class="tl-arrow">→</span></div></a></div>
+<div class="timeline"><a class="tl" href="#stage-S1"><div class="tl-label">STAGE 1</div><div class="tl-name">Procurement Planning</div><div class="tl-dates">Jul to Oct 26</div><div class="tl-count">9 workshops <span class="tl-arrow">→</span></div></a><a class="tl" href="#stage-S2"><div class="tl-label">STAGE 2</div><div class="tl-name">Pre-Procurement Governance</div><div class="tl-dates">Nov to Dec 26</div><div class="tl-count">3 workshops <span class="tl-arrow">→</span></div></a><a class="tl" href="#stage-S3"><div class="tl-label">STAGE 3</div><div class="tl-name">Tender and Bid</div><div class="tl-dates">Jan to Feb 27</div><div class="tl-count">3 workshops <span class="tl-arrow">→</span></div></a><a class="tl" href="#stage-S4"><div class="tl-label">STAGE 4</div><div class="tl-name">Evaluation and Award</div><div class="tl-dates">Mar to Jun 27</div><div class="tl-count">2 workshops <span class="tl-arrow">→</span></div></a><a class="tl" href="#stage-S5"><div class="tl-label">STAGE 5</div><div class="tl-name">Contract and Mobilisation</div><div class="tl-dates">Jul to Aug 27</div><div class="tl-count">2 workshops <span class="tl-arrow">→</span></div></a></div>
 
 <main>
 
@@ -204,7 +244,7 @@ a:hover{text-decoration:underline}
       <div class="ws-stage-label">STAGE 1</div>
       <div class="ws-stage-name">Procurement Planning</div>
       <div class="ws-stage-dates">Jul to Oct 26</div>
-      <div class="ws-stage-meta">7 workshops</div>
+      <div class="ws-stage-meta">9 workshops</div>
     </div>
     <div class="ws-stage-body">
     <details class="ws-card" data-scenario="scenario-decider" id="ws-S1-1">
@@ -213,57 +253,77 @@ a:hover{text-decoration:underline}
           <span class="ws-seq">1</span>
           <div class="ws-card-meta">
             <div class="ws-when">Thu 13 Aug 2026 · <span class="ws-dur">Full day</span> <span class="ws-scenario-badge sb-decider">Decides the scenario</span></div>
-            <div class="ws-card-title">Cornerstones foundation workshop</div><div class="ws-owner-flag">[Owner to be identified]</div>
+            <div class="ws-card-title">Cornerstones foundation &mdash; Part 1</div><div class="ws-owner-flag">Programme-led, lead to be confirmed</div>
             <div class="ws-oneliner">First-cut answers on all six cornerstones. The workshop that sets everything else in motion.</div>
           </div>
           <span class="ws-toggle">▾</span>
         </div>
       </summary>
-      <div class="ws-body">
+      <div class="ws-body"><div class="ws-decides"><span class="ws-decides-label">Decides on the roadmap</span><a class="ws-decides-link" href="DTx OM - Milestone Plan.html#cornerstones">The six cornerstones &rarr;</a></div>
         <div class="ws-scenario-note">This workshop and Volume and value together decide which value scenario applies. All downstream workshops in S2 that depend on approvals path are contingent on the answer that lands here.</div>
-        <div class="ws-field"><h4>Attendees</h4><div class="ws-att-wrap"><div class="ws-att-core"><div class="ws-att-caption">Core group (attends every workshop)</div><ul class="ws-list ws-list-tight"><li>Martin O'Neill</li><li>Rachel Flower</li><li>Chris Leary</li><li>Richard Samuel</li><li>Shirley Gaynor-Ward</li><li>James Cowley</li><li>Simone Bilton</li><li>Scott Eason</li><li>Matt Thomas</li><li>Matt Visser</li><li>Will Twells</li></ul></div><div class="ws-att-extras"><div class="ws-att-caption">Plus for this session</div><ul class="ws-list ws-list-tight"><li>Simon Leigh</li><li>Meera Parkash</li><li>Wendi Higgins</li><li>Mandie Holt (optional)</li></ul></div></div></div>
-        <div class="ws-field"><h4>Prep required</h4><p>Read the Recommendation Paper v1.1 and the Six Cornerstones summary. Bring current thinking on volumes for HIV and PSA-AS. Preview the 5/4/4.</p></div>
+        <div class="ws-field"><h4>Attendees</h4><div class="ws-att-lead"><span class="ws-att-lead-cap">Session lead</span>Programme team member(s) to be identified</div><div class="ws-att-wrap"><div class="ws-att-fs"><div class="ws-att-caption">Future State team &middot; support and facilitate</div><ul class="ws-list ws-list-tight"><li>James Cowley</li><li>Rachel Flower</li><li>Scott Eason</li><li>Hannah Brian</li></ul></div><div class="ws-att-extras"><div class="ws-att-caption">Plus for this session &middot; experts</div><ul class="ws-list ws-list-tight"><li>Simon Leigh</li><li>Meera Parkash</li><li>Wendi Higgins</li><li>Mandie Holt (optional)</li></ul></div><div class="ws-att-contrib"><div class="ws-att-caption">Contributors &middot; core group, SLT and others as needed</div><ul class="ws-list ws-list-tight"><li>Martin O'Neill</li><li>Chris Leary</li><li>Richard Samuel</li><li>Shirley Gaynor-Ward</li><li>Simone Bilton</li><li>Matt Thomas</li><li>Matt Visser</li><li>Will Twells</li></ul></div></div></div>
+        <div class="ws-field"><h4>Prep required</h4><p>Read the Recommendation Paper v1.1 and the Six Cornerstones summary. Bring current thinking on volumes for HIV and PSA-AS. Preview the prioritisation framework.</p></div>
         <div class="ws-field"><h4>Objectives</h4><ul class="ws-list"><li>Get to first-cut positions on each of the six cornerstones</li><li>Surface disagreements early and assign owners</li><li>Agree the workshop cadence and outputs for the rest of S1</li><li>Nominate a scribe and a decisions log owner</li></ul></div>
         <div class="ws-field"><h4>Decisions to land</h4><ul class="ws-list"><li>First-cut position on each cornerstone with named owner</li><li>Cornerstone-by-cornerstone action list with target dates</li></ul></div>
         <div class="ws-field"><h4>Outputs</h4><ul class="ws-list"><li>Cornerstone-answer matrix (v0.1)</li><li>Owner and target-date table</li><li>Decisions log</li></ul></div>
       </div>
     </details>
-    <details class="ws-card" data-scenario="scenario-decider" id="ws-S1-2">
+    <details class="ws-card" data-scenario="scenario-decider" id="ws-S1-8">
       <summary>
         <div class="ws-card-head">
           <span class="ws-seq">2</span>
           <div class="ws-card-meta">
+            <div class="ws-when">Fri 14 Aug 2026 &middot; <span class="ws-dur">Morning</span> <span class="ws-scenario-badge sb-decider">Decides the scenario</span></div>
+            <div class="ws-card-title">Cornerstones foundation &mdash; Part 2</div><div class="ws-owner-flag">Programme-led, lead to be confirmed</div>
+            <div class="ws-oneliner">Continuation of the foundation. Close out any cornerstones not landed on day one and lock the outputs.</div>
+          </div>
+          <span class="ws-toggle">&#9662;</span>
+        </div>
+      </summary>
+      <div class="ws-body"><div class="ws-decides"><span class="ws-decides-label">Decides on the roadmap</span><a class="ws-decides-link" href="DTx OM - Milestone Plan.html#a-S1-24">The six cornerstones &rarr;</a></div>
+        <div class="ws-field"><h4>Attendees</h4><div class="ws-att-lead"><span class="ws-att-lead-cap">Session lead</span>Programme team member(s) to be identified</div><div class="ws-att-wrap"><div class="ws-att-fs"><div class="ws-att-caption">Future State team &middot; support and facilitate</div><ul class="ws-list ws-list-tight"><li>James Cowley</li><li>Rachel Flower</li><li>Scott Eason</li><li>Hannah Brian</li></ul></div><div class="ws-att-extras"><div class="ws-att-caption">Plus for this session &middot; experts</div><ul class="ws-list ws-list-tight"><li>Simon Leigh</li><li>Meera Parkash</li><li>Wendi Higgins</li><li>Mandie Holt (optional)</li></ul></div><div class="ws-att-contrib"><div class="ws-att-caption">Contributors &middot; core group, SLT and others as needed</div><ul class="ws-list ws-list-tight"><li>Martin O'Neill</li><li>Chris Leary</li><li>Richard Samuel</li><li>Shirley Gaynor-Ward</li><li>Simone Bilton</li><li>Matt Thomas</li><li>Matt Visser</li><li>Will Twells</li></ul></div></div></div>
+        <div class="ws-field"><h4>Prep required</h4><p>Day one outputs and the parked questions from 13 August.</p></div>
+        <div class="ws-field"><h4>Objectives</h4><ul class="ws-list"><li>Close out the cornerstones not fully answered on day one</li><li>Confirm owners and target dates for each</li><li>Agree the cadence for the rest of Stage 1</li></ul></div>
+        <div class="ws-field"><h4>Decisions to land</h4><ul class="ws-list"><li>Final first-cut position on each remaining cornerstone</li><li>Confirmed owner and target date per cornerstone</li></ul></div>
+        <div class="ws-field"><h4>Outputs</h4><ul class="ws-list"><li>Completed cornerstone-answer matrix</li><li>Owner and target-date table</li><li>Decisions log carried from day one</li></ul></div>
+      </div>
+    </details>
+    <details class="ws-card" data-scenario="scenario-decider" id="ws-S1-2">
+      <summary>
+        <div class="ws-card-head">
+          <span class="ws-seq">3</span>
+          <div class="ws-card-meta">
             <div class="ws-when">w/c 17 Aug 2026 · <span class="ws-dur">2 hours</span> <span class="ws-scenario-badge sb-decider">Decides the scenario</span></div>
-            <div class="ws-card-title">Volume and value</div><div class="ws-owner-flag">[Owner to be identified]</div>
-            <div class="ws-oneliner">Populate the 5/4/4 and put pounds against volumes for HIV, PSA-AS and the next-in-line pathways.</div>
+            <div class="ws-card-title">Volume and value</div><div class="ws-owner-flag">Programme-led, lead to be confirmed</div>
+            <div class="ws-oneliner">Populate the prioritisation framework and put pounds against volumes for HIV, PSA-AS and the next-in-line pathways.</div>
           </div>
           <span class="ws-toggle">▾</span>
         </div>
       </summary>
-      <div class="ws-body">
+      <div class="ws-body"><div class="ws-decides"><span class="ws-decides-label">Decides on the roadmap</span><a class="ws-decides-link" href="DTx OM - Milestone Plan.html#a-S1-25">Cornerstone 2 &mdash; Volume and value &rarr;</a></div>
         <div class="ws-scenario-note">This is the workshop where the number lands. Whether the framework total sits at low-scenario (~£30m, NHSE + DHSC governance) or high-scenario (£250m+, Cabinet Office + HMT) determines the shape of every S2 approvals workshop.</div>
-        <div class="ws-field"><h4>Attendees</h4><div class="ws-att-wrap"><div class="ws-att-core"><div class="ws-att-caption">Core group (attends every workshop)</div><ul class="ws-list ws-list-tight"><li>Martin O'Neill</li><li>Rachel Flower</li><li>Chris Leary</li><li>Richard Samuel</li><li>Shirley Gaynor-Ward</li><li>James Cowley</li><li>Simone Bilton</li><li>Scott Eason</li><li>Matt Thomas</li><li>Matt Visser</li><li>Will Twells</li></ul></div><div class="ws-att-extras"><div class="ws-att-caption">Plus for this session</div><ul class="ws-list ws-list-tight"><li>Simon Leigh</li><li>Mandie Holt (optional)</li></ul></div></div></div>
-        <div class="ws-field"><h4>Prep required</h4><p>Health Economist working papers on total addressable, addressable and served market for HIV and PSA-AS. 5/4/4 template.</p></div>
+        <div class="ws-field"><h4>Attendees</h4><div class="ws-att-lead"><span class="ws-att-lead-cap">Session lead</span>Programme team member(s) to be identified</div><div class="ws-att-wrap"><div class="ws-att-fs"><div class="ws-att-caption">Future State team &middot; support and facilitate</div><ul class="ws-list ws-list-tight"><li>James Cowley</li><li>Rachel Flower</li><li>Scott Eason</li><li>Hannah Brian</li></ul></div><div class="ws-att-extras"><div class="ws-att-caption">Plus for this session &middot; experts</div><ul class="ws-list ws-list-tight"><li>Simon Leigh</li><li>Mandie Holt (optional)</li></ul></div><div class="ws-att-contrib"><div class="ws-att-caption">Contributors &middot; core group, SLT and others as needed</div><ul class="ws-list ws-list-tight"><li>Martin O'Neill</li><li>Chris Leary</li><li>Richard Samuel</li><li>Shirley Gaynor-Ward</li><li>Simone Bilton</li><li>Matt Thomas</li><li>Matt Visser</li><li>Will Twells</li></ul></div></div></div>
+        <div class="ws-field"><h4>Prep required</h4><p>Health Economist working papers on total addressable, addressable and served market for HIV and PSA-AS. prioritisation framework template.</p></div>
         <div class="ws-field"><h4>Objectives</h4><ul class="ws-list"><li>Land planning-assumption volumes for HIV, PSA-AS and the next three pathways</li><li>Convert volumes to £ using indicative unit prices</li><li>Identify the sensitivity range that changes framework value materially</li></ul></div>
-        <div class="ws-field"><h4>Decisions to land</h4><ul class="ws-list"><li>Which volume basis becomes the planning assumption</li><li>Which pathways are named on the 5/4/4 for tier 1 vs tier 2/3</li><li>Whether headline framework value crosses the £100m+ threshold that triggers CO/HMT</li></ul></div>
-        <div class="ws-field"><h4>Outputs</h4><ul class="ws-list"><li>Volume and value working paper (v0.1)</li><li>5/4/4 populated with named pathways</li><li>Sensitivity range document</li></ul></div>
+        <div class="ws-field"><h4>Decisions to land</h4><ul class="ws-list"><li>Which volume basis becomes the planning assumption</li><li>Which pathways are named on the prioritisation framework for tier 1 vs tier 2/3</li><li>Whether headline framework value crosses the £100m+ threshold that triggers CO/HMT</li></ul></div>
+        <div class="ws-field"><h4>Outputs</h4><ul class="ws-list"><li>Volume and value working paper (v0.1)</li><li>prioritisation framework populated with named pathways</li><li>Sensitivity range document</li></ul></div>
       </div>
     </details>
     <details class="ws-card" data-scenario="shifts" id="ws-S1-3">
       <summary>
         <div class="ws-card-head">
-          <span class="ws-seq">3</span>
+          <span class="ws-seq">4</span>
           <div class="ws-card-meta">
             <div class="ws-when">w/c 17 Aug 2026 · <span class="ws-dur">2 hours</span> <span class="ws-scenario-badge sb-shifts">Content shifts by scenario</span></div>
-            <div class="ws-card-title">Commercial models</div><div class="ws-owner-flag">[Owner to be identified]</div>
+            <div class="ws-card-title">Commercial models</div><div class="ws-owner-flag">Programme-led, lead to be confirmed</div>
             <div class="ws-oneliner">Pricing structure, tariff design and payment flow. Must work for Plan A and Plan C together.</div>
           </div>
           <span class="ws-toggle">▾</span>
         </div>
       </summary>
-      <div class="ws-body">
+      <div class="ws-body"><div class="ws-decides"><span class="ws-decides-label">Decides on the roadmap</span><a class="ws-decides-link" href="DTx OM - Milestone Plan.html#a-S1-26">Cornerstone 3 &mdash; Commercial models &rarr;</a></div>
         <div class="ws-scenario-note">Ceiling pricing values differ by scenario. Low scenario constrains headline framework value; high scenario opens more pricing headroom but pulls in additional approvals.</div>
-        <div class="ws-field"><h4>Attendees</h4><div class="ws-att-wrap"><div class="ws-att-core"><div class="ws-att-caption">Core group (attends every workshop)</div><ul class="ws-list ws-list-tight"><li>Martin O'Neill</li><li>Rachel Flower</li><li>Chris Leary</li><li>Richard Samuel</li><li>Shirley Gaynor-Ward</li><li>James Cowley</li><li>Simone Bilton</li><li>Scott Eason</li><li>Matt Thomas</li><li>Matt Visser</li><li>Will Twells</li></ul></div><div class="ws-att-extras"><div class="ws-att-caption">Plus for this session</div><ul class="ws-list ws-list-tight"><li>Simon Leigh</li><li>Mandie Holt (optional)</li></ul></div></div></div>
+        <div class="ws-field"><h4>Attendees</h4><div class="ws-att-lead"><span class="ws-att-lead-cap">Session lead</span>Programme team member(s) to be identified</div><div class="ws-att-wrap"><div class="ws-att-fs"><div class="ws-att-caption">Future State team &middot; support and facilitate</div><ul class="ws-list ws-list-tight"><li>James Cowley</li><li>Rachel Flower</li><li>Scott Eason</li><li>Hannah Brian</li></ul></div><div class="ws-att-extras"><div class="ws-att-caption">Plus for this session &middot; experts</div><ul class="ws-list ws-list-tight"><li>Simon Leigh</li><li>Mandie Holt (optional)</li></ul></div><div class="ws-att-contrib"><div class="ws-att-caption">Contributors &middot; core group, SLT and others as needed</div><ul class="ws-list ws-list-tight"><li>Martin O'Neill</li><li>Chris Leary</li><li>Richard Samuel</li><li>Shirley Gaynor-Ward</li><li>Simone Bilton</li><li>Matt Thomas</li><li>Matt Visser</li><li>Will Twells</li></ul></div></div></div>
         <div class="ws-field"><h4>Prep required</h4><p>Health Economist pricing paper. Existing tariff work from the Recommendation Paper. Preventx and SH:24 cost breakdown emails.</p></div>
         <div class="ws-field"><h4>Objectives</h4><ul class="ws-list"><li>Land a maximum/ceiling pricing approach</li><li>Agree tariff structure and payment flow direction</li><li>Confirm the model supports Plan A and Plan C without contortion</li></ul></div>
         <div class="ws-field"><h4>Decisions to land</h4><ul class="ws-list"><li>Pricing model direction (max price vs range vs indexed)</li><li>Payment flow: direct to supplier vs via NHSE vs via commissioner</li><li>Whether tariff is a Phase 2 output or Alpha dependency</li></ul></div>
@@ -273,20 +333,20 @@ a:hover{text-decoration:underline}
     <details class="ws-card" data-scenario="shifts" id="ws-S1-4">
       <summary>
         <div class="ws-card-head">
-          <span class="ws-seq">4</span>
+          <span class="ws-seq">5</span>
           <div class="ws-card-meta">
             <div class="ws-when">w/c 24 Aug 2026 · <span class="ws-dur">2 hours</span> <span class="ws-scenario-badge sb-shifts">Content shifts by scenario</span></div>
-            <div class="ws-card-title">Lotting strategy decision</div><div class="ws-owner-flag">[Owner to be identified]</div>
-            <div class="ws-oneliner">How the requirement divides into lots: shaped by the 5/4/4 use-case sequence, volumes and buyer landscape.</div>
+            <div class="ws-card-title">Lotting strategy decision</div><div class="ws-owner-flag">Programme-led, lead to be confirmed</div>
+            <div class="ws-oneliner">How the requirement divides into lots: shaped by the prioritisation framework use-case sequence, volumes and buyer landscape.</div>
           </div>
           <span class="ws-toggle">▾</span>
         </div>
       </summary>
-      <div class="ws-body">
+      <div class="ws-body"><div class="ws-decides"><span class="ws-decides-label">Decides on the roadmap</span><a class="ws-decides-link" href="DTx OM - Milestone Plan.html#a-S1-15">Cornerstone 5 &mdash; Lotting strategy &rarr;</a></div>
         <div class="ws-scenario-note">The use cases in scope differ by scenario and the lot structure follows the use cases, so the options on the table change with the value scenario.</div>
-        <div class="ws-field"><h4>Attendees</h4><div class="ws-att-wrap"><div class="ws-att-core"><div class="ws-att-caption">Core group (attends every workshop)</div><ul class="ws-list ws-list-tight"><li>Martin O'Neill</li><li>Rachel Flower</li><li>Chris Leary</li><li>Richard Samuel</li><li>Shirley Gaynor-Ward</li><li>James Cowley</li><li>Simone Bilton</li><li>Scott Eason</li><li>Matt Thomas</li><li>Matt Visser</li><li>Will Twells</li></ul></div><div class="ws-att-extras"><div class="ws-att-caption">Plus for this session</div><ul class="ws-list ws-list-tight"><li>Mandie Holt (optional)</li></ul></div></div></div>
-        <div class="ws-field"><h4>Prep required</h4><p>Lot structure options paper. Outputs from the Cornerstones foundation and Volume and value sessions. 5/4/4 prioritisation position.</p></div>
-        <div class="ws-field"><h4>Objectives</h4><ul class="ws-list"><li>Compare lot structure options against the 5/4/4 use-case sequence, volumes and buyer identification</li><li>Land the recommendation with the group</li><li>Confirm how the lot structure flows into the sourcing strategy and ITT specification</li></ul></div>
+        <div class="ws-field"><h4>Attendees</h4><div class="ws-att-lead"><span class="ws-att-lead-cap">Session lead</span>Programme team member(s) to be identified</div><div class="ws-att-wrap"><div class="ws-att-fs"><div class="ws-att-caption">Future State team &middot; support and facilitate</div><ul class="ws-list ws-list-tight"><li>James Cowley</li><li>Rachel Flower</li><li>Scott Eason</li><li>Hannah Brian</li></ul></div><div class="ws-att-extras"><div class="ws-att-caption">Plus for this session &middot; experts</div><ul class="ws-list ws-list-tight"><li>Mandie Holt (optional)</li></ul></div><div class="ws-att-contrib"><div class="ws-att-caption">Contributors &middot; core group, SLT and others as needed</div><ul class="ws-list ws-list-tight"><li>Martin O'Neill</li><li>Chris Leary</li><li>Richard Samuel</li><li>Shirley Gaynor-Ward</li><li>Simone Bilton</li><li>Matt Thomas</li><li>Matt Visser</li><li>Will Twells</li></ul></div></div></div>
+        <div class="ws-field"><h4>Prep required</h4><p>Lot structure options paper. Outputs from the Cornerstones foundation and Volume and value sessions. prioritisation framework position.</p></div>
+        <div class="ws-field"><h4>Objectives</h4><ul class="ws-list"><li>Compare lot structure options against the prioritisation framework use-case sequence, volumes and buyer identification</li><li>Land the recommendation with the group</li><li>Confirm how the lot structure flows into the sourcing strategy and ITT specification</li></ul></div>
         <div class="ws-field"><h4>Decisions to land</h4><ul class="ws-list"><li>Preferred lot structure</li><li>How lots flex if the value scenario changes</li></ul></div>
         <div class="ws-field"><h4>Outputs</h4><ul class="ws-list"><li>Lotting strategy recommendation for the sourcing strategy document</li><li>Lot structure input to the ITT specification</li></ul></div>
       </div>
@@ -294,18 +354,18 @@ a:hover{text-decoration:underline}
     <details class="ws-card" data-scenario="both" id="ws-S1-5">
       <summary>
         <div class="ws-card-head">
-          <span class="ws-seq">5</span>
+          <span class="ws-seq">6</span>
           <div class="ws-card-meta">
             <div class="ws-when">w/c 24 Aug 2026 · <span class="ws-dur">2 hours</span> <span class="ws-scenario-badge sb-both">Both scenarios</span></div>
-            <div class="ws-card-title">Interim route — Plan C design</div><div class="ws-owner-flag">[Owner to be identified]</div>
+            <div class="ws-card-title">Interim route — Plan C design</div><div class="ws-owner-flag">Programme-led, lead to be confirmed</div>
             <div class="ws-oneliner">Commissioner-led interim via existing frameworks. NHS Online IDA is the first live instance.</div>
           </div>
           <span class="ws-toggle">▾</span>
         </div>
       </summary>
-      <div class="ws-body">
+      <div class="ws-body"><div class="ws-decides"><span class="ws-decides-label">Decides on the roadmap</span><a class="ws-decides-link" href="DTx OM - Milestone Plan.html#a-S1-27">Cornerstone 4 &mdash; Interim route (Plan C) &rarr;</a></div>
         
-        <div class="ws-field"><h4>Attendees</h4><div class="ws-att-wrap"><div class="ws-att-core"><div class="ws-att-caption">Core group (attends every workshop)</div><ul class="ws-list ws-list-tight"><li>Martin O'Neill</li><li>Rachel Flower</li><li>Chris Leary</li><li>Richard Samuel</li><li>Shirley Gaynor-Ward</li><li>James Cowley</li><li>Simone Bilton</li><li>Scott Eason</li><li>Matt Thomas</li><li>Matt Visser</li><li>Will Twells</li></ul></div><div class="ws-att-extras"><div class="ws-att-caption">Plus for this session</div><ul class="ws-list ws-list-tight"><li>Mandie Holt (optional)</li></ul></div></div></div>
+        <div class="ws-field"><h4>Attendees</h4><div class="ws-att-lead"><span class="ws-att-lead-cap">Session lead</span>Programme team member(s) to be identified</div><div class="ws-att-wrap"><div class="ws-att-fs"><div class="ws-att-caption">Future State team &middot; support and facilitate</div><ul class="ws-list ws-list-tight"><li>James Cowley</li><li>Rachel Flower</li><li>Scott Eason</li><li>Hannah Brian</li></ul></div><div class="ws-att-extras"><div class="ws-att-caption">Plus for this session &middot; experts</div><ul class="ws-list ws-list-tight"><li>Mandie Holt (optional)</li></ul></div><div class="ws-att-contrib"><div class="ws-att-caption">Contributors &middot; core group, SLT and others as needed</div><ul class="ws-list ws-list-tight"><li>Martin O'Neill</li><li>Chris Leary</li><li>Richard Samuel</li><li>Shirley Gaynor-Ward</li><li>Simone Bilton</li><li>Matt Thomas</li><li>Matt Visser</li><li>Will Twells</li></ul></div></div></div>
         <div class="ws-field"><h4>Prep required</h4><p>IDA Tactical Procurement Plan. Recommendation Paper Plan C section. Existing framework options review (G-Cloud, DOS, DPS).</p></div>
         <div class="ws-field"><h4>Objectives</h4><ul class="ws-list"><li>Confirm framework choice for NHS Online IDA</li><li>Map the commissioner journey and where Plan C lots land</li><li>Land the SBS PSR bridge terms</li></ul></div>
         <div class="ws-field"><h4>Decisions to land</h4><ul class="ws-list"><li>Framework selection for Plan C interim</li><li>Commissioner playbook v0.1 scope</li><li>Whether the PSR bridge stays 6 months or extends</li></ul></div>
@@ -315,18 +375,18 @@ a:hover{text-decoration:underline}
     <details class="ws-card" data-scenario="both" id="ws-S1-6">
       <summary>
         <div class="ws-card-head">
-          <span class="ws-seq">6</span>
+          <span class="ws-seq">7</span>
           <div class="ws-card-meta">
-            <div class="ws-when">w/c 7 Sep 2026 · <span class="ws-dur">Half day</span> <span class="ws-scenario-badge sb-both">Both scenarios</span></div>
-            <div class="ws-card-title">ITT specification kickoff</div><div class="ws-owner-flag">[Owner to be identified]</div>
-            <div class="ws-oneliner">Structure and ownership across the four ITT tracks: service spec, supply chain, assurance, operations.</div>
+            <div class="ws-when">w/c 17 Aug 2026 · <span class="ws-dur">Half day</span> <span class="ws-scenario-badge sb-both">Both scenarios</span></div>
+            <div class="ws-card-title">Specification Creation kickoff</div><div class="ws-owner-flag">Programme-led, lead to be confirmed</div>
+            <div class="ws-oneliner">Stand up the Programme-owned Specification Creation work package: structure, ownership and drafting across the four spec tracks, starting w/c 17 Aug.</div>
           </div>
           <span class="ws-toggle">▾</span>
         </div>
       </summary>
-      <div class="ws-body">
+      <div class="ws-body"><div class="ws-decides"><span class="ws-decides-label">Decides on the roadmap</span><a class="ws-decides-link" href="DTx OM - Milestone Plan.html#a-S1-24">Cornerstone 1 &mdash; ITT specification &rarr;</a></div>
         
-        <div class="ws-field"><h4>Attendees</h4><div class="ws-att-wrap"><div class="ws-att-core"><div class="ws-att-caption">Core group (attends every workshop)</div><ul class="ws-list ws-list-tight"><li>Martin O'Neill</li><li>Rachel Flower</li><li>Chris Leary</li><li>Richard Samuel</li><li>Shirley Gaynor-Ward</li><li>James Cowley</li><li>Simone Bilton</li><li>Scott Eason</li><li>Matt Thomas</li><li>Matt Visser</li><li>Will Twells</li></ul></div><div class="ws-att-extras"><div class="ws-att-caption">Plus for this session</div><ul class="ws-list ws-list-tight"><li>Meera Parkash</li><li>Wendi Higgins</li><li>Mandie Holt (optional)</li></ul></div></div></div>
+        <div class="ws-field"><h4>Attendees</h4><div class="ws-att-lead"><span class="ws-att-lead-cap">Session lead</span>Programme team member(s) to be identified</div><div class="ws-att-wrap"><div class="ws-att-fs"><div class="ws-att-caption">Future State team &middot; support and facilitate</div><ul class="ws-list ws-list-tight"><li>James Cowley</li><li>Rachel Flower</li><li>Scott Eason</li><li>Hannah Brian</li></ul></div><div class="ws-att-extras"><div class="ws-att-caption">Plus for this session &middot; experts</div><ul class="ws-list ws-list-tight"><li>Meera Parkash</li><li>Wendi Higgins</li><li>Mandie Holt (optional)</li></ul></div><div class="ws-att-contrib"><div class="ws-att-caption">Contributors &middot; core group, SLT and others as needed</div><ul class="ws-list ws-list-tight"><li>Martin O'Neill</li><li>Chris Leary</li><li>Richard Samuel</li><li>Shirley Gaynor-Ward</li><li>Simone Bilton</li><li>Matt Thomas</li><li>Matt Visser</li><li>Will Twells</li></ul></div></div></div>
         <div class="ws-field"><h4>Prep required</h4><p>Existing service spec fragments from Recommendation Paper and Operating Model. Service overlays inventory. Data controller and clinical safety positions.</p></div>
         <div class="ws-field"><h4>Objectives</h4><ul class="ws-list"><li>Split the ITT into four tracks with named leads</li><li>Agree drafting cadence and review gates</li><li>Identify overlay-specific vs common content</li><li>Confirm clinical safety and IG hooks into the drafting</li></ul></div>
         <div class="ws-field"><h4>Decisions to land</h4><ul class="ws-list"><li>Track leads for each of the four ITT areas</li><li>Review gate cadence (weekly, fortnightly)</li><li>Common vs overlay-specific split</li></ul></div>
@@ -335,21 +395,41 @@ a:hover{text-decoration:underline}
     </details><details class="ws-card" data-scenario="both" id="ws-S1-7">
       <summary>
         <div class="ws-card-head">
-          <span class="ws-seq">7</span>
+          <span class="ws-seq">8</span>
           <div class="ws-card-meta">
             <div class="ws-when">Late Sep 2026 · <span class="ws-dur">2 hours</span> <span class="ws-scenario-badge sb-both">Both scenarios</span></div>
-            <div class="ws-card-title">Commissioner engagement design</div><div class="ws-owner-flag">[Owner to be identified]</div>
-            <div class="ws-oneliner">Designing how commissioners are engaged through the procurement: who they are, what each type needs, and how the programme reaches them.</div>
+            <div class="ws-card-title">Commissioner and market comms</div><div class="ws-owner-flag">Partnerships-led &middot; Richard Samuel</div>
+            <div class="ws-oneliner">Partnerships track led by Richard Samuel. Commissioner and market comms and adoption. Future State aligns and takes the outputs; we do not own it.</div>
           </div>
           <span class="ws-toggle">▾</span>
         </div>
       </summary>
-      <div class="ws-body">
-        <div class="ws-field"><h4>Attendees</h4><div class="ws-att-wrap"><div class="ws-att-core"><div class="ws-att-caption">Core group (attends every workshop)</div><ul class="ws-list ws-list-tight"><li>Martin O'Neill</li><li>Rachel Flower</li><li>Chris Leary</li><li>Richard Samuel</li><li>Shirley Gaynor-Ward</li><li>James Cowley</li><li>Simone Bilton</li><li>Scott Eason</li><li>Matt Thomas</li><li>Matt Visser</li><li>Will Twells</li></ul></div><div class="ws-att-extras"><div class="ws-att-caption">Plus for this session</div><ul class="ws-list ws-list-tight"><li>Mandie Holt (optional)</li><li>Commissioner representatives</li></ul></div></div></div>
+      <div class="ws-body"><div class="ws-decides"><span class="ws-decides-label">Decides on the roadmap</span><a class="ws-decides-link" href="DTx OM - Milestone Plan.html#a-S1-6">Early market engagement &rarr;</a></div>
+        <div class="ws-field"><h4>Attendees</h4><div class="ws-att-lead"><span class="ws-att-lead-cap">Session lead</span>Richard Samuel &middot; Partnerships</div><div class="ws-att-wrap"><div class="ws-att-fs"><div class="ws-att-caption">Future State team &middot; support and facilitate</div><ul class="ws-list ws-list-tight"><li>James Cowley</li><li>Rachel Flower</li><li>Scott Eason</li><li>Hannah Brian</li></ul></div><div class="ws-att-extras"><div class="ws-att-caption">Plus for this session &middot; experts</div><ul class="ws-list ws-list-tight"><li>Mandie Holt (optional)</li><li>Commissioner representatives</li></ul></div><div class="ws-att-contrib"><div class="ws-att-caption">Contributors &middot; core group, SLT and others as needed</div><ul class="ws-list ws-list-tight"><li>Martin O'Neill</li><li>Chris Leary</li><li>Richard Samuel</li><li>Shirley Gaynor-Ward</li><li>Simone Bilton</li><li>Matt Thomas</li><li>Matt Visser</li><li>Will Twells</li></ul></div></div></div>
         <div class="ws-field"><h4>Prep required</h4><p>Plan C commissioner cohort and route mapping work to date. The three confirmed commissioner types (paying customers, pathway transformers, replicators).</p></div>
         <div class="ws-field"><h4>Objectives</h4><ul class="ws-list"><li>Define the commissioner audiences and what each needs from the programme</li><li>Shape the commissioner engagement plan ahead of Stage 2</li><li>Confirm how commissioner input feeds the ITT specification and Plan C routes</li></ul></div>
         <div class="ws-field"><h4>Decisions to land</h4><ul class="ws-list"><li>Commissioner engagement approach and cadence</li><li>Who fronts commissioner engagement</li></ul></div>
         <div class="ws-field"><h4>Outputs</h4><ul class="ws-list"><li>Input to the commissioner engagement plan (Stage 2 activity)</li><li>Commissioner engagement calendar</li></ul></div>
+      </div>
+    </details>
+    <details class="ws-card" data-scenario="both" id="ws-S1-9">
+      <summary>
+        <div class="ws-card-head">
+          <span class="ws-seq">9</span>
+          <div class="ws-card-meta">
+            <div class="ws-when">Oct 2026 &middot; <span class="ws-dur">Half day</span> <span class="ws-scenario-badge sb-both">Both scenarios</span></div>
+            <div class="ws-card-title">Off-boarding and removal design</div><div class="ws-owner-flag">Programme-led, lead to be confirmed</div>
+            <div class="ws-oneliner">Supplier removal process, compelled-removal protocol and minimum supplier count. Needs Legal and SLT in the room.</div>
+          </div>
+          <span class="ws-toggle">&#9662;</span>
+        </div>
+      </summary>
+      <div class="ws-body"><div class="ws-decides"><span class="ws-decides-label">Decides on the roadmap</span><a class="ws-decides-link" href="DTx OM - Milestone Plan.html#a-S1-11">Off-boarding and removal design &rarr;</a></div>
+        <div class="ws-field"><h4>Attendees</h4><div class="ws-att-lead"><span class="ws-att-lead-cap">Session lead</span>Programme team member(s) to be identified</div><div class="ws-att-wrap"><div class="ws-att-fs"><div class="ws-att-caption">Future State team &middot; support and facilitate</div><ul class="ws-list ws-list-tight"><li>James Cowley</li><li>Rachel Flower</li><li>Scott Eason</li><li>Hannah Brian</li></ul></div><div class="ws-att-extras"><div class="ws-att-caption">Plus for this session &middot; experts</div><ul class="ws-list ws-list-tight"><li>NHSE Legal</li><li>Mandie Holt (optional)</li></ul></div><div class="ws-att-contrib"><div class="ws-att-caption">Contributors &middot; core group, SLT and others as needed</div><ul class="ws-list ws-list-tight"><li>Martin O'Neill</li><li>Chris Leary</li><li>Richard Samuel</li><li>Shirley Gaynor-Ward</li><li>Simone Bilton</li><li>Matt Thomas</li><li>Matt Visser</li><li>Will Twells</li></ul></div></div></div>
+        <div class="ws-field"><h4>Prep required</h4><p>PA23 legal basis for removal. The interim commercial approach compelled-removal protocol. Minimum supplier count considerations from the framework decision.</p></div>
+        <div class="ws-field"><h4>Objectives</h4><ul class="ws-list"><li>Design the supplier removal process end to end</li><li>Land the compelled-removal protocol: thresholds, escalation, named removal authority</li><li>Set the minimum supplier count and how it couples to the framework vehicle</li><li>Agree where off-boarding lands in the ITT and the contract pack</li></ul></div>
+        <div class="ws-field"><h4>Decisions to land</h4><ul class="ws-list"><li>Removal triggers and failure thresholds</li><li>Named removal authority</li><li>Minimum supplier count</li><li>Where off-boarding sits in the framework and contract</li></ul></div>
+        <div class="ws-field"><h4>Outputs</h4><ul class="ws-list"><li>Off-boarding and removal design (v0.1)</li><li>Compelled-removal protocol</li><li>Minimum supplier count decision</li></ul></div>
       </div>
     </details></div>
   </section>
@@ -367,15 +447,15 @@ a:hover{text-decoration:underline}
           <span class="ws-seq">1</span>
           <div class="ws-card-meta">
             <div class="ws-when">Late Nov 2026 · <span class="ws-dur">Half day</span> <span class="ws-scenario-badge sb-shifts">Content shifts by scenario</span></div>
-            <div class="ws-card-title">Approvals stack sequencing</div><div class="ws-owner-flag">[Owner to be identified]</div>
+            <div class="ws-card-title">Approvals stack sequencing</div><div class="ws-owner-flag">Programme-led, lead to be confirmed</div>
             <div class="ws-oneliner">Approvals path locked in. Content depends on the scenario chosen at Volume and value.</div>
           </div>
           <span class="ws-toggle">▾</span>
         </div>
       </summary>
-      <div class="ws-body">
+      <div class="ws-body"><div class="ws-decides"><span class="ws-decides-label">Decides on the roadmap</span><a class="ws-decides-link" href="DTx OM - Milestone Plan.html#a-S2-0">Business case and NHSE approvals &rarr;</a></div>
         <div class="ws-scenario-note">Content and duration change materially by scenario. Low scenario is a lighter NHSE/DHSC-only session; high scenario is the full CO + HMT sequencing exercise adding ~4 months to the approvals path.</div>
-        <div class="ws-field"><h4>Attendees</h4><div class="ws-att-wrap"><div class="ws-att-core"><div class="ws-att-caption">Core group (attends every workshop)</div><ul class="ws-list ws-list-tight"><li>Martin O'Neill</li><li>Rachel Flower</li><li>Chris Leary</li><li>Richard Samuel</li><li>Shirley Gaynor-Ward</li><li>James Cowley</li><li>Simone Bilton</li><li>Scott Eason</li><li>Matt Thomas</li><li>Matt Visser</li><li>Will Twells</li></ul></div><div class="ws-att-extras"><div class="ws-att-caption">Plus for this session</div><ul class="ws-list ws-list-tight"><li>Mandie Holt (optional)</li></ul></div></div></div>
+        <div class="ws-field"><h4>Attendees</h4><div class="ws-att-lead"><span class="ws-att-lead-cap">Session lead</span>Programme team member(s) to be identified</div><div class="ws-att-wrap"><div class="ws-att-fs"><div class="ws-att-caption">Future State team &middot; support and facilitate</div><ul class="ws-list ws-list-tight"><li>James Cowley</li><li>Rachel Flower</li><li>Scott Eason</li><li>Hannah Brian</li></ul></div><div class="ws-att-extras"><div class="ws-att-caption">Plus for this session &middot; experts</div><ul class="ws-list ws-list-tight"><li>Mandie Holt (optional)</li></ul></div><div class="ws-att-contrib"><div class="ws-att-caption">Contributors &middot; core group, SLT and others as needed</div><ul class="ws-list ws-list-tight"><li>Martin O'Neill</li><li>Chris Leary</li><li>Richard Samuel</li><li>Shirley Gaynor-Ward</li><li>Simone Bilton</li><li>Matt Thomas</li><li>Matt Visser</li><li>Will Twells</li></ul></div></div></div>
         <div class="ws-field"><h4>Prep required</h4><p>Draft business case. If high scenario: Cabinet Office spend control guidance and HMT settlement letter template. If low scenario: NHSE and DHSC internal governance timeline.</p></div>
         <div class="ws-field"><h4>Objectives</h4><ul class="ws-list"><li>Confirm business case draft is ready to submit</li><li>Sequence approvals against framework administrator decision</li><li>If high scenario: book Cabinet Office and HMT review slots. If low scenario: confirm NHSE / DHSC internal governance gates and dates</li></ul></div>
         <div class="ws-field"><h4>Decisions to land</h4><ul class="ws-list"><li>Business case submission date</li><li>Approvals path (NHSE + DHSC only, or NHSE + DHSC + CO + HMT)</li><li>Settlement letter target date (high scenario only)</li></ul></div>
@@ -388,15 +468,15 @@ a:hover{text-decoration:underline}
           <span class="ws-seq">2</span>
           <div class="ws-card-meta">
             <div class="ws-when">Early Dec 2026 · <span class="ws-dur">2 hours</span> <span class="ws-scenario-badge sb-both">Both scenarios</span></div>
-            <div class="ws-card-title">IG and clinical safety deep-dive</div><div class="ws-owner-flag">[Owner to be identified]</div>
+            <div class="ws-card-title">IG and clinical safety deep-dive</div><div class="ws-owner-flag">Programme-led, lead to be confirmed</div>
             <div class="ws-oneliner">DPIA, data controller framework and clinical safety position for ITT.</div>
           </div>
           <span class="ws-toggle">▾</span>
         </div>
       </summary>
-      <div class="ws-body">
+      <div class="ws-body"><div class="ws-decides"><span class="ws-decides-label">Decides on the roadmap</span><a class="ws-decides-link" href="DTx OM - Milestone Plan.html#a-S2-3">IG sign-off and DPIA &rarr;</a></div>
         
-        <div class="ws-field"><h4>Attendees</h4><div class="ws-att-wrap"><div class="ws-att-core"><div class="ws-att-caption">Core group (attends every workshop)</div><ul class="ws-list ws-list-tight"><li>Martin O'Neill</li><li>Rachel Flower</li><li>Chris Leary</li><li>Richard Samuel</li><li>Shirley Gaynor-Ward</li><li>James Cowley</li><li>Simone Bilton</li><li>Scott Eason</li><li>Matt Thomas</li><li>Matt Visser</li><li>Will Twells</li></ul></div><div class="ws-att-extras"><div class="ws-att-caption">Plus for this session</div><ul class="ws-list ws-list-tight"><li>Meera Parkash</li><li>Wendi Higgins</li><li>Mandie Holt (optional)</li></ul></div></div></div>
+        <div class="ws-field"><h4>Attendees</h4><div class="ws-att-lead"><span class="ws-att-lead-cap">Session lead</span>Programme team member(s) to be identified</div><div class="ws-att-wrap"><div class="ws-att-fs"><div class="ws-att-caption">Future State team &middot; support and facilitate</div><ul class="ws-list ws-list-tight"><li>James Cowley</li><li>Rachel Flower</li><li>Scott Eason</li><li>Hannah Brian</li></ul></div><div class="ws-att-extras"><div class="ws-att-caption">Plus for this session &middot; experts</div><ul class="ws-list ws-list-tight"><li>Meera Parkash</li><li>Wendi Higgins</li><li>Mandie Holt (optional)</li></ul></div><div class="ws-att-contrib"><div class="ws-att-caption">Contributors &middot; core group, SLT and others as needed</div><ul class="ws-list ws-list-tight"><li>Martin O'Neill</li><li>Chris Leary</li><li>Richard Samuel</li><li>Shirley Gaynor-Ward</li><li>Simone Bilton</li><li>Matt Thomas</li><li>Matt Visser</li><li>Will Twells</li></ul></div></div></div>
         <div class="ws-field"><h4>Prep required</h4><p>Existing DPIA drafts. Data Controller Notes (Dec 2025). Clinical safety hazard log.</p></div>
         <div class="ws-field"><h4>Objectives</h4><ul class="ws-list"><li>Land the data controller framework for ITT</li><li>Sign off DPIA scope for Public Beta and framework</li><li>Confirm clinical safety position and hazard log status</li></ul></div>
         <div class="ws-field"><h4>Decisions to land</h4><ul class="ws-list"><li>Data controller framework (NHSE role)</li><li>DPIA sign-off timeline</li><li>Clinical safety accountability model</li></ul></div>
@@ -409,15 +489,15 @@ a:hover{text-decoration:underline}
           <span class="ws-seq">3</span>
           <div class="ws-card-meta">
             <div class="ws-when">Mid Dec 2026 · <span class="ws-dur">2 hours</span> <span class="ws-scenario-badge sb-both">Both scenarios</span></div>
-            <div class="ws-card-title">Evaluation criteria calibration</div><div class="ws-owner-flag">[Owner to be identified]</div>
+            <div class="ws-card-title">Evaluation criteria calibration</div><div class="ws-owner-flag">Programme-led, lead to be confirmed</div>
             <div class="ws-oneliner">Weightings, scoring model and evaluator training approach.</div>
           </div>
           <span class="ws-toggle">▾</span>
         </div>
       </summary>
-      <div class="ws-body">
+      <div class="ws-body"><div class="ws-decides"><span class="ws-decides-label">Decides on the roadmap</span><a class="ws-decides-link" href="DTx OM - Milestone Plan.html#a-S2-10">Evaluation criteria sign-off &rarr;</a></div>
         
-        <div class="ws-field"><h4>Attendees</h4><div class="ws-att-wrap"><div class="ws-att-core"><div class="ws-att-caption">Core group (attends every workshop)</div><ul class="ws-list ws-list-tight"><li>Martin O'Neill</li><li>Rachel Flower</li><li>Chris Leary</li><li>Richard Samuel</li><li>Shirley Gaynor-Ward</li><li>James Cowley</li><li>Simone Bilton</li><li>Scott Eason</li><li>Matt Thomas</li><li>Matt Visser</li><li>Will Twells</li></ul></div><div class="ws-att-extras"><div class="ws-att-caption">Plus for this session</div><ul class="ws-list ws-list-tight"><li>Mandie Holt (optional)</li></ul></div></div></div>
+        <div class="ws-field"><h4>Attendees</h4><div class="ws-att-lead"><span class="ws-att-lead-cap">Session lead</span>Programme team member(s) to be identified</div><div class="ws-att-wrap"><div class="ws-att-fs"><div class="ws-att-caption">Future State team &middot; support and facilitate</div><ul class="ws-list ws-list-tight"><li>James Cowley</li><li>Rachel Flower</li><li>Scott Eason</li><li>Hannah Brian</li></ul></div><div class="ws-att-extras"><div class="ws-att-caption">Plus for this session &middot; experts</div><ul class="ws-list ws-list-tight"><li>Mandie Holt (optional)</li></ul></div><div class="ws-att-contrib"><div class="ws-att-caption">Contributors &middot; core group, SLT and others as needed</div><ul class="ws-list ws-list-tight"><li>Martin O'Neill</li><li>Chris Leary</li><li>Richard Samuel</li><li>Shirley Gaynor-Ward</li><li>Simone Bilton</li><li>Matt Thomas</li><li>Matt Visser</li><li>Will Twells</li></ul></div></div></div>
         <div class="ws-field"><h4>Prep required</h4><p>Draft evaluation criteria. Weighting proposal. Scoring model template.</p></div>
         <div class="ws-field"><h4>Objectives</h4><ul class="ws-list"><li>Agree weightings across price, quality, delivery</li><li>Confirm scoring model (0-5 vs 0-10)</li><li>Plan evaluator training</li></ul></div>
         <div class="ws-field"><h4>Decisions to land</h4><ul class="ws-list"><li>Weighting split (per-lot or single)</li><li>Scoring model</li><li>Evaluator training approach</li></ul></div>
@@ -439,15 +519,15 @@ a:hover{text-decoration:underline}
           <span class="ws-seq">1</span>
           <div class="ws-card-meta">
             <div class="ws-when">Late Jan 2027 · <span class="ws-dur">2 hours</span> <span class="ws-scenario-badge sb-both">Both scenarios</span></div>
-            <div class="ws-card-title">Supplier briefing preparation</div><div class="ws-owner-flag">[Owner to be identified]</div>
+            <div class="ws-card-title">Supplier briefing preparation</div><div class="ws-owner-flag">Programme-led, lead to be confirmed</div>
             <div class="ws-oneliner">Pre-tender comms, clarification handling, briefing pack.</div>
           </div>
           <span class="ws-toggle">▾</span>
         </div>
       </summary>
-      <div class="ws-body">
+      <div class="ws-body"><div class="ws-decides"><span class="ws-decides-label">Decides on the roadmap</span><a class="ws-decides-link" href="DTx OM - Milestone Plan.html#a-S3-2">Supplier briefings and clarifications &rarr;</a></div>
         
-        <div class="ws-field"><h4>Attendees</h4><div class="ws-att-wrap"><div class="ws-att-core"><div class="ws-att-caption">Core group (attends every workshop)</div><ul class="ws-list ws-list-tight"><li>Martin O'Neill</li><li>Rachel Flower</li><li>Chris Leary</li><li>Richard Samuel</li><li>Shirley Gaynor-Ward</li><li>James Cowley</li><li>Simone Bilton</li><li>Scott Eason</li><li>Matt Thomas</li><li>Matt Visser</li><li>Will Twells</li></ul></div><div class="ws-att-extras"><div class="ws-att-caption">Plus for this session</div><ul class="ws-list ws-list-tight"><li>Annie Wakefield</li><li>Mandie Holt (optional)</li></ul></div></div></div>
+        <div class="ws-field"><h4>Attendees</h4><div class="ws-att-lead"><span class="ws-att-lead-cap">Session lead</span>Programme team member(s) to be identified</div><div class="ws-att-wrap"><div class="ws-att-fs"><div class="ws-att-caption">Future State team &middot; support and facilitate</div><ul class="ws-list ws-list-tight"><li>James Cowley</li><li>Rachel Flower</li><li>Scott Eason</li><li>Hannah Brian</li></ul></div><div class="ws-att-extras"><div class="ws-att-caption">Plus for this session &middot; experts</div><ul class="ws-list ws-list-tight"><li>Annie Wakefield</li><li>Mandie Holt (optional)</li></ul></div><div class="ws-att-contrib"><div class="ws-att-caption">Contributors &middot; core group, SLT and others as needed</div><ul class="ws-list ws-list-tight"><li>Martin O'Neill</li><li>Chris Leary</li><li>Richard Samuel</li><li>Shirley Gaynor-Ward</li><li>Simone Bilton</li><li>Matt Thomas</li><li>Matt Visser</li><li>Will Twells</li></ul></div></div></div>
         <div class="ws-field"><h4>Prep required</h4><p>Draft ITT. Supplier engagement history from Supplier Forums 1-3. Clarification log template.</p></div>
         <div class="ws-field"><h4>Objectives</h4><ul class="ws-list"><li>Finalise supplier briefing pack</li><li>Agree clarification handling process</li><li>Book briefing sessions</li></ul></div>
         <div class="ws-field"><h4>Decisions to land</h4><ul class="ws-list"><li>Briefing pack sign-off</li><li>Clarification response SLA (48h, 5 days)</li><li>Number and format of briefing sessions</li></ul></div>
@@ -460,15 +540,15 @@ a:hover{text-decoration:underline}
           <span class="ws-seq">2</span>
           <div class="ws-card-meta">
             <div class="ws-when">Mid Feb 2027 · <span class="ws-dur">2 hours</span> <span class="ws-scenario-badge sb-both">Both scenarios</span></div>
-            <div class="ws-card-title">Evaluation panel constitution</div><div class="ws-owner-flag">[Owner to be identified]</div>
+            <div class="ws-card-title">Evaluation panel constitution</div><div class="ws-owner-flag">Programme-led, lead to be confirmed</div>
             <div class="ws-oneliner">Panel members, conflicts of interest, moderation approach.</div>
           </div>
           <span class="ws-toggle">▾</span>
         </div>
       </summary>
-      <div class="ws-body">
+      <div class="ws-body"><div class="ws-decides"><span class="ws-decides-label">Decides on the roadmap</span><a class="ws-decides-link" href="DTx OM - Milestone Plan.html#a-S4-0">Evaluation panel constituted &rarr;</a></div>
         
-        <div class="ws-field"><h4>Attendees</h4><div class="ws-att-wrap"><div class="ws-att-core"><div class="ws-att-caption">Core group (attends every workshop)</div><ul class="ws-list ws-list-tight"><li>Martin O'Neill</li><li>Rachel Flower</li><li>Chris Leary</li><li>Richard Samuel</li><li>Shirley Gaynor-Ward</li><li>James Cowley</li><li>Simone Bilton</li><li>Scott Eason</li><li>Matt Thomas</li><li>Matt Visser</li><li>Will Twells</li></ul></div><div class="ws-att-extras"><div class="ws-att-caption">Plus for this session</div><ul class="ws-list ws-list-tight"><li>Mandie Holt (optional)</li></ul></div></div></div>
+        <div class="ws-field"><h4>Attendees</h4><div class="ws-att-lead"><span class="ws-att-lead-cap">Session lead</span>Programme team member(s) to be identified</div><div class="ws-att-wrap"><div class="ws-att-fs"><div class="ws-att-caption">Future State team &middot; support and facilitate</div><ul class="ws-list ws-list-tight"><li>James Cowley</li><li>Rachel Flower</li><li>Scott Eason</li><li>Hannah Brian</li></ul></div><div class="ws-att-extras"><div class="ws-att-caption">Plus for this session &middot; experts</div><ul class="ws-list ws-list-tight"><li>Mandie Holt (optional)</li></ul></div><div class="ws-att-contrib"><div class="ws-att-caption">Contributors &middot; core group, SLT and others as needed</div><ul class="ws-list ws-list-tight"><li>Martin O'Neill</li><li>Chris Leary</li><li>Richard Samuel</li><li>Shirley Gaynor-Ward</li><li>Simone Bilton</li><li>Matt Thomas</li><li>Matt Visser</li><li>Will Twells</li></ul></div></div></div>
         <div class="ws-field"><h4>Prep required</h4><p>Panel membership proposal. Conflicts register. Evaluation criteria pack from S2.</p></div>
         <div class="ws-field"><h4>Objectives</h4><ul class="ws-list"><li>Confirm panel members and roles</li><li>Complete conflicts of interest register</li><li>Agree moderation and consensus approach</li></ul></div>
         <div class="ws-field"><h4>Decisions to land</h4><ul class="ws-list"><li>Panel composition</li><li>COI declarations</li><li>Moderation approach (individual then group)</li></ul></div>
@@ -480,14 +560,14 @@ a:hover{text-decoration:underline}
           <span class="ws-seq">3</span>
           <div class="ws-card-meta">
             <div class="ws-when">Late Jan 2027 · <span class="ws-dur">2 hours</span> <span class="ws-scenario-badge sb-both">Both scenarios</span></div>
-            <div class="ws-card-title">Commissioner onboarding</div><div class="ws-owner-flag">[Owner to be identified]</div>
+            <div class="ws-card-title">Commissioner onboarding</div><div class="ws-owner-flag">Programme-led, lead to be confirmed</div>
             <div class="ws-oneliner">Preparing commissioners to buy through the new routes: onboarding journey, support arrangements and the first procurements.</div>
           </div>
           <span class="ws-toggle">▾</span>
         </div>
       </summary>
-      <div class="ws-body">
-        <div class="ws-field"><h4>Attendees</h4><div class="ws-att-wrap"><div class="ws-att-core"><div class="ws-att-caption">Core group (attends every workshop)</div><ul class="ws-list ws-list-tight"><li>Martin O'Neill</li><li>Rachel Flower</li><li>Chris Leary</li><li>Richard Samuel</li><li>Shirley Gaynor-Ward</li><li>James Cowley</li><li>Simone Bilton</li><li>Scott Eason</li><li>Matt Thomas</li><li>Matt Visser</li><li>Will Twells</li></ul></div><div class="ws-att-extras"><div class="ws-att-caption">Plus for this session</div><ul class="ws-list ws-list-tight"><li>Mandie Holt (optional)</li><li>Commissioner representatives</li></ul></div></div></div>
+      <div class="ws-body"><div class="ws-decides"><span class="ws-decides-label">Decides on the roadmap</span><a class="ws-decides-link" href="DTx OM - Milestone Plan.html#pc-S3-2">Commissioner support office &rarr;</a></div>
+        <div class="ws-field"><h4>Attendees</h4><div class="ws-att-lead"><span class="ws-att-lead-cap">Session lead</span>Programme team member(s) to be identified</div><div class="ws-att-wrap"><div class="ws-att-fs"><div class="ws-att-caption">Future State team &middot; support and facilitate</div><ul class="ws-list ws-list-tight"><li>James Cowley</li><li>Rachel Flower</li><li>Scott Eason</li><li>Hannah Brian</li></ul></div><div class="ws-att-extras"><div class="ws-att-caption">Plus for this session &middot; experts</div><ul class="ws-list ws-list-tight"><li>Mandie Holt (optional)</li><li>Commissioner representatives</li></ul></div><div class="ws-att-contrib"><div class="ws-att-caption">Contributors &middot; core group, SLT and others as needed</div><ul class="ws-list ws-list-tight"><li>Martin O'Neill</li><li>Chris Leary</li><li>Richard Samuel</li><li>Shirley Gaynor-Ward</li><li>Simone Bilton</li><li>Matt Thomas</li><li>Matt Visser</li><li>Will Twells</li></ul></div></div></div>
         <div class="ws-field"><h4>Prep required</h4><p>Commissioner engagement plan. Plan C playbook. Route confirmations to date.</p></div>
         <div class="ws-field"><h4>Objectives</h4><ul class="ws-list"><li>Walk the commissioner onboarding journey end to end</li><li>Confirm support arrangements for the first commissioner-led procurements</li><li>Surface friction points ahead of first use</li></ul></div>
         <div class="ws-field"><h4>Decisions to land</h4><ul class="ws-list"><li>Onboarding approach for early adopter commissioners</li><li>Support model until the commissioner support office stands up</li></ul></div>
@@ -509,15 +589,15 @@ a:hover{text-decoration:underline}
           <span class="ws-seq">1</span>
           <div class="ws-card-meta">
             <div class="ws-when">Post-panel briefing · <span class="ws-dur">Half day</span> <span class="ws-scenario-badge sb-both">Both scenarios</span></div>
-            <div class="ws-card-title">Evaluation calibration workshop</div><div class="ws-owner-flag">[Owner to be identified]</div>
+            <div class="ws-card-title">Evaluation calibration workshop</div><div class="ws-owner-flag">Programme-led, lead to be confirmed</div>
             <div class="ws-oneliner">Dry-run scoring on a mock bid so panel members score consistently.</div>
           </div>
           <span class="ws-toggle">▾</span>
         </div>
       </summary>
-      <div class="ws-body">
+      <div class="ws-body"><div class="ws-decides"><span class="ws-decides-label">Decides on the roadmap</span><a class="ws-decides-link" href="DTx OM - Milestone Plan.html#a-S4-1">Evaluation and moderation &rarr;</a></div>
         
-        <div class="ws-field"><h4>Attendees</h4><div class="ws-att-wrap"><div class="ws-att-core"><div class="ws-att-caption">Core group (attends every workshop)</div><ul class="ws-list ws-list-tight"><li>Martin O'Neill</li><li>Rachel Flower</li><li>Chris Leary</li><li>Richard Samuel</li><li>Shirley Gaynor-Ward</li><li>James Cowley</li><li>Simone Bilton</li><li>Scott Eason</li><li>Matt Thomas</li><li>Matt Visser</li><li>Will Twells</li></ul></div><div class="ws-att-extras"><div class="ws-att-caption">Plus for this session</div><ul class="ws-list ws-list-tight"><li>Evaluation panel (constituted in S3)</li><li>Mandie Holt (optional)</li></ul></div></div></div>
+        <div class="ws-field"><h4>Attendees</h4><div class="ws-att-lead"><span class="ws-att-lead-cap">Session lead</span>Programme team member(s) to be identified</div><div class="ws-att-wrap"><div class="ws-att-fs"><div class="ws-att-caption">Future State team &middot; support and facilitate</div><ul class="ws-list ws-list-tight"><li>James Cowley</li><li>Rachel Flower</li><li>Scott Eason</li><li>Hannah Brian</li></ul></div><div class="ws-att-extras"><div class="ws-att-caption">Plus for this session &middot; experts</div><ul class="ws-list ws-list-tight"><li>Evaluation panel (constituted in S3)</li><li>Mandie Holt (optional)</li></ul></div><div class="ws-att-contrib"><div class="ws-att-caption">Contributors &middot; core group, SLT and others as needed</div><ul class="ws-list ws-list-tight"><li>Martin O'Neill</li><li>Chris Leary</li><li>Richard Samuel</li><li>Shirley Gaynor-Ward</li><li>Simone Bilton</li><li>Matt Thomas</li><li>Matt Visser</li><li>Will Twells</li></ul></div></div></div>
         <div class="ws-field"><h4>Prep required</h4><p>Mock bid (or previous bid anonymised). Scoring templates. Evaluation criteria pack.</p></div>
         <div class="ws-field"><h4>Objectives</h4><ul class="ws-list"><li>Score the mock bid individually then compare</li><li>Discuss scoring divergences and align</li><li>Confirm any scoring rule refinements</li></ul></div>
         <div class="ws-field"><h4>Decisions to land</h4><ul class="ws-list"><li>Scoring calibration adjustments (if any)</li><li>Panel readiness declaration</li></ul></div>
@@ -530,15 +610,15 @@ a:hover{text-decoration:underline}
           <span class="ws-seq">2</span>
           <div class="ws-card-meta">
             <div class="ws-when">Pre-award · <span class="ws-dur">Full day</span> <span class="ws-scenario-badge sb-both">Both scenarios</span></div>
-            <div class="ws-card-title">Award moderation and standstill readiness</div><div class="ws-owner-flag">[Owner to be identified]</div>
+            <div class="ws-card-title">Award moderation and standstill readiness</div><div class="ws-owner-flag">Programme-led, lead to be confirmed</div>
             <div class="ws-oneliner">Consensus scoring, award recommendation, standstill letter drafting.</div>
           </div>
           <span class="ws-toggle">▾</span>
         </div>
       </summary>
-      <div class="ws-body">
+      <div class="ws-body"><div class="ws-decides"><span class="ws-decides-label">Decides on the roadmap</span><a class="ws-decides-link" href="DTx OM - Milestone Plan.html#a-S4-3">Standstill period &rarr;</a></div>
         
-        <div class="ws-field"><h4>Attendees</h4><div class="ws-att-wrap"><div class="ws-att-core"><div class="ws-att-caption">Core group (attends every workshop)</div><ul class="ws-list ws-list-tight"><li>Martin O'Neill</li><li>Rachel Flower</li><li>Chris Leary</li><li>Richard Samuel</li><li>Shirley Gaynor-Ward</li><li>James Cowley</li><li>Simone Bilton</li><li>Scott Eason</li><li>Matt Thomas</li><li>Matt Visser</li><li>Will Twells</li></ul></div><div class="ws-att-extras"><div class="ws-att-caption">Plus for this session</div><ul class="ws-list ws-list-tight"><li>Evaluation panel</li><li>Mandie Holt (optional)</li></ul></div></div></div>
+        <div class="ws-field"><h4>Attendees</h4><div class="ws-att-lead"><span class="ws-att-lead-cap">Session lead</span>Programme team member(s) to be identified</div><div class="ws-att-wrap"><div class="ws-att-fs"><div class="ws-att-caption">Future State team &middot; support and facilitate</div><ul class="ws-list ws-list-tight"><li>James Cowley</li><li>Rachel Flower</li><li>Scott Eason</li><li>Hannah Brian</li></ul></div><div class="ws-att-extras"><div class="ws-att-caption">Plus for this session &middot; experts</div><ul class="ws-list ws-list-tight"><li>Evaluation panel</li><li>Mandie Holt (optional)</li></ul></div><div class="ws-att-contrib"><div class="ws-att-caption">Contributors &middot; core group, SLT and others as needed</div><ul class="ws-list ws-list-tight"><li>Martin O'Neill</li><li>Chris Leary</li><li>Richard Samuel</li><li>Shirley Gaynor-Ward</li><li>Simone Bilton</li><li>Matt Thomas</li><li>Matt Visser</li><li>Will Twells</li></ul></div></div></div>
         <div class="ws-field"><h4>Prep required</h4><p>Individual panel scores. Draft award recommendation. Standstill letter template.</p></div>
         <div class="ws-field"><h4>Objectives</h4><ul class="ws-list"><li>Reach consensus on scoring</li><li>Draft award recommendation</li><li>Prepare standstill notification</li></ul></div>
         <div class="ws-field"><h4>Decisions to land</h4><ul class="ws-list"><li>Award recommendation</li><li>Standstill window dates</li></ul></div>
@@ -560,15 +640,15 @@ a:hover{text-decoration:underline}
           <span class="ws-seq">1</span>
           <div class="ws-card-meta">
             <div class="ws-when">Post-signature · <span class="ws-dur">Half day</span> <span class="ws-scenario-badge sb-both">Both scenarios</span></div>
-            <div class="ws-card-title">Mobilisation planning</div><div class="ws-owner-flag">[Owner to be identified]</div>
+            <div class="ws-card-title">Mobilisation planning</div><div class="ws-owner-flag">Programme-led, lead to be confirmed</div>
             <div class="ws-oneliner">Supplier onboarding sequence, contract kick-off cadence, first-90-day plan.</div>
           </div>
           <span class="ws-toggle">▾</span>
         </div>
       </summary>
-      <div class="ws-body">
+      <div class="ws-body"><div class="ws-decides"><span class="ws-decides-label">Decides on the roadmap</span><a class="ws-decides-link" href="DTx OM - Milestone Plan.html#a-S5-0">Mobilisation &rarr;</a></div>
         
-        <div class="ws-field"><h4>Attendees</h4><div class="ws-att-wrap"><div class="ws-att-core"><div class="ws-att-caption">Core group (attends every workshop)</div><ul class="ws-list ws-list-tight"><li>Martin O'Neill</li><li>Rachel Flower</li><li>Chris Leary</li><li>Richard Samuel</li><li>Shirley Gaynor-Ward</li><li>James Cowley</li><li>Simone Bilton</li><li>Scott Eason</li><li>Matt Thomas</li><li>Matt Visser</li><li>Will Twells</li></ul></div><div class="ws-att-extras"><div class="ws-att-caption">Plus for this session</div><ul class="ws-list ws-list-tight"><li>Awarded suppliers</li><li>Mandie Holt (optional)</li></ul></div></div></div>
+        <div class="ws-field"><h4>Attendees</h4><div class="ws-att-lead"><span class="ws-att-lead-cap">Session lead</span>Programme team member(s) to be identified</div><div class="ws-att-wrap"><div class="ws-att-fs"><div class="ws-att-caption">Future State team &middot; support and facilitate</div><ul class="ws-list ws-list-tight"><li>James Cowley</li><li>Rachel Flower</li><li>Scott Eason</li><li>Hannah Brian</li></ul></div><div class="ws-att-extras"><div class="ws-att-caption">Plus for this session &middot; experts</div><ul class="ws-list ws-list-tight"><li>Awarded suppliers</li><li>Mandie Holt (optional)</li></ul></div><div class="ws-att-contrib"><div class="ws-att-caption">Contributors &middot; core group, SLT and others as needed</div><ul class="ws-list ws-list-tight"><li>Martin O'Neill</li><li>Chris Leary</li><li>Richard Samuel</li><li>Shirley Gaynor-Ward</li><li>Simone Bilton</li><li>Matt Thomas</li><li>Matt Visser</li><li>Will Twells</li></ul></div></div></div>
         <div class="ws-field"><h4>Prep required</h4><p>Signed contracts. Onboarding checklist. First-90-day template.</p></div>
         <div class="ws-field"><h4>Objectives</h4><ul class="ws-list"><li>Sequence supplier onboarding</li><li>Agree first-90-day milestones</li><li>Set up supplier management cadence</li></ul></div>
         <div class="ws-field"><h4>Decisions to land</h4><ul class="ws-list"><li>Onboarding order</li><li>First-90-day milestones per supplier</li><li>Supplier management meeting cadence</li></ul></div>
@@ -581,15 +661,15 @@ a:hover{text-decoration:underline}
           <span class="ws-seq">2</span>
           <div class="ws-card-meta">
             <div class="ws-when">Steady-state prep · <span class="ws-dur">2 hours</span> <span class="ws-scenario-badge sb-both">Both scenarios</span></div>
-            <div class="ws-card-title">Measurement framework stand-up</div><div class="ws-owner-flag">[Owner to be identified]</div>
+            <div class="ws-card-title">Measurement framework stand-up</div><div class="ws-owner-flag">Programme-led, lead to be confirmed</div>
             <div class="ws-oneliner">KPIs, dashboards, feedback loop to prioritisation.</div>
           </div>
           <span class="ws-toggle">▾</span>
         </div>
       </summary>
-      <div class="ws-body">
+      <div class="ws-body"><div class="ws-decides"><span class="ws-decides-label">Decides on the roadmap</span><a class="ws-decides-link" href="DTx OM - Milestone Plan.html#a-S5-3">Measurement framework stand-up &rarr;</a></div>
         
-        <div class="ws-field"><h4>Attendees</h4><div class="ws-att-wrap"><div class="ws-att-core"><div class="ws-att-caption">Core group (attends every workshop)</div><ul class="ws-list ws-list-tight"><li>Martin O'Neill</li><li>Rachel Flower</li><li>Chris Leary</li><li>Richard Samuel</li><li>Shirley Gaynor-Ward</li><li>James Cowley</li><li>Simone Bilton</li><li>Scott Eason</li><li>Matt Thomas</li><li>Matt Visser</li><li>Will Twells</li></ul></div><div class="ws-att-extras"><div class="ws-att-caption">Plus for this session</div><ul class="ws-list ws-list-tight"><li>Data lead (TBC)</li><li>Mandie Holt (optional)</li></ul></div></div></div>
+        <div class="ws-field"><h4>Attendees</h4><div class="ws-att-lead"><span class="ws-att-lead-cap">Session lead</span>Programme team member(s) to be identified</div><div class="ws-att-wrap"><div class="ws-att-fs"><div class="ws-att-caption">Future State team &middot; support and facilitate</div><ul class="ws-list ws-list-tight"><li>James Cowley</li><li>Rachel Flower</li><li>Scott Eason</li><li>Hannah Brian</li></ul></div><div class="ws-att-extras"><div class="ws-att-caption">Plus for this session &middot; experts</div><ul class="ws-list ws-list-tight"><li>Data lead (TBC)</li><li>Mandie Holt (optional)</li></ul></div><div class="ws-att-contrib"><div class="ws-att-caption">Contributors &middot; core group, SLT and others as needed</div><ul class="ws-list ws-list-tight"><li>Martin O'Neill</li><li>Chris Leary</li><li>Richard Samuel</li><li>Shirley Gaynor-Ward</li><li>Simone Bilton</li><li>Matt Thomas</li><li>Matt Visser</li><li>Will Twells</li></ul></div></div></div>
         <div class="ws-field"><h4>Prep required</h4><p>KPI framework draft. Dashboard prototype. Feedback loop design from Operating Model.</p></div>
         <div class="ws-field"><h4>Objectives</h4><ul class="ws-list"><li>Confirm KPI set and calculation approach</li><li>Agree dashboard first-cut</li><li>Design feedback loop back to prioritisation</li></ul></div>
         <div class="ws-field"><h4>Decisions to land</h4><ul class="ws-list"><li>KPI list</li><li>Dashboard scope for v1</li><li>Feedback cadence</li></ul></div>
