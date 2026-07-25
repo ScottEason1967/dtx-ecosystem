@@ -66,7 +66,7 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
 .hero-strap strong{color:var(--gold);font-weight:700;}
 .hero-image-box{display:flex;flex-direction:column;align-items:center;gap:12px;}
 .image-slot{position:relative;background:linear-gradient(135deg,rgba(255,255,255,0.18),rgba(255,255,255,0.06));border-radius:16px;border:2px dashed rgba(255,255,255,0.30);display:flex;flex-direction:column;align-items:center;justify-content:center;color:rgba(255,255,255,0.78);text-align:center;padding:24px;font-size:11.5px;font-weight:700;letter-spacing:0.4px;overflow:hidden;}
-.image-slot img{display:block;width:100%;height:100%;object-fit:cover;}
+.image-slot img{display:block;width:100%;height:100%;object-fit:cover;object-position:center top;}
 .image-slot-icon{font-size:48px;opacity:0.45;margin-bottom:8px;}
 .image-slot.hero-image{width:340px;height:340px;}
 .image-slot-caption{font-size:10.5px;font-weight:600;opacity:0.78;letter-spacing:0.4px;}
@@ -130,7 +130,7 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
 
 /* Stage image */
 .stage-image{width:100%;max-width:560px;aspect-ratio:1/1;background:linear-gradient(135deg,#F4F8FC,#E0E5EB);border-radius:14px;border:2px dashed #c4d3e6;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--text-muted);text-align:center;padding:20px;font-size:12.5px;font-weight:700;letter-spacing:0.3px;margin:0 auto 24px;overflow:hidden;position:relative;}
-.stage-image img{display:block;width:100%;height:100%;object-fit:cover;border-radius:12px;}
+.stage-image img{display:block;width:100%;height:100%;object-fit:cover;object-position:center top;border-radius:12px;}
 .stage-image-icon{font-size:54px;opacity:0.40;margin-bottom:10px;}
 .stage-image-caption{font-size:11.5px;font-weight:600;opacity:0.85;letter-spacing:0.3px;max-width:480px;line-height:1.5;}
 
@@ -337,15 +337,15 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
         <div class="hero-rule"></div>
         <div class="hero-eyebrow">A patient's story through the operating model</div>
         <h1 class="hero-title">Errol&apos;s morning,<br>and what the<br>NHS <em>didn&apos;t</em> miss.</h1>
-        <p class="hero-strap">Errol is fifty-six. He&apos;s lived with hypertension for three years. He puts on his smartwatch when he gets up. He runs through a BP check at his kitchen table once a week. He doesn&apos;t think about either. Until the morning his GP calls before he&apos;s noticed anything is wrong. <strong>This is the story of one patient, three workstreams, and one operating model doing the work underneath.</strong></p>
+        <p class="hero-strap">Errol is fifty-six. Four months ago he had a heart attack and a stent fitted. He&apos;s home now, recovering, and he puts on his smartwatch when he gets up. He doesn&apos;t think about it. Until the morning his cardiac rehab nurse calls, because the watch has seen something he hasn&apos;t. <strong>This is the story of one patient, three workstreams, and one operating model doing the work underneath.</strong></p>
       </div>
       <div class="hero-image-box">
         <div class="image-slot hero-image">
-          <img src="img/errol-hero.png" alt="Errol at his kitchen table" style="border-radius:14px;" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;image-slot-icon&quot;>&#x1F464;</div><div>Errol hero illustration</div><div class=&quot;image-slot-caption&quot;>kitchen table &middot; morning routine &middot; smartwatch &amp; cuff</div>';">
+          <img src="img/errol-hero.png" alt="Errol at his kitchen table" style="border-radius:14px;" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;image-slot-icon&quot;>&#x1F464;</div><div>Errol hero illustration</div><div class=&quot;image-slot-caption&quot;>recovering at home &middot; morning routine &middot; smartwatch on his wrist</div>';">
         </div>
         <div class="hero-portrait-strip">
           <div class="hero-portrait-name">Errol, 56</div>
-          <div class="hero-portrait-role">Hypertension &middot; managed at home</div>
+          <div class="hero-portrait-role">Cardiac rehabilitation &middot; recovering at home</div>
         </div>
       </div>
     </div>
@@ -428,7 +428,7 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
       <div class="framing-tile">
         <div class="framing-tile-eyebrow">The credibility unlock</div>
         <div class="framing-tile-h">The smartwatch catches what Errol can&apos;t.</div>
-        <div class="framing-tile-body">Errol takes his BP readings deliberately and sees the numbers, but he&apos;s habituated to them. They don&apos;t tell him anything new. The smartwatch is the always-on sensor doing the things he&apos;s <strong>not</strong> looking at: resting heart rate over time, nocturnal patterns, rhythm anomalies. The system spots a signal he didn&apos;t even know to look for.</div>
+        <div class="framing-tile-body">Errol feels recovered and wants to get on with his life. He isn&apos;t watching his own heart, and he wouldn&apos;t know what to watch for. The smartwatch is the always-on sensor doing exactly that: resting and recovery heart rate, exertion tolerance, nocturnal rhythm. In the months after a cardiac event, when the risk of arrhythmia is real, it spots a signal he didn&apos;t even know to look for.</div>
       </div>
       <div class="framing-tile">
         <div class="framing-tile-eyebrow">Why one operating model</div>
@@ -454,28 +454,28 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
         </div>
       </div>
       <div class="stage-main">
-        <div class="stage-eyebrow">Baseline &middot; ordinary life</div>
-        <h2 class="stage-title">Errol takes his BP once a week. His smartwatch hums along in the background. Nothing is happening, and that is the point. <span class="hm-witness" data-moment="errol-s1"></span></h2>
+        <div class="stage-eyebrow">Baseline &middot; home after the event</div>
+        <h2 class="stage-title">Errol is a few weeks out of hospital and back on his feet. His smartwatch hums along in the background. Recovery is quiet, and that is what everyone wants. <span class="hm-witness" data-moment="errol-s1"></span></h2>
 
         <div class="stage-image">
           <img src="img/errol-stage1.png" alt="Errol teaching at the community college" style="border-radius:12px;" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;stage-image-icon&quot;>&#x1F3A8;</div><div>Stage 1 illustration</div><div class=&quot;stage-image-caption&quot;>Errol going about an ordinary day &middot; smartwatch incidental on his wrist &middot; competent man living his life</div>';">
         </div>
 
         <div class="pull-quote">
-          <p class="pull-quote-text">After my scare three years ago I started taking my own BP. The numbers look about the same most weeks. I don&apos;t really think about it. The watch I just wear.</p>
+          <p class="pull-quote-text">After the heart attack I just wanted to feel normal again. They sent me home with the meds and told me rehab would start soon. The watch I already wore. I didn&apos;t think much about it.</p>
           <div class="pull-quote-attribution">Errol</div>
         </div>
 
         <div class="whats-happening">
           <div class="whats-happening-label">What the model is doing underneath</div>
-          <div class="whats-happening-body">A connected BP device and a consumer-platform smartwatch send Errol&apos;s data into the NHS App. <strong>NHS Login</strong> ties the device to him. <strong>The data schedule</strong> governs what flows where. The wearable layer at <strong>Foundation level</strong> means his GP can see the trend at her annual review, or whenever the system pings her between appointments. He never re-onboarded for any of this.</div>
+          <div class="whats-happening-body">A consumer-platform smartwatch sends Errol&apos;s data into the NHS App. <strong>NHS Login</strong> ties the device to him. <strong>The data schedule</strong> governs what flows where. The wearable layer at <strong>Foundation level</strong> means his cardiac rehab team can see his recovery trend between appointments, not just when he is in front of them. He never re-onboarded for any of this.</div>
         </div>
 
         <div class="careteam">
           <div class="careteam-icon">&#x1F465;</div>
           <div class="careteam-body">
             <div class="careteam-label">What the care team sees</div>
-            <div class="careteam-text">BP trend and smartwatch baseline in Errol&apos;s record. Quiet, mostly normal, nothing pressing.</div>
+            <div class="careteam-text">Smartwatch recovery baseline in Errol&apos;s record. Quiet, settling as expected, nothing pressing.</div>
           </div>
         </div>
 
@@ -504,27 +504,27 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
       </div>
       <div class="stage-main">
         <div class="stage-eyebrow">The catch &middot; the watch sees what he can&apos;t</div>
-        <h2 class="stage-title">Errol feels fine. The smartwatch sees three weeks of climbing resting heart rate and a couple of unusual overnight rhythms. The system spots a pattern he didn&apos;t know to look for. <span class="hm-witness" data-moment="errol-s2"></span></h2>
+        <h2 class="stage-title">Errol feels fine. The smartwatch sees a run of irregular overnight rhythm and a resting heart rate that will not settle. In a patient recovering from a heart attack, that is a pattern nobody wants to miss. <span class="hm-witness" data-moment="errol-s2"></span></h2>
 
         <div class="stage-image">
           <img src="img/errol-stage2.png" alt="The catch: Errol unaware, system aware" style="border-radius:12px;" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;stage-image-icon&quot;>&#x1F3A8;</div><div>Stage 2 illustration &middot; two-pane composition</div><div class=&quot;stage-image-caption&quot;>LEFT: Errol completely unaware (mowing the lawn, walking the dog) &middot; smartwatch on his wrist &middot; RIGHT: clinician&apos;s screen showing his trend chart with anomaly highlighted &middot; alert without alarm</div>';">
         </div>
 
         <div class="pull-quote">
-          <p class="pull-quote-text">I didn&apos;t feel a thing. The week before I&apos;d been a bit tired, but I&apos;m fifty-six, I&apos;m always a bit tired. She called me. Said she&apos;d been watching the watch data and wanted to take a closer look.</p>
+          <p class="pull-quote-text">I didn&apos;t feel a thing. A bit tired maybe, but I&apos;m fifty-six and I&apos;d just had a heart attack, so of course I was tired. My rehab nurse called. Said she&apos;d been watching the watch data and wanted to take a closer look.</p>
           <div class="pull-quote-attribution">Errol</div>
         </div>
 
         <div class="whats-happening">
           <div class="whats-happening-label">What the model is doing underneath</div>
-          <div class="whats-happening-body">Rising resting heart rate plus nocturnal rhythm anomalies are recognised early signs of cardiovascular strain in patients with hypertension: downstream effects that show up in passive wearable data before the patient feels them. The HealthSync configuration carries <strong>threshold and pattern rules</strong> per use case, not just &ldquo;BP over 160&rdquo; but &ldquo;resting heart rate baseline shift of more than X over Y weeks, combined with Z nocturnal rhythm events&rdquo;. Those rules sit in the operational layer. When triggered, the signal routes to the responsible clinical pathway, which is why Errol&apos;s GP responds by pulling up his BP cuff data and ordering bloods. The watch signal is the prompt, the BP and bloods are the confirmation. <strong>The catch isn&apos;t the BP. It&apos;s the secondary signal the patient isn&apos;t looking at.</strong> The wearable is doing the work Errol couldn&apos;t.</div>
+          <div class="whats-happening-body">Irregular overnight rhythm and an unsettled resting heart rate are recognised early warnings of arrhythmia in the months after a cardiac event, and they show up in passive wearable data before the patient feels them. The HealthSync configuration carries <strong>threshold and pattern rules</strong> per use case, not a single cut-off but &ldquo;rhythm irregularity over X nights combined with a resting heart-rate shift of more than Y&rdquo;. Those rules sit in the operational layer. When triggered, the signal routes to the responsible clinical pathway, which is why Errol&apos;s rehab team responds by bringing his review forward and ordering bloods. The watch signal is the prompt, the bloods and the clinical review are the confirmation. <strong>The catch is the secondary signal the patient isn&apos;t looking at.</strong> The wearable is doing the work Errol couldn&apos;t.</div>
         </div>
 
         <div class="careteam">
           <div class="careteam-icon">&#x1F465;</div>
           <div class="careteam-body">
             <div class="careteam-label">What the care team sees</div>
-            <div class="careteam-text">Alert in the dashboard with the pattern shown. Pulls up Errol&apos;s BP cuff data alongside and sees a quiet upward drift he&apos;d been habituated to. Decides to call him and investigate.</div>
+            <div class="careteam-text">Alert in the dashboard with the rhythm pattern shown. The rehab team sees it against his recovery baseline, decides it is worth a closer look, and calls him in.</div>
           </div>
         </div>
 
@@ -552,27 +552,27 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
       </div>
       <div class="stage-main">
         <div class="stage-eyebrow">Diagnostic &middot; the test that confirms what the data suggested</div>
-        <h2 class="stage-title">A blood test kit arrives on the doorstep two days later. Kidney function, lipids, HbA1c: the things you check when you&apos;re asking whether a hypertensive patient is heading somewhere worse. <span class="hm-witness" data-moment="errol-s3"></span></h2>
+        <h2 class="stage-title">A blood test kit arrives on the doorstep two days later. Lipids, kidney function, HbA1c: the things you check to keep a patient recovering from a heart attack on the right side of a second one. <span class="hm-witness" data-moment="errol-s3"></span></h2>
 
         <div class="stage-image">
           <img src="img/errol-stage3.png" alt="The blood-test kit arrives" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;stage-image-icon&quot;>&#x1F3A8;</div><div>Stage 3 illustration</div><div class=&quot;stage-image-caption&quot;>Errol&apos;s kitchen counter &middot; at-home blood test kit opened &middot; lancet and return envelope &middot; same kitchen as the hero shot &middot; calm and ordinary</div>';">
         </div>
 
         <div class="pull-quote">
-          <p class="pull-quote-text">It came in the post. Bit of a finger-prick, post it back, two days later the result was sitting in the NHS App right under my BP chart. Same app. Same record. I didn&apos;t set anything up.</p>
+          <p class="pull-quote-text">It came in the post. Bit of a finger-prick, post it back, two days later the result was sitting in the NHS App right under my heart-rate trend. Same app. Same record. I didn&apos;t set anything up.</p>
           <div class="pull-quote-attribution">Errol</div>
         </div>
 
         <div class="whats-happening">
           <div class="whats-happening-label">What the model is doing underneath</div>
-          <div class="whats-happening-body">The HomeTest workstream activates without re-onboarding Errol. <strong>The same NHS App</strong> handles the kit dispatch, the instructions, the return tracking and the result, not a separate app. <strong>NHS Notify</strong> carries every comms touchpoint under the same identity. The result lands in the same patient record as his BP trend because the IG framework treats him as one patient across workstreams, not as a different patient per product.</div>
+          <div class="whats-happening-body">The HomeTest workstream activates without re-onboarding Errol. <strong>The same NHS App</strong> handles the kit dispatch, the instructions, the return tracking and the result, not a separate app. <strong>NHS Notify</strong> carries every comms touchpoint under the same identity. The result lands in the same patient record as his recovery data because the IG framework treats him as one patient across workstreams, not as a different patient per product.</div>
         </div>
 
         <div class="careteam">
           <div class="careteam-icon">&#x1F465;</div>
           <div class="careteam-body">
             <div class="careteam-label">What the care team sees</div>
-            <div class="careteam-text">Blood result and BP trend in one view. Picture is clearer. Time for the clinical conversation about what to do.</div>
+            <div class="careteam-text">Blood result and heart-rate trend in one view. Picture is clearer. Time for the clinical conversation about what to do.</div>
           </div>
         </div>
 
@@ -603,21 +603,21 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
         </div>
       </div>
       <div class="stage-main">
-        <div class="stage-eyebrow">Prescription &middot; the medication, and the support to stick with it</div>
-        <h2 class="stage-title">The GP adjusts the medication and prescribes a digital therapeutic to help with adherence and lifestyle. By the time Errol is home it&apos;s sitting in his NHS App waiting to be activated. <span class="hm-witness" data-moment="errol-s4"></span></h2>
+        <div class="stage-eyebrow">Prescription &middot; the rehab programme, delivered to his door</div>
+        <h2 class="stage-title">The rehab team optimises his medication and prescribes his cardiac rehabilitation as a digital therapeutic, Activate Your Heart. By the time Errol is off the call it is sitting in his NHS App waiting to be started. <span class="hm-witness" data-moment="errol-s4"></span></h2>
 
         <div class="stage-image">
           <img src="img/errol-stage4.png" alt="The conversation and the prescription" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;stage-image-icon&quot;>&#x1F3A8;</div><div>Stage 4 illustration</div><div class=&quot;stage-image-caption&quot;>Errol on a video call with his GP &middot; mug of tea &middot; warm, collaborative tone &middot; OR Errol just after the call looking at the new app tile in his NHS App</div>';">
         </div>
 
         <div class="pull-quote">
-          <p class="pull-quote-text">She said the medication would do the work but the app would help me stick to it: reminders, breathing exercises, that sort of thing. By the time I&apos;d made another cup of tea it was in the App. Same NHS Login. Tap, in.</p>
+          <p class="pull-quote-text">She said the tablets would do their bit, but the app was my rehab: guided exercise sessions I could do at home, the education, someone keeping an eye on how I was getting on. By the time I&apos;d made another cup of tea it was in the App. Same NHS Login. Tap, in.</p>
           <div class="pull-quote-attribution">Errol</div>
         </div>
 
         <div class="whats-happening">
           <div class="whats-happening-label">What the model is doing underneath</div>
-          <div class="whats-happening-body">A third-party digital therapeutic from the HealthStore catalogue enters Errol&apos;s care. <strong>DCB0129</strong> sits with the admitted supplier; <strong>DCB0160</strong> sits with the deploying NHS organisation. A split, not a joint. The <strong>Service Wrapper</strong> at Foundation level holds Errol between clinical touchpoints with engagement nudges and signposting. The therapeutic was admitted nationally through the <strong>three-step selection</strong> (DTx approver, commissioner, clinician); his GP is the third step.</div>
+          <div class="whats-happening-body">A cardiac rehabilitation digital therapeutic from the HealthStore catalogue enters Errol&apos;s care. It earned its place the HealthStore way: a NICE Health Tech Guidance assessment for cardiac rehab, DTAC compliance and MHRA Class IIa device status. <strong>DCB0129</strong> sits with the admitted supplier; <strong>DCB0160</strong> sits with the deploying NHS organisation. A split, not a joint. The <strong>Service Wrapper</strong> at Foundation level holds Errol between clinical touchpoints with engagement nudges and signposting. Errol never browses a marketplace: his commissioner curated the product onto the Commissioner Store, and his clinician prescribed this one.</div>
         </div>
 
         <div class="careteam">
@@ -666,14 +666,14 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
         </div>
 
         <div class="pull-quote">
-          <p class="pull-quote-text">It all just folded into normal life. Watch in the morning, cuff once a week, app reminds me about the medication. Numbers are coming back down. My GP doesn&apos;t need to see me until we both think she does.</p>
+          <p class="pull-quote-text">It all just folded into normal life. Watch in the morning, the app for my rehab sessions, the meds. I&apos;m fitter than I was before the heart attack, honestly. My rehab team doesn&apos;t need to see me in person until we both think they should.</p>
           <div class="pull-quote-attribution">Errol</div>
         </div>
 
         <!-- Dashboard mockup: the visual payoff -->
         <div class="dashboard">
           <div class="dashboard-eyebrow">The care team view &middot; three signals, one patient</div>
-          <div class="dashboard-title">Errol &middot; hypertension &middot; under management</div>
+          <div class="dashboard-title">Errol &middot; cardiac rehabilitation &middot; under way</div>
           <div class="dashboard-row">
             <div class="dashboard-card">
               <div class="dashboard-card-head">
@@ -693,8 +693,8 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
                 <div class="dashboard-card-dot hometest"></div>
                 <div class="dashboard-card-label">HomeTest &middot; bloods</div>
               </div>
-              <div class="dashboard-metric">eGFR 84</div>
-              <div class="dashboard-metric-sub">kidney function &middot; stable since baseline</div>
+              <div class="dashboard-metric">LDL 1.8</div>
+              <div class="dashboard-metric-sub">cholesterol &middot; at secondary-prevention target</div>
               <div class="dashboard-chart">
                 <svg viewBox="0 0 100 30" preserveAspectRatio="none">
                   <polyline fill="none" stroke="#4F8AC0" stroke-width="2" points="0,14 25,14 50,15 75,14 100,14"/>
@@ -719,10 +719,10 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
             <div class="dashboard-card">
               <div class="dashboard-card-head">
                 <div class="dashboard-card-dot healthsync"></div>
-                <div class="dashboard-card-label">BP &middot; weekly cuff</div>
+                <div class="dashboard-card-label">HealthSync &middot; activity</div>
               </div>
-              <div class="dashboard-metric">132/82</div>
-              <div class="dashboard-metric-sub">12-week average &middot; down from 148/92</div>
+              <div class="dashboard-metric">150 min/wk</div>
+              <div class="dashboard-metric-sub">moderate activity &middot; up from 40 at rehab start</div>
               <div class="dashboard-chart">
                 <svg viewBox="0 0 100 30" preserveAspectRatio="none">
                   <polyline fill="none" stroke="#5BC9B8" stroke-width="2" points="0,4 14,5 28,8 42,11 56,14 70,18 84,21 100,24"/>
@@ -763,7 +763,7 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
           <div class="careteam-icon">&#x1F465;</div>
           <div class="careteam-body">
             <div class="careteam-label">What the care team sees</div>
-            <div class="careteam-text">Pathway-level picture. BP control trending, adherence high, kidney function stable, no rhythm events. Annual review can be virtual. Time freed for patients who genuinely need to be in clinic.</div>
+            <div class="careteam-text">Pathway-level picture. Rehab progressing, adherence high, activity climbing, cholesterol at target, no rhythm events. Reviews can be virtual. Time freed for patients who genuinely need to be in clinic.</div>
           </div>
         </div>
 
@@ -800,13 +800,13 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
         </div>
 
         <div class="pull-quote">
-          <p class="pull-quote-text">The honest thing is I&apos;d forgotten about it. Cuff once a week, watch on, take the meds. My GP says my numbers are where they should be. We&apos;ve been to Eindhoven and back since the call. My wife&apos;s sister&apos;s. I&apos;m fine.</p>
+          <p class="pull-quote-text">The honest thing is I&apos;d almost forgotten about it. Watch on, finished my rehab, take the meds. My rehab team says I&apos;m where I should be, better even. We&apos;ve been to Eindhoven and back since the call, my wife&apos;s sister&apos;s. I&apos;m fine.</p>
           <div class="pull-quote-attribution">Errol</div>
         </div>
 
         <div class="whats-happening">
           <div class="whats-happening-label">What the model is doing underneath</div>
-          <div class="whats-happening-body">Hypertensive crisis avoided. Hospital admission avoided. Clinical decision points happened at the right moments, in the right places, with the right evidence. Errol was the one taking the readings, but the model was the one making sure they meant something to someone who could act. <strong>This is the picture of the model working.</strong></div>
+          <div class="whats-happening-body">Second cardiac event avoided. Readmission avoided. Rehab completed, not dropped the way too many are. Clinical decision points happened at the right moments, in the right places, with the right evidence. Errol was the one wearing the watch and doing the sessions, but the model was the one making sure they meant something to someone who could act. <strong>This is the picture of the model working.</strong></div>
         </div>
 
         <div class="crosslinks">
@@ -836,7 +836,7 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
         <div style="width:96px;height:96px;border-radius:50%;overflow:hidden;margin-bottom:14px;background:#E0E5EB;box-shadow:0 4px 14px rgba(0,48,135,0.15);"><a href="DTx OM - Persona HealthSync patient.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="img/errol-portrait.png" alt="Errol" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block;"></a></div>
         <div class="outcome-h">For Errol</div>
         <div class="outcome-title">A crisis that never happened.</div>
-        <div class="outcome-body">BP under control. No A&amp;E visit. No admission. His annual review is mostly virtual. He onboarded once and consented once for a journey that crossed three workstreams. He doesn&apos;t experience three products. He experiences one NHS App that has things in it.</div>
+        <div class="outcome-body">Recovery on track. Rehab completed. No readmission. His reviews are mostly virtual. He onboarded once and consented once for a journey that crossed three workstreams. He doesn&apos;t experience three products. He experiences one NHS App that has things in it.</div>
       </div>
       <div class="outcome">
         <div style="width:96px;height:96px;border-radius:50%;overflow:hidden;margin-bottom:14px;background:#003087;box-shadow:0 4px 14px rgba(0,48,135,0.15);"><img src="img/icon-care.png" alt="Care team icon" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
@@ -848,7 +848,7 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
         <div style="width:96px;height:96px;border-radius:50%;overflow:hidden;margin-bottom:14px;background:#003087;box-shadow:0 4px 14px rgba(0,48,135,0.15);"><img src="img/icon-system.png" alt="System icon" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
         <div class="outcome-h">For the system</div>
         <div class="outcome-title">Pathway value, demonstrated.</div>
-        <div class="outcome-body">The wearable carried the routine monitoring, so the check-up appointments that used to watch a stable patient stopped being needed. The diagnostic came to his door instead of a clinic slot. The annual review went virtual. And the hypertensive admission that never happened is the largest saved cost of all. <strong>Value released at the pathway level, not the test line</strong>, and the case for the next pathway writes itself from the evidence this one generated.</div>
+        <div class="outcome-body">The wearable carried the routine monitoring, so the review appointments that used to watch a recovering patient stopped being needed. The bloods came to his door instead of a clinic slot. The rehab ran at home instead of a hospital gym slot. And the cardiac readmission that never happened is the largest saved cost of all. <strong>Value released at the pathway level, not the test line</strong>, and the case for the next pathway writes itself from the evidence this one generated.</div>
       </div>
     </div>
 
