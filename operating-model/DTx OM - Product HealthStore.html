@@ -147,7 +147,7 @@
   <div class="h-flex">
     <div>
       <h1 class="h-title"><span style="display:inline-block;background:#00A9CE;color:#fff;padding:6px 22px 10px;border-radius:14px;line-height:1;letter-spacing:-1px;">HealthStore</span>.</h1>
-      <p class="h-sub">A digital therapeutics service. A clinician identifies a patient who fits the pathway, prescribes the digital intervention, and the patient engages with it through the NHS App or a partnered app. Engagement and clinical outcomes are captured per episode and fed back into the pathway. <strong>COPD Alpha</strong> is the lead service in design today, with two suppliers onboarded for the Alpha (out of three CTF respondents). The architecture is built to host further therapeutic areas as they come into scope.</p>
+      <p class="h-sub">A curated marketplace of NICE-assessed digital therapeutics. Patients do not browse a store: a clinician prescribes a specific product that the patient&apos;s commissioning body has selected from the national curated list, and the patient engages with it through the NHS App or a partnered app. The buyer-facing surface is the <strong>Commissioner Store</strong>; the patient-facing surface is the <strong>NHS App</strong>. Engagement and clinical outcomes are captured per episode and fed back into the pathway. <strong>COPD Alpha</strong> is the lead service in design today, with two suppliers onboarded for the Alpha (out of three CTF respondents). The architecture is built to host further therapeutic areas as they clear the NICE pipeline.</p>
     </div>
     <div class="h-status-card">
       <div class="h-status-card-eyebrow">HealthStore today</div>
@@ -159,6 +159,18 @@
       <div class="h-status-card-row"><strong>Contract instrument:</strong> NHS Standard Contract with SaaS and data schedules</div>
       <div class="h-status-card-row"><strong>Roadmap horizon:</strong> Launch target April 2027 (~10 months); GDS Beta assessment late 2026 / early 2027</div>
     </div>
+  </div>
+
+  <div class="section-h">What HealthStore actually offers</div>
+  <div class="what-card">
+    <h3>A curated marketplace, not an app store</h3>
+    <p>HealthStore is gated by NICE Health Tech Guidance. To be admitted, a digital therapeutic needs a NICE Health Tech Guidance decision that is either <strong>Recommended</strong> or an <strong>Early Value Assessment (EVA)</strong>, plus <strong>DTAC</strong> compliance, plus <strong>MHRA Class IIa</strong> medical device status. A commissioning body then curates, from the admitted set, the products it will fund for its population. That curated set is the <strong>Commissioner Store</strong>, the buyer-facing surface; the <strong>NHS App</strong> is the patient-facing surface. A clinician prescribes a specific product from the commissioner&apos;s curated set. Route to patient runs from front-door intake through clinician-referred self-guided care, clinician-supported rehabilitation, hybrid monitoring, to digitally-enabled managed service.</p>
+    <p>The Class IIa bar is a live pipeline tension. Most digital therapeutics on the market today are <strong>Class I</strong>, so the depth of the admissible pipeline is an open risk, and which specific products clear the bar to be admitted is not yet settled.</p>
+  </div>
+  <div class="what-card">
+    <h3>The therapeutic pipeline</h3>
+    <p><strong>Alpha:</strong> COPD self-management (NICE HTG736), COPD pulmonary rehabilitation (HTG718) and cardiac rehabilitation (HTG761). <strong>Beta:</strong> non-specific low back pain (HTG712) and hip and knee osteoarthritis (HTG766). <strong>Live from 2027 and beyond:</strong> insomnia (Sleepio, HTG624, the mature Recommended exemplar), multidisciplinary weight management (HTG700), asthma and mental health topics.</p>
+    <p>Illustrative products that sit on these areas include Sleepio for insomnia, myCOPD and Luscii for COPD, and Oviva, Liva and Second Nature for weight management. Each new area follows the same path: a NICE appraisal grows the pipeline, then a Conditions Launch team builds the human wrapper, pathway fit (GIRFT / route to patient), commissioning, and NHS App / GP-system integration.</p>
   </div>
 
   <div class="section-h"><span class="num">1</span>HealthStore in the four-level anatomy</div>
@@ -181,7 +193,7 @@
     <div class="anat-row l4">
       <div class="anat-label">Level 4 &middot; Configurations</div>
       <div class="anat-name">Live and planned deployments</div>
-      <div class="anat-body"><strong>COPD Alpha</strong> is the lead service in design today. Three suppliers progressed through the lead Alpha procurement. Each future therapeutic area runs as a new configuration inside the HealthStore overlay; the architecture lets a new area come online without rebuilding the foundation or the overlay structure.</div>
+      <div class="anat-body"><strong>COPD Alpha</strong> is the lead service in design today. Three suppliers progressed through the lead Alpha procurement. <strong>Cardiac rehabilitation</strong> is the endorsed second therapeutic area (Use Case 2), with non-specific low back pain and hip and knee osteoarthritis behind it in the Beta pipeline. Each future therapeutic area runs as a new configuration inside the HealthStore overlay; the architecture lets a new area come online without rebuilding the foundation or the overlay structure.</div>
     </div>
   </div>
 
@@ -212,7 +224,7 @@
   <div class="section-h"><span class="num">3</span>The shape of a HealthStore episode</div>
   <div class="what-card">
     <h3>How an episode runs</h3>
-    <p>A clinician identifies a patient who fits the pathway and prescribes the digital therapeutic via the Electronic Prescription Service (EPS). The patient is offered access through the NHS App or a partnered app. Engagement is tracked through four marketplace milestones: <strong>start</strong> (the patient activates the app), <strong>meaningful engagement</strong> (defined per service), <strong>completion</strong> (the episode finishes), <strong>outcome capture</strong> (the clinical outcome is recorded). Supplier payment triggers against milestones rather than per activation.</p>
+    <p>A clinician identifies a patient who fits the pathway and prescribes the digital therapeutic, a specific product drawn from the set the commissioner has curated in the Commissioner Store, via the Electronic Prescription Service (EPS). The patient is offered access through the NHS App or a partnered app. Engagement is tracked through four marketplace milestones: <strong>start</strong> (the patient activates the app), <strong>meaningful engagement</strong> (defined per service), <strong>completion</strong> (the episode finishes), <strong>outcome capture</strong> (the clinical outcome is recorded). Supplier payment triggers against milestones rather than per activation.</p>
     <p>The supplier carries clinical supplier responsibility alongside NHS England. The platform handles identity (NHS Login), notifications (NHS Notify), data routing (FHIR) and the contracting instrument (HealthStore: ACE plus NHS Standard Contract). The commissioner buys the service for their population under the NHS Standard Contract. Clinical safety governance runs through the DCB framework.</p>
   </div>
 
