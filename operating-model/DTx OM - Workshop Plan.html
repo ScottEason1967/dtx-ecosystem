@@ -9,16 +9,14 @@
   --nhs-blue:#005EB8; --nhs-dark:#003087; --nhs-light:#7EC8E3;
   --near-black:#231F20; --border-lt:#D6DEE5; --cp:#DA291C;
   --pale-blue:#D5E8F0; --amber-deep:#B48200;
-  --font: "Segoe UI", "Abadi", -apple-system, BlinkMacSystemFont, sans-serif;
 }
 *{box-sizing:border-box}
-html,body{margin:0;padding:0;font-family:var(--font);color:var(--near-black);background:#FAFBFC}
-body{padding:32px 44px 64px;max-width:1180px;margin:0 auto;line-height:1.5}
+html,body{margin:0;padding:0;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;color:var(--near-black);}
+body{line-height:1.5;background:linear-gradient(180deg,#005EB8 0%,#003087 100%);background-attachment:fixed;min-height:100vh;}
 a{color:var(--nhs-blue);text-decoration:none}
 a:hover{text-decoration:underline}
 .hero{background:linear-gradient(180deg,#003087 0%,#004fa2 100%);color:#fff;padding:34px 40px 30px;border-radius:14px;margin-bottom:32px;position:relative}
 .hero h1{margin:0 0 6px;font-size:32px;font-weight:800;letter-spacing:-0.5px}
-.hero .subtitle{color:#7EC8E3;font-weight:600;font-size:14px;letter-spacing:0.4px}
 .hero .lede{margin-top:14px;max-width:900px;font-size:14px;line-height:1.55;color:#E8F1F7}
 .back-link{position:absolute;top:22px;right:26px;color:#7EC8E3;font-size:12px;font-weight:600;letter-spacing:0.4px;text-transform:uppercase}
 .back-link:hover{color:#fff;text-decoration:underline}
@@ -142,6 +140,9 @@ html{overflow-x:hidden;}
 .core-tier-lead{background:#FDECEC;border:2px dotted #CE7A7A;border-radius:6px;padding:12px 14px;display:flex;flex-direction:column;justify-content:center}
 .core-tier-lead .ws-att-caption{color:#B23A3A;margin-bottom:8px}
 .core-lead-text{font-size:14px;font-weight:700;color:#9F2D2D;line-height:1.4}
+  .page{max-width:1180px;margin:30px auto 50px;padding:32px 44px 64px;background:#fff;border-radius:18px;box-shadow:0 14px 40px rgba(0,48,135,0.20);}
+  @media(max-width:720px){.page{border-radius:12px;margin-top:18px;padding:24px 22px 48px;}}
+  .amber-rule{width:72px;height:4px;background:#FFB91D;border-radius:2px;margin-bottom:18px;}
 </style>
 <style>
   .ecosystem-nav {
@@ -200,9 +201,10 @@ html{overflow-x:hidden;}
     <a href="DTx OM - Reading Guide.html" class="nav-rg">Reading guide</a>
   </div>
 </nav>
+<div class="page">
+<div class="amber-rule"></div>
 <div class="hero">
   <a class="back-link" href="DTx OM - Milestone Plan.html">← Back to Milestone Plan</a>
-  <div class="subtitle">HOMETEST OPERATING MODEL</div>
   <h1>Workshop programme</h1>
 <div class="ws-purpose" style="background:#F4F8FB;border:1px solid #d7e6f1;border-radius:10px;padding:16px 20px;margin:0 0 22px;font-size:14px;line-height:1.7;color:#20364B;max-width:900px;">This is the workshop programme that settles the six cornerstones the sourcing strategy depends on. It runs from the foundation session on 13 August through to go-live, one workshop per decision, each feeding the plan. The subject matter and the outputs sit on the programme side, and the sessions are where the programme takes ownership of the answers. This is one way to settle the cornerstones in the time available, not the only way; if the programme would rather run it differently, that is theirs to decide. The dates are not arbitrary, because those are the dates the sourcing strategy, and the framework behind it, run to.</div>
   <div class="lede">Structured working sessions distributed across the five procurement stages, each anchored to a specific decision or output that needs to land in that stage. Ownership of each session and its outputs sits on the programme side; the commercial team attends and consumes the outputs into the sourcing strategy. Every workshop is a click-through with a full agenda: attendees, prep required, objectives, decisions to land and outputs.</div>
@@ -692,6 +694,7 @@ html{overflow-x:hidden;}
 
 <div class="foot">HomeTest programme · v0.5</div>
 
+</div><!-- /page -->
 <script>
 (function(){
   var btns = document.querySelectorAll('.sf-btn');

@@ -395,6 +395,11 @@ a.dc-input:hover{background:#f2f7fb;}
 .wd-jump:hover{background:#dcecf7;}
 
 .cnav{position:sticky;top:0;z-index:200;background:#003087;display:flex;align-items:center;justify-content:space-between;padding:0 22px;flex-wrap:wrap;box-shadow:0 2px 8px rgba(0,0,0,0.14);} .cnav-brand{color:#fff;font-weight:700;font-size:12.5px;letter-spacing:0.3px;padding:12px 0;} .cnav-tabs{display:flex;gap:2px;flex-wrap:wrap;} .cnav-tab{color:#cfe0f0;text-decoration:none;font-size:13px;font-weight:600;padding:13px 15px;border-bottom:3px solid transparent;transition:all .15s;} .cnav-tab:hover{color:#fff;background:rgba(255,255,255,0.09);} .cnav-tab.active{color:#fff;border-bottom-color:#00A9CE;background:rgba(255,255,255,0.12);}
+  /* NHS-blue rebrand override — visual consistency lift */
+  :root { --nhs-blue:#005EB8; --nhs-blue-deep:#003087; }
+  body { background: linear-gradient(180deg, var(--nhs-blue) 0%, var(--nhs-blue-deep) 100%) !important; background-attachment: fixed !important; }
+  .page { background:#ffffff; border-radius:18px; box-shadow:0 14px 40px rgba(0,48,135,0.20); margin-top:30px !important; margin-bottom:50px !important; }
+  @media (max-width:720px){ .page { border-radius:12px; margin-top:18px !important; } }
 </style>
 <style>
   .ecosystem-nav {

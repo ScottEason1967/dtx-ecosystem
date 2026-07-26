@@ -414,6 +414,11 @@ a.dc-input:hover{background:#f2f7fb;}
 .partners-callout .ptn-title{font-size:13.5px;font-weight:800;color:#4A2E7A;margin-bottom:4px;}
 .partners-callout .ptn-text{font-size:12.5px;color:var(--text-sec);line-height:1.55;}
 .partners-callout .ptn-text strong{color:#4A2E7A;font-weight:700;}
+  /* NHS-blue rebrand override — visual consistency lift */
+  :root { --nhs-blue:#005EB8; --nhs-blue-deep:#003087; }
+  body { background: linear-gradient(180deg, var(--nhs-blue) 0%, var(--nhs-blue-deep) 100%) !important; background-attachment: fixed !important; }
+  .page { background:#ffffff; border-radius:18px; box-shadow:0 14px 40px rgba(0,48,135,0.20); margin-top:30px !important; margin-bottom:50px !important; }
+  @media (max-width:720px){ .page { border-radius:12px; margin-top:18px !important; } }
 </style>
 <style>
   .ecosystem-nav {

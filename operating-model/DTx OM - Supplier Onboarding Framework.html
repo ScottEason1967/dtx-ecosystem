@@ -97,6 +97,39 @@
   @media(max-width:980px){.crit-header,.crit-row{grid-template-columns:1fr;}.crit-header > div, .crit-row > div{border-right:none;border-bottom:1px solid var(--border-lt);}.routes{grid-template-columns:1fr;}}
   @media(max-width:760px){.h-title{font-size:36px;}.northstar-title{font-size:26px;}.section-h{font-size:22px;}.page{padding:36px 22px 60px;}}
 </style>
+<style>
+  .ecosystem-nav {
+    background: #fff;
+    border-bottom: 1px solid #ebeef1;
+    padding: 12px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 48px;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  }
+  .ecosystem-nav a {
+    font-size: 13px; font-weight: 700; color: #003087;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .ecosystem-nav a:hover { color: #005EB8; }
+  .ecosystem-nav .nav-context {
+    font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
+    color: #7E8B97; text-transform: uppercase;
+  }
+  .ecosystem-nav .nav-product {
+    font-size: 10.5px; font-weight: 800; letter-spacing: 0.8px;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 4px; color: #fff;
+  }
+  .ecosystem-nav .nav-product.dtx { background: #003087; }
+  .ecosystem-nav .nav-product.hometest { background: #003087; }
+  .ecosystem-nav .nav-product.healthstore { background: #00A9CE; }
+  .ecosystem-nav .nav-product.healthsync { background: #00A499; }
+</style>
 </head>
 <body>
 <script>
@@ -108,6 +141,11 @@
 })();
 </script>
 
+<div class="ecosystem-nav">
+  <a href="../index.html">← DTx Ecosystem</a>
+  <span class="nav-context">Supplier Onboarding</span>
+  <span class="nav-product dtx">DTx</span>
+</div>
 <nav class="topnav">
   <a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
   <div class="nav-siblings">

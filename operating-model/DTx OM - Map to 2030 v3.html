@@ -9,7 +9,9 @@
     margin: 0;
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     color: #231F20;
-    background: #F4F7FB;
+    background: linear-gradient(180deg, #005EB8 0%, #003087 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
     line-height: 1.5;
   }
 
@@ -549,6 +551,22 @@
   .ecosystem-nav .nav-product.hometest { background: #003087; }
   .ecosystem-nav .nav-product.healthstore { background: #00A9CE; }
   .ecosystem-nav .nav-product.healthsync { background: #00A499; }
+<style>
+  /* Canonical topnav (house frame) */
+  .topnav{background:#fff;border-bottom:1px solid #ebeef1;padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:nowrap;min-height:54px;box-sizing:border-box;width:100%;max-width:100%;margin:0;position:sticky;top:0;z-index:200;}
+  .topnav .nav-back{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0;}
+  .topnav .nav-back:hover{color:#005EB8;}
+  .topnav .nav-siblings{display:flex;gap:4px;flex-wrap:nowrap;overflow-x:auto;align-items:center;}
+  .topnav .nav-siblings a{font-size:12px;font-weight:600;color:#4C6272;text-decoration:none;padding:6px 12px;border-radius:6px;letter-spacing:0.2px;white-space:nowrap;flex-shrink:0;}
+  .topnav .nav-siblings a:hover{background:#f0f4f8;color:#212B32;}
+  .topnav .nav-siblings a.active{background:#003087;color:#fff;}
+  .topnav .nav-siblings .nav-sep{width:1px;height:18px;background:#ebeef1;margin:0 6px;flex-shrink:0;}
+  .topnav .nav-rg{background:#FFB91D;color:#003087;font-weight:800;padding:7px 14px;border-radius:6px;text-decoration:none;font-size:12.5px;letter-spacing:0.2px;white-space:nowrap;flex-shrink:0;}
+  .topnav .nav-rg:hover{background:#FFD45A;color:#003087;}
+  /* White rounded card (house frame) */
+  .house-card{max-width:1520px;margin:30px auto 50px;background:#ffffff;border-radius:18px;box-shadow:0 14px 40px rgba(0,48,135,0.20);overflow:hidden;}
+  .house-card .header{padding:36px 48px 32px;}
+  .house-card .map-shell{max-width:none;margin:0;}
 </style>
 </head>
 <body>
@@ -558,6 +576,23 @@
   <span class="nav-product dtx">DTx</span>
 </div>
 
+<nav class="topnav">
+<a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+<div class="nav-siblings">
+ <a href="DTx OM - Why.html">Why</a>
+ <a href="DTx OM - What.html">What</a>
+ <a href="DTx OM - Lifecycle.html">When</a>
+ <a href="DTx OM - HomeTest Operational.html">How</a>
+ <a href="DTx OM - Governance.html">Who</a>
+ <a href="DTx OM - Hearts and Minds.html">Hearts and Minds</a>
+ <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>
+ <span class="nav-sep"></span>
+ <a href="DTx OM - Status.html">Status</a>
+ <a href="DTx OM - Reading Guide.html" class="nav-rg">Reading guide</a>
+</div>
+</nav>
+
+<div class="house-card">
 <div class="header">
   <div class="eyebrow">The Map</div>
   <h1>The Map to 2030</h1>
@@ -819,6 +854,8 @@
     <div class="legend-item"><span class="legend-swatch" style="background:#B8941F;"></span>SLT decision</div>
     <div class="legend-item"><span class="legend-swatch circ" style="background:#7C2855;"></span>Hearts &amp; Minds character (links to journey)</div>
   </div>
+
+</div>
 
 </div>
 
