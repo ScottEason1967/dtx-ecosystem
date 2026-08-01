@@ -17,7 +17,7 @@
 // =============================================================================
 
 window.OM_STATUS_COUNTS = {
-  hometest:    { unresolved: 80, in_progress: 36 },
+  hometest:    { unresolved: 108, in_progress: 36 },
   // Add HealthStore and HealthSync when their Status sections are stood up:
   // healthstore: { unresolved: 0, in_progress: 0 },
   // healthsync:  { unresolved: 0, in_progress: 0 },
@@ -45,14 +45,14 @@ window.OM_STATUS_COUNTS = {
     if (statusInProgress) statusInProgress.textContent = ht.in_progress;
 
     // Backstop: if the ids above don't exist, use the first two .sum-count divs
-    // in document order. These are HomeTest unresolved (80) and in flight (35).
+    // in document order. These are HomeTest unresolved (108) and in flight (36).
     if (!statusUnresolved && !statusInProgress) {
       var sums = document.querySelectorAll('.sum-count');
       if (sums.length >= 1) sums[0].textContent = ht.unresolved;
       if (sums.length >= 2) sums[1].textContent = ht.in_progress;
     }
 
-    // Status page prose: "items tracked today (80 unresolved + 35 in flight)"
+    // Status page prose: "items tracked today (108 unresolved + 36 in flight)"
     // is autoreplaced if an id exists, otherwise stays whatever was written.
     var prose = document.getElementById('status-prose-totals');
     if (prose) {
