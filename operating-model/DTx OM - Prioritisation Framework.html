@@ -144,6 +144,19 @@
   .ecosystem-nav .nav-product.healthstore { background: #00A9CE; }
   .ecosystem-nav .nav-product.healthsync { background: #00A499; }
 </style>
+<style>
+  .belt-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:16px;}
+  .belt-card{background:#fff;border:1px solid var(--border-lt);border-top:4px solid var(--amber-deep);border-radius:12px;padding:16px 14px;}
+  .belt-step{font-size:9.5px;font-weight:800;letter-spacing:1.2px;color:var(--amber-deep);text-transform:uppercase;margin-bottom:6px;}
+  .belt-h{font-size:13.5px;font-weight:800;color:var(--nhs-dark);line-height:1.2;margin-bottom:7px;}
+  .belt-b{font-size:11px;color:var(--text-sec);line-height:1.5;}
+  .belt-note{background:#F4F8FC;border:1px solid #D5E8F0;border-left:5px solid var(--nhs-blue);border-radius:10px;padding:14px 18px;font-size:13px;color:var(--text-sec);line-height:1.65;margin-bottom:10px;}
+  .belt-note strong{color:var(--nhs-dark);}
+  .belt-note a{color:var(--nhs-blue);font-weight:700;text-decoration:none;}
+  .belt-open{background:#FFF9EC;border:1px solid #F0DCA0;border-radius:10px;padding:12px 16px;font-size:12px;color:#5b4a1a;line-height:1.6;}
+  @media(max-width:980px){.belt-grid{grid-template-columns:repeat(3,1fr);}}
+  @media(max-width:600px){.belt-grid{grid-template-columns:1fr;}}
+</style>
 </head>
 <body>
 
@@ -173,7 +186,7 @@
 
   <h1 class="h-title">How we choose what's next.</h1>
 
-  <p class="h-sub">The <strong>HomeTest Prioritisation Framework</strong> is the lens we use to decide which test pathways move forward, and in what order. It sits alongside the operating model. The OM describes <strong>what the system is</strong>; this framework describes <strong>which parts we build first</strong>. Three levels: <strong>5 Patterns</strong>, <strong>4 Tiers</strong>, and a <strong>Prioritisation Construct</strong> for ranking specific use cases.</p>
+  <p class="h-sub">The <strong>HomeTest Prioritisation Framework</strong> is the lens we use to decide which test pathways move forward, and in what order. It sits alongside the operating model. The OM describes <strong>what the system is</strong>; this framework describes <strong>which parts we build first</strong>. Three levels: <strong>5 Patterns</strong>, <strong>4 Tiers</strong>, and a <strong>Prioritisation Construct</strong> for ranking specific use cases. Since the sourcing strategy landed, the framework has a fourth job: its output is the <strong>published roadmap of test categories</strong>, the conveyor belt that gates tests and suppliers into the framework over time.</p>
 
   <span class="provenance"><span class="provenance-dot"></span>Endorsed by the HomeTest Programme Board, 9 June 2026</span>
 
@@ -345,6 +358,23 @@
     </div>
   </div>
 
+    <div class="level">
+    <div class="level-num"><span class="pill">The output</span> The roadmap conveyor belt</div>
+    <h2 class="level-h">Categories open at gates. The market opens over time.</h2>
+    <p class="level-q">Agreed in principle at the sourcing strategy: the framework runs one broad end-to-end lot, and new test categories come on underneath it through a published roadmap, with gates opening roughly every six months. The framework never adds a lot. It opens a gate.</p>
+    <p class="level-intro">The construct above ranks what deserves to come on. The roadmap decides <strong>when it actually comes on</strong>, and three drivers make that call: <strong>demand strategy</strong>, which is what the scored ranking promotes; <strong>integration readiness</strong>, whether the platform and the clinical pathway can genuinely take the test yet; and <strong>supply-market maturity</strong>, a hard gate in its own right. A category only one laboratory can serve does not open, because it collapses to a monopoly or duopoly with no price tension; genomic sequencing is the worked example of a category too thin to open early. And it is <strong>tests that are accredited, not use cases</strong>: PSA comes on as a test with active surveillance highlighted as the recommended pathway, and the use case is never locked into the framework wording.</p>
+    <div class="belt-grid">
+      <div class="belt-card"><div class="belt-step">Step 1</div><div class="belt-h">Scored</div><div class="belt-b">The construct ranks candidate use cases on the same axes every time.</div></div>
+      <div class="belt-card"><div class="belt-step">Step 2</div><div class="belt-h">Placed on the roadmap</div><div class="belt-b">Categories publish far enough ahead for a capable laboratory to book and win accreditation before the gate.</div></div>
+      <div class="belt-card"><div class="belt-step">Step 3</div><div class="belt-h">Gate opens</div><div class="belt-b">Roughly every six months, for named categories. Not on the roadmap means not accreditable, however ready the supplier.</div></div>
+      <div class="belt-card"><div class="belt-step">Step 4</div><div class="belt-h">Suppliers accredit</div><div class="belt-b">Ticket holders win the per-category key: non-inferiority evidence, scoped laboratory accreditation, kit conformity, integration.</div></div>
+      <div class="belt-card"><div class="belt-step">Step 5</div><div class="belt-h">Register fills</div><div class="belt-b">The accredited register shows who can sell what. A soft floor of about three suppliers per test, no hard cap.</div></div>
+      <div class="belt-card"><div class="belt-step">Step 6</div><div class="belt-h">Volume flows</div><div class="belt-b">Call-offs run under the national ceiling. How many hold the key in a category sets the price tension against it.</div></div>
+    </div>
+    <div class="belt-note"><strong>The roadmap is the volume driver in the commercial model.</strong> Which categories are open decides what volume can flow, and per-category competitive tension decides the realised price against the national ceiling. Suppliers walk the gates through the <a href="DTx OM - Supplier Onboarding Framework.html">Supplier Onboarding Framework</a>: the one-time ticket onto the framework, then a key per category.</div>
+    <div class="belt-open"><strong>In principle, not settled.</strong> The gate cadence (six months versus twelve), the roadmap&apos;s publication lead time against accreditation booking times, and the content of the first roadmap are live questions on the sourcing strategy.</div>
+  </div>
+
   <div class="connection">
     
 <div style="margin:20px 0;padding:16px 20px;background:#FBEAF2;border:1px solid #E8D2DC;border-radius:8px;font-size:13px;color:#4C6272;line-height:1.6;">
@@ -352,7 +382,7 @@
   <strong>5/4/4 framework formal adoption.</strong> Five initiation patterns, four tiers (Clean, Strong, Valid, Complex), four prioritisation construct measures (Effort, Strategic &amp; Policy Alignment, Pathway Maturity &amp; Readiness, Economic &amp; System Impact). Endorsed in principle 9 June 2026 as the sequencing logic for conditions across the portfolio. Formal SLT adoption needed to lock the framework as the standing prioritisation logic for use case selection. <em>Decision sits with SLT.</em> <a href="DTx OM - Status.html" style="color:#005EB8;font-weight:700;text-decoration:none;">See on Status &rarr;</a>
 </div>
 <h2>How this connects to the operating model</h2>
-    <p>The five patterns map to the Level 3 Initiation row on the <strong>Anatomical</strong> page. The four tiers and the Prioritisation Construct score sit alongside each Level 4 configuration. The framework is the reason we are building the configurations we are building, in the order we are building them. The OM is the architecture. This is the prioritisation logic that drives which architectural slots get filled, and when.</p>
+    <p>The five patterns map to the Level 3 Initiation row on the <strong>Anatomical</strong> page. The four tiers and the Prioritisation Construct score sit alongside each Level 4 configuration. The framework is the reason we are building the configurations we are building, in the order we are building them. The OM is the architecture. This is the prioritisation logic that drives which architectural slots get filled, and when. Since the sourcing strategy landed, the same logic drives the supplier side too: a category&apos;s gate opening is what lets suppliers accredit for it and sell it.</p>
 
     <div class="picks">
 

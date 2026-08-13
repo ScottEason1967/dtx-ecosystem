@@ -130,6 +130,33 @@
   .ecosystem-nav .nav-product.healthstore { background: #00A9CE; }
   .ecosystem-nav .nav-product.healthsync { background: #00A499; }
 </style>
+<style>
+  /* Two-layer rebuild additions */
+  .layers{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px;}
+  .layer{background:#fff;border:1px solid var(--border-lt);border-radius:12px;padding:22px 24px;box-shadow:0 4px 14px rgba(0,48,135,0.06);}
+  .layer.l1{border-top:5px solid var(--nhs-dark);}
+  .layer.l2{border-top:5px solid var(--nhs-green);}
+  .layer-badge{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;padding:4px 10px;border-radius:4px;margin-bottom:10px;color:#fff;}
+  .layer.l1 .layer-badge{background:var(--nhs-dark);}
+  .layer.l2 .layer-badge{background:var(--nhs-green);}
+  .layer-title{font-size:19px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.3px;margin-bottom:10px;}
+  .layer-body{font-size:13.5px;color:var(--text-sec);line-height:1.65;}
+  .layer-body p{margin-bottom:9px;}
+  .layer-body strong{color:var(--text);}
+  .layer-holds{font-size:12px;color:var(--text);background:#F4F8FC;border-left:3px solid var(--nhs-blue);border-radius:6px;padding:9px 12px;margin-top:10px;}
+  .gateflow{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-top:8px;}
+  .gatecard{background:#fff;border:1px solid var(--border-lt);border-radius:10px;padding:14px 16px;border-top:4px solid var(--amber-deep);}
+  .gatecard-step{font-size:10px;font-weight:800;letter-spacing:1.4px;color:var(--amber-deep);text-transform:uppercase;margin-bottom:6px;}
+  .gatecard-title{font-size:13.5px;font-weight:800;color:var(--nhs-dark);line-height:1.3;margin-bottom:6px;}
+  .gatecard-body{font-size:11.5px;color:var(--text-sec);line-height:1.5;}
+  .answered{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 6px;}
+  .achip{font-size:12px;font-weight:700;color:#0B5D34;background:#E7F5EC;border:1px solid #BFE3CD;border-radius:999px;padding:7px 14px;}
+  .aqp-note{background:#F4F8FC;border:1px solid #D5E8F0;border-left:5px solid var(--nhs-blue);border-radius:10px;padding:16px 20px;margin-top:14px;font-size:13px;color:var(--text-sec);line-height:1.65;}
+  .aqp-note strong{color:var(--nhs-dark);}
+  .aqp-note a{color:var(--nhs-blue);font-weight:700;text-decoration:none;}
+  .offfw{background:#FFF9EC;border:1px solid #F0DCA0;border-left:5px solid var(--amber-deep);border-radius:10px;padding:16px 20px;margin-top:14px;font-size:13px;color:var(--text-sec);line-height:1.65;}
+  .offfw strong{color:var(--nhs-dark);}
+</style>
 </head>
 <body>
 <script>
@@ -166,210 +193,267 @@
   <div class="amber-rule"></div>
   <div class="h-eyebrow">The supplier-side mechanic that makes the model scale</div>
   <h1 class="h-title">Supplier Onboarding Framework.</h1>
+
   <div style="margin:20px 0;padding:14px 18px;background:#FFF3CD;border:1px solid #FFE69C;border-radius:8px;font-size:12.5px;color:#5C4400;line-height:1.6;">
-    <strong style="color:#5C4400;letter-spacing:0.3px;">Status note.</strong> This page is a straw man, not a finished article. It is issued for feedback and requires iteration and involvement from the programme team across IG, Clinical Safety, Commercial and Platform. Treat the framing as a working hypothesis to test, not a settled position.
+    <strong style="color:#5C4400;letter-spacing:0.3px;">Status.</strong> Rebuilt to the sourcing strategy position agreed in principle: one end-to-end lot, a two-layer assurance model, and capability gates opening on a published roadmap. Decided in principle, not settled design. The open items are marked at the foot of the page, and the detailed assurance stages still need iteration with the programme team across IG, Clinical Safety, Commercial and Platform.
   </div>
 
-  <p class="h-sub">A supplier is admitted to the framework once. The conformance certificate is portable across every commissioner who calls them off, across HomeTest, HealthStore and HealthSync. The local body acts as the deployment authority, not as a re-assurer. The framework is what turns the portfolio&apos;s north star into a working onboarding mechanism.</p>
+  <div style="margin:0 0 6px;padding:12px 18px;background:#F4F8FC;border:1px solid #D5E8F0;border-radius:8px;font-size:12.5px;color:#4C6272;line-height:1.6;">
+    <strong style="color:#003087;">Portfolio note.</strong> The mechanics on this page are the home self-sampling framework&apos;s, so HomeTest. HealthStore admission runs on its own conditional route and does not use these gates; HealthSync remains reserved. What reads across the portfolio is the principle: assure at the level the evidence attaches to, once.
+  </div>
+
+  <p class="h-sub">A supplier passes company-level assurance once. That is the ticket onto the framework. Selling any given test takes a second pass: the per-category test and capability assurance, available only when that category&apos;s gate opens on the published roadmap. Both certificates are portable across every commissioner who calls off. The local body deploys; it does not re-assure.</p>
 
   <div class="northstar">
     <div class="northstar-eyebrow">The north star this delivers</div>
     <h2 class="northstar-title">Assure once. Reuse nationally.</h2>
-    <p class="northstar-body">A supplier evidences core compliance once per API they connect to. Adding a new test under an onboarded API is a lightweight check, not a full repeat. A clinical safety case, IG package and lab assurance are portable across every commissioner who calls them off. The published artefact stack carries the assurance; the local body administers the deployment, not the reassurance.</p>
+    <p class="northstar-body">Assurance happens at the level the evidence attaches to, and it happens once. Company assurance is once per supplier: the ticket onto the framework. Test and capability assurance is once per category: the key that lets a supplier sell it. Deployment context stays local because the law puts it there, and it arrives pre-fabricated from the centre. Nobody repeats anybody&apos;s work, and no commissioner re-assures what the framework has already assured.</p>
   </div>
 
   <div class="section">
     <div class="section-eyebrow">Why this exists</div>
-    <h2 class="section-h">Four suppliers a year is not sustainable.</h2>
-    <p class="section-intro">Supplier onboarding is a critical consideration in the commercial model. The current per-supplier assessment cannot scale to the number of conditions, configurations and call-offs the platform will need to absorb. The framework proposes onboard-once-per-API with published criteria across commercial, clinical, IG, technical and operational dimensions, tiered thresholds to keep smaller suppliers in scope, and a self-assessment-first apply journey that exposes the design to supplier challenge before NHSE engagement is required.</p>
+    <h2 class="section-h">The process that admitted the first suppliers cannot be the process at scale.</h2>
+    <p class="section-intro">The onboarding that admitted the first suppliers is real and rigorous: staged gates, a dozen reviewing functions, manual witness testing, hands-on integration support. It works for a handful of suppliers. It does not work for an open framework with gates opening roughly every six months, and there is a harder edge here than convenience. A supplier held in an assurance queue is being kept off a public framework. It can challenge, and a sustained failure could close the framework down. So the process has to be slick, semi-automated and published, with human judgement reserved for the calls that need it. Capacity problems get answered with automation and published lead times, never by quietly rationing entry.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-eyebrow">The two-layer assurance model</div>
+    <h2 class="section-h">One ticket. Many keys.</h2>
+    <p class="section-intro">Everything a supplier evidences sits in one of two layers. The first is about the company and happens once. The second is about each test category and happens per category, at a gate. Keeping them apart is what stops the framework re-assuring companies every time a test comes on, and what stops a company-level pass ever being mistaken for clinical readiness on a given test.</p>
+    <div class="layers">
+      <div class="layer l1">
+        <span class="layer-badge">Layer 1 &middot; The ticket</span>
+        <div class="layer-title">Supplier assurance. Once per supplier.</div>
+        <div class="layer-body">
+          <p>Company standing and hygiene: legal entity, solvency, insurance, ownership and conflicts declared. Cyber security and information governance: security management, toolkit compliance, a working penetration testing regime, DPIA readiness. Business continuity and viability, with exit arrangements. Clinical safety governance at company level: a clinical safety officer in post and a risk management process that works.</p>
+          <p>Passed once at framework entry, confirmed on a light annual cycle, revisited only when something material changes.</p>
+        </div>
+        <div class="layer-holds"><strong>What it gets you:</strong> admission to the framework and a place on the register. It sells nothing on its own.</div>
+      </div>
+      <div class="layer l2">
+        <span class="layer-badge">Layer 2 &middot; The key</span>
+        <div class="layer-title">Test and capability assurance. Per category.</div>
+        <div class="layer-body">
+          <p>Clinical evidence that capillary self-sampling is non-inferior to the venous draw for the analyte, judged by a clinician panel convened for the gate. Laboratory accreditation that names the test, the method and the site. Kit conformity for the assembled device, regulated and registered as the diagnostic it is. Platform and API integration proven against published, versioned specifications.</p>
+          <p>Granted per category, while that category&apos;s gate is open. A supplier holds as many keys as it can evidence.</p>
+        </div>
+        <div class="layer-holds"><strong>What it gets you:</strong> the right to sell that category through the framework. The register shows who holds which keys.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-eyebrow">The gates</div>
+    <h2 class="section-h">Categories switch on at gates. Suppliers walk through them.</h2>
+    <p class="section-intro">The published roadmap decides which test categories exist and when each gate opens, roughly every six months. A category that is not on the roadmap cannot be accredited for, however ready the supplier. When a gate opens, any supplier holding the ticket can seek the key for one category or several. A supplier that is not ready walks through a later gate; the ticket does not expire with the gate. Three things decide whether a category opens: demand strategy, the platform&apos;s own readiness to integrate the test and its pathway, and whether enough of the supply market can serve it. A category only one laboratory can serve does not open. It waits until competition can exist.</p>
+    <div class="gateflow">
+      <div class="gatecard"><div class="gatecard-step">Step 1</div><div class="gatecard-title">Roadmap publishes</div><div class="gatecard-body">Categories and gate dates land far enough ahead for a laboratory to book and win the accreditation it needs.</div></div>
+      <div class="gatecard"><div class="gatecard-step">Step 2</div><div class="gatecard-title">Gate opens</div><div class="gatecard-body">The category joins the framework&apos;s catalogue. Ticket holders can now seek its key.</div></div>
+      <div class="gatecard"><div class="gatecard-step">Step 3</div><div class="gatecard-title">Suppliers accredit</div><div class="gatecard-body">Per-category evidence goes in. The clinician panel judges the clinical bar; automated conformance takes the technical one.</div></div>
+      <div class="gatecard"><div class="gatecard-step">Step 4</div><div class="gatecard-title">Register updates</div><div class="gatecard-body">The accredited register shows who can sell what. About three suppliers per test is the working floor.</div></div>
+      <div class="gatecard"><div class="gatecard-step">Step 5</div><div class="gatecard-title">Commissioners call off</div><div class="gatecard-body">Local call-offs run against the register, at or below the national ceiling. More keys in a category means more price tension.</div></div>
+    </div>
+    <div class="aqp-note"><strong>The roadmap is also the volume engine and the pricing engine.</strong> Which categories are open decides what volume can flow, and how many suppliers hold each key decides how hard price gets pushed beneath the national ceiling. The mechanism lives on the <a href="DTx OM - Prioritisation Framework.html">Prioritisation Framework page</a>.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-eyebrow">Where each requirement sits</div>
+    <h2 class="section-h">Five dimensions, split across the two layers.</h2>
+    <p class="section-intro">The dimensions have not changed. What has changed is where each one sits, so nothing is asked twice and nothing clinically decisive hides inside a company-level pass.</p>
+    <div class="crit-table">
+      <div class="crit-header">
+        <div>Dimension</div>
+        <div>In the ticket, once per supplier</div>
+        <div>In the key, per category</div>
+        <div>Local by design</div>
+      </div>
+      <div class="crit-row">
+        <div class="crit-dim">Commercial</div>
+        <div class="crit-core">Entity standing, solvency, insurance, ownership and conflicts, business continuity and exit arrangements.</div>
+        <div class="crit-scaled">Fulfilment and capacity evidence proportionate to the category&apos;s likely volume.</div>
+        <div class="crit-asp">Call-off terms and any locally agreed volume commitments.</div>
+      </div>
+      <div class="crit-row">
+        <div class="crit-dim">Clinical safety</div>
+        <div class="crit-core">A clinical safety officer, a compliant risk management process, incident reporting and regulator notification routes.</div>
+        <div class="crit-scaled">Non-inferiority evidence for the analyte. A safety case for the product version. The programme hazard log integrated per pathway.</div>
+        <div class="crit-asp">Deployment risk management signed in the local context, from a pre-fabricated pack.</div>
+      </div>
+      <div class="crit-row">
+        <div class="crit-dim">Laboratory and kit</div>
+        <div class="crit-core">Nothing sits here. Laboratory and kit assurance is always per category.</div>
+        <div class="crit-scaled">Accreditation naming the test, the method and the site. Conformity and registration of the assembled kit. The kit quality standard.</div>
+        <div class="crit-asp">Nothing. That is the point: a commissioner never re-checks a laboratory.</div>
+      </div>
+      <div class="crit-row">
+        <div class="crit-dim">Information governance</div>
+        <div class="crit-core">Toolkit compliance, security management, penetration testing regime, lawful basis, DPIA readiness.</div>
+        <div class="crit-scaled">The category pathway&apos;s data flows reflected in the conformance pack.</div>
+        <div class="crit-asp">Local DPIA adoption and data sharing accession, from templates that exist once.</div>
+      </div>
+      <div class="crit-row">
+        <div class="crit-dim">Technical and operational</div>
+        <div class="crit-core">Service management, incident routes, service desk registration.</div>
+        <div class="crit-scaled">API and journey conformance against versioned specifications, per initiation pattern, with performance evidence.</div>
+        <div class="crit-asp">Local configuration only.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-eyebrow">Ways onto the framework</div>
+    <h2 class="section-h">One lot. Three ways to stand behind it.</h2>
+    <p class="section-intro">The framework buys the whole journey, request to result at home, as one end-to-end lot, agreed in principle, with a working name of home self-sampling as a service. Nobody has to own every capability. Somebody has to be accountable for all of it.</p>
+    <div class="routes">
+      <div class="route r-a">
+        <div class="route-label">The prime</div>
+        <div class="route-title">Offers the full journey. Answers for all of it.</div>
+        <div class="route-body">Carries responsibility for every part of the journey, including the parts it subcontracts. The market already sells the journey end to end, so the framework buys it end to end, with a minimum set of components in the box.</div>
+      </div>
+      <div class="route r-b">
+        <div class="route-label">The consortium</div>
+        <div class="route-title">Specialists behind a nominated prime.</div>
+        <div class="route-body">The route in for the laboratory, the logistics specialist and the niche innovator that cannot span the journey alone. Partnering is invited, not tolerated. The single-accountability line only holds if one member is the nominated prime.</div>
+      </div>
+      <div class="route r-c">
+        <div class="route-label">The NHS-led bid</div>
+        <div class="route-title">Not precluded.</div>
+        <div class="route-body">An NHS organisation, pathology networks included, can bid alone or in partnership on the same terms as anyone else, arranging its own joined-up service to do it.</div>
+      </div>
+    </div>
+    <div class="aqp-note"><strong>Any qualified provider.</strong> No hard cap on numbers and no ambition to ration entry. The working floor is about three accredited suppliers per test before a category is worth opening, and the natural throttle is how few laboratories currently hold accreditation that names capillary collection. Fitness is assessed; throughput is never rationed.</div>
+    <div class="offfw"><strong>Insourcers sit off-framework, on purpose.</strong> An NHS organisation that stands up its own home sampling instead of buying it is a success for the programme, not a competitor to it. The support for those organisations is deliberately not a lot: a community of practice and concierge, NHS-controlled, helping a provider stand itself up and, in time, sell to its neighbours. The framework stays about buying; the concierge is about becoming.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-eyebrow">The journey, gate by gate</div>
+    <h2 class="section-h">Published first. Automated where it can be. Human where it must be.</h2>
+    <p class="section-intro">A supplier can read everything, self-assess and decide whether to proceed before anyone engages. The amber-bordered stages are where the framework&apos;s assurance actually runs.</p>
+    <div class="apply-journey">
+      <div class="apply-stage"><span class="apply-num">1</span>
+        <div class="apply-title">Discovery</div>
+        <div class="apply-body">The criteria for both layers and the category roadmap are published. A supplier reads the bar and the timetable before spending anything.</div>
+      </div>
+      <div class="apply-stage"><span class="apply-num">2</span>
+        <div class="apply-title">Self-assessment</div>
+        <div class="apply-body">Structured self-assessment against the published pack, using the template artefacts. No engagement needed to reach a view.</div>
+      </div>
+      <div class="apply-stage"><span class="apply-num">3</span>
+        <div class="apply-title">Apply at a gate</div>
+        <div class="apply-body">An application lands against an open gate, declaring the categories sought and the evidence held.</div>
+      </div>
+      <div class="apply-stage nhse-touch"><span class="apply-num">4</span>
+        <div class="apply-title">The ticket</div>
+        <div class="apply-body">Company-level assurance runs once: automated triage on completeness, human review where judgement is needed. Time-boxed, with a published turnaround.<span class="apply-tag">Framework entry</span></div>
+      </div>
+      <div class="apply-stage nhse-touch"><span class="apply-num">5</span>
+        <div class="apply-title">The keys</div>
+        <div class="apply-body">Per-category evidence is judged. The clinician panel takes the clinical bar; automated conformance takes the technical one.<span class="apply-tag">Category gate</span></div>
+      </div>
+      <div class="apply-stage nhse-touch"><span class="apply-num">6</span>
+        <div class="apply-title">Integrate and witness</div>
+        <div class="apply-body">Platform integration against the versioned specifications, then a witnessed clinical journey where a human genuinely needs to watch. Go-live sign-off ends it.<span class="apply-tag">Go live</span></div>
+      </div>
+      <div class="apply-stage"><span class="apply-num">7</span>
+        <div class="apply-title">Later gates</div>
+        <div class="apply-body">Adding a category is the key process only, at any open gate. The ticket is confirmed annually and never repeated. Exit runs to a defined offboarding process.</div>
+      </div>
+    </div>
   </div>
 
   <div class="section">
     <div class="section-eyebrow">Seven design principles</div>
     <h2 class="section-h">What the framework holds itself to.</h2>
-    <p class="section-intro">Each principle is load-bearing. The whole framework collapses if any one of them is dropped in the build.</p>
+    <p class="section-intro">Each principle is load-bearing. The whole framework weakens if any one of them is dropped in the build.</p>
     <div class="principles">
       <div class="principle">
         <div class="principle-num">Principle 01</div>
-        <div class="principle-title">Onboard once per API.</div>
-        <div class="principle-body">A supplier evidences core compliance once per API they connect to. Adding a new test under an onboarded API is a lightweight check, not a full repeat. Multiple APIs means one evidence pass per API, not per test.</div>
+        <div class="principle-title">Two layers, not one bar.</div>
+        <div class="principle-body">Company assurance once per supplier. Test and capability assurance once per category. Keeping them separate is what stops re-assurance creeping in at either level.</div>
       </div>
       <div class="principle">
         <div class="principle-num">Principle 02</div>
         <div class="principle-title">Publish the criteria. Do not gate them.</div>
-        <div class="principle-body">Criteria live in the public domain. A supplier reads the pack, self-assesses, and decides whether to proceed before any NHSE engagement. The publication exposes the design to challenge, which improves it.</div>
+        <div class="principle-body">Criteria and roadmap live in the open. A supplier reads, self-assesses and decides before any engagement. Publication exposes the design to challenge, which improves it.</div>
       </div>
       <div class="principle">
         <div class="principle-num">Principle 03</div>
-        <div class="principle-title">Self-assessment first, human review second.</div>
-        <div class="principle-body">Self-declared evidence against published criteria is the first step. Automated triage handles completeness. Human judgement is reserved for the grey-area calls with a specific escalation path for IG and clinical safety.</div>
+        <div class="principle-title">Automate the checkable. Reserve the judgement.</div>
+        <div class="principle-body">Completeness, conformance and technical proof run without a human. People take the grey areas: clinical safety, information governance, the borderline calls. Where that line falls sets the cost and the queue.</div>
       </div>
       <div class="principle">
         <div class="principle-num">Principle 04</div>
-        <div class="principle-title">Tiered thresholds so the floor doesn&apos;t exclude.</div>
-        <div class="principle-body">A two-person biotech and an established lab both need to pass the patient-safety and data-protection floor. Other dimensions scale to volume, scope and risk. Smaller suppliers are not priced out by balance-sheet alone.</div>
+        <div class="principle-title">The roadmap is the fairness mechanism.</div>
+        <div class="principle-body">Gates and categories publish far enough ahead that any capable laboratory can get ready. A gate that opens without lead time is a queue with a nicer name.</div>
       </div>
       <div class="principle">
         <div class="principle-num">Principle 05</div>
-        <div class="principle-title">No defensive filtering.</div>
-        <div class="principle-body">Criteria exist to assess fitness, not to ration throughput. Where capacity is the real constraint, the answer is automation or tiering, not arbitrary barriers.</div>
+        <div class="principle-title">Assess fitness. Never ration throughput.</div>
+        <div class="principle-body">Any qualified provider means the answer to capacity pressure is automation and better process, not barriers. A queue is a legal risk, not a control.</div>
       </div>
       <div class="principle">
         <div class="principle-num">Principle 06</div>
         <div class="principle-title">Every artefact exists once.</div>
-        <div class="principle-body">DPIA template, DSA template, privacy notice boilerplate, clinical safety starter, technical integration guide. One version of each, versioned centrally, reused across pathways.</div>
+        <div class="principle-body">DPIA template, data sharing template, privacy wording, safety case starter, integration guide. One version of each, held centrally, inherited everywhere.</div>
       </div>
       <div class="principle">
         <div class="principle-num">Principle 07</div>
         <div class="principle-title">Supplier experience is a design input.</div>
-        <div class="principle-body">The apply journey is designed from the supplier&apos;s perspective first; NHSE operational requirements are layered on afterwards. If a supplier cannot find the pack, cannot self-assess, or cannot apply without an NHSE-specific conversation, the design has failed.</div>
+        <div class="principle-body">The journey is designed from the supplier&apos;s side first. If a capable supplier cannot find the bar, cannot self-assess or cannot apply without a private conversation, the design has failed.</div>
       </div>
     </div>
   </div>
 
   <div class="section">
-    <div class="section-eyebrow">Five criteria dimensions</div>
-    <h2 class="section-h">What suppliers evidence against.</h2>
-    <p class="section-intro">Five dimensions, each with three tiers. <strong>Core</strong> is the non-negotiable floor regardless of supplier size. <strong>Scaled</strong> is proportionate to volume, scope and risk. <strong>Aspirational</strong> earns expanded eligibility but is not an entry condition.</p>
-    <div class="crit-table">
-      <div class="crit-header">
-        <div>Dimension</div>
-        <div>Core</div>
-        <div>Scaled</div>
-        <div>Aspirational</div>
+    <div class="section-eyebrow">Where this stands</div>
+    <h2 class="section-h">Answered in principle. Open in detail.</h2>
+    <p class="section-intro">The shape below is agreed in principle from the sourcing strategy work and is firm enough to build to. None of it is settled enough to tender on, and the detail underneath it is live work.</p>
+    <div class="answered">
+      <span class="achip">One end-to-end lot</span>
+      <span class="achip">Partnering and consortia allowed</span>
+      <span class="achip">NHS-led bids not precluded</span>
+      <span class="achip">Run by a framework provider, in-house parked as the safety cord</span>
+      <span class="achip">Insourcers supported off-framework</span>
+      <span class="achip">Tests accredited, not use cases</span>
+      <span class="achip">AQP with a soft floor of about three per test</span>
+      <span class="achip">Accreditation folded into the framework paperwork as schedules</span>
+    </div>
+    <div class="decisions" style="margin-top:16px;">
+      <div class="decision">
+        <div class="decision-num">Open 01</div>
+        <div class="decision-title">The stages in detail, and how much automates.</div>
+        <div class="decision-body">The straw-man assurance process is being recirculated with a view on exactly what can run without a human. The dividing line between automated conformance and human judgement sets the cost, the queue and what the levy has to fund.</div>
       </div>
-      <div class="crit-row">
-        <div class="crit-dim">Commercial</div>
-        <div class="crit-core">Legal entity in good standing. No sanctions or exclusions. Solvent trading history of at least 12 months. Insurance cover appropriate to scope (public liability, professional indemnity, product liability, cyber). Declared ownership and conflicts of interest.</div>
-        <div class="crit-scaled">Financial standing proportionate to pathway volume. Audited accounts for established suppliers; alternative financial evidence acceptable for early-stage suppliers on the light-touch route. Documented business continuity and exit arrangements.</div>
-        <div class="crit-asp">NHS or public-sector delivery track record. Demonstrable growth trajectory and diversified customer base.</div>
+      <div class="decision">
+        <div class="decision-num">Open 02</div>
+        <div class="decision-title">One door or two.</div>
+        <div class="decision-body">Whether framework entry and category accreditation present to a supplier as one journey or two, and how the centre&apos;s assurance and the framework provider&apos;s process mesh without duplicating either.</div>
       </div>
-      <div class="crit-row">
-        <div class="crit-dim">Clinical</div>
-        <div class="crit-core">UKCA or CE marking for medical devices where the scope requires. MHRA notification or registration where applicable. Documented clinical governance with named clinical lead. Incident reporting and regulator notification routes in place.</div>
-        <div class="crit-scaled">Clinical safety officer in post or contracted. DCB0129 evidence for suppliers interfacing with the platform; DCB0160 readiness for deployment into LA or provider environments. Published evidence base for claimed clinical benefit, proportionate to novelty.</div>
-        <div class="crit-asp">Peer-reviewed evidence and outcome data. NICE engagement where relevant.</div>
+      <div class="decision">
+        <div class="decision-num">Open 03</div>
+        <div class="decision-title">The test standard itself.</div>
+        <div class="decision-body">What the per-category bar actually cites: accreditation scope, the recognised standards, and a route for capable laboratories that do not yet hold them. Being defined with the clinical and laboratory community.</div>
       </div>
-      <div class="crit-row">
-        <div class="crit-dim">Information governance</div>
-        <div class="crit-core">UK GDPR compliance. Data Security and Protection Toolkit completion or equivalent for non-NHS entities. Cyber Essentials Plus certification. Lawful basis documented and defensible. DPIA readiness at the level expected for their role in the data flow.</div>
-        <div class="crit-scaled">DSA template acceptance with commissioner or NHSE as appropriate. Transparency and privacy notice alignment with the NHSE position. Data minimisation design posture evidenced. International data transfer controls where applicable.</div>
-        <div class="crit-asp">ISO 27001 certification. Privacy-by-design evidence. Innovator Passport alignment.</div>
+      <div class="decision">
+        <div class="decision-num">Open 04</div>
+        <div class="decision-title">Cadence and lead time.</div>
+        <div class="decision-body">Roughly six-monthly is the working rhythm. The exact reopening cadence, and how far ahead the roadmap must publish so accreditation booking times do not swallow the window, are still to be set.</div>
       </div>
-      <div class="crit-row">
-        <div class="crit-dim">Technical</div>
-        <div class="crit-core">API conformance with published NHS standards for the API(s) the supplier wants to onboard to. FHIR UK Core compliance. SNOMED CT for clinical coding. NHS Login integration for patient-facing flows.</div>
-        <div class="crit-scaled">API performance and availability SLAs proportionate to pathway volume. Security testing record and vulnerability management process. Interoperability evidence including sample successful integrations.</div>
-        <div class="crit-asp">Open API contribution. Multi-pathway integration experience. Patient app integration track record.</div>
-      </div>
-      <div class="crit-row">
-        <div class="crit-dim">Operational</div>
-        <div class="crit-core">Fulfilment capacity evidence proportionate to expected demand. Supply chain transparency including sourcing of consumables and kit components. Incident response arrangement with committed response time. Named contract management contact and commercial escalation route.</div>
-        <div class="crit-scaled">Kit and test inventory management. Logistics partner arrangements demonstrably fit for scope. Customer support model appropriate to patient-facing volume. SLA commitments.</div>
-        <div class="crit-asp">Multi-region fulfilment and redundancy. 24/7 support. Equity data capability (reporting on access and outcomes by protected characteristics).</div>
+      <div class="decision">
+        <div class="decision-num">Open 05</div>
+        <div class="decision-title">Live before fully plugged in.</div>
+        <div class="decision-body">Whether a supplier can start delivering ahead of full platform integration, and what that would do to the eligibility levers that make framework membership worth having.</div>
       </div>
     </div>
-  </div>
-
-  <div class="section">
-    <div class="section-eyebrow">Three access routes</div>
-    <h2 class="section-h">Tiering reflects scope, not preference.</h2>
-    <p class="section-intro">A supplier&apos;s tier reflects the scope they are asking to deliver, not a preference about who gets in. A Route B supplier can progress to Route A by demonstrating scaled-tier evidence through live operation. The bar isn&apos;t lowered; the access route is differentiated.</p>
-    <div class="routes">
-      <div class="route r-a">
-        <div class="route-label">Route A &middot; Standard</div>
-        <div class="route-title">The full bar across all five dimensions.</div>
-        <div class="route-body">Suppliers delivering end-to-end capability against an API must meet the scaled tier on every dimension. The route for established suppliers with end-to-end delivery capacity already at scale.</div>
-      </div>
-      <div class="route r-b">
-        <div class="route-label">Route B &middot; Light-touch</div>
-        <div class="route-title">Constrained scope, core tier plus scope-relevant scaled.</div>
-        <div class="route-body">For suppliers delivering a constrained scope: a single test under an existing API, a single LA pilot, a proof-of-concept integration. Core tier across all dimensions, scaled tier where material to scope. Lets smaller suppliers demonstrate fitness in practice rather than being excluded by balance-sheet alone.</div>
-      </div>
-      <div class="route r-c">
-        <div class="route-label">Route C &middot; Partnership</div>
-        <div class="route-title">Design-and-validation partnership criteria.</div>
-        <div class="route-body">For NHS provider partners and acute use case partners, where the arrangement is a design-and-validation partnership rather than a commercial supplier contract. Distinct criteria reflecting the partnership archetype. IP vests in NHSE.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-eyebrow">Seven-stage apply journey</div>
-    <h2 class="section-h">Stages 1 to 3 happen without NHSE engagement.</h2>
-    <p class="section-intro">A supplier can decide not to proceed without ever entering the system. NHSE engagement begins at stage 4. The orange-bordered stages are the first NHSE touch points.</p>
-    <div class="apply-journey">
-      <div class="apply-stage"><span class="apply-num">1</span>
-        <div class="apply-title">Discovery</div>
-        <div class="apply-body">Supplier finds the criteria pack via Future NHS, public HomeTest and HealthStore pages, Find a Tender or partnerships outreach.</div>
-      </div>
-      <div class="apply-stage"><span class="apply-num">2</span>
-        <div class="apply-title">Self-assessment</div>
-        <div class="apply-body">Supplier works through the published checklist using the boilerplate artefacts. Self-declared position against each criterion.</div>
-      </div>
-      <div class="apply-stage"><span class="apply-num">3</span>
-        <div class="apply-title">Expression of interest</div>
-        <div class="apply-body">Supplier submits a structured EOI declaring the API(s), the scope, the self-assessment result by criterion and the evidence references.</div>
-      </div>
-      <div class="apply-stage nhse-touch"><span class="apply-num">4</span>
-        <div class="apply-title">Automated triage</div>
-        <div class="apply-body">System checks completeness, valid evidence references, declared passes at core tier. Specific feedback on bounce-backs.<span class="apply-tag">NHSE engages here</span></div>
-      </div>
-      <div class="apply-stage nhse-touch"><span class="apply-num">5</span>
-        <div class="apply-title">Human review</div>
-        <div class="apply-body">Workstream leads review by dimension. Commercial, IG, clinical safety, technical. Time-boxed with a committed SLA. Grey-area judgements escalate.<span class="apply-tag">NHSE review</span></div>
-      </div>
-      <div class="apply-stage nhse-touch"><span class="apply-num">6</span>
-        <div class="apply-title">Onboarding proper</div>
-        <div class="apply-body">API integration, test-suite conformance, live-like testing, go-live sign-off. The heavy lift. Triage upstream ensures effort here is spent on integration not vetting.<span class="apply-tag">NHSE delivery</span></div>
-      </div>
-      <div class="apply-stage"><span class="apply-num">7</span>
-        <div class="apply-title">Per-test and per-scope additions</div>
-        <div class="apply-body">Once a supplier is onboarded to an API, adding a new test or expanding into a new LA scope is a lightweight check plus a configuration change. Annual refresh default; earlier on material change, incident or regulatory shift.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-eyebrow">Four open decisions for SLT</div>
-    <h2 class="section-h">Decisions that are load-bearing for the commercial model.</h2>
-<div style="margin:20px 0;padding:16px 20px;background:#FBEAF2;border:1px solid #E8D2DC;border-radius:8px;font-size:13px;color:#4C6272;line-height:1.6;">
-  <div style="font-size:10.5px;font-weight:800;letter-spacing:1.2px;color:#212B32;text-transform:uppercase;margin-bottom:6px;">Open Q for SLT</div>
-  <strong>Endorse the compelled-removal protocol.</strong> Removal from the approved list is the only enforcement leverage NHSE holds in the interim model. No framework call-off and therefore no termination clause. The protocol must be defensible the first time it bites: clear failure thresholds, proportional escalation, evidence-led decision-making, named removal authority, supplier right of appeal, commissioner notification, full audit trail. SLT endorsement needed before the protocol can be relied on. <em>Decision sits with SLT with Commercial Operations and NHSE Commercial and NHS Legal.</em> <a href="DTx OM - Status.html" style="color:#005EB8;font-weight:700;text-decoration:none;">See on Status &rarr;</a>
-</div>
-
-    <p class="section-intro">Each carries a working assumption to flush out direction. None of them are optional detail.</p>
-    <div class="decisions">
-      <div class="decision">
-        <div class="decision-num">Decision 01</div>
-        <div class="decision-title">Framework ownership and assurance-running.</div>
-        <div class="decision-body">Who owns the framework and who runs the operational assurance. Options: NHSE direct, Shared Business Services, Crown Commercial Service, third-party delivery partner. Each carries different cost, control and accountability profiles.</div>
-        <div class="decision-assumption"><strong>Working assumption.</strong> NHSE direct for the framework itself to keep strategic control at the centre; a delivery partner (SBS-shaped, not necessarily SBS) for operational assurance to scale capacity without internal headcount.</div>
-      </div>
-      <div class="decision">
-        <div class="decision-num">Decision 02</div>
-        <div class="decision-title">Commercial criteria owner.</div>
-        <div class="decision-body">The commercial dimension is the most under-developed of the five. It needs a named owner to produce a first draft for internal review.</div>
-        <div class="decision-assumption"><strong>Working assumption.</strong> Future-state workstream picks this up post initial discovery, with SLT direction.</div>
-      </div>
-      <div class="decision">
-        <div class="decision-num">Decision 03</div>
-        <div class="decision-title">Tiered threshold position from Year 1.</div>
-        <div class="decision-body">Whether the light-touch route (Route B) operates from Year 1 or is added later once the standard route is running.</div>
-        <div class="decision-assumption"><strong>Working assumption.</strong> From day one. Without it, Year 1 signals the framework is incumbent-only, which contradicts the equity framing and loses a market of smaller labs and innovators at the exact point we need them engaged.</div>
-      </div>
-      <div class="decision">
-        <div class="decision-num">Decision 04</div>
-        <div class="decision-title">Apply journey mechanism.</div>
-        <div class="decision-body">Atamis handles formal procurement cleanly. It is less comfortable as the home for EOI-stage partnership routes which are lighter-touch and not bound to a procurement timeline.</div>
-        <div class="decision-assumption"><strong>Working assumption.</strong> Atamis for formal procurement; a dedicated EOI form for partnership routes in Year 1; migrate to an integrated portal when pathway-level self-service goes live October 2026.</div>
-      </div>
+    <div style="margin:20px 0 0;padding:14px 18px;background:#FBEAF2;border:1px solid #E8D2DC;border-radius:8px;font-size:12.5px;color:#4C6272;line-height:1.6;">
+      <strong>Interim model note.</strong> Until the framework is live, removal from the approved list is the only enforcement leverage held, with no call-off to terminate. The compelled-removal protocol still needs endorsement before it can be relied on. <a href="DTx OM - Status.html" style="color:#005EB8;font-weight:700;text-decoration:none;">See on Status &rarr;</a>
     </div>
   </div>
 
   <div class="crosslinks">
     <div class="crosslinks-label">Where the framework connects in the model</div>
     <div class="crosslinks-grid">
+      <a class="crosslink" href="DTx OM - Prioritisation Framework.html">Prioritisation Framework &middot; the roadmap engine &rarr;</a>
       <a class="crosslink" href="DTx OM - Persona Joe.html">Joe (HomeTest supplier persona) &rarr;</a>
       <a class="crosslink" href="DTx OM - Persona HealthStore supplier.html">Marcus (HealthStore supplier) &rarr;</a>
       <a class="crosslink" href="DTx OM - Persona Tariq.html">Tariq (HealthSync supplier) &rarr;</a>
@@ -384,7 +468,7 @@
   </div>
 
   <div class="foot">
-    Supplier Onboarding Framework &middot; the portfolio-level mechanic that turns &ldquo;Assure once. Reuse nationally.&rdquo; into a working route to admission across HomeTest, HealthStore and HealthSync.
+    Supplier Onboarding Framework &middot; one ticket, per-category keys, gates on a published roadmap &middot; the mechanic that turns &ldquo;Assure once. Reuse nationally.&rdquo; into a working route to admission. Applied here to HomeTest; HealthStore runs its own admission route.
   </div>
 
 </div>
