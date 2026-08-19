@@ -1,0 +1,165 @@
+<!DOCTYPE html><html lang=en-GB><head><meta charset=UTF-8><meta name=viewport content='width=device-width,initial-scale=1'><title>The Lotting Choice</title><style>
+:root{--nhs-dark:#003087;--nhs-blue:#005EB8;--nhs-green:#006747;--nhs-pink:#AE2573;--amber:#E8A400;--amber-deep:#C9A227;--warm:#FFF6E4;--red:#9B1D14;--text:#212B32;--sec:#4C6272;--muted:#7E8B97;--border:#e3e9ef;--card:#fff;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,var(--nhs-blue),var(--nhs-dark));background-attachment:fixed;color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;}
+.ecosystem-nav{background:#fff;border-bottom:1px solid var(--border);padding:12px 34px;display:flex;align-items:center;justify-content:space-between;gap:24px;position:sticky;top:0;z-index:50;}
+.ecosystem-nav a{font-size:13px;font-weight:700;color:var(--nhs-dark);text-decoration:none;}
+.ecosystem-nav .nav-context{font-size:11px;font-weight:800;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;}
+.ecosystem-nav .nav-product{font-size:10.5px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;padding:4px 10px;border-radius:4px;color:#fff;background:var(--nhs-dark);}
+.topnav{background:#fff;border-bottom:1px solid var(--border);padding:12px 34px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;box-shadow:0 2px 14px rgba(0,48,135,.14);}
+.topnav a{font-size:12.5px;font-weight:600;color:var(--sec);text-decoration:none;padding:6px 12px;border-radius:6px;} .topnav a.active{background:var(--nhs-blue);color:#fff;}
+.page{max-width:1180px;margin:26px auto 44px;padding:40px 40px 54px;background:#fff;border-radius:18px;box-shadow:0 14px 40px rgba(0,48,135,.20);}
+.amber-rule{width:70px;height:4px;background:var(--amber);border-radius:2px;margin-bottom:16px;}
+.eyebrow{font-size:11px;font-weight:800;letter-spacing:2.2px;color:var(--sec);text-transform:uppercase;margin-bottom:12px;}
+.h-title{font-size:44px;font-weight:800;color:var(--nhs-dark);letter-spacing:-1px;line-height:1.05;margin-bottom:14px;}
+.h-sub{font-size:15px;color:var(--sec);line-height:1.6;max-width:880px;}
+.backlink{display:inline-block;margin-bottom:12px;font-size:12.5px;font-weight:700;color:var(--nhs-blue);text-decoration:none;}
+.illus{margin:18px 0 6px;padding:11px 16px;background:#FFF3CD;border:1px solid #FFE69C;border-radius:8px;font-size:12.5px;color:#5C4400;line-height:1.5;}
+.stage{position:relative;width:1080px;max-width:100%;height:812px;margin:26px auto 6px;}
+.wires{position:absolute;inset:0;width:1080px;height:812px;overflow:visible;z-index:1;}
+.node{position:absolute;z-index:2;border-radius:14px;background:var(--card);border:1px solid var(--border);box-shadow:0 6px 18px rgba(0,48,135,.10);padding:13px 15px;}
+.node .ne{font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:3px;}
+.node .nt{font-size:16px;font-weight:800;color:var(--nhs-dark);letter-spacing:-.2px;line-height:1.15;}
+.node .ns{font-size:11.5px;color:var(--sec);line-height:1.4;margin-top:4px;}
+.node.acc-g{border-left:5px solid var(--nhs-green);} .node.acc-b{border-left:5px solid var(--nhs-dark);} .node.acc-a{border-left:5px solid var(--amber-deep);}
+.node.nhse{background:linear-gradient(135deg,var(--nhs-dark),var(--nhs-blue));border:2px solid var(--amber);color:#fff;text-align:center;}
+.node.nhse .ne{color:#FFD66B;} .node.nhse .nt{color:#fff;font-size:20px;} .node.nhse .ns{color:#dbe7f5;font-size:12px;}
+.node.lot2{background:var(--warm);border:2px solid var(--amber);box-shadow:0 8px 24px rgba(200,140,0,.18);}
+.node.lot2 .ne{color:#9a5b00;text-align:center;} .node.lot2 .fwh{font-size:22px;font-weight:900;color:var(--nhs-dark);text-align:center;letter-spacing:-.4px;margin:1px 0 2px;}
+.node.lot2 .fwsub{font-size:11.5px;font-weight:700;color:#9a5b00;text-align:center;margin-bottom:8px;}
+.node.lot2 .valbar{background:#fff;border:1px solid var(--amber-deep);border-radius:8px;padding:5px 8px;margin:0 0 8px;font-size:12px;font-weight:800;color:#9a5b00;text-align:center;}
+.node.lot2 .fx{font-size:11.5px;color:var(--text);line-height:1.35;margin-top:3px;padding-left:15px;position:relative;}
+.node.lot2 .fx:before{content:'';position:absolute;left:2px;top:6px;width:6px;height:6px;border-radius:50%;background:var(--amber);}
+.node.lot2 .fx i{color:var(--sec);font-style:italic;}
+.node.flag{background:#FFF6E6;border:1.5px dashed var(--amber);} .node.flag .ne{color:#9a5b00;} .node.flag .ns{color:var(--text);font-weight:600;}
+.node.diff{background:#F7EDF3;border:1px solid #E4C4D6;} .node.diff .ne{color:#7a1c50;} .node.diff .ns{color:var(--text);font-weight:600;}
+.node.mini{box-shadow:none;} .node.mini .ns{color:var(--sec);}
+.node .lg{display:flex;align-items:center;gap:8px;font-size:11.5px;font-weight:600;color:var(--text);margin-top:7px;} .node .lg b{display:inline-block;width:26px;height:0;border-top:3px solid;}
+.chips{display:flex;gap:9px;margin-top:8px;flex-wrap:wrap;}
+.chip{display:flex;flex-direction:column;align-items:center;width:50px;}
+.chip img{width:38px;height:38px;border-radius:50%;object-fit:cover;object-position:top center;border:2.5px solid var(--nhs-blue);background:#e9eff5;}
+.chip span{font-size:10px;font-weight:700;margin-top:3px;text-align:center;line-height:1;color:var(--text);}
+.nhse .chip img{border-color:#fff;} .nhse .chip span{color:#fff;} .acc-g .chip img{border-color:var(--nhs-green);} .acc-b .chip img{border-color:var(--nhs-dark);}
+.goto{display:inline-block;margin-top:8px;font-size:10.5px;font-weight:800;color:#fff;background:var(--nhs-blue);border-radius:999px;padding:5px 12px;text-decoration:none;letter-spacing:.3px;} .goto.am{background:var(--amber-deep);}
+.wlabel{position:absolute;z-index:3;transform:translate(-50%,-50%);background:#fff;border:1px solid var(--border);border-radius:999px;padding:5px 12px;font-size:11.5px;font-weight:700;white-space:nowrap;box-shadow:0 2px 6px rgba(0,48,135,.08);}
+.wlabel.dk{color:var(--nhs-dark);} .wlabel.gr{color:var(--nhs-green);border-color:#bfe0cd;background:#eef7f1;} .wlabel.am{color:#9a5b00;border-color:#f0d79a;background:#fff7e8;}
+.foot{margin-top:26px;text-align:center;font-size:12px;font-weight:600;color:var(--muted);} .foot b{color:var(--nhs-dark);}
+.se{font-size:11px;font-weight:800;letter-spacing:2px;color:var(--nhs-green);text-transform:uppercase;margin-bottom:8px;}
+.gaterow{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:6px;}
+.gate{background:#fff;border:1px solid var(--border);border-top:4px solid var(--nhs-blue);border-radius:12px;padding:15px 16px;box-shadow:0 4px 14px rgba(0,48,135,.06);}
+.gate.g-future{border-top-color:var(--muted);background:#fbfcfd;}
+.gate .gw{font-size:9.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--nhs-blue);}
+.gate.g-future .gw{color:var(--muted);}
+.gate .gd{font-size:14px;font-weight:800;color:var(--nhs-dark);margin:2px 0 10px;letter-spacing:-.2px;}
+.gate .glbl{font-size:9px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);margin:2px 0 5px;}
+.catchips{display:flex;flex-wrap:wrap;gap:5px;}
+.catchip{font-size:11px;font-weight:700;color:var(--nhs-dark);background:#eaf2fa;border:1px solid #cfe0f0;border-radius:999px;padding:3px 9px;}
+.gate .gnote{font-size:11px;color:var(--sec);line-height:1.4;margin-top:4px;}
+.reqpanel{margin-top:20px;display:grid;grid-template-columns:1.3fr 1fr;gap:16px;}
+.reqcard{background:#F4F8FC;border:1px solid #D5E8F0;border-radius:12px;padding:18px 20px;}
+.reqcard h4{font-size:14px;font-weight:800;color:var(--nhs-dark);margin-bottom:9px;}
+.reqcard ul{list-style:none;margin:0;padding:0;} .reqcard li{font-size:12px;color:var(--sec);line-height:1.45;padding-left:16px;position:relative;margin-top:5px;}
+.reqcard li:before{content:'';position:absolute;left:0;top:6px;width:6px;height:6px;border-radius:50%;background:var(--nhs-green);}
+.reqcard li b{color:var(--text);}
+.leadnote{background:#FFF6E6;border:1px solid #F0DCA0;border-left:5px solid var(--amber-deep);border-radius:10px;padding:14px 18px;margin-top:16px;font-size:12.5px;color:var(--sec);line-height:1.55;} .leadnote b{color:var(--nhs-dark);}
+.xlink{margin-top:16px;} .xlink a{display:inline-block;background:#fff;border:1px solid #B5D4E5;color:var(--nhs-dark);font-size:12.5px;font-weight:700;text-decoration:none;padding:9px 16px;border-radius:999px;}
+:root{--text-sec:#4C6272;--text:#212B32;--border-lt:#E1E7EC;}.topnav{background:#fff;border-bottom:1px solid var(--border-lt);padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;box-shadow:0 2px 14px rgba(0,48,135,0.10);}.topnav .nav-back{font-size:13px;font-weight:700;color:var(--nhs-dark);text-decoration:none;display:inline-flex;align-items:center;gap:6px;}.topnav .nav-back:hover{color:var(--nhs-blue);}.topnav .nav-siblings{display:flex;gap:4px;flex-wrap:wrap;align-items:center;}.topnav .nav-siblings a{font-size:12.5px;font-weight:600;color:var(--text-sec);text-decoration:none;padding:7px 14px;border-radius:6px;letter-spacing:0.2px;}.topnav .nav-siblings a:hover{background:#f0f4f8;color:var(--text);}.topnav .nav-siblings .nav-sep{width:1px;height:18px;background:var(--border-lt);margin:0 6px;display:inline-block;}.goto.pending{opacity:0.6;border-style:dashed !important;}
+.statusrow{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 4px;}
+.stat{background:#F4F8FC;border:1px solid #D5E8F0;border-radius:10px;padding:9px 14px;font-size:12px;color:var(--sec);}
+.stat b{display:block;font-size:12.5px;color:var(--nhs-dark);margin-top:1px;}
+.stat.warm{background:#FFF7E8;border-color:#F0D79A;} .stat.warm b{color:#9a5b00;}
+.sechead{font-size:11px;font-weight:800;letter-spacing:2px;color:var(--nhs-green);text-transform:uppercase;margin:34px 0 6px;}
+.sechead + p{font-size:13px;color:var(--sec);line-height:1.55;max-width:860px;margin-bottom:14px;}
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:stretch;}
+.opt{border:1px solid var(--border);border-radius:14px;padding:20px 22px;background:#fff;box-shadow:0 6px 18px rgba(0,48,135,.08);}
+.opt.a{border-top:5px solid var(--nhs-dark);} .opt.b{border-top:5px solid var(--nhs-green);}
+.opt .oe{font-size:10px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted);}
+.opt h3{font-size:19px;font-weight:800;color:var(--nhs-dark);letter-spacing:-.3px;margin:3px 0 2px;}
+.opt .tag{font-size:12px;font-style:italic;color:var(--sec);margin-bottom:10px;}
+.opt ul{list-style:none;margin:0 0 10px;padding:0;}
+.opt li{font-size:12.5px;color:var(--text);line-height:1.45;padding-left:16px;position:relative;margin-top:6px;}
+.opt.a li:before,.opt.b li:before{content:'';position:absolute;left:2px;top:7px;width:6px;height:6px;border-radius:50%;}
+.opt.a li:before{background:var(--nhs-dark);} .opt.b li:before{background:var(--nhs-green);}
+.opt .risk{background:#FFF6E6;border:1px solid #F0DCA0;border-radius:9px;padding:10px 13px;font-size:12px;color:#5C4400;line-height:1.5;}
+.opt .risk b{color:#9a5b00;}
+.jour{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.jcol{border:1px solid var(--border);border-radius:14px;padding:18px 20px;background:#FBFDFE;}
+.jcol h4{font-size:14px;font-weight:800;color:var(--nhs-dark);margin-bottom:10px;}
+.step{display:flex;gap:10px;margin-top:9px;align-items:flex-start;}
+.step .sn{flex:0 0 22px;width:22px;height:22px;border-radius:50%;background:var(--nhs-blue);color:#fff;font-size:11px;font-weight:800;text-align:center;line-height:22px;}
+.jcol.b .sn{background:var(--nhs-green);}
+.step p{font-size:12.5px;color:var(--text);line-height:1.45;margin:1px 0 0;}
+.step p i{color:var(--sec);}
+.step.open .sn{background:#fff;color:#9a5b00;border:2px solid var(--amber-deep);line-height:18px;}
+.step.open p{color:#5C4400;}
+.fricnote{margin-top:12px;font-size:12px;color:var(--sec);border-top:1px dashed var(--border);padding-top:10px;line-height:1.5;}
+.lens4{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.lens{background:#F4F8FC;border:1px solid #D5E8F0;border-radius:12px;padding:16px 18px;}
+.lens h4{font-size:13.5px;font-weight:800;color:var(--nhs-dark);margin-bottom:7px;}
+.lens p{font-size:12.5px;color:var(--sec);line-height:1.5;margin:0 0 6px;}
+.lens p b{color:var(--text);}
+.evid{background:#fff;border:1px solid var(--border);border-left:5px solid var(--nhs-pink);border-radius:12px;padding:18px 22px;margin-top:14px;}
+.evid h4{font-size:14px;font-weight:800;color:var(--nhs-dark);margin-bottom:8px;}
+.evid ul{list-style:none;margin:0;padding:0;}
+.evid li{font-size:12.5px;color:var(--sec);line-height:1.5;padding-left:18px;position:relative;margin-top:7px;}
+.evid li:before{content:'';position:absolute;left:2px;top:7px;width:7px;height:7px;border-radius:2px;background:var(--nhs-pink);}
+.evid li b{color:var(--text);}
+</style></head><body><div class="ecosystem-nav"><a href="../index.html">&larr; DTx Ecosystem</a><span class="nav-context">Commercial Model &#183; The Lotting Choice</span><span class="nav-product dtx">DTx</span></div><div class="topnav"><a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a><div class="nav-siblings"><a href="DTx OM - Why.html">Why</a><a href="DTx OM - Anatomical.html">What</a><a href="DTx OM - Lifecycle.html">When</a><a href="DTx OM - HomeTest Operational.html">How</a><a href="DTx OM - Governance.html">Who</a><a href="DTx OM - Hearts and Minds.html">Hearts and Minds</a><a href="DTx OM - HomeTest Teamwork.html">HomeTest teamwork</a><span class="nav-sep"></span><a href="DTx OM - Status.html">Status</a></div></div><div class=page><a class="backlink" href="DTx OM - Commercial Model DRAFT.html">&larr; The Commercial Model</a><div class=amber-rule></div><div class=eyebrow>The commercial model &#183; the decision that shapes it</div><h1 class=h-title>The Lotting Choice.</h1><p class=h-sub>One end-to-end lot is the working position, reached in principle and now being re-validated before the sourcing strategy is finalised, because no call in the strategy will draw more scrutiny. This page holds that comparison.</p>
+<div style="margin:16px 0 2px;padding:12px 16px;background:#FFF3CD;border:1px solid #FFE69C;border-radius:8px;font-size:12.5px;color:#5C4400;line-height:1.6;"><strong>Working draft, off-live.</strong> Nothing here gets treated as settled until the team and the market have tested it.</div>
+<div class="statusrow"><div class="stat">Working position<b>One end-to-end lot</b></div><div class="stat warm">Status<b>Under re-validation</b></div><div class="stat">Decides<b>With the sourcing strategy &#183; end September</b></div><div class="stat">Either way<b>Two-stage assurance holds</b></div></div>
+
+<div class="sechead">The two options</div>
+<p>Either could work. Before one is chosen, the strategy has to show that both options were fully assessed and that the rationale rests on evidence.</p>
+<div class="twocol">
+<div class="opt a"><div class="oe">Option A &#183; the working position</div><h3>One end-to-end lot</h3><div class="tag">The whole journey, bought as one package.</div>
+<ul><li>Commissioners buy an outcome. One accountable provider per call-off.</li>
+<li>A prime, a consortium or an NHS-led arrangement delivers it.</li>
+<li>Suppliers holding part of the journey come in by partnering: do what you can, team for the rest.</li>
+<li>One assurance construct: the organisation accredited once, then per test at the gates.</li></ul>
+<div class="risk"><b>The risks.</b> Can be seen as favouring suppliers that already operate end-to-end. Niche suppliers can only enter by finding partners, so support for forming partnerships has to be part of the model.</div></div>
+<div class="opt b"><div class="oe">Option B &#183; the alternative</div><h3>Capability lots</h3><div class="tag">The framework as a marketplace of parts.</div>
+<ul><li>Lots drawn by organisational capability: logistics, kits, lab analysis, digital service.</li>
+<li>Suppliers join the lots they can serve, and complete services are assembled from the parts.</li>
+<li>A visible way in for niche players and for pathology networks that cannot do end-to-end alone.</li>
+<li>The available parts are visible, so suppliers can form their own partnerships.</li></ul>
+<div class="risk"><b>The risks.</b> Stage-two assurance breaks into per-capability packs, each one built and run separately. Accountability for the end-to-end result still has to sit somewhere. And the structure can be seen as favouring NHS delivery instead.</div></div>
+</div>
+
+<div class="sechead">Same supplier, two journeys</div>
+<p>The straw-man onboarding journey under each option. Neither option removes the friction; it moves. Under Option A it sits before entry, under Option B after entry.</p>
+<div class="jour">
+<div class="jcol a"><h4>Under one end-to-end lot</h4>
+<div class="step"><span class="sn">1</span><p>See the test roadmap and the reopening windows. The timeline is published.</p></div>
+<div class="step"><span class="sn">2</span><p>Assemble the offer: bid alone, form or join a consortium, or come in NHS-led.</p></div>
+<div class="step"><span class="sn">3</span><p>Stage one: organisation accreditation, once, onto the framework.</p></div>
+<div class="step"><span class="sn">4</span><p>Stage two: per-test accreditation as each roadmap gate opens.</p></div>
+<div class="step"><span class="sn">5</span><p>Supply into call-offs. Paid per activity. Levy applies.</p></div>
+<div class="fricnote"><b>The friction:</b> step 2. Without partners, a capable niche supplier cannot enter. Early roadmap visibility and deliberate introductions address this.</div></div>
+<div class="jcol b"><h4>Under capability lots</h4>
+<div class="step"><span class="sn">1</span><p>See the roadmap. Same timeline, same gates.</p></div>
+<div class="step"><span class="sn">2</span><p>Apply into the capability lot you serve.</p></div>
+<div class="step"><span class="sn">3</span><p>Stage one accreditation for the lot.</p></div>
+<div class="step"><span class="sn">4</span><p>Stage two in a capability-specific form: a logistics pack is not a lab pack.</p></div>
+<div class="step open"><span class="sn">5</span><p>Get assembled into a chain. <i>Open: who assembles it, and who answers for the whole when a part fails.</i></p></div>
+<div class="step"><span class="sn">6</span><p>Supply the component. Accountability for the end-to-end result sits above the parts.</p></div>
+<div class="fricnote"><b>The friction:</b> steps 4 and 5. Every capability needs its own assurance pack, and the integrator question has no owner yet.</div></div>
+</div>
+
+<div class="sechead">Four lenses</div>
+<p>The follow-up session runs both options through each lens. If one option wins on a single lens and loses on the other three, the decision is clear.</p>
+<div class="lens4">
+<div class="lens"><h4>Assurance and administration</h4><p><b>A:</b> one construct, two stages, one pack to maintain.</p><p><b>B:</b> a stage-two pack per capability, more to build and more to administer. This is the strongest internal concern about lots.</p></div>
+<div class="lens"><h4>Market shape</h4><p>The bias risk runs in both directions. <b>A</b> can read as built for end-to-end incumbents. <b>B</b> can read as built for NHS pathology delivery. Either way, the strategy has to demonstrate balance and set out how suppliers not directly served can still participate.</p></div>
+<div class="lens"><h4>What commissioners buy</h4><p><b>A:</b> an outcome, with one accountable provider per call-off.</p><p><b>B:</b> components they assemble, with the integration burden somewhere between buyer and framework.</p><p>Commissioner preference is untested. It is being asked directly, not assumed.</p></div>
+<div class="lens"><h4>Patients and the service</h4><p>However the market is structured, the patient experiences one journey. <b>A</b> puts accountability for that journey in one place. <b>B</b> has to engineer it. The service has to work under either lotting outcome.</p></div>
+</div>
+
+<div class="sechead">What settles it</div>
+<div class="evid"><h4>Evidence required before the position hardens</h4>
+<ul><li><b>The interoperability constraint, documented.</b> If the case for one lot rests on kit and laboratory method incompatibility, that needs to be documented evidence, not an assertion made in a meeting.</li>
+<li><b>The commissioner answer.</b> Do buyers want a results service or their own supply chain? Asked directly, before the strategy is fixed.</li>
+<li><b>The supplier-market read.</b> Both shapes go to the market at the next engagement round, and the feedback goes on record for governance.</li>
+<li><b>Partnering support.</b> If one lot is confirmed, partnering support becomes a requirement of the simpler structure: roadmap visibility, reopening windows and deliberate introductions.</li></ul></div>
+<div class="leadnote"><b>The test the rationale has to pass.</b> A single lot chosen because it suits incumbent end-to-end suppliers will not survive scrutiny. A lot structure chosen for the appearance of openness, but which cannot be assured or administered, will not work in operation. The chosen option has to be supported by evidence and simple to operate.</div>
+<div class=foot>Working position: one end-to-end lot &#183; held open until the rationale is evidenced &#183; decided with the sourcing strategy</div>
+</div></body></html>

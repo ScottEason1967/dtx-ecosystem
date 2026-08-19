@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Supplier Onboarding Framework: DTx OM</title>
+<style>
+  :root{--nhs-dark:#003087;--nhs-blue:#005EB8;--nhs-green:#006747;--nhs-pink:#AE2573;--amber:#FFB91D;--amber-deep:#C9A227;--warm-cream:#FFF9EC;--accent:#1B3A6B;--text:#212B32;--text-sec:#4C6272;--text-muted:#7E8B97;--border-lt:#ebeef1;--bg:#f8fafc;--card:#fff;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,var(--nhs-blue) 0%,var(--nhs-dark) 100%);background-attachment:fixed;color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100vh;}
+  .topnav{background:#fff;border-bottom:1px solid var(--border-lt);padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;box-shadow:0 2px 14px rgba(0,48,135,0.18);}
+  .nav-back{font-size:13px;font-weight:700;color:var(--nhs-dark);text-decoration:none;display:inline-flex;align-items:center;gap:6px;}
+  .nav-back:hover{color:var(--nhs-blue);}
+  .nav-siblings{display:flex;gap:4px;flex-wrap:wrap;}
+  .nav-siblings a{font-size:12.5px;font-weight:600;color:var(--text-sec);text-decoration:none;padding:7px 14px;border-radius:6px;letter-spacing:0.2px;}
+  .nav-siblings a:hover{background:#f0f4f8;color:var(--text);}
+  .nav-siblings a.active{background:var(--nhs-blue);color:#fff;}
+  .nav-siblings .nav-sep{width:1px;height:18px;background:var(--border-lt);margin:0 6px;}
+  .page{max-width:1180px;margin:30px auto 50px;padding:50px 40px 80px;background:#fff;border-radius:18px;box-shadow:0 14px 40px rgba(0,48,135,0.20);}
+  .amber-rule{width:72px;height:4px;background:var(--amber);border-radius:2px;margin-bottom:18px;}
+  .h-eyebrow{font-size:11px;font-weight:700;letter-spacing:2.2px;color:var(--text-sec);text-transform:uppercase;margin-bottom:14px;}
+  .h-title{font-size:54px;font-weight:800;color:var(--nhs-dark);letter-spacing:-1.2px;line-height:1.05;margin-bottom:16px;}
+  .h-sub{font-size:17px;color:var(--text-sec);line-height:1.65;max-width:840px;margin-bottom:18px;}
+
+  /* North star banner */
+  .northstar{margin:34px 0 12px;background:linear-gradient(135deg,var(--nhs-dark),var(--nhs-blue));border:2px solid var(--amber);border-radius:14px;padding:28px 32px;color:#fff;box-shadow:0 12px 32px rgba(0,48,135,0.20);}
+  .northstar-eyebrow{font-size:11px;font-weight:800;letter-spacing:1.8px;color:#FFD66B;text-transform:uppercase;margin-bottom:10px;}
+  .northstar-title{font-size:36px;font-weight:900;color:#fff;letter-spacing:-0.7px;line-height:1.1;margin-bottom:14px;}
+  .northstar-body{font-size:15.5px;line-height:1.65;color:rgba(255,255,255,0.94);max-width:880px;}
+
+  /* Section headings */
+  .section{margin-top:50px;}
+  .section-eyebrow{font-size:11px;font-weight:800;letter-spacing:2px;color:var(--nhs-blue);text-transform:uppercase;margin-bottom:8px;}
+  .section-h{font-size:28px;font-weight:900;color:var(--nhs-dark);letter-spacing:-0.6px;line-height:1.15;margin-bottom:12px;}
+  .section-intro{font-size:14.5px;color:var(--text-sec);line-height:1.7;max-width:880px;margin-bottom:26px;}
+
+  /* Principles grid */
+  .principles{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;}
+  .principle{background:#fff;border:1px solid var(--border-lt);border-left:5px solid var(--nhs-blue);border-radius:10px;padding:18px 20px;}
+  .principle-num{font-size:10.5px;font-weight:800;letter-spacing:1.8px;color:var(--nhs-blue);text-transform:uppercase;margin-bottom:6px;}
+  .principle-title{font-size:16px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.2px;line-height:1.25;margin-bottom:8px;}
+  .principle-body{font-size:13px;color:var(--text-sec);line-height:1.6;}
+
+  /* Criteria table */
+  .crit-table{border:1px solid var(--border-lt);border-radius:12px;overflow:hidden;}
+  .crit-header{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;background:var(--nhs-dark);color:#fff;}
+  .crit-header > div{padding:14px 18px;font-size:11px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;}
+  .crit-row{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;border-top:1px solid var(--border-lt);}
+  .crit-row > div{padding:18px 18px;font-size:13px;line-height:1.55;color:var(--text);}
+  .crit-row .crit-dim{font-weight:800;color:var(--nhs-dark);font-size:14px;background:#F4F8FC;border-right:1px solid var(--border-lt);}
+  .crit-row .crit-core{border-right:1px solid var(--border-lt);background:#fff;}
+  .crit-row .crit-scaled{border-right:1px solid var(--border-lt);background:#FAFCFE;}
+  .crit-row .crit-asp{background:#fff;color:var(--text-sec);font-style:italic;}
+
+  /* Routes */
+  .routes{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .route{background:#fff;border:1px solid var(--border-lt);border-top:4px solid;border-radius:10px;padding:20px 22px;}
+  .route.r-a{border-top-color:var(--nhs-dark);}
+  .route.r-b{border-top-color:var(--amber-deep);}
+  .route.r-c{border-top-color:var(--nhs-green);}
+  .route-label{font-size:10.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;margin-bottom:8px;}
+  .route.r-a .route-label{color:var(--nhs-dark);}
+  .route.r-b .route-label{color:var(--amber-deep);}
+  .route.r-c .route-label{color:var(--nhs-green);}
+  .route-title{font-size:18px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.2px;margin-bottom:10px;}
+  .route-body{font-size:13px;color:var(--text-sec);line-height:1.6;}
+
+  /* Apply journey */
+  .apply-journey{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;}
+  .apply-stage{background:#fff;border:1px solid var(--border-lt);border-radius:10px;padding:16px 16px;position:relative;}
+  .apply-stage::before{content:'';position:absolute;top:-8px;left:16px;width:24px;height:24px;border-radius:50%;background:var(--nhs-blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;}
+  .apply-num{position:absolute;top:-8px;left:16px;width:24px;height:24px;border-radius:50%;background:var(--nhs-blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;z-index:1;}
+  .apply-stage::before{display:none;}
+  .apply-title{font-size:13.5px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.2px;margin:14px 0 8px;line-height:1.25;}
+  .apply-body{font-size:11.5px;color:var(--text-sec);line-height:1.55;}
+  .apply-stage.nhse-touch{border:2px solid var(--amber);}
+  .apply-tag{display:inline-block;font-size:9.5px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--amber-deep);background:var(--warm-cream);padding:3px 8px;border-radius:4px;margin-top:8px;}
+
+  /* Open decisions */
+  .decisions{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;}
+  .decision{background:#FFF9EC;border:1px solid #F0DCA0;border-left:5px solid var(--amber-deep);border-radius:10px;padding:18px 20px;}
+  .decision-num{font-size:10.5px;font-weight:800;letter-spacing:1.6px;color:var(--amber-deep);text-transform:uppercase;margin-bottom:8px;}
+  .decision-title{font-size:15px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.2px;line-height:1.25;margin-bottom:8px;}
+  .decision-body{font-size:12.5px;color:var(--text-sec);line-height:1.6;}
+  .decision-assumption{font-size:12px;color:var(--text);background:rgba(255,255,255,0.6);border-radius:6px;padding:8px 10px;margin-top:8px;border-left:3px solid var(--nhs-blue);}
+  .decision-assumption strong{color:var(--nhs-blue);font-weight:800;}
+
+  /* Cross-references */
+  .crosslinks{margin-top:48px;background:#F4F8FC;border:1px solid #D5E8F0;border-radius:12px;padding:24px 28px;}
+  .crosslinks-label{font-size:11px;font-weight:800;letter-spacing:1.8px;color:var(--nhs-blue);text-transform:uppercase;margin-bottom:14px;}
+  .crosslinks-grid{display:flex;flex-wrap:wrap;gap:10px;}
+  .crosslink{background:#fff;border:1px solid #B5D4E5;color:var(--nhs-dark);font-size:12.5px;font-weight:700;text-decoration:none;padding:9px 16px;border-radius:999px;}
+  .crosslink:hover{background:var(--nhs-blue);color:#fff;border-color:var(--nhs-blue);}
+
+  .foot{margin-top:50px;padding-top:24px;border-top:1px solid var(--border-lt);text-align:center;font-size:11.5px;color:var(--text-muted);line-height:1.6;}
+
+  @media(max-width:980px){.crit-header,.crit-row{grid-template-columns:1fr;}.crit-header > div, .crit-row > div{border-right:none;border-bottom:1px solid var(--border-lt);}.routes{grid-template-columns:1fr;}}
+  @media(max-width:760px){.h-title{font-size:36px;}.northstar-title{font-size:26px;}.section-h{font-size:22px;}.page{padding:36px 22px 60px;}}
+
+.lotsel{display:flex;align-items:center;gap:10px;margin:20px 0 6px;flex-wrap:wrap;}
+.lotsel .lbl{font-size:10px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:#7E8B97;}
+.lotbtn{font-family:inherit;font-size:12px;font-weight:700;padding:8px 16px;border-radius:999px;border:1.5px solid #e3e9ef;background:#fff;color:#4C6272;cursor:pointer;}
+.lotbtn.a.active{background:#003087;border-color:#003087;color:#fff;}
+.lotbtn.b.active{background:#006747;border-color:#006747;color:#fff;}
+.lotnote{font-size:11.5px;font-weight:700;color:#005EB8;text-decoration:none;}
+
+.bpanel{background:#EAF4EF;border:1px solid #BFE0CD;border-left:5px solid #006747;border-radius:12px;padding:16px 20px;margin:14px 0 4px;}
+.bpanel h4{color:#006747;font-size:13.5px;font-weight:800;margin-bottom:6px;}
+.bpanel p{font-size:12.5px;color:#4C6272;line-height:1.55;margin:0 0 6px;}
+.openq{display:inline-block;font-size:9.5px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#9a5b00;background:#FFF7E8;border:1px solid #F0D79A;border-radius:999px;padding:2px 8px;vertical-align:1px;}
+
+.tierhead{display:flex;align-items:center;gap:12px;margin:2px 0 10px;}
+.tierbadge{display:inline-block;font-size:11px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;padding:5px 12px;border-radius:5px;color:#fff;background:var(--nhs-dark);}
+.tierbadge.t2{background:var(--nhs-green);}
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px;}
+.tgrid.two{grid-template-columns:repeat(2,1fr);}
+.tcard{background:#fff;border:1px solid var(--border-lt);border-top:4px solid var(--nhs-dark);border-radius:12px;padding:15px 16px;box-shadow:0 4px 14px rgba(0,48,135,.05);}
+.tcard.t2{border-top-color:var(--nhs-green);}
+.tcard h4{font-size:13.5px;font-weight:800;color:var(--nhs-dark);margin-bottom:6px;}
+.tcard p{font-size:12px;color:var(--text-sec);line-height:1.5;margin:0 0 5px;}
+.tcard .split{font-size:10.5px;font-weight:700;color:#9a5b00;background:#FFF7E8;border:1px solid #F0D79A;border-radius:7px;padding:4px 8px;display:inline-block;margin-top:3px;line-height:1.35;}
+.tierfoot{margin-top:12px;background:#F4F8FC;border:1px solid #D5E8F0;border-radius:10px;padding:12px 16px;font-size:12.5px;color:var(--text-sec);line-height:1.55;}
+.tierfoot strong{color:var(--nhs-dark);}
+.roadcard{background:#fff;border:1px solid var(--border-lt);border-left:5px solid var(--nhs-blue);border-radius:12px;padding:18px 22px;margin-top:14px;}
+.roadcard h4{font-size:14px;font-weight:800;color:var(--nhs-dark);margin-bottom:7px;}
+.roadcard p{font-size:12.5px;color:var(--text-sec);line-height:1.55;margin:0 0 7px;}
+.roadcard p strong{color:var(--text);}
+.supqpanel{background:#fff;border:1px solid var(--border-lt);border-left:5px solid #388C5D;border-radius:12px;padding:18px 22px;margin-top:14px;}
+.supqpanel h4{font-size:14px;font-weight:800;color:var(--nhs-dark);margin-bottom:8px;}
+.supqpanel ul{list-style:none;margin:0;padding:0;}
+.supqpanel li{font-size:12.5px;color:var(--text-sec);line-height:1.5;padding-left:18px;position:relative;margin-top:7px;}
+.supqpanel li:before{content:'';position:absolute;left:2px;top:7px;width:7px;height:7px;border-radius:2px;background:#388C5D;}
+.supqpanel li b{color:var(--text);}
+</style>
+<style>
+  .ecosystem-nav {
+    background: #fff;
+    border-bottom: 1px solid #ebeef1;
+    padding: 12px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 48px;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  }
+  .ecosystem-nav a {
+    font-size: 13px; font-weight: 700; color: #003087;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .ecosystem-nav a:hover { color: #005EB8; }
+  .ecosystem-nav .nav-context {
+    font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
+    color: #7E8B97; text-transform: uppercase;
+  }
+  .ecosystem-nav .nav-product {
+    font-size: 10.5px; font-weight: 800; letter-spacing: 0.8px;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 4px; color: #fff;
+  }
+  .ecosystem-nav .nav-product.dtx { background: #003087; }
+  .ecosystem-nav .nav-product.hometest { background: #003087; }
+  .ecosystem-nav .nav-product.healthstore { background: #00A9CE; }
+  .ecosystem-nav .nav-product.healthsync { background: #00A499; }
+</style>
+<style>
+  /* Two-layer rebuild additions */
+  .layers{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px;}
+  .layer{background:#fff;border:1px solid var(--border-lt);border-radius:12px;padding:22px 24px;box-shadow:0 4px 14px rgba(0,48,135,0.06);}
+  .layer.l1{border-top:5px solid var(--nhs-dark);}
+  .layer.l2{border-top:5px solid var(--nhs-green);}
+  .layer-badge{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;padding:4px 10px;border-radius:4px;margin-bottom:10px;color:#fff;}
+  .layer.l1 .layer-badge{background:var(--nhs-dark);}
+  .layer.l2 .layer-badge{background:var(--nhs-green);}
+  .layer-title{font-size:19px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.3px;margin-bottom:10px;}
+  .layer-body{font-size:13.5px;color:var(--text-sec);line-height:1.65;}
+  .layer-body p{margin-bottom:9px;}
+  .layer-body strong{color:var(--text);}
+  .layer-holds{font-size:12px;color:var(--text);background:#F4F8FC;border-left:3px solid var(--nhs-blue);border-radius:6px;padding:9px 12px;margin-top:10px;}
+  .gateflow{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-top:8px;}
+  .gatecard{background:#fff;border:1px solid var(--border-lt);border-radius:10px;padding:14px 16px;border-top:4px solid var(--amber-deep);}
+  .gatecard-step{font-size:10px;font-weight:800;letter-spacing:1.4px;color:var(--amber-deep);text-transform:uppercase;margin-bottom:6px;}
+  .gatecard-title{font-size:13.5px;font-weight:800;color:var(--nhs-dark);line-height:1.3;margin-bottom:6px;}
+  .gatecard-body{font-size:11.5px;color:var(--text-sec);line-height:1.5;}
+  .answered{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 6px;}
+  .achip{font-size:12px;font-weight:700;color:#0B5D34;background:#E7F5EC;border:1px solid #BFE3CD;border-radius:999px;padding:7px 14px;}
+  .aqp-note{background:#F4F8FC;border:1px solid #D5E8F0;border-left:5px solid var(--nhs-blue);border-radius:10px;padding:16px 20px;margin-top:14px;font-size:13px;color:var(--text-sec);line-height:1.65;}
+  .aqp-note strong{color:var(--nhs-dark);}
+  .aqp-note a{color:var(--nhs-blue);font-weight:700;text-decoration:none;}
+  .offfw{background:#FFF9EC;border:1px solid #F0DCA0;border-left:5px solid var(--amber-deep);border-radius:10px;padding:16px 20px;margin-top:14px;font-size:13px;color:var(--text-sec);line-height:1.65;}
+  .offfw strong{color:var(--nhs-dark);}
+</style>
+</head>
+<body>
+<script>
+(function(){
+  if (location.protocol !== 'file:' && sessionStorage.getItem('dtx-auth') !== 'ok') {
+    var next = encodeURIComponent(location.pathname.split('/').pop() || 'DTx OM - Index.html');
+    location.href = 'index.html?next=' + next;
+  }
+})();
+</script>
+
+<div class="ecosystem-nav">
+  <a href="../index.html">← DTx Ecosystem</a>
+  <span class="nav-context">Supplier Onboarding</span>
+  <span class="nav-product dtx">DTx</span>
+</div>
+<nav class="topnav">
+  <a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+  <div class="nav-siblings">
+    <a href="DTx OM - Why.html">Why</a>
+    <a href="DTx OM - Anatomical.html">What</a>
+    <a href="DTx OM - Lifecycle.html">When</a>
+    <a href="DTx OM - HomeTest Operational.html">How</a>
+    <a href="DTx OM - Governance.html">Who</a>
+    <a href="DTx OM - Hearts and Minds.html">Hearts and Minds</a>
+    <a href="DTx OM - HomeTest Teamwork.html">HomeTest teamwork</a>
+    <span class="nav-sep"></span>
+    <a href="DTx OM - Status.html">Status</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <div class="amber-rule"></div>
+  <div class="h-eyebrow">Supplier onboarding for HomeTest</div>
+  <h1 class="h-title">Supplier Onboarding Framework.</h1>
+
+  <div style="margin:20px 0;padding:14px 18px;background:#FFF3CD;border:1px solid #FFE69C;border-radius:8px;font-size:12.5px;color:#5C4400;line-height:1.6;">
+    <strong style="color:#5C4400;letter-spacing:0.3px;">Status.</strong> Rebuilt to the sourcing strategy position agreed in principle: one end-to-end lot as the working position (being re-validated), a two-tier assurance model, and capability gates opening on a published roadmap. Decided in principle, not settled design. The open items and the working detail live on the detail page linked at the foot.
+  </div>
+
+  <div style="margin:0 0 6px;padding:12px 18px;background:#F4F8FC;border:1px solid #D5E8F0;border-radius:8px;font-size:12.5px;color:#4C6272;line-height:1.6;">
+    <strong style="color:#003087;">Scope.</strong> This page is HomeTest only: onboarding for the home self-sampling framework.
+  </div>
+
+  <p class="h-sub">A supplier is approved once at company level: Tier 1, framework entry. Selling a given test needs a second approval for that test category: Tier 2, available when the category&apos;s gate opens on the published roadmap. Both approvals are reusable with every commissioner who calls off; the local body deploys and does not re-assure. The step-by-step working detail sits on <a href="DTx OM - Supplier Onboarding Detail.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">its own page</a>.</p>
+
+  <div class="section">
+    <div class="section-eyebrow">Why this exists</div>
+    <h2 class="section-h">Manual onboarding will not scale.</h2>
+    <p class="section-intro">The process that admitted the first suppliers was hands-on: staged gates, a dozen reviewing functions, manual witness testing. That works for a handful of suppliers and fails for an open framework that reopens roughly every six months. Entry has to be published, largely automated and quick, because holding a supplier in a queue on a public framework is a legal risk, not a control.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-eyebrow">The two-tier assurance model</div>
+    <h2 class="section-h">Companies are approved once; each test category is approved separately.</h2>
+    <p class="section-intro">Everything a supplier has to show sits in one of two tiers. Tier 1 covers the company and is passed once. Tier 2 covers each test category and is passed at that category&apos;s gate. Keeping them separate means companies are never re-assured when a new test comes on, and a company-level pass is never mistaken for clinical readiness on a given test.</p>
+
+    <div class="tierhead"><span class="tierbadge">Tier 1 &middot; Framework entry</span><h3 style="font-size:16px;font-weight:800;color:var(--nhs-dark);margin:0;">Company-level assurance, passed once.</h3></div>
+    <p class="section-intro" style="margin-bottom:10px;">At the first gate, a supplier shows who it is, that it is sound, and that it can operate safely, under six headings.</p>
+    <div class="tgrid">
+      <div class="tcard"><h4>Corporate structure</h4><p>Legal entity, ownership, and conflicts declared.</p></div>
+      <div class="tcard"><h4>Financial standing</h4><p>Solvency and insurance. Business continuity and viability, with exit arrangements.</p></div>
+      <div class="tcard"><h4>Technical and operational capability</h4><p>Service management, incident routes, service desk registration.</p></div>
+      <div class="tcard"><h4>Cyber security</h4><p>Security management and a working penetration testing regime.</p></div>
+      <div class="tcard"><h4>Information governance</h4><p>Toolkit compliance, lawful basis, DPIA readiness.</p></div>
+      <div class="tcard"><h4>Clinical safety governance</h4><p>A clinical safety officer in post, a compliant risk management process, incident reporting and regulator notification routes.</p><span class="split">Governance sits here. Clinical evidence for any test sits in Tier 2.</span></div>
+    </div>
+    <div class="tierfoot"><strong>Passed once at framework entry</strong>, confirmed on a light annual cycle, revisited only when something material changes. <strong>What it gives:</strong> admission to the framework and a place on the register. It does not by itself allow any test to be sold.</div>
+
+    <div class="tierhead" style="margin-top:26px;"><span class="tierbadge t2">Tier 2 &middot; Test approval</span><h3 style="font-size:16px;font-weight:800;color:var(--nhs-dark);margin:0;">Test and capability assurance, per category at its gate.</h3></div>
+    <p class="section-intro" style="margin-bottom:10px;">Each test category carries its own assurance criteria, available only when that category&apos;s gate opens on the published roadmap. Different tests bring different bars.</p>
+    <div class="tgrid two">
+      <div class="tcard t2"><h4>Clinical evidence</h4><p>Capillary self-sampling shown to be non-inferior to the venous draw for the analyte, judged by a clinician panel convened for the gate.</p></div>
+      <div class="tcard t2"><h4>Laboratory accreditation</h4><p>Accreditation that names the test, the method and the site.</p></div>
+      <div class="tcard t2"><h4>Kit conformity</h4><p>The assembled device regulated and registered as the diagnostic it is.</p></div>
+      <div class="tcard t2"><h4>Platform integration</h4><p>API and journey integration proven against published, versioned specifications.</p></div>
+    </div>
+    <div class="tierfoot"><strong>Granted per category</strong>, while that category&apos;s gate is open. A supplier can hold approvals for as many categories as it can evidence. <strong>What it gives:</strong> the right to sell that category through the framework. The register shows which suppliers are approved for which categories.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-eyebrow">The gates</div>
+    <h2 class="section-h">Test categories open at gates.</h2>
+    <p class="section-intro">Which test categories exist, and when each gate opens (roughly every six months), is decided by the published roadmap. However ready a supplier is, a category off the roadmap cannot be accredited for. When a gate opens, any supplier with Tier 1 approval can apply for one category or several, and a supplier that is not ready applies at a later gate instead; Tier 1 approval does not expire with the gate. Whether a category opens turns on three things: demand strategy, the platform&apos;s own readiness to integrate the test and its pathway, and whether enough of the supply market can serve it. A category only one laboratory can serve does not open. It stays closed until competition can exist.</p>
+    <div class="gateflow">
+      <div class="gatecard"><div class="gatecard-step">Step 1</div><div class="gatecard-title">Roadmap publishes</div><div class="gatecard-body">Categories and gate dates land far enough ahead for a laboratory to book and win the accreditation it needs.</div></div>
+      <div class="gatecard"><div class="gatecard-step">Step 2</div><div class="gatecard-title">Gate opens</div><div class="gatecard-body">The category joins the framework&apos;s catalogue. Suppliers with Tier 1 approval can now apply.</div></div>
+      <div class="gatecard"><div class="gatecard-step">Step 3</div><div class="gatecard-title">Suppliers accredit</div><div class="gatecard-body">Per-category evidence goes in. The clinician panel judges the clinical bar; automated conformance takes the technical one.</div></div>
+      <div class="gatecard"><div class="gatecard-step">Step 4</div><div class="gatecard-title">Register updates</div><div class="gatecard-body">The accredited register shows who can sell what. About three suppliers per test is the working floor.</div></div>
+      <div class="gatecard"><div class="gatecard-step">Step 5</div><div class="gatecard-title">Commissioners call off</div><div class="gatecard-body">Local call-offs run against the register, at or below the national ceiling. More approved suppliers in a category means more price tension.</div></div>
+    </div>
+    <div class="aqp-note"><strong>The roadmap also sets volume and price.</strong> What volume can flow depends on which categories are open, and how hard price gets pushed beneath the national ceiling depends on how many suppliers are approved for each category. The mechanism lives on the <a href="DTx OM - Prioritisation Framework.html">Prioritisation Framework page</a>.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-eyebrow">The roadmap</div>
+    <h2 class="section-h">The roadmap is not yet agreed.</h2>
+    <p class="section-intro">The published roadmap lists the test categories and their gate dates. It is the single document a supplier reads to decide whether to invest, what to accredit for, and who to partner with; a consortium cannot form around a pipeline it cannot see. The <a href="DTx OM - Prioritisation Framework.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">Prioritisation Framework</a> sets out how categories are chosen and sequenced.</p>
+    <div class="roadcard"><h4>Where it stands <span class="openq" style="margin-left:6px;">open &#183; action</span></h4>
+      <p><strong>The mechanism exists; the roadmap does not yet.</strong> Categories and gate dates have not been agreed. Until they are, suppliers cannot plan accreditation, consortium formation cannot start in earnest, and the volume and pricing engines described above have nothing to run on.</p>
+      <p>Agreeing the first published roadmap is an open action with the programme. Nothing on this page invents its contents.</p>
+    </div>
+  </div>
+
+
+  <div class="section">
+    <div class="section-eyebrow">Ways onto the framework</div>
+    <h2 class="section-h">One lot, three ways to deliver it.</h2>
+    <p class="section-intro">What the framework buys is the whole journey, request to result at home, as one end-to-end lot, agreed in principle and carrying the working name of home self-sampling as a service. Nobody has to own every capability. Somebody has to be accountable for all of it.</p>
+    <div class="routes">
+      <div class="route r-a">
+        <div class="route-label">The prime</div>
+        <div class="route-title">Offers the full journey and answers for all of it.</div>
+        <div class="route-body">Carries responsibility for every part of the journey, including the parts it subcontracts. The market already sells the journey end to end, so the framework buys it end to end, with a minimum set of components in the box.</div>
+      </div>
+      <div class="route r-b">
+        <div class="route-label">The consortium</div>
+        <div class="route-title">Specialists behind a nominated prime.</div>
+        <div class="route-body">The route in for the laboratory, the logistics specialist and the niche innovator that cannot span the journey alone. Partnering is actively encouraged. The single-accountability line only holds if one member is the nominated prime.</div>
+      </div>
+      <div class="route r-c">
+        <div class="route-label">The NHS-led bid</div>
+        <div class="route-title">Allowed on the same terms.</div>
+        <div class="route-body">An NHS organisation, pathology networks included, can bid alone or in partnership on the same terms as anyone else, arranging its own joined-up service to do it.</div>
+      </div>
+    </div>
+    <div class="aqp-note"><strong>Any qualified provider.</strong> No hard cap on numbers and no ambition to ration entry. The working floor is about three accredited suppliers per test before a category is worth opening, and the practical constraint is how few laboratories currently hold accreditation that names capillary collection. Fitness is assessed, and entry is never rationed.</div>
+    <div class="offfw"><strong>Insourcers are supported outside the framework.</strong> An NHS organisation that stands up its own home sampling instead of buying it is a success for the programme rather than a competitor to it. The support is deliberately not a lot: an NHS-controlled community of practice and concierge that helps a provider stand itself up and, in time, sell to its neighbours. The framework is for buying; the concierge helps organisations become providers.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-eyebrow">If capability lots are chosen</div>
+    <h2 class="section-h">Onboarding under the alternative.</h2>
+    <p class="section-intro">The lotting choice is open. If capability lots are chosen instead of one end-to-end lot, Tier 1 does not change: a company is approved once, whatever it does. Tier 2 changes shape completely. Each capability would need its own approval pack, because the evidence that matters is different for each, and a logistics provider and a pathology laboratory would face very different requirements. Specialists would apply straight into their own lot with no prime needed, and pathology networks would get a direct route in.</p>
+    <div class="tgrid" style="grid-template-columns:repeat(4,1fr);">
+      <div class="tcard t2"><h4>Logistics provider</h4><p>Getting kits out and samples back: postal and courier performance, kit integrity in transit, tracking and turnaround evidence. No clinical bar of its own.</p></div>
+      <div class="tcard t2"><h4>Kit manufacturer</h4><p>The device itself: conformity and registration as the diagnostic it is, the kit quality standard, manufacture and packaging controls.</p></div>
+      <div class="tcard t2"><h4>Pathology laboratory</h4><p>The analysis: accreditation naming the test, the method and the site, sample handling, and the clinical bar for each analyte.</p></div>
+      <div class="tcard t2"><h4>Digital service</h4><p>The journey: API and journey conformance against versioned specifications, the pathway&apos;s data flows, service management.</p></div>
+    </div>
+    <div class="roadcard" style="border-left-color:#9a5b00;margin-top:12px;"><h4>Not yet designed <span class="openq" style="margin-left:6px;">open</span></h4>
+      <p>None of the four packs exists; the sketches above only show where the differences would fall. Two questions sit over all of them: who assembles the parts into a service a commissioner can buy, and who answers for the whole when one part fails. Both would need answers before the alternative could be chosen. The full comparison is on the <a href="DTx OM - Lotting Choice.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">Lotting Choice page</a>.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-eyebrow">Not yet tested with the supplier market</div>
+    <h2 class="section-h">The questions the suppliers get asked.</h2>
+    <p class="section-intro">The mechanics on this page are the programme&apos;s design. The supplier market has not yet been asked whether it works for them. These questions go to the next engagement round, and what comes back changes this page.</p>
+    <div class="supqpanel"><h4>The questions</h4>
+      <ul>
+        <li><b>Would you bid, and in what shape?</b> Alone, as a prime with subcontractors, in a consortium, or into a capability lot if that structure were chosen?</li>
+        <li><b>What would keep you out?</b> The requirement, the levy, the assurance burden, the timeline, or something we have not seen?</li>
+        <li><b>Does the levy work?</b> 1 to 2 percent of throughput, on sales only. Does it change your pricing or your appetite?</li>
+        <li><b>Can you meet the bar, and how long would it take?</b> Laboratory accreditation naming capillary collection is scarce. What lead time do you need to get it?</li>
+        <li><b>Where should assurance automate?</b> Which parts of the two tiers would human review slow down without adding anything?</li>
+        <li><b>How far ahead must the roadmap show?</b> How much notice of categories and gate dates do you need to invest, accredit or form a consortium?</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-eyebrow">Where this stands</div>
+    <h2 class="section-h">Agreed in principle, open in detail.</h2>
+    <p class="section-intro">The shape below is agreed in principle from the sourcing strategy work and is firm enough to build to. None of it is settled enough to tender on, and the detail underneath it is live work.</p>
+    <div class="answered">
+      <span class="achip">One end-to-end lot</span>
+      <span class="achip">Partnering and consortia allowed</span>
+      <span class="achip">NHS-led bids not precluded</span>
+      <span class="achip">Run by a framework provider, in-house parked as the safety cord</span>
+      <span class="achip">Insourcers supported off-framework</span>
+      <span class="achip">Tests accredited, not use cases</span>
+      <span class="achip">AQP with a soft floor of about three per test</span>
+      <span class="achip">Accreditation folded into the framework paperwork as schedules</span>
+    </div>
+    <div style="margin-top:16px;">
+      <p class="section-intro" style="margin-top:10px;">Six items are open, from how much of the assurance automates to the roadmap itself. They sit on the detail page with the applicant journey, the requirement split and the design rules.</p>
+    <a href="DTx OM - Supplier Onboarding Detail.html" style="display:inline-block;background:var(--nhs-dark);color:#fff;font-size:11.5px;font-weight:800;padding:8px 18px;border-radius:999px;text-decoration:none;margin-top:2px;">Open the working detail &rarr;</a>
+  </div>
+
+  <div style="margin:20px 0 0;padding:14px 18px;background:#FBEAF2;border:1px solid #E8D2DC;border-radius:8px;font-size:12.5px;color:#4C6272;line-height:1.6;">
+      <strong>Interim model note.</strong> Until the framework is live, removal from the approved list is the only enforcement lever held, with no call-off to terminate. The compelled-removal protocol still needs endorsement before it can be relied on. <a href="DTx OM - Status.html" style="color:#005EB8;font-weight:700;text-decoration:none;">See on Status &rarr;</a>
+    </div>
+  </div>
+
+  <div class="crosslinks">
+    <div class="crosslinks-label">Where the framework connects in the model</div>
+    <div class="crosslinks-grid">
+      <a class="crosslink" href="DTx OM - Prioritisation Framework.html">Prioritisation Framework &middot; how the roadmap is set &rarr;</a>
+      <a class="crosslink" href="DTx OM - Persona Joe.html">Joe (HomeTest supplier persona) &rarr;</a>
+      <a class="crosslink" href="DTx OM - Anatomical.html">Anatomical &middot; foundation layer &rarr;</a>
+      <a class="crosslink" href="DTx OM - Ecosystem.html">Ecosystem &middot; regulated bodies &rarr;</a>
+      <a class="crosslink" href="DTx OM - HomeTest Teamwork.html#cap-3">HomeTest Teamwork &middot; Cap-3 IG &rarr;</a>
+      <a class="crosslink" href="DTx OM - HomeTest Teamwork.html#cap-4">HomeTest Teamwork &middot; Cap-4 Commercial &rarr;</a>
+      <a class="crosslink" href="DTx OM - HomeTest ASSURE v4.html">ASSURE stage &rarr;</a>
+      <a class="crosslink" href="DTx OM - Status.html#unresolved">Status &middot; in-flight items &rarr;</a>
+    </div>
+  </div>
+
+  <div class="foot">
+    Supplier Onboarding Framework &middot; Tier 1 once per supplier &middot; Tier 2 per test category &middot; gates on a published roadmap.
+  </div>
+
+</div>
+</body>
+</html>

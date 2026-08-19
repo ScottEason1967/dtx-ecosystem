@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Supplier Onboarding: The Detail</title>
+<style>
+  :root{--nhs-dark:#003087;--nhs-blue:#005EB8;--nhs-green:#006747;--nhs-pink:#AE2573;--amber:#FFB91D;--amber-deep:#C9A227;--warm-cream:#FFF9EC;--accent:#1B3A6B;--text:#212B32;--text-sec:#4C6272;--text-muted:#7E8B97;--border-lt:#ebeef1;--bg:#f8fafc;--card:#fff;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,var(--nhs-blue) 0%,var(--nhs-dark) 100%);background-attachment:fixed;color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100vh;}
+  .topnav{background:#fff;border-bottom:1px solid var(--border-lt);padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;box-shadow:0 2px 14px rgba(0,48,135,0.18);}
+  .nav-back{font-size:13px;font-weight:700;color:var(--nhs-dark);text-decoration:none;display:inline-flex;align-items:center;gap:6px;}
+  .nav-back:hover{color:var(--nhs-blue);}
+  .nav-siblings{display:flex;gap:4px;flex-wrap:wrap;}
+  .nav-siblings a{font-size:12.5px;font-weight:600;color:var(--text-sec);text-decoration:none;padding:7px 14px;border-radius:6px;letter-spacing:0.2px;}
+  .nav-siblings a:hover{background:#f0f4f8;color:var(--text);}
+  .nav-siblings a.active{background:var(--nhs-blue);color:#fff;}
+  .nav-siblings .nav-sep{width:1px;height:18px;background:var(--border-lt);margin:0 6px;}
+  .page{max-width:1180px;margin:30px auto 50px;padding:50px 40px 80px;background:#fff;border-radius:18px;box-shadow:0 14px 40px rgba(0,48,135,0.20);}
+  .amber-rule{width:72px;height:4px;background:var(--amber);border-radius:2px;margin-bottom:18px;}
+  .h-eyebrow{font-size:11px;font-weight:700;letter-spacing:2.2px;color:var(--text-sec);text-transform:uppercase;margin-bottom:14px;}
+  .h-title{font-size:54px;font-weight:800;color:var(--nhs-dark);letter-spacing:-1.2px;line-height:1.05;margin-bottom:16px;}
+  .h-sub{font-size:17px;color:var(--text-sec);line-height:1.65;max-width:840px;margin-bottom:18px;}
+
+  /* North star banner */
+  .northstar{margin:34px 0 12px;background:linear-gradient(135deg,var(--nhs-dark),var(--nhs-blue));border:2px solid var(--amber);border-radius:14px;padding:28px 32px;color:#fff;box-shadow:0 12px 32px rgba(0,48,135,0.20);}
+  .northstar-eyebrow{font-size:11px;font-weight:800;letter-spacing:1.8px;color:#FFD66B;text-transform:uppercase;margin-bottom:10px;}
+  .northstar-title{font-size:36px;font-weight:900;color:#fff;letter-spacing:-0.7px;line-height:1.1;margin-bottom:14px;}
+  .northstar-body{font-size:15.5px;line-height:1.65;color:rgba(255,255,255,0.94);max-width:880px;}
+
+  /* Section headings */
+  .section{margin-top:50px;}
+  .section-eyebrow{font-size:11px;font-weight:800;letter-spacing:2px;color:var(--nhs-blue);text-transform:uppercase;margin-bottom:8px;}
+  .section-h{font-size:28px;font-weight:900;color:var(--nhs-dark);letter-spacing:-0.6px;line-height:1.15;margin-bottom:12px;}
+  .section-intro{font-size:14.5px;color:var(--text-sec);line-height:1.7;max-width:880px;margin-bottom:26px;}
+
+  /* Principles grid */
+  .principles{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;}
+  .principle{background:#fff;border:1px solid var(--border-lt);border-left:5px solid var(--nhs-blue);border-radius:10px;padding:18px 20px;}
+  .principle-num{font-size:10.5px;font-weight:800;letter-spacing:1.8px;color:var(--nhs-blue);text-transform:uppercase;margin-bottom:6px;}
+  .principle-title{font-size:16px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.2px;line-height:1.25;margin-bottom:8px;}
+  .principle-body{font-size:13px;color:var(--text-sec);line-height:1.6;}
+
+  /* Criteria table */
+  .crit-table{border:1px solid var(--border-lt);border-radius:12px;overflow:hidden;}
+  .crit-header{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;background:var(--nhs-dark);color:#fff;}
+  .crit-header > div{padding:14px 18px;font-size:11px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;}
+  .crit-row{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;border-top:1px solid var(--border-lt);}
+  .crit-row > div{padding:18px 18px;font-size:13px;line-height:1.55;color:var(--text);}
+  .crit-row .crit-dim{font-weight:800;color:var(--nhs-dark);font-size:14px;background:#F4F8FC;border-right:1px solid var(--border-lt);}
+  .crit-row .crit-core{border-right:1px solid var(--border-lt);background:#fff;}
+  .crit-row .crit-scaled{border-right:1px solid var(--border-lt);background:#FAFCFE;}
+  .crit-row .crit-asp{background:#fff;color:var(--text-sec);font-style:italic;}
+
+  /* Routes */
+  .routes{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .route{background:#fff;border:1px solid var(--border-lt);border-top:4px solid;border-radius:10px;padding:20px 22px;}
+  .route.r-a{border-top-color:var(--nhs-dark);}
+  .route.r-b{border-top-color:var(--amber-deep);}
+  .route.r-c{border-top-color:var(--nhs-green);}
+  .route-label{font-size:10.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;margin-bottom:8px;}
+  .route.r-a .route-label{color:var(--nhs-dark);}
+  .route.r-b .route-label{color:var(--amber-deep);}
+  .route.r-c .route-label{color:var(--nhs-green);}
+  .route-title{font-size:18px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.2px;margin-bottom:10px;}
+  .route-body{font-size:13px;color:var(--text-sec);line-height:1.6;}
+
+  /* Apply journey */
+  .apply-journey{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;}
+  .apply-stage{background:#fff;border:1px solid var(--border-lt);border-radius:10px;padding:16px 16px;position:relative;}
+  .apply-stage::before{content:'';position:absolute;top:-8px;left:16px;width:24px;height:24px;border-radius:50%;background:var(--nhs-blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;}
+  .apply-num{position:absolute;top:-8px;left:16px;width:24px;height:24px;border-radius:50%;background:var(--nhs-blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;z-index:1;}
+  .apply-stage::before{display:none;}
+  .apply-title{font-size:13.5px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.2px;margin:14px 0 8px;line-height:1.25;}
+  .apply-body{font-size:11.5px;color:var(--text-sec);line-height:1.55;}
+  .apply-stage.nhse-touch{border:2px solid var(--amber);}
+  .apply-tag{display:inline-block;font-size:9.5px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--amber-deep);background:var(--warm-cream);padding:3px 8px;border-radius:4px;margin-top:8px;}
+
+  /* Open decisions */
+  .decisions{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;}
+  .decision{background:#FFF9EC;border:1px solid #F0DCA0;border-left:5px solid var(--amber-deep);border-radius:10px;padding:18px 20px;}
+  .decision-num{font-size:10.5px;font-weight:800;letter-spacing:1.6px;color:var(--amber-deep);text-transform:uppercase;margin-bottom:8px;}
+  .decision-title{font-size:15px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.2px;line-height:1.25;margin-bottom:8px;}
+  .decision-body{font-size:12.5px;color:var(--text-sec);line-height:1.6;}
+  .decision-assumption{font-size:12px;color:var(--text);background:rgba(255,255,255,0.6);border-radius:6px;padding:8px 10px;margin-top:8px;border-left:3px solid var(--nhs-blue);}
+  .decision-assumption strong{color:var(--nhs-blue);font-weight:800;}
+
+  /* Cross-references */
+  .crosslinks{margin-top:48px;background:#F4F8FC;border:1px solid #D5E8F0;border-radius:12px;padding:24px 28px;}
+  .crosslinks-label{font-size:11px;font-weight:800;letter-spacing:1.8px;color:var(--nhs-blue);text-transform:uppercase;margin-bottom:14px;}
+  .crosslinks-grid{display:flex;flex-wrap:wrap;gap:10px;}
+  .crosslink{background:#fff;border:1px solid #B5D4E5;color:var(--nhs-dark);font-size:12.5px;font-weight:700;text-decoration:none;padding:9px 16px;border-radius:999px;}
+  .crosslink:hover{background:var(--nhs-blue);color:#fff;border-color:var(--nhs-blue);}
+
+  .foot{margin-top:50px;padding-top:24px;border-top:1px solid var(--border-lt);text-align:center;font-size:11.5px;color:var(--text-muted);line-height:1.6;}
+
+  @media(max-width:980px){.crit-header,.crit-row{grid-template-columns:1fr;}.crit-header > div, .crit-row > div{border-right:none;border-bottom:1px solid var(--border-lt);}.routes{grid-template-columns:1fr;}}
+  @media(max-width:760px){.h-title{font-size:36px;}.northstar-title{font-size:26px;}.section-h{font-size:22px;}.page{padding:36px 22px 60px;}}
+
+.lotsel{display:flex;align-items:center;gap:10px;margin:20px 0 6px;flex-wrap:wrap;}
+.lotsel .lbl{font-size:10px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:#7E8B97;}
+.lotbtn{font-family:inherit;font-size:12px;font-weight:700;padding:8px 16px;border-radius:999px;border:1.5px solid #e3e9ef;background:#fff;color:#4C6272;cursor:pointer;}
+.lotbtn.a.active{background:#003087;border-color:#003087;color:#fff;}
+.lotbtn.b.active{background:#006747;border-color:#006747;color:#fff;}
+.lotnote{font-size:11.5px;font-weight:700;color:#005EB8;text-decoration:none;}
+
+.bpanel{background:#EAF4EF;border:1px solid #BFE0CD;border-left:5px solid #006747;border-radius:12px;padding:16px 20px;margin:14px 0 4px;}
+.bpanel h4{color:#006747;font-size:13.5px;font-weight:800;margin-bottom:6px;}
+.bpanel p{font-size:12.5px;color:#4C6272;line-height:1.55;margin:0 0 6px;}
+.openq{display:inline-block;font-size:9.5px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#9a5b00;background:#FFF7E8;border:1px solid #F0D79A;border-radius:999px;padding:2px 8px;vertical-align:1px;}
+
+.tierhead{display:flex;align-items:center;gap:12px;margin:2px 0 10px;}
+.tierbadge{display:inline-block;font-size:11px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;padding:5px 12px;border-radius:5px;color:#fff;background:var(--nhs-dark);}
+.tierbadge.t2{background:var(--nhs-green);}
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px;}
+.tgrid.two{grid-template-columns:repeat(2,1fr);}
+.tcard{background:#fff;border:1px solid var(--border-lt);border-top:4px solid var(--nhs-dark);border-radius:12px;padding:15px 16px;box-shadow:0 4px 14px rgba(0,48,135,.05);}
+.tcard.t2{border-top-color:var(--nhs-green);}
+.tcard h4{font-size:13.5px;font-weight:800;color:var(--nhs-dark);margin-bottom:6px;}
+.tcard p{font-size:12px;color:var(--text-sec);line-height:1.5;margin:0 0 5px;}
+.tcard .split{font-size:10.5px;font-weight:700;color:#9a5b00;background:#FFF7E8;border:1px solid #F0D79A;border-radius:7px;padding:4px 8px;display:inline-block;margin-top:3px;line-height:1.35;}
+.tierfoot{margin-top:12px;background:#F4F8FC;border:1px solid #D5E8F0;border-radius:10px;padding:12px 16px;font-size:12.5px;color:var(--text-sec);line-height:1.55;}
+.tierfoot strong{color:var(--nhs-dark);}
+.roadcard{background:#fff;border:1px solid var(--border-lt);border-left:5px solid var(--nhs-blue);border-radius:12px;padding:18px 22px;margin-top:14px;}
+.roadcard h4{font-size:14px;font-weight:800;color:var(--nhs-dark);margin-bottom:7px;}
+.roadcard p{font-size:12.5px;color:var(--text-sec);line-height:1.55;margin:0 0 7px;}
+.roadcard p strong{color:var(--text);}
+.supqpanel{background:#fff;border:1px solid var(--border-lt);border-left:5px solid #388C5D;border-radius:12px;padding:18px 22px;margin-top:14px;}
+.supqpanel h4{font-size:14px;font-weight:800;color:var(--nhs-dark);margin-bottom:8px;}
+.supqpanel ul{list-style:none;margin:0;padding:0;}
+.supqpanel li{font-size:12.5px;color:var(--text-sec);line-height:1.5;padding-left:18px;position:relative;margin-top:7px;}
+.supqpanel li:before{content:'';position:absolute;left:2px;top:7px;width:7px;height:7px;border-radius:2px;background:#388C5D;}
+.supqpanel li b{color:var(--text);}
+</style>
+<style>
+  .ecosystem-nav {
+    background: #fff;
+    border-bottom: 1px solid #ebeef1;
+    padding: 12px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 48px;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  }
+  .ecosystem-nav a {
+    font-size: 13px; font-weight: 700; color: #003087;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .ecosystem-nav a:hover { color: #005EB8; }
+  .ecosystem-nav .nav-context {
+    font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
+    color: #7E8B97; text-transform: uppercase;
+  }
+  .ecosystem-nav .nav-product {
+    font-size: 10.5px; font-weight: 800; letter-spacing: 0.8px;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 4px; color: #fff;
+  }
+  .ecosystem-nav .nav-product.dtx { background: #003087; }
+  .ecosystem-nav .nav-product.hometest { background: #003087; }
+  .ecosystem-nav .nav-product.healthstore { background: #00A9CE; }
+  .ecosystem-nav .nav-product.healthsync { background: #00A499; }
+</style>
+<style>
+  /* Two-layer rebuild additions */
+  .layers{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px;}
+  .layer{background:#fff;border:1px solid var(--border-lt);border-radius:12px;padding:22px 24px;box-shadow:0 4px 14px rgba(0,48,135,0.06);}
+  .layer.l1{border-top:5px solid var(--nhs-dark);}
+  .layer.l2{border-top:5px solid var(--nhs-green);}
+  .layer-badge{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;padding:4px 10px;border-radius:4px;margin-bottom:10px;color:#fff;}
+  .layer.l1 .layer-badge{background:var(--nhs-dark);}
+  .layer.l2 .layer-badge{background:var(--nhs-green);}
+  .layer-title{font-size:19px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.3px;margin-bottom:10px;}
+  .layer-body{font-size:13.5px;color:var(--text-sec);line-height:1.65;}
+  .layer-body p{margin-bottom:9px;}
+  .layer-body strong{color:var(--text);}
+  .layer-holds{font-size:12px;color:var(--text);background:#F4F8FC;border-left:3px solid var(--nhs-blue);border-radius:6px;padding:9px 12px;margin-top:10px;}
+  .gateflow{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-top:8px;}
+  .gatecard{background:#fff;border:1px solid var(--border-lt);border-radius:10px;padding:14px 16px;border-top:4px solid var(--amber-deep);}
+  .gatecard-step{font-size:10px;font-weight:800;letter-spacing:1.4px;color:var(--amber-deep);text-transform:uppercase;margin-bottom:6px;}
+  .gatecard-title{font-size:13.5px;font-weight:800;color:var(--nhs-dark);line-height:1.3;margin-bottom:6px;}
+  .gatecard-body{font-size:11.5px;color:var(--text-sec);line-height:1.5;}
+  .answered{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 6px;}
+  .achip{font-size:12px;font-weight:700;color:#0B5D34;background:#E7F5EC;border:1px solid #BFE3CD;border-radius:999px;padding:7px 14px;}
+  .aqp-note{background:#F4F8FC;border:1px solid #D5E8F0;border-left:5px solid var(--nhs-blue);border-radius:10px;padding:16px 20px;margin-top:14px;font-size:13px;color:var(--text-sec);line-height:1.65;}
+  .aqp-note strong{color:var(--nhs-dark);}
+  .aqp-note a{color:var(--nhs-blue);font-weight:700;text-decoration:none;}
+  .offfw{background:#FFF9EC;border:1px solid #F0DCA0;border-left:5px solid var(--amber-deep);border-radius:10px;padding:16px 20px;margin-top:14px;font-size:13px;color:var(--text-sec);line-height:1.65;}
+  .offfw strong{color:var(--nhs-dark);}
+</style>
+</head>
+<body>
+<script>
+(function(){
+  if (location.protocol !== 'file:' && sessionStorage.getItem('dtx-auth') !== 'ok') {
+    var next = encodeURIComponent(location.pathname.split('/').pop() || 'DTx OM - Index.html');
+    location.href = 'index.html?next=' + next;
+  }
+})();
+</script>
+
+<div class="ecosystem-nav">
+  <a href="../index.html">← DTx Ecosystem</a>
+  <span class="nav-context">Supplier Onboarding</span>
+  <span class="nav-product dtx">DTx</span>
+</div>
+<nav class="topnav">
+  <a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+  <div class="nav-siblings">
+    <a href="DTx OM - Why.html">Why</a>
+    <a href="DTx OM - Anatomical.html">What</a>
+    <a href="DTx OM - Lifecycle.html">When</a>
+    <a href="DTx OM - HomeTest Operational.html">How</a>
+    <a href="DTx OM - Governance.html">Who</a>
+    <a href="DTx OM - Hearts and Minds.html">Hearts and Minds</a>
+    <a href="DTx OM - HomeTest Teamwork.html">HomeTest teamwork</a>
+    <span class="nav-sep"></span>
+    <a href="DTx OM - Status.html">Status</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <div class="amber-rule"></div>
+  <div class="h-eyebrow">Supplier onboarding &#183; the working detail</div>
+  <a class="backlink" href="DTx OM - Supplier Onboarding Framework DRAFT.html" style="display:inline-block;margin-bottom:10px;font-size:12.5px;font-weight:700;color:var(--nhs-blue);text-decoration:none;">&larr; Supplier Onboarding Framework</a><h1 class="h-title">Supplier onboarding: the detail.</h1>
+
+  <div style="margin:20px 0;padding:14px 18px;background:#FFF3CD;border:1px solid #FFE69C;border-radius:8px;font-size:12.5px;color:#5C4400;line-height:1.6;">
+    <strong style="color:#5C4400;letter-spacing:0.3px;">Status.</strong> Rebuilt to the sourcing strategy position agreed in principle: one end-to-end lot as the working position (being re-validated), a two-tier assurance model, and capability gates opening on a published roadmap. Decided in principle, not settled design. The open items are marked at the foot of the page, and the detailed assurance stages still need iteration with the programme team across IG, Clinical Safety, Commercial and Platform.
+  </div>
+
+  <div style="margin:0 0 6px;padding:12px 18px;background:#F4F8FC;border:1px solid #D5E8F0;border-radius:8px;font-size:12.5px;color:#4C6272;line-height:1.6;">
+    <strong style="color:#003087;">Scope.</strong> This page is HomeTest only: onboarding for the home self-sampling framework.
+  </div>
+
+  <p class="h-sub">The applicant journey step by step, where each requirement sits across the two tiers, the design rules the framework holds itself to, and the open items. The overview lives on the <a href="DTx OM - Supplier Onboarding Framework DRAFT.html" style="color:var(--nhs-blue);font-weight:700;text-decoration:none;">main page</a>.</p>
+
+  <div class="section">
+    <div class="section-eyebrow">The journey, gate by gate</div>
+    <h2 class="section-h">The process is published, automated where it can be, with human review where judgement is needed.</h2>
+    <p class="section-intro">Before anyone engages, a supplier can read everything, self-assess and decide whether to proceed. The framework&apos;s assurance runs in the amber-bordered stages.</p>
+    <div class="apply-journey">
+      <div class="apply-stage"><span class="apply-num">1</span>
+        <div class="apply-title">Discovery</div>
+        <div class="apply-body">The criteria for both layers and the category roadmap are published. A supplier reads the bar and the timetable before spending anything.</div>
+      </div>
+      <div class="apply-stage"><span class="apply-num">2</span>
+        <div class="apply-title">Self-assessment</div>
+        <div class="apply-body">Structured self-assessment against the published pack, using the template artefacts. No engagement needed to reach a view.</div>
+      </div>
+      <div class="apply-stage"><span class="apply-num">3</span>
+        <div class="apply-title">Apply at a gate</div>
+        <div class="apply-body">An application is made against an open gate, declaring the categories sought and the evidence held.</div>
+      </div>
+      <div class="apply-stage nhse-touch"><span class="apply-num">4</span>
+        <div class="apply-title">Tier 1 approval</div>
+        <div class="apply-body">Tier 1 runs once: automated triage on completeness, human review where judgement is needed. Time-boxed, with a published turnaround.<span class="apply-tag">Framework entry</span></div>
+      </div>
+      <div class="apply-stage nhse-touch"><span class="apply-num">5</span>
+        <div class="apply-title">Tier 2 approval</div>
+        <div class="apply-body">Per-category evidence is judged at Tier 2. The clinician panel takes the clinical bar; automated conformance takes the technical one.<span> Under capability lots this would run against a lot-specific pack, not yet designed.</span><span class="apply-tag">Category gate</span></div>
+      </div>
+      <div class="apply-stage nhse-touch"><span class="apply-num">6</span>
+        <div class="apply-title">Integrate and witness</div>
+        <div class="apply-body">Platform integration against the versioned specifications, then a witnessed clinical journey where a human needs to watch. Go-live sign-off ends it.<span class="apply-tag">Go live</span></div>
+      </div>
+      <div class="apply-stage"><span class="apply-num">7</span>
+        <div class="apply-title">Later gates</div>
+        <div class="apply-body">Adding a category repeats Tier 2 only, at any open gate. Tier 1 approval is confirmed annually and never repeated. Exit runs to a defined offboarding process.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-eyebrow">Where each requirement sits</div>
+    <h2 class="section-h">Five dimensions, split across the two tiers.</h2>
+    <p class="section-intro">The dimensions have not changed. What has changed is where each one sits, so nothing is asked twice and nothing clinically decisive hides inside a company-level pass.</p>
+    <div class="crit-table">
+      <div class="crit-header">
+        <div>Dimension</div>
+        <div>Tier 1, once per supplier</div>
+        <div>Tier 2, per category</div>
+        <div>Local by design</div>
+      </div>
+      <div class="crit-row">
+        <div class="crit-dim">Commercial</div>
+        <div class="crit-core">Entity standing, solvency, insurance, ownership and conflicts, business continuity and exit arrangements.</div>
+        <div class="crit-scaled">Fulfilment and capacity evidence proportionate to the category&apos;s likely volume.</div>
+        <div class="crit-asp">Call-off terms and any locally agreed volume commitments.</div>
+      </div>
+      <div class="crit-row">
+        <div class="crit-dim">Clinical safety</div>
+        <div class="crit-core">A clinical safety officer, a compliant risk management process, incident reporting and regulator notification routes.</div>
+        <div class="crit-scaled">Non-inferiority evidence for the analyte. A safety case for the product version. The programme hazard log integrated per pathway.</div>
+        <div class="crit-asp">Deployment risk management signed in the local context, from a pre-fabricated pack.</div>
+      </div>
+      <div class="crit-row">
+        <div class="crit-dim">Laboratory and kit</div>
+        <div class="crit-core">Nothing sits here. Laboratory and kit assurance is always per category.</div>
+        <div class="crit-scaled">Accreditation naming the test, the method and the site. Conformity and registration of the assembled kit. The kit quality standard.</div>
+        <div class="crit-asp">Nothing. That is the point: a commissioner never re-checks a laboratory.</div>
+      </div>
+      <div class="crit-row">
+        <div class="crit-dim">Information governance</div>
+        <div class="crit-core">Toolkit compliance, security management, penetration testing regime, lawful basis, DPIA readiness.</div>
+        <div class="crit-scaled">The category pathway&apos;s data flows reflected in the conformance pack.</div>
+        <div class="crit-asp">Local DPIA adoption and data sharing accession, from templates that exist once.</div>
+      </div>
+      <div class="crit-row">
+        <div class="crit-dim">Technical and operational</div>
+        <div class="crit-core">Service management, incident routes, service desk registration.</div>
+        <div class="crit-scaled">API and journey conformance against versioned specifications, per initiation pattern, with performance evidence.</div>
+        <div class="crit-asp">Local configuration only.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-eyebrow">Seven design principles</div>
+    <h2 class="section-h">The rules the design follows.</h2>
+    <p class="section-intro">Each principle is load-bearing. The whole framework weakens if any one of them is dropped in the build.</p>
+    <div class="principles">
+      <div class="principle">
+        <div class="principle-num">Principle 01</div>
+        <div class="principle-title">Two tiers, kept separate.</div>
+        <div class="principle-body">Company assurance once per supplier. Test and capability assurance once per category. Keeping them separate is what stops re-assurance creeping in at either level.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">Principle 02</div>
+        <div class="principle-title">Criteria are published, not gated.</div>
+        <div class="principle-body">Criteria and roadmap live in the open. A supplier reads, self-assesses and decides before any engagement. Publication exposes the design to challenge, which improves it.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">Principle 03</div>
+        <div class="principle-title">Automate the routine checks.</div>
+        <div class="principle-body">Completeness, conformance and technical proof run without a human. People take the grey areas: clinical safety, information governance, the borderline calls. Where that line falls sets the cost and the queue.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">Principle 04</div>
+        <div class="principle-title">The roadmap is the fairness mechanism.</div>
+        <div class="principle-body">Gates and categories publish far enough ahead that any capable laboratory can get ready. A gate that opens without lead time is just a queue.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">Principle 05</div>
+        <div class="principle-title">Assess fitness rather than ration entry.</div>
+        <div class="principle-body">Any qualified provider means the answer to capacity pressure is automation and better process, not barriers. A queue is a legal risk.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">Principle 06</div>
+        <div class="principle-title">Every artefact exists once.</div>
+        <div class="principle-body">DPIA template, data sharing template, privacy wording, safety case starter, integration guide. One version of each, held centrally, inherited everywhere.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">Principle 07</div>
+        <div class="principle-title">Supplier experience is a design input.</div>
+        <div class="principle-body">The journey is designed from the supplier&apos;s side first. If a capable supplier cannot find the bar, cannot self-assess or cannot apply without a private conversation, the design has failed.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-eyebrow">The open items</div>
+    <h2 class="section-h">What is still open.</h2>
+    <p class="section-intro">Agreed in principle does not mean settled. These are the items still moving.</p>
+    <div class="decisions"><div class="decision">
+        <div class="decision-num">Open 01</div>
+        <div class="decision-title">The stages in detail, and how much automates.</div>
+        <div class="decision-body">The straw-man assurance process is being recirculated with a view on exactly what can run without a human. The dividing line between automated conformance and human judgement sets the cost, the queue and what the levy has to fund.</div>
+      </div>
+      <div class="decision">
+        <div class="decision-num">Open 02</div>
+        <div class="decision-title">One door or two.</div>
+        <div class="decision-body">Whether framework entry and category accreditation present to a supplier as one journey or two, and how the centre&apos;s assurance and the framework provider&apos;s process mesh without duplicating either.</div>
+      </div>
+      <div class="decision">
+        <div class="decision-num">Open 03</div>
+        <div class="decision-title">The test standard itself.</div>
+        <div class="decision-body">What the per-category bar actually cites: accreditation scope, the recognised standards, and a route for capable laboratories that do not yet hold them. Being defined with the clinical and laboratory community.</div>
+      </div>
+      <div class="decision">
+        <div class="decision-num">Open 04</div>
+        <div class="decision-title">Cadence and lead time.</div>
+        <div class="decision-body">Roughly six-monthly is the working rhythm. The exact reopening cadence, and how far ahead the roadmap must publish so accreditation booking times do not swallow the window, are still to be set.</div>
+      </div>
+      <div class="decision">
+        <div class="decision-num">Open 05</div>
+        <div class="decision-title">Live before fully plugged in.</div>
+        <div class="decision-body">Whether a supplier can start delivering ahead of full platform integration, and what that would do to the eligibility levers that make framework membership worth having.</div>
+      </div>
+      <div class="decision">
+        <div class="decision-num">Open 06</div>
+        <div class="decision-title">The roadmap itself.</div>
+        <div class="decision-body">The prioritisation mechanism is designed, but the first published roadmap of categories and gate dates has not been agreed. Suppliers and consortium builders plan against it; it is the gating open action for this page.</div>
+      </div>
+    </div>
+    </div></body>
+</html>

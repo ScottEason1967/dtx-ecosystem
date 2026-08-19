@@ -1,0 +1,137 @@
+<!DOCTYPE html><html lang=en-GB><head><meta charset=UTF-8><meta name=viewport content='width=device-width,initial-scale=1'><title>The Money Loop</title><style>
+:root{--nhs-dark:#003087;--nhs-blue:#005EB8;--nhs-green:#006747;--nhs-pink:#AE2573;--amber:#E8A400;--amber-deep:#C9A227;--warm:#FFF6E4;--red:#9B1D14;--text:#212B32;--sec:#4C6272;--muted:#7E8B97;--border:#e3e9ef;--card:#fff;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,var(--nhs-blue),var(--nhs-dark));background-attachment:fixed;color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;}
+.ecosystem-nav{background:#fff;border-bottom:1px solid var(--border);padding:12px 34px;display:flex;align-items:center;justify-content:space-between;gap:24px;position:sticky;top:0;z-index:50;}
+.ecosystem-nav a{font-size:13px;font-weight:700;color:var(--nhs-dark);text-decoration:none;}
+.ecosystem-nav .nav-context{font-size:11px;font-weight:800;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;}
+.ecosystem-nav .nav-product{font-size:10.5px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;padding:4px 10px;border-radius:4px;color:#fff;background:var(--nhs-dark);}
+.topnav{background:#fff;border-bottom:1px solid var(--border);padding:12px 34px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;box-shadow:0 2px 14px rgba(0,48,135,.14);}
+.topnav a{font-size:12.5px;font-weight:600;color:var(--sec);text-decoration:none;padding:6px 12px;border-radius:6px;} .topnav a.active{background:var(--nhs-blue);color:#fff;}
+.page{max-width:1180px;margin:26px auto 44px;padding:40px 40px 54px;background:#fff;border-radius:18px;box-shadow:0 14px 40px rgba(0,48,135,.20);}
+.amber-rule{width:70px;height:4px;background:var(--amber);border-radius:2px;margin-bottom:16px;}
+.eyebrow{font-size:11px;font-weight:800;letter-spacing:2.2px;color:var(--sec);text-transform:uppercase;margin-bottom:12px;}
+.h-title{font-size:44px;font-weight:800;color:var(--nhs-dark);letter-spacing:-1px;line-height:1.05;margin-bottom:14px;}
+.h-sub{font-size:15px;color:var(--sec);line-height:1.6;max-width:880px;}
+.backlink{display:inline-block;margin-bottom:12px;font-size:12.5px;font-weight:700;color:var(--nhs-blue);text-decoration:none;}
+.illus{margin:18px 0 6px;padding:11px 16px;background:#FFF3CD;border:1px solid #FFE69C;border-radius:8px;font-size:12.5px;color:#5C4400;line-height:1.5;}
+.stage{position:relative;width:1080px;max-width:100%;height:812px;margin:26px auto 6px;}
+.wires{position:absolute;inset:0;width:1080px;height:812px;overflow:visible;z-index:1;}
+.node{position:absolute;z-index:2;border-radius:14px;background:var(--card);border:1px solid var(--border);box-shadow:0 6px 18px rgba(0,48,135,.10);padding:13px 15px;}
+.node .ne{font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:3px;}
+.node .nt{font-size:16px;font-weight:800;color:var(--nhs-dark);letter-spacing:-.2px;line-height:1.15;}
+.node .ns{font-size:11.5px;color:var(--sec);line-height:1.4;margin-top:4px;}
+.node.acc-g{border-left:5px solid var(--nhs-green);} .node.acc-b{border-left:5px solid var(--nhs-dark);} .node.acc-a{border-left:5px solid var(--amber-deep);}
+.node.nhse{background:linear-gradient(135deg,var(--nhs-dark),var(--nhs-blue));border:2px solid var(--amber);color:#fff;text-align:center;}
+.node.nhse .ne{color:#FFD66B;} .node.nhse .nt{color:#fff;font-size:20px;} .node.nhse .ns{color:#dbe7f5;font-size:12px;}
+.node.lot2{background:var(--warm);border:2px solid var(--amber);box-shadow:0 8px 24px rgba(200,140,0,.18);}
+.node.lot2 .ne{color:#9a5b00;text-align:center;} .node.lot2 .fwh{font-size:22px;font-weight:900;color:var(--nhs-dark);text-align:center;letter-spacing:-.4px;margin:1px 0 2px;}
+.node.lot2 .fwsub{font-size:11.5px;font-weight:700;color:#9a5b00;text-align:center;margin-bottom:8px;}
+.node.lot2 .valbar{background:#fff;border:1px solid var(--amber-deep);border-radius:8px;padding:5px 8px;margin:0 0 8px;font-size:12px;font-weight:800;color:#9a5b00;text-align:center;}
+.node.lot2 .fx{font-size:11.5px;color:var(--text);line-height:1.35;margin-top:3px;padding-left:15px;position:relative;}
+.node.lot2 .fx:before{content:'';position:absolute;left:2px;top:6px;width:6px;height:6px;border-radius:50%;background:var(--amber);}
+.node.lot2 .fx i{color:var(--sec);font-style:italic;}
+.node.flag{background:#FFF6E6;border:1.5px dashed var(--amber);} .node.flag .ne{color:#9a5b00;} .node.flag .ns{color:var(--text);font-weight:600;}
+.node.diff{background:#F7EDF3;border:1px solid #E4C4D6;} .node.diff .ne{color:#7a1c50;} .node.diff .ns{color:var(--text);font-weight:600;}
+.node.mini{box-shadow:none;} .node.mini .ns{color:var(--sec);}
+.node .lg{display:flex;align-items:center;gap:8px;font-size:11.5px;font-weight:600;color:var(--text);margin-top:7px;} .node .lg b{display:inline-block;width:26px;height:0;border-top:3px solid;}
+.chips{display:flex;gap:9px;margin-top:8px;flex-wrap:wrap;}
+.chip{display:flex;flex-direction:column;align-items:center;width:50px;}
+.chip img{width:38px;height:38px;border-radius:50%;object-fit:cover;object-position:top center;border:2.5px solid var(--nhs-blue);background:#e9eff5;}
+.chip span{font-size:10px;font-weight:700;margin-top:3px;text-align:center;line-height:1;color:var(--text);}
+.nhse .chip img{border-color:#fff;} .nhse .chip span{color:#fff;} .acc-g .chip img{border-color:var(--nhs-green);} .acc-b .chip img{border-color:var(--nhs-dark);}
+.goto{display:inline-block;margin-top:8px;font-size:10.5px;font-weight:800;color:#fff;background:var(--nhs-blue);border-radius:999px;padding:5px 12px;text-decoration:none;letter-spacing:.3px;} .goto.am{background:var(--amber-deep);}
+.wlabel{position:absolute;z-index:3;transform:translate(-50%,-50%);background:#fff;border:1px solid var(--border);border-radius:999px;padding:5px 12px;font-size:11.5px;font-weight:700;white-space:nowrap;box-shadow:0 2px 6px rgba(0,48,135,.08);}
+.wlabel.dk{color:var(--nhs-dark);} .wlabel.gr{color:var(--nhs-green);border-color:#bfe0cd;background:#eef7f1;} .wlabel.am{color:#9a5b00;border-color:#f0d79a;background:#fff7e8;}
+.foot{margin-top:26px;text-align:center;font-size:12px;font-weight:600;color:var(--muted);} .foot b{color:var(--nhs-dark);}
+.se{font-size:11px;font-weight:800;letter-spacing:2px;color:var(--nhs-green);text-transform:uppercase;margin-bottom:8px;}
+.gaterow{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:6px;}
+.gate{background:#fff;border:1px solid var(--border);border-top:4px solid var(--nhs-blue);border-radius:12px;padding:15px 16px;box-shadow:0 4px 14px rgba(0,48,135,.06);}
+.gate.g-future{border-top-color:var(--muted);background:#fbfcfd;}
+.gate .gw{font-size:9.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--nhs-blue);}
+.gate.g-future .gw{color:var(--muted);}
+.gate .gd{font-size:14px;font-weight:800;color:var(--nhs-dark);margin:2px 0 10px;letter-spacing:-.2px;}
+.gate .glbl{font-size:9px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);margin:2px 0 5px;}
+.catchips{display:flex;flex-wrap:wrap;gap:5px;}
+.catchip{font-size:11px;font-weight:700;color:var(--nhs-dark);background:#eaf2fa;border:1px solid #cfe0f0;border-radius:999px;padding:3px 9px;}
+.gate .gnote{font-size:11px;color:var(--sec);line-height:1.4;margin-top:4px;}
+.reqpanel{margin-top:20px;display:grid;grid-template-columns:1.3fr 1fr;gap:16px;}
+.reqcard{background:#F4F8FC;border:1px solid #D5E8F0;border-radius:12px;padding:18px 20px;}
+.reqcard h4{font-size:14px;font-weight:800;color:var(--nhs-dark);margin-bottom:9px;}
+.reqcard ul{list-style:none;margin:0;padding:0;} .reqcard li{font-size:12px;color:var(--sec);line-height:1.45;padding-left:16px;position:relative;margin-top:5px;}
+.reqcard li:before{content:'';position:absolute;left:0;top:6px;width:6px;height:6px;border-radius:50%;background:var(--nhs-green);}
+.reqcard li b{color:var(--text);}
+.leadnote{background:#FFF6E6;border:1px solid #F0DCA0;border-left:5px solid var(--amber-deep);border-radius:10px;padding:14px 18px;margin-top:16px;font-size:12.5px;color:var(--sec);line-height:1.55;} .leadnote b{color:var(--nhs-dark);}
+.xlink{margin-top:16px;} .xlink a{display:inline-block;background:#fff;border:1px solid #B5D4E5;color:var(--nhs-dark);font-size:12.5px;font-weight:700;text-decoration:none;padding:9px 16px;border-radius:999px;}
+:root{--text-sec:#4C6272;--text:#212B32;--border-lt:#E1E7EC;}.topnav{background:#fff;border-bottom:1px solid var(--border-lt);padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;box-shadow:0 2px 14px rgba(0,48,135,0.10);}.topnav .nav-back{font-size:13px;font-weight:700;color:var(--nhs-dark);text-decoration:none;display:inline-flex;align-items:center;gap:6px;}.topnav .nav-back:hover{color:var(--nhs-blue);}.topnav .nav-siblings{display:flex;gap:4px;flex-wrap:wrap;align-items:center;}.topnav .nav-siblings a{font-size:12.5px;font-weight:600;color:var(--text-sec);text-decoration:none;padding:7px 14px;border-radius:6px;letter-spacing:0.2px;}.topnav .nav-siblings a:hover{background:#f0f4f8;color:var(--text);}.topnav .nav-siblings .nav-sep{width:1px;height:18px;background:var(--border-lt);margin:0 6px;display:inline-block;}.goto.pending{opacity:0.6;border-style:dashed !important;}
+.statusrow{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 4px;}
+.stat{background:#F4F8FC;border:1px solid #D5E8F0;border-radius:10px;padding:9px 14px;font-size:12px;color:var(--sec);}
+.stat b{display:block;font-size:12.5px;color:var(--nhs-dark);margin-top:1px;}
+.stat.warm{background:#FFF7E8;border-color:#F0D79A;} .stat.warm b{color:#9a5b00;}
+.sechead{font-size:11px;font-weight:800;letter-spacing:2px;color:var(--nhs-green);text-transform:uppercase;margin:34px 0 6px;}
+.sechead + p{font-size:13px;color:var(--sec);line-height:1.55;max-width:860px;margin-bottom:14px;}
+.cardgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.ccard{background:#fff;border:1px solid var(--border);border-top:4px solid var(--nhs-blue);border-radius:12px;padding:17px 19px;box-shadow:0 4px 14px rgba(0,48,135,.06);}
+.ccard.open{border-top-color:var(--amber-deep);background:#FFFDF7;}
+.ccard h4{font-size:14px;font-weight:800;color:var(--nhs-dark);margin-bottom:7px;}
+.ccard p{font-size:12.5px;color:var(--sec);line-height:1.52;margin:0 0 7px;}
+.ccard p b{color:var(--text);}
+.ccard .xref{display:inline-block;margin-top:2px;font-size:11px;font-weight:800;color:var(--nhs-blue);text-decoration:none;}
+.buyerpanel{background:#fff;border:1px solid var(--border);border-left:5px solid var(--nhs-pink);border-radius:12px;padding:18px 22px;margin-top:14px;}
+.buyerpanel h4{font-size:14px;font-weight:800;color:var(--nhs-dark);margin-bottom:8px;}
+.buyerpanel ul{list-style:none;margin:0;padding:0;}
+.buyerpanel li{font-size:12.5px;color:var(--sec);line-height:1.5;padding-left:18px;position:relative;margin-top:7px;}
+.buyerpanel li:before{content:'';position:absolute;left:2px;top:7px;width:7px;height:7px;border-radius:2px;background:var(--nhs-pink);}
+.buyerpanel li b{color:var(--text);}
+.pchips{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:14px 0 2px;}
+.pchips .pl{font-size:10px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted);}
+.loop{display:grid;grid-template-columns:1fr 26px 1fr 26px 1fr 26px 1fr;gap:0;align-items:stretch;margin-top:8px;}
+.lstep{background:#fff;border:1px solid var(--border);border-top:4px solid var(--nhs-green);border-radius:12px;padding:15px 16px;box-shadow:0 4px 14px rgba(0,48,135,.06);}
+.lstep .lnum{width:24px;height:24px;border-radius:50%;background:var(--nhs-green);color:#fff;font-size:12px;font-weight:800;text-align:center;line-height:24px;margin-bottom:7px;}
+.lstep h4{font-size:13px;font-weight:800;color:var(--nhs-dark);margin-bottom:6px;}
+.lstep p{font-size:11.8px;color:var(--sec);line-height:1.48;margin:0;}
+.larr{display:flex;align-items:center;justify-content:center;color:var(--nhs-green);font-size:17px;font-weight:800;}
+.loopback{margin-top:10px;text-align:center;font-size:12px;font-weight:700;color:var(--nhs-green);}
+.flagpanel{background:#FFF6E6;border:1px solid #F0DCA0;border-left:5px solid var(--amber-deep);border-radius:12px;padding:17px 21px;margin-top:20px;}
+.flagpanel h4{font-size:14px;font-weight:800;color:#9a5b00;margin-bottom:7px;}
+.flagpanel p{font-size:12.5px;color:#5C4400;line-height:1.55;margin:0 0 6px;}
+
+.lotsel{display:flex;align-items:center;gap:10px;margin:20px 0 6px;flex-wrap:wrap;}
+.lotsel .lbl{font-size:10px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted);}
+.lotbtn{font-family:inherit;font-size:12px;font-weight:700;padding:8px 16px;border-radius:999px;border:1.5px solid var(--border);background:#fff;color:var(--sec);cursor:pointer;}
+.lotbtn.a.active{background:var(--nhs-dark);border-color:var(--nhs-dark);color:#fff;}
+.lotbtn.b.active{background:var(--nhs-green);border-color:var(--nhs-green);color:#fff;}
+.lotnote{font-size:11.5px;font-weight:700;color:var(--nhs-blue);text-decoration:none;}
+
+.bpanel{background:#EAF4EF;border:1px solid #BFE0CD;border-left:5px solid var(--nhs-green);border-radius:12px;padding:16px 20px;margin:14px 0 4px;}
+.bpanel h4{color:var(--nhs-green);font-size:13.5px;font-weight:800;margin-bottom:6px;}
+.bpanel p{font-size:12.5px;color:var(--sec);line-height:1.55;margin:0 0 6px;}
+.openq{display:inline-block;font-size:9.5px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#9a5b00;background:#FFF7E8;border:1px solid #F0D79A;border-radius:999px;padding:2px 8px;vertical-align:1px;}
+</style></head><body><div class="ecosystem-nav"><a href="../index.html">&larr; DTx Ecosystem</a><span class="nav-context">Commercial Model &#183; The Money Loop</span><span class="nav-product dtx">DTx</span></div><div class="topnav"><a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a><div class="nav-siblings"><a href="DTx OM - Why.html">Why</a><a href="DTx OM - Anatomical.html">What</a><a href="DTx OM - Lifecycle.html">When</a><a href="DTx OM - HomeTest Operational.html">How</a><a href="DTx OM - Governance.html">Who</a><a href="DTx OM - Hearts and Minds.html">Hearts and Minds</a><a href="DTx OM - HomeTest Teamwork.html">HomeTest teamwork</a><span class="nav-sep"></span><a href="DTx OM - Status.html">Status</a></div></div><div class=page><a class="backlink" href="DTx OM - Commercial Model DRAFT.html">&larr; The Commercial Model</a><div class=amber-rule></div><div class=eyebrow>The commercial model &#183; the money</div><h1 class=h-title>The money loop.</h1><p class=h-sub>No money flows through NHSE. It moves straight between commissioner and supplier, with a share of throughput coming back to pay for the framework. The model only earns when the market sells.</p>
+<div style="margin:16px 0 2px;padding:12px 16px;background:#FFF3CD;border:1px solid #FFE69C;border-radius:8px;font-size:12.5px;color:#5C4400;line-height:1.6;"><strong>Working draft, off-live.</strong> Agreed in principle. The return leg is the critical open item; the note below sets out why.</div>
+<div class="statusrow"><div class="stat">Payment<b>Commissioner to supplier, direct</b></div><div class="stat">Levy<b>1 to 2 percent of throughput</b></div><div class="stat">Return<b>Platform fee, out of the levy</b></div><div class="stat warm">Status<b>Return leg is an assumption</b></div></div>
+
+<div class="sechead">The loop</div>
+<p>Four steps, then it starts again.</p>
+<div class="loop">
+<div class="lstep"><div class="lnum">1</div><h4>The commissioner pays the supplier</h4><p>Direct, per activity, at or below the national maximum price. NHSE holds no budget and touches no payments.</p><p class="only-a" style="font-size:11.8px;color:var(--sec);line-height:1.48;margin-top:6px;"><b>Under one lot:</b> one provider per call-off, one invoice chain.</p><p class="only-b" style="font-size:11.8px;color:var(--sec);line-height:1.48;margin-top:6px;"><b>Under capability lots:</b> who gets paid, each component supplier or a lead, is not designed. <span class="openq">open</span></p></div>
+<div class="larr">&#8594;</div>
+<div class="lstep"><div class="lnum">2</div><h4>The supplier pays the levy</h4><p>The framework provider takes 1 to 2 percent of the supplier's throughput. Other frameworks charge the same way, so suppliers are familiar with it. It applies to sales only.</p><p class="only-a" style="font-size:11.8px;color:var(--sec);line-height:1.48;margin-top:6px;"><b>Under one lot:</b> one levy point per call-off holder.</p><p class="only-b" style="font-size:11.8px;color:var(--sec);line-height:1.48;margin-top:6px;"><b>Under capability lots:</b> levy collection multiplies across component suppliers.</p></div>
+<div class="larr">&#8594;</div>
+<div class="lstep"><div class="lnum">3</div><h4>A share returns to NHSE</h4><p>A platform fee: a percentage of throughput, taken out of the provider levy. Not a separate invoice to suppliers.</p></div>
+<div class="larr">&#8594;</div>
+<div class="lstep"><div class="lnum">4</div><h4>NHSE reinvests it</h4><p>The clinician panels, the validation service, the app integration and pathway change get paid from it. It may not cover everything NHSE spends. That is accepted.</p></div>
+</div>
+<div class="loopback">&#8635; The loop closes: the return pays for the services that make the framework worth joining.</div>
+
+<div class="bpanel only-b"><h4>The loop under capability lots</h4><p>More invoices per pathway, more levy collection points, per-capability assurance to fund, and an integrator role with no owner yet. The rule on this page, that an invoice should never need a team to calculate, is hardest to meet here. <span class="openq">open</span> The comparison is on the <a href="DTx OM - Lotting Choice.html" style="color:var(--nhs-green);font-weight:800;text-decoration:none;">Lotting Choice page</a>.</p></div><div class="flagpanel"><h4>The critical assumption: the return leg</h4>
+<p>What the charge is called, the mechanism that brings the money back, the VAT treatment and the competition risk: none of the four is decided. Until they are, the return line stays an assumption, and the model says so wherever it appears.</p></div>
+
+<div class="sechead">Why suppliers pay</div>
+<p>Three things come with NHSE that no other route offers: quality assurance and clinical validation, orders through the national app without building a route to permission of their own, and investment in the pathway change that makes home sampling the default.</p>
+<div class="cardgrid">
+<div class="ccard"><h4>The language</h4><p>Any over-recovery is a contribution to development, the app for example. The return is a platform fee on throughput. It is never called anything else.</p></div>
+<div class="ccard"><h4>The discipline</h4><p>Simple to run and transparent. If it takes a team to work out an invoice, the design is wrong.</p><a class="xref" href="DTx OM - HomeTest Operational.html">The settlement lane on How &rarr;</a></div>
+</div>
+<div class=foot>The money loop &#183; agreed in principle &#183; the return leg is an assumption until settled &#183; part of the commercial model</div>
+</div></body></html>

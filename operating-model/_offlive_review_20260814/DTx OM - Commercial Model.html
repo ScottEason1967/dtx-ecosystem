@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Commercial Model: DTx OM</title>
+<style>
+  :root{--nhs-dark:#003087;--nhs-blue:#005EB8;--nhs-green:#006747;--nhs-pink:#AE2573;--amber:#FFB91D;--amber-deep:#C9A227;--warm-cream:#FFF9EC;--accent:#1B3A6B;--text:#212B32;--text-sec:#4C6272;--text-muted:#7E8B97;--border-lt:#ebeef1;--bg:#f8fafc;--card:#fff;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,var(--nhs-blue) 0%,var(--nhs-dark) 100%);background-attachment:fixed;color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100vh;}
+  .topnav{background:#fff;border-bottom:1px solid var(--border-lt);padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;box-shadow:0 2px 14px rgba(0,48,135,0.18);}
+  .nav-back{font-size:13px;font-weight:700;color:var(--nhs-dark);text-decoration:none;display:inline-flex;align-items:center;gap:6px;}
+  .nav-back:hover{color:var(--nhs-blue);}
+  .nav-siblings{display:flex;gap:4px;flex-wrap:wrap;}
+  .nav-siblings a{font-size:12.5px;font-weight:600;color:var(--text-sec);text-decoration:none;padding:7px 14px;border-radius:6px;letter-spacing:0.2px;}
+  .nav-siblings a:hover{background:#f0f4f8;color:var(--text);}
+  .nav-siblings a.active{background:var(--nhs-blue);color:#fff;}
+  .nav-siblings .nav-sep{width:1px;height:18px;background:var(--border-lt);margin:0 6px;}
+  .page{max-width:1180px;margin:30px auto 50px;padding:50px 40px 80px;background:#fff;border-radius:18px;box-shadow:0 14px 40px rgba(0,48,135,0.20);}
+  .amber-rule{width:72px;height:4px;background:var(--amber);border-radius:2px;margin-bottom:18px;}
+  .h-eyebrow{font-size:11px;font-weight:700;letter-spacing:2.2px;color:var(--text-sec);text-transform:uppercase;margin-bottom:14px;}
+  .h-title{font-size:54px;font-weight:800;color:var(--nhs-dark);letter-spacing:-1.2px;line-height:1.05;margin-bottom:16px;}
+  .h-sub{font-size:17px;color:var(--text-sec);line-height:1.65;max-width:860px;margin-bottom:18px;}
+
+  .northstar{margin:34px 0 12px;background:linear-gradient(135deg,var(--nhs-dark),var(--nhs-blue));border:2px solid var(--amber);border-radius:14px;padding:28px 32px;color:#fff;box-shadow:0 12px 32px rgba(0,48,135,0.20);}
+  .northstar-eyebrow{font-size:11px;font-weight:800;letter-spacing:1.8px;color:#FFD66B;text-transform:uppercase;margin-bottom:10px;}
+  .northstar-title{font-size:34px;font-weight:900;color:#fff;letter-spacing:-0.7px;line-height:1.1;margin-bottom:14px;}
+  .northstar-body{font-size:15.5px;line-height:1.65;color:rgba(255,255,255,0.94);max-width:880px;}
+
+  .section{margin-top:50px;}
+  .section-eyebrow{font-size:11px;font-weight:800;letter-spacing:2px;color:var(--nhs-blue);text-transform:uppercase;margin-bottom:8px;}
+  .section-h{font-size:28px;font-weight:900;color:var(--nhs-dark);letter-spacing:-0.6px;line-height:1.15;margin-bottom:12px;}
+  .section-intro{font-size:14.5px;color:var(--text-sec);line-height:1.7;max-width:880px;margin-bottom:26px;}
+
+  /* Persona chips */
+  .pchips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
+  .pchip{display:inline-flex;align-items:center;gap:9px;background:#fff;border:1px solid var(--border-lt);border-radius:999px;padding:4px 15px 4px 4px;text-decoration:none;box-shadow:0 1px 4px rgba(0,48,135,0.06);}
+  .pchip img{width:30px;height:30px;border-radius:50%;object-fit:cover;object-position:top center;border:2px solid var(--nhs-blue);background:#e9eff5;}
+  .pchip .pn{font-size:12.5px;font-weight:800;color:var(--nhs-dark);line-height:1.1;}
+  .pchip .pr{font-size:10.5px;font-weight:600;color:var(--text-sec);line-height:1.15;}
+  .pchip:hover{border-color:var(--nhs-blue);box-shadow:0 3px 10px rgba(0,48,135,0.14);}
+  .pchip.c-supplier img{border-color:var(--nhs-green);}
+  .pchip.c-commissioner img{border-color:var(--nhs-dark);}
+  .pchip.c-assurance img{border-color:var(--nhs-pink);}
+  .pchip.c-patient img{border-color:var(--amber-deep);}
+
+  /* The model picture: stacked layers */
+  .model-pic{border:1px solid var(--border-lt);border-radius:16px;overflow:hidden;box-shadow:0 8px 26px rgba(0,48,135,0.10);}
+  .mlayer{padding:22px 26px;border-bottom:1px solid var(--border-lt);position:relative;}
+  .mlayer:last-child{border-bottom:none;}
+  .mlayer.top{background:linear-gradient(135deg,var(--nhs-dark),var(--nhs-blue));color:#fff;}
+  .mlayer.lot{background:#F4F8FC;border-left:6px solid var(--amber-deep);}
+  .mlayer.supply{background:#fff;border-left:6px solid var(--nhs-green);}
+  .mlayer.commission{background:#fff;border-left:6px solid var(--nhs-dark);}
+  .mlayer.patient{background:#FFFDF6;border-left:6px solid var(--amber-deep);}
+  .ml-row{display:flex;align-items:flex-start;justify-content:space-between;gap:22px;flex-wrap:wrap;}
+  .ml-lead{max-width:640px;}
+  .ml-tag{font-size:10.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;margin-bottom:7px;}
+  .mlayer.top .ml-tag{color:#FFD66B;}
+  .mlayer.lot .ml-tag{color:var(--amber-deep);}
+  .mlayer.supply .ml-tag{color:var(--nhs-green);}
+  .mlayer.commission .ml-tag{color:var(--nhs-dark);}
+  .mlayer.patient .ml-tag{color:var(--amber-deep);}
+  .ml-title{font-size:19px;font-weight:800;letter-spacing:-0.3px;line-height:1.2;margin-bottom:7px;}
+  .mlayer.top .ml-title{color:#fff;}
+  .ml-title{color:var(--nhs-dark);}
+  .ml-body{font-size:13px;line-height:1.6;color:var(--text-sec);}
+  .mlayer.top .ml-body{color:rgba(255,255,255,0.92);}
+  .ml-flow{text-align:center;font-size:11px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--text-muted);padding:6px 0 0;}
+  .mlayer.top .pchip .pn{color:var(--nhs-dark);}
+  .levy-rail{background:var(--warm-cream);border:1px solid #F0DCA0;border-left:5px solid var(--amber-deep);border-radius:10px;padding:14px 18px;margin-top:14px;font-size:13px;color:var(--text-sec);line-height:1.6;}
+  .levy-rail strong{color:var(--nhs-dark);}
+
+  /* Mechanics cards */
+  .mech{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;}
+  .mcard{background:#fff;border:1px solid var(--border-lt);border-top:4px solid var(--nhs-blue);border-radius:12px;padding:20px 22px;box-shadow:0 4px 14px rgba(0,48,135,0.06);}
+  .mcard.levy{border-top-color:var(--amber-deep);}
+  .mcard.price{border-top-color:var(--nhs-blue);}
+  .mcard.unit{border-top-color:var(--nhs-green);}
+  .mcard.value{border-top-color:var(--nhs-pink);}
+  .mcard-tag{font-size:10.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--nhs-blue);margin-bottom:8px;}
+  .mcard.levy .mcard-tag{color:var(--amber-deep);}
+  .mcard.unit .mcard-tag{color:var(--nhs-green);}
+  .mcard.value .mcard-tag{color:var(--nhs-pink);}
+  .mcard-title{font-size:17px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.2px;line-height:1.25;margin-bottom:9px;}
+  .mcard-body{font-size:13px;color:var(--text-sec);line-height:1.62;}
+  .mcard-body strong{color:var(--text);}
+
+  /* Open question */
+  .decision{background:#FFF9EC;border:1px solid #F0DCA0;border-left:5px solid var(--amber-deep);border-radius:12px;padding:20px 24px;margin-top:14px;}
+  .decision-num{font-size:10.5px;font-weight:800;letter-spacing:1.6px;color:var(--amber-deep);text-transform:uppercase;margin-bottom:8px;}
+  .decision-title{font-size:18px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.2px;line-height:1.25;margin-bottom:9px;}
+  .decision-body{font-size:13px;color:var(--text-sec);line-height:1.62;}
+
+  /* Parameters strip */
+  .params{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
+  .param{font-size:12px;font-weight:700;color:#0B3D6B;background:#EAF2FA;border:1px solid #CFE2F1;border-radius:999px;padding:8px 15px;}
+
+  /* Crosslinks */
+  .crosslinks{margin-top:48px;background:#F4F8FC;border:1px solid #D5E8F0;border-radius:12px;padding:24px 28px;}
+  .crosslinks-label{font-size:11px;font-weight:800;letter-spacing:1.8px;color:var(--nhs-blue);text-transform:uppercase;margin-bottom:14px;}
+  .chain{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px;}
+  .chain a{background:var(--nhs-dark);color:#fff;font-size:13px;font-weight:800;text-decoration:none;padding:11px 18px;border-radius:10px;box-shadow:0 3px 10px rgba(0,48,135,0.16);}
+  .chain a.wheel{background:var(--amber-deep);}
+  .chain a:hover{background:var(--nhs-blue);}
+  .chain .arrow{font-size:16px;font-weight:800;color:var(--text-muted);}
+  .chain-note{font-size:12px;color:var(--text-sec);line-height:1.6;}
+  .crosslinks-grid{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px;}
+  .crosslink{background:#fff;border:1px solid #B5D4E5;color:var(--nhs-dark);font-size:12.5px;font-weight:700;text-decoration:none;padding:9px 16px;border-radius:999px;}
+  .crosslink:hover{background:var(--nhs-blue);color:#fff;border-color:var(--nhs-blue);}
+
+  .foot{margin-top:50px;padding-top:24px;border-top:1px solid var(--border-lt);text-align:center;font-size:11.5px;color:var(--text-muted);line-height:1.6;}
+
+  @media(max-width:760px){.h-title{font-size:36px;}.northstar-title{font-size:24px;}.section-h{font-size:22px;}.page{padding:36px 22px 60px;}.ml-row{flex-direction:column;}}
+</style>
+<style>
+  .ecosystem-nav{background:#fff;border-bottom:1px solid #ebeef1;padding:12px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:48px;position:sticky;top:0;z-index:9999;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;}
+  .ecosystem-nav a{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;}
+  .ecosystem-nav a:hover{color:#005EB8;}
+  .ecosystem-nav .nav-context{font-size:11px;font-weight:800;letter-spacing:1.5px;color:#7E8B97;text-transform:uppercase;}
+  .ecosystem-nav .nav-product{font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;padding:4px 10px;border-radius:4px;color:#fff;}
+  .ecosystem-nav .nav-product.dtx{background:#003087;}
+</style>
+</head>
+<body>
+<script>
+(function(){
+  if (sessionStorage.getItem('dtx-auth') !== 'ok') {
+    var next = encodeURIComponent(location.pathname.split('/').pop() || 'DTx OM - Index.html');
+    location.href = 'index.html?next=' + next;
+  }
+})();
+</script>
+
+<div class="ecosystem-nav">
+  <a href="../index.html">&larr; DTx Ecosystem</a>
+  <span class="nav-context">Commercial Model</span>
+  <span class="nav-product dtx">DTx</span>
+</div>
+<nav class="topnav">
+  <a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+  <div class="nav-siblings">
+    <a href="DTx OM - Why.html">Why</a>
+    <a href="DTx OM - Anatomical.html">What</a>
+    <a href="DTx OM - Lifecycle.html">When</a>
+    <a href="DTx OM - HomeTest Operational.html">How</a>
+    <a href="DTx OM - Governance.html">Who</a>
+    <a href="DTx OM - Commercial Model.html" class="active">Commercial model</a>
+    <a href="DTx OM - Supplier Onboarding Framework.html">Onboarding</a>
+    <span class="nav-sep"></span>
+    <a href="DTx OM - Status.html">Status</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <div class="amber-rule"></div>
+  <div class="h-eyebrow">The commercial model, on a page</div>
+  <h1 class="h-title">The Commercial Model.</h1>
+
+  <div style="margin:20px 0;padding:14px 18px;background:#FFF3CD;border:1px solid #FFE69C;border-radius:8px;font-size:12.5px;color:#5C4400;line-height:1.6;">
+    <strong style="color:#5C4400;letter-spacing:0.3px;">Status.</strong> Agreed in principle from the sourcing strategy work. Firm enough to shape the model and to show the SLT, not settled enough to tender on. The one genuinely open piece, the mechanism for returning value to NHS England, is flagged where it sits.
+  </div>
+
+  <p class="h-sub">How home self-sampling gets bought, how the money moves, and why NHS England sits in the middle of it. One end-to-end lot run by a framework provider. A levy that helps fund the system. A national ceiling price the market can beat locally. Payment for the activity done across the cycle rather than only for a completed test. Every chip on this page is a persona from the operating model, placed where they actually touch the commercial machine.</p>
+
+  <div class="northstar">
+    <div class="northstar-eyebrow">The deal in three lines</div>
+    <h2 class="northstar-title">One lot. A levy that funds the system. A ceiling the market beats.</h2>
+    <p class="northstar-body">Suppliers bid to deliver the whole journey, request to result at home, as one lot. A framework provider runs it and takes a levy on what flows through, with a share coming back to NHS England to keep the system running. Commissioners buy at or below a national ceiling, and pay for the activity done, not only for the tests that complete. NHS England earns its place by assuring quality, holding the App gateway and shifting the pathway, which is what lets it charge at all.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-eyebrow">The model in one picture</div>
+    <h2 class="section-h">Where the value flows, and who turns each part.</h2>
+    <p class="section-intro">Read it top to bottom. NHS England sets the terms and takes the levy back. The framework carries one lot. Suppliers deliver it. Commissioners call it off. Patients get the test at home. The levy runs back up the stack, and the wrapper of assurance, App eligibility and pathway change is what justifies it.</p>
+    <div class="model-pic">
+
+      <div class="mlayer top">
+        <div class="ml-row">
+          <div class="ml-lead">
+            <div class="ml-tag">NHS England &middot; the middle of the market</div>
+            <div class="ml-title">Sets the standard, assures quality, holds the App gateway, opens the gates, takes the levy back.</div>
+            <div class="ml-body">Not a party to the contract between supplier and commissioner. It convenes the system, assures the tests, runs the App eligibility, and takes a share of the levy to fund keeping the framework alive and improving.</div>
+          </div>
+          <div class="pchips">
+            <a class="pchip c-assurance" href="DTx OM - Persona Aisha.html"><img src="../assets/personas/aisha.png" alt=""><span><span class="pn">Aisha</span><br><span class="pr">Clinical validation</span></span></a>
+            <a class="pchip c-assurance" href="DTx OM - Persona Ngozi.html"><img src="../assets/personas/ngozi.png" alt=""><span><span class="pn">Ngozi</span><br><span class="pr">Information governance</span></span></a>
+            <a class="pchip" href="DTx OM - Persona Priya.html"><img src="../assets/personas/priya.png" alt=""><span><span class="pn">Priya</span><br><span class="pr">Platform &amp; NHS App</span></span></a>
+            <a class="pchip" href="DTx OM - Persona David.html"><img src="../assets/personas/david.png" alt=""><span><span class="pn">David</span><br><span class="pr">NHS commercial</span></span></a>
+          </div>
+        </div>
+        <div class="levy-rail"><strong>The levy returns here.</strong> A share of what the framework provider charges suppliers comes back to NHS England, framed as a contribution to running and improving the system. It only bites when there are sales.</div>
+      </div>
+
+      <div class="ml-flow">&darr;&nbsp; buys through &nbsp;&darr;</div>
+
+      <div class="mlayer lot">
+        <div class="ml-row">
+          <div class="ml-lead">
+            <div class="ml-tag">The framework &middot; one lot</div>
+            <div class="ml-title">One end-to-end lot, run by a framework provider.</div>
+            <div class="ml-body">Request to result at home, bought whole as a single lot under an open framework. New test categories come on underneath the one lot through the roadmap, so the framework never has to add a lot, it just opens a gate.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ml-flow">&darr;&nbsp; delivered by &nbsp;&darr;</div>
+
+      <div class="mlayer supply">
+        <div class="ml-row">
+          <div class="ml-lead">
+            <div class="ml-tag">Suppliers &middot; three ways to stand behind the lot</div>
+            <div class="ml-title">A prime, a consortium behind a nominated prime, or an NHS-led bid.</div>
+            <div class="ml-body">Accredited per test category through onboarding. Any qualified provider, with a working floor of about three per test so no category ends up a duopoly. The natural throttle is how few laboratories hold accreditation that names capillary collection.</div>
+          </div>
+          <div class="pchips">
+            <a class="pchip c-supplier" href="DTx OM - Persona Joe.html"><img src="../assets/personas/joe.png" alt=""><span><span class="pn">Joe</span><br><span class="pr">Supplier &amp; market</span></span></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="ml-flow">&darr;&nbsp; called off by &nbsp;&darr;</div>
+
+      <div class="mlayer commission">
+        <div class="ml-row">
+          <div class="ml-lead">
+            <div class="ml-tag">Commissioners &middot; who buys</div>
+            <div class="ml-title">Local bodies call off, direct award or mini-competition.</div>
+            <div class="ml-body">Local authorities, acute trusts, ICBs and pathology networks buy against the register at or below the national ceiling. More accredited suppliers in a category means more room to push the price down locally.</div>
+          </div>
+          <div class="pchips">
+            <a class="pchip c-commissioner" href="DTx OM - Persona Sarah.html"><img src="../assets/personas/sarah.png" alt=""><span><span class="pn">Sarah</span><br><span class="pr">Local authority</span></span></a>
+            <a class="pchip c-commissioner" href="DTx OM - Persona Catherine.html"><img src="../assets/personas/catherine.png" alt=""><span><span class="pn">Catherine</span><br><span class="pr">Acute trust</span></span></a>
+            <a class="pchip c-commissioner" href="DTx OM - Persona Anita.html"><img src="../assets/personas/anita.png" alt=""><span><span class="pn">Anita</span><br><span class="pr">ICB &amp; primary care</span></span></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="ml-flow">&darr;&nbsp; serves &nbsp;&darr;</div>
+
+      <div class="mlayer patient">
+        <div class="ml-row">
+          <div class="ml-lead">
+            <div class="ml-tag">Patients &middot; the point of it</div>
+            <div class="ml-title">The test arrives at home. The pathway shifts.</div>
+            <div class="ml-body">The end of the chain and the reason for it. Home self-sampling becomes a default route rather than a novelty, which is the pathway change NHS England is investing to make happen.</div>
+          </div>
+          <div class="pchips">
+            <a class="pchip c-patient" href="DTx OM - Persona Mark.html"><img src="../assets/personas/mark.png" alt=""><span><span class="pn">Mark</span><br><span class="pr">Secondary-initiated</span></span></a>
+            <a class="pchip c-patient" href="DTx OM - Persona Abdul.html"><img src="../assets/personas/abdul.png" alt=""><span><span class="pn">Abdul</span><br><span class="pr">Self-initiated</span></span></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-eyebrow">The four moving parts</div>
+    <h2 class="section-h">The levy, the price, the unit, and the reason NHS England can charge.</h2>
+    <p class="section-intro">The picture above shows the flow. These are the four commercial mechanics underneath it, each agreed in principle and each with detail still to settle in the model.</p>
+    <div class="mech">
+      <div class="mcard levy">
+        <div class="mcard-tag">The levy</div>
+        <div class="mcard-title">A percentage of throughput, with a share back to NHS England.</div>
+        <div class="mcard-body">The framework provider charges suppliers a levy on what flows through, in the order of one to two percent of revenue. The provider&apos;s costs come off, and a share of what is left comes back to NHS England to fund running the system. It is a contribution to keeping the framework alive and improving the App, not a cut taken from the transaction for its own sake, and because it is a percentage it only bites when a supplier is actually selling.</div>
+      </div>
+      <div class="mcard price">
+        <div class="mcard-tag">The price</div>
+        <div class="mcard-title">A national ceiling the market can beat.</div>
+        <div class="mcard-body">A national benchmark sets the most a commissioner pays for a given test. With competition and volume, a commissioner can negotiate below it through a mini-competition. The ceiling pulls the average cost down and stops runaway local pricing, without stopping a good local deal.</div>
+      </div>
+      <div class="mcard unit">
+        <div class="mcard-tag">The unit</div>
+        <div class="mcard-title">Paid for activity done, not only for tests completed.</div>
+        <div class="mcard-body">Payment follows the activity across the cycle. A cycle fulfilled to seventy percent pays seventy percent. Whether a test completes depends on things the supplier does not control, the post and the app included, so completion stays a programme measure, not a stick. A volume-scaling reward shares the gain as activity grows, and recourse runs through performance standards in the contract rather than service credits, which just get priced back into the headline.</div>
+      </div>
+      <div class="mcard value">
+        <div class="mcard-tag">The reason it can charge</div>
+        <div class="mcard-title">A differential offer a supplier cannot get elsewhere.</div>
+        <div class="mcard-body">Three things justify the charge. Clinical validation and quality assurance run from inside NHS England, proving capillary sampling is non-inferior. Being on the framework gives automatic eligibility to be ordered through the NHS App. And NHS England invests in shifting the pathway so home testing becomes the default. Not a hundred percent differential, but enough to stand behind a levy.</div>
+        <div class="pchips">
+          <a class="pchip c-assurance" href="DTx OM - Persona Aisha.html"><img src="../assets/personas/aisha.png" alt=""><span><span class="pn">Aisha</span><br><span class="pr">Clinical validation</span></span></a>
+          <a class="pchip" href="DTx OM - Persona Priya.html"><img src="../assets/personas/priya.png" alt=""><span><span class="pn">Priya</span><br><span class="pr">NHS App eligibility</span></span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-eyebrow">The one that gates everything</div>
+    <h2 class="section-h">The open question the model has to answer first.</h2>
+    <p class="section-intro">Everything above holds in principle. One thing underneath it is genuinely unresolved, and it is load-bearing, so it is called out on its own rather than buried.</p>
+    <div class="decision">
+      <div class="decision-num">Open &middot; resolve first</div>
+      <div class="decision-title">How value actually returns to NHS England.</div>
+      <div class="decision-body">The definition, the physical mechanism for the return, whether VAT applies, and whether it reads as anti-competitive. Everyone likes the headline of NHS England taking a share back, but the appetite drains fast if the mechanism is legally or financially awkward. Until there is a defensible position, the entire return line is an assumption sitting on top of the model. This is the first thing the deep-dive has to bottom out, because if it does not work the commercial shape changes.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-eyebrow">The frame it sits in</div>
+    <h2 class="section-h">The parameters, agreed in principle.</h2>
+    <div class="params">
+      <span class="param">Framework value circa &pound;250m</span>
+      <span class="param">Go-live calendar Q1 2028</span>
+      <span class="param">Interim cover needed before then</span>
+      <span class="param">Open framework under the Procurement Act 2023</span>
+      <span class="param">Reopens roughly six-monthly</span>
+      <span class="param">No new lots on reopening, only new suppliers and test categories</span>
+    </div>
+  </div>
+
+  <div class="crosslinks">
+    <div class="crosslinks-label">Follow the chain</div>
+    <div class="chain">
+      <a class="wheel" href="../../NHS%20Commercial%20Model/Procurement%20Ecosystem%20(draft)/index.html">The ecosystem wheel</a>
+      <span class="arrow">&rarr;</span>
+      <a href="DTx OM - Prioritisation Framework.html">Prioritisation Framework</a>
+      <span class="arrow">&rarr;</span>
+      <a href="DTx OM - Supplier Onboarding Framework.html">Supplier Onboarding</a>
+    </div>
+    <p class="chain-note">The wheel opens the six commercial foundations as a full interactive map. The Prioritisation Framework shows how we decide which tests come on and when. Supplier Onboarding shows how suppliers get assured to those tests. The wheel is the commercial team&apos;s working map and stays a private draft; the link reaches it where it lives.</p>
+    <div class="crosslinks-grid">
+      <a class="crosslink" href="DTx OM - Persona David.html">David &middot; NHS commercial &rarr;</a>
+      <a class="crosslink" href="DTx OM - Persona Joe.html">Joe &middot; supplier &rarr;</a>
+      <a class="crosslink" href="DTx OM - HomeTest Teamwork.html#cap-4">HomeTest Teamwork &middot; Cap-4 Commercial &rarr;</a>
+      <a class="crosslink" href="DTx OM - Status.html#unresolved">Status &middot; in-flight items &rarr;</a>
+    </div>
+  </div>
+
+  <div class="foot">
+    Commercial Model &middot; one lot, a levy with a share back to NHS England, a national ceiling, and payment for activity done &middot; agreed in principle from the sourcing strategy work. Applied here to HomeTest; HealthStore runs its own commercial route.
+  </div>
+
+</div>
+</body>
+</html>
