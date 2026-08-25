@@ -121,6 +121,8 @@
 .tcard .split{font-size:10.5px;font-weight:700;color:#9a5b00;background:#FFF7E8;border:1px solid #F0D79A;border-radius:7px;padding:4px 8px;display:inline-block;margin-top:3px;line-height:1.35;}
 .tierfoot{margin-top:12px;background:#F4F8FC;border:1px solid #D5E8F0;border-radius:10px;padding:12px 16px;font-size:12.5px;color:var(--text-sec);line-height:1.55;}
 .tierfoot strong{color:var(--nhs-dark);}
+.tcard.scal{border-top-color:var(--nhs-blue);}
+.tcard.fw{border-top-color:var(--amber);}
 .roadcard{background:#fff;border:1px solid var(--border-lt);border-left:5px solid var(--nhs-blue);border-radius:12px;padding:18px 22px;margin-top:14px;}
 .roadcard h4{font-size:14px;font-weight:800;color:var(--nhs-dark);margin-bottom:7px;}
 .roadcard p{font-size:12.5px;color:var(--text-sec);line-height:1.55;margin:0 0 7px;}
@@ -249,27 +251,31 @@
   <div class="section">
     <div class="section-eyebrow">The two-tier assurance model</div>
     <h2 class="section-h">Companies are approved once; each test category is approved separately.</h2>
-    <p class="section-intro">Everything a supplier has to show sits in one of two tiers. Tier 1 covers the company and is passed once. Tier 2 covers each test category and is passed at that category&apos;s gate. Keeping them separate means companies are never re-assured when a new test comes on, and a company-level pass is never mistaken for clinical readiness on a given test.</p>
+    <p class="section-intro">Everything a supplier has to show sits in one of two tiers, and most of it is carried on a single NHS instrument, the Master SCAL. Tier 1 covers the company and is passed once, on the SCAL&apos;s company tab. Tier 2 covers each test category and is passed at its gate, on the SCAL&apos;s service tab. The framework then adds what the SCAL does not reach, the commercial judgement at Tier 1 and the diagnostic evidence at Tier 2. Keeping the tiers separate means companies are never re-assured when a new test comes on, and a company-level pass is never mistaken for clinical readiness on a given test.</p>
 
+    <div style="display:flex;flex-wrap:wrap;gap:20px;align-items:center;margin:16px 0 18px;font-size:12.5px;font-weight:700;color:var(--text-sec);">
+      <span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:14px;height:14px;border-radius:3px;background:var(--nhs-blue);"></span>On the Master SCAL</span>
+      <span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:14px;height:14px;border-radius:3px;background:var(--amber);"></span>Added by the framework</span>
+    </div>
     <div class="tierhead"><span class="tierbadge">Tier 1 &middot; Framework entry</span><h3 style="font-size:16px;font-weight:800;color:var(--nhs-dark);margin:0;">Company-level assurance, passed once.</h3></div>
     <p class="section-intro" style="margin-bottom:10px;">At the first gate, a supplier shows who it is, that it is sound, and that it can operate safely, under six headings.</p>
     <div class="tgrid">
-      <div class="tcard"><h4>Corporate structure</h4><p>Legal entity, ownership, and conflicts declared.</p></div>
-      <div class="tcard"><h4>Financial standing</h4><p>Solvency and insurance. Business continuity and viability, with exit arrangements.</p></div>
-      <div class="tcard"><h4>Technical and operational capability</h4><p>Service management, incident routes, service desk registration.</p></div>
-      <div class="tcard"><h4>Cyber security</h4><p>Security management and a working penetration testing regime.</p></div>
-      <div class="tcard"><h4>Information governance</h4><p>Toolkit compliance, lawful basis, DPIA readiness.</p></div>
-      <div class="tcard"><h4>Clinical safety governance</h4><p>A clinical safety officer in post, a compliant risk management process, incident reporting and regulator notification routes.</p><span class="split">Governance sits here. Clinical evidence for any test sits in Tier 2.</span></div>
+      <div class="tcard scal"><h4>Corporate structure</h4><p>Legal entity, ownership, and conflicts declared.</p></div>
+      <div class="tcard fw"><h4>Financial standing</h4><p>Solvency and insurance. Business continuity and viability, with exit arrangements.</p></div>
+      <div class="tcard scal"><h4>Technical and operational capability</h4><p>Service management, incident routes, service desk registration.</p></div>
+      <div class="tcard scal"><h4>Cyber security</h4><p>Security management and a working penetration testing regime.</p></div>
+      <div class="tcard scal"><h4>Information governance</h4><p>Toolkit compliance, lawful basis, DPIA readiness.</p></div>
+      <div class="tcard scal"><h4>Clinical safety governance</h4><p>A clinical safety officer in post, a compliant risk management process, incident reporting and regulator notification routes.</p><span class="split">Governance sits here. Clinical evidence for any test sits in Tier 2.</span></div>
     </div>
     <div class="tierfoot"><strong>Passed once at framework entry</strong>, confirmed on a light annual cycle, revisited only when something material changes. <strong>What it gives:</strong> admission to the framework and a place on the register. It does not by itself allow any test to be sold.</div>
 
     <div class="tierhead" style="margin-top:26px;"><span class="tierbadge t2">Tier 2 &middot; Test approval</span><h3 style="font-size:16px;font-weight:800;color:var(--nhs-dark);margin:0;">Test and capability assurance, per category at its gate.</h3></div>
     <p class="section-intro" style="margin-bottom:10px;">Each test category carries its own assurance criteria, available only when that category&apos;s gate opens on the published roadmap. Different tests bring different bars.</p>
     <div class="tgrid two">
-      <div class="tcard t2"><h4>Clinical evidence</h4><p>Capillary self-sampling shown to be non-inferior to the venous draw for the analyte, judged by a clinician panel convened for the gate.</p></div>
-      <div class="tcard t2"><h4>Laboratory accreditation</h4><p>Accreditation that names the test, the method and the site.</p></div>
-      <div class="tcard t2"><h4>Kit conformity</h4><p>The assembled device regulated and registered as the diagnostic it is.</p></div>
-      <div class="tcard t2"><h4>Platform integration</h4><p>API and journey integration proven against published, versioned specifications.</p></div>
+      <div class="tcard t2 fw"><h4>Clinical evidence</h4><p>Capillary self-sampling shown to be non-inferior to the venous draw for the analyte, judged by a clinician panel convened for the gate.</p></div>
+      <div class="tcard t2 fw"><h4>Laboratory accreditation</h4><p>Accreditation that names the test, the method and the site.</p></div>
+      <div class="tcard t2 fw"><h4>Kit conformity</h4><p>The assembled device regulated and registered as the diagnostic it is.</p></div>
+      <div class="tcard t2 scal"><h4>Platform integration</h4><p>API and journey integration proven against published, versioned specifications.</p></div>
     </div>
     <div class="tierfoot"><strong>Granted per category</strong>, while that category&apos;s gate is open. A supplier can hold approvals for as many categories as it can evidence. <strong>What it gives:</strong> the right to sell that category through the framework. The register shows which suppliers are approved for which categories.</div>
   </div>
