@@ -123,6 +123,25 @@
 .tierfoot strong{color:var(--nhs-dark);}
 .tcard.scal{border-top-color:var(--nhs-blue);}
 .tcard.fw{border-top-color:var(--amber);}
+.scalgroups{position:relative;}
+.tgroup{display:flex;gap:14px;align-items:stretch;margin:10px 0 12px;flex-wrap:wrap;}
+.tpanel{border-radius:14px;padding:12px 13px 14px;min-width:210px;box-sizing:border-box;}
+.tpanel.scal{border:2px dashed #9db8d6;background:#F4F8FC;}
+.tpanel.fw{border:2px dashed #E6C96A;background:#FFF9EC;}
+.tpanel-label{font-size:10.5px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:10px;}
+.tpanel-label.scal{color:var(--nhs-blue);}
+.tpanel-label.fw{color:#8a5a00;}
+.tcells{display:grid;gap:8px;}
+.ocard{background:#fff;border:1px solid #e6ebf0;border-radius:9px;padding:9px 11px;cursor:default;outline:none;transition:box-shadow .12s,transform .12s;}
+.ocard.scal{border-top:3px solid var(--nhs-blue);}
+.ocard.fw{border-top:3px solid var(--amber);}
+.ocard:hover,.ocard:focus{box-shadow:0 6px 18px rgba(0,48,135,.14);transform:translateY(-1px);}
+.ocard-n{font-size:12.5px;font-weight:800;color:var(--nhs-dark);line-height:1.2;}
+.ocard-t{font-size:11px;color:var(--text-sec);margin-top:2px;}
+.ob-tip{position:absolute;z-index:60;width:280px;max-width:86vw;background:#fff;border:1px solid #D5E2EC;border-top:3px solid var(--nhs-blue);border-radius:12px;box-shadow:0 14px 34px rgba(0,48,135,.20);padding:12px 14px;pointer-events:none;}
+.ob-tip-h{font-size:12.5px;font-weight:800;color:var(--nhs-dark);margin-bottom:5px;}
+.ob-tip-b{font-size:12px;color:var(--text-sec);line-height:1.55;}
+@media (max-width:720px){.tpanel{flex:1 1 100% !important;}}
 .roadcard{background:#fff;border:1px solid var(--border-lt);border-left:5px solid var(--nhs-blue);border-radius:12px;padding:18px 22px;margin-top:14px;}
 .roadcard h4{font-size:14px;font-weight:800;color:var(--nhs-dark);margin-bottom:7px;}
 .roadcard p{font-size:12.5px;color:var(--text-sec);line-height:1.55;margin:0 0 7px;}
@@ -251,33 +270,77 @@
   <div class="section">
     <div class="section-eyebrow">The two-tier assurance model</div>
     <h2 class="section-h">Companies are approved once; each test category is approved separately.</h2>
-    <p class="section-intro">Everything a supplier has to show sits in one of two tiers, and most of it is carried on a single NHS instrument, the Master SCAL. Tier 1 covers the company and is passed once, on the SCAL&apos;s company tab. Tier 2 covers each test category and is passed at its gate, on the SCAL&apos;s service tab. The framework then adds what the SCAL does not reach, the commercial judgement at Tier 1 and the diagnostic evidence at Tier 2. Keeping the tiers separate means companies are never re-assured when a new test comes on, and a company-level pass is never mistaken for clinical readiness on a given test.</p>
+    <p class="section-intro" style="max-width:660px;">Most of what a supplier must show is one NHS instrument, the Master SCAL. The framework adds what the SCAL does not reach, and that balance flips between the tiers. Hover any tile for the detail.</p>
 
-    <div style="display:flex;flex-wrap:wrap;gap:20px;align-items:center;margin:16px 0 18px;font-size:12.5px;font-weight:700;color:var(--text-sec);">
-      <span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:14px;height:14px;border-radius:3px;background:var(--nhs-blue);"></span>On the Master SCAL</span>
-      <span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:14px;height:14px;border-radius:3px;background:var(--amber);"></span>Added by the framework</span>
-    </div>
-    <div class="tierhead"><span class="tierbadge">Tier 1 &middot; Framework entry</span><h3 style="font-size:16px;font-weight:800;color:var(--nhs-dark);margin:0;">Company-level assurance, passed once.</h3></div>
-    <p class="section-intro" style="margin-bottom:10px;">At the first gate, a supplier shows who it is, that it is sound, and that it can operate safely, under six headings.</p>
-    <div class="tgrid">
-      <div class="tcard scal"><h4>Corporate structure</h4><p>Legal entity, ownership, and conflicts declared.</p></div>
-      <div class="tcard fw"><h4>Financial standing</h4><p>Solvency and insurance. Business continuity and viability, with exit arrangements.</p></div>
-      <div class="tcard scal"><h4>Technical and operational capability</h4><p>Service management, incident routes, service desk registration.</p></div>
-      <div class="tcard scal"><h4>Cyber security</h4><p>Security management and a working penetration testing regime.</p></div>
-      <div class="tcard scal"><h4>Information governance</h4><p>Toolkit compliance, lawful basis, DPIA readiness.</p></div>
-      <div class="tcard scal"><h4>Clinical safety governance</h4><p>A clinical safety officer in post, a compliant risk management process, incident reporting and regulator notification routes.</p><span class="split">Governance sits here. Clinical evidence for any test sits in Tier 2.</span></div>
-    </div>
-    <div class="tierfoot"><strong>Passed once at framework entry</strong>, confirmed on a light annual cycle, revisited only when something material changes. <strong>What it gives:</strong> admission to the framework and a place on the register. It does not by itself allow any test to be sold.</div>
+    <div class="scalgroups">
 
-    <div class="tierhead" style="margin-top:26px;"><span class="tierbadge t2">Tier 2 &middot; Test approval</span><h3 style="font-size:16px;font-weight:800;color:var(--nhs-dark);margin:0;">Test and capability assurance, per category at its gate.</h3></div>
-    <p class="section-intro" style="margin-bottom:10px;">Each test category carries its own assurance criteria, available only when that category&apos;s gate opens on the published roadmap. Different tests bring different bars.</p>
-    <div class="tgrid two">
-      <div class="tcard t2 fw"><h4>Clinical evidence</h4><p>Capillary self-sampling shown to be non-inferior to the venous draw for the analyte, judged by a clinician panel convened for the gate.</p></div>
-      <div class="tcard t2 fw"><h4>Laboratory accreditation</h4><p>Accreditation that names the test, the method and the site.</p></div>
-      <div class="tcard t2 fw"><h4>Kit conformity</h4><p>The assembled device regulated and registered as the diagnostic it is.</p></div>
-      <div class="tcard t2 scal"><h4>Platform integration</h4><p>API and journey integration proven against published, versioned specifications.</p></div>
+      <div class="tierhead"><span class="tierbadge">Tier 1 &middot; Framework entry</span><h3 style="font-size:16px;font-weight:800;color:var(--nhs-dark);margin:0;">Company assurance, passed once.</h3></div>
+      <div class="tgroup">
+        <div class="tpanel scal" style="flex:3.2;">
+          <div class="tpanel-label scal">On the Master SCAL</div>
+          <div class="tcells" style="grid-template-columns:repeat(3,1fr);">
+            <div class="ocard scal" tabindex="0" data-full="Who the company is. Legal entity, ownership and any conflicts of interest, declared and checked once at framework entry."><div class="ocard-n">Corporate structure</div><div class="ocard-t">Entity, ownership</div></div>
+            <div class="ocard scal" tabindex="0" data-full="How the company runs a live service. Service management, incident routes and registration with the national service desk."><div class="ocard-n">Technical and operational</div><div class="ocard-t">Service management</div></div>
+            <div class="ocard scal" tabindex="0" data-full="That the company is secure. An information security regime and a working penetration testing regime, tested to recognised standards."><div class="ocard-n">Cyber security</div><div class="ocard-t">Security, pen testing</div></div>
+            <div class="ocard scal" tabindex="0" data-full="That data is handled lawfully. Data Security and Protection Toolkit compliance, a lawful basis, and readiness to complete a data protection impact assessment."><div class="ocard-n">Information governance</div><div class="ocard-t">DSP Toolkit, DPIA</div></div>
+            <div class="ocard scal" tabindex="0" data-full="That the company manages clinical risk. A clinical safety officer in post, a compliant risk management process, and routes to report incidents and notify the regulator. Evidence for any individual test sits in Tier 2."><div class="ocard-n">Clinical safety governance</div><div class="ocard-t">Safety officer, risk process</div></div>
+          </div>
+        </div>
+        <div class="tpanel fw" style="flex:1;">
+          <div class="tpanel-label fw">Added by the framework</div>
+          <div class="tcells" style="grid-template-columns:1fr;">
+            <div class="ocard fw" tabindex="0" data-full="That the company is sound enough to rely on. Solvency, insurance, business continuity and viability, with exit arrangements. This is the framework&apos;s commercial judgement, and it is not on the SCAL."><div class="ocard-n">Financial standing</div><div class="ocard-t">Solvency, insurance</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="tierfoot"><strong>Passed once</strong> at framework entry. It admits the company and gives it a place on the register. It does not by itself allow any test to be sold.</div>
+
+      <div class="tierhead" style="margin-top:26px;"><span class="tierbadge t2">Tier 2 &middot; Test approval</span><h3 style="font-size:16px;font-weight:800;color:var(--nhs-dark);margin:0;">Test assurance, per category at its gate.</h3></div>
+      <div class="tgroup">
+        <div class="tpanel scal" style="flex:1;">
+          <div class="tpanel-label scal">On the Master SCAL</div>
+          <div class="tcells" style="grid-template-columns:1fr;">
+            <div class="ocard scal" tabindex="0" data-full="That the product connects safely. API and journey integration proven against published, versioned specifications, per initiation pattern, with performance evidence. This is the SCAL&apos;s service tab, completed for each category."><div class="ocard-n">Platform integration</div><div class="ocard-t">API conformance</div></div>
+          </div>
+        </div>
+        <div class="tpanel fw" style="flex:3;">
+          <div class="tpanel-label fw">Added by the framework</div>
+          <div class="tcells" style="grid-template-columns:repeat(3,1fr);">
+            <div class="ocard fw" tabindex="0" data-full="That the home test is clinically valid. Capillary self-sampling shown to be non-inferior to the venous draw for the analyte, judged by a clinician panel convened for the gate."><div class="ocard-n">Clinical evidence</div><div class="ocard-t">Non-inferiority</div></div>
+            <div class="ocard fw" tabindex="0" data-full="That the laboratory is competent for this test. Accreditation that names the test, the method and the site."><div class="ocard-n">Laboratory accreditation</div><div class="ocard-t">UKAS, named test</div></div>
+            <div class="ocard fw" tabindex="0" data-full="That the kit is a regulated device. The assembled kit regulated and registered as the diagnostic it is."><div class="ocard-n">Kit conformity</div><div class="ocard-t">MHRA registered</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="tierfoot"><strong>Granted per category</strong>, while that category&apos;s gate is open. This is the right to sell that category through the framework.</div>
+
     </div>
-    <div class="tierfoot"><strong>Granted per category</strong>, while that category&apos;s gate is open. A supplier can hold approvals for as many categories as it can evidence. <strong>What it gives:</strong> the right to sell that category through the framework. The register shows which suppliers are approved for which categories.</div>
+    <script>
+    (function(){
+      var wrap=document.querySelector(".scalgroups"); if(!wrap) return;
+      var tip=document.createElement("div"); tip.className="ob-tip"; tip.setAttribute("role","tooltip"); tip.style.display="none"; wrap.appendChild(tip);
+      function show(card){
+        var n=card.querySelector(".ocard-n"); var name=n?n.textContent:""; var full=card.getAttribute("data-full")||"";
+        tip.innerHTML='<div class="ob-tip-h">'+name+'</div><div class="ob-tip-b">'+full+'</div>';
+        tip.style.borderTopColor=card.classList.contains("fw")?"var(--amber)":"var(--nhs-blue)";
+        tip.style.display="block";
+        var wr=wrap.getBoundingClientRect(), cr=card.getBoundingClientRect();
+        var tw=tip.offsetWidth, th=tip.offsetHeight;
+        var left=(cr.left-wr.left)+cr.width/2-tw/2;
+        left=Math.max(6,Math.min(left,wrap.clientWidth-tw-6));
+        var top=(cr.top-wr.top)-th-10;
+        if(top<6){ top=(cr.bottom-wr.top)+10; }
+        tip.style.left=left+"px"; tip.style.top=top+"px";
+      }
+      function hide(){ tip.style.display="none"; }
+      wrap.querySelectorAll(".ocard").forEach(function(c){
+        c.addEventListener("mouseenter",function(){show(c);});
+        c.addEventListener("mouseleave",hide);
+        c.addEventListener("focus",function(){show(c);});
+        c.addEventListener("blur",hide);
+      });
+    })();
+    </script>
   </div>
 
   <div class="section">
