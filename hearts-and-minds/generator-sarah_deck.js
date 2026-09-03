@@ -20,7 +20,7 @@ function eyebrow(s, txt, color, x, y, w) {
   s.addText(txt, { x, y, w, h: 0.3, fontFace: HF, fontSize: 10.5, bold: true, color, charSpacing: 3, margin: 0 });
 }
 function foot(s, dark) {
-  s.addText("Hearts and Minds · audience deck No.1 · Commissioner edition · proof-of-concept draft ⚑ · June 2026",
+  s.addText("Hearts and Minds · audience deck No.1 · Commissioner edition · proof-of-concept draft ⚑ · updated September 2026",
     { x: 0.5, y: 5.32, w: 9, h: 0.25, fontFace: BF, fontSize: 8, color: dark ? "9FB6D9" : MUTED, margin: 0 });
 }
 
@@ -31,7 +31,7 @@ s.addImage({ path: IMG + "Sarah hero.png", x: 5.9, y: 0, w: 4.1, h: 5.625, sizin
 s.addShape(p.shapes.RECTANGLE, { x: 5.7, y: 0, w: 0.2, h: 5.625, fill: { color: AMBER } });
 eyebrow(s, "HEARTS AND MINDS · COMMISSIONER EDITION · No.1", AMBER, 0.55, 0.65, 5);
 s.addText("Testing that finds the people your clinics can’t.", { x: 0.5, y: 1.15, w: 5.0, h: 1.95, fontFace: HF, fontSize: 34, bold: true, color: "FFFFFF", lineSpacing: 40 });
-s.addText("HomeTest: patient-centric micro-sampling, at scale. 24/7 access through the NHS App — for the populations you commission for.", { x: 0.55, y: 3.25, w: 4.7, h: 0.85, fontFace: BF, fontSize: 14.5, color: "CFE0F5", margin: 0 });
+s.addText("HomeTest: patient-centric micro-sampling, at scale. 24/7 access through the NHS App, for the populations you commission for.", { x: 0.55, y: 3.25, w: 4.7, h: 0.85, fontFace: BF, fontSize: 14.5, color: "CFE0F5", margin: 0 });
 s.addText([{ text: "Live today: ", options: { bold: true, color: AMBER } }, { text: "patient-initiated HIV testing through the NHS App, in Beta with two local authorities." }],
   { x: 0.55, y: 4.25, w: 4.7, h: 0.65, fontFace: BF, fontSize: 12.5, color: "E8F0FA", margin: 0 });
 foot(s, true);
@@ -47,7 +47,7 @@ s.addShape(p.shapes.RECTANGLE, { x: 2.9, y: 1.45, w: 6.5, h: 1.85, fill: { color
 s.addText("“I need these services to save my budget, not strain it. Give me ready-made templates and a clear route to buy. I haven’t got the headcount to bespoke this for every supplier or every product.”",
   { x: 3.15, y: 1.6, w: 6.0, h: 1.55, fontFace: BF, fontSize: 14, italic: true, color: INK, valign: "middle", margin: 0 });
 s.addText([
-  { text: "Every service in this programme is designed around named people — the patients it must reach and the person who has to buy it. ", options: {} },
+  { text: "Every service in this programme is designed around named people, the patients it must reach and the person who has to buy it. ", options: {} },
   { text: "Three of them carry today’s story.", options: { bold: true, color: NAVY } }
 ], { x: 2.9, y: 3.55, w: 6.5, h: 0.62, fontFace: BF, fontSize: 12.5, color: SEC, margin: 0 });
 const trio = [["Sarah", "the buyer", PER + "sarah.png", BLUE], ["Sean", "the patient the system fails", PER + "sean.png", VIOLET], ["Errol", "where it all goes", IMG + "errol-portrait.png", GREEN]];
@@ -67,9 +67,9 @@ s.addText([
   { text: "Clinic-hours testing reaches the people who can attend clinics. It quietly misses:", options: { breakLine: true } },
 ], { x: 0.55, y: 1.6, w: 5.3, h: 0.5, fontFace: BF, fontSize: 13.5, color: INK, margin: 0 });
 const misses = [
-  ["The time-poor", "Shift workers and single parents for whom a clinic slot costs half a day’s income. The bloods slip — not from neglect, from arithmetic."],
-  ["The stigma-wary", "People who will do a test at their own kitchen table but will never sit in certain waiting rooms — whatever the condition."],
-  ["The system-failed", "People with learning disabilities, serious mental illness, needle phobia — for whom the appointment itself is the wall."],
+  ["The time-poor", "Shift workers and single parents for whom a clinic slot costs half a day’s income. The bloods slip, not from neglect, from arithmetic."],
+  ["The stigma-wary", "People who will do a test at their own kitchen table but will never sit in certain waiting rooms, whatever the condition."],
+  ["The system-failed", "People with learning disabilities, serious mental illness, needle phobia, for whom the appointment itself is the wall."],
 ];
 misses.forEach(([t, d], i) => {
   const y = 2.15 + i * 0.98;
@@ -81,7 +81,7 @@ misses.forEach(([t, d], i) => {
 s.addShape(p.shapes.RECTANGLE, { x: 6.25, y: 1.6, w: 3.25, h: 3.5, fill: { color: NAVY }, shadow: sh() });
 s.addText("DNA", { x: 6.25, y: 1.95, w: 3.25, h: 0.85, fontFace: HF, fontSize: 48, bold: true, color: AMBER, align: "center", margin: 0 });
 s.addText("≠ disengaged", { x: 6.25, y: 2.8, w: 3.25, h: 0.5, fontFace: HF, fontSize: 22, bold: true, color: "FFFFFF", align: "center", margin: 0 });
-s.addText("A “did not attend” code cannot tell would not from could not — and the could-nots are exactly who late diagnosis finds.", { x: 6.5, y: 3.5, w: 2.75, h: 1.3, fontFace: BF, fontSize: 11.5, color: "CFE0F5", align: "center", margin: 0 });
+s.addText("A “did not attend” code cannot tell would not from could not, and the could-nots are exactly who late diagnosis finds.", { x: 6.5, y: 3.5, w: 2.75, h: 1.3, fontFace: BF, fontSize: 11.5, color: "CFE0F5", align: "center", margin: 0 });
 foot(s);
 s.addNotes("Do not invent local statistics - invite hers. Ask: where do your late diagnoses come from? The answer is almost always the three groups on the left. The DNA card reframes non-attendance as system failure rather than patient failure - this is the deck's moral pivot and sets up Sean.");
 
@@ -90,7 +90,7 @@ s.addNotes("Do not invent local statistics - invite hers. Ask: where do your lat
 s = p.addSlide(); s.background = { color: BG };
 s.addText("The system you are buying against is running out of road.", { x: 0.5, y: 0.45, w: 9, h: 0.65, fontFace: HF, fontSize: 25, bold: true, color: NAVY, margin: 0 });
 s.addText("1.25bn", { x: 0.55, y: 1.25, w: 3.4, h: 0.95, fontFace: HF, fontSize: 54, bold: true, color: NAVY, margin: 0 });
-s.addText("NHS pathology test requests projected for 2025/26 — growing 5.5% every year. Phlebotomy services are under major strain, and every routine draw still assumes a building, a rota and a patient who can attend.", { x: 0.55, y: 2.25, w: 3.6, h: 1.6, fontFace: BF, fontSize: 12.5, color: SEC, margin: 0 });
+s.addText("NHS pathology test requests projected for 2025/26, growing 5.5% every year. Phlebotomy services are under major strain, and every routine draw still assumes a building, a rota and a patient who can attend.", { x: 0.55, y: 2.25, w: 3.6, h: 1.6, fontFace: BF, fontSize: 12.5, color: SEC, margin: 0 });
 const bars = [["2013/14", "730m", 730], ["2021/22", "1.12bn", 1120], ["2025/26", "1.25bn", 1250]];
 bars.forEach(([yr, label, v], i) => {
   const h = (v / 1250) * 2.3, x = 4.7 + i * 1.55;
@@ -111,15 +111,15 @@ s.addImage({ path: SEAN + "sean-stage4.png", x: 6.15, y: 0, w: 3.85, h: 5.625, s
 s.addShape(p.shapes.RECTANGLE, { x: 5.95, y: 0, w: 0.2, h: 5.625, fill: { color: AMBER } });
 eyebrow(s, "HOMETEST · THE SERVICE", AMBERD, 0.55, 0.5, 5);
 s.addText("Tests that come to the patient, not the other way round.", { x: 0.5, y: 0.85, w: 5.3, h: 1.15, fontFace: HF, fontSize: 25, bold: true, color: NAVY, margin: 0 });
-s.addText("Kit through the door → sample to an accredited lab → result into the record, with the care pathway attached. Ordered by the patient, their clinician or their GP — one platform serving all three patterns.",
+s.addText("Kit through the door → sample to an accredited lab → result into the record, with the care pathway attached. Ordered by the patient, their clinician or their GP, one platform serving all three patterns.",
   { x: 0.55, y: 2.1, w: 5.1, h: 1.05, fontFace: BF, fontSize: 13, color: INK, margin: 0 });
-const chips4 = [["Live now", "patient-initiated HIV testing through the NHS App, in Beta with two local authorities — the proof the platform works"],
-                ["Coming through", "clinician-initiated PSA surveillance (prospective) and GP-initiated anaemia monitoring (in design) on the same rails"],
-                ["Clinically wrapped", "UKAS-accredited labs, clinical safety case, IG executed before go-live — carried by the platform, every pathway"]];
+const chips4 = [["Live now", "patient-initiated HIV testing through the NHS App, in Beta with two local authorities, the proof the platform works"],
+                ["Coming through", "clinician-initiated PSA surveillance (prospective) and GP-initiated a four-test STI panel (leading discovery candidate) on the same rails"],
+                ["Clinically wrapped", "UKAS-accredited labs, clinical safety case, IG executed before go-live, carried by the platform, every pathway"]];
 chips4.forEach(([t, d], i) => {
   const y = 3.25 + i * 0.68;
   s.addShape(p.shapes.OVAL, { x: 0.55, y: y + 0.06, w: 0.16, h: 0.16, fill: { color: AMBER } });
-  s.addText([{ text: t + " — ", options: { bold: true, color: NAVY } }, { text: d }],
+  s.addText([{ text: t + ", ", options: { bold: true, color: NAVY } }, { text: d }],
     { x: 0.85, y, w: 4.85, h: 0.62, fontFace: BF, fontSize: 11, color: SEC, margin: 0 });
 });
 foot(s);
@@ -140,7 +140,7 @@ steps.forEach(([n, t, d], i) => {
 s.addShape(p.shapes.RECTANGLE, { x: 0.55, y: 3.15, w: 9.0, h: 0.95, fill: { color: CARD }, line: { color: BORD, width: 0.75 }, shadow: sh() });
 s.addShape(p.shapes.RECTANGLE, { x: 0.55, y: 3.15, w: 0.07, h: 0.95, fill: { color: GREEN } });
 s.addText([{ text: "The wrapper carries the hard part. ", options: { bold: true, color: GREEN } },
-  { text: "Clinical safety (DCB0129/0160), information governance (DPIA, DSA, DPA executed before go-live) and the assurance gateway travel with the service — your team inherits them, it doesn’t build them." }],
+  { text: "Clinical safety (DCB0129/0160), information governance (DPIA, DSA, DPA executed before go-live) and the assurance gateway travel with the service, your team inherits them, it doesn’t build them." }],
   { x: 0.8, y: 3.27, w: 8.6, h: 0.75, fontFace: BF, fontSize: 12, color: SEC, valign: "middle", margin: 0 });
 s.addShape(p.shapes.RECTANGLE, { x: 0.55, y: 4.3, w: 9.0, h: 0.8, fill: { color: "EAF2FB" }, line: { color: BLUE, width: 1 } });
 s.addText([{ text: "Patient route choice preserved.  ", options: { bold: true, color: BLUE, fontSize: 13 } },
@@ -152,12 +152,12 @@ s.addNotes("The wrapper line answers her quote from slide 2 - templates, not bes
 
 // ============ S5A UNIT ECONOMICS ============
 s = p.addSlide(); s.background = { color: BG };
-s.addText("You pay for completed tests. Not for buildings, rotas or empty slots.", { x: 0.5, y: 0.45, w: 9, h: 0.95, fontFace: HF, fontSize: 24, bold: true, color: NAVY, margin: 0 });
+s.addText("You pay for activity that happens. Not for buildings, rotas or empty slots.", { x: 0.5, y: 0.45, w: 9, h: 0.95, fontFace: HF, fontSize: 24, bold: true, color: NAVY, margin: 0 });
 const econ = [
- ["Per completed test", "The live commercial pattern: payment follows a returned, lab-reported result. Activity you fund is activity that happened.", GREEN],
+ ["Cost per activity", "The pattern agreed in principle: a set price for the activity that happens, against a national ceiling your local volume beats. A pathway that runs at seventy percent pays seventy percent.", GREEN],
  ["The DNA asymmetry", "A missed appointment still costs the slot, the room and the rota. An unreturned kit doesn\u2019t burn a clinic minute \u2014 and the reminder to return it costs a message, not a booking.", GREEN],
  ["Zero estate", "Volume scales with kit-and-post logistics and lab capacity \u2014 not with waiting rooms. The next thousand tests need no building.", BLUE],
- ["Aggregated demand", "A national catalogue of quality-assured kits, comparable by price, with tiered pricing \u2014 every commissioner\u2019s volume pushes every commissioner\u2019s unit cost down.", BLUE],
+ ["Aggregated demand", "A national framework of quality-assured kits, comparable by price, with a published ceiling price \u2014 every commissioner\u2019s volume pushes every commissioner\u2019s unit cost down.", BLUE],
 ];
 econ.forEach(([t, d, c], i) => {
   const x = 0.55 + (i % 2) * 4.6, y = 1.55 + Math.floor(i / 2) * 1.72;
@@ -205,16 +205,16 @@ s.addText("Sean has a learning disability; he is autistic and lives with OCD. Fo
 s.addText("The test that comes home changes all three: his own table, easy-read instructions, someone he trusts beside him.", { x: 4.35, y: 3.78, w: 5.15, h: 0.7, fontFace: BF, fontSize: 12, bold: true, color: VIOLET, margin: 0 });
 s.addShape(p.shapes.RECTANGLE, { x: 4.35, y: 4.55, w: 5.15, h: 0.62, fill: { color: VIOLETD } });
 s.addText("A journey designed so Sean can complete it is a calmer, clearer journey for every resident you serve.", { x: 4.55, y: 4.6, w: 4.8, h: 0.52, fontFace: BF, fontSize: 10.5, bold: true, color: "FFFFFF", valign: "middle", margin: 0 });
-s.addText("Hearts and Minds \u00b7 audience deck No.1 \u00b7 proof-of-concept draft \u2691 \u00b7 June 2026", { x: 4.35, y: 5.32, w: 5.15, h: 0.25, fontFace: BF, fontSize: 8, color: MUTED, margin: 0 });
+s.addText("Hearts and Minds \u00b7 audience deck No.1 \u00b7 proof-of-concept draft \u2691 \u00b7 updated September 2026", { x: 4.35, y: 5.32, w: 5.15, h: 0.25, fontFace: BF, fontSize: 8, color: MUTED, margin: 0 });
 s.addNotes("Slow down here. Sean is real - a family member of someone on the programme, shared with their blessing. He is the answer to slide 3's DNA card. The curb-cut close is the policy point: inclusive design is not a side-quest, it is how the whole service gets better. This slide is why the deck is called Hearts and Minds.");
 
 // ============ S7 BENEFITS ============
 s = p.addSlide(); s.background = { color: BG };
 s.addText("What this buys you.", { x: 0.5, y: 0.45, w: 9, h: 0.6, fontFace: HF, fontSize: 26, bold: true, color: NAVY, margin: 0 });
-const bens = [["Reach", "Testing for the residents your clinics never see — the time-poor, the stigma-wary, the system-failed.", GREEN],
-  ["Capacity", "Clinic and phlebotomy time concentrates on treatment and complex care — not routine bloods that never needed a building.", GREEN],
-  ["−1 visit", "Per completed test: the journey that didn’t need a building, parking, or a waiting room.", GREEN],
-  ["One wrapper", "Assurance, IG and clinical safety pre-carried. Templates, not bespoke work — budget saved, not strained.", BLUE]];
+const bens = [["Reach", "Testing for the residents your clinics never see, the time-poor, the stigma-wary, the system-failed.", GREEN],
+  ["Capacity", "Clinic and phlebotomy time concentrates on treatment and complex care, not routine bloods that never needed a building.", GREEN],
+  ["−1 visit", "Per test completed: the journey that didn’t need a building, parking, or a waiting room.", GREEN],
+  ["One wrapper", "Assurance, IG and clinical safety pre-carried. Templates, not bespoke work, budget saved, not strained.", BLUE]];
 bens.forEach(([t, d, c], i) => {
   const x = 0.55 + (i % 2) * 4.6, y = 1.3 + Math.floor(i / 2) * 1.62;
   s.addShape(p.shapes.RECTANGLE, { x, y, w: 4.35, h: 1.42, fill: { color: CARD }, line: { color: BORD, width: 0.75 }, shadow: sh() });
@@ -222,7 +222,7 @@ bens.forEach(([t, d, c], i) => {
   s.addText(t, { x: x + 0.25, y: y + 0.12, w: 3.95, h: 0.45, fontFace: HF, fontSize: 21, bold: true, color: c, margin: 0 });
   s.addText(d, { x: x + 0.25, y: y + 0.6, w: 3.95, h: 0.72, fontFace: BF, fontSize: 11, color: SEC, margin: 0 });
 });
-s.addText("“Save my budget, not strain it.” — that was the brief. This is the answer.", { x: 0.55, y: 4.62, w: 9, h: 0.4, fontFace: BF, fontSize: 13, italic: true, color: NAVY, margin: 0 });
+s.addText("“Save my budget, not strain it.”, that was the brief. This is the answer.", { x: 0.55, y: 4.62, w: 9, h: 0.4, fontFace: BF, fontSize: 13, italic: true, color: NAVY, margin: 0 });
 foot(s);
 s.addNotes("Keep claims qualitative and structural - the Beta exists to generate her numbers. If pressed for figures, the honest line: the Beta areas are measuring uptake and clinic displacement now, and we will share what they find.");
 
@@ -256,7 +256,7 @@ const streams = [["HealthSync", "the signal", "saw it coming"], ["HomeTest", "th
 streams.forEach(([n, r, d], i) => {
   const y = 3.1 + i * 0.62;
   s.addShape(p.shapes.OVAL, { x: 0.55, y: y + 0.07, w: 0.14, h: 0.14, fill: { color: AMBER } });
-  s.addText([{ text: n + " ", options: { bold: true, color: AMBER } }, { text: "— " + r + ", " + d }],
+  s.addText([{ text: n + " ", options: { bold: true, color: AMBER } }, { text: ",  " + r + ", " + d }],
     { x: 0.82, y, w: 4.8, h: 0.5, fontFace: BF, fontSize: 12.5, color: "FFFFFF", margin: 0 });
 });
 s.addText("Three signal streams. One record. Clinical time freed for the patients who genuinely need to be in the room.",
@@ -266,8 +266,8 @@ s.addNotes("Errol is the category-4 story - the destination that makes the famil
 // ============ S11 EASY BUYING ============
 s = p.addSlide(); s.background = { color: BG };
 s.addText("And the buying is designed for your headcount, not against it.", { x: 0.5, y: 0.45, w: 9, h: 0.65, fontFace: HF, fontSize: 24, bold: true, color: NAVY, margin: 0 });
-const buy = [["One front door", "configurations and suppliers pre-assured on a national catalogue"],
-  ["National terms", "standard call-off templates — reviewed once by your legal and IG, not per supplier"],
+const buy = [["One front door", "configurations and suppliers pre-assured on a national framework"],
+  ["National terms", "standard call-off templates, reviewed once by your legal and IG, not per supplier"],
   ["A call-off, not a procurement", "the integration, safety case and assurance were done before you walked in"]];
 buy.forEach(([t, d], i) => {
   const y = 1.35 + i * 0.92;
@@ -281,7 +281,7 @@ s.addText("6 wks", { x: 7.0, y: 1.7, w: 2.5, h: 0.8, fontFace: HF, fontSize: 38,
 s.addText("not eighteen months", { x: 7.0, y: 2.55, w: 2.5, h: 0.4, fontFace: HF, fontSize: 13, bold: true, color: "D7F0E4", align: "center", margin: 0 });
 s.addText("the promise the model is built to keep", { x: 7.15, y: 3.0, w: 2.2, h: 0.7, fontFace: BF, fontSize: 10, color: "D7F0E4", align: "center", margin: 0 });
 s.addText([{ text: "Status, honestly: ", options: { bold: true, color: AMBERD } },
-  { text: "HIV is live in Beta today on interim arrangements; the national framework and wider catalogue build through 2026–27. Early partners shape it." }],
+  { text: "HIV is live in Beta today on interim arrangements. The national open framework is being stood up now, targeting April 2028, with an interim route for commissioners who buy before then. Early partners shape it." }],
   { x: 0.55, y: 4.35, w: 8.95, h: 0.6, fontFace: BF, fontSize: 11.5, color: SEC, margin: 0 });
 foot(s);
 s.addNotes("Six weeks not eighteen months is the design target the model is built around - say it as ambition with a straight face, then the honesty line: today's route is interim arrangements that already work (the Beta proves it), and early partners get to shape the destination framework.");
@@ -290,8 +290,8 @@ s.addNotes("Six weeks not eighteen months is the design target the model is buil
 s = p.addSlide(); s.background = { color: BG };
 s.addText("What happens next.", { x: 0.5, y: 0.45, w: 9, h: 0.6, fontFace: HF, fontSize: 26, bold: true, color: NAVY, margin: 0 });
 const next = [["1", "A scoping conversation", "Your population picture and testing gaps; our journey maps and Beta learning. One hour, no homework."],
-  ["2", "The assurance pack", "Clinical safety case, IG framework and call-off shape — reviewed once with your legal and IG teams."],
-  ["3", "A defined cohort to start", "Small, measured, reported — then expanded on evidence, not optimism."]];
+  ["2", "The assurance pack", "Clinical safety case, IG framework and call-off shape, reviewed once with your legal and IG teams."],
+  ["3", "A defined cohort to start", "Small, measured, reported, then expanded on evidence, not optimism."]];
 next.forEach(([n, t, d], i) => {
   const x = 0.55 + i * 3.1;
   s.addShape(p.shapes.RECTANGLE, { x, y: 1.45, w: 2.85, h: 2.6, fill: { color: CARD }, line: { color: BORD, width: 0.75 }, shadow: sh() });
