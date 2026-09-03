@@ -967,6 +967,20 @@ function showLane(n){
    a.classList.toggle('active', a.getAttribute('data-lane') === String(n));
  });
 }
+// Deep links: Operational.html#lane-3 (or a named alias) opens that lane and scrolls to it.
+(function(){
+  var aliases = {'settlement':3,'commercial':3,'delivery':2,'assurance':4,'governance':5,'stewardship':6};
+  function fromHash(){
+    var h = (location.hash||'').replace('#','');
+    var m = h.match(/^lane-(\d)$/); var n = m ? parseInt(m[1],10) : aliases[h];
+    if (n === undefined) return;
+    showLane(n);
+    var lane = document.getElementById('lane-'+n);
+    if (lane) { setTimeout(function(){ lane.scrollIntoView({behavior:'smooth',block:'start'}); }, 50); }
+  }
+  window.addEventListener('DOMContentLoaded', fromHash);
+  window.addEventListener('hashchange', fromHash);
+})();
 </script>
 
 <script>
