@@ -98,6 +98,54 @@
   .ecosystem-nav .nav-product.healthstore { background: #00A9CE; }
   .ecosystem-nav .nav-product.healthsync { background: #00A499; }
 </style>
+<style>
+/* persona colours on the actor key, added 3 Sep 2026 */
+.ak:not([data-group]) .ak-portrait img { width:52px !important; height:52px !important; max-height:52px !important; max-width:52px !important; border-radius:50% !important; object-fit:cover; object-position:top center; background:#fff; box-shadow:0 2px 7px rgba(0,32,64,0.20); }
+.ak[data-group] .ak-portrait img { border-radius:50% !important; object-fit:cover; object-position:top center; background:#fff; }
+.ak { transition:border-color .16s ease, background .16s ease, box-shadow .16s ease, transform .16s ease; }
+.ak[data-p="aisha"]:hover { border-color:#005EB8; }
+.ak[data-p="aisha"].active { border-color:#005EB8; background:#E6EFF8; box-shadow:0 4px 14px rgba(0,94,184,0.24); }
+.ak[data-p="aisha"].active .ak-name { color:#005EB8 !important; }
+.ak[data-p="aisha"] .ak-lane { border-top-color:#8CB7DF; }
+.ak[data-p="aisha"] .ak-lane-num { background:#005EB8; }
+.ak[data-p="aisha"]:not([data-group]) .ak-portrait img { border:3px solid #005EB8 !important; }
+.ak[data-p="david"]:hover { border-color:#B83A2F; }
+.ak[data-p="david"].active { border-color:#B83A2F; background:#F8EBEA; box-shadow:0 4px 14px rgba(184,58,47,0.24); }
+.ak[data-p="david"].active .ak-name { color:#B83A2F !important; }
+.ak[data-p="david"] .ak-lane { border-top-color:#DFA6A1; }
+.ak[data-p="david"] .ak-lane-num { background:#B83A2F; }
+.ak[data-p="david"]:not([data-group]) .ak-portrait img { border:3px solid #B83A2F !important; }
+.ak[data-p="mei"]:hover { border-color:#7E8B97; }
+.ak[data-p="mei"].active { border-color:#7E8B97; background:#F2F3F5; box-shadow:0 4px 14px rgba(126,139,151,0.24); }
+.ak[data-p="mei"].active .ak-name { color:#7E8B97 !important; }
+.ak[data-p="mei"] .ak-lane { border-top-color:#C5CBD0; }
+.ak[data-p="mei"] .ak-lane-num { background:#7E8B97; }
+.ak[data-p="mei"]:not([data-group]) .ak-portrait img { border:3px solid #7E8B97 !important; }
+.ak[data-p="ngozi"]:hover { border-color:#7C2855; }
+.ak[data-p="ngozi"].active { border-color:#7C2855; background:#F2EAEE; box-shadow:0 4px 14px rgba(124,40,85,0.24); }
+.ak[data-p="ngozi"].active .ak-name { color:#7C2855 !important; }
+.ak[data-p="ngozi"] .ak-lane { border-top-color:#C49EB2; }
+.ak[data-p="ngozi"] .ak-lane-num { background:#7C2855; }
+.ak[data-p="ngozi"]:not([data-group]) .ak-portrait img { border:3px solid #7C2855 !important; }
+.ak[data-p="priya"]:hover { border-color:#4A90E2; }
+.ak[data-p="priya"].active { border-color:#4A90E2; background:#EDF4FC; box-shadow:0 4px 14px rgba(74,144,226,0.24); }
+.ak[data-p="priya"].active .ak-name { color:#4A90E2 !important; }
+.ak[data-p="priya"] .ak-lane { border-top-color:#AECDF2; }
+.ak[data-p="priya"] .ak-lane-num { background:#4A90E2; }
+.ak[data-p="priya"]:not([data-group]) .ak-portrait img { border:3px solid #4A90E2 !important; }
+.ak[data-p="sarah"]:hover { border-color:#1B3A6B; }
+.ak[data-p="sarah"].active { border-color:#1B3A6B; background:#E8EBF0; box-shadow:0 4px 14px rgba(27,58,107,0.24); }
+.ak[data-p="sarah"].active .ak-name { color:#1B3A6B !important; }
+.ak[data-p="sarah"] .ak-lane { border-top-color:#98A6BC; }
+.ak[data-p="sarah"] .ak-lane-num { background:#1B3A6B; }
+.ak[data-p="sarah"]:not([data-group]) .ak-portrait img { border:3px solid #1B3A6B !important; }
+.ak[data-p="tariq"]:hover { border-color:#00A499; }
+.ak[data-p="tariq"].active { border-color:#00A499; background:#E6F6F5; box-shadow:0 4px 14px rgba(0,164,153,0.24); }
+.ak[data-p="tariq"].active .ak-name { color:#00A499 !important; }
+.ak[data-p="tariq"] .ak-lane { border-top-color:#8CD6D1; }
+.ak[data-p="tariq"] .ak-lane-num { background:#00A499; }
+.ak[data-p="tariq"]:not([data-group]) .ak-portrait img { border:3px solid #00A499 !important; }
+</style>
 </head>
 <body>
 <div class="ecosystem-nav">
@@ -152,13 +200,13 @@
  </div>
 
  <div class="actor-key">
-  <div class="ak"><div class="ak-portrait"><a href="DTx OM - Persona Sarah.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../assets/personas/sarah.png" alt="Sarah"></a></div><div class="ak-name">Sarah</div><div class="ak-role">1. Commissioner buying</div></div>
-  <div class="ak"><div class="ak-portrait"><a href="DTx OM - Persona Tariq.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="img/tariq.png" alt="Tariq"></a></div><div class="ak-name">Tariq</div><div class="ak-role">2. Integration partner</div></div>
-  <div class="ak"><div class="ak-portrait"><a href="DTx OM - Persona HealthSync diabetes patient.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="img/mei.png" alt="Mei" style="background:#E0E5EB;"></a></div><div class="ak-name">Mei</div><div class="ak-role">3. Patient &middot; Service delivery</div></div>
-  <div class="ak"><div class="ak-portrait"><a href="DTx OM - Persona David.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../assets/personas/david.png" alt="David"></a></div><div class="ak-name">David</div><div class="ak-role">4. Financial settlement</div></div>
-  <div class="ak"><div class="ak-portrait"><a href="DTx OM - Persona Aisha.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../assets/personas/aisha.png" alt="Aisha"></a></div><div class="ak-name">Aisha</div><div class="ak-role">5. Performance &amp; assurance</div></div>
-  <div class="ak"><div class="ak-portrait"><a href="DTx OM - Persona Ngozi.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../assets/personas/ngozi.png" alt="Ngozi"></a></div><div class="ak-name">Ngozi</div><div class="ak-role">6. Information governance</div></div>
-  <div class="ak"><div class="ak-portrait"><a href="DTx OM - Persona Priya.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../assets/personas/priya.png" alt="Priya"></a></div><div class="ak-name">Priya</div><div class="ak-role">7. Market dynamics</div></div>
+  <div data-p="sarah" class="ak"><div class="ak-portrait"><a href="DTx OM - Persona Sarah.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../assets/personas/sarah.png" alt="Sarah"></a></div><div class="ak-name">Sarah</div><div class="ak-role">1. Commissioner buying</div></div>
+  <div data-p="tariq" class="ak"><div class="ak-portrait"><a href="DTx OM - Persona Tariq.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="img/tariq.png" alt="Tariq"></a></div><div class="ak-name">Tariq</div><div class="ak-role">2. Integration partner</div></div>
+  <div data-p="mei" class="ak"><div class="ak-portrait"><a href="DTx OM - Persona HealthSync diabetes patient.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="img/mei.png" alt="Mei" style="border:2.5px solid #7E8B97;border-radius:50%;background:#E0E5EB;"></a></div><div class="ak-name">Mei</div><div class="ak-role">3. Patient &middot; Service delivery</div></div>
+  <div data-p="david" class="ak"><div class="ak-portrait"><a href="DTx OM - Persona David.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../assets/personas/david.png" alt="David"></a></div><div class="ak-name">David</div><div class="ak-role">4. Financial settlement</div></div>
+  <div data-p="aisha" class="ak"><div class="ak-portrait"><a href="DTx OM - Persona Aisha.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../assets/personas/aisha.png" alt="Aisha"></a></div><div class="ak-name">Aisha</div><div class="ak-role">5. Performance &amp; assurance</div></div>
+  <div data-p="ngozi" class="ak"><div class="ak-portrait"><a href="DTx OM - Persona Ngozi.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../assets/personas/ngozi.png" alt="Ngozi"></a></div><div class="ak-name">Ngozi</div><div class="ak-role">6. Information governance</div></div>
+  <div data-p="priya" class="ak"><div class="ak-portrait"><a href="DTx OM - Persona Priya.html" style="display:inline-block;text-decoration:none;cursor:pointer;"><img src="../assets/personas/priya.png" alt="Priya"></a></div><div class="ak-name">Priya</div><div class="ak-role">7. Market dynamics</div></div>
  </div>
 
  <div class="reserved-banner">
