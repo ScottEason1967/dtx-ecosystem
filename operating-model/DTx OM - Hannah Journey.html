@@ -46,6 +46,15 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
 .hero-portrait-circ img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;}
 .hero-portrait-name{font-size:18px;font-weight:800;color:#fff;letter-spacing:0.4px;}
 .hero-portrait-role{font-size:11px;color:var(--gold);letter-spacing:1.4px;text-transform:uppercase;font-weight:700;text-align:center;line-height:1.4;}
+    .hero-image-box{display:flex;flex-direction:column;align-items:center;gap:12px;}
+    .image-slot{position:relative;background:linear-gradient(135deg,rgba(255,255,255,0.18),rgba(255,255,255,0.06));border-radius:16px;border:2px dashed rgba(255,255,255,0.30);display:flex;flex-direction:column;align-items:center;justify-content:center;color:rgba(255,255,255,0.78);text-align:center;padding:24px;font-size:11.5px;font-weight:700;letter-spacing:0.4px;overflow:hidden;}
+    .image-slot img{display:block;width:100%;height:100%;object-fit:cover;object-position:center top;}
+    .image-slot-icon{font-size:48px;opacity:0.45;margin-bottom:8px;}
+    .image-slot.hero-image{width:340px;height:340px;}
+    .image-slot-caption{font-size:10.5px;font-weight:600;opacity:0.78;letter-spacing:0.4px;margin-top:4px;}
+    .image-slot .slot-portrait{width:120px;height:120px;border-radius:50%;object-fit:cover;object-position:top center;margin-bottom:10px;border:3px solid rgba(255,255,255,0.55);box-shadow:0 8px 20px rgba(0,0,0,0.25);}
+    .hero-portrait-strip{display:flex;flex-direction:column;gap:6px;text-align:center;color:#fff;}
+    @media(max-width:860px){.image-slot.hero-image{width:100%;max-width:340px;height:320px;}}
 
 /* RIBBON */
 .ribbon-wrap{background:#fafbfd;border-bottom:1px solid var(--border-lt);padding:32px 60px 28px;}
@@ -251,12 +260,14 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,san
         <h1 class="hero-title">The bloods that<br><em>never needed</em><br>a clinic.</h1>
         <p class="hero-strap">Hannah is a GP partner. She runs the routine Iron deficiency anaemia review cycle for her practice. Layla is on her list. So are a hundred others. Every quarter she runs the same six-month FBC clinic, and every quarter the same patients miss the appointment, get rebooked, and miss again. The cycle has nothing to do with the bloods themselves. <strong>This is the story of how the model lets her hold the cohort without holding their diaries.</strong></p>
       </div>
-      <div class="hero-portrait-box">
-        <div class="hero-portrait-circ">
-          <img src="img/Hannah%20hero.png" alt="Hannah">
+      <div class="hero-image-box">
+        <div class="image-slot hero-image">
+          <img src="img/hannah-hero.png" alt="Hannah in her consulting room" style="border-radius:14px;" onerror="this.style.display='none'; this.parentElement.innerHTML='<img class=&quot;slot-portrait&quot; src=&quot;img/Hannah%20hero.png&quot; alt=&quot;&quot;><div>Hannah hero illustration</div><div class=&quot;image-slot-caption&quot;>GP consulting room &middot; recall list on screen &middot; the clinic nobody attends</div>';">
         </div>
-        <div class="hero-portrait-name">Hannah</div>
-        <div class="hero-portrait-role">GP partner<br>Primary-care monitoring</div>
+        <div class="hero-portrait-strip">
+          <div class="hero-portrait-name">Hannah</div>
+          <div class="hero-portrait-role">GP partner<br>Primary-care monitoring</div>
+        </div>
       </div>
     </div>
   </div>

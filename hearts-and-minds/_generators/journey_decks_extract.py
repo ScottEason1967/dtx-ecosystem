@@ -34,7 +34,9 @@ for f in sorted(os.listdir(SRC)):
     P = {"name": name, "key": key, "colour": COL[key], "group": GROUP[key]}
     P["hero_eyebrow"] = plain(grab(body, r'class="hero-eyebrow">(.*?)</div>')); P["hero_title"] = runs(grab(body, r'<h1 class="hero-title">(.*?)</h1>'))
     P["hero_strap"] = runs(grab(body, r'<p class="hero-strap">(.*?)</p>')); P["role"] = plain(grab(body, r'class="hero-portrait-role">(.*?)</div>')).replace("\n", " · ")
-    port = grab(body, r'class="hero-portrait-circ">\s*<img src="([^"]+)"').replace("%20", " "); P["portrait"] = None
+    port = f"Assets/Personas/{key}.png"  # persona portrait (the hero now carries a scene slot, not the portrait circle)
+    if not os.path.exists(port): port = grab(body, r'<div class="image-slot hero-image">\s*<img src="([^"]+)"').replace("%20", " ")
+    P["portrait"] = None
     if port and os.path.exists(port): dst = f"{OUT}/img/{key}-portrait.jpg"; P["portrait_wh"] = shrink(port, dst, 500, True); P["portrait"] = os.path.abspath(dst)
     P["ribbon"] = [{"label": plain(l), "sub": plain(su)} for l, su in re.findall(r'<div class="ribbon-label">(.*?)</div>\s*<div class="ribbon-substage">(.*?)</div>', body, re.S)]
     P["framing"] = [{"eyebrow": plain(a), "h": plain(b), "body": runs(c)} for a, b, c in re.findall(r'<div class="framing-tile-eyebrow">(.*?)</div>\s*<div class="framing-tile-h">(.*?)</div>\s*<div class="framing-tile-body">(.*?)</div>', body, re.S)]
