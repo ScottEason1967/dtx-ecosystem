@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ruth&apos;s story: Digital Therapeutics Operating Model</title>
+<style>
+ .topnav{background:#fff;border-bottom:1px solid #ebeef1;padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;box-shadow:0 2px 14px rgba(0,48,135,0.10);position:sticky;top:0;z-index:200;}
+ .nav-back{font-size:13px;font-weight:700;color:#003087;text-decoration:none;display:inline-flex;align-items:center;gap:6px;}
+ .nav-back:hover{color:#005EB8;}
+ .nav-siblings{display:flex;gap:4px;flex-wrap:wrap;}
+ .nav-siblings a{font-size:12.5px;font-weight:600;color:#4C6272;text-decoration:none;padding:7px 14px;border-radius:6px;letter-spacing:0.2px;}
+ .nav-siblings a:hover{background:#f0f4f8;color:#212B32;}
+ .nav-siblings a.active{background:#FFB91D;color:#231F20;}
+
+:root {
+  --nhs-dark:#003087;
+  --nhs-blue:#005EB8;
+  --amber:#FFB91D;
+  --amber-deep:#C9A227;
+  --gold:#FFD66B;
+  --warm-cream:#FFF9EC;
+  --text:#212B32;
+  --text-sec:#4C6272;
+  --text-muted:#7E8B97;
+  --border-lt:#ebeef1;
+  --card:#ffffff;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,var(--nhs-blue) 0%, var(--nhs-dark) 100%);background-attachment:fixed;color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;margin:0;padding:0;width:100%;}
+
+.page{max-width:1180px;margin:30px auto 50px;background:#ffffff;border-radius:18px;box-shadow:0 14px 40px rgba(0,48,135,0.20);overflow:hidden;}
+
+/* HERO */
+.hero{position:relative;padding:70px 60px 60px;background:linear-gradient(135deg,#001a4d 0%,#003087 50%,#005EB8 100%);color:#fff;overflow:hidden;}
+.hero::after{content:'';position:absolute;right:-80px;bottom:-120px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(255,185,29,0.22),transparent 65%);pointer-events:none;}
+.hero-inner{position:relative;display:grid;grid-template-columns:1.5fr 1fr;gap:50px;align-items:center;z-index:1;}
+.hero-rule{width:60px;height:4px;background:var(--gold);border-radius:2px;margin-bottom:22px;}
+.hero-eyebrow{font-size:11px;font-weight:800;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:24px;}
+.hero-title{font-size:64px;font-weight:900;color:#fff;letter-spacing:-2px;line-height:0.98;margin-bottom:28px;}
+.hero-title em{font-style:normal;color:var(--gold);}
+.hero-strap{font-size:17px;color:rgba(255,255,255,0.94);line-height:1.65;max-width:560px;}
+.hero-strap strong{color:var(--gold);font-weight:700;}
+.hero-portrait-box{display:flex;flex-direction:column;align-items:center;gap:14px;}
+.hero-portrait-circ{width:280px;height:280px;border-radius:50%;overflow:hidden;border:6px solid rgba(255,185,29,0.45);box-shadow:0 14px 36px rgba(0,0,0,0.35);background:#fff;}
+.hero-portrait-circ img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;}
+.hero-portrait-name{font-size:18px;font-weight:800;color:#fff;letter-spacing:0.4px;}
+.hero-portrait-role{font-size:11px;color:var(--gold);letter-spacing:1.4px;text-transform:uppercase;font-weight:700;text-align:center;line-height:1.4;}
+
+/* RIBBON */
+.ribbon-wrap{background:#fafbfd;border-bottom:1px solid var(--border-lt);padding:32px 60px 28px;}
+.ribbon-eyebrow{font-size:10.5px;font-weight:800;letter-spacing:2px;color:var(--text-muted);text-transform:uppercase;margin-bottom:14px;text-align:center;}
+.ribbon{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;position:relative;align-items:start;}
+.ribbon-stage{display:flex;flex-direction:column;align-items:center;gap:8px;position:relative;cursor:pointer;text-decoration:none;color:inherit;padding:8px 4px;border-radius:8px;transition:background 0.15s;}
+.ribbon-stage:hover{background:rgba(0,48,135,0.04);}
+.ribbon-num{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#C9A227,#FFB91D);color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;letter-spacing:-0.5px;box-shadow:0 4px 10px rgba(201,162,39,0.22);}
+.ribbon-label{font-size:11.5px;font-weight:800;color:var(--nhs-dark);text-align:center;line-height:1.3;letter-spacing:0.2px;}
+.ribbon-substage{font-size:10px;font-weight:600;color:var(--text-sec);text-align:center;letter-spacing:0.4px;margin-top:2px;}
+
+/* FRAMING */
+.framing{padding:50px 60px 36px;background:#fff;}
+.framing-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.framing-tile{background:linear-gradient(135deg,#F4F8FC,#FFFFFF);border:1px solid #D5E8F0;border-radius:14px;padding:24px 26px;}
+.framing-tile-eyebrow{font-size:10px;font-weight:800;letter-spacing:1.8px;color:#C9A227;text-transform:uppercase;margin-bottom:8px;}
+.framing-tile-h{font-size:16px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.2px;margin-bottom:10px;line-height:1.3;}
+.framing-tile-body{font-size:13px;color:var(--text-sec);line-height:1.65;}
+.framing-tile-body strong{color:var(--text);font-weight:700;}
+
+/* STAGES */
+.stages{padding:24px 60px 60px;background:#fff;}
+.stage{display:grid;grid-template-columns:80px 1fr;gap:36px;padding:48px 0;border-top:1px solid var(--border-lt);}
+.stage:first-child{border-top:none;}
+.stage-side{display:flex;flex-direction:column;align-items:center;gap:14px;}
+.stage-number{font-size:48px;font-weight:900;color:#C9A227;letter-spacing:-2px;opacity:0.22;line-height:1;}
+.stage-main{}
+.stage-eyebrow{font-size:11px;font-weight:800;letter-spacing:1.8px;color:#C9A227;text-transform:uppercase;margin-bottom:10px;}
+.stage-title{font-size:24px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.5px;line-height:1.32;margin-bottom:22px;}
+.stage-image{background:linear-gradient(135deg,#F4F8FC,#E8F1F6);border-radius:12px;padding:32px 24px;text-align:center;color:var(--text-muted);margin-bottom:22px;border:1px dashed #B5D4E5;font-size:12px;font-weight:600;letter-spacing:0.3px;line-height:1.55;}
+.stage-image-icon{font-size:36px;opacity:0.4;margin-bottom:6px;}
+.stage-image-caption{font-size:11px;font-weight:500;opacity:0.85;letter-spacing:0.3px;margin-top:6px;}
+.pull-quote{margin:24px auto 28px;padding:32px 20px 28px;text-align:center;position:relative;max-width:820px;}
+.pull-quote::before{content:'\201C';position:absolute;left:8px;top:-18px;font-size:110px;color:#C9A227;font-family:Georgia,'Times New Roman',serif;line-height:1;opacity:0.65;pointer-events:none;}
+.pull-quote-text{font-size:24px;font-weight:600;color:var(--text,#212B32);line-height:1.45;letter-spacing:-0.3px;max-width:780px;margin:0 auto;font-style:italic;}
+.pull-quote-attribution{font-size:11.5px;font-weight:800;letter-spacing:2px;color:#C9A227;text-transform:uppercase;margin-top:18px;}
+@media(max-width:720px){.pull-quote-text{font-size:20px;}.pull-quote::before{font-size:84px;top:-10px;}}
+.whats-happening{background:#F4F8FC;border:1px solid #d6e2ef;border-radius:12px;padding:18px 22px;margin-bottom:14px;}
+.whats-happening-label{font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:var(--nhs-blue);text-transform:uppercase;margin-bottom:8px;}
+.whats-happening-body{font-size:13px;color:var(--text-sec);line-height:1.7;}
+.whats-happening-body strong{color:var(--text);font-weight:700;}
+.old-way{background:#fbf3ef;border:1px solid #f0d9cd;border-radius:12px;padding:18px 22px;margin-bottom:14px;}
+.old-way-label{font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:#A65A2C;text-transform:uppercase;margin-bottom:8px;}
+.old-way-body{font-size:13px;color:var(--text-sec);line-height:1.7;}
+.careteam{display:flex;align-items:flex-start;gap:14px;background:#F4F8FC;border-radius:12px;padding:16px 20px;margin-bottom:14px;}
+.careteam-icon{font-size:22px;flex-shrink:0;line-height:1.2;}
+.careteam-body{flex:1;}
+.careteam-label{font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:var(--nhs-blue);text-transform:uppercase;margin-bottom:6px;}
+.careteam-text{font-size:13px;color:var(--text-sec);line-height:1.65;}
+.crosslinks{background:#fff;border:1px dashed var(--border-lt);border-radius:10px;padding:14px 18px;}
+.crosslinks-label{font-size:10px;font-weight:800;letter-spacing:1.4px;color:var(--text-muted);text-transform:uppercase;margin-bottom:8px;}
+.crosslinks-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;font-size:12px;}
+.crosslinks-tag{background:var(--nhs-dark);color:#fff;font-size:9.5px;font-weight:800;letter-spacing:1px;padding:3px 8px;border-radius:4px;text-transform:uppercase;}
+.crosslinks a{color:var(--nhs-blue);text-decoration:none;font-weight:700;}
+.crosslinks a:hover{text-decoration:underline;}
+
+/* OUTCOME */
+.outcome{background:linear-gradient(135deg,#C9A227,#FFB91D);color:#fff;padding:50px 60px;text-align:center;}
+.outcome-eyebrow{font-size:11px;font-weight:800;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:16px;}
+.outcome-title{font-size:34px;font-weight:900;color:#fff;letter-spacing:-1px;line-height:1.15;margin-bottom:18px;}
+.outcome-body{font-size:15.5px;color:rgba(255,255,255,0.92);line-height:1.7;max-width:760px;margin:0 auto 22px;}
+.outcome-body strong{color:var(--gold);font-weight:700;}
+.outcome-cta{display:inline-flex;gap:14px;flex-wrap:wrap;justify-content:center;}
+.outcome-btn{background:var(--gold);color:var(--nhs-dark);font-size:13px;font-weight:800;letter-spacing:0.3px;padding:12px 22px;border-radius:99px;text-decoration:none;}
+.outcome-btn:hover{background:#fff;}
+.outcome-btn-sec{background:transparent;color:#fff;font-size:12.5px;font-weight:700;letter-spacing:0.3px;padding:10px 22px;border:1.5px solid rgba(255,255,255,0.45);border-radius:99px;text-decoration:none;}
+.outcome-btn-sec:hover{background:rgba(255,255,255,0.10);}
+
+@media print {
+  .topnav { display: none !important; }
+  .hm-witness .hmw-card { display:block !important; position:static; transform:none; width:auto; max-width:none; margin:8px 0; box-shadow:none; border:1px solid #ccc; }
+}
+
+@media (max-width:880px) {
+  .hero{padding:48px 30px 40px;}
+  .hero-inner{grid-template-columns:1fr;gap:30px;}
+  .hero-title{font-size:46px;}
+  .ribbon-wrap{padding:24px 24px 22px;}
+  .ribbon{grid-template-columns:repeat(3,1fr);gap:12px;}
+  .framing{padding:36px 30px 24px;}
+  .framing-grid{grid-template-columns:1fr;}
+  .stages{padding:14px 30px 40px;}
+  .stage{grid-template-columns:1fr;gap:20px;padding:32px 0;}
+  .stage-side{flex-direction:row;justify-content:flex-start;}
+  .stage-number{font-size:36px;}
+  .outcome{padding:36px 30px;}
+  .outcome-title{font-size:26px;}
+}
+
+  /* ecosystem-nav */
+  .ecosystem-nav {
+    background: #fff;
+    border-bottom: 1px solid #ebeef1;
+    padding: 12px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 48px;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  }
+  .ecosystem-nav a {
+    font-size: 13px; font-weight: 700; color: #003087;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .ecosystem-nav a:hover { color: #005EB8; }
+  .ecosystem-nav .nav-context {
+    font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
+    color: #7E8B97; text-transform: uppercase;
+  }
+  .ecosystem-nav .nav-product {
+    font-size: 10.5px; font-weight: 800; letter-spacing: 0.8px;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 4px; color: #fff;
+  }
+  .ecosystem-nav .nav-product.dtx { background: #003087; }
+  .ecosystem-nav .nav-product.hometest { background: #003087; }
+  .ecosystem-nav .nav-product.healthstore { background: #00A9CE; }
+  .ecosystem-nav .nav-product.healthsync { background: #00A499; }
+  /* end ecosystem-nav */
+</style>
+
+<style id="hm-strip-css">
+  .topnav.hm-strip{position:static;z-index:auto;background:#F4F8FC;border-bottom:1px solid #d6e2ef;padding:8px 36px;display:flex;align-items:center;gap:14px;flex-wrap:nowrap;overflow-x:auto;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;}
+  .hm-strip-label{font-size:10px;font-weight:800;letter-spacing:1.5px;color:#7E8B97;text-transform:uppercase;flex-shrink:0;}
+  .hm-strip-groups{display:flex;gap:8px;align-items:center;flex-wrap:nowrap;}
+  .hms-group{display:inline-flex;gap:3px;align-items:center;padding:3px 8px;border-radius:6px;border:2px dotted #d8dde0;flex-shrink:0;}
+  .hms-group.hms-patients{border-color:#C9A227;}
+  .hms-group.hms-commissioners{border-color:#003087;}
+  .hms-group.hms-clinicians{border-color:#9B7CC4;}
+  .hms-group.hms-suppliers{border-color:#388C5D;}
+  .hms{font-size:11.5px;font-weight:600;color:#4C6272;text-decoration:none;padding:5px 10px;border-radius:6px;white-space:nowrap;}
+  .hms:hover{background:#e9eff5;color:#212B32;}
+  .hms-abdul.active,.hms-mark.active,.hms-devi.active,.hms-errol.active{background:#FFB91D;color:#231F20;}
+  .hms-sean.active{background:#4527A0;color:#ffffff;}
+  .hms-sarah.active,.hms-catherine.active,.hms-anita.active,.hms-ruth.active{background:#003087;color:#ffffff;}
+.hms-pauline.active{background:#006747;color:#ffffff;}
+  .hms-adam.active,.hms-hannah.active,.hms-ravi.active{background:#C9A0E3;color:#231F20;}
+  .hms-joe.active,.hms-marcus.active{background:#5BC093;color:#ffffff;}
+</style>
+</head>
+<body>
+<div class="ecosystem-nav">
+  <a href="../index.html">← DTx Ecosystem</a>
+  <span class="nav-context">Ruth Journey</span>
+  <span class="nav-product hometest">HomeTest</span>
+</div>
+
+<nav class="topnav">
+<a href="DTx OM - Index.html" class="nav-back">&larr; Operating Model</a>
+<div class="nav-siblings">
+ <a href="DTx OM - Why.html">Why</a>
+ <a href="DTx OM - What.html">What</a>
+ <a href="DTx OM - Lifecycle.html">When</a>
+ <a href="DTx OM - HomeTest Operational.html">How</a>
+ <a href="DTx OM - Governance.html">Who</a>
+ <a href="DTx OM - Hearts and Minds.html" class="active">Hearts and Minds</a>
+ <a href="DTx OM - HomeTest Teamwork.html">Teamwork</a>
+ <a href="DTx OM - Status.html">Status</a>
+</div>
+</nav>
+
+<nav class="topnav hm-strip">
+  <div class="hm-strip-label">Hearts &amp; Minds</div>
+  <div class="hm-strip-groups">
+    <div class="hms-group hms-patients">
+      <a href="DTx OM - Abdul Journey.html" class="hms hms-abdul" title="Patient">Abdul</a>
+      <a href="DTx OM - Mark Journey.html" class="hms hms-mark" title="Patient">Mark</a>
+      <a href="DTx OM - Devi Journey.html" class="hms hms-devi" title="Patient">Devi</a>
+      <a href="DTx OM - Sean Journey.html" class="hms hms-sean" title="Patient">Sean</a>
+      <a href="DTx OM - Errol Journey.html" class="hms hms-errol" title="Patient">Errol</a>
+      <a href="DTx OM - Pauline Journey.html" class="hms hms-pauline" title="Patient">Pauline</a>
+    </div>
+    <div class="hms-group hms-commissioners">
+      <a href="DTx OM - Sarah Journey.html" class="hms hms-sarah" title="Commissioner">Sarah</a>
+      <a href="DTx OM - Catherine Journey.html" class="hms hms-catherine" title="Commissioner">Catherine</a>
+      <a href="DTx OM - Anita Journey.html" class="hms hms-anita" title="Commissioner">Anita</a>
+      <a href="DTx OM - Ruth Journey.html" class="hms hms-ruth active" title="Commissioner">Ruth</a>
+    </div>
+    <div class="hms-group hms-clinicians">
+      <a href="DTx OM - Adam Journey.html" class="hms hms-adam" title="Clinician">Adam</a>
+      <a href="DTx OM - Hannah Journey.html" class="hms hms-hannah" title="Clinician">Hannah</a>
+      <a href="DTx OM - Ravi Journey.html" class="hms hms-ravi" title="Clinician">Ravi</a>
+    </div>
+    <div class="hms-group hms-suppliers">
+      <a href="DTx OM - Joe Journey.html" class="hms hms-joe" title="Supplier">Joe</a>
+      <a href="DTx OM - Marcus Journey.html" class="hms hms-marcus" title="Supplier">Marcus</a>
+    </div>
+  </div>
+</nav>
+
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-rule"></div>
+        <div class="hero-eyebrow">A monitoring-gap commissioner&apos;s story through HomeTest, held open as a working hypothesis</div>
+        <h1 class="hero-title">The cohort <em>between two budgets</em>,<br>and the commissioner who has to own it.</h1>
+        <p class="hero-strap">Ruth is the commissioner who will buy PSA monitoring for men referred to Urology with a raised PSA and no cancer diagnosis. Today that cohort sits between primary and secondary care, with no single budget holder, no agreed protocol cadence and no one counting whether the monitoring happens. <strong>This is the journey the model expects her to take once the cohort design lands, told in six stages, with the open specifics deliberately left open.</strong></p>
+      </div>
+      <div class="hero-portrait-box">
+        <div class="hero-portrait-circ">
+          <img src="../assets/personas/ruth.png" alt="Ruth">
+        </div>
+        <div class="hero-portrait-name">Ruth</div>
+        <div class="hero-portrait-role">Monitoring-gap commissioner<br>HomeTest PSA active surveillance &middot; TBC</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIBBON -->
+  <div class="ribbon-wrap">
+    <div class="ribbon-eyebrow">Ruth&apos;s journey at a glance</div>
+    <div class="ribbon">
+      <a class="ribbon-stage" href="#stage-1">
+        <div class="ribbon-num">1</div>
+        <div class="ribbon-label">The brief</div>
+        <div class="ribbon-substage">A cohort between two budgets</div>
+      </a>
+      <a class="ribbon-stage" href="#stage-2">
+        <div class="ribbon-num">2</div>
+        <div class="ribbon-label">One front door</div>
+        <div class="ribbon-substage">What the framework has already settled</div>
+      </a>
+      <a class="ribbon-stage" href="#stage-3">
+        <div class="ribbon-num">3</div>
+        <div class="ribbon-label">Fit for this cohort</div>
+        <div class="ribbon-substage">The protocol has to exist first</div>
+      </a>
+      <a class="ribbon-stage" href="#stage-4">
+        <div class="ribbon-num">4</div>
+        <div class="ribbon-label">The buy</div>
+        <div class="ribbon-substage">A call-off once the owner is clear</div>
+      </a>
+      <a class="ribbon-stage" href="#stage-5">
+        <div class="ribbon-num">5</div>
+        <div class="ribbon-label">Live operation</div>
+        <div class="ribbon-substage">The gap closes</div>
+      </a>
+      <a class="ribbon-stage" href="#stage-6">
+        <div class="ribbon-num">6</div>
+        <div class="ribbon-label">The case for funding</div>
+        <div class="ribbon-substage">Early detection, shown</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- FRAMING -->
+  <div class="framing">
+    <div class="framing-grid">
+      <div class="framing-tile">
+        <div class="framing-tile-eyebrow">What Ruth is trying to do</div>
+        <div class="framing-tile-h">Close a monitoring gap that nobody currently owns</div>
+        <div class="framing-tile-body">Men referred to Urology with a raised PSA and no cancer found go back to their GP with an instruction to keep an eye on it. Some are monitored well. Some drift. The cohort has no single budget holder, no agreed cadence and no one measuring whether the monitoring happens. <strong>Ruth&apos;s job is to make that cohort someone&apos;s responsibility, with a supplier behind it that has already been assured.</strong></div>
+      </div>
+      <div class="framing-tile">
+        <div class="framing-tile-eyebrow">What the model already gives her</div>
+        <div class="framing-tile-h">A configuration that exists, and five questions it cannot answer for her</div>
+        <div class="framing-tile-body">PSA active surveillance is the board-selected acute use case, scored Priority 2 (35/45) under the Prioritisation Framework. The kit, the labs, the NHS App journey and the supplier assurance are the same ones Mark&apos;s cohort uses. <strong>What the model deliberately holds open is who Ruth is:</strong> her institution, her budget source, the clinical owner, the protocol cadence and the contract shape. Those come from the cohort discovery, not from the operating model.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAGES -->
+  <div class="stages">
+
+    <!-- STAGE 1 -->
+    <div class="stage" id="stage-1">
+      <div class="stage-side">
+        <div class="stage-number">01</div>
+      </div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">The brief &middot; a cohort between two budgets</div>
+        <h2 class="stage-title">Ruth is handed a cohort that everyone agrees should be monitored and nobody can say who pays for. <span class="hm-witness" data-moment="ruth-s1"></span></h2>
+
+        <div class="stage-image stage-image-placeholder" data-file="img/Ruth 1.png" style="margin-bottom:22px;border:2px dashed #C9D6E3;border-radius:12px;background:repeating-linear-gradient(135deg,#F4F8FC 0 14px,#EEF3F8 14px 28px);min-height:170px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:26px 28px;color:#4C6272;">
+          <div style="font-size:10.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#7E8B97;margin-bottom:8px;">Illustration to come &middot; stage 1 of 6</div>
+          <div style="font-size:14px;font-weight:700;color:#003087;max-width:640px;line-height:1.5;">Ruth at a whiteboard split into two budget columns with an unowned list of names in the gap between them.</div>
+          <div style="font-size:11px;color:#7E8B97;margin-top:10px;">Drops into <code>img/Ruth 1.png</code> &middot; prompt in the Gemini brief</div>
+        </div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">Everyone agrees these men should be monitored. Nobody can tell me whose budget the monitoring comes out of.</p>
+          <div class="pull-quote-attribution">Ruth</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">The Prioritisation Framework has already placed PSA active surveillance as the live clinician-initiated configuration, and the monitoring-gap cohort is scoped as a sub-cohort inside it rather than scored on its own. That matters for Ruth: <strong>she is not making the case for a new test category.</strong> She is making the case for a defined group of men to be attached to a configuration the platform already runs. The Status page carries the cohort as TBC, which is the model&apos;s way of saying the dependency is known and the answer is still being worked.</div>
+        </div>
+
+        <div class="old-way">
+          <div class="old-way-label">The old way</div>
+          <div class="old-way-body">The raised-PSA, no-diagnosis patient is discharged back to primary care with advice. Whether he is recalled depends on the practice, the patient and luck. Secondary care does not see him again unless he re-presents. No one holds the list, so no one can say how many men are in it, how many were monitored on time and how many were lost.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What the care team sees</div>
+            <div class="careteam-text">Urology sees the cohort as men it has already assessed and cannot keep on its books. Primary care sees them as follow-ups it was never resourced to run. Both are right, which is exactly why the budget question comes first.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 2 -->
+    <div class="stage" id="stage-2">
+      <div class="stage-side">
+        <div class="stage-number">02</div>
+      </div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">One front door &middot; what the framework has already settled</div>
+        <h2 class="stage-title">Ruth inherits the assurance. It was done nationally before her cohort existed. <span class="hm-witness" data-moment="ruth-s2"></span></h2>
+
+        <div class="stage-image stage-image-placeholder" data-file="img/Ruth 2.png" style="margin-bottom:22px;border:2px dashed #C9D6E3;border-radius:12px;background:repeating-linear-gradient(135deg,#F4F8FC 0 14px,#EEF3F8 14px 28px);min-height:170px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:26px 28px;color:#4C6272;">
+          <div style="font-size:10.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#7E8B97;margin-bottom:8px;">Illustration to come &middot; stage 2 of 6</div>
+          <div style="font-size:14px;font-weight:700;color:#003087;max-width:640px;line-height:1.5;">Ruth at a laptop reading the accredited register: rows already ticked, nothing for her to assure.</div>
+          <div style="font-size:11px;color:#7E8B97;margin-top:10px;">Drops into <code>img/Ruth 2.png</code> &middot; prompt in the Gemini brief</div>
+        </div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">I did not have to assure a single supplier. That work was done before my cohort existed.</p>
+          <div class="pull-quote-attribution">Ruth</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">The framework has done the national work in advance: Tier 1 company assurance through the Master SCAL, Tier 2 conformance for the PSA category, UKAS-accredited labs, MHRA-conformant kits, clinical safety cases under DCB0129 and DCB0160. Sarah leaned on exactly this for HIV; Catherine for the established active surveillance cohort. Ruth inherits it. <strong>Whichever institution she turns out to sit in, the accredited register is the same</strong> and the AQP floor of around three suppliers per test holds, in principle, so she is buying from a live market rather than a single incumbent.</div>
+        </div>
+
+        <div class="old-way">
+          <div class="old-way-label">The old way</div>
+          <div class="old-way-body">A local procurement for a monitoring service, or more likely no procurement at all: a spreadsheet, a recall letter template and a nurse who knows the list. Assurance, if it happened, was repeated Trust by Trust with the same questions asked of the same suppliers.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What the care team sees</div>
+            <div class="careteam-text">The clinical team&apos;s question changes from &apos;is this kit safe and is this lab any good&apos; to &apos;does this protocol fit our patients&apos;. The first was answered nationally. The second is theirs.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 3 -->
+    <div class="stage" id="stage-3">
+      <div class="stage-side">
+        <div class="stage-number">03</div>
+      </div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">Fit for this cohort &middot; the protocol has to exist first</div>
+        <h2 class="stage-title">The model stops and waits. Ruth cannot commission against a cadence nobody has signed. <span class="hm-witness" data-moment="ruth-s3"></span></h2>
+
+        <div class="stage-image stage-image-placeholder" data-file="img/Ruth 3.png" style="margin-bottom:22px;border:2px dashed #C9D6E3;border-radius:12px;background:repeating-linear-gradient(135deg,#F4F8FC 0 14px,#EEF3F8 14px 28px);min-height:170px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:26px 28px;color:#4C6272;">
+          <div style="font-size:10.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#7E8B97;margin-bottom:8px;">Illustration to come &middot; stage 3 of 6</div>
+          <div style="font-size:14px;font-weight:700;color:#003087;max-width:640px;line-height:1.5;">Ruth in a small meeting room with a consultant urologist, four blank cadence cards on the table, the protocol not yet signed.</div>
+          <div style="font-size:11px;color:#7E8B97;margin-top:10px;">Drops into <code>img/Ruth 3.png</code> &middot; prompt in the Gemini brief</div>
+        </div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">I will not buy a cadence. I will buy a protocol a urologist has signed.</p>
+          <div class="pull-quote-attribution">Ruth</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">Here the model stops and waits, deliberately. The surveillance protocol for men with a raised PSA and no diagnosis is being developed by the team scoping the cohort. The candidate cadences are on the table: annual, biannual, risk-stratified or symptom-led. The platform can run any of them, because the initiation pattern is clinician-initiated with a scheduled recall, the same pattern Mark&apos;s cohort uses. <strong>What the model refuses to do is pick the cadence for the clinicians.</strong> Until the protocol is signed off, Ruth has nothing to commission against, and the model says so rather than papering over it.</div>
+        </div>
+
+        <div class="old-way">
+          <div class="old-way-label">The old way</div>
+          <div class="old-way-body">Cadence was whatever the discharge letter said, interpreted by whichever GP read it. No protocol meant no way to audit compliance, and no way to tell a commissioner what good looked like.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What the care team sees</div>
+            <div class="careteam-text">Whoever ends up clinically owning the cohort, Urology, primary care, a shared monitoring service or a new owner, gets the protocol as a configuration on the platform: eligibility rule, recall schedule, result thresholds and the escalation route back into the clinic. The care team defines it once and the platform enforces it every time.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 4 -->
+    <div class="stage" id="stage-4">
+      <div class="stage-side">
+        <div class="stage-number">04</div>
+      </div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">The buy &middot; a call-off once the owner is clear</div>
+        <h2 class="stage-title">The contract shape follows the budget owner. The terms were settled before she started. <span class="hm-witness" data-moment="ruth-s4"></span></h2>
+
+        <div class="stage-image stage-image-placeholder" data-file="img/Ruth 4.png" style="margin-bottom:22px;border:2px dashed #C9D6E3;border-radius:12px;background:repeating-linear-gradient(135deg,#F4F8FC 0 14px,#EEF3F8 14px 28px);min-height:170px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:26px 28px;color:#4C6272;">
+          <div style="font-size:10.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#7E8B97;margin-bottom:8px;">Illustration to come &middot; stage 4 of 6</div>
+          <div style="font-size:14px;font-weight:700;color:#003087;max-width:640px;line-height:1.5;">Ruth at a call-off form on screen with a single field still blank: the paying party.</div>
+          <div style="font-size:11px;color:#7E8B97;margin-top:10px;">Drops into <code>img/Ruth 4.png</code> &middot; prompt in the Gemini brief</div>
+        </div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">Once someone said &apos;this budget is ours&apos;, the buying took weeks, not a year.</p>
+          <div class="pull-quote-attribution">Ruth</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">The framework was built so that the contract shape follows the budget owner rather than the other way round. If the cohort lands in an ICB pathway budget, Ruth&apos;s route is a call-off from the accredited register, the way Sarah and Catherine buy. If it lands in an acute tariff envelope, the call-off is made by the Trust with Ruth&apos;s ICB as the commissioning counterparty. If it needs a joint arrangement or earmarked national funding, the framework&apos;s terms still apply and only the paying party changes. <strong>In every version the price is a cost per activity for each completed test, against a national ceiling that local competition can beat,</strong> with a levy on throughput that funds the platform and returns a share to NHS England. All of that is in principle until the cohort discovery names the owner.</div>
+        </div>
+
+        <div class="old-way">
+          <div class="old-way-label">The old way</div>
+          <div class="old-way-body">A bespoke local contract, or a grant, or a service that ran on goodwill and then stopped when the goodwill did. Terms negotiated from scratch, with no national ceiling and no recourse the commissioner could actually use.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What the care team sees</div>
+            <div class="careteam-text">Nothing changes clinically at the point of contract. The care team&apos;s protocol is already on the platform; the buy simply switches it on for their patients and tells the supplier who is paying.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 5 -->
+    <div class="stage" id="stage-5">
+      <div class="stage-side">
+        <div class="stage-number">05</div>
+      </div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">Live operation &middot; the gap closes</div>
+        <h2 class="stage-title">For the first time the list is a list. Every man, when he is due, whether the result came back. <span class="hm-witness" data-moment="ruth-s5"></span></h2>
+
+        <div class="stage-image stage-image-placeholder" data-file="img/Ruth 5.png" style="margin-bottom:22px;border:2px dashed #C9D6E3;border-radius:12px;background:repeating-linear-gradient(135deg,#F4F8FC 0 14px,#EEF3F8 14px 28px);min-height:170px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:26px 28px;color:#4C6272;">
+          <div style="font-size:10.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#7E8B97;margin-bottom:8px;">Illustration to come &middot; stage 5 of 6</div>
+          <div style="font-size:14px;font-weight:700;color:#003087;max-width:640px;line-height:1.5;">Ruth in front of a cohort dashboard: names, due dates and results as colour blocks, one amber exception flagged.</div>
+          <div style="font-size:11px;color:#7E8B97;margin-top:10px;">Drops into <code>img/Ruth 5.png</code> &middot; prompt in the Gemini brief</div>
+        </div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">For the first time I can see the list. Every man on it, when he is due, and whether the result came back.</p>
+          <div class="pull-quote-attribution">Ruth</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">Once live, the cohort behaves like any clinician-initiated configuration on HomeTest. Eligible men are enrolled from the clinic, the platform issues the kit on the protocol&apos;s schedule, the result returns through the accredited lab to the clinician, and the NHS App carries the patient&apos;s view. <strong>Missed recalls surface as exceptions rather than silence.</strong> Results above the threshold route straight back to Urology through the escalation rule the care team set in Stage 03. Ruth gets the operating data commissioners never had for this group: enrolment, on-time completion, loss to follow-up and escalations.</div>
+        </div>
+
+        <div class="old-way">
+          <div class="old-way-label">The old way</div>
+          <div class="old-way-body">Recall depended on the practice system flagging it and someone acting on the flag. A man who moved practice, changed his number or simply did not respond disappeared from a list that was never really a list.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What the care team sees</div>
+            <div class="careteam-text">Urology sees only the men who need to come back. Primary care sees a cohort being monitored without the practice carrying the admin. Both can see the same record because the NHS holds it, not the supplier.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 6 -->
+    <div class="stage" id="stage-6">
+      <div class="stage-side">
+        <div class="stage-number">06</div>
+      </div>
+      <div class="stage-main">
+        <div class="stage-eyebrow">The case for funding &middot; early detection, shown</div>
+        <h2 class="stage-title">The argument was never about kits. It was about the men who would otherwise have been found late. <span class="hm-witness" data-moment="ruth-s6"></span></h2>
+
+        <div class="stage-image stage-image-placeholder" data-file="img/Ruth 6.png" style="margin-bottom:22px;border:2px dashed #C9D6E3;border-radius:12px;background:repeating-linear-gradient(135deg,#F4F8FC 0 14px,#EEF3F8 14px 28px);min-height:170px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:26px 28px;color:#4C6272;">
+          <div style="font-size:10.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#7E8B97;margin-bottom:8px;">Illustration to come &middot; stage 6 of 6</div>
+          <div style="font-size:14px;font-weight:700;color:#003087;max-width:640px;line-height:1.5;">Ruth presenting a simple two-bar chart (monitored, found) to a small board table.</div>
+          <div style="font-size:11px;color:#7E8B97;margin-top:10px;">Drops into <code>img/Ruth 6.png</code> &middot; prompt in the Gemini brief</div>
+        </div>
+
+        <div class="pull-quote">
+          <p class="pull-quote-text">The argument was never about kits. It was about the men we would otherwise have found late.</p>
+          <div class="pull-quote-attribution">Ruth</div>
+        </div>
+
+        <div class="whats-happening">
+          <div class="whats-happening-label">What the model is doing underneath</div>
+          <div class="whats-happening-body">The monitoring-gap case rests on early detection: the men in this cohort who go on to develop diagnosable prostate cancer, found on schedule rather than on re-presentation. The outcome measure is still to be defined alongside the protocol, and the model says so. <strong>What the platform gives Ruth from day one is the denominator and the numerator she never had:</strong> how many men are monitored, how many on time, how many escalated and what was found. That is the evidence base for whichever institution funds the next year, and for the wider question of whether this cohort should be commissioned everywhere or only where a gap is proven.</div>
+        </div>
+
+        <div class="old-way">
+          <div class="old-way-label">The old way</div>
+          <div class="old-way-body">No baseline, so no case. Commissioners were asked to fund monitoring for a group whose size and outcomes nobody could state.</div>
+        </div>
+
+        <div class="careteam">
+          <div class="careteam-icon">&#x1F465;</div>
+          <div class="careteam-body">
+            <div class="careteam-label">What the care team sees</div>
+            <div class="careteam-text">Clinicians get an audit trail they can stand behind at the MDT and at inspection. The protocol, the compliance against it and the outcomes sit in one place.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- OUTCOME -->
+  <div class="outcome">
+    <div class="outcome-eyebrow">Ruth&apos;s win, when it lands</div>
+    <h2 class="outcome-title">A cohort that belongs to someone, monitored on a protocol, bought on terms already settled.</h2>
+    <p class="outcome-body">Ruth&apos;s journey is the honest one in this cast. Five of its specifics are held open on purpose: her institution, her budget source, the clinical owner, the protocol cadence and the contract shape. <strong>What the model shows is that none of those blockers sits in the platform or the framework.</strong> The assurance is done, the configuration exists, the buy route follows whichever owner emerges, and the operating data starts on day one. When the cohort discovery lands, Ruth becomes a fully populated persona on Sarah&apos;s pattern and this journey firms up with her.</p>
+    <div class="outcome-cta">
+      <a href="DTx OM - Persona Ruth.html" class="outcome-btn">Open Ruth&apos;s persona &rarr;</a>
+      <a href="DTx OM - Hearts and Minds.html" class="outcome-btn-sec">Back to Hearts and Minds &rarr;</a>
+    </div>
+  </div>
+
+</div>
+
+<script src="../hearts-and-minds/hm-witness.js"></script>
+
+
+<div class="money-story" style="max-width:1180px;margin:0 auto 50px;padding:26px 36px 24px;background:#ffffff;border-radius:18px;border-top:5px solid #006747;box-shadow:0 14px 40px rgba(0,48,135,0.20);">
+  <div style="font-size:11px;font-weight:800;letter-spacing:2px;color:#006747;text-transform:uppercase;margin-bottom:10px;">The money in this story</div>
+  <p style="font-size:14.5px;color:#4C6272;line-height:1.72;margin:0 0 10px;max-width:900px;">Ruth buys nothing until the cohort has an owner, and the model is explicit about that. When she does buy, the mechanics are the ones already built for Sarah and Catherine: a call-off from the accredited register, a cost per activity for each completed test against a national ceiling, local competition able to beat that ceiling, and a levy on throughput that funds the platform with a share returned to NHS England.</p>
+  <p style="font-size:14.5px;color:#4C6272;line-height:1.72;margin:0 0 10px;max-width:900px;">What her cohort adds is the funding question itself. A group that sits between primary and secondary care needs a paying party named before any of that machinery can turn, which is why the budget owner sits at Stage 01 of this story and not at the end.</p>
+  <div style="font-size:11.5px;color:#7E8B97;margin-top:12px;">Commercial positions are agreed in principle and remain subject to the live procurement. See <a href="DTx OM - Money Loop.html" style="color:#006747;font-weight:700;text-decoration:none;">Money Loop</a> and <a href="DTx OM - How Commissioners Buy.html" style="color:#006747;font-weight:700;text-decoration:none;">How Commissioners Buy</a>.</div>
+</div>
+</body>
+</html>

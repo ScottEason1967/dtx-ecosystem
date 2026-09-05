@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>HomeTest audience decks</title>
+<title>HomeTest decks</title>
 <style>
   :root {
     --nhs-dark:#003087; --nhs-blue:#005EB8; --nhs-green:#006747;
@@ -46,6 +46,21 @@
   .block .aud-label{color:var(--text-muted);margin-bottom:2px;}
   .block-sub{font-size:16px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.3px;}
   .block-desc{font-size:12.5px;color:var(--text-sec);line-height:1.6;flex:1;}
+  .sec-h{font-size:12px;font-weight:800;letter-spacing:2px;color:var(--text-muted);text-transform:uppercase;margin:6px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--border-lt);}
+  .sec-gap{height:38px;}
+  .hero-deck.journeys{border-color:var(--nhs-blue);}
+  .hero-deck.journeys .aud-label{color:var(--nhs-blue);}
+  .jd-group{font-size:11px;font-weight:800;letter-spacing:1.6px;color:var(--text-muted);text-transform:uppercase;margin:20px 0 10px;}
+  .jd-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+  .jd{background:var(--card);border:1px solid var(--border-lt);border-radius:13px;padding:16px 18px 14px;display:flex;flex-direction:column;gap:6px;border-top:5px solid var(--border);box-shadow:0 4px 14px rgba(0,32,64,0.05);}
+  .jd-patient{border-top-color:var(--amber);} .jd-commissioner{border-top-color:var(--nhs-dark);} .jd-clinician{border-top-color:#C9A0E3;} .jd-supplier{border-top-color:#5BC093;}
+  .jd-name{font-size:17px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.3px;}
+  .jd-role{font-size:12px;color:var(--text-sec);line-height:1.5;flex:1;}
+  .jd-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:6px;}
+  .jd-meta{font-size:11px;font-weight:700;color:var(--text-muted);letter-spacing:0.4px;}
+  .jd-dl{font-size:12.5px;font-weight:800;color:var(--nhs-blue);text-decoration:none;white-space:nowrap;}
+  .jd-dl:hover{color:var(--nhs-dark);text-decoration:underline;}
+  @media(max-width:760px){.jd-grid{grid-template-columns:1fr;}}
   @media(max-width:760px){.blocks{grid-template-columns:1fr;}.page{padding:30px 18px 60px;}.h-title{font-size:28px;}}
 </style>
 </head>
@@ -58,9 +73,11 @@
 
 <div class="page">
   <div class="amber-rule"></div>
-  <div class="h-eyebrow">HomeTest &middot; audience decks</div>
-  <h1 class="h-title">HomeTest: audience decks</h1>
-  <p class="h-sub">One pitch per audience, every deck built from the same stories and the same evidence.</p>
+  <div class="h-eyebrow">HomeTest &middot; decks</div>
+  <h1 class="h-title">HomeTest: the decks</h1>
+  <p class="h-sub">Two kinds of deck, built from the same stories and the same evidence. <strong>The audience decks are the pitch</strong>, one per room. <strong>The journey decks are the stories themselves as slides</strong>, one per person in the cast, for the colleague who wants to take a single story into a meeting.</p>
+
+  <div class="sec-h">Audience decks &middot; one pitch per room</div>
 
   <div class="hero-deck">
     <div class="aud-label">Commissioners &middot; <span class="chip chip-live">Live</span></div>
@@ -103,8 +120,92 @@
     </div>
   </div>
 
+  <div class="sec-gap"></div>
+  <div class="sec-h">Journey decks &middot; the stories as slides</div>
+
+  <div class="hero-deck journeys">
+    <div class="aud-label">The cast &middot; <span class="chip chip-live">Live</span></div>
+    <div class="deck-title">Twelve people. One operating model.</div>
+    <p class="deck-desc">The Overview deck introduces the whole HomeTest cast and gives every journey at a glance: five patients, four commissioners, two clinicians and one supplier. Each individual deck below carries one journey in full, stage by stage, with the pull quotes, the illustrations where they exist, and the money in that story. All built straight from the journey pages, so they say what the site says.</p>
+    <a class="btn" href="journey-decks/hm-journey-overview-v1.pptx" download>Download the Overview deck (.pptx)</a>
+    <div class="deck-meta">Journey decks &middot; v1 &middot; September 2026 &middot; commercial positions in principle, subject to the live procurement</div>
+  </div>
+
+    <div class="jd-group">Patients</div>
+    <div class="jd-grid">
+      <div class="jd jd-patient">
+        <div class="jd-name">Abdul</div>
+        <div class="jd-role">Self-initiated patient · CVKM cohort</div>
+        <div class="jd-foot"><span class="jd-meta">8 slides</span><a class="jd-dl" href="journey-decks/hm-journey-abdul-v1.pptx" download>Download (.pptx) &darr;</a></div>
+      </div>
+      <div class="jd jd-patient">
+        <div class="jd-name">Devi</div>
+        <div class="jd-role">At-risk register · HbA1c annual review · Primary-care surveillance cohort</div>
+        <div class="jd-foot"><span class="jd-meta">8 slides</span><a class="jd-dl" href="journey-decks/hm-journey-devi-v1.pptx" download>Download (.pptx) &darr;</a></div>
+      </div>
+      <div class="jd jd-patient">
+        <div class="jd-name">Layla</div>
+        <div class="jd-role">Patient on iron supplementation · Primary-care monitoring cohort</div>
+        <div class="jd-foot"><span class="jd-meta">8 slides</span><a class="jd-dl" href="journey-decks/hm-journey-layla-v1.pptx" download>Download (.pptx) &darr;</a></div>
+      </div>
+      <div class="jd jd-patient">
+        <div class="jd-name">Mark</div>
+        <div class="jd-role">Patient on active surveillance · PSA-AS cohort</div>
+        <div class="jd-foot"><span class="jd-meta">8 slides</span><a class="jd-dl" href="journey-decks/hm-journey-mark-v1.pptx" download>Download (.pptx) &darr;</a></div>
+      </div>
+      <div class="jd jd-patient">
+        <div class="jd-name">Sean</div>
+        <div class="jd-role">Horizontal cohort patient · The access story</div>
+        <div class="jd-foot"><span class="jd-meta">8 slides</span><a class="jd-dl" href="journey-decks/hm-journey-sean-v1.pptx" download>Download (.pptx) &darr;</a></div>
+      </div>
+    </div>
+    <div class="jd-group">Commissioners</div>
+    <div class="jd-grid">
+      <div class="jd jd-commissioner">
+        <div class="jd-name">Anita</div>
+        <div class="jd-role">ICB / GP commissioner · HomeTest HbA1c</div>
+        <div class="jd-foot"><span class="jd-meta">9 slides</span><a class="jd-dl" href="journey-decks/hm-journey-anita-v1.pptx" download>Download (.pptx) &darr;</a></div>
+      </div>
+      <div class="jd jd-commissioner">
+        <div class="jd-name">Catherine</div>
+        <div class="jd-role">ICB commissioner · HomeTest PSA active surveillance</div>
+        <div class="jd-foot"><span class="jd-meta">9 slides</span><a class="jd-dl" href="journey-decks/hm-journey-catherine-v1.pptx" download>Download (.pptx) &darr;</a></div>
+      </div>
+      <div class="jd jd-commissioner">
+        <div class="jd-name">Ruth</div>
+        <div class="jd-role">Monitoring-gap commissioner · HomeTest PSA active surveillance · TBC</div>
+        <div class="jd-foot"><span class="jd-meta">9 slides</span><a class="jd-dl" href="journey-decks/hm-journey-ruth-v1.pptx" download>Download (.pptx) &darr;</a></div>
+      </div>
+      <div class="jd jd-commissioner">
+        <div class="jd-name">Sarah</div>
+        <div class="jd-role">LA sexual health commissioner · HomeTest HIV</div>
+        <div class="jd-foot"><span class="jd-meta">9 slides</span><a class="jd-dl" href="journey-decks/hm-journey-sarah-v1.pptx" download>Download (.pptx) &darr;</a></div>
+      </div>
+    </div>
+    <div class="jd-group">Clinicians</div>
+    <div class="jd-grid">
+      <div class="jd jd-clinician">
+        <div class="jd-name">Adam</div>
+        <div class="jd-role">Consultant urologist · PSA Active Surveillance</div>
+        <div class="jd-foot"><span class="jd-meta">9 slides</span><a class="jd-dl" href="journey-decks/hm-journey-adam-v1.pptx" download>Download (.pptx) &darr;</a></div>
+      </div>
+      <div class="jd jd-clinician">
+        <div class="jd-name">Hannah</div>
+        <div class="jd-role">GP partner · Primary-care monitoring</div>
+        <div class="jd-foot"><span class="jd-meta">9 slides</span><a class="jd-dl" href="journey-decks/hm-journey-hannah-v1.pptx" download>Download (.pptx) &darr;</a></div>
+      </div>
+    </div>
+    <div class="jd-group">Supplier</div>
+    <div class="jd-grid">
+      <div class="jd jd-supplier">
+        <div class="jd-name">Joe</div>
+        <div class="jd-role">Self-sample supplier · Framework-admitted</div>
+        <div class="jd-foot"><span class="jd-meta">9 slides</span><a class="jd-dl" href="journey-decks/hm-journey-joe-v1.pptx" download>Download (.pptx) &darr;</a></div>
+      </div>
+    </div>
+
   <div class="foot">
-    <span>Hearts and Minds &middot; HomeTest audience decks &middot; one pitch per audience.</span>
+    <span>Hearts and Minds &middot; HomeTest decks &middot; one pitch per audience, one deck per story.</span>
     <span><a href="index.html">&larr; Materials hub</a> &nbsp;&middot;&nbsp; <a href="../index.html">Front door</a></span>
   </div>
 </div>
