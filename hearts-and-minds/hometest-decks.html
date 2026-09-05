@@ -34,23 +34,22 @@
     .hmw-chip { display:none; }
     .hmw-card, .pull-quote, .benefit, .callout { page-break-inside: avoid; }
   }
-  .hero-deck{background:var(--card);border:2px solid var(--amber);border-radius:16px;padding:30px 32px;box-shadow:0 8px 24px rgba(0,32,64,0.08);margin-bottom:22px;}
-  .aud-label{font-size:11px;font-weight:800;letter-spacing:2px;color:var(--amber-deep);text-transform:uppercase;margin-bottom:8px;}
-  .deck-title{font-size:26px;font-weight:900;color:var(--nhs-dark);letter-spacing:-0.6px;line-height:1.15;margin-bottom:10px;}
-  .deck-desc{font-size:14px;color:var(--text-sec);line-height:1.7;max-width:740px;margin-bottom:18px;}
-  .btn{display:inline-block;background:var(--nhs-blue);color:#fff;font-size:13.5px;font-weight:800;padding:12px 22px;border-radius:8px;text-decoration:none;letter-spacing:0.2px;}
+  .decks{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  .deck{background:var(--card);border:1px solid var(--border-lt);border-top:5px solid var(--nhs-blue);border-radius:14px;padding:22px 22px 20px;display:flex;flex-direction:column;gap:9px;box-shadow:0 4px 14px rgba(0,32,64,0.06);min-height:100%;}
+  .deck.lead{border-top-color:var(--amber);box-shadow:0 8px 24px rgba(0,32,64,0.09);}
+  .faces{display:flex;align-items:center;margin-bottom:4px;}
+  .faces img{width:58px;height:58px;border-radius:50%;object-fit:cover;object-position:50% 22%;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,32,64,0.18);background:#e6eef7;margin-left:-14px;}
+  .faces img:first-child{margin-left:0;}
+  .faces-names{font-size:11px;font-weight:700;color:var(--text-muted);margin-left:12px;line-height:1.4;}
+  .aud-label{font-size:10.5px;font-weight:800;letter-spacing:1.8px;color:var(--text-muted);text-transform:uppercase;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .deck.lead .aud-label{color:var(--amber-deep);}
+  .deck-title{font-size:18px;font-weight:900;color:var(--nhs-dark);letter-spacing:-0.4px;line-height:1.2;}
+  .deck-desc{font-size:12.5px;color:var(--text-sec);line-height:1.6;flex:1;}
+  .btn{display:inline-block;background:var(--nhs-blue);color:#fff;font-size:12.5px;font-weight:800;padding:10px 16px;border-radius:8px;text-decoration:none;letter-spacing:0.2px;align-self:flex-start;}
   .btn:hover{background:var(--nhs-dark);}
-  .deck-meta{font-size:11.5px;font-weight:700;color:var(--text-muted);letter-spacing:0.5px;margin-top:12px;}
-  .blocks{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-  .block{background:#fbfcfe;border:1px solid var(--border-lt);border-radius:13px;padding:22px 24px;display:flex;flex-direction:column;gap:8px;border-top:5px solid var(--border);}
-  .block .aud-label{color:var(--text-muted);margin-bottom:2px;}
-  .block-sub{font-size:16px;font-weight:800;color:var(--nhs-dark);letter-spacing:-0.3px;}
-  .block-desc{font-size:12.5px;color:var(--text-sec);line-height:1.6;flex:1;}
-  .block.live-block{background:var(--card);border-top-color:var(--nhs-blue);box-shadow:0 4px 14px rgba(0,32,64,0.06);}
-  .block .dl{display:inline-block;margin-top:10px;font-size:12.5px;font-weight:800;color:var(--nhs-blue);text-decoration:none;}
-  .block .dl:hover{color:var(--nhs-dark);text-decoration:underline;}
-  .block-meta{font-size:11px;font-weight:700;color:var(--text-muted);letter-spacing:0.4px;}
-  @media(max-width:760px){.blocks{grid-template-columns:1fr;}.page{padding:30px 18px 60px;}.h-title{font-size:28px;}}
+  .deck-meta{font-size:11px;font-weight:700;color:var(--text-muted);letter-spacing:0.4px;}
+  @media(max-width:1000px){.decks{grid-template-columns:1fr 1fr;}}
+  @media(max-width:700px){.decks{grid-template-columns:1fr;}.page{padding:30px 18px 60px;}.h-title{font-size:28px;}}
 </style>
 </head>
 <body>
@@ -64,51 +63,56 @@
   <div class="amber-rule"></div>
   <div class="h-eyebrow">HomeTest &middot; audience decks</div>
   <h1 class="h-title">HomeTest: audience decks</h1>
-  <p class="h-sub">One pitch per audience, every deck built from the same stories and the same evidence. Six editions: the commissioner deck plus one for each of the rooms the programme has to win.</p>
+  <p class="h-sub">One pitch per audience, every deck built from the same people, the same stories and the same evidence. Six editions, one for each of the rooms the programme has to win. The faces on each tile are the people from the model who carry that deck.</p>
 
-  <div class="hero-deck">
-    <div class="aud-label">Commissioners &middot; <span class="chip chip-live">Live</span></div>
-    <div class="deck-title">Testing that finds the people your clinics can&rsquo;t</div>
-    <p class="deck-desc">Sarah&rsquo;s deck: the commissioner pitch, weaving Sarah, Sean and Errol into one story. The economics, the evidence, fifteen slides with speaker notes.</p>
-    <a class="btn" href="hm-deck-01-commissioner-sarah-v3.pptx" download>Download the deck (.pptx)</a>
-    <div class="deck-meta">Deck No.1 &middot; v3 &middot; refreshed September 2026</div>
-  </div>
-
-  <div class="blocks">
-    <div class="block live-block">
-      <div class="aud-label">Clinicians &middot; <span class="chip chip-live">Live</span></div>
-      <div class="block-sub">The prescriber&rsquo;s pitch</div>
-      <p class="block-desc">The test moves, the medicine does not. What ordering looks like from the clinic, the assurance stack behind every kit, what happens when a sample or a patient fails, and the three asks that are clinical rather than commercial.</p>
-      <div><a class="dl" href="hm-deck-02-clinician-v1.pptx" download>Download the deck (.pptx) &darr;</a></div>
-      <div class="block-meta">Deck No.2 &middot; v1 &middot; 11 slides with speaker notes &middot; September 2026</div>
+  <div class="decks">
+    <div class="deck lead">
+      <div class="faces"><img src="../assets/personas/sarah.png" alt="Sarah" title="Sarah"><img src="../assets/personas/sean.png" alt="Sean" title="Sean"><img src="../operating-model/img/errol-portrait.png" alt="Errol" title="Errol"><span class="faces-names">Sarah &middot; Sean &middot; Errol</span></div>
+      <div class="aud-label">Commissioners <span class="chip chip-live">Live</span></div>
+      <div class="deck-title">Testing that finds the people your clinics can&rsquo;t</div>
+      <p class="deck-desc">Sarah&rsquo;s deck: the commissioner pitch, weaving Sarah, Sean and Errol into one story. Who clinic-hours testing misses, the cost-per-activity economics, what stops costing money, and a buying route designed for a commissioner&rsquo;s headcount.</p>
+      <a class="btn" href="hm-deck-01-commissioner-sarah-v3.pptx" download>Download the deck (.pptx)</a>
+      <div class="deck-meta">Deck No.1 &middot; v3 &middot; 15 slides with speaker notes &middot; refreshed September 2026</div>
     </div>
-    <div class="block live-block">
-      <div class="aud-label">Acute trust partners &middot; <span class="chip chip-live">Live</span></div>
-      <div class="block-sub">NHS-to-NHS: the surveillance and follow-up case</div>
-      <p class="block-desc">The follow-up burden in numbers, the PSA active-surveillance cohort as the starting point, what moves off the estate and what stays with the Trust, and the call-off route that replaces a procurement.</p>
-      <div><a class="dl" href="hm-deck-03-acute-trust-v1.pptx" download>Download the deck (.pptx) &darr;</a></div>
-      <div class="block-meta">Deck No.3 &middot; v1 &middot; 9 slides with speaker notes &middot; September 2026</div>
+    <div class="deck">
+      <div class="faces"><img src="../assets/personas/adam.png" alt="Adam" title="Adam"><img src="../assets/personas/hannah.png" alt="Hannah" title="Hannah"><img src="../assets/personas/mark.png" alt="Mark" title="Mark"><span class="faces-names">Adam &middot; Hannah &middot; Mark</span></div>
+      <div class="aud-label">Clinicians <span class="chip chip-live">Live</span></div>
+      <div class="deck-title">The test moves. The medicine does not.</div>
+      <p class="deck-desc">Adam&rsquo;s list and Hannah&rsquo;s recall cycle. What ordering looks like from the clinic, the assurance stack behind every kit, what happens when a sample or a patient fails, and three asks that are clinical rather than commercial.</p>
+      <a class="btn" href="hm-deck-02-clinician-v1.pptx" download>Download the deck (.pptx)</a>
+      <div class="deck-meta">Deck No.2 &middot; v1 &middot; 11 slides with speaker notes &middot; September 2026</div>
     </div>
-    <div class="block live-block">
-      <div class="aud-label">National platform partners &middot; <span class="chip chip-live">Live</span></div>
-      <div class="block-sub">One front door at national scale</div>
-      <p class="block-desc">What HomeTest consumes and what it builds, why the gate model means integrating once rather than per test, the information governance position as it stands, and three asks that add no new scope.</p>
-      <div><a class="dl" href="hm-deck-04-national-platform-v1.pptx" download>Download the deck (.pptx) &darr;</a></div>
-      <div class="block-meta">Deck No.4 &middot; v1 &middot; 8 slides with speaker notes &middot; September 2026</div>
+    <div class="deck">
+      <div class="faces"><img src="../assets/personas/catherine.png" alt="Catherine" title="Catherine"><img src="../assets/personas/adam.png" alt="Adam" title="Adam"><img src="../assets/personas/mark.png" alt="Mark" title="Mark"><span class="faces-names">Catherine &middot; Adam &middot; Mark</span></div>
+      <div class="aud-label">Acute trust partners <span class="chip chip-live">Live</span></div>
+      <div class="deck-title">Surveillance that does not need the building.</div>
+      <p class="deck-desc">NHS to NHS. The follow-up burden in numbers, the PSA active-surveillance cohort as the starting point, what moves off the estate and what stays with the Trust, Mark&rsquo;s quarterly test, and the call-off route that replaces a procurement.</p>
+      <a class="btn" href="hm-deck-03-acute-trust-v1.pptx" download>Download the deck (.pptx)</a>
+      <div class="deck-meta">Deck No.3 &middot; v1 &middot; 9 slides with speaker notes &middot; September 2026</div>
     </div>
-    <div class="block live-block">
-      <div class="aud-label">Suppliers &middot; <span class="chip chip-live">Live</span></div>
-      <div class="block-sub">The market worth joining</div>
-      <p class="block-desc">Assured once, sold many times. The two-tier assurance model, the roadmap gates, the accredited register and its floor of about three suppliers per test, and how a supplier actually gets paid.</p>
-      <div><a class="dl" href="hm-deck-05-supplier-v1.pptx" download>Download the deck (.pptx) &darr;</a></div>
-      <div class="block-meta">Deck No.5 &middot; v1 &middot; 10 slides with speaker notes &middot; September 2026</div>
+    <div class="deck">
+      <div class="faces"><img src="../assets/personas/priya.png" alt="Priya" title="Priya"><img src="../assets/personas/ngozi.png" alt="Ngozi" title="Ngozi"><img src="../assets/personas/abdul.png" alt="Abdul" title="Abdul"><span class="faces-names">Priya &middot; Ngozi &middot; Abdul</span></div>
+      <div class="aud-label">National platform partners <span class="chip chip-live">Live</span></div>
+      <div class="deck-title">One integration. Every test that follows.</div>
+      <p class="deck-desc">Priya&rsquo;s rails and Ngozi&rsquo;s gate. What HomeTest consumes and what it builds, why the gate model means integrating once rather than per test, the information governance position as it stands, and three asks that add no new scope.</p>
+      <a class="btn" href="hm-deck-04-national-platform-v1.pptx" download>Download the deck (.pptx)</a>
+      <div class="deck-meta">Deck No.4 &middot; v1 &middot; 8 slides with speaker notes &middot; September 2026</div>
     </div>
-    <div class="block live-block">
-      <div class="aud-label">Patient and public voice &middot; <span class="chip chip-live">Live</span></div>
-      <div class="block-sub">The story in the patient&rsquo;s own terms</div>
-      <p class="block-desc">Plain language throughout: what happens step by step, Sean&rsquo;s story, straight answers on data, quality and choice, an honest slide on what is not decided yet, and three real asks.</p>
-      <div><a class="dl" href="hm-deck-06-patient-public-voice-v1.pptx" download>Download the deck (.pptx) &darr;</a></div>
-      <div class="block-meta">Deck No.6 &middot; v1 &middot; 9 slides with speaker notes &middot; September 2026</div>
+    <div class="deck">
+      <div class="faces"><img src="../assets/personas/joe.png" alt="Joe" title="Joe"><img src="../assets/personas/sarah.png" alt="Sarah" title="Sarah"><img src="../assets/personas/david.png" alt="David" title="David"><span class="faces-names">Joe &middot; Sarah &middot; David</span></div>
+      <div class="aud-label">Suppliers <span class="chip chip-live">Live</span></div>
+      <div class="deck-title">Assured once. Sold many times.</div>
+      <p class="deck-desc">Joe&rsquo;s route to market. The two-tier assurance model, the roadmap gates, the accredited register and its floor of about three suppliers per test, how a supplier actually gets paid, and what we want from suppliers before the framework goes live.</p>
+      <a class="btn" href="hm-deck-05-supplier-v1.pptx" download>Download the deck (.pptx)</a>
+      <div class="deck-meta">Deck No.5 &middot; v1 &middot; 10 slides with speaker notes &middot; September 2026</div>
+    </div>
+    <div class="deck">
+      <div class="faces"><img src="../assets/personas/sean.png" alt="Sean" title="Sean"><img src="../assets/personas/layla.png" alt="Layla" title="Layla"><img src="../assets/personas/devi.png" alt="Devi" title="Devi"><span class="faces-names">Sean &middot; Layla &middot; Devi</span></div>
+      <div class="aud-label">Patient and public voice <span class="chip chip-live">Live</span></div>
+      <div class="deck-title">A test that comes to you.</div>
+      <p class="deck-desc">Plain language throughout. Sean, Layla and Devi and what the current system asks of them, the five steps with no waiting room, Sean&rsquo;s story, straight answers on data, quality and choice, and an honest slide on what is not decided yet.</p>
+      <a class="btn" href="hm-deck-06-patient-public-voice-v1.pptx" download>Download the deck (.pptx)</a>
+      <div class="deck-meta">Deck No.6 &middot; v1 &middot; 9 slides with speaker notes &middot; September 2026</div>
     </div>
   </div>
 

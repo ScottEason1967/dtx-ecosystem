@@ -22,3 +22,9 @@ desktop.ini
 # Local build artefacts
 node_modules/
 .cache/
+
+# Derived image caches for the deck generators (rebuilt by the cache step in hm_decks_v2.js header)
+hearts-and-minds/_generators/assets/scenes/
+hearts-and-minds/_generators/assets/bigportraits/
+hearts-and-minds/_generators/assets/portraits/
+hearts-and-minds/_generators/assets/crops/

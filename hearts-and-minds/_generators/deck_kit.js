@@ -23,14 +23,18 @@ const DISCLAIMER = 'Commercial positions are agreed in principle and remain subj
 // ---------- text helpers
 const plain = rs => (Array.isArray(rs) ? rs.map(r => r.text).join('') : String(rs || ''));
 const runs = (rs, base) => rs.map(r => ({ text: r.text, options: Object.assign({}, base, r.bold ? { bold: true } : {}) }));
-function estLines(txt, pt, widthIn) {
-  const cpl = Math.max(10, Math.floor((widthIn - 0.25) * 72 / (pt * 0.5)));
+// Conservative metrics: PowerPoint does not apply shrink-to-fit until a box is edited, so every box must be
+// sized to hold its text as stored. Average advance taken as 0.55em (bold headings run wider, ~0.6em), line
+// height 1.3, and word wrap loses part of most lines, so a further 8% is added.
+const CHAR_W = 0.6, LINE_H = 1.3;
+function estLines(txt, pt, widthIn, bold) {
+  const cpl = Math.max(8, Math.floor((widthIn - 0.1) * 72 / (pt * (bold ? 0.68 : CHAR_W)) * 0.92));
   let n = 0; for (const para of String(txt).split('\n')) n += Math.max(1, Math.ceil(para.length / cpl));
   return n;
 }
-const hFor = (txt, pt, widthIn, pad = 0.22) => estLines(txt, pt, widthIn) * pt * 1.24 / 72 + pad;
-function fitPt(txt, maxH, widthIn, start, min, pad = 0.1) {
-  let f = start; while (f > min && hFor(txt, f, widthIn, pad) > maxH) f -= 0.5; return f;
+const hFor = (txt, pt, widthIn, pad = 0.22, bold) => estLines(txt, pt, widthIn, bold) * pt * LINE_H / 72 + pad;
+function fitPt(txt, maxH, widthIn, start, min, pad = 0.1, bold) {
+  let f = start; while (f > min && hFor(txt, f, widthIn, pad, bold) > maxH) f -= 0.5; return f;
 }
 
 // ---------- logo lockup: white rounded card behind the mark, so "England" (black) always reads
